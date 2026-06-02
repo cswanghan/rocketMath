@@ -50,17 +50,36 @@ body,
 .track-card {
   display: flex;
   flex-direction: column;
+  border-radius: 18px;
+  background: var(--panel);
+  overflow: hidden;
+}
+.track-main {
+  display: flex;
+  flex-direction: column;
   gap: 6px;
   padding: 22px;
   border: none;
-  border-radius: 18px;
-  background: var(--panel);
+  background: transparent;
   color: var(--text);
   cursor: pointer;
   transition: transform 0.1s ease;
 }
-.track-card:active {
+.track-main:active {
   transform: scale(0.98);
+}
+.race-btn {
+  border: none;
+  border-top: 1px solid #232c4d;
+  background: transparent;
+  color: var(--accent2);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px;
+  cursor: pointer;
+}
+.race-btn:active {
+  background: #232c4d;
 }
 .track-name {
   font-size: 1.5rem;
@@ -309,6 +328,32 @@ body,
   text-align: center;
   color: var(--muted);
   padding: 40px;
+}
+
+/* ---- probe / race / mute ---- */
+.probe-head {
+  text-align: center;
+  margin-bottom: 12px;
+}
+.probe-head h2 {
+  margin: 4px 0;
+}
+.probe-target {
+  font-size: 5rem;
+  color: var(--accent);
+}
+.mute {
+  font-size: 1.1rem;
+  padding: 0 4px;
+  cursor: pointer;
+}
+.timer {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.timer-low {
+  color: var(--bad);
+  font-weight: 800;
 }
 
 .error-screen {

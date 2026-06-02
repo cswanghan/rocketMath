@@ -4,6 +4,7 @@ import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
 import { pack } from './pack';
 import { RocketChart } from './RocketChart';
+import { cancel, isMuted, sayFact, setMuted as persistMuted, speak } from './speech';
 import { useGame } from './useGame';
 
 const PHASE_LABEL: Record<string, string> = {
@@ -27,6 +28,8 @@ export function Play({ trackId, adapter, studentId, seed, onExit }: Props) {
   const [input, setInput] = useState('');
   const inputRef = useRef('');
   inputRef.current = input;
+  const [muted, setMuted] = useState(isMuted());
+  const lastSpokeRef = useRef('');
 
   const mastery = pack.engine_config.mastery;
   const { state, view } = game;
@@ -44,9 +47,27 @@ export function Play({ trackId, adapter, studentId, seed, onExit }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game.promptSeq, view.mode]);
 
+  // speak the answer during a correction (learning phase only; never in race)
+  useEffect(() => {
+    if (view.mode !== 'correction') return;
+    if (lastSpokeRef.current === view.fact.id) return;
+    lastSpokeRef.current = view.fact.id;
+    if (!muted) speak(sayFact(view.fact.prompt, view.fact.answer));
+  }, [view, muted]);
+
+  const toggleMute = useCallback(() => {
+    setMuted((m) => {
+      const next = !m;
+      persistMuted(next);
+      if (next) cancel();
+      return next;
+    });
+  }, []);
+
   const doSubmit = useCallback(() => {
     if (view.mode !== 'prompt') return;
     if (inputRef.current === '') return;
+    lastSpokeRef.current = ''; // allow re-speaking on the next correction
     game.submit(Number(inputRef.current));
   }, [game, view.mode]);
 
@@ -76,6 +97,9 @@ export function Play({ trackId, adapter, studentId, seed, onExit }: Props) {
           ← 返回
         </button>
         <div className="status">
+          <button className="ghost mute" onClick={toggleMute} title="语音开关">
+            {muted ? '🔇' : '🔊'}
+          </button>
           <span className="phase-badge">{PHASE_LABEL[state.phase]}</span>
           {state.phase === 'take_off' ? (
             <span className="prog">

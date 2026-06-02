@@ -8,6 +8,7 @@ interface Props {
   adapter: StorageAdapter;
   studentId: string;
   onStart: (trackId: string) => void;
+  onRace: (trackId: string) => void;
 }
 
 interface Progress {
@@ -18,7 +19,7 @@ interface Progress {
 // Track list is driven entirely by getEnabledTracks(pack): flipping a track's
 // `enabled` flag in the content pack adds/removes it here, no code change
 // (SPEC §9 track-agnostic acceptance).
-export function Home({ adapter, studentId, onStart }: Props) {
+export function Home({ adapter, studentId, onStart, onRace }: Props) {
   const tracks = getEnabledTracks(pack);
   const [progress, setProgress] = useState<Record<string, Progress>>({});
 
@@ -48,14 +49,19 @@ export function Home({ adapter, studentId, onStart }: Props) {
           const levels = t.levels.map((l) => l.level);
           const p = progress[t.trackId];
           return (
-            <button key={t.trackId} className="track-card" onClick={() => onStart(t.trackId)}>
-              <span className="track-name">{t.name}</span>
-              <span className="track-meta">
-                {t.levels.length} 关 · Level A–{levels[levels.length - 1]}
-                {p && p.completed.length > 0 ? ` · 已过 ${p.completed.length} 关` : ''}
-              </span>
-              <RocketChart levels={levels} completed={p?.completed ?? []} current={p?.current} compact />
-            </button>
+            <div key={t.trackId} className="track-card">
+              <button className="track-main" onClick={() => onStart(t.trackId)}>
+                <span className="track-name">{t.name}</span>
+                <span className="track-meta">
+                  {t.levels.length} 关 · Level A–{levels[levels.length - 1]}
+                  {p && p.completed.length > 0 ? ` · 已过 ${p.completed.length} 关` : ''}
+                </span>
+                <RocketChart levels={levels} completed={p?.completed ?? []} current={p?.current} compact />
+              </button>
+              <button className="race-btn" onClick={() => onRace(t.trackId)}>
+                🚀 一分钟竞速
+              </button>
+            </div>
           );
         })}
         {tracks.length === 0 && <p className="empty">内容包里没有启用的练习。</p>}

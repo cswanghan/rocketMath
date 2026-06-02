@@ -3,11 +3,13 @@ import { createDefaultAdapter, LOCAL_STUDENT_ID, type StorageAdapter } from '../
 import { Home } from './Home';
 import { packError } from './pack';
 import { Play } from './Play';
+import { Probe } from './Probe';
+import { Race } from './Race';
 
-interface Session {
-  trackId: string;
-  seed: number;
-}
+type Session =
+  | { mode: 'probe'; trackId: string; seed: number }
+  | { mode: 'play'; trackId: string; seed: number }
+  | { mode: 'race'; trackId: string; seed: number };
 
 export function App() {
   const adapterRef = useRef<StorageAdapter | null>(null);
@@ -16,7 +18,6 @@ export function App() {
 
   const [session, setSession] = useState<Session | null>(null);
 
-  // ensure the local student row exists
   useEffect(() => {
     (async () => {
       const existing = await adapter.getStudent(LOCAL_STUDENT_ID);
@@ -33,12 +34,43 @@ export function App() {
     );
   }
 
+  const newSeed = () => Date.now() & 0xffffffff;
+
   if (!session) {
     return (
       <Home
         adapter={adapter}
         studentId={LOCAL_STUDENT_ID}
-        onStart={(trackId) => setSession({ trackId, seed: Date.now() & 0xffffffff })}
+        onStart={async (trackId) => {
+          // first-ever run with no individualized gate -> baseline probe first
+          const student = await adapter.getStudent(LOCAL_STUDENT_ID);
+          const mode = student?.latencyGateMs ? 'play' : 'probe';
+          setSession({ mode, trackId, seed: newSeed() });
+        }}
+        onRace={(trackId) => setSession({ mode: 'race', trackId, seed: newSeed() })}
+      />
+    );
+  }
+
+  if (session.mode === 'probe') {
+    return (
+      <Probe
+        adapter={adapter}
+        studentId={LOCAL_STUDENT_ID}
+        onDone={() => setSession({ mode: 'play', trackId: session.trackId, seed: session.seed })}
+      />
+    );
+  }
+
+  if (session.mode === 'race') {
+    return (
+      <Race
+        key={'race' + session.seed}
+        trackId={session.trackId}
+        adapter={adapter}
+        studentId={LOCAL_STUDENT_ID}
+        seed={session.seed}
+        onExit={() => setSession(null)}
       />
     );
   }
