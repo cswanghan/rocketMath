@@ -1,0 +1,892 @@
+{
+  "version": "1.0.0",
+  "grade": 3,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 60,
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "mult_facts",
+      "name": "乘法口诀",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "mult_2x2",
+              "prompt": "2 × 2",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_2x3",
+              "prompt": "2 × 3",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_2x4",
+              "prompt": "2 × 4",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_2x5",
+              "prompt": "2 × 5",
+              "answer": 10,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "mult_2x6",
+              "prompt": "2 × 6",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_2x7",
+              "prompt": "2 × 7",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_2x8",
+              "prompt": "2 × 8",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_2x9",
+              "prompt": "2 × 9",
+              "answer": 18,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "mult_5x2",
+              "prompt": "5 × 2",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_5x3",
+              "prompt": "5 × 3",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_5x4",
+              "prompt": "5 × 4",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_5x5",
+              "prompt": "5 × 5",
+              "answer": 25,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "mult_5x6",
+              "prompt": "5 × 6",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_5x7",
+              "prompt": "5 × 7",
+              "answer": 35,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_5x8",
+              "prompt": "5 × 8",
+              "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_5x9",
+              "prompt": "5 × 9",
+              "answer": 45,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "mult_3x2",
+              "prompt": "3 × 2",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_3x3",
+              "prompt": "3 × 3",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_3x4",
+              "prompt": "3 × 4",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_3x5",
+              "prompt": "3 × 5",
+              "answer": 15,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "mult_3x6",
+              "prompt": "3 × 6",
+              "answer": 18,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_3x7",
+              "prompt": "3 × 7",
+              "answer": 21,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_3x8",
+              "prompt": "3 × 8",
+              "answer": 24,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_3x9",
+              "prompt": "3 × 9",
+              "answer": 27,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "G",
+          "new_facts": [
+            {
+              "id": "mult_4x2",
+              "prompt": "4 × 2",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_4x3",
+              "prompt": "4 × 3",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_4x4",
+              "prompt": "4 × 4",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_4x5",
+              "prompt": "4 × 5",
+              "answer": 20,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "H",
+          "new_facts": [
+            {
+              "id": "mult_4x6",
+              "prompt": "4 × 6",
+              "answer": 24,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_4x7",
+              "prompt": "4 × 7",
+              "answer": 28,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_4x8",
+              "prompt": "4 × 8",
+              "answer": 32,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_4x9",
+              "prompt": "4 × 9",
+              "answer": 36,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "I",
+          "new_facts": [
+            {
+              "id": "mult_6x6",
+              "prompt": "6 × 6",
+              "answer": 36,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_6x7",
+              "prompt": "6 × 7",
+              "answer": 42,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_6x8",
+              "prompt": "6 × 8",
+              "answer": 48,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_6x9",
+              "prompt": "6 × 9",
+              "answer": 54,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "J",
+          "new_facts": [
+            {
+              "id": "mult_7x6",
+              "prompt": "7 × 6",
+              "answer": 42,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_7x7",
+              "prompt": "7 × 7",
+              "answer": 49,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_7x8",
+              "prompt": "7 × 8",
+              "answer": 56,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_7x9",
+              "prompt": "7 × 9",
+              "answer": 63,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "K",
+          "new_facts": [
+            {
+              "id": "mult_8x6",
+              "prompt": "8 × 6",
+              "answer": 48,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_8x7",
+              "prompt": "8 × 7",
+              "answer": 56,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_8x8",
+              "prompt": "8 × 8",
+              "answer": 64,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_8x9",
+              "prompt": "8 × 9",
+              "answer": 72,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "L",
+          "new_facts": [
+            {
+              "id": "mult_9x6",
+              "prompt": "9 × 6",
+              "answer": 54,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_9x7",
+              "prompt": "9 × 7",
+              "answer": 63,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_9x8",
+              "prompt": "9 × 8",
+              "answer": 72,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_9x9",
+              "prompt": "9 × 9",
+              "answer": 81,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "M",
+          "new_facts": [
+            {
+              "id": "mult_10x2",
+              "prompt": "10 × 2",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_10x3",
+              "prompt": "10 × 3",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_10x4",
+              "prompt": "10 × 4",
+              "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_10x5",
+              "prompt": "10 × 5",
+              "answer": 50,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "N",
+          "new_facts": [
+            {
+              "id": "mult_10x6",
+              "prompt": "10 × 6",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_10x7",
+              "prompt": "10 × 7",
+              "answer": 70,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_10x8",
+              "prompt": "10 × 8",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_10x9",
+              "prompt": "10 × 9",
+              "answer": 90,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "O",
+          "new_facts": [
+            {
+              "id": "mult_1x6",
+              "prompt": "1 × 6",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_1x7",
+              "prompt": "1 × 7",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_1x8",
+              "prompt": "1 × 8",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_1x9",
+              "prompt": "1 × 9",
+              "answer": 9,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "P",
+          "new_facts": [
+            {
+              "id": "mult_6x2",
+              "prompt": "6 × 2",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_6x3",
+              "prompt": "6 × 3",
+              "answer": 18,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_6x4",
+              "prompt": "6 × 4",
+              "answer": 24,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_6x5",
+              "prompt": "6 × 5",
+              "answer": 30,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "Q",
+          "new_facts": [
+            {
+              "id": "mult_7x2",
+              "prompt": "7 × 2",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_7x3",
+              "prompt": "7 × 3",
+              "answer": 21,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_7x4",
+              "prompt": "7 × 4",
+              "answer": 28,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_7x5",
+              "prompt": "7 × 5",
+              "answer": 35,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "R",
+          "new_facts": [
+            {
+              "id": "mult_8x2",
+              "prompt": "8 × 2",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_8x3",
+              "prompt": "8 × 3",
+              "answer": 24,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_8x4",
+              "prompt": "8 × 4",
+              "answer": 32,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "mult_8x5",
+              "prompt": "8 × 5",
+              "answer": 40,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "div_facts",
+      "name": "除法口诀",
+      "enabled": false,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "div_4d2",
+              "prompt": "4 ÷ 2",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_6d2",
+              "prompt": "6 ÷ 2",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_8d2",
+              "prompt": "8 ÷ 2",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_10d2",
+              "prompt": "10 ÷ 2",
+              "answer": 5,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "div_12d2",
+              "prompt": "12 ÷ 2",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_14d2",
+              "prompt": "14 ÷ 2",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_16d2",
+              "prompt": "16 ÷ 2",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_18d2",
+              "prompt": "18 ÷ 2",
+              "answer": 9,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "div_10d5",
+              "prompt": "10 ÷ 5",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_15d5",
+              "prompt": "15 ÷ 5",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_20d5",
+              "prompt": "20 ÷ 5",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_25d5",
+              "prompt": "25 ÷ 5",
+              "answer": 5,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "div_30d5",
+              "prompt": "30 ÷ 5",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_35d5",
+              "prompt": "35 ÷ 5",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_40d5",
+              "prompt": "40 ÷ 5",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_45d5",
+              "prompt": "45 ÷ 5",
+              "answer": 9,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "div_6d3",
+              "prompt": "6 ÷ 3",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_9d3",
+              "prompt": "9 ÷ 3",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_12d3",
+              "prompt": "12 ÷ 3",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_15d3",
+              "prompt": "15 ÷ 3",
+              "answer": 5,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "div_8d4",
+              "prompt": "8 ÷ 4",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_12d4",
+              "prompt": "12 ÷ 4",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_16d4",
+              "prompt": "16 ÷ 4",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "div_20d4",
+              "prompt": "20 ÷ 4",
+              "answer": 5,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "round_number_oral",
+      "name": "整十整百口算",
+      "enabled": false,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "round_20x3",
+              "prompt": "20 × 3",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_30x4",
+              "prompt": "30 × 4",
+              "answer": 120,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_40x2",
+              "prompt": "40 × 2",
+              "answer": 80,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_50x6",
+              "prompt": "50 × 6",
+              "answer": 300,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "round_60x7",
+              "prompt": "60 × 7",
+              "answer": 420,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_70x8",
+              "prompt": "70 × 8",
+              "answer": 560,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_80x9",
+              "prompt": "80 × 9",
+              "answer": 720,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_90x3",
+              "prompt": "90 × 3",
+              "answer": 270,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "round_200x3",
+              "prompt": "200 × 3",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_300x4",
+              "prompt": "300 × 4",
+              "answer": 1200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_400x2",
+              "prompt": "400 × 2",
+              "answer": 800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_500x6",
+              "prompt": "500 × 6",
+              "answer": 3000,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "round_600x7",
+              "prompt": "600 × 7",
+              "answer": 4200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_700x8",
+              "prompt": "700 × 8",
+              "answer": 5600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_800x9",
+              "prompt": "800 × 9",
+              "answer": 7200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "round_900x3",
+              "prompt": "900 × 3",
+              "answer": 2700,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "multi_digit_multiplication_column",
+    "multi_digit_division_column",
+    "area",
+    "fractions",
+    "calendar_date_math"
+  ]
+}
