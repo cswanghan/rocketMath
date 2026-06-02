@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { factById, getTrack } from './contentPack';
 import { initTrackState, step, type StepResult } from './engine';
 import { mulberry32 } from './rng';

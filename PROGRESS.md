@@ -8,8 +8,8 @@
 |---|---|---|
 | M1 引擎核心 + 测试 | ✅ 完成 | `step()` 全状态机 + 51 测试,覆盖 stmt 98.86% / branch 93.49% (>90) |
 | M2 content pack 加载与校验 | ✅ 随 M1 完成 | `validatePack` + `mult_facts` 已接入引擎并被测试驱动 |
-| M3 最小可玩 UI | ⬜ 未开始 | React+Vite,M1 测试已过,可开工 |
-| M4 Rocket Chart + 持久化 | ⬜ | |
+| M3 最小可玩 UI | ✅ 完成 | React+Vite,乘法口诀可玩;CDP 真机验证答题/纠错/重测 |
+| M4 Rocket Chart + 持久化 | ⬜ 下一步 | 过关填色 + IndexedDB/StorageAdapter + 事件日志 |
 | M5 竞速 + 基线探针 + 语音 | ⬜ 引擎侧已就绪 | `step` 已支持 race;`computeLatencyGateMs` 已实现并测试 |
 | M6 启用另两条 track + 时间锁 + 打磨 | ⬜ | div_facts / round_number_oral 已在 pack 中(enabled=false) |
 
@@ -33,6 +33,22 @@
   - [ ] 刷新恢复进度(M4 持久化)。
   - [ ] track-agnostic 显隐(M3 UI 接 `getEnabledTracks` 验证)。
   - [ ] 孩子无干预玩 A→C(M3 UI)。
+
+## M3 完成项(2026-06-02)
+
+- Vite + React 18 + TS 骨架(`vite.config.ts`、`index.html`、`src/main.tsx`)。
+- UI(`src/ui/`,只从 `src/engine` barrel 取依赖):
+  - `pack.ts` — 启动时 `validatePack`,失败走错误屏。
+  - `useGame.ts` — 引擎的 React 绑定:`{state,action}` 存 ref,事件处理里同步 `step()`,**StrictMode 双渲染不会双 step**(已真机验证 streak 每次 +1)。注入 `now=Date.now` / 可注入 seed RNG / 每题测 `elapsedMs`。
+  - `Play.tsx` — 出题 + SVG 倒计时环(环空→超时判 miss)+ 纠错浮层 + 阶段/过关庆祝 + 物理键盘 + 屏幕数字键盘。
+  - `Numpad.tsx` / `Home.tsx`(`getEnabledTracks` 驱动,只显示启用 track)/ `App.tsx` / `styles.css`(儿童友好、大点击区)。
+- 验证:`tsc --noEmit` 干净;`vite build` 通过;51 引擎测试仍绿;Chrome CDP 真机走通「答对×3→streak 1/2/3 → 答错→纠错浮层+streak 清零 → 继续→重测同一 fact → 重测通过 streak 不计入」。
+- SPEC §9 新增打勾:`getEnabledTracks` 驱动 → 切 `enabled` 即显隐 track(track-agnostic 证实)。
+
+### M3 范围决策
+- **持久化暂为内存态**:刷新会丢进度,留给 M4(IndexedDB + StorageAdapter + 事件日志)。M3 只要「能玩」。
+- **时限用配置默认值** `latency_gate_seconds*1000`(3s):个性化探针 `computeLatencyGateMs` 引擎侧已就绪,UI 接入留 M5。
+- **超时实现**:倒计时环到点 → 派发 `value=NaN, elapsedMs=gate+1` 的 ANSWER,复用引擎 miss 判定,不在 UI 重复判超时逻辑。
 
 ## 偏离 SPEC 的决策及理由
 
