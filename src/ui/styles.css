@@ -356,6 +356,22 @@ body,
   font-weight: 800;
 }
 
+/* ---- lock screen ---- */
+.lock-screen {
+  text-align: center;
+  width: min(460px, 100%);
+}
+.lock-emoji {
+  font-size: 4rem;
+}
+.lock-timer {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent2);
+  font-variant-numeric: tabular-nums;
+  margin-top: 12px;
+}
+
 .error-screen {
   max-width: 600px;
   color: var(--bad);

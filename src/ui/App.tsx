@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { createDefaultAdapter, LOCAL_STUDENT_ID, type StorageAdapter } from '../storage';
 import { Home } from './Home';
+import { LockScreen } from './LockScreen';
 import { packError } from './pack';
 import { Play } from './Play';
 import { Probe } from './Probe';
 import { Race } from './Race';
+import { useTimeLock } from './useTimeLock';
 
 type Session =
   | { mode: 'probe'; trackId: string; seed: number }
@@ -17,6 +19,10 @@ export function App() {
   const adapter = adapterRef.current;
 
   const [session, setSession] = useState<Session | null>(null);
+
+  // accumulate active play time only during play/race; break runs in real time
+  const active = session?.mode === 'play' || session?.mode === 'race';
+  const { locked, remainingMs } = useTimeLock(active);
 
   useEffect(() => {
     (async () => {
@@ -33,6 +39,9 @@ export function App() {
       </div>
     );
   }
+
+  // global guardrail: a forced break blocks everything until it elapses
+  if (locked) return <LockScreen remainingMs={remainingMs} />;
 
   const newSeed = () => Date.now() & 0xffffffff;
 

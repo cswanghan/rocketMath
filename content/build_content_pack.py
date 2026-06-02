@@ -139,6 +139,13 @@ def build_pack():
             "min_gate_seconds": 2.0,
             "max_gate_seconds": 6.0,
         },
+        # Anti-fatigue guardrail (SPEC §7): after `play_minutes` of active play,
+        # force a `break_minutes` rest. Configurable; flip `enabled` to disable.
+        "time_lock": {
+            "enabled": True,
+            "play_minutes": 15,
+            "break_minutes": 20,
+        },
     }
 
     tracks = [
@@ -151,13 +158,13 @@ def build_pack():
         {
             "trackId": "div_facts",
             "name": "除法口诀",  # 除法口诀
-            "enabled": False,
+            "enabled": True,
             "levels": build_levels(DIV_LEVELS, "div", "fact_recall"),
         },
         {
             "trackId": "round_number_oral",
             "name": "整十整百口算",  # 整十整百口算
-            "enabled": False,
+            "enabled": True,
             "levels": build_levels(ROUND_LEVELS, "round", "pattern"),
         },
     ]

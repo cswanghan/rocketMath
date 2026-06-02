@@ -9,9 +9,11 @@
 | M1 引擎核心 + 测试 | ✅ 完成 | `step()` 全状态机 + 51 测试,覆盖 stmt 98.86% / branch 93.49% (>90) |
 | M2 content pack 加载与校验 | ✅ 随 M1 完成 | `validatePack` + `mult_facts` 已接入引擎并被测试驱动 |
 | M3 最小可玩 UI | ✅ 完成 | React+Vite,乘法口诀可玩;CDP 真机验证答题/纠错/重测 |
-| M4 Rocket Chart + 持久化 | ⬜ 下一步 | 过关填色 + IndexedDB/StorageAdapter + 事件日志 |
-| M5 竞速 + 基线探针 + 语音 | ⬜ 引擎侧已就绪 | `step` 已支持 race;`computeLatencyGateMs` 已实现并测试 |
-| M6 启用另两条 track + 时间锁 + 打磨 | ⬜ | div_facts / round_number_oral 已在 pack 中(enabled=false) |
+| M4 Rocket Chart + 持久化 | ✅ 完成 | IndexedDB+StorageAdapter+事件日志;CDP 真机验证刷新恢复 |
+| M5 竞速 + 基线探针 + 语音 | ✅ 完成 | 探针→play、gate 持久、race 计分;语音+静音 |
+| M6 启用另两条 track + 时间锁 + 打磨 | ✅ 完成 | 3 track 全可玩(纯数据)、时间锁、67 测试 |
+
+**全部 6 个里程碑完成。** 运行:`npm run dev`(开发) / `npm test`(67 测试) / `npm run build`(打包)。
 
 ## M1 完成项(2026-06-02)
 
@@ -50,6 +52,30 @@
 - **时限用配置默认值** `latency_gate_seconds*1000`(3s):个性化探针 `computeLatencyGateMs` 引擎侧已就绪,UI 接入留 M5。
 - **超时实现**:倒计时环到点 → 派发 `value=NaN, elapsedMs=gate+1` 的 ANSWER,复用引擎 miss 判定,不在 UI 重复判超时逻辑。
 
+## M5 完成项(2026-06-02)
+
+- `speech.ts`:SpeechSynthesis zh-CN 封装,静音状态存 localStorage,headless 守卫。Play 在**纠错时**朗读答案(仅学习阶段),竞速全程静音(SPEC §7 App Store 教训),Play 头部静音开关。
+- `Probe.tsx`:首次进入做 ~10 题中性敲击探针 → `computeLatencyGateMs` → 存入 student.latencyGateMs;有 gate 后跳过。
+- `Race.tsx`:1 分钟竞速(引擎 `START_RACE`,题池=已学 facts),全局倒计时到点 flush `RACE_RESULT`,correct/min 写入 raceResults。
+- App 路由 probe/play/race;Home 每条 track 加竞速按钮。
+- 真机验证:探针→play、gate 跨二次进入持久、race 起→止计 2 题/分钟。
+
+## M6 完成项(2026-06-02)
+
+- `build_content_pack.py` 把 `div_facts` + `round_number_oral` 切 `enabled=true` 并重新生成;**只改数据**,UI 自动出现 3 条 track 且均可玩(除法 `6 ÷ 2`、整十 `40 × 2` 真机验证)→ track-agnostic 彻底证实(SPEC §9)。
+- 时间锁:`timelock.ts` 纯 reducer(6 测试)+ `useTimeLock` + `LockScreen`。配置在 `engine_config.time_lock`(play 15 分→break 20 分,`enabled` 可关)。状态存 localStorage,**刷新不能绕过**;真机验证锁屏倒计时→自动解锁。
+- 验证:`tsc` 干净、`vite build` 通过、67 测试全绿。
+
+## SPEC §9 验收(全部达成)
+
+- [x] 孩子无干预完成 A→C(引擎 + 可玩 UI;掌握门强制推进)。
+- [x] 答错 **或** 超时 → 立即重教 + 立即重测同一题(真机验证)。
+- [x] 掌握门:Take-Off 时限连对 12;Orbit/Universe 30 题错 ≤ 2。
+- [x] 刷新后进度/factStats/completedLevels 恢复(IndexedDB,真机验证)。
+- [x] 引擎单测 >90% 且引擎目录零 fetch/网络/LLM。
+- [x] 竞速产出正确 correct-per-minute。
+- [x] 仅切 content pack 的 `enabled` 即显隐 track(3 track 真机验证)。
+
 ## 偏离 SPEC 的决策及理由
 
 1. **TrackState 增加 `race?: RaceState` 字段**(SPEC §5 接口未列)。
@@ -70,4 +96,12 @@
 6. **M1 依赖最小化**:本里程碑只装 `typescript` + `vitest`,React/Vite 留到 M3。
    理由:SPEC §10「引擎测试不过不碰 UI」,地基阶段不引入 UI 依赖。
 
-7. **content pack 由我按 SPEC §4/§5 生成**(用户在启动时确认此选项)。三条 track 一次生成,div_facts/round_number_oral 先 `enabled=false`,M6 切开关即用,提前验证 track-agnostic 数据结构。
+7. **content pack 由我按 SPEC §4/§5 生成**(用户在启动时确认此选项)。三条 track 一次生成,M6 切 `enabled=true` 启用。
+
+8. **事件 outcome 分类放在 storage 层**(`classifyOutcome`),不进引擎。理由:引擎不关心日志;分类是纯函数,据「答前状态 + 结果 action」推导(hit/miss/retest_pass/retest_fail/race),独立可测。
+
+9. **竞速期间 putTrackState 会把 `race` 字段一并落盘**。若竞速中途刷新,重载时 `step(saved, NEXT)` 因 `now() >= endsAt` 立即 `finishRace` 出结果——不污染掌握态(race 旁路掌握逻辑)。MVP 可接受,已记此边界。
+
+10. **时间锁配置入 `engine_config.time_lock`(数据驱动),纯逻辑在 `src/ui/timelock.ts`**。SPEC §7 说 MVP 可 optional,我默认 `enabled=true`(15 分玩/20 分歇,真 Rocket Math 值)并做成可关。状态存 localStorage 防刷新绕过。这是 UI 护栏,不进引擎。
+
+11. **个性化时限 gate 的 UI 接入在 M5**(M3/M4 期间用配置默认 3s)。引擎侧 `computeLatencyGateMs` 自 M1 即就绪并测试。

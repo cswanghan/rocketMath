@@ -45,6 +45,11 @@
       "latency_multiplier": 2.5,
       "min_gate_seconds": 2.0,
       "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
     }
   },
   "tracks": [
@@ -580,7 +585,7 @@
     {
       "trackId": "div_facts",
       "name": "除法口诀",
-      "enabled": false,
+      "enabled": true,
       "levels": [
         {
           "level": "A",
@@ -761,7 +766,7 @@
     {
       "trackId": "round_number_oral",
       "name": "整十整百口算",
-      "enabled": false,
+      "enabled": true,
       "levels": [
         {
           "level": "A",

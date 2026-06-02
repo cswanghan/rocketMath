@@ -99,6 +99,11 @@ export interface EngineConfig {
     min_gate_seconds: number;
     max_gate_seconds: number;
   };
+  time_lock?: {
+    enabled: boolean;
+    play_minutes: number;
+    break_minutes: number;
+  };
 }
 
 export interface ContentPack {
