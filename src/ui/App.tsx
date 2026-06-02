@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createDefaultAdapter, LOCAL_STUDENT_ID, type StorageAdapter } from '../storage';
 import { Home } from './Home';
 import { packError } from './pack';
 import { Play } from './Play';
@@ -9,7 +10,19 @@ interface Session {
 }
 
 export function App() {
+  const adapterRef = useRef<StorageAdapter | null>(null);
+  if (adapterRef.current === null) adapterRef.current = createDefaultAdapter();
+  const adapter = adapterRef.current;
+
   const [session, setSession] = useState<Session | null>(null);
+
+  // ensure the local student row exists
+  useEffect(() => {
+    (async () => {
+      const existing = await adapter.getStudent(LOCAL_STUDENT_ID);
+      if (!existing) await adapter.putStudent({ id: LOCAL_STUDENT_ID, createdAt: Date.now() });
+    })();
+  }, [adapter]);
 
   if (packError) {
     return (
@@ -21,14 +34,21 @@ export function App() {
   }
 
   if (!session) {
-    // seed is fixed per session; engine RNG stays deterministic within a run.
-    return <Home onStart={(trackId) => setSession({ trackId, seed: Date.now() & 0xffffffff })} />;
+    return (
+      <Home
+        adapter={adapter}
+        studentId={LOCAL_STUDENT_ID}
+        onStart={(trackId) => setSession({ trackId, seed: Date.now() & 0xffffffff })}
+      />
+    );
   }
 
   return (
     <Play
-      key={session.seed}
+      key={session.trackId + session.seed}
       trackId={session.trackId}
+      adapter={adapter}
+      studentId={LOCAL_STUDENT_ID}
       seed={session.seed}
       onExit={() => setSession(null)}
     />

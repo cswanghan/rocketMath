@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { getTrack } from '../engine';
+import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
 import { pack } from './pack';
+import { RocketChart } from './RocketChart';
 import { useGame } from './useGame';
 
 const PHASE_LABEL: Record<string, string> = {
@@ -13,20 +16,22 @@ const CIRC = 2 * Math.PI * 54; // ring circumference for r=54
 
 interface Props {
   trackId: string;
+  adapter: StorageAdapter;
+  studentId: string;
   seed: number;
   onExit: () => void;
 }
 
-export function Play({ trackId, seed, onExit }: Props) {
-  const game = useGame(trackId, seed);
+export function Play({ trackId, adapter, studentId, seed, onExit }: Props) {
+  const game = useGame(trackId, adapter, studentId, seed);
   const [input, setInput] = useState('');
   const inputRef = useRef('');
   inputRef.current = input;
 
   const mastery = pack.engine_config.mastery;
   const { state, view } = game;
+  const levels = getTrack(pack, trackId).levels.map((l) => l.level);
 
-  // reset the typed answer whenever a fresh prompt appears
   useEffect(() => {
     setInput('');
   }, [game.promptSeq]);
@@ -45,7 +50,6 @@ export function Play({ trackId, seed, onExit }: Props) {
     game.submit(Number(inputRef.current));
   }, [game, view.mode]);
 
-  // physical keyboard support
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (view.mode === 'prompt') {
@@ -53,13 +57,17 @@ export function Play({ trackId, seed, onExit }: Props) {
         else if (e.key === 'Backspace') setInput((s) => s.slice(0, -1));
         else if (e.key === 'Enter') doSubmit();
         else if (e.key === 'Escape') setInput('');
-      } else if (view.mode !== 'idle' && e.key === 'Enter') {
+      } else if (view.mode !== 'loading' && view.mode !== 'race_result' && e.key === 'Enter') {
         game.next();
       }
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [view.mode, doSubmit, game]);
+
+  if (!game.ready || !state) {
+    return <div className="play loading">载入中…</div>;
+  }
 
   return (
     <div className="play">
@@ -68,7 +76,6 @@ export function Play({ trackId, seed, onExit }: Props) {
           ← 返回
         </button>
         <div className="status">
-          <span className="level-badge">Level {state.currentLevel}</span>
           <span className="phase-badge">{PHASE_LABEL[state.phase]}</span>
           {state.phase === 'take_off' ? (
             <span className="prog">
@@ -82,6 +89,8 @@ export function Play({ trackId, seed, onExit }: Props) {
           )}
         </div>
       </header>
+
+      <RocketChart levels={levels} completed={state.completedLevels} current={state.currentLevel} compact />
 
       {view.mode === 'prompt' && (
         <div className="stage">
@@ -104,7 +113,7 @@ export function Play({ trackId, seed, onExit }: Props) {
             <div className="prompt">{view.fact.prompt}</div>
           </div>
           {view.isRetest && <div className="retest-hint">再试一次 💪</div>}
-          <div className="answer-box">{input || ' '}</div>
+          <div className="answer-box">{input || ' '}</div>
           <Numpad
             onDigit={(d) => setInput((s) => (s + d).slice(0, 4))}
             onClear={() => setInput((s) => s.slice(0, -1))}

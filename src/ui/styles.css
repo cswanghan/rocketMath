@@ -257,6 +257,60 @@ body,
   cursor: pointer;
 }
 
+/* ---- rocket chart ---- */
+.chart {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin: 10px 0;
+}
+.chart-compact {
+  gap: 4px;
+}
+.cell {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #121a30;
+  color: var(--muted);
+  border: 1px solid #1e2740;
+}
+.chart-compact .cell {
+  width: 24px;
+  height: 24px;
+  font-size: 0.72rem;
+}
+.cell-done {
+  background: var(--good);
+  color: #06231a;
+  border-color: var(--good);
+}
+.cell-current {
+  color: var(--accent);
+  border-color: var(--accent);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(76, 201, 240, 0);
+  }
+}
+.loading {
+  text-align: center;
+  color: var(--muted);
+  padding: 40px;
+}
+
 .error-screen {
   max-width: 600px;
   color: var(--bad);
