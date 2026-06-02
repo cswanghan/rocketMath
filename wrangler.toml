@@ -1,0 +1,5 @@
+# Cloudflare Pages config. Static SPA — no functions/backend.
+# Deploy:  npm run build && npx wrangler pages deploy dist
+name = "rocket-math"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-06-02"
