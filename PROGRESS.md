@@ -29,6 +29,15 @@
 
 **🎉 人教版三年级全部 47 个知识点上线**(43 Practice 题集 + 4 流畅度 track)。
 
+## 错题本 + 家长入口 + DeepSeek 总结(2026-06-03)
+
+- **错题记录**:`MistakeRecord` + adapter(`appendMistake`/`listMistakes`/`markMistakeCorrected`)+ IndexedDB v3 store。`usePractice` 首次答错记录(题干/孩子答案/正确答案/难度/知识点),`useGame` 记录口算 miss(每 fact 每会话一次)。
+- **家长入口**:地图右上角低调「👨‍👧 家长」按钮 → `ParentGate` 4 位 PIN(首次设、之后验,localStorage,防孩子误入)→ `ParentDashboard`。
+- **错题本**:按知识点分组,显示每题(难度标签、题干、孩子答红/正确答绿),「标为已订正」。Lv/经验概览。
+- **一键总结**:`summary.ts` 本地确定性统计(薄弱知识点 top)既做兜底也做 LLM payload。`functions/api/summarize.js`(Cloudflare Pages Function)服务端调 **DeepSeek**(`deepseek-chat`),key 存 Cloudflare secret `DEEPSEEK_API_KEY`(**不入 git、不进前端 bundle**),前端只调 `/api/summarize`,非 2xx 自动回退本地总结。
+- 验证:真机走通 答错→错题本→PIN→总结;生产 `/api/summarize` 返回真实 DeepSeek 个性化分析;85 测试绿。
+- **安全**:API key 仅作为 Cloudflare 服务端 secret 存在,前端代码/仓库均无明文;`git grep` 确认未入库。
+
 ## 关卡 + 经验值 + 三档难度(2026-06-03)
 
 - **三档难度题型(关卡)**:每个 Practice 知识点的题按 `difficulty` 分 **基础(basic)→夯实(consolidate)→拔高(challenge)** 三关,引擎按此顺序出题(`tieredOrder`,关内 seedable 洗牌)。练习屏顶部「关卡进度条」过一关亮一段。
