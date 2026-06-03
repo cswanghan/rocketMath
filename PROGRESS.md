@@ -13,7 +13,32 @@
 | M5 竞速 + 基线探针 + 语音 | ✅ 完成 | 探针→play、gate 持久、race 计分;语音+静音 |
 | M6 启用另两条 track + 时间锁 + 打磨 | ✅ 完成 | 3 track 全可玩(纯数据)、时间锁、67 测试 |
 
-**全部 6 个里程碑完成。** 运行:`npm run dev`(开发) / `npm test`(67 测试) / `npm run build`(打包)。
+**SPEC 全部 6 个里程碑完成 + 已上线 Cloudflare Pages。** 运行:`npm run dev` / `npm test` / `npm run build`。
+线上:https://rocket-math-4kg.pages.dev/
+
+## 扩展:人教版三年级知识地图(P0→P2)
+
+> 设计与完整地图见 `docs/knowledge-map-design.md`。已确认:人教版 / 新增非限时模式 / P0→P2 分阶段。
+
+| 阶段 | 状态 | 说明 |
+|---|---|---|
+| P0a 地图框架 + 流畅度扩展 | ✅ 完成 | 47 topic 全地图、导航 UI、4 条 fluency track ready、新增加减口算 |
+| P0b 竖式 procedure 引擎 | ⬜ 下一步 | 新非限时 Practice 引擎 + 竖式多格 UI |
+| P1 公式(周长/面积) | ⬜ | |
+| P2 概念课(分数/小数/年月日/位置/统计/广角) | ⬜ | |
+
+### P0a 完成项(2026-06-03)
+- `docs/knowledge-map-design.md`:架构 + 人教版完整 47 topic 地图 + pedagogy→引擎映射 + schema。
+- `content/build_knowledge_map.py` → `grade3_knowledge_map.json`(18 单元 / 47 topic;pedagogy: fluency 10 / concept 19 / procedure 9 / formula 4 / logic 4 / data 1)。
+- `src/map/`(types + loader)、`src/ui/KnowledgeMap.tsx`:上/下册→单元→topic 卡片导航,成为新首页。fluency-ready topic 进现有 Play,其余显「🔒 即将上线」。
+- 流畅度扩展:`computeFromPrompt` 支持 `+`/`−`(三年级非负);新增 `add_sub_oral`(万以内加减口算,8 关)。流畅度包现 4 track / 144 facts。
+- 4 条 ready fluency track:乘法口诀、除法口诀、几百几十加减口算、整十整百乘一位。
+- 验证:69 测试绿、覆盖 98.88%/93.64%、`tsc` 干净、CDP 真机验证地图渲染 + 加减口算可玩("70 + 20")。
+
+### P0a 偏离/决策
+- **地图成为新首页**,旧 `Home.tsx` 删除(被 `KnowledgeMap` 取代)。
+- **`computeFromPrompt` 扩 +/−**:旧测试 `'1 + 1'` 视为 garbage,现为合法(=2),已改测试用例。三年级减法限非负(`a<b` 判 null)。
+- **依赖解锁(dependsOn)P0a 暂不硬锁**:ready=可玩,coming_soon=锁;按 pedagogy 依赖的渐进解锁放后续。
 
 ## M1 完成项(2026-06-02)
 

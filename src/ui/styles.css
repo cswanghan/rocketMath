@@ -93,6 +93,130 @@ body,
   color: var(--muted);
 }
 
+/* ---- knowledge map ---- */
+.map {
+  width: min(820px, 100%);
+  padding-bottom: 40px;
+}
+.map .title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 6px 0;
+}
+.map .subtitle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.term {
+  margin-bottom: 28px;
+}
+.term-title {
+  font-size: 1.2rem;
+  color: var(--accent);
+  border-bottom: 1px solid #232c4d;
+  padding-bottom: 6px;
+  margin: 18px 0 12px;
+}
+.unit {
+  margin-bottom: 16px;
+}
+.unit-title {
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+}
+.topic {
+  background: var(--panel);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.topic-soon {
+  opacity: 0.55;
+  padding: 14px;
+  gap: 8px;
+}
+.topic-main {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+.topic-main:active {
+  background: #232c4d;
+}
+.topic-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.topic-name {
+  font-weight: 700;
+  font-size: 0.98rem;
+}
+.topic-meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.soon-tag {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+.done-tag {
+  color: var(--good);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.ped {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #121a30;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.ped-fluency {
+  color: #06231a;
+  background: var(--good);
+}
+.ped-procedure {
+  color: #042231;
+  background: var(--accent);
+}
+.ped-formula {
+  color: #2a1a02;
+  background: var(--accent2);
+}
+.ped-concept {
+  color: #eef2ff;
+  background: #5a4fcf;
+}
+.ped-logic {
+  color: #eef2ff;
+  background: #c0497a;
+}
+.ped-data {
+  color: #06231a;
+  background: #4cc9a0;
+}
+.race-btn.small {
+  font-size: 0.85rem;
+  padding: 9px;
+}
+
 /* ---- play ---- */
 .play {
   width: min(560px, 100%);

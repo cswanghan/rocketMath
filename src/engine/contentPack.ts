@@ -18,7 +18,7 @@ export class ContentPackError extends Error {
 /** Parse a prompt like "6 × 7", "42 ÷ 6", "20 × 3" and compute its value, so
  *  we can cross-check the declared answer. Returns null if unparseable. */
 export function computeFromPrompt(prompt: string): number | null {
-  const m = prompt.match(/^\s*(\d+)\s*([×x*÷/])\s*(\d+)\s*$/);
+  const m = prompt.match(/^\s*(\d+)\s*([×x*÷/+\-−])\s*(\d+)\s*$/);
   if (!m) return null;
   const a = Number(m[1]);
   const b = Number(m[3]);
@@ -33,6 +33,12 @@ export function computeFromPrompt(prompt: string): number | null {
       if (b === 0) return null;
       if (a % b !== 0) return null; // drill facts must divide evenly
       return a / b;
+    case '+':
+      return a + b;
+    case '-':
+    case '−':
+      if (a < b) return null; // grade-3 mental math stays non-negative
+      return a - b;
     default:
       return null;
   }

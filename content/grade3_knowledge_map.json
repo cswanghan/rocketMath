@@ -1,0 +1,639 @@
+{
+  "textbook": "人教版",
+  "grade": 3,
+  "units": [
+    {
+      "id": "found",
+      "term": "upper",
+      "index": 0,
+      "title": "口算基础",
+      "topicIds": [
+        "mult_facts",
+        "div_facts"
+      ]
+    },
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "时、分、秒",
+      "topicIds": [
+        "read_clock",
+        "time_conversion",
+        "time_elapsed"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "万以内的加法和减法(一)",
+      "topicIds": [
+        "add_sub_oral",
+        "add_sub_estimate"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "测量",
+      "topicIds": [
+        "length_units",
+        "length_conversion",
+        "mass_units",
+        "mass_conversion"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "万以内的加法和减法(二)",
+      "topicIds": [
+        "add_column",
+        "sub_column",
+        "add_sub_check"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "倍的认识",
+      "topicIds": [
+        "times_concept",
+        "times_word"
+      ]
+    },
+    {
+      "id": "u6",
+      "term": "upper",
+      "index": 6,
+      "title": "多位数乘一位数",
+      "topicIds": [
+        "round_number_oral",
+        "mul1_nocarry",
+        "mul1_carry",
+        "mul1_zero"
+      ]
+    },
+    {
+      "id": "u7",
+      "term": "upper",
+      "index": 7,
+      "title": "长方形和正方形",
+      "topicIds": [
+        "quad_props",
+        "perimeter_concept",
+        "perimeter_formula"
+      ]
+    },
+    {
+      "id": "u8",
+      "term": "upper",
+      "index": 8,
+      "title": "分数的初步认识",
+      "topicIds": [
+        "fraction_meaning",
+        "fraction_compare",
+        "fraction_add_sub"
+      ]
+    },
+    {
+      "id": "u9",
+      "term": "upper",
+      "index": 9,
+      "title": "数学广角——集合",
+      "topicIds": [
+        "sets"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "位置与方向(一)",
+      "topicIds": [
+        "directions",
+        "route_map"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "除数是一位数的除法",
+      "topicIds": [
+        "div_oral",
+        "div_estimate",
+        "div_column",
+        "div_remainder"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "复式统计表",
+      "topicIds": [
+        "read_table"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "两位数乘两位数",
+      "topicIds": [
+        "mul2_oral",
+        "mul2_column"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "面积",
+      "topicIds": [
+        "area_concept",
+        "area_units",
+        "area_conversion",
+        "area_formula"
+      ]
+    },
+    {
+      "id": "l6",
+      "term": "lower",
+      "index": 6,
+      "title": "年、月、日",
+      "topicIds": [
+        "month_days",
+        "date_calc",
+        "hour24"
+      ]
+    },
+    {
+      "id": "l7",
+      "term": "lower",
+      "index": 7,
+      "title": "小数的初步认识",
+      "topicIds": [
+        "decimal_meaning",
+        "decimal_compare",
+        "decimal_add_sub"
+      ]
+    },
+    {
+      "id": "l8",
+      "term": "lower",
+      "index": 8,
+      "title": "数学广角——搭配",
+      "topicIds": [
+        "combination"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "mult_facts",
+      "unitId": "found",
+      "title": "乘法口诀",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "mult_facts"
+    },
+    {
+      "id": "div_facts",
+      "unitId": "found",
+      "title": "除法口诀",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "mult_facts"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "div_facts"
+    },
+    {
+      "id": "read_clock",
+      "unitId": "u1",
+      "title": "认读钟表",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "time_conversion",
+      "unitId": "u1",
+      "title": "时分秒换算",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "time_elapsed",
+      "unitId": "u1",
+      "title": "经过时间",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "time_conversion"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "add_sub_oral",
+      "unitId": "u2",
+      "title": "几百几十加减口算",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "add_sub_oral"
+    },
+    {
+      "id": "add_sub_estimate",
+      "unitId": "u2",
+      "title": "加减估算",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "add_sub_oral"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "length_units",
+      "unitId": "u3",
+      "title": "长度单位认识(毫米/分米/千米)",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "length_conversion",
+      "unitId": "u3",
+      "title": "长度单位换算",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "length_units"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "mass_units",
+      "unitId": "u3",
+      "title": "质量单位认识(吨/千克/克)",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "mass_conversion",
+      "unitId": "u3",
+      "title": "质量单位换算",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "mass_units"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "add_column",
+      "unitId": "u4",
+      "title": "三位数加法竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "add_sub_oral"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "sub_column",
+      "unitId": "u4",
+      "title": "三位数减法竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "add_column"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "add_sub_check",
+      "unitId": "u4",
+      "title": "加减法验算",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "sub_column"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "times_concept",
+      "unitId": "u5",
+      "title": "倍的认识",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "mult_facts"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "times_word",
+      "unitId": "u5",
+      "title": "倍数应用题",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "times_concept"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "round_number_oral",
+      "unitId": "u6",
+      "title": "整十整百乘一位(口算)",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "mult_facts"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "round_number_oral"
+    },
+    {
+      "id": "mul1_nocarry",
+      "unitId": "u6",
+      "title": "不进位乘竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "round_number_oral"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "mul1_carry",
+      "unitId": "u6",
+      "title": "进位乘竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "mul1_nocarry"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "mul1_zero",
+      "unitId": "u6",
+      "title": "因数中间末尾有0",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "mul1_carry"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "quad_props",
+      "unitId": "u7",
+      "title": "四边形认识",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "perimeter_concept",
+      "unitId": "u7",
+      "title": "周长的认识",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "perimeter_formula",
+      "unitId": "u7",
+      "title": "长方形正方形周长",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "perimeter_concept"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "fraction_meaning",
+      "unitId": "u8",
+      "title": "几分之一·几分之几",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "fraction_compare",
+      "unitId": "u8",
+      "title": "分数比大小",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_meaning"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "fraction_add_sub",
+      "unitId": "u8",
+      "title": "同分母分数加减",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_compare"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "sets",
+      "unitId": "u9",
+      "title": "集合(重叠问题)",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "directions",
+      "unitId": "l1",
+      "title": "东南西北",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "route_map",
+      "unitId": "l1",
+      "title": "简单路线图",
+      "pedagogy": "logic",
+      "dependsOn": [
+        "directions"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "div_oral",
+      "unitId": "l2",
+      "title": "口算除法",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "div_facts"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "div_estimate",
+      "unitId": "l2",
+      "title": "除法估算",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "div_oral"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "div_column",
+      "unitId": "l2",
+      "title": "一位数除法竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "div_oral"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "div_remainder",
+      "unitId": "l2",
+      "title": "有余数的除法",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "div_column"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "read_table",
+      "unitId": "l3",
+      "title": "读复式统计表",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "mul2_oral",
+      "unitId": "l4",
+      "title": "两位数乘整十(口算)",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "mult_facts"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "mul2_column",
+      "unitId": "l4",
+      "title": "两位数乘两位数竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "mul2_oral"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "area_concept",
+      "unitId": "l5",
+      "title": "面积的认识",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "area_units",
+      "unitId": "l5",
+      "title": "面积单位(平方厘米/平方米)",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "area_concept"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "area_conversion",
+      "unitId": "l5",
+      "title": "面积单位换算",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "area_units"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "area_formula",
+      "unitId": "l5",
+      "title": "长方形正方形面积",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "area_units"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "month_days",
+      "unitId": "l6",
+      "title": "大小月·平闰年",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "date_calc",
+      "unitId": "l6",
+      "title": "年月日计算",
+      "pedagogy": "logic",
+      "dependsOn": [
+        "month_days"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "hour24",
+      "unitId": "l6",
+      "title": "24时计时法",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "decimal_meaning",
+      "unitId": "l7",
+      "title": "小数的认识",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "coming_soon"
+    },
+    {
+      "id": "decimal_compare",
+      "unitId": "l7",
+      "title": "小数比大小",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_meaning"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "decimal_add_sub",
+      "unitId": "l7",
+      "title": "简单小数加减",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_compare"
+      ],
+      "status": "coming_soon"
+    },
+    {
+      "id": "combination",
+      "unitId": "l8",
+      "title": "搭配(组合)",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "coming_soon"
+    }
+  ]
+}

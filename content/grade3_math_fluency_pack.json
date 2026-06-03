@@ -885,6 +885,245 @@
           ]
         }
       ]
+    },
+    {
+      "trackId": "add_sub_oral",
+      "name": "万以内加减口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "add_20p30",
+              "prompt": "20 + 30",
+              "answer": 50,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_40p50",
+              "prompt": "40 + 50",
+              "answer": 90,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_60p30",
+              "prompt": "60 + 30",
+              "answer": 90,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_70p20",
+              "prompt": "70 + 20",
+              "answer": 90,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "sub_80m30",
+              "prompt": "80 - 30",
+              "answer": 50,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_90m40",
+              "prompt": "90 - 40",
+              "answer": 50,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_70m50",
+              "prompt": "70 - 50",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_60m20",
+              "prompt": "60 - 20",
+              "answer": 40,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "add_300p400",
+              "prompt": "300 + 400",
+              "answer": 700,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_500p200",
+              "prompt": "500 + 200",
+              "answer": 700,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_600p300",
+              "prompt": "600 + 300",
+              "answer": 900,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_200p700",
+              "prompt": "200 + 700",
+              "answer": 900,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "sub_800m300",
+              "prompt": "800 - 300",
+              "answer": 500,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_900m500",
+              "prompt": "900 - 500",
+              "answer": 400,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_700m400",
+              "prompt": "700 - 400",
+              "answer": 300,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_600m200",
+              "prompt": "600 - 200",
+              "answer": 400,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "add_230p40",
+              "prompt": "230 + 40",
+              "answer": 270,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_350p60",
+              "prompt": "350 + 60",
+              "answer": 410,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_520p70",
+              "prompt": "520 + 70",
+              "answer": 590,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_640p50",
+              "prompt": "640 + 50",
+              "answer": 690,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "sub_450m30",
+              "prompt": "450 - 30",
+              "answer": 420,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_560m40",
+              "prompt": "560 - 40",
+              "answer": 520,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_780m50",
+              "prompt": "780 - 50",
+              "answer": 730,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_630m20",
+              "prompt": "630 - 20",
+              "answer": 610,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "G",
+          "new_facts": [
+            {
+              "id": "add_25p17",
+              "prompt": "25 + 17",
+              "answer": 42,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_38p26",
+              "prompt": "38 + 26",
+              "answer": 64,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_47p28",
+              "prompt": "47 + 28",
+              "answer": 75,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "add_56p35",
+              "prompt": "56 + 35",
+              "answer": 91,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "H",
+          "new_facts": [
+            {
+              "id": "sub_62m28",
+              "prompt": "62 - 28",
+              "answer": 34,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_73m47",
+              "prompt": "73 - 47",
+              "answer": 26,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_84m56",
+              "prompt": "84 - 56",
+              "answer": 28,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sub_91m38",
+              "prompt": "91 - 38",
+              "answer": 53,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
     }
   ],
   "non_drill_topics": [

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createDefaultAdapter, LOCAL_STUDENT_ID, type StorageAdapter } from '../storage';
-import { Home } from './Home';
+import { KnowledgeMap } from './KnowledgeMap';
 import { LockScreen } from './LockScreen';
 import { packError } from './pack';
 import { Play } from './Play';
@@ -47,10 +47,10 @@ export function App() {
 
   if (!session) {
     return (
-      <Home
+      <KnowledgeMap
         adapter={adapter}
         studentId={LOCAL_STUDENT_ID}
-        onStart={async (trackId) => {
+        onPlay={async (trackId) => {
           // first-ever run with no individualized gate -> baseline probe first
           const student = await adapter.getStudent(LOCAL_STUDENT_ID);
           const mode = student?.latencyGateMs ? 'play' : 'probe';

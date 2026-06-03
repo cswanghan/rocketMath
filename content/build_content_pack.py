@@ -43,6 +43,21 @@ def fact(a, b, op, learning_type):
     }
 
 
+def oral_fact(a, b, op):
+    """Mental add/sub fact, e.g. 300 + 400 = 700 / 560 - 30 = 530."""
+    if op == "+":
+        answer = a + b
+        prompt = f"{a} + {b}"
+        fid = f"add_{a}p{b}"
+    elif op == "-":
+        answer = a - b
+        prompt = f"{a} - {b}"
+        fid = f"sub_{a}m{b}"
+    else:
+        raise ValueError(op)
+    return {"id": fid, "prompt": prompt, "answer": answer, "learningType": "fact_recall"}
+
+
 def pattern_fact(a, b):
     """Round-number oral math, e.g. 20 × 3 = 60 / 200 × 3 = 600.
     These are `pattern` facts: 'think the table fact, then append zeros',
@@ -87,6 +102,19 @@ DIV_LEVELS = [
     [(8, 4), (12, 4), (16, 4), (20, 4)],   # F : ÷4
 ]
 
+# --- add_sub_oral: mental addition/subtraction within 10000 (人教版 U2) -------
+# Progressive: 整十/整百加减 -> 几百几十 -> 两位数进退位 -> 三位数.
+ADD_SUB_LEVELS = [
+    [(20, 30, "+"), (40, 50, "+"), (60, 30, "+"), (70, 20, "+")],   # A 整十加
+    [(80, 30, "-"), (90, 40, "-"), (70, 50, "-"), (60, 20, "-")],   # B 整十减
+    [(300, 400, "+"), (500, 200, "+"), (600, 300, "+"), (200, 700, "+")],  # C 整百加
+    [(800, 300, "-"), (900, 500, "-"), (700, 400, "-"), (600, 200, "-")],  # D 整百减
+    [(230, 40, "+"), (350, 60, "+"), (520, 70, "+"), (640, 50, "+")],  # E 几百几十+几十
+    [(450, 30, "-"), (560, 40, "-"), (780, 50, "-"), (630, 20, "-")],  # F 几百几十-几十
+    [(25, 17, "+"), (38, 26, "+"), (47, 28, "+"), (56, 35, "+")],   # G 两位进位加
+    [(62, 28, "-"), (73, 47, "-"), (84, 56, "-"), (91, 38, "-")],   # H 两位退位减
+]
+
 # --- round_number_oral: integer-ten/hundred oral math (M6, disabled) ---------
 ROUND_LEVELS = [
     [(20, 3), (30, 4), (40, 2), (50, 6)],   # A
@@ -100,11 +128,13 @@ def build_levels(level_specs, op, learning_type):
     levels = []
     for i, pairs in enumerate(level_specs):
         new_facts = []
-        for a, b in pairs:
+        for spec in pairs:
             if op == "round":
-                new_facts.append(pattern_fact(a, b))
+                new_facts.append(pattern_fact(spec[0], spec[1]))
+            elif op == "addsub":
+                new_facts.append(oral_fact(spec[0], spec[1], spec[2]))
             else:
-                new_facts.append(fact(a, b, op, learning_type))
+                new_facts.append(fact(spec[0], spec[1], op, learning_type))
         levels.append({"level": LEVEL_LETTERS[i], "new_facts": new_facts})
     return levels
 
@@ -166,6 +196,12 @@ def build_pack():
             "name": "整十整百口算",  # 整十整百口算
             "enabled": True,
             "levels": build_levels(ROUND_LEVELS, "round", "pattern"),
+        },
+        {
+            "trackId": "add_sub_oral",
+            "name": "万以内加减口算",  # 万以内加减口算
+            "enabled": True,
+            "levels": build_levels(ADD_SUB_LEVELS, "addsub", "fact_recall"),
         },
     ]
 

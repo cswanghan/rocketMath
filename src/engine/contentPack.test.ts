@@ -23,13 +23,22 @@ describe('computeFromPrompt', () => {
     expect(computeFromPrompt('20 × 3')).toBe(60);
     expect(computeFromPrompt('8 * 8')).toBe(64);
   });
+  it('computes addition and subtraction', () => {
+    expect(computeFromPrompt('300 + 400')).toBe(700);
+    expect(computeFromPrompt('560 - 30')).toBe(530);
+    expect(computeFromPrompt('90 − 45')).toBe(45); // unicode minus
+  });
   it('rejects non-integer division and divide-by-zero', () => {
     expect(computeFromPrompt('7 ÷ 2')).toBeNull();
     expect(computeFromPrompt('7 ÷ 0')).toBeNull();
   });
+  it('rejects subtraction that would go negative (grade-3 scope)', () => {
+    expect(computeFromPrompt('30 - 80')).toBeNull();
+  });
   it('rejects garbage', () => {
     expect(computeFromPrompt('hello')).toBeNull();
-    expect(computeFromPrompt('1 + 1')).toBeNull();
+    expect(computeFromPrompt('1 % 1')).toBeNull();
+    expect(computeFromPrompt('5 = 5')).toBeNull();
   });
 });
 
