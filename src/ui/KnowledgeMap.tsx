@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getTrack } from '../engine';
+import { levelFromXp } from '../practice';
 import { knowledgeMap, PEDAGOGY_LABEL, topicsOf, unitsByTerm } from '../map/map';
 import type { Term, Topic } from '../map/types';
 import type { StorageAdapter } from '../storage';
@@ -33,6 +34,7 @@ const TERMS: { key: Term; label: string }[] = [
 export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice }: Props) {
   const [progress, setProgress] = useState<Record<string, Prog>>({});
   const [pracProgress, setPracProgress] = useState<Record<string, PracProg>>({});
+  const [xp, setXp] = useState(0);
 
   useEffect(() => {
     let alive = true;
@@ -55,9 +57,11 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice }:
           return [setId, { completed: p?.completed ?? false, bestFirstTry: p?.bestFirstTry ?? 0, total: p?.total ?? 0 }] as const;
         }),
       );
+      const student = await adapter.getStudent(studentId);
       if (alive) {
         setProgress(Object.fromEntries(entries));
         setPracProgress(Object.fromEntries(pracEntries));
+        setXp(student?.xp ?? 0);
       }
     })();
     return () => {
@@ -66,6 +70,7 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice }:
   }, [adapter, studentId]);
 
   const readyCount = knowledgeMap.topics.filter((t) => t.status === 'ready').length;
+  const lvl = levelFromXp(xp);
 
   return (
     <div className="map">
@@ -73,6 +78,17 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice }:
       <p className="subtitle">
         {knowledgeMap.textbook} · {knowledgeMap.topics.length} 个知识点 · 已上线 {readyCount}
       </p>
+
+      <div className="level-panel">
+        <div className="level-row">
+          <span className="lv-badge">Lv.{lvl.level}</span>
+          <span className="xp-text">⭐ {xp} 经验</span>
+          <span className="xp-next">距下一级还差 {lvl.toNext}</span>
+        </div>
+        <div className="xp-bar">
+          <div className="xp-fill" style={{ width: `${Math.round((lvl.intoLevel / lvl.span) * 100)}%` }} />
+        </div>
+      </div>
 
       {TERMS.map((term) => (
         <section key={term.key} className="term">

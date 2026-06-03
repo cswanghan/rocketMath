@@ -29,6 +29,13 @@ export class MemoryAdapter implements StorageAdapter {
     this.students.set(student.id, clone(student));
   }
 
+  async addXp(studentId: string, amount: number): Promise<number> {
+    const s = this.students.get(studentId) ?? { id: studentId, createdAt: 0 };
+    const xp = (s.xp ?? 0) + amount;
+    this.students.set(studentId, { ...s, xp });
+    return xp;
+  }
+
   async getTrackState(studentId: string, trackId: string): Promise<TrackState | null> {
     const s = this.trackStates.get(this.key(studentId, trackId));
     return s ? clone(s) : null;

@@ -1,8 +1,31 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import type { Problem } from '../practice';
+import { DIFFICULTY_ORDER, xpForCorrect, type Difficulty, type Problem } from '../practice';
 import type { StorageAdapter } from '../storage';
 import { getSet } from './practicePack';
 import { usePractice, type PView } from './usePractice';
+
+const TIER_LABEL: Record<Difficulty, string> = {
+  basic: '基础',
+  consolidate: '夯实',
+  challenge: '拔高',
+};
+
+function StageBar({ tier }: { tier: Difficulty | null }) {
+  const activeIdx = tier ? DIFFICULTY_ORDER.indexOf(tier) : 3; // all done when null
+  return (
+    <div className="stage-bar">
+      {DIFFICULTY_ORDER.map((d, i) => {
+        const state = i < activeIdx ? 'done' : i === activeIdx ? 'active' : 'todo';
+        return (
+          <div key={d} className={`stage-seg stage-${state}`}>
+            {state === 'done' ? '✓ ' : ''}
+            {TIER_LABEL[d]}关
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 interface Props {
   setId: string;
@@ -58,6 +81,7 @@ export function PracticeScreen({ setId, adapter, studentId, seed, onExit }: Prop
           ← 返回
         </button>
         <div className="status">
+          <span className="prog xp">⭐ {game.sessionXp}</span>
           <span className="phase-badge">{title}</span>
           {view.mode !== 'complete' && (
             <span className="prog">
@@ -66,6 +90,8 @@ export function PracticeScreen({ setId, adapter, studentId, seed, onExit }: Prop
           )}
         </div>
       </header>
+
+      {view.mode !== 'complete' && <StageBar tier={game.tier} />}
 
       {(view.mode === 'present' || view.mode === 'wrong') && (
         <ProblemView
@@ -194,12 +220,19 @@ function ResultCard({
       : p.type === 'steps'
         ? p.fields?.map((f) => `${f.label} ${f.answer}`).join(' , ')
         : p.choices?.find((c) => c.correct)?.label;
+  const firstTry = view.mode === 'correct' && view.firstTry;
+  const xp = kind === 'correct' ? xpForCorrect(p.difficulty, firstTry) : 0;
   return (
     <div className="overlay">
       <div className={`card ${kind === 'correct' ? 'celebrate' : ''}`}>
         <div className="card-title">
-          {kind === 'correct' ? (view.mode === 'correct' && view.firstTry ? '✅ 答对了！' : '✅ 对了！') : '看一看正确答案'}
+          {kind === 'correct' ? (firstTry ? '✅ 答对了！' : '✅ 对了！') : '看一看正确答案'}
         </div>
+        {kind === 'correct' && (
+          <div className="xp-gain">
+            +{xp} 经验{firstTry ? ' · 一次答对翻倍 🎯' : ''}
+          </div>
+        )}
         {kind === 'reveal' && (
           <div className="big-fact">
             答案:<b>{answerText}</b>

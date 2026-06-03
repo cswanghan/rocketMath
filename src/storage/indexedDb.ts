@@ -66,6 +66,15 @@ export class IndexedDbAdapter implements StorageAdapter {
     await reqToPromise(store.put(student));
   }
 
+  async addXp(studentId: string, amount: number): Promise<number> {
+    const store = await this.tx(STORE_STUDENTS, 'readwrite');
+    const existing = (await reqToPromise(store.get(studentId))) as Student | undefined;
+    const s: Student = existing ?? { id: studentId, createdAt: Date.now() };
+    const xp = (s.xp ?? 0) + amount;
+    await reqToPromise(store.put({ ...s, xp }));
+    return xp;
+  }
+
   async getTrackState(studentId: string, trackId: string): Promise<TrackState | null> {
     const store = await this.tx(STORE_TRACK_STATES, 'readonly');
     const row = await reqToPromise<{ state: TrackState } | undefined>(

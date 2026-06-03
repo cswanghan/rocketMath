@@ -10,6 +10,8 @@ export interface Student {
   createdAt: number;
   /** Individualised latency gate (ms) from the baseline probe (M5). */
   latencyGateMs?: number;
+  /** Cumulative experience points across all activities. */
+  xp?: number;
 }
 
 export interface RaceResult {
@@ -54,6 +56,8 @@ export interface PracticeRecord {
 export interface StorageAdapter {
   getStudent(id: string): Promise<Student | null>;
   putStudent(student: Student): Promise<void>;
+  /** Atomically add to a student's XP; returns the new total. */
+  addXp(studentId: string, amount: number): Promise<number>;
 
   getTrackState(studentId: string, trackId: string): Promise<TrackState | null>;
   putTrackState(studentId: string, trackId: string, state: TrackState): Promise<void>;

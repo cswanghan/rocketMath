@@ -6,6 +6,8 @@ import { mulberry32 } from '../engine';
 import {
   practiceInit,
   practiceStep,
+  xpForCorrect,
+  type Difficulty,
   type PracticeAction,
   type PracticeContext,
   type PracticeEvent,
@@ -29,6 +31,8 @@ export interface PracticeApi {
   total: number;
   position: number; // 1-based index of the current problem
   seq: number;
+  tier: Difficulty | null; // current 关卡 (basic/consolidate/challenge)
+  sessionXp: number; // XP earned this session
   answer: (response: Response) => void;
   next: () => void;
 }
@@ -60,6 +64,7 @@ export function usePractice(
   const gameRef = useRef<{ state: ReturnType<typeof practiceInit>; action: PracticeAction } | null>(null);
   const bestRef = useRef(0);
   const seqRef = useRef(0);
+  const sessionXpRef = useRef(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -89,6 +94,11 @@ export function usePractice(
       const res = practiceStep(game.state, event, ctx);
       gameRef.current = res;
       if (res.action.kind === 'PRESENT') seqRef.current += 1;
+      if (res.action.kind === 'CORRECT') {
+        const xp = xpForCorrect(res.action.problem.difficulty, res.action.firstTry);
+        sessionXpRef.current += xp;
+        void adapter.addXp(studentId, xp);
+      }
       if (res.action.kind === 'SET_COMPLETE') {
         const best = Math.max(bestRef.current, res.action.firstTryCorrect);
         bestRef.current = best;
@@ -110,12 +120,17 @@ export function usePractice(
   const next = useCallback(() => dispatch({ type: 'NEXT' }), [dispatch]);
 
   const game = gameRef.current;
+  const action = game?.action;
+  const tier =
+    action && 'problem' in action ? (action.problem.difficulty ?? 'consolidate') : null;
   return {
     ready,
     view: game ? viewOf(game.action, game.state.tries) : { mode: 'loading' },
     total: ctxRef.current?.set.problems.length ?? 0,
     position: (game?.state.index ?? 0) + 1,
     seq: seqRef.current,
+    tier,
+    sessionXp: sessionXpRef.current,
     answer,
     next,
   };

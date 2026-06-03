@@ -5,6 +5,12 @@
 
 export type ProblemType = 'mc' | 'fill' | 'steps';
 
+// Difficulty tier — the "关卡" within a topic. Problems are served in this
+// order: basic (基础知识) → consolidate (夯实基础) → challenge (拔高).
+export type Difficulty = 'basic' | 'consolidate' | 'challenge';
+
+export const DIFFICULTY_ORDER: Difficulty[] = ['basic', 'consolidate', 'challenge'];
+
 export interface Choice {
   id: string;
   label: string;
@@ -21,6 +27,7 @@ export interface Problem {
   id: string;
   type: ProblemType;
   prompt: string; // may be multi-line (竖式 layout); render with white-space: pre
+  difficulty?: Difficulty; // defaults to 'consolidate'
   choices?: Choice[]; // mc
   answer?: number | string; // fill
   fields?: Field[]; // steps (e.g. 商 + 余数)

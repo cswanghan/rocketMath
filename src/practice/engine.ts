@@ -3,12 +3,13 @@
 // answer gives a hint and lets you retry (no penalty); after maxTries the answer
 // is revealed. The set completes once every problem has been worked through.
 import { checkAnswer } from './check';
-import type {
-  PracticeAction,
-  PracticeContext,
-  PracticeEvent,
-  PracticeState,
-  ProblemSet,
+import {
+  DIFFICULTY_ORDER,
+  type PracticeAction,
+  type PracticeContext,
+  type PracticeEvent,
+  type PracticeState,
+  type ProblemSet,
 } from './types';
 
 export interface PracticeResult {
@@ -18,8 +19,7 @@ export interface PracticeResult {
 
 const DEFAULT_MAX_TRIES = 2;
 
-function shuffle(n: number, rng: () => number): number[] {
-  const a = Array.from({ length: n }, (_, i) => i);
+function shuffleInPlace<T>(a: T[], rng: () => number): T[] {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));
     [a[i], a[j]] = [a[j], a[i]];
@@ -27,10 +27,24 @@ function shuffle(n: number, rng: () => number): number[] {
   return a;
 }
 
+/** Serve problems as "关卡": basic → consolidate → challenge, shuffled within
+ *  each tier so the difficulty ramps up across the topic. */
+function tieredOrder(set: ProblemSet, rng: () => number): number[] {
+  const order: number[] = [];
+  for (const tier of DIFFICULTY_ORDER) {
+    const idx = set.problems
+      .map((p, i) => [p, i] as const)
+      .filter(([p]) => (p.difficulty ?? 'consolidate') === tier)
+      .map(([, i]) => i);
+    order.push(...shuffleInPlace(idx, rng));
+  }
+  return order;
+}
+
 export function practiceInit(set: ProblemSet, rng: () => number): PracticeState {
   return {
     setId: set.id,
-    order: shuffle(set.problems.length, rng),
+    order: tieredOrder(set, rng),
     index: -1,
     tries: 0,
     firstTryCorrect: 0,

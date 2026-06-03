@@ -100,6 +100,7 @@ export function Play({ trackId, adapter, studentId, seed, onExit }: Props) {
           <button className="ghost mute" onClick={toggleMute} title="语音开关">
             {muted ? '🔇' : '🔊'}
           </button>
+          <span className="prog xp">⭐ {game.sessionXp}</span>
           <span className="phase-badge">{PHASE_LABEL[state.phase]}</span>
           {state.phase === 'take_off' ? (
             <span className="prog">

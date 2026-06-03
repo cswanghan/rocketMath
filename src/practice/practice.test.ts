@@ -2,7 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { mulberry32 } from '../engine';
 import { checkAnswer } from './check';
 import { practiceInit, practiceStep } from './engine';
-import type { PracticeContext, Problem, ProblemSet, Response } from './types';
+import type { Difficulty, PracticeContext, Problem, ProblemSet, Response } from './types';
+import { FLUENCY_XP, levelFromXp, xpForCorrect, xpToReachLevel } from './xp';
 
 const mc: Problem = {
   id: 'q1',
@@ -99,6 +100,27 @@ describe('practice loop', () => {
     expect(res.state.firstTryCorrect).toBe(0);
   });
 
+  it('serves problems as tiers: basic -> consolidate -> challenge', () => {
+    const mk = (id: string, d: Difficulty): Problem => ({ id, type: 'fill', prompt: 'x', answer: 1, difficulty: d });
+    const set: ProblemSet = {
+      id: 's',
+      title: 't',
+      pedagogy: 'concept',
+      problems: [mk('c1', 'challenge'), mk('b1', 'basic'), mk('m1', 'consolidate'), mk('b2', 'basic'), mk('c2', 'challenge')],
+    };
+    const ctx: PracticeContext = { set, rng: mulberry32(3), now: () => 0 };
+    let state = practiceInit(set, ctx.rng);
+    const seen: Difficulty[] = [];
+    let action;
+    for (let i = 0; i < 5; i++) {
+      ({ state, action } = practiceStep(state, { type: 'NEXT' }, ctx));
+      if (action.kind === 'PRESENT') seen.push(action.problem.difficulty as Difficulty);
+      ({ state, action } = practiceStep(state, { type: 'ANSWER', response: { kind: 'value', value: '1' } }, ctx));
+    }
+    // basics first, then consolidate, then challenges — order within a tier may vary
+    expect(seen).toEqual(['basic', 'basic', 'consolidate', 'challenge', 'challenge']);
+  });
+
   it('completing all problems emits SET_COMPLETE with the first-try tally', () => {
     const set = setOf([fill, steps]);
     const ctx = ctxOf(set);
@@ -117,5 +139,33 @@ describe('practice loop', () => {
     }
     expect(action).toMatchObject({ kind: 'SET_COMPLETE', firstTryCorrect: 2, total: 2 });
     expect(state.status).toBe('complete');
+  });
+});
+
+describe('xp & levels', () => {
+  it('xp scales with difficulty and doubles on first try', () => {
+    expect(xpForCorrect('basic', false)).toBe(5);
+    expect(xpForCorrect('basic', true)).toBe(10);
+    expect(xpForCorrect('consolidate', false)).toBe(10);
+    expect(xpForCorrect('challenge', false)).toBe(20);
+    expect(xpForCorrect('challenge', true)).toBe(40);
+    expect(xpForCorrect(undefined, false)).toBe(10); // defaults to consolidate
+    expect(FLUENCY_XP).toBe(8);
+  });
+
+  it('triangular level thresholds', () => {
+    expect(xpToReachLevel(1)).toBe(0);
+    expect(xpToReachLevel(2)).toBe(100);
+    expect(xpToReachLevel(3)).toBe(300);
+    expect(xpToReachLevel(4)).toBe(600);
+    expect(xpToReachLevel(5)).toBe(1000);
+  });
+
+  it('levelFromXp maps xp to level + progress', () => {
+    expect(levelFromXp(0)).toMatchObject({ level: 1, intoLevel: 0, span: 100, toNext: 100 });
+    expect(levelFromXp(50)).toMatchObject({ level: 1, intoLevel: 50, toNext: 50 });
+    expect(levelFromXp(100)).toMatchObject({ level: 2, intoLevel: 0, span: 200 });
+    expect(levelFromXp(450)).toMatchObject({ level: 3, intoLevel: 150, span: 300, toNext: 150 });
+    expect(levelFromXp(-10).level).toBe(1);
   });
 });

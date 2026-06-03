@@ -19,6 +19,7 @@ import {
   type Fact,
   type TrackState,
 } from '../engine';
+import { FLUENCY_XP } from '../practice';
 import { classifyOutcome, type StorageAdapter } from '../storage';
 import { pack } from './pack';
 
@@ -36,6 +37,7 @@ export interface GameApi {
   view: View;
   latencyGateMs: number;
   promptSeq: number;
+  sessionXp: number;
   submit: (value: number) => void;
   timeout: () => void;
   next: () => void;
@@ -71,6 +73,7 @@ export function useGame(
   const gameRef = useRef<{ state: TrackState; action: Action } | null>(null);
   const startRef = useRef<number>(0);
   const promptSeqRef = useRef<number>(0);
+  const sessionXpRef = useRef<number>(0);
 
   // async restore on mount
   useEffect(() => {
@@ -116,6 +119,11 @@ export function useGame(
       // --- persist (fire-and-forget) ---
       void adapter.putTrackState(studentId, trackId, res.state);
       if (event.type === 'ANSWER') {
+        const outcome = classifyOutcome(prev, res.action);
+        if (outcome === 'hit') {
+          sessionXpRef.current += FLUENCY_XP;
+          void adapter.addXp(studentId, FLUENCY_XP);
+        }
         void adapter.appendEvent({
           studentId,
           trackId,
@@ -125,7 +133,7 @@ export function useGame(
           factId: event.factId,
           value: event.value,
           elapsedMs: event.elapsedMs,
-          outcome: classifyOutcome(prev, res.action),
+          outcome,
         });
       }
       if (res.action.kind === 'RACE_RESULT') {
@@ -175,6 +183,7 @@ export function useGame(
     view: game ? viewOf(game.action, game.state.pendingRetest) : { mode: 'loading' },
     latencyGateMs: ctxRef.current?.latencyGateMs ?? pack.engine_config.latency_gate_seconds * 1000,
     promptSeq: promptSeqRef.current,
+    sessionXp: sessionXpRef.current,
     submit,
     timeout,
     next,

@@ -27,7 +27,15 @@
 | P1 公式(周长/面积) | ✅ 完成 | 4 套 formula 题集(14 ready topic) |
 | P2 概念课(分数/小数/年月日/位置/统计/广角) | ✅ 完成 | 33 套题集,**47/47 知识点全上线** |
 
-**🎉 人教版三年级全部 47 个知识点上线**(43 Practice 题集 / 242 题 + 4 流畅度 track)。
+**🎉 人教版三年级全部 47 个知识点上线**(43 Practice 题集 + 4 流畅度 track)。
+
+## 关卡 + 经验值 + 三档难度(2026-06-03)
+
+- **三档难度题型(关卡)**:每个 Practice 知识点的题按 `difficulty` 分 **基础(basic)→夯实(consolidate)→拔高(challenge)** 三关,引擎按此顺序出题(`tieredOrder`,关内 seedable 洗牌)。练习屏顶部「关卡进度条」过一关亮一段。
+- **难度提升**:`build_practice_pack.py` 重写,每套补 basic 热身 + challenge 拔高(多步/应用题/陷阱/大数)。现 **43 套 / 295 题**(basic 85 / consolidate 117 / challenge 93),python 自检每套三关齐全、mc 唯一正确。
+- **经验值 + 等级**:纯模块 `src/practice/xp.ts`(`xpForCorrect` 基础5/夯实10/拔高20、一次答对翻倍;口算 `FLUENCY_XP`=8;`levelFromXp` 三角曲线 Lv2=100/Lv3=300/Lv4=600)。`StorageAdapter.addXp` 原子累加(memory + IndexedDB),`Student.xp` 持久化。
+- **展示**:地图顶部 `Lv.X` + 经验条 + 距下一级;答题/练习头部实时 `⭐ 经验`;答对弹「+N 经验」。
+- 测试:83 个(+tier 排序、xp/level),引擎+practice 覆盖 99.11%/94.06%。真机验证:基础题先出、+10 经验翻倍、关卡条、等级面板。
 
 ### P0a 完成项(2026-06-03)
 - `docs/knowledge-map-design.md`:架构 + 人教版完整 47 topic 地图 + pedagogy→引擎映射 + schema。
