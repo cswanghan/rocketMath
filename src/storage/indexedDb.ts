@@ -137,6 +137,31 @@ export class IndexedDbAdapter implements StorageAdapter {
       await reqToPromise(store.put({ ...m, corrected: true }));
     }
   }
+
+  async resetProgress(studentId: string): Promise<void> {
+    // single-user app: clear the progress stores wholesale, then reset XP.
+    const db = await this.dbPromise;
+    await new Promise<void>((resolve, reject) => {
+      const tx = db.transaction([STORE_TRACK_STATES, STORE_PRACTICE, STORE_STUDENTS], 'readwrite');
+      tx.objectStore(STORE_TRACK_STATES).clear();
+      tx.objectStore(STORE_PRACTICE).clear();
+      const students = tx.objectStore(STORE_STUDENTS);
+      const get = students.get(studentId);
+      get.onsuccess = () => {
+        const s = (get.result as Student | undefined) ?? { id: studentId, createdAt: Date.now() };
+        students.put({ ...s, xp: 0 });
+      };
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  async clearMistakes(studentId: string): Promise<void> {
+    const store = await this.tx(STORE_MISTAKES, 'readwrite');
+    const idx = store.index('byStudent');
+    const keys = await reqToPromise(idx.getAllKeys(studentId));
+    for (const k of keys as IDBValidKey[]) await reqToPromise(store.delete(k));
+  }
 }
 
 /** Pick the best available adapter: IndexedDB when present, else an in-memory

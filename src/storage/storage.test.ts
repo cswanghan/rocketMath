@@ -53,6 +53,23 @@ describe('MemoryAdapter round-trip (SPEC §6 / §9 refresh-restore contract)', (
     expect(evs.map((e) => e.ts)).toEqual([0, 1, 2]);
   });
 
+  it('resetProgress clears states + zeroes XP but keeps mistakes', async () => {
+    const a = new MemoryAdapter();
+    await a.putStudent({ id: 'local', createdAt: 1, xp: 250 });
+    await a.putTrackState('local', 'mult_facts', initTrackState('mult_facts'));
+    await a.putPractice({ studentId: 'local', setId: 'add_column', completed: true, bestFirstTry: 6, total: 8, updatedAt: 1 });
+    await a.appendMistake({ studentId: 'local', source: 'practice', topicId: 'x', topicTitle: 't', problemId: 'p', prompt: '1', yourAnswer: '1', correctAnswer: '2', ts: 1, corrected: false });
+
+    await a.resetProgress('local');
+    expect((await a.getStudent('local'))?.xp).toBe(0);
+    expect(await a.getTrackState('local', 'mult_facts')).toBeNull();
+    expect(await a.getPractice('local', 'add_column')).toBeNull();
+    expect(await a.listMistakes('local')).toHaveLength(1); // mistakes preserved
+
+    await a.clearMistakes('local');
+    expect(await a.listMistakes('local')).toHaveLength(0);
+  });
+
   it('records, lists and marks mistakes corrected', async () => {
     const a = new MemoryAdapter();
     await a.appendMistake({

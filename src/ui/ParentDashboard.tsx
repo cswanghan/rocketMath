@@ -67,6 +67,20 @@ export function ParentDashboard({ adapter, studentId, onExit }: Props) {
     [adapter, studentId, reload],
   );
 
+  const resetProgress = useCallback(async () => {
+    if (!window.confirm('确定重置所有完成度和经验进度吗?\n(关卡进度、已过关、等级/经验都会清零,错题本保留)')) return;
+    await adapter.resetProgress(studentId);
+    setSummaryText('');
+    await reload();
+  }, [adapter, studentId, reload]);
+
+  const clearMistakes = useCallback(async () => {
+    if (!window.confirm('确定清空错题本吗?此操作不可撤销。')) return;
+    await adapter.clearMistakes(studentId);
+    setSummaryText('');
+    await reload();
+  }, [adapter, studentId, reload]);
+
   // group active mistakes by topic
   const byTopic = new Map<string, MistakeRecord[]>();
   for (const m of active) {
@@ -141,6 +155,16 @@ export function ParentDashboard({ adapter, studentId, onExit }: Props) {
           ))}
         </div>
       ))}
+
+      <div className="data-admin">
+        <div className="unit-title">数据管理</div>
+        <button className="danger-btn" onClick={resetProgress}>
+          🔄 重置完成度和经验
+        </button>
+        <button className="danger-btn ghost-danger" onClick={clearMistakes}>
+          🗑 清空错题本
+        </button>
+      </div>
     </div>
   );
 }

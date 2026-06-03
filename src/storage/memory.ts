@@ -83,6 +83,18 @@ export class MemoryAdapter implements StorageAdapter {
     if (m) m.corrected = true;
   }
 
+  async resetProgress(studentId: string): Promise<void> {
+    const prefix = `${studentId}::`;
+    for (const k of [...this.trackStates.keys()]) if (k.startsWith(prefix)) this.trackStates.delete(k);
+    for (const k of [...this.practice.keys()]) if (k.startsWith(prefix)) this.practice.delete(k);
+    const s = this.students.get(studentId);
+    if (s) this.students.set(studentId, { ...s, xp: 0 });
+  }
+
+  async clearMistakes(studentId: string): Promise<void> {
+    this.mistakes = this.mistakes.filter((m) => m.studentId !== studentId);
+  }
+
   // test-only introspection
   _allEvents(): GameEvent[] {
     return this.events.map(clone);

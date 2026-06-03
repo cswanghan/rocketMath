@@ -1045,3 +1045,28 @@ body {
   font-size: 0.85rem;
   padding: 6px 0 0;
 }
+.data-admin {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid #232c4d;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.danger-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: rgba(255, 107, 107, 0.16);
+  color: var(--bad);
+}
+.danger-btn:active {
+  background: rgba(255, 107, 107, 0.28);
+}
+.ghost-danger {
+  background: transparent;
+  color: var(--muted);
+}

@@ -91,4 +91,9 @@ export interface StorageAdapter {
   appendMistake(mistake: MistakeRecord): Promise<void>;
   listMistakes(studentId: string): Promise<MistakeRecord[]>;
   markMistakeCorrected(studentId: string, id: number): Promise<void>;
+
+  /** Clear all completion progress (track + practice states) and reset XP to 0. */
+  resetProgress(studentId: string): Promise<void>;
+  /** Delete the 错题本 for a student. */
+  clearMistakes(studentId: string): Promise<void>;
 }
