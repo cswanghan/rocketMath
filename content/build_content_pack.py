@@ -161,6 +161,12 @@ def build_pack():
         },
         "milestone_races": {
             "duration_seconds": 120,
+            # selectable race speeds (less time = faster pace = harder)
+            "speeds": [
+                {"id": "relaxed", "label": "轻松", "emoji": "🐢", "seconds": 180},
+                {"id": "standard", "label": "标准", "emoji": "🚀", "seconds": 120},
+                {"id": "challenge", "label": "挑战", "emoji": "⚡", "seconds": 60},
+            ],
             "positions_percent": [25, 50, 75, 100],
         },
         "individualized_goal": {

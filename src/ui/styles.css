@@ -445,6 +445,44 @@ body {
   color: var(--muted);
 }
 
+/* ---- race speed picker ---- */
+.speed-pick {
+  text-align: center;
+}
+.speed-pick .title {
+  font-size: 1.5rem;
+  margin: 12px 0 4px;
+}
+.speed-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 18px 22px;
+  margin-top: 14px;
+  cursor: pointer;
+  text-align: left;
+}
+.speed-card:active {
+  background: #232c4d;
+}
+.speed-emoji {
+  font-size: 2rem;
+}
+.speed-label {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+.speed-time {
+  margin-left: auto;
+  color: var(--accent2);
+  font-weight: 700;
+}
+
 /* ---- practice ---- */
 .problem-prompt {
   font-family: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;

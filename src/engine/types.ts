@@ -91,6 +91,7 @@ export interface EngineConfig {
   };
   milestone_races: {
     duration_seconds: number;
+    speeds?: { id: string; label: string; emoji: string; seconds: number }[];
     positions_percent: number[];
   };
   individualized_goal: {

@@ -1,14 +1,19 @@
-// Milestone race (SPEC §5/§7): 1 minute, pool = all learned facts, score =
-// correct/min. NO voice (App Store lesson §7), no correction loop — the engine
-// race path just tallies and re-prompts until time runs out.
+// Milestone race: pool = all learned facts, score = correct/min. NO voice
+// (App Store lesson §7), no correction loop. The player first picks a speed
+// (less time = faster pace = harder); the engine tallies until time runs out.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
 import { pack } from './pack';
 import { useGame } from './useGame';
 
-// race length is data-driven from the content pack (engine_config.milestone_races)
-const DURATION_MS = pack.engine_config.milestone_races.duration_seconds * 1000;
+const SPEEDS = pack.engine_config.milestone_races.speeds ?? [
+  { id: 'standard', label: '标准', emoji: '🚀', seconds: pack.engine_config.milestone_races.duration_seconds },
+];
+
+function fmtSeconds(s: number): string {
+  return s % 60 === 0 ? `${s / 60} 分钟` : `${s} 秒`;
+}
 
 interface Props {
   trackId: string;
@@ -24,17 +29,18 @@ export function Race({ trackId, adapter, studentId, seed, onExit }: Props) {
   const inputRef = useRef('');
   inputRef.current = input;
   const startedRef = useRef(false);
-  const [remaining, setRemaining] = useState(DURATION_MS);
+  const [chosenMs, setChosenMs] = useState<number | null>(null);
+  const [remaining, setRemaining] = useState(0);
 
   const { view } = game;
 
-  // kick off the race once the engine is ready
+  // kick off the race once a speed is chosen and the engine is ready
   useEffect(() => {
-    if (game.ready && !startedRef.current) {
+    if (chosenMs !== null && game.ready && !startedRef.current) {
       startedRef.current = true;
-      game.startRace(DURATION_MS);
+      game.startRace(chosenMs);
     }
-  }, [game]);
+  }, [game, chosenMs]);
 
   // global countdown; when it hits 0, flush the engine to a RACE_RESULT
   useEffect(() => {
@@ -72,6 +78,38 @@ export function Race({ trackId, adapter, studentId, seed, onExit }: Props) {
     return () => window.removeEventListener('keydown', onKey);
   }, [view.mode, doSubmit]);
 
+  // ---- speed picker (before the race starts) ----
+  if (chosenMs === null) {
+    return (
+      <div className="play">
+        <header className="play-head">
+          <button className="ghost" onClick={onExit}>
+            ← 返回
+          </button>
+          <span className="phase-badge">🚀 竞速</span>
+        </header>
+        <div className="speed-pick">
+          <h2 className="title">选择速度</h2>
+          <p className="subtitle">时间越短,挑战越大 💪</p>
+          {SPEEDS.map((s) => (
+            <button
+              key={s.id}
+              className="speed-card"
+              onClick={() => {
+                setRemaining(s.seconds * 1000);
+                setChosenMs(s.seconds * 1000);
+              }}
+            >
+              <span className="speed-emoji">{s.emoji}</span>
+              <span className="speed-label">{s.label}</span>
+              <span className="speed-time">{fmtSeconds(s.seconds)}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   const secs = Math.ceil(remaining / 1000);
   const timeLabel = secs >= 60 ? `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}` : `${secs}s`;
 
@@ -82,7 +120,7 @@ export function Race({ trackId, adapter, studentId, seed, onExit }: Props) {
           ← 返回
         </button>
         <div className="status">
-          <span className="phase-badge">🚀 一分钟竞速</span>
+          <span className="phase-badge">🚀 竞速</span>
           <span className={`prog timer ${secs <= 10 ? 'timer-low' : ''}`}>⏱ {timeLabel}</span>
         </div>
       </header>
