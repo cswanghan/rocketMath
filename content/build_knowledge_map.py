@@ -108,14 +108,27 @@ UNITS = [
 ]
 
 
+def _practice_set_ids():
+    """Topic is `ready` as a Practice topic iff a matching set (id == topic id)
+    exists in the practice pack. This auto-syncs: author a set, topic flips on."""
+    path = os.path.join(os.path.dirname(__file__), "grade3_practice_pack.json")
+    if not os.path.exists(path):
+        return set()
+    with open(path, encoding="utf-8") as f:
+        return {s["id"] for s in json.load(f)["sets"]}
+
+
 def build():
+    practice_ids = _practice_set_ids()
     units = []
     topics = []
     for unit_id, term, index, title, topic_specs in UNITS:
         topic_ids = []
         for spec in topic_specs:
-            tid, ttitle, pedagogy, deps, status, track = spec[:6]
-            pset = spec[6] if len(spec) > 6 else None
+            tid, ttitle, pedagogy, deps = spec[:4]
+            track = spec[5] if len(spec) > 5 else None  # 6th col = fluency track id
+            pset = tid if tid in practice_ids else None
+            status = "ready" if (track or pset) else "coming_soon"
             topic_ids.append(tid)
             topic = {
                 "id": tid,

@@ -24,8 +24,10 @@
 |---|---|---|
 | P0a 地图框架 + 流畅度扩展 | ✅ 完成 | 47 topic 全地图、导航 UI、4 条 fluency track ready、新增加减口算 |
 | P0b 竖式 procedure 引擎 | ✅ 完成 | 非限时 Practice 引擎 + 6 套竖式题集(10 ready topic) |
-| P1 公式(周长/面积) | ⬜ | |
-| P2 概念课(分数/小数/年月日/位置/统计/广角) | ⬜ | |
+| P1 公式(周长/面积) | ✅ 完成 | 4 套 formula 题集(14 ready topic) |
+| P2 概念课(分数/小数/年月日/位置/统计/广角) | ✅ 完成 | 33 套题集,**47/47 知识点全上线** |
+
+**🎉 人教版三年级全部 47 个知识点上线**(43 Practice 题集 / 242 题 + 4 流畅度 track)。
 
 ### P0a 完成项(2026-06-03)
 - `docs/knowledge-map-design.md`:架构 + 人教版完整 47 topic 地图 + pedagogy→引擎映射 + schema。
@@ -42,6 +44,22 @@
 - 持久化:`StorageAdapter` 加 `getPractice/putPractice` + IndexedDB v2 新 store `practiceStates`;完成时存最佳"一次答对"。memory + indexeddb 双实现。
 - UI:`usePractice` hook(StrictMode-safe)+ `PracticeScreen`(竖式 pre 布局、fill/steps/mc 输入、提示浮层、揭示、完成总结)。地图上 procedure topic → Practice。
 - 验证:79 测试绿、覆盖 99.05%/93.65%、`tsc` 干净、CDP 真机走通 竖式答错→提示→答对→下一题、有余数除法两格输入。
+
+### P1 完成项(2026-06-03)
+- 4 套 formula 题集(周长、面积、倍数应用题、经过时间),复用 Practice 引擎(fill + mc)。
+
+### P2 完成项(2026-06-03)
+- **一次补齐剩余 33 个知识点**,共 43 套 Practice 题集 / 242 题。
+- 地图生成器改为**从 practice pack 自动派生 ready**(`_practice_set_ids`):凡 topic id == 某题集 id 即自动上线,不再手改 status。authoring 一套题 = 自动点亮一个知识点。
+- 覆盖:口算/单位换算(时分秒/长度/质量/面积/口算除法/两位数乘整十,fill)、剩余竖式(因数含0、两位数乘两位数、加减验算)、概念(钟表/估算/单位认识/倍/四边形/周长/分数3/小数3/面积2/年月日/24时/方向)、推理(集合/路线/年月日计算/搭配)、数据(复式统计表,prompt 内嵌多行表格)。
+- Python 侧自检:242 题全部一致(mc 恰好 1 个正确、fill/steps 答案齐全)。
+- 真机:47/47 ready、概念选择题出结果卡、复式统计表表格渲染正确。
+
+### P1/P2 决策/边界
+- **6 个 fluency-标签的换算/口算题暂用 Practice fill 承载**(整数答案),非真正限时引擎;后续可升级为带限时门的 fluency track(需扩展 content 校验支持"X 米=?厘米"类 prompt)。
+- **分数/小数全用选择题(mc)**:答题输入框只收数字,无法输入 `1/2`、`0.7`;故概念用 mc 规避,且更适合理解性考查。
+- **复式统计表**用 prompt 内嵌纯文本表格 + mc,未做真表格/图表组件(后续 polish)。
+- **依赖解锁仍未硬锁**:47 个全部可直接进入。
 
 ### P0b 决策/边界
 - **竖式用文本竖排 + 单格结果输入**(有余数除法用商/余数双格),不做逐位进退位格子 UI(后续 polish)。

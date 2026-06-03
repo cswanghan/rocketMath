@@ -221,7 +221,8 @@
       "title": "认读钟表",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "read_clock"
     },
     {
       "id": "time_conversion",
@@ -229,7 +230,8 @@
       "title": "时分秒换算",
       "pedagogy": "fluency",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "time_conversion"
     },
     {
       "id": "time_elapsed",
@@ -259,7 +261,8 @@
       "dependsOn": [
         "add_sub_oral"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "add_sub_estimate"
     },
     {
       "id": "length_units",
@@ -267,7 +270,8 @@
       "title": "长度单位认识(毫米/分米/千米)",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "length_units"
     },
     {
       "id": "length_conversion",
@@ -277,7 +281,8 @@
       "dependsOn": [
         "length_units"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "length_conversion"
     },
     {
       "id": "mass_units",
@@ -285,7 +290,8 @@
       "title": "质量单位认识(吨/千克/克)",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "mass_units"
     },
     {
       "id": "mass_conversion",
@@ -295,7 +301,8 @@
       "dependsOn": [
         "mass_units"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "mass_conversion"
     },
     {
       "id": "add_column",
@@ -327,7 +334,8 @@
       "dependsOn": [
         "sub_column"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "add_sub_check"
     },
     {
       "id": "times_concept",
@@ -337,7 +345,8 @@
       "dependsOn": [
         "mult_facts"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "times_concept"
     },
     {
       "id": "times_word",
@@ -391,7 +400,8 @@
       "dependsOn": [
         "mul1_carry"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "mul1_zero"
     },
     {
       "id": "quad_props",
@@ -399,7 +409,8 @@
       "title": "四边形认识",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "quad_props"
     },
     {
       "id": "perimeter_concept",
@@ -407,7 +418,8 @@
       "title": "周长的认识",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "perimeter_concept"
     },
     {
       "id": "perimeter_formula",
@@ -426,7 +438,8 @@
       "title": "几分之一·几分之几",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "fraction_meaning"
     },
     {
       "id": "fraction_compare",
@@ -436,7 +449,8 @@
       "dependsOn": [
         "fraction_meaning"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "fraction_compare"
     },
     {
       "id": "fraction_add_sub",
@@ -446,7 +460,8 @@
       "dependsOn": [
         "fraction_compare"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "fraction_add_sub"
     },
     {
       "id": "sets",
@@ -454,7 +469,8 @@
       "title": "集合(重叠问题)",
       "pedagogy": "logic",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "sets"
     },
     {
       "id": "directions",
@@ -462,7 +478,8 @@
       "title": "东南西北",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "directions"
     },
     {
       "id": "route_map",
@@ -472,7 +489,8 @@
       "dependsOn": [
         "directions"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "route_map"
     },
     {
       "id": "div_oral",
@@ -482,7 +500,8 @@
       "dependsOn": [
         "div_facts"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "div_oral"
     },
     {
       "id": "div_estimate",
@@ -492,7 +511,8 @@
       "dependsOn": [
         "div_oral"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "div_estimate"
     },
     {
       "id": "div_column",
@@ -522,7 +542,8 @@
       "title": "读复式统计表",
       "pedagogy": "data",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "read_table"
     },
     {
       "id": "mul2_oral",
@@ -532,7 +553,8 @@
       "dependsOn": [
         "mult_facts"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "mul2_oral"
     },
     {
       "id": "mul2_column",
@@ -542,7 +564,8 @@
       "dependsOn": [
         "mul2_oral"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "mul2_column"
     },
     {
       "id": "area_concept",
@@ -550,7 +573,8 @@
       "title": "面积的认识",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "area_concept"
     },
     {
       "id": "area_units",
@@ -560,7 +584,8 @@
       "dependsOn": [
         "area_concept"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "area_units"
     },
     {
       "id": "area_conversion",
@@ -570,7 +595,8 @@
       "dependsOn": [
         "area_units"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "area_conversion"
     },
     {
       "id": "area_formula",
@@ -589,7 +615,8 @@
       "title": "大小月·平闰年",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "month_days"
     },
     {
       "id": "date_calc",
@@ -599,7 +626,8 @@
       "dependsOn": [
         "month_days"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "date_calc"
     },
     {
       "id": "hour24",
@@ -607,7 +635,8 @@
       "title": "24时计时法",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "hour24"
     },
     {
       "id": "decimal_meaning",
@@ -615,7 +644,8 @@
       "title": "小数的认识",
       "pedagogy": "concept",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "decimal_meaning"
     },
     {
       "id": "decimal_compare",
@@ -625,7 +655,8 @@
       "dependsOn": [
         "decimal_meaning"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "decimal_compare"
     },
     {
       "id": "decimal_add_sub",
@@ -635,7 +666,8 @@
       "dependsOn": [
         "decimal_compare"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "decimal_add_sub"
     },
     {
       "id": "combination",
@@ -643,7 +675,8 @@
       "title": "搭配(组合)",
       "pedagogy": "logic",
       "dependsOn": [],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "combination"
     }
   ]
 }

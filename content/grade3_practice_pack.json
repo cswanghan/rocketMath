@@ -436,6 +436,246 @@
       ]
     },
     {
+      "id": "mul1_zero",
+      "title": "因数中间末尾有0",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "mulz_405_3",
+          "type": "fill",
+          "prompt": " 405\n × 3\n────",
+          "answer": 1215,
+          "hint": "0 乘任何数都得 0,但要注意占位",
+          "explanation": "405 × 3 = 1215"
+        },
+        {
+          "id": "mulz_320_4",
+          "type": "fill",
+          "prompt": " 320\n × 4\n────",
+          "answer": 1280,
+          "hint": "0 乘任何数都得 0,但要注意占位",
+          "explanation": "320 × 4 = 1280"
+        },
+        {
+          "id": "mulz_608_5",
+          "type": "fill",
+          "prompt": " 608\n × 5\n────",
+          "answer": 3040,
+          "hint": "0 乘任何数都得 0,但要注意占位",
+          "explanation": "608 × 5 = 3040"
+        },
+        {
+          "id": "mulz_240_6",
+          "type": "fill",
+          "prompt": " 240\n × 6\n────",
+          "answer": 1440,
+          "hint": "0 乘任何数都得 0,但要注意占位",
+          "explanation": "240 × 6 = 1440"
+        },
+        {
+          "id": "mulz_503_7",
+          "type": "fill",
+          "prompt": " 503\n × 7\n────",
+          "answer": 3521,
+          "hint": "0 乘任何数都得 0,但要注意占位",
+          "explanation": "503 × 7 = 3521"
+        },
+        {
+          "id": "mulz_160_8",
+          "type": "fill",
+          "prompt": " 160\n × 8\n────",
+          "answer": 1280,
+          "hint": "0 乘任何数都得 0,但要注意占位",
+          "explanation": "160 × 8 = 1280"
+        }
+      ]
+    },
+    {
+      "id": "mul2_column",
+      "title": "两位数乘两位数竖式",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "mul2_23_12",
+          "type": "fill",
+          "prompt": "   23\n × 12\n─────",
+          "answer": 276,
+          "hint": "先乘个位再乘十位,最后相加",
+          "explanation": "23 × 12 = 276"
+        },
+        {
+          "id": "mul2_34_21",
+          "type": "fill",
+          "prompt": "   34\n × 21\n─────",
+          "answer": 714,
+          "hint": "先乘个位再乘十位,最后相加",
+          "explanation": "34 × 21 = 714"
+        },
+        {
+          "id": "mul2_45_13",
+          "type": "fill",
+          "prompt": "   45\n × 13\n─────",
+          "answer": 585,
+          "hint": "先乘个位再乘十位,最后相加",
+          "explanation": "45 × 13 = 585"
+        },
+        {
+          "id": "mul2_26_14",
+          "type": "fill",
+          "prompt": "   26\n × 14\n─────",
+          "answer": 364,
+          "hint": "先乘个位再乘十位,最后相加",
+          "explanation": "26 × 14 = 364"
+        },
+        {
+          "id": "mul2_31_23",
+          "type": "fill",
+          "prompt": "   31\n × 23\n─────",
+          "answer": 713,
+          "hint": "先乘个位再乘十位,最后相加",
+          "explanation": "31 × 23 = 713"
+        },
+        {
+          "id": "mul2_42_15",
+          "type": "fill",
+          "prompt": "   42\n × 15\n─────",
+          "answer": 630,
+          "hint": "先乘个位再乘十位,最后相加",
+          "explanation": "42 × 15 = 630"
+        }
+      ]
+    },
+    {
+      "id": "add_sub_check",
+      "title": "加减法验算",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "add_sub_check_0",
+          "type": "mc",
+          "prompt": "验算 356 + 278 = 634,用哪个算式?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "634 − 278",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "634 + 278",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "356 − 278",
+              "correct": false
+            }
+          ],
+          "hint": "加减法互为逆运算",
+          "explanation": "和减一个加数,应得另一个加数"
+        },
+        {
+          "id": "add_sub_check_1",
+          "type": "mc",
+          "prompt": "验算 800 − 245 = 555,用哪个算式?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "555 + 245",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "800 + 245",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "555 − 245",
+              "correct": false
+            }
+          ],
+          "hint": "加减法互为逆运算",
+          "explanation": "差加减数应得被减数"
+        },
+        {
+          "id": "add_sub_check_2",
+          "type": "mc",
+          "prompt": "验算 423 + 159 = 582,用哪个算式?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "582 − 159",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "582 + 159",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "423 − 159",
+              "correct": false
+            }
+          ],
+          "hint": "加减法互为逆运算",
+          "explanation": "和 − 一个加数 = 另一个加数"
+        },
+        {
+          "id": "add_sub_check_3",
+          "type": "mc",
+          "prompt": "验算 600 − 374 = 226,用哪个算式?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "226 + 374",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "600 + 226",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "374 − 226",
+              "correct": false
+            }
+          ],
+          "hint": "加减法互为逆运算",
+          "explanation": "差 + 减数 = 被减数"
+        },
+        {
+          "id": "add_sub_check_4",
+          "type": "mc",
+          "prompt": "加法可以用什么来验算?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "交换加数再加一次",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "用乘法",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不用验算",
+              "correct": false
+            }
+          ],
+          "hint": "加减法互为逆运算",
+          "explanation": "交换两个加数再加,结果应相同"
+        }
+      ]
+    },
+    {
       "id": "perimeter_formula",
       "title": "长方形正方形周长",
       "pedagogy": "formula",
@@ -744,6 +984,3398 @@
           ],
           "hint": "10 − 8",
           "explanation": "经过 2 小时"
+        }
+      ]
+    },
+    {
+      "id": "time_conversion",
+      "title": "时分秒换算",
+      "pedagogy": "fluency",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "time_conversion_0",
+          "type": "fill",
+          "prompt": "1 时 = ( ) 分",
+          "answer": 60,
+          "hint": "1 时 = 60 分,1 分 = 60 秒",
+          "explanation": "答案:60"
+        },
+        {
+          "id": "time_conversion_1",
+          "type": "fill",
+          "prompt": "2 时 = ( ) 分",
+          "answer": 120,
+          "hint": "1 时 = 60 分,1 分 = 60 秒",
+          "explanation": "答案:120"
+        },
+        {
+          "id": "time_conversion_2",
+          "type": "fill",
+          "prompt": "1 分 = ( ) 秒",
+          "answer": 60,
+          "hint": "1 时 = 60 分,1 分 = 60 秒",
+          "explanation": "答案:60"
+        },
+        {
+          "id": "time_conversion_3",
+          "type": "fill",
+          "prompt": "3 分 = ( ) 秒",
+          "answer": 180,
+          "hint": "1 时 = 60 分,1 分 = 60 秒",
+          "explanation": "答案:180"
+        },
+        {
+          "id": "time_conversion_4",
+          "type": "fill",
+          "prompt": "120 分 = ( ) 时",
+          "answer": 2,
+          "hint": "1 时 = 60 分,1 分 = 60 秒",
+          "explanation": "答案:2"
+        },
+        {
+          "id": "time_conversion_5",
+          "type": "fill",
+          "prompt": "180 秒 = ( ) 分",
+          "answer": 3,
+          "hint": "1 时 = 60 分,1 分 = 60 秒",
+          "explanation": "答案:3"
+        }
+      ]
+    },
+    {
+      "id": "length_conversion",
+      "title": "长度单位换算",
+      "pedagogy": "fluency",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "length_conversion_0",
+          "type": "fill",
+          "prompt": "1 厘米 = ( ) 毫米",
+          "answer": 10,
+          "hint": "进率:毫米→厘米→分米→米 都是 10,米→千米 是 1000",
+          "explanation": "答案:10"
+        },
+        {
+          "id": "length_conversion_1",
+          "type": "fill",
+          "prompt": "1 分米 = ( ) 厘米",
+          "answer": 10,
+          "hint": "进率:毫米→厘米→分米→米 都是 10,米→千米 是 1000",
+          "explanation": "答案:10"
+        },
+        {
+          "id": "length_conversion_2",
+          "type": "fill",
+          "prompt": "1 米 = ( ) 厘米",
+          "answer": 100,
+          "hint": "进率:毫米→厘米→分米→米 都是 10,米→千米 是 1000",
+          "explanation": "答案:100"
+        },
+        {
+          "id": "length_conversion_3",
+          "type": "fill",
+          "prompt": "1 千米 = ( ) 米",
+          "answer": 1000,
+          "hint": "进率:毫米→厘米→分米→米 都是 10,米→千米 是 1000",
+          "explanation": "答案:1000"
+        },
+        {
+          "id": "length_conversion_4",
+          "type": "fill",
+          "prompt": "3 米 = ( ) 厘米",
+          "answer": 300,
+          "hint": "进率:毫米→厘米→分米→米 都是 10,米→千米 是 1000",
+          "explanation": "答案:300"
+        },
+        {
+          "id": "length_conversion_5",
+          "type": "fill",
+          "prompt": "50 毫米 = ( ) 厘米",
+          "answer": 5,
+          "hint": "进率:毫米→厘米→分米→米 都是 10,米→千米 是 1000",
+          "explanation": "答案:5"
+        }
+      ]
+    },
+    {
+      "id": "mass_conversion",
+      "title": "质量单位换算",
+      "pedagogy": "fluency",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "mass_conversion_0",
+          "type": "fill",
+          "prompt": "1 千克 = ( ) 克",
+          "answer": 1000,
+          "hint": "1 吨 = 1000 千克,1 千克 = 1000 克",
+          "explanation": "答案:1000"
+        },
+        {
+          "id": "mass_conversion_1",
+          "type": "fill",
+          "prompt": "1 吨 = ( ) 千克",
+          "answer": 1000,
+          "hint": "1 吨 = 1000 千克,1 千克 = 1000 克",
+          "explanation": "答案:1000"
+        },
+        {
+          "id": "mass_conversion_2",
+          "type": "fill",
+          "prompt": "2 千克 = ( ) 克",
+          "answer": 2000,
+          "hint": "1 吨 = 1000 千克,1 千克 = 1000 克",
+          "explanation": "答案:2000"
+        },
+        {
+          "id": "mass_conversion_3",
+          "type": "fill",
+          "prompt": "3 吨 = ( ) 千克",
+          "answer": 3000,
+          "hint": "1 吨 = 1000 千克,1 千克 = 1000 克",
+          "explanation": "答案:3000"
+        },
+        {
+          "id": "mass_conversion_4",
+          "type": "fill",
+          "prompt": "5000 克 = ( ) 千克",
+          "answer": 5,
+          "hint": "1 吨 = 1000 千克,1 千克 = 1000 克",
+          "explanation": "答案:5"
+        },
+        {
+          "id": "mass_conversion_5",
+          "type": "fill",
+          "prompt": "2000 千克 = ( ) 吨",
+          "answer": 2,
+          "hint": "1 吨 = 1000 千克,1 千克 = 1000 克",
+          "explanation": "答案:2"
+        }
+      ]
+    },
+    {
+      "id": "area_conversion",
+      "title": "面积单位换算",
+      "pedagogy": "fluency",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "area_conversion_0",
+          "type": "fill",
+          "prompt": "1 平方分米 = ( ) 平方厘米",
+          "answer": 100,
+          "hint": "相邻面积单位进率是 100",
+          "explanation": "答案:100"
+        },
+        {
+          "id": "area_conversion_1",
+          "type": "fill",
+          "prompt": "1 平方米 = ( ) 平方分米",
+          "answer": 100,
+          "hint": "相邻面积单位进率是 100",
+          "explanation": "答案:100"
+        },
+        {
+          "id": "area_conversion_2",
+          "type": "fill",
+          "prompt": "2 平方分米 = ( ) 平方厘米",
+          "answer": 200,
+          "hint": "相邻面积单位进率是 100",
+          "explanation": "答案:200"
+        },
+        {
+          "id": "area_conversion_3",
+          "type": "fill",
+          "prompt": "300 平方厘米 = ( ) 平方分米",
+          "answer": 3,
+          "hint": "相邻面积单位进率是 100",
+          "explanation": "答案:3"
+        }
+      ]
+    },
+    {
+      "id": "div_oral",
+      "title": "口算除法",
+      "pedagogy": "fluency",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "div_oral_0",
+          "type": "fill",
+          "prompt": "60 ÷ 3 = ?",
+          "answer": 20,
+          "hint": "先用口诀算,再看 0",
+          "explanation": "答案:20"
+        },
+        {
+          "id": "div_oral_1",
+          "type": "fill",
+          "prompt": "80 ÷ 4 = ?",
+          "answer": 20,
+          "hint": "先用口诀算,再看 0",
+          "explanation": "答案:20"
+        },
+        {
+          "id": "div_oral_2",
+          "type": "fill",
+          "prompt": "90 ÷ 3 = ?",
+          "answer": 30,
+          "hint": "先用口诀算,再看 0",
+          "explanation": "答案:30"
+        },
+        {
+          "id": "div_oral_3",
+          "type": "fill",
+          "prompt": "240 ÷ 6 = ?",
+          "answer": 40,
+          "hint": "先用口诀算,再看 0",
+          "explanation": "答案:40"
+        },
+        {
+          "id": "div_oral_4",
+          "type": "fill",
+          "prompt": "350 ÷ 5 = ?",
+          "answer": 70,
+          "hint": "先用口诀算,再看 0",
+          "explanation": "答案:70"
+        },
+        {
+          "id": "div_oral_5",
+          "type": "fill",
+          "prompt": "180 ÷ 2 = ?",
+          "answer": 90,
+          "hint": "先用口诀算,再看 0",
+          "explanation": "答案:90"
+        }
+      ]
+    },
+    {
+      "id": "mul2_oral",
+      "title": "两位数乘整十",
+      "pedagogy": "fluency",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "mul2_oral_0",
+          "type": "fill",
+          "prompt": "12 × 10 = ?",
+          "answer": 120,
+          "hint": "先算几乘几,再添上 0",
+          "explanation": "答案:120"
+        },
+        {
+          "id": "mul2_oral_1",
+          "type": "fill",
+          "prompt": "23 × 20 = ?",
+          "answer": 460,
+          "hint": "先算几乘几,再添上 0",
+          "explanation": "答案:460"
+        },
+        {
+          "id": "mul2_oral_2",
+          "type": "fill",
+          "prompt": "15 × 30 = ?",
+          "answer": 450,
+          "hint": "先算几乘几,再添上 0",
+          "explanation": "答案:450"
+        },
+        {
+          "id": "mul2_oral_3",
+          "type": "fill",
+          "prompt": "24 × 20 = ?",
+          "answer": 480,
+          "hint": "先算几乘几,再添上 0",
+          "explanation": "答案:480"
+        },
+        {
+          "id": "mul2_oral_4",
+          "type": "fill",
+          "prompt": "13 × 30 = ?",
+          "answer": 390,
+          "hint": "先算几乘几,再添上 0",
+          "explanation": "答案:390"
+        },
+        {
+          "id": "mul2_oral_5",
+          "type": "fill",
+          "prompt": "16 × 40 = ?",
+          "answer": 640,
+          "hint": "先算几乘几,再添上 0",
+          "explanation": "答案:640"
+        }
+      ]
+    },
+    {
+      "id": "read_clock",
+      "title": "认读钟表",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "read_clock_0",
+          "type": "mc",
+          "prompt": "时针指向 8,分针指向 12,是几时?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "8:00",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "12:00",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8:30",
+              "correct": false
+            }
+          ],
+          "hint": "看时针定'时',看分针定'分'",
+          "explanation": "分针指 12 是整时"
+        },
+        {
+          "id": "read_clock_1",
+          "type": "mc",
+          "prompt": "时针在 3 和 4 之间,分针指向 6,是几时几分?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3:30",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6:30",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4:30",
+              "correct": false
+            }
+          ],
+          "hint": "看时针定'时',看分针定'分'",
+          "explanation": "分针指 6 是 30 分"
+        },
+        {
+          "id": "read_clock_2",
+          "type": "mc",
+          "prompt": "钟面上一共有几个大格?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "60",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "24",
+              "correct": false
+            }
+          ],
+          "hint": "看时针定'时',看分针定'分'",
+          "explanation": "钟面 12 个大格"
+        },
+        {
+          "id": "read_clock_3",
+          "type": "mc",
+          "prompt": "分针走一大格是几分钟?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5 分",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1 分",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12 分",
+              "correct": false
+            }
+          ],
+          "hint": "看时针定'时',看分针定'分'",
+          "explanation": "一大格 = 5 分钟"
+        },
+        {
+          "id": "read_clock_4",
+          "type": "mc",
+          "prompt": "分针走一圈,时针走多少?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1 大格",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1 圈",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不动",
+              "correct": false
+            }
+          ],
+          "hint": "看时针定'时',看分针定'分'",
+          "explanation": "分针 1 圈 = 60 分 = 1 小时,时针走 1 大格"
+        }
+      ]
+    },
+    {
+      "id": "add_sub_estimate",
+      "title": "加减估算",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "add_sub_estimate_0",
+          "type": "mc",
+          "prompt": "498 + 305 大约是多少?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 800",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 700",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 900",
+              "correct": false
+            }
+          ],
+          "hint": "把数看成接近的整十整百再算",
+          "explanation": "500 + 300 ≈ 800"
+        },
+        {
+          "id": "add_sub_estimate_1",
+          "type": "mc",
+          "prompt": "612 − 289 大约是多少?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 300",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 400",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 200",
+              "correct": false
+            }
+          ],
+          "hint": "把数看成接近的整十整百再算",
+          "explanation": "600 − 300 ≈ 300"
+        },
+        {
+          "id": "add_sub_estimate_2",
+          "type": "mc",
+          "prompt": "203 + 398 大约是多少?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 600",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 500",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 700",
+              "correct": false
+            }
+          ],
+          "hint": "把数看成接近的整十整百再算",
+          "explanation": "200 + 400 ≈ 600"
+        },
+        {
+          "id": "add_sub_estimate_3",
+          "type": "mc",
+          "prompt": "一本书 18 元,一支笔 21 元,大约共多少?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 40 元",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 30 元",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 50 元",
+              "correct": false
+            }
+          ],
+          "hint": "把数看成接近的整十整百再算",
+          "explanation": "20 + 20 ≈ 40"
+        },
+        {
+          "id": "add_sub_estimate_4",
+          "type": "mc",
+          "prompt": "估算时通常把数看成什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "最接近的整十整百",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "最大的数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "最小的数",
+              "correct": false
+            }
+          ],
+          "hint": "把数看成接近的整十整百再算",
+          "explanation": "看成接近的整十整百"
+        }
+      ]
+    },
+    {
+      "id": "length_units",
+      "title": "长度单位认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "length_units_0",
+          "type": "mc",
+          "prompt": "一支铅笔长约 18 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "厘米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "毫米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "米",
+              "correct": false
+            }
+          ],
+          "hint": "短用毫米厘米,长用米千米",
+          "explanation": "铅笔约 18 厘米"
+        },
+        {
+          "id": "length_units_1",
+          "type": "mc",
+          "prompt": "一枚 1 元硬币厚约 2 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "毫米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "厘米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "分米",
+              "correct": false
+            }
+          ],
+          "hint": "短用毫米厘米,长用米千米",
+          "explanation": "很薄,用毫米"
+        },
+        {
+          "id": "length_units_2",
+          "type": "mc",
+          "prompt": "教室门高约 2 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "分米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "厘米",
+              "correct": false
+            }
+          ],
+          "hint": "短用毫米厘米,长用米千米",
+          "explanation": "门高约 2 米"
+        },
+        {
+          "id": "length_units_3",
+          "type": "mc",
+          "prompt": "北京到上海的距离用什么单位?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "千米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "分米",
+              "correct": false
+            }
+          ],
+          "hint": "短用毫米厘米,长用米千米",
+          "explanation": "很长,用千米"
+        },
+        {
+          "id": "length_units_4",
+          "type": "mc",
+          "prompt": "1 米里面有几个 1 分米?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "10",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "100",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1000",
+              "correct": false
+            }
+          ],
+          "hint": "短用毫米厘米,长用米千米",
+          "explanation": "1 米 = 10 分米"
+        }
+      ]
+    },
+    {
+      "id": "mass_units",
+      "title": "质量单位认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "mass_units_0",
+          "type": "mc",
+          "prompt": "一个鸡蛋约重 50 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "克",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "千克",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "吨",
+              "correct": false
+            }
+          ],
+          "hint": "克 < 千克 < 吨",
+          "explanation": "鸡蛋约 50 克"
+        },
+        {
+          "id": "mass_units_1",
+          "type": "mc",
+          "prompt": "一个小朋友约重 30 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "千克",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "克",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "吨",
+              "correct": false
+            }
+          ],
+          "hint": "克 < 千克 < 吨",
+          "explanation": "人用千克"
+        },
+        {
+          "id": "mass_units_2",
+          "type": "mc",
+          "prompt": "一头大象约重 5 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "吨",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "千克",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "克",
+              "correct": false
+            }
+          ],
+          "hint": "克 < 千克 < 吨",
+          "explanation": "很重,用吨"
+        },
+        {
+          "id": "mass_units_3",
+          "type": "mc",
+          "prompt": "称比较轻的东西用什么单位?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "克",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "吨",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "千米",
+              "correct": false
+            }
+          ],
+          "hint": "克 < 千克 < 吨",
+          "explanation": "轻的用克"
+        },
+        {
+          "id": "mass_units_4",
+          "type": "mc",
+          "prompt": "1 千克 = ( ) 克?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1000",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "100",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10",
+              "correct": false
+            }
+          ],
+          "hint": "克 < 千克 < 吨",
+          "explanation": "1 千克 = 1000 克"
+        }
+      ]
+    },
+    {
+      "id": "times_concept",
+      "title": "倍的认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "times_concept_0",
+          "type": "mc",
+          "prompt": "红花 3 朵,黄花是红花的 2 倍,黄花有几朵?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "几倍:乘法;求是几倍:除法",
+          "explanation": "3 × 2 = 6"
+        },
+        {
+          "id": "times_concept_1",
+          "type": "mc",
+          "prompt": "○○ 是 2 个,● 有它的 4 倍,● 有几个?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "几倍:乘法;求是几倍:除法",
+          "explanation": "2 × 4 = 8"
+        },
+        {
+          "id": "times_concept_2",
+          "type": "mc",
+          "prompt": "12 是 3 的几倍?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6",
+              "correct": false
+            }
+          ],
+          "hint": "几倍:乘法;求是几倍:除法",
+          "explanation": "12 ÷ 3 = 4"
+        },
+        {
+          "id": "times_concept_3",
+          "type": "mc",
+          "prompt": "求一个数的几倍,用什么运算?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "乘法",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "加法",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "减法",
+              "correct": false
+            }
+          ],
+          "hint": "几倍:乘法;求是几倍:除法",
+          "explanation": "几倍 = 乘几"
+        },
+        {
+          "id": "times_concept_4",
+          "type": "mc",
+          "prompt": "8 是 2 的几倍?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10",
+              "correct": false
+            }
+          ],
+          "hint": "几倍:乘法;求是几倍:除法",
+          "explanation": "8 ÷ 2 = 4"
+        }
+      ]
+    },
+    {
+      "id": "quad_props",
+      "title": "四边形认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "quad_props_0",
+          "type": "mc",
+          "prompt": "四边形有什么特点?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4 条直的边、4 个角",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3 条边",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "没有角",
+              "correct": false
+            }
+          ],
+          "hint": "四边形 = 4 条直边围成",
+          "explanation": "四边形:4 边 4 角"
+        },
+        {
+          "id": "quad_props_1",
+          "type": "mc",
+          "prompt": "长方形的对边怎么样?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "相等",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不相等",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "都不一样",
+              "correct": false
+            }
+          ],
+          "hint": "四边形 = 4 条直边围成",
+          "explanation": "对边相等"
+        },
+        {
+          "id": "quad_props_2",
+          "type": "mc",
+          "prompt": "正方形的四条边怎么样?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "都相等",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "都不等",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "两条相等",
+              "correct": false
+            }
+          ],
+          "hint": "四边形 = 4 条直边围成",
+          "explanation": "四边都相等"
+        },
+        {
+          "id": "quad_props_3",
+          "type": "mc",
+          "prompt": "下面哪个是四边形?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "长方形",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "三角形",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "圆",
+              "correct": false
+            }
+          ],
+          "hint": "四边形 = 4 条直边围成",
+          "explanation": "长方形是四边形"
+        },
+        {
+          "id": "quad_props_4",
+          "type": "mc",
+          "prompt": "长方形有几个直角?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0",
+              "correct": false
+            }
+          ],
+          "hint": "四边形 = 4 条直边围成",
+          "explanation": "4 个直角"
+        }
+      ]
+    },
+    {
+      "id": "perimeter_concept",
+      "title": "周长的认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "perimeter_concept_0",
+          "type": "mc",
+          "prompt": "周长指的是什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "图形一周的长度",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "图形里面的大小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "边的条数",
+              "correct": false
+            }
+          ],
+          "hint": "周长 = 封闭图形一周的总长度",
+          "explanation": "封闭图形一周的长度"
+        },
+        {
+          "id": "perimeter_concept_1",
+          "type": "mc",
+          "prompt": "求周长就是求什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "所有边长的总和",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "最长的边",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "面积",
+              "correct": false
+            }
+          ],
+          "hint": "周长 = 封闭图形一周的总长度",
+          "explanation": "各边之和"
+        },
+        {
+          "id": "perimeter_concept_2",
+          "type": "mc",
+          "prompt": "绕操场跑一圈的长度是操场的什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "周长",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "面积",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "宽",
+              "correct": false
+            }
+          ],
+          "hint": "周长 = 封闭图形一周的总长度",
+          "explanation": "一周长度 = 周长"
+        },
+        {
+          "id": "perimeter_concept_3",
+          "type": "mc",
+          "prompt": "正方形周长 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "边长 × 4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "边长 × 边长",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "边长 + 4",
+              "correct": false
+            }
+          ],
+          "hint": "周长 = 封闭图形一周的总长度",
+          "explanation": "边长 × 4"
+        },
+        {
+          "id": "perimeter_concept_4",
+          "type": "mc",
+          "prompt": "长方形周长 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "(长 + 宽) × 2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "长 × 宽",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "长 + 宽",
+              "correct": false
+            }
+          ],
+          "hint": "周长 = 封闭图形一周的总长度",
+          "explanation": "(长 + 宽) × 2"
+        }
+      ]
+    },
+    {
+      "id": "fraction_meaning",
+      "title": "几分之一·几分之几",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fraction_meaning_0",
+          "type": "mc",
+          "prompt": "把一个圆平均分成 4 份,每份是它的几分之几?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "四分之一",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "四分之四",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "二分之一",
+              "correct": false
+            }
+          ],
+          "hint": "平均分的份数是分母,取的份数是分子",
+          "explanation": "1 份 = 1/4"
+        },
+        {
+          "id": "fraction_meaning_1",
+          "type": "mc",
+          "prompt": "把一块饼平均分成 2 份,每份是它的?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "二分之一",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "二分之二",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "三分之一",
+              "correct": false
+            }
+          ],
+          "hint": "平均分的份数是分母,取的份数是分子",
+          "explanation": "1/2"
+        },
+        {
+          "id": "fraction_meaning_2",
+          "type": "mc",
+          "prompt": "一个长方形平均分成 8 份,取 3 份是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "八分之三",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "三分之八",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "八分之八",
+              "correct": false
+            }
+          ],
+          "hint": "平均分的份数是分母,取的份数是分子",
+          "explanation": "3/8"
+        },
+        {
+          "id": "fraction_meaning_3",
+          "type": "mc",
+          "prompt": "分数线下面的数表示什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "平均分成几份",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "取了几份",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一共几个",
+              "correct": false
+            }
+          ],
+          "hint": "平均分的份数是分母,取的份数是分子",
+          "explanation": "分母 = 平均分的份数"
+        },
+        {
+          "id": "fraction_meaning_4",
+          "type": "mc",
+          "prompt": "分数线上面的数表示什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "取了几份",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "平均分几份",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一共",
+              "correct": false
+            }
+          ],
+          "hint": "平均分的份数是分母,取的份数是分子",
+          "explanation": "分子 = 取的份数"
+        }
+      ]
+    },
+    {
+      "id": "fraction_compare",
+      "title": "分数比大小",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fraction_compare_0",
+          "type": "mc",
+          "prompt": "1/3 和 1/5 哪个大?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "同分母看分子,同分子看分母",
+          "explanation": "分子相同,分母小的大"
+        },
+        {
+          "id": "fraction_compare_1",
+          "type": "mc",
+          "prompt": "3/7 和 5/7 哪个大?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5/7",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/7",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "同分母看分子,同分子看分母",
+          "explanation": "分母相同,分子大的大"
+        },
+        {
+          "id": "fraction_compare_2",
+          "type": "mc",
+          "prompt": "1/2 和 1/4 哪个大?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "同分母看分子,同分子看分母",
+          "explanation": "分得越少每份越大"
+        },
+        {
+          "id": "fraction_compare_3",
+          "type": "mc",
+          "prompt": "分母相同时,怎么比大小?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "分子大的大",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "分子小的大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "都一样",
+              "correct": false
+            }
+          ],
+          "hint": "同分母看分子,同分子看分母",
+          "explanation": "分母同,看分子"
+        },
+        {
+          "id": "fraction_compare_4",
+          "type": "mc",
+          "prompt": "2/9 和 7/9 哪个大?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7/9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2/9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "同分母看分子,同分子看分母",
+          "explanation": "7 > 2"
+        }
+      ]
+    },
+    {
+      "id": "fraction_add_sub",
+      "title": "同分母分数加减",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fraction_add_sub_0",
+          "type": "mc",
+          "prompt": "1/5 + 2/5 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/10",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2/5",
+              "correct": false
+            }
+          ],
+          "hint": "同分母:分母不变,分子加减",
+          "explanation": "分母不变,分子相加"
+        },
+        {
+          "id": "fraction_add_sub_1",
+          "type": "mc",
+          "prompt": "4/7 − 2/7 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2/7",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2/0",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6/7",
+              "correct": false
+            }
+          ],
+          "hint": "同分母:分母不变,分子加减",
+          "explanation": "分子相减"
+        },
+        {
+          "id": "fraction_add_sub_2",
+          "type": "mc",
+          "prompt": "3/8 + 4/8 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7/8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7/16",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/8",
+              "correct": false
+            }
+          ],
+          "hint": "同分母:分母不变,分子加减",
+          "explanation": "3 + 4 = 7"
+        },
+        {
+          "id": "fraction_add_sub_3",
+          "type": "mc",
+          "prompt": "同分母分数相加,分母怎么办?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不变",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "相加",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相乘",
+              "correct": false
+            }
+          ],
+          "hint": "同分母:分母不变,分子加减",
+          "explanation": "分母不变"
+        },
+        {
+          "id": "fraction_add_sub_4",
+          "type": "mc",
+          "prompt": "5/6 − 5/6 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "0",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5/6",
+              "correct": false
+            }
+          ],
+          "hint": "同分母:分母不变,分子加减",
+          "explanation": "相等相减得 0"
+        }
+      ]
+    },
+    {
+      "id": "div_estimate",
+      "title": "除法估算",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "div_estimate_0",
+          "type": "mc",
+          "prompt": "243 ÷ 5 大约是多少?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 50",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 40",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 60",
+              "correct": false
+            }
+          ],
+          "hint": "把被除数看成接近的、能整除的数",
+          "explanation": "250 ÷ 5 = 50"
+        },
+        {
+          "id": "div_estimate_1",
+          "type": "mc",
+          "prompt": "178 ÷ 3 大约是多少?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 60",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 50",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 70",
+              "correct": false
+            }
+          ],
+          "hint": "把被除数看成接近的、能整除的数",
+          "explanation": "180 ÷ 3 = 60"
+        },
+        {
+          "id": "div_estimate_2",
+          "type": "mc",
+          "prompt": "321 ÷ 4 大约是多少?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 80",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 70",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 90",
+              "correct": false
+            }
+          ],
+          "hint": "把被除数看成接近的、能整除的数",
+          "explanation": "320 ÷ 4 = 80"
+        },
+        {
+          "id": "div_estimate_3",
+          "type": "mc",
+          "prompt": "把 296 个苹果分给 6 人,每人大约几个?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 50",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 40",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 60",
+              "correct": false
+            }
+          ],
+          "hint": "把被除数看成接近的、能整除的数",
+          "explanation": "300 ÷ 6 = 50"
+        },
+        {
+          "id": "div_estimate_4",
+          "type": "mc",
+          "prompt": "估算除法时把被除数看成什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "接近的整十整百",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "最大数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0",
+              "correct": false
+            }
+          ],
+          "hint": "把被除数看成接近的、能整除的数",
+          "explanation": "看成好算的整十整百"
+        }
+      ]
+    },
+    {
+      "id": "area_concept",
+      "title": "面积的认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "area_concept_0",
+          "type": "mc",
+          "prompt": "面积指的是什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "物体表面或图形的大小",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "一周的长度",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "边的条数",
+              "correct": false
+            }
+          ],
+          "hint": "面积 = 表面或图形的大小",
+          "explanation": "表面的大小"
+        },
+        {
+          "id": "area_concept_1",
+          "type": "mc",
+          "prompt": "数学书封面和课桌面,谁的面积大?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "课桌面",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "数学书",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "面积 = 表面或图形的大小",
+          "explanation": "课桌面更大"
+        },
+        {
+          "id": "area_concept_2",
+          "type": "mc",
+          "prompt": "周长相等的两个图形,面积一定相等吗?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不一定",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "一定相等",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一定不等",
+              "correct": false
+            }
+          ],
+          "hint": "面积 = 表面或图形的大小",
+          "explanation": "不一定"
+        },
+        {
+          "id": "area_concept_3",
+          "type": "mc",
+          "prompt": "比较面积常用什么方法?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "用单位方格去量",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "用尺子量长度",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "数角",
+              "correct": false
+            }
+          ],
+          "hint": "面积 = 表面或图形的大小",
+          "explanation": "用面积单位量"
+        },
+        {
+          "id": "area_concept_4",
+          "type": "mc",
+          "prompt": "面积比的是什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "面的大小",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "边的长短",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "角的大小",
+              "correct": false
+            }
+          ],
+          "hint": "面积 = 表面或图形的大小",
+          "explanation": "面的大小"
+        }
+      ]
+    },
+    {
+      "id": "area_units",
+      "title": "面积单位",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "area_units_0",
+          "type": "mc",
+          "prompt": "课桌面的大小约 30 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "平方分米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "平方厘米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "平方米",
+              "correct": false
+            }
+          ],
+          "hint": "小→平方厘米,中→平方分米,大→平方米",
+          "explanation": "桌面约 30 平方分米"
+        },
+        {
+          "id": "area_units_1",
+          "type": "mc",
+          "prompt": "一个指甲盖的面积约 1 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "平方厘米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "平方分米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "平方米",
+              "correct": false
+            }
+          ],
+          "hint": "小→平方厘米,中→平方分米,大→平方米",
+          "explanation": "很小,平方厘米"
+        },
+        {
+          "id": "area_units_2",
+          "type": "mc",
+          "prompt": "教室地面的面积约 50 ( )?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "平方米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "平方分米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "平方厘米",
+              "correct": false
+            }
+          ],
+          "hint": "小→平方厘米,中→平方分米,大→平方米",
+          "explanation": "大,平方米"
+        },
+        {
+          "id": "area_units_3",
+          "type": "mc",
+          "prompt": "边长 1 厘米的正方形面积是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1 平方厘米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1 厘米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4 平方厘米",
+              "correct": false
+            }
+          ],
+          "hint": "小→平方厘米,中→平方分米,大→平方米",
+          "explanation": "1×1 = 1 平方厘米"
+        },
+        {
+          "id": "area_units_4",
+          "type": "mc",
+          "prompt": "常用的面积单位有哪些?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "平方厘米、平方分米、平方米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "厘米、米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "克、千克",
+              "correct": false
+            }
+          ],
+          "hint": "小→平方厘米,中→平方分米,大→平方米",
+          "explanation": "都是'平方'单位"
+        }
+      ]
+    },
+    {
+      "id": "month_days",
+      "title": "大小月·平闰年",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "month_days_0",
+          "type": "mc",
+          "prompt": "下面哪个月是 31 天(大月)?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1 月",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4 月",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6 月",
+              "correct": false
+            }
+          ],
+          "hint": "大月 31 天,小月 30 天,2 月特殊",
+          "explanation": "1、3、5、7、8、10、12 是大月"
+        },
+        {
+          "id": "month_days_1",
+          "type": "mc",
+          "prompt": "平年 2 月有几天?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "28",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "29",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "30",
+              "correct": false
+            }
+          ],
+          "hint": "大月 31 天,小月 30 天,2 月特殊",
+          "explanation": "平年 2 月 28 天"
+        },
+        {
+          "id": "month_days_2",
+          "type": "mc",
+          "prompt": "闰年 2 月有几天?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "29",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "28",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "30",
+              "correct": false
+            }
+          ],
+          "hint": "大月 31 天,小月 30 天,2 月特殊",
+          "explanation": "闰年 2 月 29 天"
+        },
+        {
+          "id": "month_days_3",
+          "type": "mc",
+          "prompt": "4 月有几天?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "30",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "31",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "28",
+              "correct": false
+            }
+          ],
+          "hint": "大月 31 天,小月 30 天,2 月特殊",
+          "explanation": "4 月是小月,30 天"
+        },
+        {
+          "id": "month_days_4",
+          "type": "mc",
+          "prompt": "一年有几个月?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "24",
+              "correct": false
+            }
+          ],
+          "hint": "大月 31 天,小月 30 天,2 月特殊",
+          "explanation": "12 个月"
+        }
+      ]
+    },
+    {
+      "id": "hour24",
+      "title": "24时计时法",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "hour24_0",
+          "type": "mc",
+          "prompt": "下午 3 时用 24 时计时法是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "15:00",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3:00",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "13:00",
+              "correct": false
+            }
+          ],
+          "hint": "下午、晚上的时刻 = 普通时刻 + 12",
+          "explanation": "下午加 12:3 + 12 = 15"
+        },
+        {
+          "id": "hour24_1",
+          "type": "mc",
+          "prompt": "晚上 8 时是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "20:00",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8:00",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "18:00",
+              "correct": false
+            }
+          ],
+          "hint": "下午、晚上的时刻 = 普通时刻 + 12",
+          "explanation": "8 + 12 = 20"
+        },
+        {
+          "id": "hour24_2",
+          "type": "mc",
+          "prompt": "17:00 是下午几时?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5 时",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7 时",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3 时",
+              "correct": false
+            }
+          ],
+          "hint": "下午、晚上的时刻 = 普通时刻 + 12",
+          "explanation": "17 − 12 = 5"
+        },
+        {
+          "id": "hour24_3",
+          "type": "mc",
+          "prompt": "上午 9 时用 24 时计时法是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "9:00",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "21:00",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "19:00",
+              "correct": false
+            }
+          ],
+          "hint": "下午、晚上的时刻 = 普通时刻 + 12",
+          "explanation": "上午不变"
+        },
+        {
+          "id": "hour24_4",
+          "type": "mc",
+          "prompt": "一天有多少小时?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "24",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "60",
+              "correct": false
+            }
+          ],
+          "hint": "下午、晚上的时刻 = 普通时刻 + 12",
+          "explanation": "一天 24 小时"
+        }
+      ]
+    },
+    {
+      "id": "decimal_meaning",
+      "title": "小数的认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "decimal_meaning_0",
+          "type": "mc",
+          "prompt": "0.5 读作?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "零点五",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "五",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "零点零五",
+              "correct": false
+            }
+          ],
+          "hint": "小数点左边是整数,右边是小数部分",
+          "explanation": "小数点读'点'"
+        },
+        {
+          "id": "decimal_meaning_1",
+          "type": "mc",
+          "prompt": "一元五角写成小数是 ( ) 元?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1.5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1.05",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "15",
+              "correct": false
+            }
+          ],
+          "hint": "小数点左边是整数,右边是小数部分",
+          "explanation": "5 角 = 0.5 元"
+        },
+        {
+          "id": "decimal_meaning_2",
+          "type": "mc",
+          "prompt": "0.7 表示十分之几?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "十分之七",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "七",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "百分之七",
+              "correct": false
+            }
+          ],
+          "hint": "小数点左边是整数,右边是小数部分",
+          "explanation": "0.7 = 7/10"
+        },
+        {
+          "id": "decimal_meaning_3",
+          "type": "mc",
+          "prompt": "3.6 中小数点左边的 3 表示?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3 个一",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3 个十分",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3 角",
+              "correct": false
+            }
+          ],
+          "hint": "小数点左边是整数,右边是小数部分",
+          "explanation": "整数部分 3"
+        },
+        {
+          "id": "decimal_meaning_4",
+          "type": "mc",
+          "prompt": "把 8 角写成小数是 ( ) 元?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "0.8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8.0",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0.08",
+              "correct": false
+            }
+          ],
+          "hint": "小数点左边是整数,右边是小数部分",
+          "explanation": "8 角 = 0.8 元"
+        }
+      ]
+    },
+    {
+      "id": "decimal_compare",
+      "title": "小数比大小",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "decimal_compare_0",
+          "type": "mc",
+          "prompt": "0.8 和 0.5 哪个大?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "0.8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "0.5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "先比整数部分,再依次比小数位",
+          "explanation": "先比小数点后第一位"
+        },
+        {
+          "id": "decimal_compare_1",
+          "type": "mc",
+          "prompt": "1.2 和 0.9 哪个大?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1.2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "0.9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "先比整数部分,再依次比小数位",
+          "explanation": "先比整数部分"
+        },
+        {
+          "id": "decimal_compare_2",
+          "type": "mc",
+          "prompt": "0.3 和 0.30 哪个大?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "一样大",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "0.3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0.30",
+              "correct": false
+            }
+          ],
+          "hint": "先比整数部分,再依次比小数位",
+          "explanation": "末尾添 0 大小不变"
+        },
+        {
+          "id": "decimal_compare_3",
+          "type": "mc",
+          "prompt": "2.5 元 和 2.8 元,谁多?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2.8 元",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2.5 元",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样",
+              "correct": false
+            }
+          ],
+          "hint": "先比整数部分,再依次比小数位",
+          "explanation": "8 > 5"
+        },
+        {
+          "id": "decimal_compare_4",
+          "type": "mc",
+          "prompt": "比较小数先比哪部分?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "整数部分",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "小数部分",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "末位",
+              "correct": false
+            }
+          ],
+          "hint": "先比整数部分,再依次比小数位",
+          "explanation": "先整数,再依次小数位"
+        }
+      ]
+    },
+    {
+      "id": "decimal_add_sub",
+      "title": "简单小数加减",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "decimal_add_sub_0",
+          "type": "mc",
+          "prompt": "0.3 + 0.4 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "0.7",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "0.07",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "7",
+              "correct": false
+            }
+          ],
+          "hint": "小数点对齐再加减",
+          "explanation": "小数点对齐相加"
+        },
+        {
+          "id": "decimal_add_sub_1",
+          "type": "mc",
+          "prompt": "0.9 − 0.5 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "0.4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "0.04",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "小数点对齐再加减",
+          "explanation": "相减得 0.4"
+        },
+        {
+          "id": "decimal_add_sub_2",
+          "type": "mc",
+          "prompt": "1.2 + 0.5 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1.7",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1.07",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "17",
+              "correct": false
+            }
+          ],
+          "hint": "小数点对齐再加减",
+          "explanation": "1.2 + 0.5 = 1.7"
+        },
+        {
+          "id": "decimal_add_sub_3",
+          "type": "mc",
+          "prompt": "2.5 − 1.5 = ?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1.0",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0",
+              "correct": false
+            }
+          ],
+          "hint": "小数点对齐再加减",
+          "explanation": "得 1"
+        },
+        {
+          "id": "decimal_add_sub_4",
+          "type": "mc",
+          "prompt": "小数加减要把什么对齐?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "小数点",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "末尾",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "第一位",
+              "correct": false
+            }
+          ],
+          "hint": "小数点对齐再加减",
+          "explanation": "小数点对齐"
+        }
+      ]
+    },
+    {
+      "id": "directions",
+      "title": "东南西北",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "directions_0",
+          "type": "mc",
+          "prompt": "早晨太阳从哪个方向升起?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "东",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "西",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "南",
+              "correct": false
+            }
+          ],
+          "hint": "上北下南、左西右东",
+          "explanation": "日出东方"
+        },
+        {
+          "id": "directions_1",
+          "type": "mc",
+          "prompt": "面向北方,右手边是哪个方向?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "东",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "西",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "南",
+              "correct": false
+            }
+          ],
+          "hint": "上北下南、左西右东",
+          "explanation": "上北下南左西右东"
+        },
+        {
+          "id": "directions_2",
+          "type": "mc",
+          "prompt": "傍晚太阳从哪个方向落下?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "西",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "东",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "北",
+              "correct": false
+            }
+          ],
+          "hint": "上北下南、左西右东",
+          "explanation": "日落西方"
+        },
+        {
+          "id": "directions_3",
+          "type": "mc",
+          "prompt": "地图上通常上面是哪个方向?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "北",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "南",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "东",
+              "correct": false
+            }
+          ],
+          "hint": "上北下南、左西右东",
+          "explanation": "上北下南"
+        },
+        {
+          "id": "directions_4",
+          "type": "mc",
+          "prompt": "面向南,后面是哪个方向?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "北",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "东",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "西",
+              "correct": false
+            }
+          ],
+          "hint": "上北下南、左西右东",
+          "explanation": "南的对面是北"
+        }
+      ]
+    },
+    {
+      "id": "sets",
+      "title": "集合(重叠问题)",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "sets_0",
+          "type": "mc",
+          "prompt": "跳绳 8 人,跳远 6 人,两项都参加 2 人,一共多少人?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "14",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "16",
+              "correct": false
+            }
+          ],
+          "hint": "总数 = 甲 + 乙 − 重叠部分",
+          "explanation": "8 + 6 − 2 = 12"
+        },
+        {
+          "id": "sets_1",
+          "type": "mc",
+          "prompt": "画画 10 人,唱歌 7 人,都参加 3 人,一共多少人?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "14",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "17",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "13",
+              "correct": false
+            }
+          ],
+          "hint": "总数 = 甲 + 乙 − 重叠部分",
+          "explanation": "10 + 7 − 3 = 14"
+        },
+        {
+          "id": "sets_2",
+          "type": "mc",
+          "prompt": "重叠的部分在算总数时要怎么样?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "只算一次",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "算两次",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不算",
+              "correct": false
+            }
+          ],
+          "hint": "总数 = 甲 + 乙 − 重叠部分",
+          "explanation": "重复的只数一次"
+        },
+        {
+          "id": "sets_3",
+          "type": "mc",
+          "prompt": "甲组 9 人,乙组 5 人,都在的 4 人,一共多少人?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "10",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "14",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "总数 = 甲 + 乙 − 重叠部分",
+          "explanation": "9 + 5 − 4 = 10"
+        },
+        {
+          "id": "sets_4",
+          "type": "mc",
+          "prompt": "两个圈重叠的中间部分表示什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "两项都参加",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "只参加一项",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "都不参加",
+              "correct": false
+            }
+          ],
+          "hint": "总数 = 甲 + 乙 − 重叠部分",
+          "explanation": "中间 = 两项都有"
+        }
+      ]
+    },
+    {
+      "id": "route_map",
+      "title": "简单路线图",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "route_map_0",
+          "type": "mc",
+          "prompt": "从学校向东走到书店,原路返回要向哪走?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "西",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "东",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "北",
+              "correct": false
+            }
+          ],
+          "hint": "返回走相反方向,顺序也要倒过来",
+          "explanation": "返回走相反方向"
+        },
+        {
+          "id": "route_map_1",
+          "type": "mc",
+          "prompt": "小明向北走到公园,再向南走,会回到?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "出发点附近",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "更北",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "东边",
+              "correct": false
+            }
+          ],
+          "hint": "返回走相反方向,顺序也要倒过来",
+          "explanation": "南北相反"
+        },
+        {
+          "id": "route_map_2",
+          "type": "mc",
+          "prompt": "地图上从家到学校先向东再向北,从学校回家应该?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "先向南再向西",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "先向北再向东",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "向东",
+              "correct": false
+            }
+          ],
+          "hint": "返回走相反方向,顺序也要倒过来",
+          "explanation": "倒过来走相反方向"
+        },
+        {
+          "id": "route_map_3",
+          "type": "mc",
+          "prompt": "向西走的相反方向是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "东",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "南",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "北",
+              "correct": false
+            }
+          ],
+          "hint": "返回走相反方向,顺序也要倒过来",
+          "explanation": "西的反方向是东"
+        },
+        {
+          "id": "route_map_4",
+          "type": "mc",
+          "prompt": "看路线图要先确定什么?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "方向(东南西北)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "颜色",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "大小",
+              "correct": false
+            }
+          ],
+          "hint": "返回走相反方向,顺序也要倒过来",
+          "explanation": "先看方向"
+        }
+      ]
+    },
+    {
+      "id": "date_calc",
+      "title": "年月日计算",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "date_calc_0",
+          "type": "mc",
+          "prompt": "今天是 3 月 31 日,明天是几月几日?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4 月 1 日",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3 月 32 日",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4 月 31 日",
+              "correct": false
+            }
+          ],
+          "hint": "注意每月天数:大月 31、小月 30、2 月特殊",
+          "explanation": "3 月 31 天,下一天进入 4 月"
+        },
+        {
+          "id": "date_calc_1",
+          "type": "mc",
+          "prompt": "一年有 365 天,这一年是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "平年",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "闰年",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "无法确定",
+              "correct": false
+            }
+          ],
+          "hint": "注意每月天数:大月 31、小月 30、2 月特殊",
+          "explanation": "365 天是平年"
+        },
+        {
+          "id": "date_calc_2",
+          "type": "mc",
+          "prompt": "从 6 月 1 日到 6 月 10 日,经过了几天?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "11",
+              "correct": false
+            }
+          ],
+          "hint": "注意每月天数:大月 31、小月 30、2 月特殊",
+          "explanation": "10 − 1 = 9 天"
+        },
+        {
+          "id": "date_calc_3",
+          "type": "mc",
+          "prompt": "一个星期有几天?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10",
+              "correct": false
+            }
+          ],
+          "hint": "注意每月天数:大月 31、小月 30、2 月特殊",
+          "explanation": "7 天"
+        },
+        {
+          "id": "date_calc_4",
+          "type": "mc",
+          "prompt": "4 月 30 日的后一天是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5 月 1 日",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4 月 31 日",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5 月 30 日",
+              "correct": false
+            }
+          ],
+          "hint": "注意每月天数:大月 31、小月 30、2 月特殊",
+          "explanation": "4 月只有 30 天"
+        }
+      ]
+    },
+    {
+      "id": "combination",
+      "title": "搭配(组合)",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "combination_0",
+          "type": "mc",
+          "prompt": "2 件上衣和 3 条裤子,有几种搭配?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "搭配种数 = 一类的数 × 另一类的数",
+          "explanation": "2 × 3 = 6"
+        },
+        {
+          "id": "combination_1",
+          "type": "mc",
+          "prompt": "3 种饭和 2 种汤,有几种搭配?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "搭配种数 = 一类的数 × 另一类的数",
+          "explanation": "3 × 2 = 6"
+        },
+        {
+          "id": "combination_2",
+          "type": "mc",
+          "prompt": "用 1、2 两个数字组成两位数(数字不重复),能组几个?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1",
+              "correct": false
+            }
+          ],
+          "hint": "搭配种数 = 一类的数 × 另一类的数",
+          "explanation": "12、21,共 2 个"
+        },
+        {
+          "id": "combination_3",
+          "type": "mc",
+          "prompt": "求搭配的种数,通常用什么运算?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "乘法",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "加法",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "减法",
+              "correct": false
+            }
+          ],
+          "hint": "搭配种数 = 一类的数 × 另一类的数",
+          "explanation": "一类 × 另一类"
+        },
+        {
+          "id": "combination_4",
+          "type": "mc",
+          "prompt": "4 顶帽子配 2 条围巾,有几种搭配?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "搭配种数 = 一类的数 × 另一类的数",
+          "explanation": "4 × 2 = 8"
+        }
+      ]
+    },
+    {
+      "id": "read_table",
+      "title": "读复式统计表",
+      "pedagogy": "data",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "read_table_0",
+          "type": "mc",
+          "prompt": "三年级各班人数\n班级  男生 女生\n一班   22   20\n二班   21   23\n一班一共多少人?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "42",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "43",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "44",
+              "correct": false
+            }
+          ],
+          "hint": "横着看、竖着看,先找对应的行和列",
+          "explanation": "22 + 20 = 42"
+        },
+        {
+          "id": "read_table_1",
+          "type": "mc",
+          "prompt": "三年级各班人数\n班级  男生 女生\n一班   22   20\n二班   21   23\n二班一共多少人?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "44",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "43",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "42",
+              "correct": false
+            }
+          ],
+          "hint": "横着看、竖着看,先找对应的行和列",
+          "explanation": "21 + 23 = 44"
+        },
+        {
+          "id": "read_table_2",
+          "type": "mc",
+          "prompt": "三年级各班人数\n班级  男生 女生\n一班   22   20\n二班   21   23\n两个班男生一共多少人?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "43",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "42",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "44",
+              "correct": false
+            }
+          ],
+          "hint": "横着看、竖着看,先找对应的行和列",
+          "explanation": "22 + 21 = 43"
+        },
+        {
+          "id": "read_table_3",
+          "type": "mc",
+          "prompt": "三年级各班人数\n班级  男生 女生\n一班   22   20\n二班   21   23\n哪个班人数更多?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "二班",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "一班",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样多",
+              "correct": false
+            }
+          ],
+          "hint": "横着看、竖着看,先找对应的行和列",
+          "explanation": "44 > 42"
+        },
+        {
+          "id": "read_table_4",
+          "type": "mc",
+          "prompt": "复式统计表比单式统计表的好处是?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "能同时比较几组数据",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "更好看",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "更短",
+              "correct": false
+            }
+          ],
+          "hint": "横着看、竖着看,先找对应的行和列",
+          "explanation": "便于对比多组数据"
         }
       ]
     }
