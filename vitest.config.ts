@@ -7,12 +7,15 @@ export default defineConfig({
     include: ['src/**/*.test.ts'],
     coverage: {
       provider: 'v8',
-      include: ['src/engine/**/*.ts'],
+      include: ['src/engine/**/*.ts', 'src/practice/**/*.ts'],
       exclude: [
         'src/engine/**/*.test.ts',
         'src/engine/index.ts',
         'src/engine/types.ts',
         'src/engine/__fixtures__/**',
+        'src/practice/**/*.test.ts',
+        'src/practice/index.ts',
+        'src/practice/types.ts',
       ],
       thresholds: {
         statements: 90,

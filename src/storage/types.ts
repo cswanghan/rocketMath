@@ -39,6 +39,16 @@ export interface GameEvent {
   outcome: AnswerOutcome;
 }
 
+/** Progress on a Practice problem set (untimed topics). */
+export interface PracticeRecord {
+  studentId: string;
+  setId: string;
+  completed: boolean;
+  bestFirstTry: number; // best first-try-correct count achieved
+  total: number;
+  updatedAt: number;
+}
+
 /** The storage seam. Swapping IndexedDB for a real backend = new adapter only,
  *  no engine/UI change (SPEC §3). All methods are async. */
 export interface StorageAdapter {
@@ -52,4 +62,7 @@ export interface StorageAdapter {
 
   putRaceResult(result: RaceResult): Promise<void>;
   listRaceResults(studentId: string, trackId: string): Promise<RaceResult[]>;
+
+  getPractice(studentId: string, setId: string): Promise<PracticeRecord | null>;
+  putPractice(record: PracticeRecord): Promise<void>;
 }

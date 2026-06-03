@@ -2,7 +2,7 @@
 // unavailable. Deep-clones on the way in/out so callers can't mutate stored
 // snapshots by reference.
 import type { TrackState } from '../engine';
-import type { GameEvent, RaceResult, StorageAdapter, Student } from './types';
+import type { GameEvent, PracticeRecord, RaceResult, StorageAdapter, Student } from './types';
 
 function clone<T>(v: T): T {
   return JSON.parse(JSON.stringify(v));
@@ -14,6 +14,7 @@ export class MemoryAdapter implements StorageAdapter {
   private events: GameEvent[] = [];
   private races: RaceResult[] = [];
   private raceSeq = 0;
+  private practice = new Map<string, PracticeRecord>();
 
   private key(studentId: string, trackId: string): string {
     return `${studentId}::${trackId}`;
@@ -49,6 +50,15 @@ export class MemoryAdapter implements StorageAdapter {
     return this.races
       .filter((r) => r.studentId === studentId && r.trackId === trackId)
       .map(clone);
+  }
+
+  async getPractice(studentId: string, setId: string): Promise<PracticeRecord | null> {
+    const r = this.practice.get(this.key(studentId, setId));
+    return r ? clone(r) : null;
+  }
+
+  async putPractice(record: PracticeRecord): Promise<void> {
+    this.practice.set(this.key(record.studentId, record.setId), clone(record));
   }
 
   // test-only introspection

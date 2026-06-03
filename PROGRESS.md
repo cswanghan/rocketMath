@@ -23,7 +23,7 @@
 | 阶段 | 状态 | 说明 |
 |---|---|---|
 | P0a 地图框架 + 流畅度扩展 | ✅ 完成 | 47 topic 全地图、导航 UI、4 条 fluency track ready、新增加减口算 |
-| P0b 竖式 procedure 引擎 | ⬜ 下一步 | 新非限时 Practice 引擎 + 竖式多格 UI |
+| P0b 竖式 procedure 引擎 | ✅ 完成 | 非限时 Practice 引擎 + 6 套竖式题集(10 ready topic) |
 | P1 公式(周长/面积) | ⬜ | |
 | P2 概念课(分数/小数/年月日/位置/统计/广角) | ⬜ | |
 
@@ -34,6 +34,19 @@
 - 流畅度扩展:`computeFromPrompt` 支持 `+`/`−`(三年级非负);新增 `add_sub_oral`(万以内加减口算,8 关)。流畅度包现 4 track / 144 facts。
 - 4 条 ready fluency track:乘法口诀、除法口诀、几百几十加减口算、整十整百乘一位。
 - 验证:69 测试绿、覆盖 98.88%/93.64%、`tsc` 干净、CDP 真机验证地图渲染 + 加减口算可玩("70 + 20")。
+
+### P0b 完成项(2026-06-03)
+- **第二套引擎 `src/practice/`**(纯 TS、确定性、**无限时门**、零 LLM):`practiceStep` reducer + `checkAnswer`(mc/fill/steps)+ shuffle。答错给提示可重试,超 maxTries 揭示答案;按"一次答对"统计掌握。10 个新测试,practice 覆盖 100%/93.75%。
+- **题集生成器 `build_practice_pack.py`** → `grade3_practice_pack.json`(6 套 procedure 题集 / 40 题):三位数加/减竖式、不进位/进位乘竖式、一位数除法、有余数除法(steps:商+余数)。
+- 地图生成器扩 `problemSetId`,6 个 procedure topic 转 `ready`(现 10 ready)。
+- 持久化:`StorageAdapter` 加 `getPractice/putPractice` + IndexedDB v2 新 store `practiceStates`;完成时存最佳"一次答对"。memory + indexeddb 双实现。
+- UI:`usePractice` hook(StrictMode-safe)+ `PracticeScreen`(竖式 pre 布局、fill/steps/mc 输入、提示浮层、揭示、完成总结)。地图上 procedure topic → Practice。
+- 验证:79 测试绿、覆盖 99.05%/93.65%、`tsc` 干净、CDP 真机走通 竖式答错→提示→答对→下一题、有余数除法两格输入。
+
+### P0b 决策/边界
+- **竖式用文本竖排 + 单格结果输入**(有余数除法用商/余数双格),不做逐位进退位格子 UI(后续 polish)。
+- **Practice 事件日志暂缓**:`GameEvent` 结构面向 fluency,P0b 只存 `PracticeRecord` 完成记录;append-only practice 事件留后续。
+- **依赖解锁仍未硬锁**:ready 即可练。
 
 ### P0a 偏离/决策
 - **地图成为新首页**,旧 `Home.tsx` 删除(被 `KnowledgeMap` 取代)。

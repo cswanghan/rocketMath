@@ -304,7 +304,8 @@
       "dependsOn": [
         "add_sub_oral"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "add_column"
     },
     {
       "id": "sub_column",
@@ -314,7 +315,8 @@
       "dependsOn": [
         "add_column"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "sub_column"
     },
     {
       "id": "add_sub_check",
@@ -365,7 +367,8 @@
       "dependsOn": [
         "round_number_oral"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "mul1_nocarry"
     },
     {
       "id": "mul1_carry",
@@ -375,7 +378,8 @@
       "dependsOn": [
         "mul1_nocarry"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "mul1_carry"
     },
     {
       "id": "mul1_zero",
@@ -495,7 +499,8 @@
       "dependsOn": [
         "div_oral"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "div_column"
     },
     {
       "id": "div_remainder",
@@ -505,7 +510,8 @@
       "dependsOn": [
         "div_column"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "div_remainder"
     },
     {
       "id": "read_table",

@@ -41,8 +41,8 @@ UNITS = [
         ("mass_conversion", "质量单位换算", "fluency", ["mass_units"], S, None),
     ]),
     ("u4", "upper", 4, "万以内的加法和减法(二)", [
-        ("add_column", "三位数加法竖式", "procedure", ["add_sub_oral"], S, None),
-        ("sub_column", "三位数减法竖式", "procedure", ["add_column"], S, None),
+        ("add_column", "三位数加法竖式", "procedure", ["add_sub_oral"], R, None, "add_column"),
+        ("sub_column", "三位数减法竖式", "procedure", ["add_column"], R, None, "sub_column"),
         ("add_sub_check", "加减法验算", "procedure", ["sub_column"], S, None),
     ]),
     ("u5", "upper", 5, "倍的认识", [
@@ -51,8 +51,8 @@ UNITS = [
     ]),
     ("u6", "upper", 6, "多位数乘一位数", [
         ("round_number_oral", "整十整百乘一位(口算)", "fluency", ["mult_facts"], R, "round_number_oral"),
-        ("mul1_nocarry", "不进位乘竖式", "procedure", ["round_number_oral"], S, None),
-        ("mul1_carry", "进位乘竖式", "procedure", ["mul1_nocarry"], S, None),
+        ("mul1_nocarry", "不进位乘竖式", "procedure", ["round_number_oral"], R, None, "mul1_nocarry"),
+        ("mul1_carry", "进位乘竖式", "procedure", ["mul1_nocarry"], R, None, "mul1_carry"),
         ("mul1_zero", "因数中间末尾有0", "procedure", ["mul1_carry"], S, None),
     ]),
     ("u7", "upper", 7, "长方形和正方形", [
@@ -76,8 +76,8 @@ UNITS = [
     ("l2", "lower", 2, "除数是一位数的除法", [
         ("div_oral", "口算除法", "fluency", ["div_facts"], S, None),
         ("div_estimate", "除法估算", "concept", ["div_oral"], S, None),
-        ("div_column", "一位数除法竖式", "procedure", ["div_oral"], S, None),
-        ("div_remainder", "有余数的除法", "procedure", ["div_column"], S, None),
+        ("div_column", "一位数除法竖式", "procedure", ["div_oral"], R, None, "div_column"),
+        ("div_remainder", "有余数的除法", "procedure", ["div_column"], R, None, "div_remainder"),
     ]),
     ("l3", "lower", 3, "复式统计表", [
         ("read_table", "读复式统计表", "data", [], S, None),
@@ -113,7 +113,9 @@ def build():
     topics = []
     for unit_id, term, index, title, topic_specs in UNITS:
         topic_ids = []
-        for tid, ttitle, pedagogy, deps, status, track in topic_specs:
+        for spec in topic_specs:
+            tid, ttitle, pedagogy, deps, status, track = spec[:6]
+            pset = spec[6] if len(spec) > 6 else None
             topic_ids.append(tid)
             topic = {
                 "id": tid,
@@ -125,6 +127,8 @@ def build():
             }
             if track:
                 topic["fluencyTrackId"] = track
+            if pset:
+                topic["problemSetId"] = pset
             topics.append(topic)
         units.append({"id": unit_id, "term": term, "index": index, "title": title, "topicIds": topic_ids})
     return {"textbook": "人教版", "grade": 3, "units": units, "topics": topics}

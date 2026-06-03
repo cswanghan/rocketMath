@@ -1,0 +1,439 @@
+{
+  "version": "1.0.0",
+  "sets": [
+    {
+      "id": "add_column",
+      "title": "三位数加法竖式",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "add_456_378",
+          "type": "fill",
+          "prompt": "   456\n + 378\n──────",
+          "answer": 834,
+          "hint": "从个位加起,满十向前一位进 1",
+          "explanation": "456 + 378 = 834"
+        },
+        {
+          "id": "add_285_637",
+          "type": "fill",
+          "prompt": "   285\n + 637\n──────",
+          "answer": 922,
+          "hint": "从个位加起,满十向前一位进 1",
+          "explanation": "285 + 637 = 922"
+        },
+        {
+          "id": "add_159_264",
+          "type": "fill",
+          "prompt": "   159\n + 264\n──────",
+          "answer": 423,
+          "hint": "从个位加起,满十向前一位进 1",
+          "explanation": "159 + 264 = 423"
+        },
+        {
+          "id": "add_308_495",
+          "type": "fill",
+          "prompt": "   308\n + 495\n──────",
+          "answer": 803,
+          "hint": "从个位加起,满十向前一位进 1",
+          "explanation": "308 + 495 = 803"
+        },
+        {
+          "id": "add_672_259",
+          "type": "fill",
+          "prompt": "   672\n + 259\n──────",
+          "answer": 931,
+          "hint": "从个位加起,满十向前一位进 1",
+          "explanation": "672 + 259 = 931"
+        },
+        {
+          "id": "add_437_386",
+          "type": "fill",
+          "prompt": "   437\n + 386\n──────",
+          "answer": 823,
+          "hint": "从个位加起,满十向前一位进 1",
+          "explanation": "437 + 386 = 823"
+        },
+        {
+          "id": "add_548_273",
+          "type": "fill",
+          "prompt": "   548\n + 273\n──────",
+          "answer": 821,
+          "hint": "从个位加起,满十向前一位进 1",
+          "explanation": "548 + 273 = 821"
+        },
+        {
+          "id": "add_619_184",
+          "type": "fill",
+          "prompt": "   619\n + 184\n──────",
+          "answer": 803,
+          "hint": "从个位加起,满十向前一位进 1",
+          "explanation": "619 + 184 = 803"
+        }
+      ]
+    },
+    {
+      "id": "sub_column",
+      "title": "三位数减法竖式",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "sub_834_378",
+          "type": "fill",
+          "prompt": "   834\n − 378\n──────",
+          "answer": 456,
+          "hint": "不够减时,向前一位借 1 当 10",
+          "explanation": "834 − 378 = 456"
+        },
+        {
+          "id": "sub_605_247",
+          "type": "fill",
+          "prompt": "   605\n − 247\n──────",
+          "answer": 358,
+          "hint": "不够减时,向前一位借 1 当 10",
+          "explanation": "605 − 247 = 358"
+        },
+        {
+          "id": "sub_700_365",
+          "type": "fill",
+          "prompt": "   700\n − 365\n──────",
+          "answer": 335,
+          "hint": "不够减时,向前一位借 1 当 10",
+          "explanation": "700 − 365 = 335"
+        },
+        {
+          "id": "sub_523_168",
+          "type": "fill",
+          "prompt": "   523\n − 168\n──────",
+          "answer": 355,
+          "hint": "不够减时,向前一位借 1 当 10",
+          "explanation": "523 − 168 = 355"
+        },
+        {
+          "id": "sub_910_432",
+          "type": "fill",
+          "prompt": "   910\n − 432\n──────",
+          "answer": 478,
+          "hint": "不够减时,向前一位借 1 当 10",
+          "explanation": "910 − 432 = 478"
+        },
+        {
+          "id": "sub_456_189",
+          "type": "fill",
+          "prompt": "   456\n − 189\n──────",
+          "answer": 267,
+          "hint": "不够减时,向前一位借 1 当 10",
+          "explanation": "456 − 189 = 267"
+        },
+        {
+          "id": "sub_742_575",
+          "type": "fill",
+          "prompt": "   742\n − 575\n──────",
+          "answer": 167,
+          "hint": "不够减时,向前一位借 1 当 10",
+          "explanation": "742 − 575 = 167"
+        },
+        {
+          "id": "sub_381_196",
+          "type": "fill",
+          "prompt": "   381\n − 196\n──────",
+          "answer": 185,
+          "hint": "不够减时,向前一位借 1 当 10",
+          "explanation": "381 − 196 = 185"
+        }
+      ]
+    },
+    {
+      "id": "mul1_nocarry",
+      "title": "不进位乘竖式",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "muln_213_3",
+          "type": "fill",
+          "prompt": " 213\n × 3\n────",
+          "answer": 639,
+          "hint": "用乘法口诀,每一位分别乘",
+          "explanation": "213 × 3 = 639"
+        },
+        {
+          "id": "muln_122_4",
+          "type": "fill",
+          "prompt": " 122\n × 4\n────",
+          "answer": 488,
+          "hint": "用乘法口诀,每一位分别乘",
+          "explanation": "122 × 4 = 488"
+        },
+        {
+          "id": "muln_321_2",
+          "type": "fill",
+          "prompt": " 321\n × 2\n────",
+          "answer": 642,
+          "hint": "用乘法口诀,每一位分别乘",
+          "explanation": "321 × 2 = 642"
+        },
+        {
+          "id": "muln_231_3",
+          "type": "fill",
+          "prompt": " 231\n × 3\n────",
+          "answer": 693,
+          "hint": "用乘法口诀,每一位分别乘",
+          "explanation": "231 × 3 = 693"
+        },
+        {
+          "id": "muln_412_2",
+          "type": "fill",
+          "prompt": " 412\n × 2\n────",
+          "answer": 824,
+          "hint": "用乘法口诀,每一位分别乘",
+          "explanation": "412 × 2 = 824"
+        },
+        {
+          "id": "muln_143_2",
+          "type": "fill",
+          "prompt": " 143\n × 2\n────",
+          "answer": 286,
+          "hint": "用乘法口诀,每一位分别乘",
+          "explanation": "143 × 2 = 286"
+        }
+      ]
+    },
+    {
+      "id": "mul1_carry",
+      "title": "进位乘竖式",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "mulc_256_3",
+          "type": "fill",
+          "prompt": " 256\n × 3\n────",
+          "answer": 768,
+          "hint": "哪一位满几十,就向前一位进几",
+          "explanation": "256 × 3 = 768"
+        },
+        {
+          "id": "mulc_147_4",
+          "type": "fill",
+          "prompt": " 147\n × 4\n────",
+          "answer": 588,
+          "hint": "哪一位满几十,就向前一位进几",
+          "explanation": "147 × 4 = 588"
+        },
+        {
+          "id": "mulc_238_3",
+          "type": "fill",
+          "prompt": " 238\n × 3\n────",
+          "answer": 714,
+          "hint": "哪一位满几十,就向前一位进几",
+          "explanation": "238 × 3 = 714"
+        },
+        {
+          "id": "mulc_165_5",
+          "type": "fill",
+          "prompt": " 165\n × 5\n────",
+          "answer": 825,
+          "hint": "哪一位满几十,就向前一位进几",
+          "explanation": "165 × 5 = 825"
+        },
+        {
+          "id": "mulc_274_3",
+          "type": "fill",
+          "prompt": " 274\n × 3\n────",
+          "answer": 822,
+          "hint": "哪一位满几十,就向前一位进几",
+          "explanation": "274 × 3 = 822"
+        },
+        {
+          "id": "mulc_189_4",
+          "type": "fill",
+          "prompt": " 189\n × 4\n────",
+          "answer": 756,
+          "hint": "哪一位满几十,就向前一位进几",
+          "explanation": "189 × 4 = 756"
+        }
+      ]
+    },
+    {
+      "id": "div_column",
+      "title": "一位数除法竖式",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "div_84_4",
+          "type": "fill",
+          "prompt": "84 ÷ 4 = ?",
+          "answer": 21,
+          "hint": "从最高位除起",
+          "explanation": "84 ÷ 4 = 21"
+        },
+        {
+          "id": "div_96_3",
+          "type": "fill",
+          "prompt": "96 ÷ 3 = ?",
+          "answer": 32,
+          "hint": "从最高位除起",
+          "explanation": "96 ÷ 3 = 32"
+        },
+        {
+          "id": "div_75_5",
+          "type": "fill",
+          "prompt": "75 ÷ 5 = ?",
+          "answer": 15,
+          "hint": "从最高位除起",
+          "explanation": "75 ÷ 5 = 15"
+        },
+        {
+          "id": "div_92_4",
+          "type": "fill",
+          "prompt": "92 ÷ 4 = ?",
+          "answer": 23,
+          "hint": "从最高位除起",
+          "explanation": "92 ÷ 4 = 23"
+        },
+        {
+          "id": "div_78_6",
+          "type": "fill",
+          "prompt": "78 ÷ 6 = ?",
+          "answer": 13,
+          "hint": "从最高位除起",
+          "explanation": "78 ÷ 6 = 13"
+        },
+        {
+          "id": "div_85_5",
+          "type": "fill",
+          "prompt": "85 ÷ 5 = ?",
+          "answer": 17,
+          "hint": "从最高位除起",
+          "explanation": "85 ÷ 5 = 17"
+        }
+      ]
+    },
+    {
+      "id": "div_remainder",
+      "title": "有余数的除法",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "divr_47_5",
+          "type": "steps",
+          "prompt": "47 ÷ 5 = ( ) … ( )",
+          "fields": [
+            {
+              "id": "q",
+              "label": "商",
+              "answer": 9
+            },
+            {
+              "id": "r",
+              "label": "余数",
+              "answer": 2
+            }
+          ],
+          "hint": "余数一定要比除数小",
+          "explanation": "47 ÷ 5 = 9 …… 2"
+        },
+        {
+          "id": "divr_38_4",
+          "type": "steps",
+          "prompt": "38 ÷ 4 = ( ) … ( )",
+          "fields": [
+            {
+              "id": "q",
+              "label": "商",
+              "answer": 9
+            },
+            {
+              "id": "r",
+              "label": "余数",
+              "answer": 2
+            }
+          ],
+          "hint": "余数一定要比除数小",
+          "explanation": "38 ÷ 4 = 9 …… 2"
+        },
+        {
+          "id": "divr_59_6",
+          "type": "steps",
+          "prompt": "59 ÷ 6 = ( ) … ( )",
+          "fields": [
+            {
+              "id": "q",
+              "label": "商",
+              "answer": 9
+            },
+            {
+              "id": "r",
+              "label": "余数",
+              "answer": 5
+            }
+          ],
+          "hint": "余数一定要比除数小",
+          "explanation": "59 ÷ 6 = 9 …… 5"
+        },
+        {
+          "id": "divr_23_4",
+          "type": "steps",
+          "prompt": "23 ÷ 4 = ( ) … ( )",
+          "fields": [
+            {
+              "id": "q",
+              "label": "商",
+              "answer": 5
+            },
+            {
+              "id": "r",
+              "label": "余数",
+              "answer": 3
+            }
+          ],
+          "hint": "余数一定要比除数小",
+          "explanation": "23 ÷ 4 = 5 …… 3"
+        },
+        {
+          "id": "divr_67_8",
+          "type": "steps",
+          "prompt": "67 ÷ 8 = ( ) … ( )",
+          "fields": [
+            {
+              "id": "q",
+              "label": "商",
+              "answer": 8
+            },
+            {
+              "id": "r",
+              "label": "余数",
+              "answer": 3
+            }
+          ],
+          "hint": "余数一定要比除数小",
+          "explanation": "67 ÷ 8 = 8 …… 3"
+        },
+        {
+          "id": "divr_50_7",
+          "type": "steps",
+          "prompt": "50 ÷ 7 = ( ) … ( )",
+          "fields": [
+            {
+              "id": "q",
+              "label": "商",
+              "answer": 7
+            },
+            {
+              "id": "r",
+              "label": "余数",
+              "answer": 1
+            }
+          ],
+          "hint": "余数一定要比除数小",
+          "explanation": "50 ÷ 7 = 7 …… 1"
+        }
+      ]
+    }
+  ]
+}

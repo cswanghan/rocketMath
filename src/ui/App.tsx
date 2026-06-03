@@ -4,6 +4,7 @@ import { KnowledgeMap } from './KnowledgeMap';
 import { LockScreen } from './LockScreen';
 import { packError } from './pack';
 import { Play } from './Play';
+import { PracticeScreen } from './PracticeScreen';
 import { Probe } from './Probe';
 import { Race } from './Race';
 import { useTimeLock } from './useTimeLock';
@@ -11,7 +12,8 @@ import { useTimeLock } from './useTimeLock';
 type Session =
   | { mode: 'probe'; trackId: string; seed: number }
   | { mode: 'play'; trackId: string; seed: number }
-  | { mode: 'race'; trackId: string; seed: number };
+  | { mode: 'race'; trackId: string; seed: number }
+  | { mode: 'practice'; setId: string; seed: number };
 
 export function App() {
   const adapterRef = useRef<StorageAdapter | null>(null);
@@ -20,8 +22,9 @@ export function App() {
 
   const [session, setSession] = useState<Session | null>(null);
 
-  // accumulate active play time only during play/race; break runs in real time
-  const active = session?.mode === 'play' || session?.mode === 'race';
+  // accumulate active study time during play/race/practice; break runs realtime
+  const active =
+    session?.mode === 'play' || session?.mode === 'race' || session?.mode === 'practice';
   const { locked, remainingMs } = useTimeLock(active);
 
   useEffect(() => {
@@ -57,6 +60,7 @@ export function App() {
           setSession({ mode, trackId, seed: newSeed() });
         }}
         onRace={(trackId) => setSession({ mode: 'race', trackId, seed: newSeed() })}
+        onPractice={(setId) => setSession({ mode: 'practice', setId, seed: newSeed() })}
       />
     );
   }
@@ -76,6 +80,19 @@ export function App() {
       <Race
         key={'race' + session.seed}
         trackId={session.trackId}
+        adapter={adapter}
+        studentId={LOCAL_STUDENT_ID}
+        seed={session.seed}
+        onExit={() => setSession(null)}
+      />
+    );
+  }
+
+  if (session.mode === 'practice') {
+    return (
+      <PracticeScreen
+        key={'practice' + session.setId + session.seed}
+        setId={session.setId}
         adapter={adapter}
         studentId={LOCAL_STUDENT_ID}
         seed={session.seed}

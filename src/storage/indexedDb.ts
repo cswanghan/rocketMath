@@ -3,14 +3,15 @@
 // adapter contract via MemoryAdapter instead, to avoid a fake-indexeddb dep.
 import type { TrackState } from '../engine';
 import { MemoryAdapter } from './memory';
-import type { GameEvent, RaceResult, StorageAdapter, Student } from './types';
+import type { GameEvent, PracticeRecord, RaceResult, StorageAdapter, Student } from './types';
 
 const DB_NAME = 'rocket-math';
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 const STORE_STUDENTS = 'students';
 const STORE_TRACK_STATES = 'trackStates';
 const STORE_EVENTS = 'events';
 const STORE_RACES = 'raceResults';
+const STORE_PRACTICE = 'practiceStates';
 
 function reqToPromise<T>(req: IDBRequest<T>): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -40,6 +41,9 @@ export class IndexedDbAdapter implements StorageAdapter {
         if (!db.objectStoreNames.contains(STORE_RACES)) {
           const rc = db.createObjectStore(STORE_RACES, { keyPath: 'id', autoIncrement: true });
           rc.createIndex('byStudentTrack', ['studentId', 'trackId']);
+        }
+        if (!db.objectStoreNames.contains(STORE_PRACTICE)) {
+          db.createObjectStore(STORE_PRACTICE, { keyPath: ['studentId', 'setId'] });
         }
       };
       open.onsuccess = () => resolve(open.result);
@@ -89,6 +93,16 @@ export class IndexedDbAdapter implements StorageAdapter {
     const store = await this.tx(STORE_RACES, 'readonly');
     const idx = store.index('byStudentTrack');
     return await reqToPromise(idx.getAll([studentId, trackId]));
+  }
+
+  async getPractice(studentId: string, setId: string): Promise<PracticeRecord | null> {
+    const store = await this.tx(STORE_PRACTICE, 'readonly');
+    return (await reqToPromise(store.get([studentId, setId]))) ?? null;
+  }
+
+  async putPractice(record: PracticeRecord): Promise<void> {
+    const store = await this.tx(STORE_PRACTICE, 'readwrite');
+    await reqToPromise(store.put(record));
   }
 }
 

@@ -352,6 +352,77 @@ body,
   color: var(--muted);
 }
 
+/* ---- practice ---- */
+.problem-prompt {
+  font-family: 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 8px 0;
+  white-space: pre;
+  text-align: right;
+  min-width: 160px;
+}
+.wrong-hint {
+  background: #2a2030;
+  padding: 8px 14px;
+  border-radius: 10px;
+}
+.fill-input {
+  width: 180px;
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid #2b3658;
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  outline: none;
+}
+.fill-input:focus {
+  border-color: var(--accent);
+}
+.fill-input.small {
+  width: 90px;
+  font-size: 1.8rem;
+}
+.fields {
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+  justify-content: center;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+.field-label {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.choices {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+  max-width: 360px;
+}
+.choice {
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 16px;
+  border: 2px solid #2b3658;
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  cursor: pointer;
+}
+.choice:active {
+  background: #232c4d;
+}
+
 /* ---- overlays ---- */
 .overlay {
   position: fixed;

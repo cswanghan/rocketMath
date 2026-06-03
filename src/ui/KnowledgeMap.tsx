@@ -11,6 +11,7 @@ interface Props {
   studentId: string;
   onPlay: (trackId: string) => void;
   onRace: (trackId: string) => void;
+  onPractice: (setId: string) => void;
 }
 
 interface Prog {
@@ -18,19 +19,29 @@ interface Prog {
   current: string;
 }
 
+interface PracProg {
+  completed: boolean;
+  bestFirstTry: number;
+  total: number;
+}
+
 const TERMS: { key: Term; label: string }[] = [
   { key: 'upper', label: '上册' },
   { key: 'lower', label: '下册' },
 ];
 
-export function KnowledgeMap({ adapter, studentId, onPlay, onRace }: Props) {
+export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice }: Props) {
   const [progress, setProgress] = useState<Record<string, Prog>>({});
+  const [pracProgress, setPracProgress] = useState<Record<string, PracProg>>({});
 
   useEffect(() => {
     let alive = true;
     const readyTracks = knowledgeMap.topics
       .filter((t) => t.status === 'ready' && t.fluencyTrackId)
       .map((t) => t.fluencyTrackId!);
+    const readySets = knowledgeMap.topics
+      .filter((t) => t.status === 'ready' && t.problemSetId)
+      .map((t) => t.problemSetId!);
     (async () => {
       const entries = await Promise.all(
         readyTracks.map(async (trackId) => {
@@ -38,7 +49,16 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace }: Props) {
           return [trackId, { completed: s?.completedLevels ?? [], current: s?.currentLevel ?? 'A' }] as const;
         }),
       );
-      if (alive) setProgress(Object.fromEntries(entries));
+      const pracEntries = await Promise.all(
+        readySets.map(async (setId) => {
+          const p = await adapter.getPractice(studentId, setId);
+          return [setId, { completed: p?.completed ?? false, bestFirstTry: p?.bestFirstTry ?? 0, total: p?.total ?? 0 }] as const;
+        }),
+      );
+      if (alive) {
+        setProgress(Object.fromEntries(entries));
+        setPracProgress(Object.fromEntries(pracEntries));
+      }
     })();
     return () => {
       alive = false;
@@ -69,8 +89,10 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace }: Props) {
                     key={topic.id}
                     topic={topic}
                     prog={topic.fluencyTrackId ? progress[topic.fluencyTrackId] : undefined}
+                    prac={topic.problemSetId ? pracProgress[topic.problemSetId] : undefined}
                     onPlay={onPlay}
                     onRace={onRace}
+                    onPractice={onPractice}
                   />
                 ))}
               </div>
@@ -85,15 +107,38 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace }: Props) {
 function TopicCard({
   topic,
   prog,
+  prac,
   onPlay,
   onRace,
+  onPractice,
 }: {
   topic: Topic;
   prog?: Prog;
+  prac?: PracProg;
   onPlay: (trackId: string) => void;
   onRace: (trackId: string) => void;
+  onPractice: (setId: string) => void;
 }) {
   const ped = <span className={`ped ped-${topic.pedagogy}`}>{PEDAGOGY_LABEL[topic.pedagogy]}</span>;
+
+  // ready non-fluency topic -> Practice
+  if (topic.status === 'ready' && topic.problemSetId) {
+    const setId = topic.problemSetId;
+    return (
+      <div className="topic topic-ready">
+        <button className="topic-main" onClick={() => onPractice(setId)}>
+          <div className="topic-head">
+            {ped}
+            <span className="topic-name">{topic.title}</span>
+            {prac?.completed && <span className="done-tag">✓ 完成</span>}
+          </div>
+          <span className="topic-meta">
+            {prac?.completed ? `最好 ${prac.bestFirstTry}/${prac.total} 一次答对` : '开始练习 →'}
+          </span>
+        </button>
+      </div>
+    );
+  }
 
   if (topic.status !== 'ready' || !topic.fluencyTrackId) {
     return (
