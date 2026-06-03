@@ -239,7 +239,8 @@
       "dependsOn": [
         "time_conversion"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "time_elapsed"
     },
     {
       "id": "add_sub_oral",
@@ -346,7 +347,8 @@
       "dependsOn": [
         "times_concept"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "times_word"
     },
     {
       "id": "round_number_oral",
@@ -415,7 +417,8 @@
       "dependsOn": [
         "perimeter_concept"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "perimeter_formula"
     },
     {
       "id": "fraction_meaning",
@@ -577,7 +580,8 @@
       "dependsOn": [
         "area_units"
       ],
-      "status": "coming_soon"
+      "status": "ready",
+      "problemSetId": "area_formula"
     },
     {
       "id": "month_days",

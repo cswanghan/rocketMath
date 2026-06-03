@@ -28,7 +28,7 @@ UNITS = [
     ("u1", "upper", 1, "时、分、秒", [
         ("read_clock", "认读钟表", "concept", [], S, None),
         ("time_conversion", "时分秒换算", "fluency", [], S, None),
-        ("time_elapsed", "经过时间", "formula", ["time_conversion"], S, None),
+        ("time_elapsed", "经过时间", "formula", ["time_conversion"], R, None, "time_elapsed"),
     ]),
     ("u2", "upper", 2, "万以内的加法和减法(一)", [
         ("add_sub_oral", "几百几十加减口算", "fluency", [], R, "add_sub_oral"),
@@ -47,7 +47,7 @@ UNITS = [
     ]),
     ("u5", "upper", 5, "倍的认识", [
         ("times_concept", "倍的认识", "concept", ["mult_facts"], S, None),
-        ("times_word", "倍数应用题", "formula", ["times_concept"], S, None),
+        ("times_word", "倍数应用题", "formula", ["times_concept"], R, None, "times_word"),
     ]),
     ("u6", "upper", 6, "多位数乘一位数", [
         ("round_number_oral", "整十整百乘一位(口算)", "fluency", ["mult_facts"], R, "round_number_oral"),
@@ -58,7 +58,7 @@ UNITS = [
     ("u7", "upper", 7, "长方形和正方形", [
         ("quad_props", "四边形认识", "concept", [], S, None),
         ("perimeter_concept", "周长的认识", "concept", [], S, None),
-        ("perimeter_formula", "长方形正方形周长", "formula", ["perimeter_concept"], S, None),
+        ("perimeter_formula", "长方形正方形周长", "formula", ["perimeter_concept"], R, None, "perimeter_formula"),
     ]),
     ("u8", "upper", 8, "分数的初步认识", [
         ("fraction_meaning", "几分之一·几分之几", "concept", [], S, None),
@@ -90,7 +90,7 @@ UNITS = [
         ("area_concept", "面积的认识", "concept", [], S, None),
         ("area_units", "面积单位(平方厘米/平方米)", "concept", ["area_concept"], S, None),
         ("area_conversion", "面积单位换算", "fluency", ["area_units"], S, None),
-        ("area_formula", "长方形正方形面积", "formula", ["area_units"], S, None),
+        ("area_formula", "长方形正方形面积", "formula", ["area_units"], R, None, "area_formula"),
     ]),
     ("l6", "lower", 6, "年、月、日", [
         ("month_days", "大小月·平闰年", "concept", [], S, None),

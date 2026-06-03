@@ -434,6 +434,318 @@
           "explanation": "50 ÷ 7 = 7 …… 1"
         }
       ]
+    },
+    {
+      "id": "perimeter_formula",
+      "title": "长方形正方形周长",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "peri_rect_8_5",
+          "type": "fill",
+          "prompt": "长方形,长 8 厘米,宽 5 厘米。\n周长是多少厘米?",
+          "answer": 26,
+          "hint": "周长 =(长 + 宽)× 2",
+          "explanation": "(8+5)×2 = 26 厘米"
+        },
+        {
+          "id": "peri_rect_12_7",
+          "type": "fill",
+          "prompt": "长方形,长 12 厘米,宽 7 厘米。\n周长是多少厘米?",
+          "answer": 38,
+          "hint": "周长 =(长 + 宽)× 2",
+          "explanation": "(12+7)×2 = 38 厘米"
+        },
+        {
+          "id": "peri_rect_10_6",
+          "type": "fill",
+          "prompt": "长方形,长 10 厘米,宽 6 厘米。\n周长是多少厘米?",
+          "answer": 32,
+          "hint": "周长 =(长 + 宽)× 2",
+          "explanation": "(10+6)×2 = 32 厘米"
+        },
+        {
+          "id": "peri_rect_15_9",
+          "type": "fill",
+          "prompt": "长方形,长 15 厘米,宽 9 厘米。\n周长是多少厘米?",
+          "answer": 48,
+          "hint": "周长 =(长 + 宽)× 2",
+          "explanation": "(15+9)×2 = 48 厘米"
+        },
+        {
+          "id": "peri_rect_20_4",
+          "type": "fill",
+          "prompt": "长方形,长 20 厘米,宽 4 厘米。\n周长是多少厘米?",
+          "answer": 48,
+          "hint": "周长 =(长 + 宽)× 2",
+          "explanation": "(20+4)×2 = 48 厘米"
+        },
+        {
+          "id": "peri_rect_14_11",
+          "type": "fill",
+          "prompt": "长方形,长 14 厘米,宽 11 厘米。\n周长是多少厘米?",
+          "answer": 50,
+          "hint": "周长 =(长 + 宽)× 2",
+          "explanation": "(14+11)×2 = 50 厘米"
+        },
+        {
+          "id": "peri_sq_6",
+          "type": "fill",
+          "prompt": "正方形,边长 6 厘米。\n周长是多少厘米?",
+          "answer": 24,
+          "hint": "周长 = 边长 × 4",
+          "explanation": "6×4 = 24 厘米"
+        },
+        {
+          "id": "peri_sq_9",
+          "type": "fill",
+          "prompt": "正方形,边长 9 厘米。\n周长是多少厘米?",
+          "answer": 36,
+          "hint": "周长 = 边长 × 4",
+          "explanation": "9×4 = 36 厘米"
+        },
+        {
+          "id": "peri_sq_12",
+          "type": "fill",
+          "prompt": "正方形,边长 12 厘米。\n周长是多少厘米?",
+          "answer": 48,
+          "hint": "周长 = 边长 × 4",
+          "explanation": "12×4 = 48 厘米"
+        }
+      ]
+    },
+    {
+      "id": "area_formula",
+      "title": "长方形正方形面积",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "area_rect_8_5",
+          "type": "fill",
+          "prompt": "长方形,长 8 厘米,宽 5 厘米。\n面积是多少平方厘米?",
+          "answer": 40,
+          "hint": "面积 = 长 × 宽",
+          "explanation": "8×5 = 40 平方厘米"
+        },
+        {
+          "id": "area_rect_12_6",
+          "type": "fill",
+          "prompt": "长方形,长 12 厘米,宽 6 厘米。\n面积是多少平方厘米?",
+          "answer": 72,
+          "hint": "面积 = 长 × 宽",
+          "explanation": "12×6 = 72 平方厘米"
+        },
+        {
+          "id": "area_rect_9_7",
+          "type": "fill",
+          "prompt": "长方形,长 9 厘米,宽 7 厘米。\n面积是多少平方厘米?",
+          "answer": 63,
+          "hint": "面积 = 长 × 宽",
+          "explanation": "9×7 = 63 平方厘米"
+        },
+        {
+          "id": "area_rect_15_4",
+          "type": "fill",
+          "prompt": "长方形,长 15 厘米,宽 4 厘米。\n面积是多少平方厘米?",
+          "answer": 60,
+          "hint": "面积 = 长 × 宽",
+          "explanation": "15×4 = 60 平方厘米"
+        },
+        {
+          "id": "area_rect_10_10",
+          "type": "fill",
+          "prompt": "长方形,长 10 厘米,宽 10 厘米。\n面积是多少平方厘米?",
+          "answer": 100,
+          "hint": "面积 = 长 × 宽",
+          "explanation": "10×10 = 100 平方厘米"
+        },
+        {
+          "id": "area_rect_13_6",
+          "type": "fill",
+          "prompt": "长方形,长 13 厘米,宽 6 厘米。\n面积是多少平方厘米?",
+          "answer": 78,
+          "hint": "面积 = 长 × 宽",
+          "explanation": "13×6 = 78 平方厘米"
+        },
+        {
+          "id": "area_sq_4",
+          "type": "fill",
+          "prompt": "正方形,边长 4 厘米。\n面积是多少平方厘米?",
+          "answer": 16,
+          "hint": "面积 = 边长 × 边长",
+          "explanation": "4×4 = 16 平方厘米"
+        },
+        {
+          "id": "area_sq_7",
+          "type": "fill",
+          "prompt": "正方形,边长 7 厘米。\n面积是多少平方厘米?",
+          "answer": 49,
+          "hint": "面积 = 边长 × 边长",
+          "explanation": "7×7 = 49 平方厘米"
+        },
+        {
+          "id": "area_sq_9",
+          "type": "fill",
+          "prompt": "正方形,边长 9 厘米。\n面积是多少平方厘米?",
+          "answer": 81,
+          "hint": "面积 = 边长 × 边长",
+          "explanation": "9×9 = 81 平方厘米"
+        }
+      ]
+    },
+    {
+      "id": "times_word",
+      "title": "倍数应用题",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "times_6_3",
+          "type": "fill",
+          "prompt": "6 的 3 倍是多少?",
+          "answer": 18,
+          "hint": "几倍就是乘几",
+          "explanation": "6×3 = 18"
+        },
+        {
+          "id": "times_8_4",
+          "type": "fill",
+          "prompt": "8 的 4 倍是多少?",
+          "answer": 32,
+          "hint": "几倍就是乘几",
+          "explanation": "8×4 = 32"
+        },
+        {
+          "id": "times_7_5",
+          "type": "fill",
+          "prompt": "7 的 5 倍是多少?",
+          "answer": 35,
+          "hint": "几倍就是乘几",
+          "explanation": "7×5 = 35"
+        },
+        {
+          "id": "times_9_6",
+          "type": "fill",
+          "prompt": "9 的 6 倍是多少?",
+          "answer": 54,
+          "hint": "几倍就是乘几",
+          "explanation": "9×6 = 54"
+        },
+        {
+          "id": "timesq_24_6",
+          "type": "fill",
+          "prompt": "24 是 6 的几倍?",
+          "answer": 4,
+          "hint": "求几倍用除法",
+          "explanation": "24÷6 = 4"
+        },
+        {
+          "id": "timesq_35_7",
+          "type": "fill",
+          "prompt": "35 是 7 的几倍?",
+          "answer": 5,
+          "hint": "求几倍用除法",
+          "explanation": "35÷7 = 5"
+        },
+        {
+          "id": "timesq_48_8",
+          "type": "fill",
+          "prompt": "48 是 8 的几倍?",
+          "answer": 6,
+          "hint": "求几倍用除法",
+          "explanation": "48÷8 = 6"
+        }
+      ]
+    },
+    {
+      "id": "time_elapsed",
+      "title": "经过时间",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "elapsed_8_11",
+          "type": "fill",
+          "prompt": "从 8 时到 11 时,经过了几小时?",
+          "answer": 3,
+          "hint": "结束时刻 − 开始时刻",
+          "explanation": "11−8 = 3 小时"
+        },
+        {
+          "id": "elapsed_9_12",
+          "type": "fill",
+          "prompt": "从 9 时到 12 时,经过了几小时?",
+          "answer": 3,
+          "hint": "结束时刻 − 开始时刻",
+          "explanation": "12−9 = 3 小时"
+        },
+        {
+          "id": "elapsed_7_10",
+          "type": "fill",
+          "prompt": "从 7 时到 10 时,经过了几小时?",
+          "answer": 3,
+          "hint": "结束时刻 − 开始时刻",
+          "explanation": "10−7 = 3 小时"
+        },
+        {
+          "id": "elapsed_13_17",
+          "type": "fill",
+          "prompt": "从 13 时到 17 时,经过了几小时?",
+          "answer": 4,
+          "hint": "结束时刻 − 开始时刻",
+          "explanation": "17−13 = 4 小时"
+        },
+        {
+          "id": "elapsed_mc1",
+          "type": "mc",
+          "prompt": "一节课 40 分钟,从 9:00 开始,几点下课?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "9:30",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "9:40",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "10:00",
+              "correct": false
+            }
+          ],
+          "hint": "9 时加 40 分",
+          "explanation": "9:00 + 40 分 = 9:40"
+        },
+        {
+          "id": "elapsed_mc2",
+          "type": "mc",
+          "prompt": "电影 8:00 开始,10:00 结束,放映了多久?",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1 小时",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "2 小时",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "3 小时",
+              "correct": false
+            }
+          ],
+          "hint": "10 − 8",
+          "explanation": "经过 2 小时"
+        }
+      ]
     }
   ]
 }
