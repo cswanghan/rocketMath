@@ -129,6 +129,7 @@ body,
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 10px;
+  align-items: start; /* don't stretch short cards to the tallest in the row */
 }
 .topic {
   background: var(--panel);
@@ -148,6 +149,7 @@ body,
   color: var(--text);
   cursor: pointer;
   padding: 14px;
+  min-height: 84px;
   display: flex;
   flex-direction: column;
   gap: 8px;
