@@ -44,12 +44,14 @@ export function ParentGate({ onCancel, children }: Props) {
           {mode === 'set' ? '第一次进入,请设置一个 4 位数字密码' : '请输入 4 位家长密码'}
         </p>
         <input
-          className="fill-input"
+          className="fill-input pin-input"
+          type="text"
           inputMode="numeric"
+          autoComplete="off"
           autoFocus
           value={pin}
           maxLength={4}
-          placeholder="••••"
+          placeholder="输入4位数字"
           onChange={(e) => {
             setPinInput(e.target.value.replace(/[^\d]/g, '').slice(0, 4));
             setError('');
@@ -58,8 +60,10 @@ export function ParentGate({ onCancel, children }: Props) {
         />
         {mode === 'set' && (
           <input
-            className="fill-input"
+            className="fill-input pin-input"
+            type="text"
             inputMode="numeric"
+            autoComplete="off"
             value={confirm}
             maxLength={4}
             placeholder="再输一次"

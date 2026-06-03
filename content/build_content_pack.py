@@ -160,7 +160,7 @@ def build_pack():
             "recent_miss_weight": 3,
         },
         "milestone_races": {
-            "duration_seconds": 60,
+            "duration_seconds": 120,
             "positions_percent": [25, 50, 75, 100],
         },
         "individualized_goal": {

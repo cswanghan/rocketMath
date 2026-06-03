@@ -32,7 +32,7 @@
       "recent_miss_weight": 3
     },
     "milestone_races": {
-      "duration_seconds": 60,
+      "duration_seconds": 120,
       "positions_percent": [
         25,
         50,

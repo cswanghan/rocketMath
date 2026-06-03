@@ -4,9 +4,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
+import { pack } from './pack';
 import { useGame } from './useGame';
 
-const DURATION_MS = 60000;
+// race length is data-driven from the content pack (engine_config.milestone_races)
+const DURATION_MS = pack.engine_config.milestone_races.duration_seconds * 1000;
 
 interface Props {
   trackId: string;
@@ -71,6 +73,7 @@ export function Race({ trackId, adapter, studentId, seed, onExit }: Props) {
   }, [view.mode, doSubmit]);
 
   const secs = Math.ceil(remaining / 1000);
+  const timeLabel = secs >= 60 ? `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}` : `${secs}s`;
 
   return (
     <div className="play">
@@ -80,7 +83,7 @@ export function Race({ trackId, adapter, studentId, seed, onExit }: Props) {
         </button>
         <div className="status">
           <span className="phase-badge">🚀 一分钟竞速</span>
-          <span className={`prog timer ${secs <= 10 ? 'timer-low' : ''}`}>⏱ {secs}s</span>
+          <span className={`prog timer ${secs <= 10 ? 'timer-low' : ''}`}>⏱ {timeLabel}</span>
         </div>
       </header>
 

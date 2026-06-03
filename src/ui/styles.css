@@ -822,6 +822,12 @@ body {
   letter-spacing: 8px;
   text-align: center;
 }
+/* always show the typed PIN — defeat iOS/password-manager masking */
+.pin-input {
+  -webkit-text-security: none !important;
+  text-security: none;
+  font-family: inherit;
+}
 .gate-error {
   color: var(--bad);
   font-weight: 600;
