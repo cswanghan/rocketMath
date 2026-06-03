@@ -1023,6 +1023,11 @@ body {
   font-weight: 700;
   white-space: pre-line;
 }
+.mistake-time {
+  font-size: 0.78rem;
+  color: var(--accent2);
+  white-space: nowrap;
+}
 .mistake-answers {
   display: flex;
   gap: 16px;

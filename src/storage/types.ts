@@ -53,6 +53,8 @@ export interface MistakeRecord {
   difficulty?: string; // practice only
   yourAnswer: string;
   correctAnswer: string;
+  elapsedMs?: number; // time spent on this problem
+  slow?: boolean; // answered correctly but slowly (flagged for attention)
   ts: number;
   corrected: boolean;
 }

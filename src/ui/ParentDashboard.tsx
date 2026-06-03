@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { levelFromXp } from '../practice';
 import type { MistakeRecord, StorageAdapter } from '../storage';
-import { llmPayload, localSummaryText, summarize } from './summary';
+import { fmtSec, llmPayload, localSummaryText, summarize } from './summary';
 
 interface Props {
   adapter: StorageAdapter;
@@ -89,7 +89,7 @@ export function ParentDashboard({ adapter, studentId, onExit }: Props) {
         <div className="level-row">
           <span className="lv-badge">Lv.{lvl.level}</span>
           <span className="xp-text">⭐ {xp} 经验</span>
-          <span className="xp-next">待订正错题 {active.length} 道</span>
+          <span className="xp-next">待关注 {active.length} 道(错 {summaryData.wrongTotal} · 慢 {summaryData.slowTotal})</span>
         </div>
       </div>
 
@@ -115,12 +115,24 @@ export function ParentDashboard({ adapter, studentId, onExit }: Props) {
           {items.map((m) => (
             <div key={m.id} className="mistake-card">
               <div className="mistake-head">
+                {m.slow ? (
+                  <span className="ped ped-formula">⏱ 偏慢</span>
+                ) : (
+                  <span className="ped ped-logic">答错</span>
+                )}
                 {m.difficulty && <span className={`ped ped-${m.difficulty === 'challenge' ? 'formula' : m.difficulty === 'basic' ? 'concept' : 'procedure'}`}>{DIFF_LABEL[m.difficulty] ?? m.difficulty}</span>}
+                {typeof m.elapsedMs === 'number' && <span className="mistake-time">⏱ {fmtSec(m.elapsedMs)}</span>}
                 <span className="mistake-prompt">{m.prompt}</span>
               </div>
               <div className="mistake-answers">
-                <span className="ans-wrong">孩子答:{m.yourAnswer}</span>
-                <span className="ans-right">正确:{m.correctAnswer}</span>
+                {m.slow ? (
+                  <span className="ans-right">答对(但偏慢):{m.correctAnswer}</span>
+                ) : (
+                  <>
+                    <span className="ans-wrong">孩子答:{m.yourAnswer}</span>
+                    <span className="ans-right">正确:{m.correctAnswer}</span>
+                  </>
+                )}
               </div>
               <button className="ghost mark-corrected" onClick={() => correct(m.id)}>
                 ✓ 标为已订正

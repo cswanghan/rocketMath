@@ -20,13 +20,15 @@ export async function onRequestPost(context) {
   }
 
   const prompt =
-    '下面是一名三年级学生在数学练习中的错题统计(JSON,topic=知识点,wrong=错题数,' +
-    'byDifficulty 含 basic/consolidate/challenge 三档难度,examples 为示例题)。\n' +
+    '下面是一名三年级学生在数学练习中的统计(JSON)。字段说明:topic=知识点,' +
+    'wrong=答错题数,slow=答对但耗时偏长的题数,byDifficulty 含 basic/consolidate/challenge 三档难度,' +
+    'avgSeconds/maxSeconds=该知识点的平均/最长答题耗时(秒),examples 为示例题(seconds=耗时,slow=是否偏慢),' +
+    'slowest=全局耗时最长的题。\n' +
     '请用中文写一段给家长看的总结,要求:\n' +
-    '1) 指出最需要加强的 2-3 个知识点;\n' +
-    '2) 简要分析可能的薄弱原因;\n' +
-    '3) 给出 2-3 条具体、可操作的家庭辅导建议;\n' +
-    '语气鼓励、亲切、简明,200 字以内,自然成段,不要用过多分点符号。\n\n' +
+    '1) 指出最需要加强的 2-3 个知识点(既看答错也看耗时偏长);\n' +
+    '2) 结合耗时分析薄弱原因(比如某类题虽然做对了但很慢,说明还不熟练);\n' +
+    '3) 给出 2-3 条具体、可操作的家庭辅导建议,包含如何帮孩子既做对又提速;\n' +
+    '语气鼓励、亲切、简明,220 字以内,自然成段,不要用过多分点符号。\n\n' +
     '数据:\n' +
     JSON.stringify(payload);
 

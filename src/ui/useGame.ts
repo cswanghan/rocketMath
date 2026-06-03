@@ -141,6 +141,7 @@ export function useGame(
               prompt: fact.prompt,
               yourAnswer: Number.isNaN(event.value) ? '超时未答' : String(event.value),
               correctAnswer: String(fact.answer),
+              elapsedMs: event.elapsedMs,
               ts: ctx.now(),
               corrected: false,
             });

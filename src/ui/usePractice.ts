@@ -19,6 +19,9 @@ import {
 import type { StorageAdapter } from '../storage';
 import { getSet } from './practicePack';
 
+// Correct-but-slower-than-this practice answers are flagged for parent attention.
+const SLOW_PRACTICE_MS = 20000;
+
 export type PView =
   | { mode: 'present'; problem: Problem; tries: number }
   | { mode: 'wrong'; problem: Problem; tries: number }
@@ -68,6 +71,7 @@ export function usePractice(
   const seqRef = useRef(0);
   const sessionXpRef = useRef(0);
   const missedRef = useRef<Set<string>>(new Set()); // problem ids already logged as mistakes
+  const presentedAtRef = useRef(0); // when the current problem was shown
 
   useEffect(() => {
     let cancelled = false;
@@ -82,6 +86,7 @@ export function usePractice(
       ctxRef.current = ctx;
       gameRef.current = res;
       seqRef.current = 1;
+      presentedAtRef.current = ctx.now();
       setReady(true);
     })();
     return () => {
@@ -94,13 +99,37 @@ export function usePractice(
       const ctx = ctxRef.current;
       const game = gameRef.current;
       if (!ctx || !game) return;
+      const elapsedMs = ctx.now() - presentedAtRef.current; // valid for ANSWER events
       const res = practiceStep(game.state, event, ctx);
       gameRef.current = res;
-      if (res.action.kind === 'PRESENT') seqRef.current += 1;
+      if (res.action.kind === 'PRESENT') {
+        seqRef.current += 1;
+        presentedAtRef.current = ctx.now();
+      }
       if (res.action.kind === 'CORRECT') {
-        const xp = xpForCorrect(res.action.problem.difficulty, res.action.firstTry);
+        const p = res.action.problem;
+        const xp = xpForCorrect(p.difficulty, res.action.firstTry);
         sessionXpRef.current += xp;
         void adapter.addXp(studentId, xp);
+        // answered correctly on the first try but slowly -> flag for attention
+        if (res.action.firstTry && elapsedMs > SLOW_PRACTICE_MS && !missedRef.current.has(p.id)) {
+          missedRef.current.add(p.id);
+          void adapter.appendMistake({
+            studentId,
+            source: 'practice',
+            topicId: setId,
+            topicTitle: ctx.set.title,
+            problemId: p.id,
+            prompt: p.prompt,
+            difficulty: p.difficulty ?? 'consolidate',
+            yourAnswer: correctText(p),
+            correctAnswer: correctText(p),
+            elapsedMs,
+            slow: true,
+            ts: ctx.now(),
+            corrected: false,
+          });
+        }
       }
       // log the first wrong attempt of a problem to the 错题本
       if (
@@ -120,6 +149,7 @@ export function usePractice(
           difficulty: p.difficulty ?? 'consolidate',
           yourAnswer: responseText(p, event.response),
           correctAnswer: correctText(p),
+          elapsedMs,
           ts: ctx.now(),
           corrected: false,
         });
