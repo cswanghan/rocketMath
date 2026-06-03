@@ -4,8 +4,10 @@
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { mulberry32 } from '../engine';
 import {
+  correctText,
   practiceInit,
   practiceStep,
+  responseText,
   xpForCorrect,
   type Difficulty,
   type PracticeAction,
@@ -65,6 +67,7 @@ export function usePractice(
   const bestRef = useRef(0);
   const seqRef = useRef(0);
   const sessionXpRef = useRef(0);
+  const missedRef = useRef<Set<string>>(new Set()); // problem ids already logged as mistakes
 
   useEffect(() => {
     let cancelled = false;
@@ -98,6 +101,28 @@ export function usePractice(
         const xp = xpForCorrect(res.action.problem.difficulty, res.action.firstTry);
         sessionXpRef.current += xp;
         void adapter.addXp(studentId, xp);
+      }
+      // log the first wrong attempt of a problem to the 错题本
+      if (
+        (res.action.kind === 'WRONG' || res.action.kind === 'REVEAL') &&
+        event.type === 'ANSWER' &&
+        !missedRef.current.has(res.action.problem.id)
+      ) {
+        missedRef.current.add(res.action.problem.id);
+        const p = res.action.problem;
+        void adapter.appendMistake({
+          studentId,
+          source: 'practice',
+          topicId: setId,
+          topicTitle: ctx.set.title,
+          problemId: p.id,
+          prompt: p.prompt,
+          difficulty: p.difficulty ?? 'consolidate',
+          yourAnswer: responseText(p, event.response),
+          correctAnswer: correctText(p),
+          ts: ctx.now(),
+          corrected: false,
+        });
       }
       if (res.action.kind === 'SET_COMPLETE') {
         const best = Math.max(bestRef.current, res.action.firstTryCorrect);

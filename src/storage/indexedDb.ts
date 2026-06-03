@@ -3,15 +3,16 @@
 // adapter contract via MemoryAdapter instead, to avoid a fake-indexeddb dep.
 import type { TrackState } from '../engine';
 import { MemoryAdapter } from './memory';
-import type { GameEvent, PracticeRecord, RaceResult, StorageAdapter, Student } from './types';
+import type { GameEvent, MistakeRecord, PracticeRecord, RaceResult, StorageAdapter, Student } from './types';
 
 const DB_NAME = 'rocket-math';
-const DB_VERSION = 2;
+const DB_VERSION = 3;
 const STORE_STUDENTS = 'students';
 const STORE_TRACK_STATES = 'trackStates';
 const STORE_EVENTS = 'events';
 const STORE_RACES = 'raceResults';
 const STORE_PRACTICE = 'practiceStates';
+const STORE_MISTAKES = 'mistakes';
 
 function reqToPromise<T>(req: IDBRequest<T>): Promise<T> {
   return new Promise((resolve, reject) => {
@@ -44,6 +45,10 @@ export class IndexedDbAdapter implements StorageAdapter {
         }
         if (!db.objectStoreNames.contains(STORE_PRACTICE)) {
           db.createObjectStore(STORE_PRACTICE, { keyPath: ['studentId', 'setId'] });
+        }
+        if (!db.objectStoreNames.contains(STORE_MISTAKES)) {
+          const ms = db.createObjectStore(STORE_MISTAKES, { keyPath: 'id', autoIncrement: true });
+          ms.createIndex('byStudent', 'studentId');
         }
       };
       open.onsuccess = () => resolve(open.result);
@@ -112,6 +117,25 @@ export class IndexedDbAdapter implements StorageAdapter {
   async putPractice(record: PracticeRecord): Promise<void> {
     const store = await this.tx(STORE_PRACTICE, 'readwrite');
     await reqToPromise(store.put(record));
+  }
+
+  async appendMistake(m: MistakeRecord): Promise<void> {
+    const store = await this.tx(STORE_MISTAKES, 'readwrite');
+    await reqToPromise(store.add(m));
+  }
+
+  async listMistakes(studentId: string): Promise<MistakeRecord[]> {
+    const store = await this.tx(STORE_MISTAKES, 'readonly');
+    const idx = store.index('byStudent');
+    return await reqToPromise(idx.getAll(studentId));
+  }
+
+  async markMistakeCorrected(studentId: string, id: number): Promise<void> {
+    const store = await this.tx(STORE_MISTAKES, 'readwrite');
+    const m = (await reqToPromise(store.get(id))) as MistakeRecord | undefined;
+    if (m && m.studentId === studentId) {
+      await reqToPromise(store.put({ ...m, corrected: true }));
+    }
   }
 }
 

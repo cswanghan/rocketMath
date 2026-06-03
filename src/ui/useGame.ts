@@ -9,6 +9,7 @@
 
 import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import {
+  factById,
   getTrack,
   initTrackState,
   mulberry32,
@@ -74,6 +75,7 @@ export function useGame(
   const startRef = useRef<number>(0);
   const promptSeqRef = useRef<number>(0);
   const sessionXpRef = useRef<number>(0);
+  const missedFactsRef = useRef<Set<string>>(new Set());
 
   // async restore on mount
   useEffect(() => {
@@ -123,6 +125,26 @@ export function useGame(
         if (outcome === 'hit') {
           sessionXpRef.current += FLUENCY_XP;
           void adapter.addXp(studentId, FLUENCY_XP);
+        }
+        // log fluency misses to the 错题本 (once per fact per session)
+        if ((outcome === 'miss' || outcome === 'retest_fail') && !missedFactsRef.current.has(event.factId)) {
+          missedFactsRef.current.add(event.factId);
+          const track = getTrack(pack, prev.trackId);
+          const fact = factById(track, event.factId);
+          if (fact) {
+            void adapter.appendMistake({
+              studentId,
+              source: 'fluency',
+              topicId: prev.trackId,
+              topicTitle: track.name,
+              problemId: fact.id,
+              prompt: fact.prompt,
+              yourAnswer: Number.isNaN(event.value) ? '超时未答' : String(event.value),
+              correctAnswer: String(fact.answer),
+              ts: ctx.now(),
+              corrected: false,
+            });
+          }
         }
         void adapter.appendEvent({
           studentId,

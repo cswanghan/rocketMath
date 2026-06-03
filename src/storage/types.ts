@@ -41,6 +41,22 @@ export interface GameEvent {
   outcome: AnswerOutcome;
 }
 
+/** One wrong answer, for the parent-facing 错题本 (mistake book). */
+export interface MistakeRecord {
+  id?: number;
+  studentId: string;
+  source: 'practice' | 'fluency';
+  topicId: string; // setId or trackId
+  topicTitle: string;
+  problemId: string; // problem id or fact id
+  prompt: string;
+  difficulty?: string; // practice only
+  yourAnswer: string;
+  correctAnswer: string;
+  ts: number;
+  corrected: boolean;
+}
+
 /** Progress on a Practice problem set (untimed topics). */
 export interface PracticeRecord {
   studentId: string;
@@ -69,4 +85,8 @@ export interface StorageAdapter {
 
   getPractice(studentId: string, setId: string): Promise<PracticeRecord | null>;
   putPractice(record: PracticeRecord): Promise<void>;
+
+  appendMistake(mistake: MistakeRecord): Promise<void>;
+  listMistakes(studentId: string): Promise<MistakeRecord[]>;
+  markMistakeCorrected(studentId: string, id: number): Promise<void>;
 }

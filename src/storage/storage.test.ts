@@ -53,6 +53,24 @@ describe('MemoryAdapter round-trip (SPEC §6 / §9 refresh-restore contract)', (
     expect(evs.map((e) => e.ts)).toEqual([0, 1, 2]);
   });
 
+  it('records, lists and marks mistakes corrected', async () => {
+    const a = new MemoryAdapter();
+    await a.appendMistake({
+      studentId: 'local', source: 'practice', topicId: 'add_column', topicTitle: '三位数加法竖式',
+      problemId: 'p1', prompt: '456 + 378', difficulty: 'consolidate', yourAnswer: '824', correctAnswer: '834',
+      ts: 1, corrected: false,
+    });
+    await a.appendMistake({
+      studentId: 'other', source: 'fluency', topicId: 'mult_facts', topicTitle: '乘法口诀',
+      problemId: 'm', prompt: '6 × 7', yourAnswer: '42', correctAnswer: '42', ts: 2, corrected: false,
+    });
+    const mine = await a.listMistakes('local');
+    expect(mine).toHaveLength(1);
+    expect(mine[0]).toMatchObject({ topicTitle: '三位数加法竖式', yourAnswer: '824', corrected: false });
+    await a.markMistakeCorrected('local', mine[0].id!);
+    expect((await a.listMistakes('local'))[0].corrected).toBe(true);
+  });
+
   it('filters race results by student + track', async () => {
     const a = new MemoryAdapter();
     await a.putRaceResult({ studentId: 'local', trackId: 'mult_facts', level: 'A', correctPerMin: 30, durationMs: 60000, ts: 1 });

@@ -13,6 +13,7 @@ interface Props {
   onPlay: (trackId: string) => void;
   onRace: (trackId: string) => void;
   onPractice: (setId: string) => void;
+  onParent: () => void;
 }
 
 interface Prog {
@@ -31,7 +32,7 @@ const TERMS: { key: Term; label: string }[] = [
   { key: 'lower', label: '下册' },
 ];
 
-export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice }: Props) {
+export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice, onParent }: Props) {
   const [progress, setProgress] = useState<Record<string, Prog>>({});
   const [pracProgress, setPracProgress] = useState<Record<string, PracProg>>({});
   const [xp, setXp] = useState(0);
@@ -74,6 +75,9 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice }:
 
   return (
     <div className="map">
+      <button className="parent-entry" onClick={onParent} title="家长">
+        👨‍👧 家长
+      </button>
       <h1 className="title">🚀 三年级数学 · 知识地图</h1>
       <p className="subtitle">
         {knowledgeMap.textbook} · {knowledgeMap.topics.length} 个知识点 · 已上线 {readyCount}

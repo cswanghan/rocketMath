@@ -2,7 +2,7 @@
 // unavailable. Deep-clones on the way in/out so callers can't mutate stored
 // snapshots by reference.
 import type { TrackState } from '../engine';
-import type { GameEvent, PracticeRecord, RaceResult, StorageAdapter, Student } from './types';
+import type { GameEvent, MistakeRecord, PracticeRecord, RaceResult, StorageAdapter, Student } from './types';
 
 function clone<T>(v: T): T {
   return JSON.parse(JSON.stringify(v));
@@ -15,6 +15,8 @@ export class MemoryAdapter implements StorageAdapter {
   private races: RaceResult[] = [];
   private raceSeq = 0;
   private practice = new Map<string, PracticeRecord>();
+  private mistakes: MistakeRecord[] = [];
+  private mistakeSeq = 0;
 
   private key(studentId: string, trackId: string): string {
     return `${studentId}::${trackId}`;
@@ -66,6 +68,19 @@ export class MemoryAdapter implements StorageAdapter {
 
   async putPractice(record: PracticeRecord): Promise<void> {
     this.practice.set(this.key(record.studentId, record.setId), clone(record));
+  }
+
+  async appendMistake(m: MistakeRecord): Promise<void> {
+    this.mistakes.push({ ...clone(m), id: ++this.mistakeSeq });
+  }
+
+  async listMistakes(studentId: string): Promise<MistakeRecord[]> {
+    return this.mistakes.filter((m) => m.studentId === studentId).map(clone);
+  }
+
+  async markMistakeCorrected(studentId: string, id: number): Promise<void> {
+    const m = this.mistakes.find((x) => x.studentId === studentId && x.id === id);
+    if (m) m.corrected = true;
   }
 
   // test-only introspection

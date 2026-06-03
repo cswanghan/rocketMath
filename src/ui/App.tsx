@@ -3,6 +3,8 @@ import { createDefaultAdapter, LOCAL_STUDENT_ID, type StorageAdapter } from '../
 import { KnowledgeMap } from './KnowledgeMap';
 import { LockScreen } from './LockScreen';
 import { packError } from './pack';
+import { ParentDashboard } from './ParentDashboard';
+import { ParentGate } from './ParentGate';
 import { Play } from './Play';
 import { PracticeScreen } from './PracticeScreen';
 import { Probe } from './Probe';
@@ -21,6 +23,7 @@ export function App() {
   const adapter = adapterRef.current;
 
   const [session, setSession] = useState<Session | null>(null);
+  const [parent, setParent] = useState(false);
 
   // accumulate active study time during play/race/practice; break runs realtime
   const active =
@@ -46,6 +49,14 @@ export function App() {
   // global guardrail: a forced break blocks everything until it elapses
   if (locked) return <LockScreen remainingMs={remainingMs} />;
 
+  if (parent) {
+    return (
+      <ParentGate onCancel={() => setParent(false)}>
+        <ParentDashboard adapter={adapter} studentId={LOCAL_STUDENT_ID} onExit={() => setParent(false)} />
+      </ParentGate>
+    );
+  }
+
   const newSeed = () => Date.now() & 0xffffffff;
 
   if (!session) {
@@ -61,6 +72,7 @@ export function App() {
         }}
         onRace={(trackId) => setSession({ mode: 'race', trackId, seed: newSeed() })}
         onPractice={(setId) => setSession({ mode: 'practice', setId, seed: newSeed() })}
+        onParent={() => setParent(true)}
       />
     );
   }
