@@ -147,9 +147,17 @@ function ProblemView({
   onSubmit: () => void;
   onChoice: (choiceId: string) => void;
 }) {
+  // 竖式 prompts (contain the box bar) need monospace alignment; everything
+  // else is prose / mc and must wrap normally instead of overflowing.
+  const isColumn = problem.prompt.includes('─');
+
   return (
     <div className="stage">
-      <pre className="problem-prompt">{problem.prompt}</pre>
+      {isColumn ? (
+        <pre className="problem-prompt">{problem.prompt}</pre>
+      ) : (
+        <div className="problem-text">{problem.prompt}</div>
+      )}
 
       {wrong && problem.hint && <div className="hint wrong-hint">💡 {problem.hint}</div>}
 

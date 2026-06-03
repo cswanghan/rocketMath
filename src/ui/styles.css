@@ -455,6 +455,19 @@ body {
   white-space: pre;
   text-align: right;
   min-width: 160px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+/* prose / multiple-choice prompts: wrap, centred, never overflow */
+.problem-text {
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+  white-space: pre-line; /* respect \n in word problems / tables, still wraps */
+  max-width: 100%;
+  word-break: break-word;
+  margin: 6px 4px 2px;
 }
 .wrong-hint {
   background: #2a2030;
@@ -720,6 +733,9 @@ body {
   /* practice */
   .problem-prompt {
     font-size: 2rem;
+  }
+  .problem-text {
+    font-size: 1.3rem;
   }
   .fill-input {
     width: 150px;
