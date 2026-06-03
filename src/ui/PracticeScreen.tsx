@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { DIFFICULTY_ORDER, xpForCorrect, type Difficulty, type Problem } from '../practice';
+import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { correctText, DIFFICULTY_ORDER, xpForCorrect, type Difficulty, type Problem } from '../practice';
 import type { StorageAdapter } from '../storage';
 import { getSet } from './practicePack';
 import { usePractice, type PView } from './usePractice';
@@ -106,10 +106,14 @@ export function PracticeScreen({ setId, adapter, studentId, seed, onExit }: Prop
         />
       )}
 
-      {view.mode === 'correct' && (
-        <ResultCard kind="correct" view={view} onNext={game.next} />
+      {(view.mode === 'correct' || view.mode === 'reveal') && (
+        <>
+          <div className="stage">
+            <Prompt problem={view.problem} />
+          </div>
+          <FeedbackBar view={view} onNext={game.next} />
+        </>
       )}
-      {view.mode === 'reveal' && <ResultCard kind="reveal" view={view} onNext={game.next} />}
 
       {view.mode === 'complete' && (
         <div className="overlay">
@@ -147,17 +151,9 @@ function ProblemView({
   onSubmit: () => void;
   onChoice: (choiceId: string) => void;
 }) {
-  // 竖式 prompts (contain the box bar) need monospace alignment; everything
-  // else is prose / mc and must wrap normally instead of overflowing.
-  const isColumn = problem.prompt.includes('─');
-
   return (
     <div className="stage">
-      {isColumn ? (
-        <pre className="problem-prompt">{problem.prompt}</pre>
-      ) : (
-        <div className="problem-text">{problem.prompt}</div>
-      )}
+      <Prompt problem={problem} />
 
       {wrong && problem.hint && <div className="hint wrong-hint">💡 {problem.hint}</div>}
 
@@ -212,43 +208,63 @@ function ProblemView({
   );
 }
 
-function ResultCard({
-  kind,
+// 竖式 prompts (contain the box bar) need monospace alignment; everything else
+// is prose / mc and must wrap normally instead of overflowing.
+function Prompt({ problem }: { problem: Problem }) {
+  return problem.prompt.includes('─') ? (
+    <pre className="problem-prompt">{problem.prompt}</pre>
+  ) : (
+    <div className="problem-text">{problem.prompt}</div>
+  );
+}
+
+// Duolingo-style outburst of stars on a correct answer (CSS-animated, no deps).
+function StarBurst() {
+  const stars = Array.from({ length: 8 }, (_, i) => {
+    const a = (i / 8) * Math.PI * 2;
+    const dx = Math.round(Math.cos(a) * 70);
+    const dy = Math.round(Math.sin(a) * 70);
+    return (
+      <span key={i} className="star" style={{ ['--dx']: `${dx}px`, ['--dy']: `${dy}px` } as CSSProperties}>
+        ⭐
+      </span>
+    );
+  });
+  return <span className="star-burst">{stars}</span>;
+}
+
+// Inline bottom feedback bar (no modal). Green for correct with a star/XP
+// animation; amber for a revealed answer.
+function FeedbackBar({
   view,
   onNext,
 }: {
-  kind: 'correct' | 'reveal';
   view: Extract<PView, { mode: 'correct' } | { mode: 'reveal' }>;
   onNext: () => void;
 }) {
+  const correct = view.mode === 'correct';
   const p = view.problem;
-  const answerText =
-    p.type === 'fill'
-      ? String(p.answer)
-      : p.type === 'steps'
-        ? p.fields?.map((f) => `${f.label} ${f.answer}`).join(' , ')
-        : p.choices?.find((c) => c.correct)?.label;
   const firstTry = view.mode === 'correct' && view.firstTry;
-  const xp = kind === 'correct' ? xpForCorrect(p.difficulty, firstTry) : 0;
+  const xp = correct ? xpForCorrect(p.difficulty, firstTry) : 0;
   return (
-    <div className="overlay">
-      <div className={`card ${kind === 'correct' ? 'celebrate' : ''}`}>
-        <div className="card-title">
-          {kind === 'correct' ? (firstTry ? '✅ 答对了！' : '✅ 对了！') : '看一看正确答案'}
-        </div>
-        {kind === 'correct' && (
-          <div className="xp-gain">
-            +{xp} 经验{firstTry ? ' · 一次答对翻倍 🎯' : ''}
+    <div className={`feedback-bar ${correct ? 'fb-correct' : 'fb-wrong'}`}>
+      <div className="fb-content">
+        {correct ? (
+          <div className="fb-text">
+            <div className="fb-title">🎉 答对了！</div>
+            <div className="xp-burst">
+              <StarBurst />
+              <span className="xp-pop">+{xp} ⭐{firstTry ? ' 翻倍' : ''}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="fb-text">
+            <div className="fb-title">正确答案:{correctText(p)}</div>
+            {p.explanation && <div className="fb-hint">{p.explanation}</div>}
           </div>
         )}
-        {kind === 'reveal' && (
-          <div className="big-fact">
-            答案:<b>{answerText}</b>
-          </div>
-        )}
-        {p.explanation && <div className="hint">{p.explanation}</div>}
-        <button className="primary" onClick={onNext}>
-          下一题
+        <button className="primary fb-next" onClick={onNext}>
+          继续
         </button>
       </div>
     </div>
