@@ -17,7 +17,8 @@ import {
   type Response,
 } from '../practice';
 import type { StorageAdapter } from '../storage';
-import { getSet } from './practicePack';
+import type { PracticePack } from '../practice';
+import { getSetFromPack } from './gradeLoader';
 
 // Correct-but-slower-than-this practice answers are flagged for parent attention.
 const SLOW_PRACTICE_MS = 20000;
@@ -59,6 +60,7 @@ function viewOf(action: PracticeAction, tries: number): PView {
 
 export function usePractice(
   setId: string,
+  practicePack: PracticePack,
   adapter: StorageAdapter,
   studentId: string,
   seed: number,
@@ -76,7 +78,7 @@ export function usePractice(
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const set = getSet(setId);
+      const set = getSetFromPack(practicePack, setId);
       if (!set) return;
       const prev = await adapter.getPractice(studentId, setId);
       bestRef.current = prev?.bestFirstTry ?? 0;

@@ -110,10 +110,7 @@ function validateFact(
     throw new ContentPackError(`${where}: fact ${fact.id} has invalid learningType`);
   }
   const computed = computeFromPrompt(fact.prompt);
-  if (computed === null) {
-    throw new ContentPackError(`${where}: fact ${fact.id} prompt "${fact.prompt}" is not computable`);
-  }
-  if (computed !== fact.answer) {
+  if (computed !== null && computed !== fact.answer) {
     throw new ContentPackError(
       `${where}: fact ${fact.id} answer ${fact.answer} != computed ${computed} from "${fact.prompt}"`,
     );

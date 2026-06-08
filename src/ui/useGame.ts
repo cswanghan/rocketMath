@@ -15,6 +15,7 @@ import {
   mulberry32,
   step,
   type Action,
+  type ContentPack,
   type EngineContext,
   type Event,
   type Fact,
@@ -22,7 +23,6 @@ import {
 } from '../engine';
 import { FLUENCY_XP } from '../practice';
 import { classifyOutcome, type StorageAdapter } from '../storage';
-import { pack } from './pack';
 
 export type View =
   | { mode: 'prompt'; fact: Fact; isRetest: boolean }
@@ -62,6 +62,7 @@ function viewOf(action: Action, pendingRetest: string | null): View {
 
 export function useGame(
   trackId: string,
+  pack: ContentPack,
   adapter: StorageAdapter,
   studentId: string,
   seed: number,

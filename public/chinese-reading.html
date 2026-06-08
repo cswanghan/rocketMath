@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>阅读识字</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-poly/cnchar.poly.min.js"></script>
+<style>
+:root {
+  --paper: #f4ead6;
+  --paper-2: #fbf5e7;
+  --paper-3: #fdf9ef;
+  --ink: #34302a;
+  --ink-soft: #7a7062;
+  --ink-faint: #a99e8c;
+  --red: #bf3f2b;
+  --red-soft: #e7b9ac;
+  --red-wash: #f3d9cf;
+  --gold: #c6962f;
+  --gold-wash: #fdf0d5;
+  --green: #4a8c5c;
+  --green-wash: #e2f0e5;
+  --line: #e3d6bd;
+  --shadow: rgba(80, 55, 30, .16);
+  --highlight: rgba(198, 150, 47, .25);
+  --highlight-active: rgba(198, 150, 47, .50);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.5), transparent 40%),
+    radial-gradient(circle at 80% 85%, rgba(198,150,47,.10), transparent 45%);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.kai { font-family: "Kaiti SC", "STKaiti", "Kaiti", "楷体", serif; }
+.pinyin-font { font-family: "Baloo 2", sans-serif; }
+
+/* ===== Header ===== */
+header {
+  text-align: center;
+  padding: 22px 16px 8px;
+}
+.logo {
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.logo .seal {
+  width: 50px; height: 50px; flex: none;
+  background: var(--gold);
+  border-radius: 10px;
+  display: grid; place-items: center;
+  color: #fff; font-size: 28px; line-height: 1;
+  font-family: "Kaiti SC", "STKaiti", "Kaiti", "楷体", serif; font-weight: 700;
+  box-shadow: 2px 3px 0 rgba(120, 90, 25, .45);
+  transform: rotate(-3deg);
+}
+.logo h1 {
+  font-family: "Kaiti SC", "STKaiti", "Kaiti", "楷体", serif;
+  font-size: 32px; margin: 0; letter-spacing: 4px; font-weight: 700;
+}
+
+/* ===== Grade tabs ===== */
+.grade-bar {
+  display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;
+  margin: 18px auto 6px; padding: 5px;
+  background: var(--paper-3); border: 1px solid var(--line);
+  border-radius: 14px; width: max-content; max-width: calc(100% - 32px);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.grade-btn {
+  border: none; background: transparent; cursor: pointer;
+  font-family: inherit; font-size: 14px; color: var(--ink-soft);
+  padding: 8px 16px; border-radius: 10px; font-weight: 600; transition: .18s;
+}
+.grade-btn:hover { background: rgba(198,150,47,.12); }
+.grade-btn.active {
+  background: var(--gold); color: #fff;
+  box-shadow: 0 2px 8px rgba(198,150,47,.35);
+}
+
+/* ===== Mode: scope toggle ===== */
+.scope-bar {
+  display: flex; gap: 6px; justify-content: center; margin: 10px auto 16px;
+}
+.scope-btn {
+  border: 1px solid var(--line); background: var(--paper-3); cursor: pointer;
+  font-family: inherit; font-size: 13px; color: var(--ink-soft);
+  padding: 6px 14px; border-radius: 8px; font-weight: 500; transition: .18s;
+}
+.scope-btn.active {
+  background: var(--gold-wash); color: var(--gold);
+  border-color: var(--gold); font-weight: 600;
+}
+
+/* ===== Input view ===== */
+.input-view {
+  max-width: 680px; margin: 0 auto; padding: 0 16px 40px;
+}
+.input-box {
+  background: var(--paper-3); border: 2px solid var(--line);
+  border-radius: 16px; padding: 4px; margin-bottom: 16px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+.input-box textarea {
+  width: 100%; min-height: 200px; border: none; background: transparent;
+  font-family: "Kaiti SC", "STKaiti", "Kaiti", "楷体", serif;
+  font-size: 18px; line-height: 2; color: var(--ink);
+  padding: 16px; resize: vertical; outline: none;
+}
+.input-box textarea::placeholder { color: var(--ink-faint); }
+.input-actions {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 12px; border-top: 1px solid var(--line);
+}
+.char-count { font-size: 13px; color: var(--ink-faint); }
+.start-btn {
+  border: none; cursor: pointer;
+  background: var(--gold); color: #fff;
+  font-family: inherit; font-size: 16px; font-weight: 700;
+  padding: 12px 36px; border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(198,150,47,.35);
+  transition: transform .12s;
+}
+.start-btn:active { transform: scale(.96); }
+.start-btn:disabled { opacity: .4; cursor: default; }
+.hint-text {
+  text-align: center; color: var(--ink-faint); font-size: 13px;
+  margin-top: 12px;
+}
+
+/* ===== Reading view ===== */
+.reading-view {
+  display: none; max-width: 960px; margin: 0 auto; padding: 0 16px 40px;
+}
+.reading-view.active { display: block; }
+.toolbar {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 16px; flex-wrap: wrap;
+}
+.back-to-input {
+  border: 1px solid var(--line); background: var(--paper-3);
+  cursor: pointer; font-family: inherit; font-size: 13px;
+  color: var(--ink-soft); padding: 7px 14px; border-radius: 8px;
+}
+.stats {
+  font-size: 13px; color: var(--ink-soft); margin-left: auto;
+}
+.stats b { color: var(--gold); font-weight: 700; }
+
+.reading-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .reading-layout { grid-template-columns: 1fr; }
+}
+
+/* article panel */
+.article-panel {
+  background: var(--paper-3); border: 1px solid var(--line);
+  border-radius: 16px; padding: 28px 24px;
+  box-shadow: 0 2px 12px var(--shadow);
+  line-height: 2.4;
+}
+.article-panel .article-body {
+  font-family: "Kaiti SC", "STKaiti", "Kaiti", "楷体", serif;
+  font-size: 22px; letter-spacing: 1px;
+}
+.article-body .hw {
+  background: var(--highlight);
+  border-radius: 4px; padding: 1px 2px;
+  cursor: pointer; transition: background .15s;
+  position: relative;
+}
+.article-body .hw:hover,
+.article-body .hw.active {
+  background: var(--highlight-active);
+}
+.article-body .hw.mastered {
+  background: var(--green-wash);
+  color: var(--green);
+}
+/* pinyin ruby above highlighted chars */
+.article-body .hw rt {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 11px; color: var(--gold);
+  font-weight: 600;
+}
+
+/* detail panel (sidebar) */
+.detail-panel {
+  background: var(--paper-3); border: 1px solid var(--line);
+  border-radius: 16px; padding: 24px;
+  box-shadow: 0 2px 12px var(--shadow);
+  position: sticky; top: 16px;
+  min-height: 200px;
+}
+.detail-empty {
+  text-align: center; color: var(--ink-faint);
+  padding: 40px 0; font-size: 14px;
+}
+.detail-char {
+  text-align: center;
+  font-family: "Kaiti SC", "STKaiti", "Kaiti", "楷体", serif;
+  font-size: 72px; font-weight: 700;
+  margin: 0 0 4px;
+}
+.detail-pinyin {
+  text-align: center;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 28px; color: var(--gold); font-weight: 600;
+  margin-bottom: 12px;
+}
+.writer-box {
+  width: 160px; height: 160px; margin: 0 auto 16px;
+  background: var(--paper-2);
+  border: 2px dashed var(--red-soft);
+  border-radius: 12px;
+  position: relative;
+}
+.detail-actions {
+  display: flex; gap: 8px; justify-content: center; margin-bottom: 16px;
+}
+.detail-btn {
+  border: 1px solid var(--line); background: var(--paper-2);
+  cursor: pointer; font-family: inherit; font-size: 13px;
+  color: var(--ink-soft); padding: 7px 14px; border-radius: 8px;
+  font-weight: 500; transition: .15s;
+}
+.detail-btn:hover { background: var(--paper); }
+.detail-btn.mastered-btn {
+  background: var(--green-wash); color: var(--green);
+  border-color: var(--green);
+}
+.detail-section {
+  margin-top: 14px; padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.detail-section-title {
+  font-size: 12px; color: var(--ink-faint); font-weight: 600;
+  margin-bottom: 6px; letter-spacing: 2px;
+}
+.detail-section-body {
+  font-size: 15px; color: var(--ink); line-height: 1.7;
+}
+.detail-section-body .example-word {
+  display: inline-block;
+  background: var(--paper); border: 1px solid var(--line);
+  padding: 3px 10px; border-radius: 6px; margin: 3px 4px 3px 0;
+  font-size: 16px;
+}
+
+/* word list summary */
+.word-list-panel {
+  margin-top: 20px;
+  background: var(--paper-3); border: 1px solid var(--line);
+  border-radius: 16px; padding: 20px 24px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+.word-list-title {
+  font-weight: 700; font-size: 15px; margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.word-chips {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.word-chip {
+  display: flex; flex-direction: column; align-items: center;
+  background: var(--paper-2); border: 1px solid var(--line);
+  border-radius: 10px; padding: 8px 6px; min-width: 52px;
+  cursor: pointer; transition: .15s;
+}
+.word-chip:hover { border-color: var(--gold); }
+.word-chip.mastered {
+  background: var(--green-wash); border-color: var(--green);
+}
+.word-chip .wc-char {
+  font-family: "Kaiti SC", "STKaiti", "Kaiti", "楷体", serif;
+  font-size: 22px; font-weight: 700;
+}
+.word-chip .wc-py {
+  font-family: "Baloo 2", sans-serif;
+  font-size: 11px; color: var(--gold);
+}
+.word-chip .wc-count {
+  font-size: 10px; color: var(--ink-faint);
+}
+
+/* mobile detail overlay */
+.detail-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(52, 48, 42, .5);
+  z-index: 200;
+}
+.detail-overlay.active { display: flex; align-items: flex-end; }
+.detail-overlay .detail-sheet {
+  width: 100%; max-height: 75vh; overflow-y: auto;
+  background: var(--paper-3);
+  border-radius: 20px 20px 0 0;
+  padding: 24px 20px max(20px, env(safe-area-inset-bottom));
+  animation: sheetUp .25s ease;
+}
+@keyframes sheetUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+.detail-overlay .sheet-handle {
+  width: 36px; height: 4px; background: var(--line);
+  border-radius: 2px; margin: 0 auto 16px;
+}
+@media (max-width: 760px) {
+  .detail-panel { display: none; }
+  .detail-overlay.has-char { display: flex; }
+}
+@media (min-width: 761px) {
+  .detail-overlay { display: none !important; }
+}
+
+/* responsive */
+@media (max-width: 560px) {
+  .article-panel { padding: 18px 14px; }
+  .article-body { font-size: 19px !important; }
+  .grade-btn { padding: 6px 10px; font-size: 13px; }
+  .logo h1 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="seal kai">读</div>
+    <h1 class="kai">阅读识字</h1>
+  </div>
+</header>
+
+<!-- Grade selector -->
+<div class="grade-bar" id="gradeBar"></div>
+<div class="scope-bar">
+  <button class="scope-btn active" data-scope="current" onclick="setScope('current')">仅本年级生字</button>
+  <button class="scope-btn" data-scope="cumulative" onclick="setScope('cumulative')">含低年级生字</button>
+</div>
+
+<!-- Input view -->
+<div class="input-view" id="inputView">
+  <div class="input-box">
+    <textarea id="articleInput" placeholder="在这里粘贴一段文章或课文...&#10;&#10;系统会自动识别其中需要学习的生字，&#10;让你在阅读中学习！"></textarea>
+    <div class="input-actions">
+      <span class="char-count" id="charCount">0 字</span>
+      <button class="start-btn" id="startBtn" disabled onclick="startReading()">开始阅读</button>
+    </div>
+  </div>
+  <p class="hint-text">支持粘贴任意中文文章、课文、故事、新闻等</p>
+</div>
+
+<!-- Reading view -->
+<div class="reading-view" id="readingView">
+  <div class="toolbar">
+    <button class="back-to-input" onclick="backToInput()">← 换一篇</button>
+    <div class="stats" id="stats"></div>
+  </div>
+  <div class="reading-layout">
+    <div>
+      <div class="article-panel">
+        <div class="article-body" id="articleBody"></div>
+      </div>
+      <div class="word-list-panel">
+        <div class="word-list-title">📋 本文生字表 <span id="wordListCount"></span></div>
+        <div class="word-chips" id="wordChips"></div>
+      </div>
+    </div>
+    <div class="detail-panel" id="detailPanel">
+      <div class="detail-empty" id="detailEmpty">👈 点击文中高亮的字<br>查看详情</div>
+      <div id="detailContent" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile detail overlay -->
+<div class="detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeOverlay()">
+  <div class="detail-sheet">
+    <div class="sheet-handle"></div>
+    <div id="detailContentMobile"></div>
+  </div>
+</div>
+
+<script>
+// ========== Grade-level character data (人教版) ==========
+const GRADE_CHARS = {
+  1: "一二三四五六七八九十百千万上下大小多少天地人口手足目耳日月水火山石田禾虫鸟鱼花草树木林森明星晴云雨雪风春夏秋冬东南西北前后左右来去出入开关坐站走跑飞跳看听说读写画唱男女老少父母爸妈爷奶儿子头发眼鼻嘴牙耳朵身体心手脚红黄蓝绿白黑色长短高有的是在了不我你他她它们这那里可好也要到很和就着过得对中学自己用几只个两半什么时候会回问们为因所以而又都同吧吗呢啊把被比被从都但更各还或就可每哪那能却如若虽所它为向要也已以应于与在则怎增只作做再没干干活才行让事情别双国王方青清气请生字正先写片全部件条张块支面本书包笔刀尺本纸作业功课桌椅窗门车路桥房间家园校城市村河湖海江水池塘井泉溪流波浪洋港湾岸岛洲土沙泥岩洞穴壁崖坡谷川原野坝塔台阶梯桩柱梁墙壁顶底边角落堆排列串束捆组群队形阵圈轮回圆方扁尖角弯直平斜横竖点撇捺折提钩挑转拐弯绕环抱围合拢散开展收放拿起落举抬搬移推拉扔丢甩投接拍打击敲碰压贴粘沾挂摆翻滚倒立卧躺靠蹲跪爬滑溜攀登降升浮沉落提升降飘吹刮扫荡冲洗涮擦抹刷刮削切割剪裁缝补钉扣系绑捆扎缠绕扭拧挤拉扯撕折叠卷摊铺盖掀揭包裹装填塞堵封堵锁盘碗杯壶瓶罐盒袋箱桶盆缸锅碟碗筷刀叉勺铲壶盖篮筐笼网绳索链带条线丝毛发皮革布帛纱绸缎衣服裤裙帽鞋袜巾被褥枕席毯帘幕幢件套副双只把条根支张片块颗粒滴首座间棵架辆趟遍阵幅份层",
+  2: "帮助保护必须变化表示丛当感觉观察害怕互相欢乐环境活动伙伴技巧建设健康渐渐交流节约精神竞赛快乐劳动旅游美丽描绘认识容易商量设计食物事物思考探索讨论特别提高甜蜜温暖希望想象消息辛苦兴奋研究意见游戏愿望增加展示植物指导值日重要周围祝福转动准备紫棉袄笨补丁察差瞅串窗催村答戴叼碟都吨鹅罚忽唤幻荒鸡积极渐浆酱郊洁净井睛景镜竞究举据决绝筷捆懒铃领略迷谜宁弄逆怕盼旁瓢飘评泼朴期旗巧窍抢敲巧翘切请穷球取确燃嚷绕忍肉扫杀晒善扇稍哨蛇审绳湿拾拼贫墨默耐恼脑闹嫩碰篇朴趣染忍融容洒赛丧扫杀啥晒善扇稍哨射申伸深神审婶甚胜剩诗狮施式示适饰世势释室守受授瘦熟述竖术束刷甩帅霜撕宿孙损缩塌踏摊贪坛谭叹汤糖躺烫掏陶逃挑跳贴厅亭庭偷突途涂吐推退托挖弯危微围伟尾违味温蚊稳握污武雾夕溪惜洗喜虾峡狭吓掀鲜显险献乡箱详像项消削斜械信醒姓凶修秀叙绪须许续宣旋压鸭延严岩沿演掩眼雁央扬洋仰养谣遥咬爷液宜仪椅逸忆艺因阴引隐饮印赢影映硬拥佣涌永咏勇幽犹油游友幼鱼寓冤圆缘远院愿约跃越阅云允运杂灾载赞暂藏脏造则责择扎眨",
+  3: "哀傲拌棒悲碑贬辫便遍标兵勃博捕猜材灿仓操侧测层叉差尝肠偿巢潮吵沉乘惩程澄尺齿翅冲充虫宠抽稠绸丑臭初除础厨处触储川穿串创锤纯唇瓷慈辞从聪凑促催脆翠存寸措达答搭呆待戴担蛋淡诞弹当挡到盗得灯等邓迪敌底弟递典点电殿碉吊叮钉顶订丢冬懂洞冻抖豆督毒独读堵端短段断锻堆队顿盾多夺朵躲额恩儿尔耳二发乏罚阀伐烦繁凡反返饭范防仿非飞肥废沸费分坟粉份丰封枫锋风蜂逢缝否夫肤服浮符幅福府辅腐付妇附复赋覆赶敢感刚岗港高搞稿告哥鸽隔革个各给根跟工功攻供宫弓公共贡购够估姑古骨谷股故顾固瓜刮寡挂拐怪关官观管馆灌罐光广归规鬼贵辊滚锅国果裹过哈害含汉旱航毫豪好号耗呵喝合河核贺嘿横恒哼衡轰红宏洪侯喉猴后厚呼忽狐壶湖糊蝴虎户互护花滑华哗化划画话怀坏欢环荒慌黄挥恢回毁悔汇惠昏浑魂混豁活火货获惑击积基机级极急集几己技计季纪既济继加佳家嘉夹颊甲贾钾假价驾架假尖坚拣检简减剪建箭践渐溅鉴键箭江姜浆僵疆讲奖蒋匠降交郊娇浇骄教较阶皆揭接街截节杰结劫竭洁姐解介戒届巾斤今金津筋仅紧锦尽劲近进禁京经惊精鲸井颈景警净径竞竟敬境静镜纠究酒久九救就居局举矩句巨具剧据距锯聚卷倦决绝均君均菌俊卡开刊砍看康抗考靠科可渴克刻客肯坑空控孔口扣枯哭库酷夸跨块快宽款况旷矿框亏昆困扩括垃拉啦腊辣来赖兰栏拦篮懒烂郎朗浪劳牢老乐雷累泪类冷厘梨离璃黎礼李里理力历利丽联连莲帘怜廉脸练良梁粮凉两辆亮谅量辽疗料列劣猎林临令灵岭零领另溜留流柳六龙楼漏陆录鹿碌路驴旅虑率绿论罗逻骡螺裸洛落妈麻马码蚂骂嘛埋买迈麦卖脉蛮满漫忙猫毛茅冒贸么没眉煤梅每美妹门闷萌盟猛梦迷谜弥米秘密蜜棉免勉面苗描秒庙灭民敏明鸣命摸模膜磨末莫墨某母木牧幕慕暮穆目",
+  4: "碍暗按案昂凹霸掰办瓣膀棒磅剥胞堡曝杯悖奔笨崩甭蹦逼鼻彼毕闭碧蔽编扁辩辫标彪宾彬滨冰饼秉拨波玻菠播帛泊驳搏脖膊伯舶薄卜补哺堡沧操槽侧策曾叉猖嘲潮扯彻尘臣辰沉陈趁撑秤程惩乘池驰迟侈尺翅斥充冲崇抽仇筹稠愁丑臭除础储畜触川穿喘创垂捶椎春纯唇蠢戳磁慈词此刺匆葱聪丛凑粗蹿催璀脆搓挫错搭答达打呆代贷担胆诞弹档刀导倒蹈悼盗德蹬等凳堤笛敌抵底递第典奠雕吊叠盯钉订丢抖斗豆逗督毒独堵赌杜锻段缎堆吨蹲盾顿钝夺剁惰额厄遏恩翻凡烦返贩范泛芳坊防妨房仿纺飞非啡菲废沸费纷坟焚奋粪丰封疯锋蜂讽凤奉夫敷服佛否父付妇缚嘎盖甘赶敢冈杠缸钢岗港杠高稿格隔个给巩恭拱贡沟构购估姑辜古骷谷股鼓雇固刮瓜寡卦挂关官惯贯灌灌罐规闺鬼柜贵跪棍郭锅裹蝴核荷嘿痕恨哼衡轰哄洪宏虹喉猴厚壶葫糊蝴狐弧忽乎呼壶护互沪化滑猾华哗划画话桦怀坏欢唤换涣焕荒慌黄挥辉恢蛔回悔汇惠昏浑魂混豁活伙惑祸货嚯蓄惧聚倦掘崛决角觉撅嚼军均抗扛慷考烤靠颗科棵壳咳可渴克刻客啃坑吭恐控口扣枯窟哭酷夸跨挎块筷宽款狂旷矿况亏昆捆括扩阔垃拉辣来赖览懒烂滥朗浪捞牢姥乐雷蕾泪类冷愣厘梨离篱黎礼李里理力历厉丽利励砾立隶粒俩联莲连廉帘怜敛脸练恋炼链良凉梁粮两辆亮谅辽僚疗料列烈猎邻鳞林临淋伶灵铃凌陵岭零令领溜刘流留榴硫柳六龙聋笼拢楼搂漏芦卢颅炉庐鲁陆录驴旅履律虑率绿滦卵乱掠略伦论螺骡裸落",
+  5: "吖啊挨碍暧谙黯拗扒疤跋靶把坝罢霸掰搬斑颁绊扮拌伴瓣邦梆蚌傍棒膀谤褒胞苞雹保堡饱抱豹鲍暴瀑曝卑悲碑北贝备惫被倍辈本奔甭泵蹦迸绷逼彼碧蓖毙庇弊壁臂避璧边编蝙贬扁便变遍辫辨辩标镖膘飙彪表裱鳖瘪别蹩宾濒冰兵丙秉饼并柄拨波玻剥播帛泊驳勃搏脖膊博薄卜补捕哺不布步怖簿擦猜材才财裁采彩踩菜蔡参餐残蚕惭惨灿苍仓舱藏操曹槽草册侧测策岑层差插茬查刹察拆柴馋缠蝉产阐颤昌猖场肠尝偿常厂敞畅倡唱抄超巢潮嘲朝吵炒车扯彻撤尘沉辰陈晨忱衬趁称撑成呈承城程诚惩澄逞骋吃持匙池驰迟弛齿耻斥赤翅充冲崇抽仇绸畴愁稠筹酬丑臭初出除橱础储楚处触畜川穿椽传船喘串创疮窗闯吹炊垂锤春纯唇蠢戳绰磁雌辞慈茨此刺赐聪葱囱从丛凑粗促醋簇蹿窜催脆翠村寸搓磋撮措错达答搭大呆歹傣戴代带待贷袋逮担胆掸旦但诞弹惮淡蛋氮当挡党荡档刀叨导到捣岛倒蹈盗道稻德得灯登等邓凳低堤滴迪敌笛底抵地弟帝递第典点电店垫淀殿碉叼雕调掉吊钓爹跌叠碟蝶盯叮顶鼎订丢东冬董懂动冻洞兜抖斗豆逗督毒独读堵赌杜镀肚度渡端短段断锻缎堆对队吨蹲盾顿囤钝多夺朵躲惰堕",
+  6: "蔼矮隘庵鞍盎袄懊扒芭捌跋坝灞掰柏摆拜稗蚌绑榜膀蝙扁卞辨辫彪膘裱鳖蹩滨斌缤濒摈秉拨膊泊驳钵铂帛舶箔脖勃钵菠播伯铂舶礴钵膊卜捕哺醋蹿篡窜催脆淬粹翠挫搓撮咋叉岔钗差刹诧拆钗搀掺禅馋蝉铲产颤冁场尝偿肠敞畅倡钞嘲潮巢吵剿绰辍瓷疵赐聪葱囱窜篡蹿翠淬催粹撮搓措达瘩耽殚胆惮弹瞻澹氮蛋当铛裆挡凳磴嘀涤缔颠巅典碘靛殿雕铫叼碉貂掉铞钉铤锭铛丢铥东咚冻恫兜抖斗陡逗蚪渎笃堵睹赌杜镀锻缎兑钝遁盾顿钝囤墩吨蹲敦遁掇哆踱夺垛跺舵剁惰椭堕腭遏讹鄂锷额阏垩扼饿鸸贰罚伐阀筏帆翻番蕃矾钒繁凡烦反贩犯泛坊芳枋妨肪房仿彷访纺舫放非啡菲斐肥翡匪诽吠芬坟粉份奋愤丰枫烽封疯锋蜂冯逢缝讽奉凤佛缚幅氟俘辐弗伏扶芙拂俯辅腑釜斧脯甫抚辅府腐赋复副傅赴覆馥噶嘎尬该钙盖溉概甘竿柑肝赶敢感秆刚缸钢港杠篙镐稿告搞诰膏糕高戈疙搁鸽割歌阁革格葛隔铬个各给根跟耕庚羹埂耿梗工弓公攻功巩恭宫弓龚供拱共贡勾沟钩苟垢构购够估咕沽姑鼓毂古股骨谷固故顾瓜刮寡卦褂挂乖关观官冠馆管贯惯灌罐光广归龟规圭闺轨鬼柜桂跪贵刽滚棍郭锅涡聒裹蝈"
+};
+
+// Common words/meanings per character (curated for learning)
+const CHAR_INFO = {};
+
+// ========== State ==========
+let currentGrade = 3;
+let scope = 'current'; // 'current' | 'cumulative'
+let articleText = '';
+let foundChars = [];   // [{char, pinyin, count}]
+let masteredSet = new Set();
+let currentDetailChar = null;
+let writerInstance = null;
+
+// ========== Init ==========
+document.addEventListener('DOMContentLoaded', () => {
+  renderGradeBar();
+  const input = document.getElementById('articleInput');
+  input.addEventListener('input', () => {
+    const len = input.value.replace(/\s/g, '').length;
+    document.getElementById('charCount').textContent = len + ' 字';
+    document.getElementById('startBtn').disabled = len === 0;
+  });
+  // load mastered from localStorage
+  try {
+    const saved = localStorage.getItem('reading-mastered');
+    if (saved) masteredSet = new Set(JSON.parse(saved));
+  } catch(e) {}
+});
+
+function renderGradeBar() {
+  const bar = document.getElementById('gradeBar');
+  bar.innerHTML = '';
+  for (let g = 1; g <= 6; g++) {
+    const btn = document.createElement('button');
+    btn.className = 'grade-btn' + (g === currentGrade ? ' active' : '');
+    btn.textContent = g + '年级';
+    btn.onclick = () => { currentGrade = g; renderGradeBar(); };
+    bar.appendChild(btn);
+  }
+}
+
+function setScope(s) {
+  scope = s;
+  document.querySelectorAll('.scope-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.scope === s);
+  });
+}
+
+// ========== Core logic ==========
+function getTargetChars() {
+  if (scope === 'current') {
+    return new Set(GRADE_CHARS[currentGrade] || '');
+  }
+  let chars = '';
+  for (let g = 1; g <= currentGrade; g++) {
+    chars += GRADE_CHARS[g] || '';
+  }
+  return new Set(chars);
+}
+
+function getPinyin(ch) {
+  try {
+    if (window.cnchar) {
+      const py = cnchar.spell(ch, 'tone', 'poly');
+      if (py && py !== ch) return py.toLowerCase();
+    }
+  } catch(e) {}
+  return '';
+}
+
+function startReading() {
+  const input = document.getElementById('articleInput');
+  articleText = input.value.trim();
+  if (!articleText) return;
+
+  const targetSet = getTargetChars();
+  const charMap = new Map(); // char -> count
+
+  for (const ch of articleText) {
+    if (targetSet.has(ch)) {
+      charMap.set(ch, (charMap.get(ch) || 0) + 1);
+    }
+  }
+
+  foundChars = Array.from(charMap.entries())
+    .map(([char, count]) => ({ char, pinyin: getPinyin(char), count }))
+    .sort((a, b) => b.count - a.count);
+
+  renderReadingView();
+}
+
+function renderReadingView() {
+  document.getElementById('inputView').style.display = 'none';
+  document.getElementById('readingView').classList.add('active');
+
+  const targetSet = getTargetChars();
+  const foundSet = new Set(foundChars.map(f => f.char));
+
+  // Stats
+  const totalChars = articleText.replace(/\s/g, '').length;
+  const masteredCount = foundChars.filter(f => masteredSet.has(f.char)).length;
+  document.getElementById('stats').innerHTML =
+    `全文 <b>${totalChars}</b> 字，含 <b>${foundChars.length}</b> 个${currentGrade}年级生字` +
+    (masteredCount > 0 ? `，已掌握 <b>${masteredCount}</b> 个` : '');
+
+  // Render article body with highlighted chars
+  const body = document.getElementById('articleBody');
+  body.innerHTML = '';
+  for (const ch of articleText) {
+    if (ch === '\n') {
+      body.appendChild(document.createElement('br'));
+      continue;
+    }
+    if (foundSet.has(ch)) {
+      const ruby = document.createElement('ruby');
+      ruby.className = 'hw' + (masteredSet.has(ch) ? ' mastered' : '');
+      ruby.textContent = ch;
+      ruby.dataset.char = ch;
+      const rt = document.createElement('rt');
+      const info = foundChars.find(f => f.char === ch);
+      rt.textContent = info ? info.pinyin : '';
+      ruby.appendChild(rt);
+      ruby.onclick = () => showDetail(ch);
+      body.appendChild(ruby);
+    } else {
+      body.appendChild(document.createTextNode(ch));
+    }
+  }
+
+  // Word chips
+  renderWordChips();
+
+  // Reset detail
+  showDetailEmpty();
+}
+
+function renderWordChips() {
+  const container = document.getElementById('wordChips');
+  container.innerHTML = '';
+  document.getElementById('wordListCount').textContent = `(${foundChars.length}个)`;
+  for (const f of foundChars) {
+    const chip = document.createElement('div');
+    chip.className = 'word-chip' + (masteredSet.has(f.char) ? ' mastered' : '');
+    chip.innerHTML =
+      `<span class="wc-char">${f.char}</span>` +
+      `<span class="wc-py">${f.pinyin}</span>` +
+      `<span class="wc-count">×${f.count}</span>`;
+    chip.onclick = () => showDetail(f.char);
+    container.appendChild(chip);
+  }
+}
+
+// ========== Detail panel ==========
+function showDetailEmpty() {
+  document.getElementById('detailEmpty').style.display = '';
+  document.getElementById('detailContent').style.display = 'none';
+  currentDetailChar = null;
+}
+
+function showDetail(ch) {
+  currentDetailChar = ch;
+  const info = foundChars.find(f => f.char === ch);
+  if (!info) return;
+
+  // highlight active
+  document.querySelectorAll('.hw').forEach(el => {
+    el.classList.toggle('active', el.dataset.char === ch);
+  });
+
+  const isMastered = masteredSet.has(ch);
+  const detailHTML = `
+    <div class="detail-char">${ch}</div>
+    <div class="detail-pinyin pinyin-font">${info.pinyin || '—'}</div>
+    <div class="writer-box" id="__WRITER_ID__"></div>
+    <div class="detail-actions">
+      <button class="detail-btn" onclick="playAnimation()">▶ 笔顺</button>
+      <button class="detail-btn" onclick="quizStroke()">✏️ 临摹</button>
+      <button class="detail-btn ${isMastered ? 'mastered-btn' : ''}"
+        onclick="toggleMastered('${ch}')">
+        ${isMastered ? '✅ 已掌握' : '标记掌握'}
+      </button>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">出 现</div>
+      <div class="detail-section-body">
+        本文出现 <b>${info.count}</b> 次
+      </div>
+    </div>
+  `;
+
+  // Desktop panel
+  const panel = document.getElementById('detailContent');
+  const empty = document.getElementById('detailEmpty');
+  empty.style.display = 'none';
+  panel.style.display = '';
+  panel.innerHTML = detailHTML.replace('__WRITER_ID__', 'writerDesktop');
+  initWriter('writerDesktop', ch);
+
+  // Mobile overlay
+  const overlay = document.getElementById('detailOverlay');
+  const mobile = document.getElementById('detailContentMobile');
+  mobile.innerHTML = detailHTML.replace('__WRITER_ID__', 'writerMobile');
+  overlay.classList.add('has-char');
+  // only init mobile writer if actually visible
+  if (window.innerWidth <= 760) {
+    initWriter('writerMobile', ch);
+  }
+}
+
+function initWriter(containerId, ch) {
+  // destroy previous
+  if (writerInstance) {
+    try { writerInstance.target && writerInstance.target.innerHTML && (writerInstance = null); } catch(e) {}
+  }
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = '';
+  try {
+    writerInstance = HanziWriter.create(containerId, ch, {
+      width: 150, height: 150,
+      padding: 8,
+      strokeColor: '#34302a',
+      radicalColor: '#bf3f2b',
+      strokeAnimationSpeed: 1,
+      delayBetweenStrokes: 300,
+      showOutline: true,
+      showCharacter: true,
+      charDataLoader: function(c, onComplete) {
+        fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/' + encodeURIComponent(c) + '.json')
+          .then(function(r) { return r.json(); })
+          .then(onComplete)
+          .catch(function() {
+            el.innerHTML = '<div style="text-align:center;padding:40px;color:#a99e8c">暂无笔顺数据</div>';
+          });
+      }
+    });
+  } catch(e) {
+    el.innerHTML = '<div style="text-align:center;padding:40px;color:#a99e8c">暂无笔顺数据</div>';
+  }
+}
+
+function playAnimation() {
+  if (writerInstance) {
+    writerInstance.animateCharacter();
+  }
+}
+
+function quizStroke() {
+  if (writerInstance) {
+    writerInstance.quiz({
+      showHintAfterMisses: 2,
+      onComplete: () => {}
+    });
+  }
+}
+
+function toggleMastered(ch) {
+  if (masteredSet.has(ch)) {
+    masteredSet.delete(ch);
+  } else {
+    masteredSet.add(ch);
+  }
+  // persist
+  try {
+    localStorage.setItem('reading-mastered', JSON.stringify([...masteredSet]));
+  } catch(e) {}
+  // re-render
+  renderReadingView();
+  if (currentDetailChar === ch) {
+    showDetail(ch);
+  }
+}
+
+function closeOverlay() {
+  document.getElementById('detailOverlay').classList.remove('has-char');
+}
+
+function backToInput() {
+  document.getElementById('readingView').classList.remove('active');
+  document.getElementById('inputView').style.display = '';
+  showDetailEmpty();
+  currentDetailChar = null;
+}
+</script>
+</body>
+</html>

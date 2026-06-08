@@ -1,5 +1,13 @@
-# Cloudflare Pages config. Static SPA — no functions/backend.
+# Cloudflare Pages config
 # Deploy:  npm run build && npx wrangler pages deploy dist
-name = "rocket-math"
+name = "rocket-learning"
 pages_build_output_dir = "dist"
 compatibility_date = "2026-06-02"
+
+[vars]
+GOOGLE_CLIENT_ID = "232457399345-qn9vp9uuflqi285me3n2242kdfksso9n.apps.googleusercontent.com"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rocket-learning-users"
+database_id = "c0f7cd9a-5672-4fc5-8896-800c86b7f097"

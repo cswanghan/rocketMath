@@ -2,7 +2,7 @@
 // accumulating play time only while `active`, and persists to localStorage so
 // the break survives a refresh.
 import { useEffect, useState } from 'react';
-import { pack } from './pack';
+import type { EngineConfig } from '../engine';
 import { initialLockState, isLocked, remainingBreakMs, tickLock, type LockState } from './timelock';
 
 const LS_KEY = 'rm.timelock';
@@ -25,8 +25,8 @@ function save(s: LockState): void {
   }
 }
 
-export function useTimeLock(active: boolean): { locked: boolean; remainingMs: number } {
-  const cfg = pack.engine_config.time_lock;
+export function useTimeLock(active: boolean, engineConfig?: EngineConfig): { locked: boolean; remainingMs: number } {
+  const cfg = engineConfig?.time_lock ?? { enabled: true, play_minutes: 15, break_minutes: 20 };
   const [state, setState] = useState<LockState>(load);
   const [now, setNow] = useState(() => Date.now());
 

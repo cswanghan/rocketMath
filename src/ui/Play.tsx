@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { getTrack } from '../engine';
+import { getTrack, type ContentPack } from '../engine';
 import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
-import { pack } from './pack';
 import { RocketChart } from './RocketChart';
 import { cancel, isMuted, sayFact, setMuted as persistMuted, speak } from './speech';
 import { useGame } from './useGame';
@@ -17,14 +16,15 @@ const CIRC = 2 * Math.PI * 54; // ring circumference for r=54
 
 interface Props {
   trackId: string;
+  pack: ContentPack;
   adapter: StorageAdapter;
   studentId: string;
   seed: number;
   onExit: () => void;
 }
 
-export function Play({ trackId, adapter, studentId, seed, onExit }: Props) {
-  const game = useGame(trackId, adapter, studentId, seed);
+export function Play({ trackId, pack, adapter, studentId, seed, onExit }: Props) {
+  const game = useGame(trackId, pack, adapter, studentId, seed);
   const [input, setInput] = useState('');
   const inputRef = useRef('');
   inputRef.current = input;

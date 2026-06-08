@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习乐园 · 设置用户名</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f1120; min-height: 100vh; color: #e8eaf6;
+            display: flex; align-items: center; justify-content: center; padding: 20px;
+        }
+        .card {
+            background: #1a1d35; border: 1px solid #2a2d4a; border-radius: 16px;
+            padding: 36px 32px; max-width: 400px; width: 90%; text-align: center;
+            position: relative;
+        }
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, #6366f1, #a78bfa); border-radius: 16px 16px 0 0;
+        }
+        .icon { font-size: 2.4rem; margin-bottom: 12px; }
+        h2 { font-size: 1.3rem; margin-bottom: 8px; }
+        p { color: #8b8faf; font-size: 0.85rem; margin-bottom: 24px; }
+        .form-input {
+            width: 100%; padding: 12px 14px; border: 1px solid #2a2d4a; border-radius: 10px;
+            font-size: 0.95rem; font-family: inherit; color: #e8eaf6;
+            background: #141628; outline: none; margin-bottom: 16px;
+        }
+        .form-input:focus { border-color: #6366f1; }
+        .submit-btn {
+            width: 100%; padding: 13px; border: none; border-radius: 20px;
+            background: #6366f1; color: white; font-size: 0.95rem;
+            font-family: inherit; font-weight: 500; cursor: pointer;
+        }
+        .submit-btn:hover { background: #5558e6; }
+        .message {
+            margin-top: 14px; padding: 10px 14px; border-radius: 8px;
+            font-size: 0.85rem; display: none;
+        }
+        .message.show { display: block; }
+        .message.error { background: rgba(248,113,113,0.1); color: #f87171; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="icon">&#x270F;&#xFE0F;</div>
+    <h2>设置用户名</h2>
+    <p>Google 登录成功！请为你的账号选一个用户名。</p>
+    <form onsubmit="handleSubmit(event)">
+        <input class="form-input" id="username" placeholder="2-20 字符，支持中英文" required>
+        <button class="submit-btn" type="submit">确认</button>
+    </form>
+    <div class="message" id="msg"></div>
+</div>
+<script>
+    const token = localStorage.getItem('token');
+    if (!token) window.location.href = '/login.html';
+
+    const _redirect = new URLSearchParams(location.search).get('redirect') || '/';
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        const username = document.getElementById('username').value.trim();
+        try {
+            const r = await fetch('/api/auth/complete-username', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                body: JSON.stringify({ username }),
+            });
+            const res = await r.json();
+            if (r.ok) {
+                localStorage.setItem('token', res.token);
+                localStorage.setItem('user', JSON.stringify(res.user));
+                window.location.href = decodeURIComponent(_redirect) || '/';
+            } else {
+                const el = document.getElementById('msg');
+                el.textContent = res.error;
+                el.className = 'message show error';
+            }
+        } catch (err) {
+            const el = document.getElementById('msg');
+            el.textContent = '网络错误: ' + err.message;
+            el.className = 'message show error';
+        }
+    }
+</script>
+</body>
+</html>

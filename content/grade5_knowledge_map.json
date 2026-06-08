@@ -1,0 +1,547 @@
+{
+  "textbook": "人教版",
+  "grade": 5,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "小数乘法",
+      "topicIds": [
+        "decimal_mul_meaning",
+        "decimal_mul_column"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "位置",
+      "topicIds": [
+        "position_grid"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "小数除法",
+      "topicIds": [
+        "decimal_div_meaning",
+        "decimal_div_column"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "可能性",
+      "topicIds": [
+        "probability_concept"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "简易方程",
+      "topicIds": [
+        "equation_meaning",
+        "equation_oral",
+        "equation_check",
+        "equation_solve_practice"
+      ]
+    },
+    {
+      "id": "u6",
+      "term": "upper",
+      "index": 6,
+      "title": "多边形的面积",
+      "topicIds": [
+        "parallelogram_area",
+        "triangle_area",
+        "trapezoid_area",
+        "polygon_area_oral",
+        "combined_area"
+      ]
+    },
+    {
+      "id": "u7",
+      "term": "upper",
+      "index": 7,
+      "title": "数学广角——植树问题",
+      "topicIds": [
+        "tree_planting"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "观察物体(三)",
+      "topicIds": [
+        "observation_3d_5"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "因数与倍数",
+      "topicIds": [
+        "factor_concept",
+        "factor_multiple_oral",
+        "prime_composite",
+        "divisibility_rules"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "长方体和正方体",
+      "topicIds": [
+        "cuboid_properties",
+        "cuboid_surface_area",
+        "cuboid_volume_concept",
+        "cuboid_calc",
+        "cuboid_volume_formula"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "分数的意义和性质",
+      "topicIds": [
+        "fraction_meaning5",
+        "equivalent_fraction",
+        "fraction_simplify",
+        "improper_fraction",
+        "fraction_compare5"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "图形的运动(三)",
+      "topicIds": [
+        "rotation_concept"
+      ]
+    },
+    {
+      "id": "l6",
+      "term": "lower",
+      "index": 6,
+      "title": "分数的加法和减法",
+      "topicIds": [
+        "fraction_add_same",
+        "fraction_add_diff",
+        "fraction_mixed_calc"
+      ]
+    },
+    {
+      "id": "l7",
+      "term": "lower",
+      "index": 7,
+      "title": "折线统计图",
+      "topicIds": [
+        "line_graph"
+      ]
+    },
+    {
+      "id": "l8",
+      "term": "lower",
+      "index": 8,
+      "title": "数学广角——找次品",
+      "topicIds": [
+        "find_defective"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "decimal_mul_meaning",
+      "unitId": "u1",
+      "title": "小数乘法意义",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "decimal_mul_meaning"
+    },
+    {
+      "id": "decimal_mul_column",
+      "unitId": "u1",
+      "title": "小数乘法竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "decimal_mul_meaning"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_mul_column"
+    },
+    {
+      "id": "position_grid",
+      "unitId": "u2",
+      "title": "位置与坐标",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "position_grid"
+    },
+    {
+      "id": "decimal_div_meaning",
+      "unitId": "u3",
+      "title": "小数除法意义",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_mul_meaning"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_div_meaning"
+    },
+    {
+      "id": "decimal_div_column",
+      "unitId": "u3",
+      "title": "小数除法竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "decimal_div_meaning"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_div_column"
+    },
+    {
+      "id": "probability_concept",
+      "unitId": "u4",
+      "title": "可能性",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "probability_concept"
+    },
+    {
+      "id": "equation_meaning",
+      "unitId": "u5",
+      "title": "方程的意义",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "equation_meaning"
+    },
+    {
+      "id": "equation_oral",
+      "unitId": "u5",
+      "title": "简单方程口算",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "equation_meaning"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "equation_oral"
+    },
+    {
+      "id": "equation_check",
+      "unitId": "u5",
+      "title": "检验方程的解",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "equation_meaning"
+      ],
+      "status": "ready",
+      "problemSetId": "equation_check"
+    },
+    {
+      "id": "equation_solve_practice",
+      "unitId": "u5",
+      "title": "解方程",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "equation_check"
+      ],
+      "status": "ready",
+      "problemSetId": "equation_solve_practice"
+    },
+    {
+      "id": "parallelogram_area",
+      "unitId": "u6",
+      "title": "平行四边形面积公式",
+      "pedagogy": "formula",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "parallelogram_area"
+    },
+    {
+      "id": "triangle_area",
+      "unitId": "u6",
+      "title": "三角形面积公式",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "parallelogram_area"
+      ],
+      "status": "ready",
+      "problemSetId": "triangle_area"
+    },
+    {
+      "id": "trapezoid_area",
+      "unitId": "u6",
+      "title": "梯形面积公式",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "triangle_area"
+      ],
+      "status": "ready",
+      "problemSetId": "trapezoid_area"
+    },
+    {
+      "id": "polygon_area_oral",
+      "unitId": "u6",
+      "title": "多边形面积口算",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "trapezoid_area"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "polygon_area_oral"
+    },
+    {
+      "id": "combined_area",
+      "unitId": "u6",
+      "title": "组合图形面积",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "polygon_area_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "combined_area"
+    },
+    {
+      "id": "tree_planting",
+      "unitId": "u7",
+      "title": "植树问题",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "tree_planting"
+    },
+    {
+      "id": "observation_3d_5",
+      "unitId": "l1",
+      "title": "观察物体",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "observation_3d_5"
+    },
+    {
+      "id": "factor_concept",
+      "unitId": "l2",
+      "title": "因数与倍数概念",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "factor_concept"
+    },
+    {
+      "id": "factor_multiple_oral",
+      "unitId": "l2",
+      "title": "因数倍数口算",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "factor_concept"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "factor_multiple_oral"
+    },
+    {
+      "id": "prime_composite",
+      "unitId": "l2",
+      "title": "质数与合数",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "factor_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "prime_composite"
+    },
+    {
+      "id": "divisibility_rules",
+      "unitId": "l2",
+      "title": "2/3/5整除特征",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "prime_composite"
+      ],
+      "status": "ready",
+      "problemSetId": "divisibility_rules"
+    },
+    {
+      "id": "cuboid_properties",
+      "unitId": "l3",
+      "title": "长方体正方体特征",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "cuboid_properties"
+    },
+    {
+      "id": "cuboid_surface_area",
+      "unitId": "l3",
+      "title": "表面积",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "cuboid_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "cuboid_surface_area"
+    },
+    {
+      "id": "cuboid_volume_concept",
+      "unitId": "l3",
+      "title": "体积的认识",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "cuboid_surface_area"
+      ],
+      "status": "ready",
+      "problemSetId": "cuboid_volume_concept"
+    },
+    {
+      "id": "cuboid_calc",
+      "unitId": "l3",
+      "title": "长方体正方体口算",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "cuboid_volume_concept"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "cuboid_calc"
+    },
+    {
+      "id": "cuboid_volume_formula",
+      "unitId": "l3",
+      "title": "体积公式应用",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "cuboid_calc"
+      ],
+      "status": "ready",
+      "problemSetId": "cuboid_volume_formula"
+    },
+    {
+      "id": "fraction_meaning5",
+      "unitId": "l4",
+      "title": "分数的意义",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "fraction_meaning5"
+    },
+    {
+      "id": "equivalent_fraction",
+      "unitId": "l4",
+      "title": "等值分数",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_meaning5"
+      ],
+      "status": "ready",
+      "problemSetId": "equivalent_fraction"
+    },
+    {
+      "id": "fraction_simplify",
+      "unitId": "l4",
+      "title": "约分",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "equivalent_fraction"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_simplify"
+    },
+    {
+      "id": "improper_fraction",
+      "unitId": "l4",
+      "title": "假分数与带分数",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_meaning5"
+      ],
+      "status": "ready",
+      "problemSetId": "improper_fraction"
+    },
+    {
+      "id": "fraction_compare5",
+      "unitId": "l4",
+      "title": "分数比大小",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_simplify"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_compare5"
+    },
+    {
+      "id": "rotation_concept",
+      "unitId": "l5",
+      "title": "旋转",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "rotation_concept"
+    },
+    {
+      "id": "fraction_add_same",
+      "unitId": "l6",
+      "title": "同分母分数加减",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "fraction_meaning5"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_add_same"
+    },
+    {
+      "id": "fraction_add_diff",
+      "unitId": "l6",
+      "title": "异分母分数加减",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "fraction_add_same",
+        "equivalent_fraction"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_add_diff"
+    },
+    {
+      "id": "fraction_mixed_calc",
+      "unitId": "l6",
+      "title": "分数混合运算",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "fraction_add_diff"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_mixed_calc"
+    },
+    {
+      "id": "line_graph",
+      "unitId": "l7",
+      "title": "折线统计图",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "line_graph"
+    },
+    {
+      "id": "find_defective",
+      "unitId": "l8",
+      "title": "找次品",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "find_defective"
+    }
+  ]
+}

@@ -1,0 +1,533 @@
+{
+  "textbook": "人教版",
+  "grade": 4,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "大数的认识",
+      "topicIds": [
+        "large_num_read",
+        "large_num_compare",
+        "large_num_round",
+        "large_num_oral"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "公顷和平方千米",
+      "topicIds": [
+        "hectare_sqkm"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "角的度量",
+      "topicIds": [
+        "angle_types",
+        "angle_measure"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "三位数乘两位数",
+      "topicIds": [
+        "mul_extended_oral",
+        "mul3x2_column"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "平行四边形和梯形",
+      "topicIds": [
+        "parallelogram_props",
+        "trapezoid_props"
+      ]
+    },
+    {
+      "id": "u6",
+      "term": "upper",
+      "index": 6,
+      "title": "除数是两位数的除法",
+      "topicIds": [
+        "div_tens_oral",
+        "div_2digit_column",
+        "div_2digit_remainder"
+      ]
+    },
+    {
+      "id": "u7",
+      "term": "upper",
+      "index": 7,
+      "title": "条形统计图",
+      "topicIds": [
+        "bar_chart_read"
+      ]
+    },
+    {
+      "id": "u8",
+      "term": "upper",
+      "index": 8,
+      "title": "数学广角——优化",
+      "topicIds": [
+        "optimization"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "四则运算",
+      "topicIds": [
+        "four_ops_order",
+        "mixed_2step"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "观察物体(二)",
+      "topicIds": [
+        "observation_3d"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "运算定律",
+      "topicIds": [
+        "commutative_law",
+        "associative_law",
+        "distributive_law",
+        "smart_calc"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "小数的意义和性质",
+      "topicIds": [
+        "decimal_meaning4",
+        "decimal_properties",
+        "decimal_compare4"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "三角形",
+      "topicIds": [
+        "triangle_classify",
+        "triangle_angles"
+      ]
+    },
+    {
+      "id": "l6",
+      "term": "lower",
+      "index": 6,
+      "title": "小数的加法和减法",
+      "topicIds": [
+        "decimal_add_column",
+        "decimal_sub_column",
+        "decimal_add_formula"
+      ]
+    },
+    {
+      "id": "l7",
+      "term": "lower",
+      "index": 7,
+      "title": "图形的运动(二)",
+      "topicIds": [
+        "axis_symmetry"
+      ]
+    },
+    {
+      "id": "l8",
+      "term": "lower",
+      "index": 8,
+      "title": "平均数与条形统计图",
+      "topicIds": [
+        "avg_concept",
+        "avg_calculate"
+      ]
+    },
+    {
+      "id": "l9",
+      "term": "lower",
+      "index": 9,
+      "title": "数学广角——鸡兔同笼",
+      "topicIds": [
+        "chicken_rabbit"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "large_num_read",
+      "unitId": "u1",
+      "title": "大数的读写",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "large_num_read"
+    },
+    {
+      "id": "large_num_compare",
+      "unitId": "u1",
+      "title": "大数比较大小",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "large_num_read"
+      ],
+      "status": "ready",
+      "problemSetId": "large_num_compare"
+    },
+    {
+      "id": "large_num_round",
+      "unitId": "u1",
+      "title": "大数的近似",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "large_num_read"
+      ],
+      "status": "ready",
+      "problemSetId": "large_num_round"
+    },
+    {
+      "id": "large_num_oral",
+      "unitId": "u1",
+      "title": "大数运算口算·万",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "large_num_read"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "large_num_oral"
+    },
+    {
+      "id": "hectare_sqkm",
+      "unitId": "u2",
+      "title": "公顷和平方千米",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "hectare_sqkm"
+    },
+    {
+      "id": "angle_types",
+      "unitId": "u3",
+      "title": "角的分类",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "angle_types"
+    },
+    {
+      "id": "angle_measure",
+      "unitId": "u3",
+      "title": "角的度量",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "angle_types"
+      ],
+      "status": "ready",
+      "problemSetId": "angle_measure"
+    },
+    {
+      "id": "mul_extended_oral",
+      "unitId": "u4",
+      "title": "整百整十乘法口算",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "mul_extended_oral"
+    },
+    {
+      "id": "mul3x2_column",
+      "unitId": "u4",
+      "title": "三位数乘两位数竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "mul_extended_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "mul3x2_column"
+    },
+    {
+      "id": "parallelogram_props",
+      "unitId": "u5",
+      "title": "平行四边形性质",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "parallelogram_props"
+    },
+    {
+      "id": "trapezoid_props",
+      "unitId": "u5",
+      "title": "梯形性质",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "parallelogram_props"
+      ],
+      "status": "ready",
+      "problemSetId": "trapezoid_props"
+    },
+    {
+      "id": "div_tens_oral",
+      "unitId": "u6",
+      "title": "整十数除法口算",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "div_tens_oral"
+    },
+    {
+      "id": "div_2digit_column",
+      "unitId": "u6",
+      "title": "两位数除法竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "div_tens_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "div_2digit_column"
+    },
+    {
+      "id": "div_2digit_remainder",
+      "unitId": "u6",
+      "title": "两位数除法有余数",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "div_2digit_column"
+      ],
+      "status": "ready",
+      "problemSetId": "div_2digit_remainder"
+    },
+    {
+      "id": "bar_chart_read",
+      "unitId": "u7",
+      "title": "条形统计图",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "bar_chart_read"
+    },
+    {
+      "id": "optimization",
+      "unitId": "u8",
+      "title": "优化问题",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "optimization"
+    },
+    {
+      "id": "four_ops_order",
+      "unitId": "l1",
+      "title": "四则运算顺序",
+      "pedagogy": "formula",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "four_ops_order"
+    },
+    {
+      "id": "mixed_2step",
+      "unitId": "l1",
+      "title": "两步混合运算口算",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "four_ops_order"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "mixed_2step"
+    },
+    {
+      "id": "observation_3d",
+      "unitId": "l2",
+      "title": "观察物体",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "observation_3d"
+    },
+    {
+      "id": "commutative_law",
+      "unitId": "l3",
+      "title": "交换律",
+      "pedagogy": "formula",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "commutative_law"
+    },
+    {
+      "id": "associative_law",
+      "unitId": "l3",
+      "title": "结合律",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "commutative_law"
+      ],
+      "status": "ready",
+      "problemSetId": "associative_law"
+    },
+    {
+      "id": "distributive_law",
+      "unitId": "l3",
+      "title": "分配律",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "commutative_law"
+      ],
+      "status": "ready",
+      "problemSetId": "distributive_law"
+    },
+    {
+      "id": "smart_calc",
+      "unitId": "l3",
+      "title": "简便运算",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "distributive_law",
+        "associative_law"
+      ],
+      "status": "ready",
+      "problemSetId": "smart_calc"
+    },
+    {
+      "id": "decimal_meaning4",
+      "unitId": "l4",
+      "title": "小数的意义",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "decimal_meaning4"
+    },
+    {
+      "id": "decimal_properties",
+      "unitId": "l4",
+      "title": "小数的性质",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_meaning4"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_properties"
+    },
+    {
+      "id": "decimal_compare4",
+      "unitId": "l4",
+      "title": "小数比大小",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_compare4"
+    },
+    {
+      "id": "triangle_classify",
+      "unitId": "l5",
+      "title": "三角形分类",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "triangle_classify"
+    },
+    {
+      "id": "triangle_angles",
+      "unitId": "l5",
+      "title": "三角形内角和",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "triangle_classify"
+      ],
+      "status": "ready",
+      "problemSetId": "triangle_angles"
+    },
+    {
+      "id": "decimal_add_column",
+      "unitId": "l6",
+      "title": "小数加法竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "decimal_meaning4"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_add_column"
+    },
+    {
+      "id": "decimal_sub_column",
+      "unitId": "l6",
+      "title": "小数减法竖式",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "decimal_add_column"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_sub_column"
+    },
+    {
+      "id": "decimal_add_formula",
+      "unitId": "l6",
+      "title": "小数加减应用",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "decimal_sub_column"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_add_formula"
+    },
+    {
+      "id": "axis_symmetry",
+      "unitId": "l7",
+      "title": "轴对称",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "axis_symmetry"
+    },
+    {
+      "id": "avg_concept",
+      "unitId": "l8",
+      "title": "平均数的认识",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "avg_concept"
+    },
+    {
+      "id": "avg_calculate",
+      "unitId": "l8",
+      "title": "求平均数",
+      "pedagogy": "data",
+      "dependsOn": [
+        "avg_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "avg_calculate"
+    },
+    {
+      "id": "chicken_rabbit",
+      "unitId": "l9",
+      "title": "鸡兔同笼",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "chicken_rabbit"
+    }
+  ]
+}

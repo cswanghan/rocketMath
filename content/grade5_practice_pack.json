@@ -1,0 +1,4482 @@
+{
+  "version": "2.0.0",
+  "grade": 5,
+  "sets": [
+    {
+      "id": "decimal_mul_column",
+      "title": "小数乘法竖式",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "dmc_b0",
+          "type": "fill",
+          "prompt": "12 × 3 = ?\n(算 1.2 × 3 的中间步骤)",
+          "difficulty": "basic",
+          "answer": 36,
+          "hint": "先按整数算",
+          "explanation": "12×3=36,小数点后移一位→3.6"
+        },
+        {
+          "id": "dmc_b1",
+          "type": "fill",
+          "prompt": "25 × 4 = ?\n(算 2.5 × 4 的中间步骤)",
+          "difficulty": "basic",
+          "answer": 100,
+          "hint": "先按整数算",
+          "explanation": "25×4=100,再点小数点→10.0=10"
+        },
+        {
+          "id": "dmc_c0",
+          "type": "fill",
+          "prompt": "15 × 6 = ?\n(算 1.5 × 6 的中间步骤)",
+          "difficulty": "consolidate",
+          "answer": 90,
+          "hint": "先按整数算",
+          "explanation": "15×6=90,点一位小数→9.0=9"
+        },
+        {
+          "id": "dmc_c1",
+          "type": "fill",
+          "prompt": "24 × 5 = ?\n(算 2.4 × 5 的中间步骤)",
+          "difficulty": "consolidate",
+          "answer": 120,
+          "hint": "先按整数算",
+          "explanation": "24×5=120,点一位小数→12.0=12"
+        },
+        {
+          "id": "dmc_c2",
+          "type": "fill",
+          "prompt": "8 × 5 = ?\n(算 0.8 × 5 的中间步骤)",
+          "difficulty": "consolidate",
+          "answer": 40,
+          "hint": "先按整数算",
+          "explanation": "8×5=40,点一位小数→4.0=4"
+        },
+        {
+          "id": "dmc_c3",
+          "type": "fill",
+          "prompt": "36 × 5 = ?\n(算 3.6 × 5 的中间步骤)",
+          "difficulty": "consolidate",
+          "answer": 180,
+          "hint": "先按整数算",
+          "explanation": "36×5=180,点一位小数→18.0=18"
+        },
+        {
+          "id": "dmc_x0",
+          "type": "fill",
+          "prompt": "一条彩带长 2.5 米,买 4 条彩带共多少米?",
+          "difficulty": "challenge",
+          "answer": 10,
+          "hint": "2.5×4",
+          "explanation": "2.5×4=10.0=10 米"
+        },
+        {
+          "id": "dmc_x1",
+          "type": "fill",
+          "prompt": "每个苹果重 0.3 千克,6 个苹果共多少千克?",
+          "difficulty": "challenge",
+          "answer": 18,
+          "hint": "0.3×6,去掉小数点",
+          "explanation": "3×6=18,一位小数→1.8 千克"
+        }
+      ]
+    },
+    {
+      "id": "decimal_div_column",
+      "title": "小数除法竖式",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ddc_b0",
+          "type": "fill",
+          "prompt": "3.6 ÷ 3 = ?",
+          "difficulty": "basic",
+          "answer": 12,
+          "hint": "小数除以整数:小数点对齐",
+          "explanation": "36÷3=12,点一位→1.2; 题意:36÷3的中间步骤=12"
+        },
+        {
+          "id": "ddc_b1",
+          "type": "fill",
+          "prompt": "4.8 ÷ 4 = ?",
+          "difficulty": "basic",
+          "answer": 12,
+          "hint": "同上",
+          "explanation": "48÷4=12,→1.2"
+        },
+        {
+          "id": "ddc_c0",
+          "type": "fill",
+          "prompt": "7.2 ÷ 6 = ?",
+          "difficulty": "consolidate",
+          "answer": 12,
+          "hint": "同上",
+          "explanation": "72÷6=12,→1.2"
+        },
+        {
+          "id": "ddc_c1",
+          "type": "fill",
+          "prompt": "9.6 ÷ 8 = ?",
+          "difficulty": "consolidate",
+          "answer": 12,
+          "hint": "同上",
+          "explanation": "96÷8=12,→1.2"
+        },
+        {
+          "id": "ddc_c2",
+          "type": "fill",
+          "prompt": "6.3 ÷ 9 = ?",
+          "difficulty": "consolidate",
+          "answer": 7,
+          "hint": "同上",
+          "explanation": "63÷9=7,→0.7"
+        },
+        {
+          "id": "ddc_c3",
+          "type": "fill",
+          "prompt": "8.1 ÷ 9 = ?",
+          "difficulty": "consolidate",
+          "answer": 9,
+          "hint": "同上",
+          "explanation": "81÷9=9,→0.9"
+        },
+        {
+          "id": "ddc_x0",
+          "type": "fill",
+          "prompt": "把 7.2 米绳子平均分成 6 段,每段多少米?(请填整数中间步骤:72÷6=?)",
+          "difficulty": "challenge",
+          "answer": 12,
+          "hint": "72÷6",
+          "explanation": "72÷6=12,→1.2 米"
+        },
+        {
+          "id": "ddc_x1",
+          "type": "fill",
+          "prompt": "12.6 ÷ 6 = ?(填整数中间步骤:126÷6=?)",
+          "difficulty": "challenge",
+          "answer": 21,
+          "hint": "126÷6",
+          "explanation": "126÷6=21,→2.1"
+        }
+      ]
+    },
+    {
+      "id": "fraction_add_same",
+      "title": "同分母分数加减",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fas_b0",
+          "type": "mc",
+          "prompt": "1/5 + 2/5 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/10",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2/5",
+              "correct": false
+            }
+          ],
+          "hint": "分母不变,分子相加",
+          "explanation": "1/5+2/5=3/5"
+        },
+        {
+          "id": "fas_b1",
+          "type": "mc",
+          "prompt": "4/7 - 2/7 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2/7",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6/7",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2/14",
+              "correct": false
+            }
+          ],
+          "hint": "分母不变,分子相减",
+          "explanation": "4/7-2/7=2/7"
+        },
+        {
+          "id": "fas_c0",
+          "type": "mc",
+          "prompt": "3/8 + 4/8 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7/8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7/16",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/8",
+              "correct": false
+            }
+          ],
+          "hint": "分子相加",
+          "explanation": "3/8+4/8=7/8"
+        },
+        {
+          "id": "fas_c1",
+          "type": "fill",
+          "prompt": "5/9 - 2/9 = ?(用分子/分母格式)",
+          "difficulty": "consolidate",
+          "answer": "3/9",
+          "hint": "分子相减",
+          "explanation": "5/9-2/9=3/9=1/3"
+        },
+        {
+          "id": "fas_c2",
+          "type": "mc",
+          "prompt": "1 - 3/7 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4/7",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/7",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/7",
+              "correct": false
+            }
+          ],
+          "hint": "1=7/7",
+          "explanation": "7/7-3/7=4/7"
+        },
+        {
+          "id": "fas_x0",
+          "type": "fill",
+          "prompt": "1/6 + 3/6 + 1/6 = ?",
+          "difficulty": "challenge",
+          "answer": "5/6",
+          "hint": "依次相加",
+          "explanation": "1/6+3/6+1/6=5/6"
+        },
+        {
+          "id": "fas_x1",
+          "type": "mc",
+          "prompt": "一桶水,喝了 2/9,又喝了 3/9,还剩几分之几?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4/9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5/9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6/9",
+              "correct": false
+            }
+          ],
+          "hint": "1 - 2/9 - 3/9",
+          "explanation": "1-2/9-3/9=9/9-5/9=4/9"
+        }
+      ]
+    },
+    {
+      "id": "fraction_add_diff",
+      "title": "异分母分数加减",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fad_b0",
+          "type": "mc",
+          "prompt": "1/2 + 1/4 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2/6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/6",
+              "correct": false
+            }
+          ],
+          "hint": "通分:1/2=2/4",
+          "explanation": "2/4+1/4=3/4"
+        },
+        {
+          "id": "fad_b1",
+          "type": "mc",
+          "prompt": "1/3 + 1/6 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2/9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2/18",
+              "correct": false
+            }
+          ],
+          "hint": "1/3=2/6",
+          "explanation": "2/6+1/6=3/6=1/2"
+        },
+        {
+          "id": "fad_c0",
+          "type": "mc",
+          "prompt": "3/4 - 1/2 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2/4",
+              "correct": false
+            }
+          ],
+          "hint": "1/2=2/4,3/4-2/4",
+          "explanation": "3/4-2/4=1/4"
+        },
+        {
+          "id": "fad_c1",
+          "type": "mc",
+          "prompt": "5/6 - 1/3 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4/3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/6",
+              "correct": false
+            }
+          ],
+          "hint": "1/3=2/6",
+          "explanation": "5/6-2/6=3/6=1/2"
+        },
+        {
+          "id": "fad_c2",
+          "type": "mc",
+          "prompt": "1/4 + 1/3 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7/12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2/7",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2/12",
+              "correct": false
+            }
+          ],
+          "hint": "公分母 12",
+          "explanation": "3/12+4/12=7/12"
+        },
+        {
+          "id": "fad_x0",
+          "type": "steps",
+          "prompt": "2/3 + 1/4 = ?",
+          "difficulty": "challenge",
+          "fields": [
+            {
+              "id": "lcd",
+              "label": "公分母",
+              "answer": 12
+            },
+            {
+              "id": "num",
+              "label": "结果分子(/?12)",
+              "answer": 11
+            }
+          ],
+          "hint": "找最小公倍数再通分",
+          "explanation": "LCD=12;2/3=8/12,1/4=3/12,和=11/12"
+        },
+        {
+          "id": "fad_x1",
+          "type": "mc",
+          "prompt": "小明做了 1/3 小时语文作业、1/4 小时数学作业,共多长时间?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7/12 小时",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2/7 小时",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/2 小时",
+              "correct": false
+            }
+          ],
+          "hint": "通分后相加",
+          "explanation": "1/3+1/4=4/12+3/12=7/12 小时"
+        }
+      ]
+    },
+    {
+      "id": "fraction_mixed_calc",
+      "title": "分数混合运算",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fmc_b0",
+          "type": "mc",
+          "prompt": "1/2 + 1/4 + 1/4 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3/8",
+              "correct": false
+            }
+          ],
+          "hint": "1/2=2/4,再相加",
+          "explanation": "2/4+1/4+1/4=4/4=1"
+        },
+        {
+          "id": "fmc_b1",
+          "type": "mc",
+          "prompt": "3/4 - 1/4 + 1/4 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1",
+              "correct": false
+            }
+          ],
+          "hint": "从左到右",
+          "explanation": "3/4-1/4+1/4=3/4"
+        },
+        {
+          "id": "fmc_c0",
+          "type": "mc",
+          "prompt": "1/2 + 1/3 - 1/6 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2/3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/3",
+              "correct": false
+            }
+          ],
+          "hint": "公分母 6",
+          "explanation": "3/6+2/6-1/6=4/6=2/3"
+        },
+        {
+          "id": "fmc_c1",
+          "type": "mc",
+          "prompt": "5/6 - 1/3 + 1/6 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2/3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5/6",
+              "correct": false
+            }
+          ],
+          "hint": "1/3=2/6",
+          "explanation": "5/6-2/6+1/6=4/6=2/3"
+        },
+        {
+          "id": "fmc_c2",
+          "type": "mc",
+          "prompt": "1 - 1/3 - 1/4 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5/12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7/12",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/2",
+              "correct": false
+            }
+          ],
+          "hint": "公分母 12",
+          "explanation": "12/12-4/12-3/12=5/12"
+        },
+        {
+          "id": "fmc_x0",
+          "type": "mc",
+          "prompt": "一根绳子,用了 1/3 做跳绳、2/9 做扎花,还剩几分之几?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4/9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5/9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/3",
+              "correct": false
+            }
+          ],
+          "hint": "1-1/3-2/9,通分到 9",
+          "explanation": "1-3/9-2/9=4/9"
+        },
+        {
+          "id": "fmc_x1",
+          "type": "mc",
+          "prompt": "1/2 + 1/3 + 1/4 = ?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "13/12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3/4",
+              "correct": false
+            }
+          ],
+          "hint": "公分母 12",
+          "explanation": "6/12+4/12+3/12=13/12"
+        }
+      ]
+    },
+    {
+      "id": "decimal_mul_meaning",
+      "title": "小数乘法意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "dmm_b0",
+          "type": "mc",
+          "prompt": "0.3 × 4 表示什么?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "0.3 的 4 倍",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4 的 0.3 倍",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0.3 + 4",
+              "correct": false
+            }
+          ],
+          "hint": "小数乘整数的意义",
+          "explanation": "0.3×4=0.3+0.3+0.3+0.3=1.2"
+        },
+        {
+          "id": "dmm_b1",
+          "type": "mc",
+          "prompt": "小数乘整数,积和因数比,积会?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "等于因数",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "可能大也可能小",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "一定更大",
+              "correct": false
+            }
+          ],
+          "hint": "整数可以是0或1",
+          "explanation": "乘以0得0,乘以1得本身"
+        },
+        {
+          "id": "dmm_c0",
+          "type": "mc",
+          "prompt": "1.5 × 2 的结果是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "0.3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "30",
+              "correct": false
+            }
+          ],
+          "hint": "1.5+1.5",
+          "explanation": "1.5×2=3.0=3"
+        },
+        {
+          "id": "dmm_c1",
+          "type": "mc",
+          "prompt": "小数乘小数,积和被乘数比?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "一定更小",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "一定更大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不一定",
+              "correct": true
+            }
+          ],
+          "hint": "乘以大于1的小数,积更大",
+          "explanation": "如 0.5×1.2=0.6>0.5"
+        },
+        {
+          "id": "dmm_x0",
+          "type": "mc",
+          "prompt": "2.4 × 0.5,结果与 2.4 相比?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "更小",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "更大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相等",
+              "correct": false
+            }
+          ],
+          "hint": "0.5 < 1,所以积 < 被乘数",
+          "explanation": "2.4×0.5=1.2<2.4"
+        },
+        {
+          "id": "dmm_x1",
+          "type": "mc",
+          "prompt": "下面哪个算式的积最大?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3.6 × 1.2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3.6 × 0.9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3.6 × 1",
+              "correct": false
+            }
+          ],
+          "hint": "乘数越大积越大",
+          "explanation": "1.2>1>0.9,故3.6×1.2最大"
+        }
+      ]
+    },
+    {
+      "id": "decimal_div_meaning",
+      "title": "小数除法意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ddm_b0",
+          "type": "mc",
+          "prompt": "3 ÷ 0.5 的含义是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3 里面有几个 0.5",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "3 是 0.5 的几倍",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "两者相同",
+              "correct": true
+            }
+          ],
+          "hint": "意义相同",
+          "explanation": "都等于 6"
+        },
+        {
+          "id": "ddm_b1",
+          "type": "mc",
+          "prompt": "被除数不变,除数变小,商会?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "变大",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "变小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不变",
+              "correct": false
+            }
+          ],
+          "hint": "反比关系",
+          "explanation": "除数越小,商越大"
+        },
+        {
+          "id": "ddm_c0",
+          "type": "mc",
+          "prompt": "4.8 ÷ 0.8,被除数和除数同乘 10 变成?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "48 ÷ 8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "48 ÷ 80",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4.8 ÷ 8",
+              "correct": false
+            }
+          ],
+          "hint": "商不变性质",
+          "explanation": "商不变:同乘10"
+        },
+        {
+          "id": "ddm_c1",
+          "type": "mc",
+          "prompt": "6 ÷ 0.3 等于多少?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "20",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0.2",
+              "correct": false
+            }
+          ],
+          "hint": "6/0.3=60/3=20",
+          "explanation": "同乘10:60÷3=20"
+        },
+        {
+          "id": "ddm_x0",
+          "type": "mc",
+          "prompt": "小数除法计算时,把除数化为整数的依据是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "商不变性质",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "积不变性质",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "四则运算顺序",
+              "correct": false
+            }
+          ],
+          "hint": "商不变:被除数和除数同乘相同的数",
+          "explanation": "商不变性质"
+        },
+        {
+          "id": "ddm_x1",
+          "type": "mc",
+          "prompt": "2.4 ÷ 0.04,结果是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "60",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "600",
+              "correct": false
+            }
+          ],
+          "hint": "同乘100:240÷4=60",
+          "explanation": "240÷4=60"
+        }
+      ]
+    },
+    {
+      "id": "position_grid",
+      "title": "位置与坐标",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pg_b0",
+          "type": "mc",
+          "prompt": "在方格纸上用(列,行)表示位置,先写哪个?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "列(竖)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "行(横)",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "都可以",
+              "correct": false
+            }
+          ],
+          "hint": "先列后行",
+          "explanation": "规定:先列后行,如(3,2)表示第3列第2行"
+        },
+        {
+          "id": "pg_b1",
+          "type": "mc",
+          "prompt": "(2, 3) 表示第几列第几行?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "第2列第3行",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "第3列第2行",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "第2行第3列",
+              "correct": false
+            }
+          ],
+          "hint": "先列后行",
+          "explanation": "第2列第3行"
+        },
+        {
+          "id": "pg_c0",
+          "type": "mc",
+          "prompt": "小红坐在第4列第2行,用数对表示是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "(4,2)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "(2,4)",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "(4,4)",
+              "correct": false
+            }
+          ],
+          "hint": "先列后行",
+          "explanation": "(4,2)"
+        },
+        {
+          "id": "pg_c1",
+          "type": "mc",
+          "prompt": "(3,5) 和 (5,3) 表示的位置?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不同位置",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "相同位置",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "看情况",
+              "correct": false
+            }
+          ],
+          "hint": "顺序不同,位置不同",
+          "explanation": "(3,5)与(5,3)是两个不同位置"
+        },
+        {
+          "id": "pg_x0",
+          "type": "mc",
+          "prompt": "在方格中描出 (2,4)、(4,4)、(4,2)、(2,2) 四点,连线后是什么图形?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "正方形",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "长方形",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "菱形",
+              "correct": false
+            }
+          ],
+          "hint": "边长相等的四边形",
+          "explanation": "四点构成正方形"
+        },
+        {
+          "id": "pg_x1",
+          "type": "mc",
+          "prompt": "某点向右移2格后坐标是(5,3),则原来的坐标是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "(3,3)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "(7,3)",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "(5,1)",
+              "correct": false
+            }
+          ],
+          "hint": "向右列+2,向左列-2",
+          "explanation": "5-2=3,行不变:原坐标(3,3)"
+        }
+      ]
+    },
+    {
+      "id": "probability_concept",
+      "title": "可能性",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "prob_b0",
+          "type": "mc",
+          "prompt": "明天太阳一定会从东方升起,这是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "确定事件",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不确定事件",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不可能事件",
+              "correct": false
+            }
+          ],
+          "hint": "一定发生",
+          "explanation": "确定事件"
+        },
+        {
+          "id": "prob_b1",
+          "type": "mc",
+          "prompt": "掷一个骰子,出现 7 点是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不可能事件",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "确定事件",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "随机事件",
+              "correct": false
+            }
+          ],
+          "hint": "骰子只有1-6点",
+          "explanation": "不可能事件"
+        },
+        {
+          "id": "prob_c0",
+          "type": "mc",
+          "prompt": "袋子里有 3 个红球,摸出一个,是红球的可能性?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "一定",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "可能",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不可能",
+              "correct": false
+            }
+          ],
+          "hint": "袋中只有红球",
+          "explanation": "一定是红球"
+        },
+        {
+          "id": "prob_c1",
+          "type": "mc",
+          "prompt": "一个袋子里有 2 红 3 蓝,摸出蓝球的可能性?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "比摸出红球大",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "比摸出红球小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "3>2,蓝球更多",
+          "explanation": "蓝球3个>红球2个,可能性更大"
+        },
+        {
+          "id": "prob_x0",
+          "type": "mc",
+          "prompt": "箱子里有红、蓝各5个球,摸出红球的可能性?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "等可能",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "红球更大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "蓝球更大",
+              "correct": false
+            }
+          ],
+          "hint": "数量相同",
+          "explanation": "各5个,可能性相等"
+        },
+        {
+          "id": "prob_x1",
+          "type": "mc",
+          "prompt": "一个正方体6面分别写1-6,掷出偶数的可能性?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "一半",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "大于一半",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "小于一半",
+              "correct": false
+            }
+          ],
+          "hint": "2,4,6 共3面",
+          "explanation": "偶数3个÷总共6个=1/2"
+        }
+      ]
+    },
+    {
+      "id": "equation_meaning",
+      "title": "方程的意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "eqm_b0",
+          "type": "mc",
+          "prompt": "含有未知数的等式叫做?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "方程",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "算式",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不等式",
+              "correct": false
+            }
+          ],
+          "hint": "方程定义",
+          "explanation": "方程=含未知数的等式"
+        },
+        {
+          "id": "eqm_b1",
+          "type": "mc",
+          "prompt": "下面哪个是方程?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "x + 5 = 12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3 + 5 = 8",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "x + 5",
+              "correct": false
+            }
+          ],
+          "hint": "含未知数且是等式",
+          "explanation": "x+5=12 是方程"
+        },
+        {
+          "id": "eqm_c0",
+          "type": "mc",
+          "prompt": "方程一定是等式吗?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "一定是",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不一定",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一定不是",
+              "correct": false
+            }
+          ],
+          "hint": "方程必须有等号",
+          "explanation": "方程一定是等式"
+        },
+        {
+          "id": "eqm_c1",
+          "type": "mc",
+          "prompt": "等式一定是方程吗?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不一定",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "一定是",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一定不是",
+              "correct": false
+            }
+          ],
+          "hint": "等式可以没有未知数",
+          "explanation": "3+5=8 是等式但不是方程"
+        },
+        {
+          "id": "eqm_x0",
+          "type": "mc",
+          "prompt": "3x + 2 是方程吗?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不是,没有等号",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "是,有未知数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "是,有加法",
+              "correct": false
+            }
+          ],
+          "hint": "没有等号就不是方程",
+          "explanation": "方程必须有等号"
+        },
+        {
+          "id": "eqm_x1",
+          "type": "mc",
+          "prompt": "下面哪个不是方程?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2x = 10",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "x + y = 5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5 + 3 = 8",
+              "correct": true
+            }
+          ],
+          "hint": "5+3=8不含未知数",
+          "explanation": "5+3=8 是等式但不是方程"
+        }
+      ]
+    },
+    {
+      "id": "equation_check",
+      "title": "检验方程的解",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "eqc_b0",
+          "type": "mc",
+          "prompt": "验证 x=3 是否是 x+5=8 的解?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "代入:3+5=8 ✓",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "代入:3+5=9 ✗",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不用验证",
+              "correct": false
+            }
+          ],
+          "hint": "把x=3代入等式",
+          "explanation": "3+5=8,左=右,是解"
+        },
+        {
+          "id": "eqc_b1",
+          "type": "mc",
+          "prompt": "方程的解指的是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "使方程成立的未知数的值",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "方程的结果",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "方程里的数",
+              "correct": false
+            }
+          ],
+          "hint": "解的定义",
+          "explanation": "使等式成立的未知数的值"
+        },
+        {
+          "id": "eqc_c0",
+          "type": "mc",
+          "prompt": "x=4 是方程 2x=10 的解吗?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不是,2×4=8≠10",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "是,2×4=8",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不确定",
+              "correct": false
+            }
+          ],
+          "hint": "代入验证",
+          "explanation": "2×4=8≠10,不是解"
+        },
+        {
+          "id": "eqc_c1",
+          "type": "mc",
+          "prompt": "x=5 是方程 3x-5=10 的解吗?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "是,3×5-5=10",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不是",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不确定",
+              "correct": false
+            }
+          ],
+          "hint": "3×5-5=15-5=10 ✓",
+          "explanation": "3×5-5=10,是解"
+        },
+        {
+          "id": "eqc_x0",
+          "type": "mc",
+          "prompt": "下面哪个值是方程 x÷4+3=5 的解?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "x=8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "x=4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "x=12",
+              "correct": false
+            }
+          ],
+          "hint": "8÷4+3=2+3=5 ✓",
+          "explanation": "x=8代入:8÷4+3=5 ✓"
+        },
+        {
+          "id": "eqc_x1",
+          "type": "mc",
+          "prompt": "x=6 是方程 50-4x=26 的解吗?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "是,50-24=26 ✓",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不是,50-24=24",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不确定",
+              "correct": false
+            }
+          ],
+          "hint": "50-4×6=50-24=26",
+          "explanation": "50-24=26,是解"
+        }
+      ]
+    },
+    {
+      "id": "factor_concept",
+      "title": "因数与倍数概念",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fc_b0",
+          "type": "mc",
+          "prompt": "12 = 3 × 4,那么 3 和 4 是 12 的?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "因数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "倍数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "公因数",
+              "correct": false
+            }
+          ],
+          "hint": "因数定义",
+          "explanation": "3和4都是12的因数"
+        },
+        {
+          "id": "fc_b1",
+          "type": "mc",
+          "prompt": "12 是 3 的?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "倍数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "因数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "公倍数",
+              "correct": false
+            }
+          ],
+          "hint": "倍数定义",
+          "explanation": "12÷3=4,12是3的倍数"
+        },
+        {
+          "id": "fc_c0",
+          "type": "mc",
+          "prompt": "一个数的因数,最大不超过?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "它本身",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "它的一半",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "任意大",
+              "correct": false
+            }
+          ],
+          "hint": "自身是最大因数",
+          "explanation": "最大因数是它本身"
+        },
+        {
+          "id": "fc_c1",
+          "type": "mc",
+          "prompt": "一个数的最小倍数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "它本身",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2倍",
+              "correct": false
+            }
+          ],
+          "hint": "最小倍数是它本身",
+          "explanation": "最小倍数就是本身(×1)"
+        },
+        {
+          "id": "fc_x0",
+          "type": "mc",
+          "prompt": "18 的因数有几个?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6个",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4个",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8个",
+              "correct": false
+            }
+          ],
+          "hint": "1,2,3,6,9,18",
+          "explanation": "1×18,2×9,3×6 → 共6个因数"
+        },
+        {
+          "id": "fc_x1",
+          "type": "mc",
+          "prompt": "36 的因数中,最大的因数是多少?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "36",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "18",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "最大因数是它本身",
+          "explanation": "36÷1=36,最大因数是36自身"
+        }
+      ]
+    },
+    {
+      "id": "prime_composite",
+      "title": "质数与合数",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pc_b0",
+          "type": "mc",
+          "prompt": "只有 1 和它本身两个因数的数叫?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "质数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "合数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "偶数",
+              "correct": false
+            }
+          ],
+          "hint": "质数定义",
+          "explanation": "质数只有1和本身两个因数"
+        },
+        {
+          "id": "pc_b1",
+          "type": "mc",
+          "prompt": "7 是质数还是合数?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "质数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "合数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "既不是",
+              "correct": false
+            }
+          ],
+          "hint": "7的因数只有1和7",
+          "explanation": "7是质数"
+        },
+        {
+          "id": "pc_c0",
+          "type": "mc",
+          "prompt": "1 是质数还是合数?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "都不是",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "质数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "合数",
+              "correct": false
+            }
+          ],
+          "hint": "1只有一个因数",
+          "explanation": "1只有1个因数,既不是质数也不是合数"
+        },
+        {
+          "id": "pc_c1",
+          "type": "mc",
+          "prompt": "最小的质数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3",
+              "correct": false
+            }
+          ],
+          "hint": "2是偶数中唯一质数",
+          "explanation": "2是最小的质数"
+        },
+        {
+          "id": "pc_x0",
+          "type": "mc",
+          "prompt": "20 以内的质数有几个?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "8个",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6个",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10个",
+              "correct": false
+            }
+          ],
+          "hint": "2,3,5,7,11,13,17,19",
+          "explanation": "2,3,5,7,11,13,17,19 共8个"
+        },
+        {
+          "id": "pc_x1",
+          "type": "mc",
+          "prompt": "两个质数的和一定是合数吗?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不一定",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "一定是",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一定不是",
+              "correct": false
+            }
+          ],
+          "hint": "2+3=5是质数",
+          "explanation": "2+3=5,是质数,故不一定"
+        }
+      ]
+    },
+    {
+      "id": "divisibility_rules",
+      "title": "2/3/5整除特征",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "dr_b0",
+          "type": "mc",
+          "prompt": "个位是 0 或 5 的数能被几整除?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3",
+              "correct": false
+            }
+          ],
+          "hint": "5的整除特征",
+          "explanation": "个位0或5→能被5整除"
+        },
+        {
+          "id": "dr_b1",
+          "type": "mc",
+          "prompt": "能被 2 整除的数叫?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "偶数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "奇数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "质数",
+              "correct": false
+            }
+          ],
+          "hint": "偶数定义",
+          "explanation": "偶数能被2整除"
+        },
+        {
+          "id": "dr_c0",
+          "type": "mc",
+          "prompt": "判断 126 能否被 3 整除?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "能,1+2+6=9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不能,末位是6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不确定",
+              "correct": false
+            }
+          ],
+          "hint": "3的整除特征:各位数字之和",
+          "explanation": "1+2+6=9,9÷3=3,故能被3整除"
+        },
+        {
+          "id": "dr_c1",
+          "type": "mc",
+          "prompt": "312 能被哪些数整除(2、3、5中)?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2和3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "只有2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2、3和5",
+              "correct": false
+            }
+          ],
+          "hint": "末位2→能被2;3+1+2=6→能被3;末位非0/5→不被5",
+          "explanation": "能被2和3整除"
+        },
+        {
+          "id": "dr_x0",
+          "type": "mc",
+          "prompt": "能同时被 2、3、5 整除的最小两位数是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "30",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "60",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "15",
+              "correct": false
+            }
+          ],
+          "hint": "LCM(2,3,5)=30",
+          "explanation": "30:末位0→被2和5;3+0=3→被3"
+        },
+        {
+          "id": "dr_x1",
+          "type": "mc",
+          "prompt": "下面哪个数既是偶数又能被 3 整除?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "15",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "16",
+              "correct": false
+            }
+          ],
+          "hint": "12:偶数;1+2=3能被3整除",
+          "explanation": "12满足两个条件"
+        }
+      ]
+    },
+    {
+      "id": "fraction_meaning5",
+      "title": "分数的意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fm5_b0",
+          "type": "mc",
+          "prompt": "分数 3/5 表示把一个整体平均分成几份,取几份?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "平均分5份,取3份",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "平均分3份,取5份",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3加5",
+              "correct": false
+            }
+          ],
+          "hint": "分母是份数,分子是取的份数",
+          "explanation": "分母5表示平均分5份,分子3表示取3份"
+        },
+        {
+          "id": "fm5_b1",
+          "type": "mc",
+          "prompt": "分数单位 1/8 表示把整体平均分成几份取1份?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "8份取1份",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1份取8份",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8个1",
+              "correct": false
+            }
+          ],
+          "hint": "分数单位定义",
+          "explanation": "1/8是分数单位,表示8份中的1份"
+        },
+        {
+          "id": "fm5_c0",
+          "type": "mc",
+          "prompt": "3/7 里有几个 1/7?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3个",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7个",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4个",
+              "correct": false
+            }
+          ],
+          "hint": "分子就是分数单位的个数",
+          "explanation": "3/7=3个1/7"
+        },
+        {
+          "id": "fm5_c1",
+          "type": "mc",
+          "prompt": "分数 4/5 中,分数单位是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4/5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/4",
+              "correct": false
+            }
+          ],
+          "hint": "分数单位=1/分母",
+          "explanation": "分数单位是1/5"
+        },
+        {
+          "id": "fm5_x0",
+          "type": "mc",
+          "prompt": "把 1 米平均分成 10 段,每段是多少分之多少米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/10 米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10/1 米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/10 厘米",
+              "correct": false
+            }
+          ],
+          "hint": "平均分10份取1份",
+          "explanation": "每段是1/10米=0.1米"
+        },
+        {
+          "id": "fm5_x1",
+          "type": "mc",
+          "prompt": "5/9 和 3/7 哪个的分数单位更大?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/7,分母更小",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5/9,分母更小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一样大",
+              "correct": false
+            }
+          ],
+          "hint": "分母越小,分数单位越大",
+          "explanation": "1/7>1/9,故3/7的分数单位更大"
+        }
+      ]
+    },
+    {
+      "id": "equivalent_fraction",
+      "title": "等值分数",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ef_b0",
+          "type": "mc",
+          "prompt": "1/2 和 2/4 是等值分数吗?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "是",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不是",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不确定",
+              "correct": false
+            }
+          ],
+          "hint": "大小相等的分数",
+          "explanation": "1/2=2/4,是等值分数"
+        },
+        {
+          "id": "ef_b1",
+          "type": "mc",
+          "prompt": "等值分数的分子分母同时乘以或除以同一个不为零的数,大小?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不变",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "变大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "变小",
+              "correct": false
+            }
+          ],
+          "hint": "分数的基本性质",
+          "explanation": "大小不变"
+        },
+        {
+          "id": "ef_c0",
+          "type": "mc",
+          "prompt": "1/3 = ?/9",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6",
+              "correct": false
+            }
+          ],
+          "hint": "分母×3,分子也×3",
+          "explanation": "1×3=3,故1/3=3/9"
+        },
+        {
+          "id": "ef_c1",
+          "type": "fill",
+          "prompt": "4/6 = 2/?",
+          "difficulty": "consolidate",
+          "answer": 3,
+          "hint": "分子÷2,分母也÷2",
+          "explanation": "4÷2=2,6÷2=3,故4/6=2/3"
+        },
+        {
+          "id": "ef_x0",
+          "type": "mc",
+          "prompt": "下面哪组不是等值分数?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2/3 和 5/6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/4 和 9/12",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/2 和 4/8",
+              "correct": false
+            }
+          ],
+          "hint": "2/3=4/6≠5/6",
+          "explanation": "2/3=4/6,不等于5/6"
+        },
+        {
+          "id": "ef_x1",
+          "type": "fill",
+          "prompt": "24/36 化简后等于?",
+          "difficulty": "challenge",
+          "answer": "2/3",
+          "hint": "找最大公因数",
+          "explanation": "GCD(24,36)=12;24÷12=2,36÷12=3→2/3"
+        }
+      ]
+    },
+    {
+      "id": "fraction_simplify",
+      "title": "约分",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fs_b0",
+          "type": "mc",
+          "prompt": "约分就是把分子分母同时除以什么?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "公因数(不为1)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "公倍数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "分母",
+              "correct": false
+            }
+          ],
+          "hint": "约分定义",
+          "explanation": "除以公因数使分数化简"
+        },
+        {
+          "id": "fs_b1",
+          "type": "mc",
+          "prompt": "最简分数的特征是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "分子分母的公因数只有1",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "分子比分母小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "分母是质数",
+              "correct": false
+            }
+          ],
+          "hint": "最简分数定义",
+          "explanation": "GCD(分子,分母)=1"
+        },
+        {
+          "id": "fs_c0",
+          "type": "fill",
+          "prompt": "6/8 约分结果是?",
+          "difficulty": "consolidate",
+          "answer": "3/4",
+          "hint": "GCD(6,8)=2",
+          "explanation": "6÷2=3,8÷2=4→3/4"
+        },
+        {
+          "id": "fs_c1",
+          "type": "fill",
+          "prompt": "15/25 约分结果是?",
+          "difficulty": "consolidate",
+          "answer": "3/5",
+          "hint": "GCD(15,25)=5",
+          "explanation": "15÷5=3,25÷5=5→3/5"
+        },
+        {
+          "id": "fs_x0",
+          "type": "fill",
+          "prompt": "18/24 最简分数是?",
+          "difficulty": "challenge",
+          "answer": "3/4",
+          "hint": "GCD(18,24)=6",
+          "explanation": "18÷6=3,24÷6=4→3/4"
+        },
+        {
+          "id": "fs_x1",
+          "type": "mc",
+          "prompt": "下面已经是最简分数的是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7/11",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4/6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6/9",
+              "correct": false
+            }
+          ],
+          "hint": "GCD(7,11)=1",
+          "explanation": "7和11都是质数,互质,7/11是最简分数"
+        }
+      ]
+    },
+    {
+      "id": "improper_fraction",
+      "title": "假分数与带分数",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "imf_b0",
+          "type": "mc",
+          "prompt": "分子大于分母的分数叫?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "假分数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "真分数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "带分数",
+              "correct": false
+            }
+          ],
+          "hint": "假分数定义",
+          "explanation": "分子≥分母的分数是假分数"
+        },
+        {
+          "id": "imf_b1",
+          "type": "mc",
+          "prompt": "带分数由哪两部分组成?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "整数部分和真分数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "整数和假分数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "两个真分数",
+              "correct": false
+            }
+          ],
+          "hint": "带分数结构",
+          "explanation": "带分数=整数+真分数,如2又3/4"
+        },
+        {
+          "id": "imf_c0",
+          "type": "mc",
+          "prompt": "7/4 化成带分数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1又3/4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2又1/4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1又4/3",
+              "correct": false
+            }
+          ],
+          "hint": "7÷4=1余3",
+          "explanation": "7÷4=1余3,故7/4=1又3/4"
+        },
+        {
+          "id": "imf_c1",
+          "type": "fill",
+          "prompt": "2又1/3 化成假分数是?",
+          "difficulty": "consolidate",
+          "answer": "7/3",
+          "hint": "整数×分母+分子",
+          "explanation": "2×3+1=7,分母不变→7/3"
+        },
+        {
+          "id": "imf_x0",
+          "type": "mc",
+          "prompt": "11/5 化成带分数是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2又1/5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1又6/5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2又2/5",
+              "correct": false
+            }
+          ],
+          "hint": "11÷5=2余1",
+          "explanation": "11÷5=2余1→2又1/5"
+        },
+        {
+          "id": "imf_x1",
+          "type": "fill",
+          "prompt": "3又4/7 化成假分数是?",
+          "difficulty": "challenge",
+          "answer": "25/7",
+          "hint": "3×7+4=25",
+          "explanation": "3×7+4=21+4=25,故25/7"
+        }
+      ]
+    },
+    {
+      "id": "fraction_compare5",
+      "title": "分数比大小",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fcmp_b0",
+          "type": "mc",
+          "prompt": "同分母分数,分子大的?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "较大",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "较小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相等",
+              "correct": false
+            }
+          ],
+          "hint": "同分母比分子",
+          "explanation": "分母相同,分子越大越大"
+        },
+        {
+          "id": "fcmp_b1",
+          "type": "mc",
+          "prompt": "同分子分数,分母大的?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "较小",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "较大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相等",
+              "correct": false
+            }
+          ],
+          "hint": "同分子比分母,分母越大越小",
+          "explanation": "分母越大,每份越小,故分数越小"
+        },
+        {
+          "id": "fcmp_c0",
+          "type": "mc",
+          "prompt": "3/5 和 3/7 哪个大?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/7",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相等",
+              "correct": false
+            }
+          ],
+          "hint": "分子相同看分母,5<7",
+          "explanation": "5<7故1/5>1/7,3/5>3/7"
+        },
+        {
+          "id": "fcmp_c1",
+          "type": "mc",
+          "prompt": "5/8 和 7/12 哪个大?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5/8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7/12",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相等",
+              "correct": false
+            }
+          ],
+          "hint": "通分:公分母24",
+          "explanation": "5/8=15/24,7/12=14/24,15>14故5/8大"
+        },
+        {
+          "id": "fcmp_x0",
+          "type": "mc",
+          "prompt": "把 2/3、3/4、5/6 从小到大排列,正确的是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2/3 < 3/4 < 5/6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/4 < 2/3 < 5/6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5/6 < 3/4 < 2/3",
+              "correct": false
+            }
+          ],
+          "hint": "通分公分母12",
+          "explanation": "8/12 < 9/12 < 10/12,即2/3<3/4<5/6"
+        },
+        {
+          "id": "fcmp_x1",
+          "type": "mc",
+          "prompt": "5/6 和 7/8 哪个大?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7/8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5/6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相等",
+              "correct": false
+            }
+          ],
+          "hint": "通分公分母24",
+          "explanation": "20/24 vs 21/24,7/8=21/24更大"
+        }
+      ]
+    },
+    {
+      "id": "cuboid_properties",
+      "title": "长方体正方体特征",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cbp_b0",
+          "type": "mc",
+          "prompt": "长方体有几个面?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6个",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4个",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8个",
+              "correct": false
+            }
+          ],
+          "hint": "长方体基本特征",
+          "explanation": "长方体有6个面"
+        },
+        {
+          "id": "cbp_b1",
+          "type": "mc",
+          "prompt": "正方体的6个面形状怎么样?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "都是正方形且相等",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "都是长方形",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "有的是正方形有的是长方形",
+              "correct": false
+            }
+          ],
+          "hint": "正方体特征",
+          "explanation": "6个面都是完全相同的正方形"
+        },
+        {
+          "id": "cbp_c0",
+          "type": "mc",
+          "prompt": "长方体相对的两个面?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "完全相同",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "面积不同",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "形状不同",
+              "correct": false
+            }
+          ],
+          "hint": "相对面相等",
+          "explanation": "长方体相对的面完全相同"
+        },
+        {
+          "id": "cbp_c1",
+          "type": "mc",
+          "prompt": "长方体有几条棱?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12条",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8条",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6条",
+              "correct": false
+            }
+          ],
+          "hint": "4×3=12",
+          "explanation": "长方体共12条棱"
+        },
+        {
+          "id": "cbp_x0",
+          "type": "mc",
+          "prompt": "正方体是特殊的长方体吗?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "是,长宽高相等的长方体",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不是,形状不同",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不一定",
+              "correct": false
+            }
+          ],
+          "hint": "正方体=长宽高相等的长方体",
+          "explanation": "正方体是特殊的长方体"
+        },
+        {
+          "id": "cbp_x1",
+          "type": "mc",
+          "prompt": "长方体的顶点有几个?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "8个",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6个",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12个",
+              "correct": false
+            }
+          ],
+          "hint": "8个顶点",
+          "explanation": "长方体有8个顶点"
+        }
+      ]
+    },
+    {
+      "id": "cuboid_surface_area",
+      "title": "表面积",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "csa_b0",
+          "type": "mc",
+          "prompt": "长方体表面积 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2×(长×宽+长×高+宽×高)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "长×宽×高",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "长×宽×2",
+              "correct": false
+            }
+          ],
+          "hint": "表面积公式",
+          "explanation": "6个面,两两相等,共3对"
+        },
+        {
+          "id": "csa_b1",
+          "type": "fill",
+          "prompt": "正方体棱长3,表面积 = ?",
+          "difficulty": "basic",
+          "answer": 54,
+          "hint": "6×3²",
+          "explanation": "6×9=54"
+        },
+        {
+          "id": "csa_c0",
+          "type": "fill",
+          "prompt": "长4宽3高2的长方体,表面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 52,
+          "hint": "2×(长×宽+长×高+宽×高)",
+          "explanation": "2×(4×3+4×2+3×2)=2×(12+8+6)=2×26=52"
+        },
+        {
+          "id": "csa_c1",
+          "type": "fill",
+          "prompt": "正方体棱长5,表面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 150,
+          "hint": "6×5²",
+          "explanation": "6×25=150"
+        },
+        {
+          "id": "csa_x0",
+          "type": "fill",
+          "prompt": "长5宽4高3的长方体,表面积 = ?",
+          "difficulty": "challenge",
+          "answer": 94,
+          "hint": "2×(长×宽+长×高+宽×高)",
+          "explanation": "2×(20+15+12)=2×47=94"
+        },
+        {
+          "id": "csa_x1",
+          "type": "mc",
+          "prompt": "一个无盖的长方体鱼缸(长60宽30高40厘米),需要玻璃多少平方厘米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "8400",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10800",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "7200",
+              "correct": false
+            }
+          ],
+          "hint": "底面+四个侧面",
+          "explanation": "底:60×30=1800;前后:60×40×2=4800;左右:30×40×2=2400;合计:8400"
+        }
+      ]
+    },
+    {
+      "id": "cuboid_volume_concept",
+      "title": "体积的认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cvc_b0",
+          "type": "mc",
+          "prompt": "体积指的是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "物体所占空间的大小",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "物体表面积的大小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "物体的重量",
+              "correct": false
+            }
+          ],
+          "hint": "体积定义",
+          "explanation": "体积=物体占据的空间大小"
+        },
+        {
+          "id": "cvc_b1",
+          "type": "mc",
+          "prompt": "常用的体积单位有?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "立方厘米、立方分米、立方米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "平方厘米、平方米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "升、毫升",
+              "correct": false
+            }
+          ],
+          "hint": "体积单位",
+          "explanation": "体积单位:cm³、dm³、m³"
+        },
+        {
+          "id": "cvc_c0",
+          "type": "mc",
+          "prompt": "1 立方分米 = ? 立方厘米",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1000",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "100",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10",
+              "correct": false
+            }
+          ],
+          "hint": "进率=10³=1000",
+          "explanation": "1dm³=1000cm³"
+        },
+        {
+          "id": "cvc_c1",
+          "type": "mc",
+          "prompt": "1 升 = ? 立方分米",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "100",
+              "correct": false
+            }
+          ],
+          "hint": "1L=1dm³",
+          "explanation": "1升=1立方分米"
+        },
+        {
+          "id": "cvc_x0",
+          "type": "mc",
+          "prompt": "1 立方米 = ? 立方分米",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1000",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "100",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10000",
+              "correct": false
+            }
+          ],
+          "hint": "1m³=1000dm³",
+          "explanation": "1m³=1000dm³"
+        },
+        {
+          "id": "cvc_x1",
+          "type": "mc",
+          "prompt": "容积和体积的区别是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "容积指容纳液体的体积,考虑容器厚度",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "两者完全相同",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "体积更大",
+              "correct": false
+            }
+          ],
+          "hint": "容积=内部空间",
+          "explanation": "容积指容器内部空间,体积包含容器本身"
+        }
+      ]
+    },
+    {
+      "id": "rotation_concept",
+      "title": "旋转",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "rot_b0",
+          "type": "mc",
+          "prompt": "图形的旋转需要确定哪三要素?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "旋转中心、方向、角度",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "方向、距离、大小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "中心、大小、颜色",
+              "correct": false
+            }
+          ],
+          "hint": "旋转三要素",
+          "explanation": "旋转中心+旋转方向+旋转角度"
+        },
+        {
+          "id": "rot_b1",
+          "type": "mc",
+          "prompt": "顺时针旋转是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "与钟表指针转向相同",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "与钟表指针转向相反",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "向右平移",
+              "correct": false
+            }
+          ],
+          "hint": "顺时针=钟表方向",
+          "explanation": "顺时针方向"
+        },
+        {
+          "id": "rot_c0",
+          "type": "mc",
+          "prompt": "将一个图形顺时针旋转90°,图形的大小形状?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不变",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "变大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "变小",
+              "correct": false
+            }
+          ],
+          "hint": "旋转不改变形状大小",
+          "explanation": "旋转只改变位置和方向,不改变形状和大小"
+        },
+        {
+          "id": "rot_c1",
+          "type": "mc",
+          "prompt": "钟表指针从12转到3,旋转了多少度?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "90°",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "180°",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "45°",
+              "correct": false
+            }
+          ],
+          "hint": "一圈360°,12到3是1/4圈",
+          "explanation": "360°÷4=90°"
+        },
+        {
+          "id": "rot_x0",
+          "type": "mc",
+          "prompt": "将正方形绕中心点旋转180°,结果是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "与原图重合",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "变成长方形",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "翻转方向",
+              "correct": false
+            }
+          ],
+          "hint": "正方形旋转180°与原图重合",
+          "explanation": "正方形有旋转对称性"
+        },
+        {
+          "id": "rot_x1",
+          "type": "mc",
+          "prompt": "顺时针旋转 90° 和逆时针旋转 270° 效果相同吗?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "相同",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不同",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不一定",
+              "correct": false
+            }
+          ],
+          "hint": "90°+270°=360°,方向互补",
+          "explanation": "顺时针90°=逆时针270°,效果相同"
+        }
+      ]
+    },
+    {
+      "id": "parallelogram_area",
+      "title": "平行四边形面积公式",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pga_b0",
+          "type": "mc",
+          "prompt": "平行四边形面积公式是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "底 × 高",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "底 + 高",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "底 × 高 ÷ 2",
+              "correct": false
+            }
+          ],
+          "hint": "平行四边形面积",
+          "explanation": "S=底×高"
+        },
+        {
+          "id": "pga_b1",
+          "type": "fill",
+          "prompt": "平行四边形底 5 高 4,面积 = ?",
+          "difficulty": "basic",
+          "answer": 20,
+          "hint": "底×高",
+          "explanation": "5×4=20"
+        },
+        {
+          "id": "pga_c0",
+          "type": "fill",
+          "prompt": "平行四边形底 8 高 6,面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 48,
+          "hint": "底×高",
+          "explanation": "8×6=48"
+        },
+        {
+          "id": "pga_c1",
+          "type": "fill",
+          "prompt": "平行四边形底 12 高 5,面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 60,
+          "hint": "底×高",
+          "explanation": "12×5=60"
+        },
+        {
+          "id": "pga_x0",
+          "type": "fill",
+          "prompt": "平行四边形面积 36,高 4,底 = ?",
+          "difficulty": "challenge",
+          "answer": 9,
+          "hint": "底=面积÷高",
+          "explanation": "36÷4=9"
+        },
+        {
+          "id": "pga_x1",
+          "type": "mc",
+          "prompt": "一块平行四边形草坪底边长15米,与底边对应的高8米,面积是多少平方米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "120",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "90",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "240",
+              "correct": false
+            }
+          ],
+          "hint": "15×8",
+          "explanation": "15×8=120 平方米"
+        }
+      ]
+    },
+    {
+      "id": "triangle_area",
+      "title": "三角形面积公式",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ta_b0",
+          "type": "mc",
+          "prompt": "三角形面积公式是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "底 × 高 ÷ 2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "底 × 高",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "底 + 高",
+              "correct": false
+            }
+          ],
+          "hint": "三角形面积",
+          "explanation": "S=底×高÷2"
+        },
+        {
+          "id": "ta_b1",
+          "type": "fill",
+          "prompt": "三角形底 6 高 4,面积 = ?",
+          "difficulty": "basic",
+          "answer": 12,
+          "hint": "底×高÷2",
+          "explanation": "6×4÷2=12"
+        },
+        {
+          "id": "ta_c0",
+          "type": "fill",
+          "prompt": "三角形底 10 高 6,面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 30,
+          "hint": "底×高÷2",
+          "explanation": "10×6÷2=30"
+        },
+        {
+          "id": "ta_c1",
+          "type": "fill",
+          "prompt": "三角形底 8 高 9,面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 36,
+          "hint": "底×高÷2",
+          "explanation": "8×9÷2=36"
+        },
+        {
+          "id": "ta_x0",
+          "type": "fill",
+          "prompt": "三角形面积 24,底 8,高 = ?",
+          "difficulty": "challenge",
+          "answer": 6,
+          "hint": "高=面积×2÷底",
+          "explanation": "24×2÷8=6"
+        },
+        {
+          "id": "ta_x1",
+          "type": "mc",
+          "prompt": "一个三角形与一个平行四边形等底等高,三角形面积是平行四边形面积的?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "一半",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "相等",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "两倍",
+              "correct": false
+            }
+          ],
+          "hint": "等底等高三角形是平行四边形的1/2",
+          "explanation": "三角形=底×高÷2,平行四边形=底×高"
+        }
+      ]
+    },
+    {
+      "id": "trapezoid_area",
+      "title": "梯形面积公式",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "tza_b0",
+          "type": "mc",
+          "prompt": "梯形面积公式是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "(上底+下底)×高÷2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "上底×下底÷2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "(上底+下底)×高",
+              "correct": false
+            }
+          ],
+          "hint": "梯形面积",
+          "explanation": "S=(上底+下底)×高÷2"
+        },
+        {
+          "id": "tza_b1",
+          "type": "fill",
+          "prompt": "梯形上底3下底5高4,面积 = ?",
+          "difficulty": "basic",
+          "answer": 16,
+          "hint": "(上+下)×高÷2",
+          "explanation": "(3+5)×4÷2=16"
+        },
+        {
+          "id": "tza_c0",
+          "type": "fill",
+          "prompt": "梯形上底4下底8高5,面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 30,
+          "hint": "(上+下)×高÷2",
+          "explanation": "(4+8)×5÷2=30"
+        },
+        {
+          "id": "tza_c1",
+          "type": "fill",
+          "prompt": "梯形上底6下底10高4,面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 32,
+          "hint": "(上+下)×高÷2",
+          "explanation": "(6+10)×4÷2=32"
+        },
+        {
+          "id": "tza_x0",
+          "type": "fill",
+          "prompt": "梯形上底5下底11高6,面积 = ?",
+          "difficulty": "challenge",
+          "answer": 48,
+          "hint": "(上+下)×高÷2",
+          "explanation": "(5+11)×6÷2=48"
+        },
+        {
+          "id": "tza_x1",
+          "type": "mc",
+          "prompt": "梯形面积40,高8,上底3,下底 = ?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "7",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10",
+              "correct": false
+            }
+          ],
+          "hint": "下底=面积×2÷高-上底",
+          "explanation": "40×2÷8=10,10-3=7"
+        }
+      ]
+    },
+    {
+      "id": "combined_area",
+      "title": "组合图形面积",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ca_b0",
+          "type": "mc",
+          "prompt": "计算组合图形面积的常用方法?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "分割法或添补法",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "只用乘法",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "估算",
+              "correct": false
+            }
+          ],
+          "hint": "组合图形方法",
+          "explanation": "分割成基本图形或添补成规则图形"
+        },
+        {
+          "id": "ca_b1",
+          "type": "fill",
+          "prompt": "一个长方形(长8宽5)中间剪去一个正方形(边长2),剩余面积 = ?",
+          "difficulty": "basic",
+          "answer": 36,
+          "hint": "长方形-正方形",
+          "explanation": "8×5-2×2=40-4=36"
+        },
+        {
+          "id": "ca_c0",
+          "type": "fill",
+          "prompt": "一个大三角形(底12高8)加上一个小三角形(底6高4),总面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 60,
+          "hint": "两个三角形面积之和",
+          "explanation": "12×8÷2+6×4÷2=48+12=60"
+        },
+        {
+          "id": "ca_c1",
+          "type": "fill",
+          "prompt": "L形:大长方形(长10宽6)去掉小长方形(长4宽3),面积 = ?",
+          "difficulty": "consolidate",
+          "answer": 48,
+          "hint": "大-小",
+          "explanation": "10×6-4×3=60-12=48"
+        },
+        {
+          "id": "ca_x0",
+          "type": "mc",
+          "prompt": "一个平行四边形(底10高6)和一个三角形(底10高6)拼合,总面积?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "90",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "60",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "120",
+              "correct": false
+            }
+          ],
+          "hint": "分别算再相加",
+          "explanation": "10×6+10×6÷2=60+30=90"
+        },
+        {
+          "id": "ca_x1",
+          "type": "fill",
+          "prompt": "梯形(上底4下底10高6)加上三角形(底6高4),总面积 = ?",
+          "difficulty": "challenge",
+          "answer": 54,
+          "hint": "梯形+三角形",
+          "explanation": "(4+10)×6÷2+6×4÷2=42+12=54"
+        }
+      ]
+    },
+    {
+      "id": "equation_solve_practice",
+      "title": "解方程",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "esp_b0",
+          "type": "fill",
+          "prompt": "解方程:x + 9 = 17\nx = ?",
+          "difficulty": "basic",
+          "answer": 8,
+          "hint": "x=17-9",
+          "explanation": "x=17-9=8"
+        },
+        {
+          "id": "esp_b1",
+          "type": "fill",
+          "prompt": "解方程:x - 6 = 14\nx = ?",
+          "difficulty": "basic",
+          "answer": 20,
+          "hint": "x=14+6",
+          "explanation": "x=14+6=20"
+        },
+        {
+          "id": "esp_c0",
+          "type": "fill",
+          "prompt": "解方程:4x = 36\nx = ?",
+          "difficulty": "consolidate",
+          "answer": 9,
+          "hint": "x=36÷4",
+          "explanation": "x=36÷4=9"
+        },
+        {
+          "id": "esp_c1",
+          "type": "fill",
+          "prompt": "解方程:x ÷ 5 = 7\nx = ?",
+          "difficulty": "consolidate",
+          "answer": 35,
+          "hint": "x=7×5",
+          "explanation": "x=7×5=35"
+        },
+        {
+          "id": "esp_c2",
+          "type": "fill",
+          "prompt": "解方程:3x + 6 = 24\nx = ?",
+          "difficulty": "consolidate",
+          "answer": 6,
+          "hint": "先3x=18,再x=6",
+          "explanation": "3x=24-6=18,x=18÷3=6"
+        },
+        {
+          "id": "esp_x0",
+          "type": "steps",
+          "prompt": "解方程:2x - 4 = 16",
+          "difficulty": "challenge",
+          "fields": [
+            {
+              "id": "step1",
+              "label": "2x = ?",
+              "answer": 20
+            },
+            {
+              "id": "step2",
+              "label": "x = ?",
+              "answer": 10
+            }
+          ],
+          "hint": "先移项再除以系数",
+          "explanation": "2x=16+4=20,x=20÷2=10"
+        },
+        {
+          "id": "esp_x1",
+          "type": "mc",
+          "prompt": "小明买了 x 本书,每本 6 元,付了 50 元找回 2 元,列方程并求 x?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "x=8",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "x=7",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "x=6",
+              "correct": false
+            }
+          ],
+          "hint": "6x=50-2=48,x=48÷6",
+          "explanation": "6x+2=50→6x=48→x=8"
+        }
+      ]
+    },
+    {
+      "id": "cuboid_volume_formula",
+      "title": "体积公式应用",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cvf_b0",
+          "type": "mc",
+          "prompt": "长方体体积公式是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "长 × 宽 × 高",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "长 × 宽",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2×(长+宽)×高",
+              "correct": false
+            }
+          ],
+          "hint": "V=lwh",
+          "explanation": "V=长×宽×高"
+        },
+        {
+          "id": "cvf_b1",
+          "type": "fill",
+          "prompt": "长方体长4宽3高2,体积 = ?",
+          "difficulty": "basic",
+          "answer": 24,
+          "hint": "4×3×2",
+          "explanation": "4×3×2=24"
+        },
+        {
+          "id": "cvf_c0",
+          "type": "fill",
+          "prompt": "正方体棱长5,体积 = ?",
+          "difficulty": "consolidate",
+          "answer": 125,
+          "hint": "5³=5×5×5",
+          "explanation": "5×5×5=125"
+        },
+        {
+          "id": "cvf_c1",
+          "type": "fill",
+          "prompt": "长方体长6宽5高4,体积 = ?",
+          "difficulty": "consolidate",
+          "answer": 120,
+          "hint": "6×5×4",
+          "explanation": "6×5×4=120"
+        },
+        {
+          "id": "cvf_x0",
+          "type": "fill",
+          "prompt": "长方体体积120,底面积30,高 = ?",
+          "difficulty": "challenge",
+          "answer": 4,
+          "hint": "高=体积÷底面积",
+          "explanation": "120÷30=4"
+        },
+        {
+          "id": "cvf_x1",
+          "type": "mc",
+          "prompt": "一个长10宽8高5的水箱(装满水),体积是多少立方厘米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "400",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "360",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "480",
+              "correct": false
+            }
+          ],
+          "hint": "10×8×5=400",
+          "explanation": "10×8×5=400 立方厘米"
+        }
+      ]
+    },
+    {
+      "id": "tree_planting",
+      "title": "植树问题",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "tp_b0",
+          "type": "mc",
+          "prompt": "两端都种的情况下,棵数和间隔数的关系?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "棵数 = 间隔数 + 1",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "棵数 = 间隔数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "棵数 = 间隔数 - 1",
+              "correct": false
+            }
+          ],
+          "hint": "两端都种,多1棵",
+          "explanation": "两端都种:棵数=间隔数+1"
+        },
+        {
+          "id": "tp_b1",
+          "type": "fill",
+          "prompt": "一段路长100米,每隔5米种一棵树(两端都种),需几棵?",
+          "difficulty": "basic",
+          "answer": 21,
+          "hint": "间隔数=100÷5=20,棵数=20+1",
+          "explanation": "100÷5=20个间隔,+1=21棵"
+        },
+        {
+          "id": "tp_c0",
+          "type": "mc",
+          "prompt": "只种一端时,棵数和间隔数关系?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "棵数 = 间隔数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "棵数 = 间隔数 + 1",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "棵数 = 间隔数 - 1",
+              "correct": false
+            }
+          ],
+          "hint": "只种一端,棵数=间隔数",
+          "explanation": "只种一端:棵数=间隔数"
+        },
+        {
+          "id": "tp_c1",
+          "type": "fill",
+          "prompt": "围绕圆形池塘一圈200米,每4米种一棵,共需几棵?",
+          "difficulty": "consolidate",
+          "answer": 50,
+          "hint": "圆形无端点:棵数=间隔数",
+          "explanation": "200÷4=50个间隔=50棵"
+        },
+        {
+          "id": "tp_x0",
+          "type": "fill",
+          "prompt": "马路一侧(两端都种)共21棵树,间距8米,这条马路全长多少米?",
+          "difficulty": "challenge",
+          "answer": 160,
+          "hint": "间隔数=21-1=20,全长=20×8",
+          "explanation": "20×8=160米"
+        },
+        {
+          "id": "tp_x1",
+          "type": "mc",
+          "prompt": "阶梯有10级,从第1级到第10级共爬多少步?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "9步",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10步",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "11步",
+              "correct": false
+            }
+          ],
+          "hint": "每两级之间1步,共9步",
+          "explanation": "10级之间有9个间隔=9步"
+        }
+      ]
+    },
+    {
+      "id": "find_defective",
+      "title": "找次品",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fd_b0",
+          "type": "mc",
+          "prompt": "用天平找1个次品(比真品轻),至少称几次一定能找到?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不确定,取决于总数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1次",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2次",
+              "correct": false
+            }
+          ],
+          "hint": "取决于总数",
+          "explanation": "次数取决于物品数量"
+        },
+        {
+          "id": "fd_b1",
+          "type": "mc",
+          "prompt": "3个球中1个次品(轻),用天平称1次能找到吗?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "能",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不能",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不一定",
+              "correct": false
+            }
+          ],
+          "hint": "各组1个,天平倾斜即找到",
+          "explanation": "取2个各放两端,若平衡则第3个是次品;若不平衡则轻的那个是次品"
+        },
+        {
+          "id": "fd_c0",
+          "type": "mc",
+          "prompt": "9个球中1个次品,至少称几次一定找到?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2次",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3次",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1次",
+              "correct": false
+            }
+          ],
+          "hint": "每次三等分",
+          "explanation": "第一次3vs3,确定哪组;第二次再三等分→2次"
+        },
+        {
+          "id": "fd_c1",
+          "type": "fill",
+          "prompt": "27个物品中有1个次品,用天平最少称几次能保证找到?",
+          "difficulty": "consolidate",
+          "answer": 3,
+          "hint": "每次三等分,27=3³",
+          "explanation": "3次:27→9→3→1"
+        },
+        {
+          "id": "fd_x0",
+          "type": "mc",
+          "prompt": "有12个球,其中1个次品(稍重),最少称几次能保证找到?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3次",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2次",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4次",
+              "correct": false
+            }
+          ],
+          "hint": "12÷3=4,4÷3不整除需再一次",
+          "explanation": "12→4→找到需3次"
+        },
+        {
+          "id": "fd_x1",
+          "type": "mc",
+          "prompt": "用天平平衡法找次品,每次最多能排除几分之几的可能?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2/3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/3",
+              "correct": false
+            }
+          ],
+          "hint": "三等分后排除两组",
+          "explanation": "每次排除2/3的可能,保留1/3继续找"
+        }
+      ]
+    },
+    {
+      "id": "observation_3d_5",
+      "title": "观察物体",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "obs_b0",
+          "type": "mc",
+          "prompt": "从正面看到的是物体的什么视图?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "正视图",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "俯视图",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "侧视图",
+              "correct": false
+            }
+          ],
+          "hint": "三视图方向",
+          "explanation": "正面→正视图"
+        },
+        {
+          "id": "obs_b1",
+          "type": "mc",
+          "prompt": "从上面往下看到的图形叫?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "俯视图",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "正视图",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "侧视图",
+              "correct": false
+            }
+          ],
+          "hint": "俯视图方向",
+          "explanation": "从上方俯视→俯视图"
+        },
+        {
+          "id": "obs_c0",
+          "type": "mc",
+          "prompt": "一个正方体从正面、侧面、上面看到的图形都是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "正方形",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "长方形",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "三角形",
+              "correct": false
+            }
+          ],
+          "hint": "正方体三视图",
+          "explanation": "正方体三个方向看都是正方形"
+        },
+        {
+          "id": "obs_c1",
+          "type": "mc",
+          "prompt": "观察由4个正方体搭成的立体图形,从不同方向看到的图形可能?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不同",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "完全相同",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不一定",
+              "correct": false
+            }
+          ],
+          "hint": "立体图形各方向视图可不同",
+          "explanation": "不同方向的视图通常不同"
+        },
+        {
+          "id": "obs_x0",
+          "type": "mc",
+          "prompt": "从正面看是长方形,从上面看是圆形的物体是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "圆柱",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "圆锥",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "长方体",
+              "correct": false
+            }
+          ],
+          "hint": "圆柱:正面长方形,上面圆",
+          "explanation": "圆柱正面是矩形,上面是圆"
+        },
+        {
+          "id": "obs_x1",
+          "type": "mc",
+          "prompt": "两个不同形状的物体,从某个方向看到的图形可能?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "相同",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "一定不同",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "一定相同",
+              "correct": false
+            }
+          ],
+          "hint": "不同形状可有相同的某个视图",
+          "explanation": "不同形状可能有相同的某方向视图"
+        }
+      ]
+    },
+    {
+      "id": "line_graph",
+      "title": "折线统计图",
+      "pedagogy": "data",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "lg_b0",
+          "type": "mc",
+          "prompt": "折线统计图的优点是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "能清晰看出数据的变化趋势",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "只能比较数量多少",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不能显示具体数值",
+              "correct": false
+            }
+          ],
+          "hint": "折线图特点",
+          "explanation": "折线图能直观显示数据随时间的变化趋势"
+        },
+        {
+          "id": "lg_b1",
+          "type": "mc",
+          "prompt": "折线统计图中,折线上升表示数据?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "增大",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "减小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不变",
+              "correct": false
+            }
+          ],
+          "hint": "折线方向与数据变化",
+          "explanation": "折线上升→数据增大"
+        },
+        {
+          "id": "lg_c0",
+          "type": "mc",
+          "prompt": "某城市一周气温折线统计图数据\n周一:12℃ 周二:15℃ 周三:18℃\n周四:16℃ 周五:20℃ 周六:22℃ 周日:19℃\n气温最高是哪天?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "周六",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "周五",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "周日",
+              "correct": false
+            }
+          ],
+          "hint": "找最高点",
+          "explanation": "周六22℃最高"
+        },
+        {
+          "id": "lg_c1",
+          "type": "mc",
+          "prompt": "某城市一周气温折线统计图数据\n周一:12℃ 周二:15℃ 周三:18℃\n周四:16℃ 周五:20℃ 周六:22℃ 周日:19℃\n气温上升最快是哪两天之间?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "周一到周三",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "周三到周五",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "周四到周六",
+              "correct": false
+            }
+          ],
+          "hint": "看坡度最陡处",
+          "explanation": "周一12→周三18,升6℃是较大升幅;但每天:周一到二+3,二到三+3,三到四-2,四到五+4,五到六+2;最大单日升幅是周四到周五(+4℃)"
+        },
+        {
+          "id": "lg_c1",
+          "type": "mc",
+          "prompt": "某城市一周气温折线统计图数据\n周一:12℃ 周二:15℃ 周三:18℃\n周四:16℃ 周五:20℃ 周六:22℃ 周日:19℃\n哪两天之间气温升幅最大?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "周四到周五(+4℃)",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "周一到周二(+3℃)",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "周五到周六(+2℃)",
+              "correct": false
+            }
+          ],
+          "hint": "逐段计算差值",
+          "explanation": "各段差:+3,+3,-2,+4,+2,-3;最大是周四→周五+4℃"
+        },
+        {
+          "id": "lg_x1",
+          "type": "mc",
+          "prompt": "折线统计图和条形统计图最主要的区别是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "折线图更能体现变化趋势,条形图更便于比较数量",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "折线图不能显示具体数值",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "两者完全相同",
+              "correct": false
+            }
+          ],
+          "hint": "两种图的区别",
+          "explanation": "折线图→趋势;条形图→比较大小"
+        }
+      ]
+    }
+  ]
+}

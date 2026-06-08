@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react';
-import { correctText, DIFFICULTY_ORDER, xpForCorrect, type Difficulty, type Problem } from '../practice';
+import { correctText, DIFFICULTY_ORDER, xpForCorrect, type Difficulty, type PracticePack, type Problem } from '../practice';
 import type { StorageAdapter } from '../storage';
-import { getSet } from './practicePack';
+import { getSetFromPack } from './gradeLoader';
 import { usePractice, type PView } from './usePractice';
 
 const TIER_LABEL: Record<Difficulty, string> = {
@@ -29,15 +29,16 @@ function StageBar({ tier }: { tier: Difficulty | null }) {
 
 interface Props {
   setId: string;
+  practicePack: PracticePack;
   adapter: StorageAdapter;
   studentId: string;
   seed: number;
   onExit: () => void;
 }
 
-export function PracticeScreen({ setId, adapter, studentId, seed, onExit }: Props) {
-  const game = usePractice(setId, adapter, studentId, seed);
-  const title = useMemo(() => getSet(setId)?.title ?? '练习', [setId]);
+export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit }: Props) {
+  const game = usePractice(setId, practicePack, adapter, studentId, seed);
+  const title = useMemo(() => getSetFromPack(practicePack, setId)?.title ?? '练习', [practicePack, setId]);
   const { view } = game;
 
   // input state, reset on each newly presented problem

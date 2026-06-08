@@ -1,0 +1,642 @@
+{
+  "version": "1.0.0",
+  "grade": 6,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "轻松",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "标准",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "挑战",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "fraction_of_int",
+      "name": "分数乘整数口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "foi_1o2x8",
+              "prompt": "1/2 × 8 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_1o3x9",
+              "prompt": "1/3 × 9 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_1o4x12",
+              "prompt": "1/4 × 12 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_1o5x15",
+              "prompt": "1/5 × 15 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "foi_2o3x12",
+              "prompt": "2/3 × 12 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_3o4x16",
+              "prompt": "3/4 × 16 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_2o5x20",
+              "prompt": "2/5 × 20 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_4o5x15",
+              "prompt": "4/5 × 15 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "foi_1o6x24",
+              "prompt": "1/6 × 24 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_1o7x21",
+              "prompt": "1/7 × 21 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_1o8x32",
+              "prompt": "1/8 × 32 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_1o9x27",
+              "prompt": "1/9 × 27 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "foi_3o7x14",
+              "prompt": "3/7 × 14 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_5o6x18",
+              "prompt": "5/6 × 18 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_2o9x27",
+              "prompt": "2/9 × 27 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_4o7x21",
+              "prompt": "4/7 × 21 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "foi_5o8x24",
+              "prompt": "5/8 × 24 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_3o10x30",
+              "prompt": "3/10 × 30 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_7o8x16",
+              "prompt": "7/8 × 16 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_5o12x24",
+              "prompt": "5/12 × 24 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "foi_7o10x50",
+              "prompt": "7/10 × 50 = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_3o8x40",
+              "prompt": "3/8 × 40 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_9o10x30",
+              "prompt": "9/10 × 30 = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "foi_5o6x42",
+              "prompt": "5/6 × 42 = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "fraction_div_int",
+      "name": "整数除以分数口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "fdiv_12d3o4",
+              "prompt": "12 ÷ 3/4 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_10d5o6",
+              "prompt": "10 ÷ 5/6 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_6d2o3",
+              "prompt": "6 ÷ 2/3 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_8d4o5",
+              "prompt": "8 ÷ 4/5 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "fdiv_15d3o5",
+              "prompt": "15 ÷ 3/5 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_9d3o4",
+              "prompt": "9 ÷ 3/4 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_14d7o8",
+              "prompt": "14 ÷ 7/8 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_20d4o5",
+              "prompt": "20 ÷ 4/5 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "fdiv_24d6o7",
+              "prompt": "24 ÷ 6/7 = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_18d9o10",
+              "prompt": "18 ÷ 9/10 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_30d5o6",
+              "prompt": "30 ÷ 5/6 = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_21d7o9",
+              "prompt": "21 ÷ 7/9 = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "fdiv_36d9o10",
+              "prompt": "36 ÷ 9/10 = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_42d7o8",
+              "prompt": "42 ÷ 7/8 = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_16d2o5",
+              "prompt": "16 ÷ 2/5 = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fdiv_27d3o8",
+              "prompt": "27 ÷ 3/8 = ?",
+              "answer": 72,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "percent_convert",
+      "name": "百分数乘整数口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "pct_50p40",
+              "prompt": "50% × 40 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_25p80",
+              "prompt": "25% × 80 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_10p60",
+              "prompt": "10% × 60 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_20p50",
+              "prompt": "20% × 50 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "pct_75p40",
+              "prompt": "75% × 40 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_30p90",
+              "prompt": "30% × 90 = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_40p50",
+              "prompt": "40% × 50 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_60p30",
+              "prompt": "60% × 30 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "pct_15p80",
+              "prompt": "15% × 80 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_35p40",
+              "prompt": "35% × 40 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_45p60",
+              "prompt": "45% × 60 = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_5p200",
+              "prompt": "5% × 200 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "pct_125p40",
+              "prompt": "125% × 40 = ?",
+              "answer": 50,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_80p45",
+              "prompt": "80% × 45 = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_12p50",
+              "prompt": "12% × 50 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pct_150p20",
+              "prompt": "150% × 20 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "ratio_oral",
+      "name": "比值口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "ratio_8c4",
+              "prompt": "8 : 4 的比值 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_12c3",
+              "prompt": "12 : 3 的比值 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_15c5",
+              "prompt": "15 : 5 的比值 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_20c4",
+              "prompt": "20 : 4 的比值 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "ratio_24c6",
+              "prompt": "24 : 6 的比值 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_36c9",
+              "prompt": "36 : 9 的比值 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_48c8",
+              "prompt": "48 : 8 的比值 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_56c7",
+              "prompt": "56 : 7 的比值 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "ratio_3c1",
+              "prompt": "3 : 1 的比值 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_10c2",
+              "prompt": "10 : 2 的比值 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_21c7",
+              "prompt": "21 : 7 的比值 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_45c9",
+              "prompt": "45 : 9 的比值 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "ratio_100c25",
+              "prompt": "100 : 25 的比值 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_72c12",
+              "prompt": "72 : 12 的比值 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_84c14",
+              "prompt": "84 : 14 的比值 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "ratio_96c16",
+              "prompt": "96 : 16 的比值 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "fraction_mul_procedure",
+    "fraction_div_procedure",
+    "ratio_simplify",
+    "proportion_solve",
+    "circle_circumference",
+    "circle_area",
+    "cylinder_surface_area",
+    "cylinder_volume",
+    "cone_volume",
+    "scale_drawing",
+    "percent_word",
+    "pigeonhole",
+    "number_shape"
+  ]
+}

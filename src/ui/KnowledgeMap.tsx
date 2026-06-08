@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
-import { getTrack } from '../engine';
+import { getTrack, type ContentPack } from '../engine';
 import { levelFromXp } from '../practice';
-import { knowledgeMap, PEDAGOGY_LABEL, topicsOf, unitsByTerm } from '../map/map';
-import type { Term, Topic } from '../map/types';
+import { PEDAGOGY_LABEL, topicsOf, unitsByTerm } from '../map/map';
+import type { KnowledgeMap as KnowledgeMapData, Term, Topic } from '../map/types';
 import type { StorageAdapter } from '../storage';
-import { pack } from './pack';
 import { RocketChart } from './RocketChart';
 
 interface Props {
+  pack: ContentPack;
+  knowledgeMap: KnowledgeMapData;
   adapter: StorageAdapter;
   studentId: string;
   onPlay: (trackId: string) => void;
   onRace: (trackId: string) => void;
   onPractice: (setId: string) => void;
   onParent: () => void;
+  onBack?: () => void;
 }
 
 interface Prog {
@@ -27,12 +29,15 @@ interface PracProg {
   total: number;
 }
 
+const GRADE_LABELS: Record<number, string> = { 3: '三年级', 4: '四年级', 5: '五年级', 6: '六年级' };
+function gradeLabel(g: number): string { return GRADE_LABELS[g] ?? `${g}年级`; }
+
 const TERMS: { key: Term; label: string }[] = [
   { key: 'upper', label: '上册' },
   { key: 'lower', label: '下册' },
 ];
 
-export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice, onParent }: Props) {
+export function KnowledgeMap({ pack, knowledgeMap, adapter, studentId, onPlay, onRace, onPractice, onParent, onBack }: Props) {
   const [progress, setProgress] = useState<Record<string, Prog>>({});
   const [pracProgress, setPracProgress] = useState<Record<string, PracProg>>({});
   const [xp, setXp] = useState(0);
@@ -75,10 +80,13 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice, o
 
   return (
     <div className="map">
+      {onBack && (
+        <button className="map-back" onClick={onBack}>← 返回</button>
+      )}
       <button className="parent-entry" onClick={onParent} title="家长">
         👨‍👧 家长
       </button>
-      <h1 className="title">🚀 三年级数学 · 知识地图</h1>
+      <h1 className="title">🚀 {gradeLabel(knowledgeMap.grade)}数学 · 知识地图</h1>
       <p className="subtitle">
         {knowledgeMap.textbook} · {knowledgeMap.topics.length} 个知识点 · 已上线 {readyCount}
       </p>
@@ -108,6 +116,7 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice, o
                   <TopicCard
                     key={topic.id}
                     topic={topic}
+                    pack={pack}
                     prog={topic.fluencyTrackId ? progress[topic.fluencyTrackId] : undefined}
                     prac={topic.problemSetId ? pracProgress[topic.problemSetId] : undefined}
                     onPlay={onPlay}
@@ -126,6 +135,7 @@ export function KnowledgeMap({ adapter, studentId, onPlay, onRace, onPractice, o
 
 function TopicCard({
   topic,
+  pack,
   prog,
   prac,
   onPlay,
@@ -133,6 +143,7 @@ function TopicCard({
   onPractice,
 }: {
   topic: Topic;
+  pack: ContentPack;
   prog?: Prog;
   prac?: PracProg;
   onPlay: (trackId: string) => void;

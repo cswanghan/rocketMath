@@ -1,0 +1,579 @@
+{
+  "version": "1.0.0",
+  "grade": 4,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "轻松",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "标准",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "挑战",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "mul_extended_oral",
+      "name": "整百整十乘法口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "meo_200x3",
+              "prompt": "200 × 3",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_300x2",
+              "prompt": "300 × 2",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_400x2",
+              "prompt": "400 × 2",
+              "answer": 800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_500x3",
+              "prompt": "500 × 3",
+              "answer": 1500,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "meo_30x20",
+              "prompt": "30 × 20",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_40x30",
+              "prompt": "40 × 30",
+              "answer": 1200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_50x40",
+              "prompt": "50 × 40",
+              "answer": 2000,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_60x20",
+              "prompt": "60 × 20",
+              "answer": 1200,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "meo_120x4",
+              "prompt": "120 × 4",
+              "answer": 480,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_230x3",
+              "prompt": "230 × 3",
+              "answer": 690,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_310x2",
+              "prompt": "310 × 2",
+              "answer": 620,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_150x4",
+              "prompt": "150 × 4",
+              "answer": 600,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "meo_25x20",
+              "prompt": "25 × 20",
+              "answer": 500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_15x40",
+              "prompt": "15 × 40",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_35x20",
+              "prompt": "35 × 20",
+              "answer": 700,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_45x20",
+              "prompt": "45 × 20",
+              "answer": 900,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "div_tens_oral",
+      "name": "整十数除法口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "dto_80d20",
+              "prompt": "80 ÷ 20",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_120d30",
+              "prompt": "120 ÷ 30",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_160d40",
+              "prompt": "160 ÷ 40",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_200d50",
+              "prompt": "200 ÷ 50",
+              "answer": 4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "dto_180d30",
+              "prompt": "180 ÷ 30",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_240d40",
+              "prompt": "240 ÷ 40",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_360d60",
+              "prompt": "360 ÷ 60",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_420d70",
+              "prompt": "420 ÷ 70",
+              "answer": 6,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "dto_270d30",
+              "prompt": "270 ÷ 30",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_350d50",
+              "prompt": "350 ÷ 50",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_480d60",
+              "prompt": "480 ÷ 60",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_560d70",
+              "prompt": "560 ÷ 70",
+              "answer": 8,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "dto_630d90",
+              "prompt": "630 ÷ 90",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_720d80",
+              "prompt": "720 ÷ 80",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_540d60",
+              "prompt": "540 ÷ 60",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_810d90",
+              "prompt": "810 ÷ 90",
+              "answer": 9,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "mixed_2step",
+      "name": "两步混合运算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "m2s_8x5p20",
+              "prompt": "8 × 5 + 20",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_100m6x9",
+              "prompt": "100 - 6 × 9",
+              "answer": 46,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_72d8p15",
+              "prompt": "72 ÷ 8 + 15",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_50m24d6",
+              "prompt": "50 - 24 ÷ 6",
+              "answer": 46,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "m2s_15x4m30",
+              "prompt": "15 × 4 - 30",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_200m25x4",
+              "prompt": "200 - 25 × 4",
+              "answer": 100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_64d8x7",
+              "prompt": "64 ÷ 8 × 7",
+              "answer": 56,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_90d9p35",
+              "prompt": "90 ÷ 9 + 35",
+              "answer": 45,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "m2s_30p50x2",
+              "prompt": "(30 + 50) × 2",
+              "answer": 160,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_120d4x3",
+              "prompt": "120 ÷ (4 × 3)",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_200m80d4",
+              "prompt": "(200 - 80) ÷ 4",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_7x60m48",
+              "prompt": "7 × (60 - 48)",
+              "answer": 84,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "m2s_300m150d5",
+              "prompt": "300 - 150 ÷ 5",
+              "answer": 270,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_48d16m8",
+              "prompt": "48 ÷ (16 - 8)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_45p55d10",
+              "prompt": "(45 + 55) ÷ 10",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_8x25m17",
+              "prompt": "8 × (25 - 17)",
+              "answer": 64,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "large_num_oral",
+      "name": "大数运算·万",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "lno_3wp5w",
+              "prompt": "3万 + 5万 = ( )万",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_9wm4w",
+              "prompt": "9万 - 4万 = ( )万",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_6wp7w",
+              "prompt": "6万 + 7万 = ( )万",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_12wm5w",
+              "prompt": "12万 - 5万 = ( )万",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "lno_2wx3",
+              "prompt": "2万 × 3 = ( )万",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_4wx5",
+              "prompt": "4万 × 5 = ( )万",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_15wd3",
+              "prompt": "15万 ÷ 3 = ( )万",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_24wd6",
+              "prompt": "24万 ÷ 6 = ( )万",
+              "answer": 4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "lno_30wp70w",
+              "prompt": "30万 + 70万 = ( )万",
+              "answer": 100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_200wm80w",
+              "prompt": "200万 - 80万 = ( )万",
+              "answer": 120,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_50wx4",
+              "prompt": "50万 × 4 = ( )万",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_600wd3",
+              "prompt": "600万 ÷ 3 = ( )万",
+              "answer": 200,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "lno_40wx5",
+              "prompt": "40万 × 5 = ( )万",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_150wd5",
+              "prompt": "150万 ÷ 5 = ( )万",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_80wd4",
+              "prompt": "80万 ÷ 4 = ( )万",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_250wd5",
+              "prompt": "250万 ÷ 5 = ( )万",
+              "answer": 50,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "mul3x2_column",
+    "div_2digit_column",
+    "decimal_add_column",
+    "decimal_sub_column",
+    "angle_measure",
+    "large_number_reading",
+    "bar_chart",
+    "average_calculation"
+  ]
+}

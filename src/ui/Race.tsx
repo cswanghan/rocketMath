@@ -1,15 +1,11 @@
 // Milestone race: pool = all learned facts, score = correct/min. NO voice
 // (App Store lesson §7), no correction loop. The player first picks a speed
 // (less time = faster pace = harder); the engine tallies until time runs out.
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { ContentPack } from '../engine';
 import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
-import { pack } from './pack';
 import { useGame } from './useGame';
-
-const SPEEDS = pack.engine_config.milestone_races.speeds ?? [
-  { id: 'standard', label: '标准', emoji: '🚀', seconds: pack.engine_config.milestone_races.duration_seconds },
-];
 
 function fmtSeconds(s: number): string {
   return s % 60 === 0 ? `${s / 60} 分钟` : `${s} 秒`;
@@ -17,14 +13,18 @@ function fmtSeconds(s: number): string {
 
 interface Props {
   trackId: string;
+  pack: ContentPack;
   adapter: StorageAdapter;
   studentId: string;
   seed: number;
   onExit: () => void;
 }
 
-export function Race({ trackId, adapter, studentId, seed, onExit }: Props) {
-  const game = useGame(trackId, adapter, studentId, seed);
+export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props) {
+  const game = useGame(trackId, pack, adapter, studentId, seed);
+  const SPEEDS = useMemo(() => pack.engine_config.milestone_races.speeds ?? [
+    { id: 'standard', label: '标准', emoji: '🚀', seconds: pack.engine_config.milestone_races.duration_seconds },
+  ], [pack]);
   const [input, setInput] = useState('');
   const inputRef = useRef('');
   inputRef.current = input;

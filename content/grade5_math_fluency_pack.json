@@ -1,0 +1,641 @@
+{
+  "version": "1.0.0",
+  "grade": 5,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "轻松",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "标准",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "挑战",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "equation_oral",
+      "name": "简单方程口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "eq_a0",
+              "prompt": "x + 8 = 15",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_a1",
+              "prompt": "x + 12 = 20",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_a2",
+              "prompt": "x + 25 = 40",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_a3",
+              "prompt": "x + 6 = 31",
+              "answer": 25,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "eq_b0",
+              "prompt": "x - 5 = 12",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_b1",
+              "prompt": "x - 8 = 20",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_b2",
+              "prompt": "x - 15 = 30",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_b3",
+              "prompt": "x - 3 = 47",
+              "answer": 50,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "eq_c0",
+              "prompt": "3x = 12",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_c1",
+              "prompt": "5x = 35",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_c2",
+              "prompt": "4x = 28",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_c3",
+              "prompt": "6x = 42",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "eq_d0",
+              "prompt": "x ÷ 4 = 5",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_d1",
+              "prompt": "x ÷ 3 = 8",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_d2",
+              "prompt": "x ÷ 6 = 7",
+              "answer": 42,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_d3",
+              "prompt": "x ÷ 5 = 9",
+              "answer": 45,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "eq_e0",
+              "prompt": "2x + 3 = 15",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_e1",
+              "prompt": "3x - 5 = 19",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_e2",
+              "prompt": "4x + 2 = 18",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_e3",
+              "prompt": "5x - 10 = 25",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "eq_f0",
+              "prompt": "50 - 3x = 20",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_f1",
+              "prompt": "40 ÷ x = 8",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_f2",
+              "prompt": "100 - 5x = 50",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_f3",
+              "prompt": "60 ÷ x = 4",
+              "answer": 15,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "polygon_area_oral",
+      "name": "多边形面积口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "pa_a0",
+              "prompt": "平行四边形,底 6,高 4,面积 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_a1",
+              "prompt": "平行四边形,底 8,高 5,面积 = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_a2",
+              "prompt": "平行四边形,底 10,高 3,面积 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_a3",
+              "prompt": "平行四边形,底 12,高 4,面积 = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "pa_b0",
+              "prompt": "三角形,底 6,高 4,面积 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_b1",
+              "prompt": "三角形,底 8,高 5,面积 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_b2",
+              "prompt": "三角形,底 10,高 6,面积 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_b3",
+              "prompt": "三角形,底 12,高 8,面积 = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "pa_c0",
+              "prompt": "梯形,上底 3,下底 5,高 4,面积 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_c1",
+              "prompt": "梯形,上底 4,下底 6,高 5,面积 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_c2",
+              "prompt": "梯形,上底 2,下底 8,高 3,面积 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_c3",
+              "prompt": "梯形,上底 5,下底 7,高 4,面积 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "pa_d0",
+              "prompt": "平行四边形,底 15,高 4,面积 = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_d1",
+              "prompt": "三角形,底 14,高 6,面积 = ?",
+              "answer": 42,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_d2",
+              "prompt": "梯形,上底 3,下底 9,高 5,面积 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_d3",
+              "prompt": "平行四边形,底 20,高 5,面积 = ?",
+              "answer": 100,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "factor_multiple_oral",
+      "name": "因数倍数口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "fm_a0",
+              "prompt": "12 ÷ 3 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_a1",
+              "prompt": "24 ÷ 6 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_a2",
+              "prompt": "15 ÷ 5 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_a3",
+              "prompt": "36 ÷ 9 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "fm_b0",
+              "prompt": "14 ÷ 7 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_b1",
+              "prompt": "27 ÷ 9 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_b2",
+              "prompt": "32 ÷ 8 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_b3",
+              "prompt": "45 ÷ 9 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "fm_c0",
+              "prompt": "12 和 8 的最大公因数 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_c1",
+              "prompt": "15 和 10 的最大公因数 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_c2",
+              "prompt": "18 和 12 的最大公因数 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_c3",
+              "prompt": "20 和 15 的最大公因数 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "fm_d0",
+              "prompt": "3 和 4 的最小公倍数 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_d1",
+              "prompt": "4 和 6 的最小公倍数 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_d2",
+              "prompt": "5 和 3 的最小公倍数 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_d3",
+              "prompt": "6 和 8 的最小公倍数 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "cuboid_calc",
+      "name": "长方体正方体口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "cb_a0",
+              "prompt": "正方体,棱长 2,体积 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_a1",
+              "prompt": "正方体,棱长 3,体积 = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_a2",
+              "prompt": "正方体,棱长 4,体积 = ?",
+              "answer": 64,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_a3",
+              "prompt": "正方体,棱长 5,体积 = ?",
+              "answer": 125,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "cb_b0",
+              "prompt": "长方体,长 4 宽 3 高 2,体积 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_b1",
+              "prompt": "长方体,长 5 宽 4 高 3,体积 = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_b2",
+              "prompt": "长方体,长 6 宽 5 高 2,体积 = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_b3",
+              "prompt": "长方体,长 8 宽 3 高 2,体积 = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "cb_c0",
+              "prompt": "正方体,棱长 2,表面积 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_c1",
+              "prompt": "正方体,棱长 3,表面积 = ?",
+              "answer": 54,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_c2",
+              "prompt": "正方体,棱长 4,表面积 = ?",
+              "answer": 96,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_c3",
+              "prompt": "正方体,棱长 5,表面积 = ?",
+              "answer": 150,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "cb_d0",
+              "prompt": "长方体,长 4 宽 3 高 2,表面积 = ?",
+              "answer": 52,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_d1",
+              "prompt": "长方体,长 5 宽 4 高 3,表面积 = ?",
+              "answer": 94,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_d2",
+              "prompt": "长方体,长 6 宽 2 高 3,表面积 = ?",
+              "answer": 72,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_d3",
+              "prompt": "长方体,长 5 宽 5 高 2,表面积 = ?",
+              "answer": 90,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "decimal_mul_column",
+    "decimal_div_column",
+    "fraction_add_diff",
+    "fraction_mixed_calc",
+    "position_grid",
+    "combined_area",
+    "observation_3d_5",
+    "tree_planting",
+    "find_defective",
+    "line_graph",
+    "rotation_concept",
+    "cuboid_surface_area"
+  ]
+}

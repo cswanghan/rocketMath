@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>生字小课堂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cnchar-radical/cnchar.radical.min.js"></script>
+<script>try{ if(window.cnchar && window.cncharRadical){ cnchar.use(cncharRadical); } }catch(e){}</script>
+<style>
+:root{
+  --paper:#f4ead6;
+  --paper-2:#fbf5e7;
+  --paper-3:#fdf9ef;
+  --ink:#34302a;
+  --ink-soft:#7a7062;
+  --ink-faint:#a99e8c;
+  --red:#bf3f2b;
+  --red-soft:#e7b9ac;
+  --red-wash:#f3d9cf;
+  --gold:#c6962f;
+  --line:#e3d6bd;
+  --shadow:rgba(80,55,30,.16);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  color:var(--ink);
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.5), transparent 40%),
+    radial-gradient(circle at 80% 85%, rgba(198,150,47,.10), transparent 45%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+.kai{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;}
+.pinyin-font{font-family:"Baloo 2",sans-serif;}
+
+/* ---------- Header ---------- */
+header{
+  text-align:center;
+  padding:22px 16px 8px;
+  position:relative;
+}
+.logo{
+  display:inline-flex;align-items:center;gap:12px;
+}
+.logo .seal{
+  width:50px;height:50px;flex:none;
+  background:var(--red);
+  border-radius:10px;
+  display:grid;place-items:center;
+  color:#fdeede;font-size:30px;line-height:1;
+  font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-weight:700;
+  box-shadow:2px 3px 0 rgba(120,40,25,.45);
+  transform:rotate(-3deg);
+}
+.logo h1{
+  font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;
+  font-size:34px;margin:0;letter-spacing:4px;color:var(--ink);font-weight:700;
+}
+.subtitle{margin:6px 0 0;color:var(--ink-soft);font-size:13px;letter-spacing:2px;}
+
+/* ---------- Mode tabs ---------- */
+.tabs{
+  display:flex;gap:6px;justify-content:center;margin:16px auto 4px;
+  background:var(--paper-3);border:1px solid var(--line);
+  padding:5px;border-radius:14px;width:max-content;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.tabs button{
+  border:none;background:transparent;cursor:pointer;
+  font-family:inherit;font-size:15px;color:var(--ink-soft);
+  padding:9px 22px;border-radius:10px;font-weight:600;transition:.18s;
+}
+.tabs button.active{background:var(--red);color:#fff;box-shadow:0 2px 6px rgba(160,50,30,.35);}
+
+/* ---------- Layout ---------- */
+.wrap{max-width:1080px;margin:0 auto;padding:10px 14px 60px;}
+.layout{display:flex;flex-direction:column;gap:18px;}
+@media(min-width:880px){
+  .layout{flex-direction:row-reverse;align-items:flex-start;}
+  .detail-col{flex:1;position:sticky;top:14px;}
+  .picker-col{width:340px;flex:none;}
+}
+
+/* ---------- Picker ---------- */
+.panel{
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:0 4px 16px var(--shadow);
+}
+.picker-col .panel{padding:14px 14px 20px;}
+.picker-hint{font-size:12px;color:var(--ink-faint);margin:2px 4px 14px;letter-spacing:.5px;}
+.group{margin-bottom:18px;}
+.group-head{
+  display:flex;align-items:center;gap:9px;cursor:pointer;
+  padding:7px 9px;border-radius:11px;transition:.15s;margin-bottom:9px;
+  border:1px dashed transparent;
+}
+.group-head:hover{background:var(--paper-3);border-color:var(--line);}
+.rad-badge{
+  width:34px;height:34px;flex:none;border-radius:9px;
+  display:grid;place-items:center;font-size:21px;line-height:1;
+  color:#fff;font-family:"Kaiti SC","STKaiti","Kaiti",serif;
+  box-shadow:1px 2px 0 rgba(0,0,0,.12);
+}
+.group-head .gtitle{font-weight:700;font-size:15px;}
+.group-head .gtheme{font-size:11px;color:var(--ink-soft);margin-top:1px;}
+.group-head .arrow{margin-left:auto;color:var(--ink-faint);font-size:12px;}
+.chips{display:flex;flex-wrap:wrap;gap:7px;padding-left:3px;}
+.chip{
+  width:42px;height:42px;border-radius:10px;cursor:pointer;
+  background:var(--paper-3);border:1.5px solid var(--line);
+  display:grid;place-items:center;font-size:24px;line-height:1;
+  font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;color:var(--ink);
+  transition:.14s;
+}
+.chip:hover{transform:translateY(-2px);border-color:var(--red-soft);}
+.chip.sel{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 3px 8px rgba(160,50,30,.4);}
+
+/* ---------- Detail ---------- */
+.detail-col .panel{padding:22px 20px 26px;}
+.tian-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.tian{
+  position:relative;width:200px;height:200px;flex:none;
+  background:var(--paper-3);
+  border:2.5px solid var(--red);
+  border-radius:6px;
+  box-shadow:inset 0 0 0 1px rgba(191,63,43,.12), 0 3px 10px var(--shadow);
+}
+.tian::before,.tian::after{
+  content:"";position:absolute;background-image:linear-gradient(var(--red-soft) 50%,transparent 50%);
+}
+.tian::before{left:50%;top:6px;bottom:6px;width:1.5px;transform:translateX(-50%);
+  background:repeating-linear-gradient(var(--red-soft) 0 6px,transparent 6px 12px);}
+.tian::after{top:50%;left:6px;right:6px;height:1.5px;transform:translateY(-50%);
+  background:repeating-linear-gradient(90deg,var(--red-soft) 0 6px,transparent 6px 12px);}
+#writer-target{position:absolute;inset:0;z-index:2;display:grid;place-items:center;}
+.static-char{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-size:140px;line-height:1;color:var(--ink);user-select:none;}
+
+.char-actions{display:flex;gap:10px;}
+.act{
+  border:1.5px solid var(--line);background:var(--paper-3);cursor:pointer;
+  font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);
+  padding:10px 16px;border-radius:12px;display:inline-flex;align-items:center;gap:7px;
+  transition:.15s;
+}
+.act:hover{border-color:var(--red-soft);background:#fff;}
+.act:active{transform:scale(.96);}
+.act svg{width:18px;height:18px;}
+
+.pinyin{font-family:"Baloo 2",sans-serif;font-size:38px;color:var(--red);font-weight:600;margin:4px 0 0;letter-spacing:1px;}
+.mean{font-size:15px;color:var(--ink-soft);margin-top:2px;}
+
+.divider{height:1px;background:var(--line);margin:22px 0 18px;position:relative;}
+.divider span{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:var(--paper-2);padding:0 14px;font-size:13px;color:var(--ink-faint);
+  letter-spacing:3px;font-weight:600;
+}
+
+/* structure */
+.struct-row{display:flex;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:6px;}
+.struct-icon{width:30px;height:30px;flex:none;border:2px solid var(--ink-soft);border-radius:4px;display:flex;overflow:hidden;}
+.si-cell{flex:1;border:1px solid var(--ink-faint);}
+.struct-tag{font-size:14px;font-weight:700;color:var(--ink);}
+.struct-note{font-size:12px;color:var(--ink-soft);}
+
+.parts{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:18px;}
+.part{
+  position:relative;min-width:74px;padding:14px 10px 12px;border-radius:14px;
+  background:var(--paper-3);border:1.5px solid var(--line);text-align:center;
+}
+.part .pg{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-size:48px;line-height:1;}
+.part .pl{font-size:11px;color:var(--ink-soft);margin-top:6px;}
+.part.is-rad{cursor:pointer;border-color:transparent;color:#fff;}
+.part.is-rad .pl{color:rgba(255,255,255,.85);}
+.part.is-rad .tap{position:absolute;top:6px;right:8px;font-size:10px;opacity:.8;}
+.plus{font-size:30px;color:var(--ink-faint);font-weight:300;}
+
+.solo-note{
+  margin-top:16px;text-align:center;background:var(--paper-3);
+  border:1.5px dashed var(--line);border-radius:14px;padding:16px;
+  font-size:14px;color:var(--ink-soft);line-height:1.7;
+}
+.solo-note b{color:var(--red);}
+.evolve{display:inline-flex;align-items:center;gap:8px;margin-top:8px;font-size:15px;color:var(--ink);}
+.evolve .ev{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:26px;}
+
+/* radical popup */
+.overlay{
+  position:fixed;inset:0;background:rgba(50,35,20,.45);z-index:50;
+  display:none;align-items:flex-end;justify-content:center;
+  backdrop-filter:blur(3px);
+}
+.overlay.show{display:flex;}
+@media(min-width:600px){.overlay{align-items:center;}}
+.sheet{
+  background:var(--paper-2);width:100%;max-width:480px;
+  border-radius:22px 22px 0 0;padding:8px 20px 26px;
+  box-shadow:0 -8px 30px rgba(0,0,0,.25);
+  animation:slideUp .28s cubic-bezier(.2,.8,.3,1);max-height:90vh;overflow:auto;
+}
+@media(min-width:600px){.sheet{border-radius:22px;animation:pop .25s ease;}}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+@keyframes pop{from{transform:scale(.92);opacity:0;}to{transform:scale(1);opacity:1;}}
+.grip{width:42px;height:5px;border-radius:3px;background:var(--line);margin:6px auto 14px;}
+.rad-hero{display:flex;align-items:center;gap:16px;margin-bottom:8px;}
+.rad-glyph{
+  width:74px;height:74px;flex:none;border-radius:16px;display:grid;place-items:center;
+  font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:46px;color:#fff;
+  box-shadow:2px 3px 0 rgba(0,0,0,.12);
+}
+.rad-name{font-size:22px;font-weight:700;font-family:"Kaiti SC","STKaiti","Kaiti",serif;}
+.rad-theme{font-size:13px;color:var(--ink-soft);margin-top:3px;}
+.rad-story{
+  background:var(--paper-3);border-radius:14px;padding:14px 15px;font-size:14.5px;line-height:1.75;
+  margin:14px 0 8px;border-left:4px solid var(--gold);
+}
+.fam-title{font-size:13px;color:var(--ink-faint);letter-spacing:2px;font-weight:600;margin:16px 0 10px;}
+.fam-chips{display:flex;flex-wrap:wrap;gap:9px;}
+.fam-chip{
+  cursor:pointer;background:var(--paper-3);border:1.5px solid var(--line);border-radius:12px;
+  padding:8px 6px 7px;width:60px;text-align:center;transition:.14s;
+}
+.fam-chip:hover{transform:translateY(-2px);border-color:var(--red-soft);}
+.fam-chip .fc{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:30px;line-height:1;}
+.fam-chip .fp{font-family:"Baloo 2",sans-serif;font-size:12px;color:var(--red);margin-top:3px;}
+
+/* ---------- Quiz ---------- */
+.quiz{max-width:560px;margin:0 auto;}
+.quiz .panel{padding:24px 20px 28px;}
+.q-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:13px;color:var(--ink-soft);}
+.q-bar{height:8px;background:var(--line);border-radius:5px;overflow:hidden;margin:8px 0 22px;}
+.q-bar i{display:block;height:100%;background:var(--red);transition:width .35s;}
+.q-prompt{text-align:center;font-size:18px;font-weight:600;margin-bottom:6px;line-height:1.5;}
+.q-big{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-size:90px;text-align:center;line-height:1.1;margin:8px 0 22px;color:var(--ink);}
+.q-big.small{font-size:54px;}
+.opts{display:flex;flex-direction:column;gap:11px;}
+.opt{
+  border:2px solid var(--line);background:var(--paper-3);border-radius:14px;cursor:pointer;
+  font-family:inherit;font-size:18px;font-weight:600;color:var(--ink);
+  padding:15px;text-align:center;transition:.14s;
+}
+.opt .oc{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:30px;margin-right:6px;}
+.opt .op{font-family:"Baloo 2",sans-serif;color:var(--red);}
+.opt:hover:not(:disabled){border-color:var(--red-soft);}
+.opt.correct{background:#e6f2e0;border-color:#7bb366;color:#3d7a2a;}
+.opt.wrong{background:#fae3de;border-color:var(--red);color:var(--red);}
+.opt:disabled{cursor:default;}
+.q-feedback{text-align:center;font-size:15px;font-weight:600;min-height:24px;margin-top:16px;}
+.q-next{
+  display:block;margin:18px auto 0;border:none;background:var(--red);color:#fff;cursor:pointer;
+  font-family:inherit;font-size:16px;font-weight:700;padding:13px 40px;border-radius:13px;
+  box-shadow:0 3px 8px rgba(160,50,30,.35);transition:.15s;
+}
+.q-next:hover{transform:translateY(-1px);}
+.q-result{text-align:center;padding:10px 0;}
+.q-stars{font-size:44px;letter-spacing:6px;margin:10px 0;}
+.q-score{font-size:46px;font-weight:700;font-family:"Baloo 2",sans-serif;color:var(--red);}
+.q-msg{font-size:17px;margin:8px 0 22px;color:var(--ink);}
+.hidden{display:none!important;}
+.footer-note{text-align:center;font-size:11px;color:var(--ink-faint);margin-top:30px;letter-spacing:1px;}
+
+/* ---------- 生字本 录入 ---------- */
+.nb{max-width:620px;margin:0 auto;}
+.add-card{padding:20px 18px 22px;}
+.add-title{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:19px;font-weight:700;margin:0 0 4px;}
+.add-sub{font-size:12.5px;color:var(--ink-soft);margin:0 0 16px;line-height:1.6;}
+.field-label{font-size:12px;color:var(--ink-faint);font-weight:600;letter-spacing:1px;margin:14px 0 7px;}
+.input-row{display:flex;gap:9px;align-items:stretch;}
+.big-input{
+  flex:1;font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-size:26px;color:var(--ink);
+  border:2px solid var(--line);background:var(--paper-3);border-radius:13px;padding:10px 14px;outline:none;
+  transition:.15s;width:100%;
+}
+.big-input::placeholder{font-size:15px;color:var(--ink-faint);font-family:"PingFang SC",sans-serif;}
+.big-input:focus{border-color:var(--red-soft);background:#fff;}
+.note-input{
+  flex:1;font-size:14px;font-family:inherit;color:var(--ink);
+  border:2px solid var(--line);background:var(--paper-3);border-radius:13px;padding:11px 14px;outline:none;width:100%;
+}
+.note-input:focus{border-color:var(--red-soft);background:#fff;}
+.mic{
+  flex:none;width:50px;border:2px solid var(--line);background:var(--paper-3);border-radius:13px;cursor:pointer;
+  display:grid;place-items:center;color:var(--red);transition:.15s;
+}
+.mic:hover{border-color:var(--red-soft);background:#fff;}
+.mic svg{width:22px;height:22px;}
+.mic.rec{background:var(--red);border-color:var(--red);color:#fff;animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(191,63,43,.5);}50%{box-shadow:0 0 0 8px rgba(191,63,43,0);}}
+.scene-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.scene-chip{
+  border:1.5px solid var(--line);background:var(--paper-3);border-radius:20px;cursor:pointer;
+  font-family:inherit;font-size:13.5px;font-weight:600;color:var(--ink-soft);padding:8px 15px;transition:.14s;
+}
+.scene-chip.sel{background:var(--gold);border-color:var(--gold);color:#fff;box-shadow:0 2px 6px rgba(198,150,47,.4);}
+.add-btn{
+  width:100%;margin-top:18px;border:none;background:var(--red);color:#fff;cursor:pointer;
+  font-family:inherit;font-size:16px;font-weight:700;padding:14px;border-radius:13px;
+  box-shadow:0 3px 10px rgba(160,50,30,.35);transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.add-btn:hover{transform:translateY(-1px);}
+.add-btn:active{transform:scale(.98);}
+.voice-tip{font-size:11.5px;color:var(--ink-faint);margin-top:10px;text-align:center;line-height:1.6;}
+
+/* ---------- 生字本 列表 ---------- */
+.nb-list-head{display:flex;align-items:center;justify-content:space-between;margin:24px 4px 12px;gap:10px;flex-wrap:wrap;}
+.nb-count{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:18px;font-weight:700;}
+.nb-count small{font-family:"Baloo 2",sans-serif;color:var(--red);font-weight:700;}
+.review-btn{
+  border:none;background:var(--ink);color:var(--paper-2);cursor:pointer;font-family:inherit;
+  font-size:14px;font-weight:700;padding:10px 20px;border-radius:11px;transition:.15s;
+}
+.review-btn:hover{transform:translateY(-1px);background:#46403a;}
+.review-btn:disabled{opacity:.4;cursor:default;transform:none;}
+.filter-row{display:flex;gap:7px;flex-wrap:wrap;margin:0 2px 14px;}
+.filter-chip{
+  border:1.5px solid var(--line);background:var(--paper-2);border-radius:18px;cursor:pointer;
+  font-family:inherit;font-size:12.5px;font-weight:600;color:var(--ink-soft);padding:6px 13px;transition:.14s;
+}
+.filter-chip.sel{background:var(--ink);border-color:var(--ink);color:var(--paper-2);}
+.empty{text-align:center;color:var(--ink-faint);padding:40px 20px;font-size:14px;line-height:1.8;}
+.empty .big{font-size:40px;display:block;margin-bottom:10px;opacity:.6;}
+.entry{
+  background:var(--paper-2);border:1px solid var(--line);border-radius:16px;padding:15px 16px;margin-bottom:12px;
+  box-shadow:0 2px 8px var(--shadow);
+}
+.entry-top{display:flex;align-items:flex-start;gap:12px;}
+.entry-word{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-size:38px;line-height:1;color:var(--ink);}
+.entry-meta{flex:1;min-width:0;}
+.entry-py{font-family:"Baloo 2",sans-serif;font-size:18px;color:var(--red);font-weight:600;}
+.entry-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:5px;}
+.tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;}
+.tag-scene{background:var(--red-wash);color:var(--red);}
+.tag-rev{background:var(--paper-3);color:var(--ink-soft);border:1px solid var(--line);}
+.entry-acts{display:flex;gap:6px;flex:none;}
+.ibtn{
+  width:34px;height:34px;border:1.5px solid var(--line);background:var(--paper-3);border-radius:10px;cursor:pointer;
+  display:grid;place-items:center;color:var(--ink-soft);transition:.14s;
+}
+.ibtn:hover{border-color:var(--red-soft);color:var(--red);background:#fff;}
+.ibtn svg{width:16px;height:16px;}
+.entry-note{font-size:12.5px;color:var(--ink-soft);margin-top:9px;font-style:italic;}
+.entry-dec{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.dec-cell{
+  background:var(--paper-3);border:1px solid var(--line);border-radius:11px;padding:8px 10px;min-width:64px;text-align:center;
+}
+.dec-cell .dc-c{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:26px;line-height:1;}
+.dec-cell .dc-p{font-family:"Baloo 2",sans-serif;font-size:12px;color:var(--red);margin-top:2px;}
+.dec-cell .dc-r{font-size:11px;color:var(--ink-soft);margin-top:4px;}
+.dec-cell .dc-r b{color:var(--ink);}
+.dec-cell.known{cursor:pointer;}
+.dec-cell.known:hover{border-color:var(--red-soft);}
+.dec-rad{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;color:#fff;
+  font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:13px;vertical-align:-3px;margin-right:2px;}
+.dec-hint{font-size:11px;color:var(--ink-faint);margin-top:8px;line-height:1.6;}
+
+/* ---------- 复习闪卡 ---------- */
+.rev-card{
+  background:var(--paper-2);width:100%;max-width:440px;border-radius:22px;padding:22px 20px 26px;
+  box-shadow:0 12px 40px rgba(0,0,0,.3);animation:pop .25s ease;
+}
+.rev-top{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-soft);margin-bottom:14px;}
+.rev-close{border:none;background:transparent;cursor:pointer;color:var(--ink-faint);font-size:22px;line-height:1;padding:4px;}
+.rev-scene{text-align:center;font-size:13px;color:var(--ink-soft);margin-bottom:10px;}
+.rev-scene b{color:var(--red);}
+.rev-face{
+  min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--paper-3);border:2px solid var(--line);border-radius:18px;padding:18px;cursor:pointer;text-align:center;
+}
+.rev-word{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-size:74px;line-height:1.1;color:var(--ink);}
+.rev-flip-hint{font-size:13px;color:var(--ink-faint);margin-top:14px;}
+.rev-py{font-family:"Baloo 2",sans-serif;font-size:30px;color:var(--red);font-weight:600;margin:2px 0 14px;}
+.rev-back-dec{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;}
+.rev-buttons{display:flex;gap:11px;margin-top:18px;}
+.rev-buttons button{
+  flex:1;border:2px solid var(--line);background:var(--paper-3);cursor:pointer;font-family:inherit;
+  font-size:15px;font-weight:700;padding:14px;border-radius:13px;transition:.14s;
+}
+.rev-again{color:var(--ink-soft);}
+.rev-again:hover{border-color:var(--gold);color:var(--gold);}
+.rev-got{color:#3d7a2a;}
+.rev-got:hover{border-color:#7bb366;background:#eef5e8;}
+.toast{
+  position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);
+  background:var(--ink);color:var(--paper-2);padding:12px 22px;border-radius:14px;font-size:14px;font-weight:600;
+  box-shadow:0 6px 20px rgba(0,0,0,.3);opacity:0;transition:.25s;z-index:90;pointer-events:none;max-width:90vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ---------- 通用防溢出 ---------- */
+.big-input,.note-input{min-width:0;}
+#rev-overlay{align-items:center;padding:14px;}
+.rev-card{max-height:88vh;overflow:auto;}
+.sheet{ -webkit-overflow-scrolling:touch; }
+html{ -webkit-text-size-adjust:100%; }
+
+/* ---------- 平板 / 窄屏 ---------- */
+@media(max-width:879px){
+  body{overflow-x:hidden;}
+  .layout{flex-direction:column;}
+}
+
+/* ---------- 手机 ---------- */
+@media(max-width:600px){
+  header{padding:16px 12px 4px;}
+  .logo{gap:10px;}
+  .logo .seal{width:44px;height:44px;font-size:26px;border-radius:9px;}
+  .logo h1{font-size:27px;letter-spacing:3px;}
+  .subtitle{font-size:11px;letter-spacing:1.5px;margin-top:5px;}
+
+  .tabs{width:auto;margin:14px 10px 2px;gap:4px;padding:4px;border-radius:13px;}
+  .tabs button{flex:1;padding:11px 2px;font-size:13.5px;border-radius:9px;}
+
+  .wrap{padding:8px 11px 76px;}
+  .layout{gap:14px;}
+  .detail-col .panel{padding:18px 14px 22px;}
+  .picker-col{width:100%;}
+  .picker-col .panel{padding:12px 12px 18px;}
+
+  .pinyin{font-size:31px;}
+  .mean{font-size:14px;}
+  .char-actions{gap:8px;}
+  .act{padding:10px 14px;font-size:13.5px;}
+  .divider{margin:18px 0 15px;}
+  .parts{gap:10px;}
+  .part{min-width:62px;padding:12px 8px 10px;}
+  .part .pg{font-size:40px;}
+  .plus{font-size:26px;}
+  .solo-note{font-size:13px;padding:14px;}
+
+  .group-head{padding:7px 7px;}
+  .chip{width:40px;height:40px;font-size:23px;}
+
+  /* 偏旁联想弹窗 */
+  .rad-glyph{width:64px;height:64px;font-size:40px;}
+  .rad-name{font-size:20px;}
+  .rad-story{font-size:14px;}
+  .fam-chip{width:54px;}
+  .fam-chip .fc{font-size:27px;}
+
+  /* 闯关 */
+  .quiz .panel{padding:20px 15px 24px;}
+  .q-prompt{font-size:16px;}
+  .q-big{font-size:74px;}
+  .q-big.small{font-size:46px;}
+  .opt{font-size:17px;padding:14px;}
+  .opt .oc{font-size:28px;}
+
+  /* 生字本 */
+  .add-card{padding:17px 14px 20px;}
+  .add-title{font-size:18px;}
+  .big-input{font-size:22px;padding:10px 12px;}
+  .note-input{font-size:13.5px;}
+  .mic{width:46px;}
+  .mic svg{width:20px;height:20px;}
+  .scene-chip{font-size:13px;padding:8px 13px;}
+  .add-btn{font-size:15px;padding:13px;}
+  .nb-list-head{margin:22px 2px 10px;}
+  .nb-count{font-size:16px;}
+  .review-btn{font-size:13px;padding:9px 16px;}
+  .entry{padding:14px;}
+  .entry-word{font-size:33px;}
+  .entry-py{font-size:16px;}
+  .entry-acts{gap:5px;}
+  .ibtn{width:32px;height:32px;}
+  .dec-cell{min-width:58px;padding:7px 9px;}
+  .dec-cell .dc-c{font-size:24px;}
+
+  /* 复习闪卡 */
+  .rev-word{font-size:60px;}
+  .rev-py{font-size:27px;}
+  .rev-face{min-height:200px;}
+  .rev-buttons button{font-size:14px;padding:13px;}
+}
+
+/* ---------- 超窄屏（小手机） ---------- */
+@media(max-width:360px){
+  .logo h1{font-size:24px;}
+  .tabs button{font-size:12.5px;}
+  .pinyin{font-size:28px;}
+  .part{min-width:56px;}
+  .part .pg{font-size:36px;}
+  .q-big{font-size:64px;}
+  .chip{width:38px;height:38px;font-size:22px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="seal">字</div>
+    <div>
+      <h1>生字小课堂</h1>
+    </div>
+  </div>
+  <p class="subtitle">拼 音 · 笔 顺 · 拆 字 · 偏 旁 联 想</p>
+  <div class="tabs">
+    <button id="tab-learn" class="active" onclick="switchMode('learn')">📖 学一学</button>
+    <button id="tab-quiz" onclick="switchMode('quiz')">🎯 闯一闯</button>
+    <button id="tab-notebook" onclick="switchMode('notebook')">📒 生字本</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- LEARN MODE -->
+  <div id="mode-learn" class="layout">
+    <div class="detail-col">
+      <div class="panel">
+        <div class="tian-wrap">
+          <div class="tian"><div id="writer-target"></div></div>
+          <div class="char-actions">
+            <button class="act" id="btn-speak">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              读一读
+            </button>
+            <button class="act" id="btn-stroke">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+              <span id="stroke-label">写一写</span>
+            </button>
+          </div>
+          <div style="text-align:center;">
+            <div class="pinyin pinyin-font" id="d-pinyin">jiāng</div>
+            <div class="mean" id="d-mean">含义：大的河</div>
+          </div>
+        </div>
+
+        <div class="divider"><span>拆 字</span></div>
+        <div id="struct-area"></div>
+      </div>
+    </div>
+
+    <div class="picker-col">
+      <div class="panel">
+        <p class="picker-hint">点字卡学习 · 点偏旁看「字的一家人」</p>
+        <div id="picker"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ MODE -->
+  <div id="mode-quiz" class="quiz hidden">
+    <div class="panel">
+      <div id="quiz-play">
+        <div class="q-top"><span id="q-count">第 1 / 10 关</span><span id="q-score-top">⭐ 0</span></div>
+        <div class="q-bar"><i id="q-prog" style="width:10%"></i></div>
+        <div class="q-prompt" id="q-prompt"></div>
+        <div class="q-big" id="q-big"></div>
+        <div class="opts" id="q-opts"></div>
+        <div class="q-feedback" id="q-feedback"></div>
+        <button class="q-next hidden" id="q-next" onclick="nextQuestion()">下一关 →</button>
+      </div>
+      <div id="quiz-result" class="q-result hidden"></div>
+    </div>
+  </div>
+
+  <!-- NOTEBOOK MODE -->
+  <div id="mode-notebook" class="nb hidden">
+    <div class="panel add-card">
+      <p class="add-title">📝 记一个生字</p>
+      <p class="add-sub">遇到不会的字或词，说出来（或打字），告诉它你在什么场景遇到的，我帮你拆解，存进生字本。</p>
+
+      <div class="field-label">① 是哪个字 / 词？</div>
+      <div class="input-row">
+        <input class="big-input" id="nb-word" placeholder="例如：蝴 蝶 / 灿烂 / 一个字也行" maxlength="8" autocomplete="off">
+        <button class="mic" id="nb-word-mic" title="语音输入">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>
+        </button>
+      </div>
+
+      <div class="field-label">② 在什么场景遇到的？</div>
+      <div class="scene-chips" id="nb-scenes"></div>
+
+      <div class="field-label">③ 想补充一句吗？（可选）</div>
+      <div class="input-row">
+        <input class="note-input" id="nb-note" placeholder="例如：写《我的妈妈》时不会写" maxlength="40" autocomplete="off">
+        <button class="mic" id="nb-note-mic" title="语音输入">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v4"/></svg>
+        </button>
+      </div>
+
+      <button class="add-btn" id="nb-add">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        拆解并加入生字本
+      </button>
+      <p class="voice-tip" id="nb-voice-tip"></p>
+    </div>
+
+    <div class="nb-list-head">
+      <div class="nb-count" id="nb-count">我的生字本 <small>0</small> 个字</div>
+      <button class="review-btn" id="nb-review" onclick="startReview()">▶ 开始复习</button>
+    </div>
+    <div class="filter-row" id="nb-filter"></div>
+    <div id="nb-list"></div>
+  </div>
+
+  <p class="footer-note">为爱学习的小朋友做的 · 慢慢读，慢慢写，每个字都有故事</p>
+</div>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeSheet()">
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<div class="overlay" id="rev-overlay" onclick="if(event.target===this)closeReview()">
+  <div class="rev-card" id="rev-card"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===================== 偏旁部首数据 ===================== */
+const RAD = {
+  water:{g:'氵',name:'三点水',theme:'水 · 液体',color:'#3a87a8',
+    story:'三点水「氵」就像三颗亮晶晶的小水珠💧。带它的字，几乎都和水、河、海这些湿湿的东西有关。',source:'水'},
+  wood:{g:'木',name:'木字旁',theme:'树木 · 木头',color:'#6b8f4e',
+    story:'「木」本来就是一棵小树🌳，有枝有根。带「木」的字，大多和树、木头做的东西有关。',source:'木'},
+  silk:{g:'纟',name:'绞丝旁',theme:'丝线 · 布',color:'#b07cae',
+    story:'古时候人们用蚕吐的丝来织布。「纟」就是一束缠起来的丝线🧵，带它的字常和线、布、颜色有关。',source:'丝'},
+  mouth:{g:'口',name:'口字旁',theme:'嘴巴 · 说话吃喝',color:'#cf7b3a',
+    story:'「口」就是一张大嘴巴👄。带「口」的字，常和说话、唱歌、吃东西有关。',source:'口'},
+  woman:{g:'女',name:'女字旁',theme:'女性 · 家人',color:'#cf6f8f',
+    story:'「女」是一个女子的样子。带「女」的字，常和妈妈、姐姐这些女性家人有关。',source:'女'},
+  foot:{g:'⻊',name:'足字旁',theme:'脚 · 走跳',color:'#7a6a9c',
+    story:'「足」就是一只脚🦶。带足字旁的字，几乎都和脚的动作有关——跑、跳、踢、走。',source:'足'},
+  hand:{g:'扌',name:'提手旁',theme:'手 · 动作',color:'#c19a3e',
+    story:'提手旁「扌」是「手」侧着身子，正准备干活✋。带它的字，大多是手做的动作。',source:'手'},
+  person:{g:'亻',name:'单人旁',theme:'人',color:'#5a93a0',
+    story:'单人旁「亻」是「人」字侧着站👤。带它的字，常常和人有关。',source:'人'},
+  grass:{g:'艹',name:'草字头',theme:'花草 · 植物',color:'#79a05a',
+    story:'草字头「艹」像从泥土里冒出来的两棵小草🌱。带它的字，大多和花、草、植物有关。',source:'草'},
+  heart:{g:'忄',name:'竖心旁 / 心字底',theme:'心情 · 想法',color:'#c25b54',
+    story:'「忄」和「心」都是一颗心❤️。带它的字，常和心里的想法、感觉有关——想、念、怕、忙。',source:'心'},
+  roof:{g:'宀',name:'宝盖头',theme:'房子 · 家',color:'#9c7b54',
+    story:'宝盖头「宀」像房子的屋顶🏠。带它的字，常常和房子、家里头的事有关。',source:'屋'},
+  walk:{g:'辶',name:'走之旁',theme:'走路 · 移动',color:'#5c8a73',
+    story:'走之旁「辶」像一个人迈着步子往前走🚶。带它的字，几乎都和走路、来去、远近有关。',source:'走'},
+  fire:{g:'火',name:'火字旁',theme:'火 · 热',color:'#cf5a3a',
+    story:'「火」就是跳动的火苗🔥。带「火」的字，大多和火、热、光亮有关。',source:'火'},
+  sun:{g:'日',name:'日字旁',theme:'太阳 · 时间',color:'#cf9b3a',
+    story:'「日」就是天上的太阳☀️。带「日」的字，常和太阳、天气、时间有关。',source:'日'},
+};
+
+/* ===================== 生字数据 ===================== */
+/* struct: 左右 / 上下 / 半包围 / 独体 ; parts:[{g,l,rad?}] */
+const CHARS = [
+  // 基础独体字
+  {c:'日',p:'rì',mean:'天上的太阳',struct:'独体',rad:null,evolve:'sun',parts:[]},
+  {c:'月',p:'yuè',mean:'天上的月亮',struct:'独体',rad:null,parts:[]},
+  {c:'水',p:'shuǐ',mean:'喝的水、河水',struct:'独体',rad:'water',evolve:'water',parts:[]},
+  {c:'火',p:'huǒ',mean:'烧东西的火',struct:'独体',rad:'fire',evolve:'fire',parts:[]},
+  {c:'木',p:'mù',mean:'树木、木头',struct:'独体',rad:'wood',evolve:'wood',parts:[]},
+  {c:'山',p:'shān',mean:'高高的大山',struct:'独体',rad:null,parts:[]},
+  {c:'口',p:'kǒu',mean:'吃饭说话的嘴',struct:'独体',rad:'mouth',evolve:'mouth',parts:[]},
+  {c:'人',p:'rén',mean:'人类、人们',struct:'独体',rad:'person',evolve:'person',parts:[]},
+  // 氵
+  {c:'江',p:'jiāng',mean:'大的河',struct:'左右',rad:'water',parts:[{g:'氵',l:'三点水',rad:'water'},{g:'工',l:'工'}]},
+  {c:'河',p:'hé',mean:'流动的河流',struct:'左右',rad:'water',parts:[{g:'氵',l:'三点水',rad:'water'},{g:'可',l:'可'}]},
+  {c:'湖',p:'hú',mean:'一大片湖水',struct:'左右',rad:'water',parts:[{g:'氵',l:'三点水',rad:'water'},{g:'胡',l:'胡'}]},
+  {c:'海',p:'hǎi',mean:'无边的大海',struct:'左右',rad:'water',parts:[{g:'氵',l:'三点水',rad:'water'},{g:'每',l:'每'}]},
+  {c:'流',p:'liú',mean:'水往下流',struct:'左右',rad:'water',parts:[{g:'氵',l:'三点水',rad:'water'},{g:'㐬',l:'㐬'}]},
+  // 木
+  {c:'林',p:'lín',mean:'许多树的树林',struct:'左右',rad:'wood',parts:[{g:'木',l:'木字旁',rad:'wood'},{g:'木',l:'木'}]},
+  {c:'树',p:'shù',mean:'一棵棵的树',struct:'左右',rad:'wood',parts:[{g:'木',l:'木字旁',rad:'wood'},{g:'对',l:'对'}]},
+  {c:'松',p:'sōng',mean:'松树',struct:'左右',rad:'wood',parts:[{g:'木',l:'木字旁',rad:'wood'},{g:'公',l:'公'}]},
+  {c:'桥',p:'qiáo',mean:'过河的桥',struct:'左右',rad:'wood',parts:[{g:'木',l:'木字旁',rad:'wood'},{g:'乔',l:'乔'}]},
+  {c:'村',p:'cūn',mean:'住人的村子',struct:'左右',rad:'wood',parts:[{g:'木',l:'木字旁',rad:'wood'},{g:'寸',l:'寸'}]},
+  // 纟
+  {c:'红',p:'hóng',mean:'红色',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'工',l:'工'}]},
+  {c:'绿',p:'lǜ',mean:'绿色',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'录',l:'录'}]},
+  {c:'纸',p:'zhǐ',mean:'写字的纸',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'氏',l:'氏'}]},
+  {c:'线',p:'xiàn',mean:'细细的线',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'戋',l:'戋'}]},
+  {c:'给',p:'gěi',mean:'把东西给别人',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'合',l:'合'}]},
+  // 口
+  {c:'听',p:'tīng',mean:'用耳朵听',struct:'左右',rad:'mouth',parts:[{g:'口',l:'口字旁',rad:'mouth'},{g:'斤',l:'斤'}]},
+  {c:'唱',p:'chàng',mean:'唱歌',struct:'左右',rad:'mouth',parts:[{g:'口',l:'口字旁',rad:'mouth'},{g:'昌',l:'昌'}]},
+  {c:'吃',p:'chī',mean:'吃东西',struct:'左右',rad:'mouth',parts:[{g:'口',l:'口字旁',rad:'mouth'},{g:'乞',l:'乞'}]},
+  {c:'叫',p:'jiào',mean:'大声喊叫',struct:'左右',rad:'mouth',parts:[{g:'口',l:'口字旁',rad:'mouth'},{g:'丩',l:'丩'}]},
+  {c:'吹',p:'chuī',mean:'用嘴吹气',struct:'左右',rad:'mouth',parts:[{g:'口',l:'口字旁',rad:'mouth'},{g:'欠',l:'欠'}]},
+  // 女
+  {c:'妈',p:'mā',mean:'妈妈',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'马',l:'马'}]},
+  {c:'姐',p:'jiě',mean:'姐姐',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'且',l:'且'}]},
+  {c:'妹',p:'mèi',mean:'妹妹',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'未',l:'未'}]},
+  {c:'奶',p:'nǎi',mean:'奶奶',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'乃',l:'乃'}]},
+  {c:'好',p:'hǎo',mean:'很好',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'子',l:'子'}]},
+  // 足
+  {c:'跑',p:'pǎo',mean:'快快地跑',struct:'左右',rad:'foot',parts:[{g:'⻊',l:'足字旁',rad:'foot'},{g:'包',l:'包'}]},
+  {c:'跳',p:'tiào',mean:'用脚跳起来',struct:'左右',rad:'foot',parts:[{g:'⻊',l:'足字旁',rad:'foot'},{g:'兆',l:'兆'}]},
+  {c:'踢',p:'tī',mean:'用脚踢',struct:'左右',rad:'foot',parts:[{g:'⻊',l:'足字旁',rad:'foot'},{g:'易',l:'易'}]},
+  {c:'路',p:'lù',mean:'走的路',struct:'左右',rad:'foot',parts:[{g:'⻊',l:'足字旁',rad:'foot'},{g:'各',l:'各'}]},
+  // 扌
+  {c:'打',p:'dǎ',mean:'用手打',struct:'左右',rad:'hand',parts:[{g:'扌',l:'提手旁',rad:'hand'},{g:'丁',l:'丁'}]},
+  {c:'拍',p:'pāi',mean:'拍手、拍照',struct:'左右',rad:'hand',parts:[{g:'扌',l:'提手旁',rad:'hand'},{g:'白',l:'白'}]},
+  {c:'提',p:'tí',mean:'提起来',struct:'左右',rad:'hand',parts:[{g:'扌',l:'提手旁',rad:'hand'},{g:'是',l:'是'}]},
+  {c:'抱',p:'bào',mean:'抱一抱',struct:'左右',rad:'hand',parts:[{g:'扌',l:'提手旁',rad:'hand'},{g:'包',l:'包'}]},
+  // 亻
+  {c:'你',p:'nǐ',mean:'你',struct:'左右',rad:'person',parts:[{g:'亻',l:'单人旁',rad:'person'},{g:'尔',l:'尔'}]},
+  {c:'他',p:'tā',mean:'他',struct:'左右',rad:'person',parts:[{g:'亻',l:'单人旁',rad:'person'},{g:'也',l:'也'}]},
+  {c:'休',p:'xiū',mean:'休息',struct:'左右',rad:'person',parts:[{g:'亻',l:'单人旁',rad:'person'},{g:'木',l:'木（树）'}]},
+  {c:'位',p:'wèi',mean:'位置、座位',struct:'左右',rad:'person',parts:[{g:'亻',l:'单人旁',rad:'person'},{g:'立',l:'立'}]},
+  // 艹
+  {c:'花',p:'huā',mean:'开的花',struct:'上下',rad:'grass',parts:[{g:'艹',l:'草字头',rad:'grass'},{g:'化',l:'化'}]},
+  {c:'草',p:'cǎo',mean:'青青的草',struct:'上下',rad:'grass',parts:[{g:'艹',l:'草字头',rad:'grass'},{g:'早',l:'早'}]},
+  {c:'菜',p:'cài',mean:'吃的蔬菜',struct:'上下',rad:'grass',parts:[{g:'艹',l:'草字头',rad:'grass'},{g:'采',l:'采'}]},
+  {c:'苗',p:'miáo',mean:'小树苗',struct:'上下',rad:'grass',parts:[{g:'艹',l:'草字头',rad:'grass'},{g:'田',l:'田'}]},
+  // 忄/心
+  {c:'想',p:'xiǎng',mean:'心里想',struct:'上下',rad:'heart',parts:[{g:'相',l:'相'},{g:'心',l:'心字底',rad:'heart'}]},
+  {c:'念',p:'niàn',mean:'想念',struct:'上下',rad:'heart',parts:[{g:'今',l:'今'},{g:'心',l:'心字底',rad:'heart'}]},
+  {c:'怕',p:'pà',mean:'害怕',struct:'左右',rad:'heart',parts:[{g:'忄',l:'竖心旁',rad:'heart'},{g:'白',l:'白'}]},
+  {c:'忙',p:'máng',mean:'很忙',struct:'左右',rad:'heart',parts:[{g:'忄',l:'竖心旁',rad:'heart'},{g:'亡',l:'亡'}]},
+  {c:'情',p:'qíng',mean:'心情、感情',struct:'左右',rad:'heart',parts:[{g:'忄',l:'竖心旁',rad:'heart'},{g:'青',l:'青'}]},
+  // 宀
+  {c:'家',p:'jiā',mean:'温暖的家',struct:'上下',rad:'roof',parts:[{g:'宀',l:'宝盖头',rad:'roof'},{g:'豕',l:'豕'}]},
+  {c:'字',p:'zì',mean:'写的字',struct:'上下',rad:'roof',parts:[{g:'宀',l:'宝盖头',rad:'roof'},{g:'子',l:'子'}]},
+  {c:'安',p:'ān',mean:'平安',struct:'上下',rad:'roof',parts:[{g:'宀',l:'宝盖头',rad:'roof'},{g:'女',l:'女'}]},
+  {c:'守',p:'shǒu',mean:'守护',struct:'上下',rad:'roof',parts:[{g:'宀',l:'宝盖头',rad:'roof'},{g:'寸',l:'寸'}]},
+  // 辶
+  {c:'远',p:'yuǎn',mean:'很远',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'元',l:'元'}]},
+  {c:'近',p:'jìn',mean:'很近',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'斤',l:'斤'}]},
+  {c:'送',p:'sòng',mean:'送东西',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'关',l:'关'}]},
+  {c:'过',p:'guò',mean:'走过、经过',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'寸',l:'寸'}]},
+  {c:'这',p:'zhè',mean:'这里、这个',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'文',l:'文'}]},
+];
+
+/* 偏旁分组顺序 */
+const GROUPS = [
+  {key:'basic',title:'基础字',theme:'汉字的小积木',color:'#8a7a5c',rad:null,
+    chars:['日','月','水','火','木','山','口','人']},
+  {key:'water',rad:'water'},{key:'wood',rad:'wood'},{key:'silk',rad:'silk'},
+  {key:'mouth',rad:'mouth'},{key:'woman',rad:'woman'},{key:'foot',rad:'foot'},
+  {key:'hand',rad:'hand'},{key:'person',rad:'person'},{key:'grass',rad:'grass'},
+  {key:'heart',rad:'heart'},{key:'roof',rad:'roof'},{key:'walk',rad:'walk'},
+];
+
+/* ===================== 通用 ===================== */
+const byChar = {};
+CHARS.forEach(c=>byChar[c.c]=c);
+let current = byChar['江'];
+let writer = null, strokeReady = false;
+
+/* ---------- 发音 ---------- */
+let zhVoice=null;
+function pickVoice(){
+  const vs = speechSynthesis.getVoices();
+  zhVoice = vs.find(v=>/zh[-_]CN/i.test(v.lang)) || vs.find(v=>/zh/i.test(v.lang)) || null;
+}
+if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text){
+  if(!('speechSynthesis' in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang='zh-CN'; u.rate=0.55; u.pitch=1.05;
+  if(zhVoice) u.voice=zhVoice;
+  speechSynthesis.speak(u);
+}
+
+/* ---------- 笔顺 ---------- */
+function buildWriter(ch){
+  const target = document.getElementById('writer-target');
+  target.innerHTML='';
+  strokeReady=false; writer=null;
+  document.getElementById('stroke-label').textContent='写一写';
+  let fellBack=false;
+  function fallback(){
+    if(fellBack) return; fellBack=true;
+    target.innerHTML = '<span class="static-char">'+ch+'</span>';
+    document.getElementById('stroke-label').textContent='临摹';
+  }
+  if(typeof HanziWriter === 'undefined'){ fallback(); return; }
+  try{
+    writer = HanziWriter.create(target, ch, {
+      width:200, height:200, padding:18,
+      strokeColor:'#34302a', radicalColor:'#bf3f2b',
+      showOutline:true, showCharacter:true,
+      strokeAnimationSpeed:0.9, delayBetweenStrokes:180,
+      charDataLoader:function(c,onComplete){
+        fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/'+encodeURIComponent(c)+'.json')
+          .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+          .then(d=>{ strokeReady=true; document.getElementById('stroke-label').textContent='写一写'; onComplete(d); })
+          .catch(()=>fallback());
+      }
+    });
+  }catch(e){ fallback(); }
+  setTimeout(()=>{ if(!strokeReady) fallback(); }, 3500);
+}
+document.getElementById('btn-stroke').onclick=()=>{
+  if(writer && strokeReady){ writer.animateCharacter(); }
+  else { speak(current.c); }
+};
+document.getElementById('btn-speak').onclick=()=>speak(current.c);
+
+/* ---------- 结构图标 ---------- */
+function structIcon(struct){
+  if(struct==='左右') return '<div class="struct-icon"><div class="si-cell"></div><div class="si-cell"></div></div>';
+  if(struct==='上下') return '<div class="struct-icon" style="flex-direction:column;"><div class="si-cell"></div><div class="si-cell"></div></div>';
+  if(struct==='半包围') return '<div class="struct-icon" style="border-bottom-width:5px;border-left-width:5px;"></div>';
+  return '<div class="struct-icon"></div>';
+}
+const STRUCT_NOTE={'左右':'左边 + 右边','上下':'上面 + 下面','半包围':'一边包着另一边','独体':'整个就是一个部件'};
+
+/* ---------- 渲染详情 ---------- */
+function renderDetail(){
+  const c = current;
+  document.getElementById('d-pinyin').textContent = c.p;
+  document.getElementById('d-mean').textContent = '含义：'+c.mean;
+  buildWriter(c.c);
+
+  const area = document.getElementById('struct-area');
+  let html = '<div class="struct-row">'+structIcon(c.struct)+
+    '<span class="struct-tag">'+c.struct+'结构</span>'+
+    '<span class="struct-note">（'+STRUCT_NOTE[c.struct]+'）</span></div>';
+
+  if(c.struct==='独体'){
+    html += '<div class="solo-note">「<b>'+c.c+'</b>」是<b>独体字</b>，不能再拆开啦，它本身就是一块汉字的小积木。';
+    if(c.evolve){
+      const r=RAD[c.evolve];
+      html += '<br><span class="evolve">它还能变身成偏旁：<span class="ev" style="color:'+r.color+'">'+r.g+'</span> '+r.name+'</span>';
+      html += '<br><button class="act" style="margin-top:10px" onclick="openRad(\''+c.evolve+'\')">看看它的「一家人」 →</button>';
+    }
+    html += '</div>';
+  } else {
+    html += '<div class="parts">';
+    c.parts.forEach((pt,i)=>{
+      if(i>0) html+='<span class="plus">+</span>';
+      if(pt.rad){
+        const r=RAD[pt.rad];
+        html += '<div class="part is-rad" style="background:'+r.color+'" onclick="openRad(\''+pt.rad+'\')">'+
+          '<span class="tap">点我👆</span><div class="pg">'+pt.g+'</div><div class="pl">'+pt.l+'</div></div>';
+      } else {
+        html += '<div class="part"><div class="pg">'+pt.g+'</div><div class="pl">'+pt.l+'</div></div>';
+      }
+    });
+    html += '</div>';
+    const radPart = c.parts.find(p=>p.rad);
+    if(radPart){
+      const r=RAD[radPart.rad];
+      html += '<div class="solo-note" style="border-color:'+r.color+'33">'+
+        '关键偏旁是 <b style="color:'+r.color+'">'+r.g+'</b>（'+r.name+'）—— 它告诉我们这个字和 <b style="color:'+r.color+'">'+r.theme.split(' · ')[0]+'</b> 有关。'+
+        '<br><button class="act" style="margin-top:10px" onclick="openRad(\''+radPart.rad+'\')">点偏旁，看「一家人」 →</button></div>';
+    }
+  }
+  area.innerHTML = html;
+}
+
+/* ---------- 选字 ---------- */
+function selectChar(ch){
+  current = byChar[ch];
+  document.querySelectorAll('.chip').forEach(el=>el.classList.toggle('sel', el.dataset.c===ch));
+  renderDetail();
+  speak(ch);
+  if(window.innerWidth < 880){
+    setTimeout(()=>{ const d=document.querySelector('.detail-col'); if(d) d.scrollIntoView({behavior:'smooth',block:'start'}); }, 80);
+  }
+}
+
+/* ---------- 渲染字卡列表 ---------- */
+function renderPicker(){
+  const wrap = document.getElementById('picker');
+  let html='';
+  GROUPS.forEach(g=>{
+    const r = g.rad ? RAD[g.rad] : null;
+    const color = r ? r.color : g.color;
+    const glyph = r ? r.g : '木';
+    const title = r ? r.name : g.title;
+    const theme = r ? r.theme : g.theme;
+    const list = g.rad ? CHARS.filter(c=>c.rad===g.rad && c.struct!=='独体').map(c=>c.c) : g.chars;
+    const headClick = g.rad ? 'openRad(\''+g.rad+'\')' : '';
+    html += '<div class="group">';
+    html += '<div class="group-head" '+(g.rad?'onclick="'+headClick+'"':'')+'>'+
+      '<div class="rad-badge" style="background:'+color+'">'+glyph+'</div>'+
+      '<div><div class="gtitle">'+title+'</div><div class="gtheme">'+theme+'</div></div>'+
+      (g.rad?'<div class="arrow">联想 ›</div>':'')+'</div>';
+    html += '<div class="chips">';
+    list.forEach(ch=>{ html += '<div class="chip" data-c="'+ch+'" onclick="selectChar(\''+ch+'\')">'+ch+'</div>'; });
+    html += '</div></div>';
+  });
+  wrap.innerHTML = html;
+}
+
+/* ---------- 偏旁联想弹窗 ---------- */
+function openRad(key){
+  const r = RAD[key];
+  const fam = CHARS.filter(c=>c.rad===key);
+  let html = '<div class="grip"></div>';
+  html += '<div class="rad-hero"><div class="rad-glyph" style="background:'+r.color+'">'+r.g+'</div>'+
+    '<div><div class="rad-name">'+r.name+'</div><div class="rad-theme">'+r.theme+'</div></div></div>';
+  html += '<div class="rad-story">'+r.story+'</div>';
+  html += '<div class="fam-title">和 「'+r.g+'」 是一家人的字</div>';
+  html += '<div class="fam-chips">';
+  fam.forEach(c=>{
+    html += '<div class="fam-chip" onclick="selectChar(\''+c.c+'\');closeSheet();">'+
+      '<div class="fc">'+c.c+'</div><div class="fp pinyin-font">'+c.p+'</div></div>';
+  });
+  html += '</div>';
+  html += '<p style="font-size:12.5px;color:var(--ink-faint);margin-top:18px;line-height:1.6;text-align:center;">'+
+    '👀 看出来了吗？这些字都藏着「'+r.g+'」，所以它们的意思都和「'+r.theme.split(' · ')[0]+'」沾边。<br>记住一个偏旁，就能猜一串字！</p>';
+  document.getElementById('sheet').innerHTML = html;
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeSheet(){
+  document.getElementById('overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+
+/* ===================== 闯关（小测验） ===================== */
+let quiz=[], qIdx=0, qScore=0, answered=false;
+const PINYINS = [...new Set(CHARS.map(c=>c.p))];
+
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function pick(arr,n,not){const pool=arr.filter(x=>x!==not);return shuffle(pool).slice(0,n);}
+
+function buildQuiz(){
+  const pool = shuffle(CHARS);
+  quiz = [];
+  const types=['pinyin','family','theme'];
+  for(let i=0;i<10;i++){
+    const c = pool[i % pool.length];
+    let t = types[i%3];
+    // 独体字没有家人/主题题，改成拼音题
+    if((t==='family'||t==='theme') && (!c.rad || CHARS.filter(x=>x.rad===c.rad).length<2)) t='pinyin';
+    quiz.push(makeQ(t,c));
+  }
+}
+function makeQ(type,c){
+  if(type==='pinyin'){
+    const opts = shuffle([c.p, ...pick(PINYINS,3,c.p)]);
+    return {type, char:c.c, big:c.c, small:false,
+      prompt:'这个字读什么？', opts, correct:c.p, render:'p'};
+  }
+  if(type==='family'){
+    const fam = CHARS.filter(x=>x.rad===c.rad && x.c!==c.c);
+    const correct = shuffle(fam)[0].c;
+    const others = CHARS.filter(x=>x.rad!==c.rad).map(x=>x.c);
+    const opts = shuffle([correct, ...pick(others,3,correct)]);
+    return {type, char:c.c, big:c.c, small:false,
+      prompt:'「'+c.c+'」和下面哪个字是「一家人」（同一个偏旁）？', opts, correct, render:'c'};
+  }
+  // theme
+  const r = RAD[c.rad];
+  const themeWord = r.theme.split(' · ')[0];
+  const allThemes = [...new Set(Object.values(RAD).map(x=>x.theme.split(' · ')[0]))];
+  const opts = shuffle([themeWord, ...pick(allThemes,3,themeWord)]);
+  return {type, char:c.c, big:r.g, small:true,
+    prompt:'「'+c.c+'」的偏旁是「'+r.g+'」，它常常和什么有关？', opts, correct:themeWord, render:'t'};
+}
+
+function startQuiz(){ buildQuiz(); qIdx=0; qScore=0;
+  document.getElementById('quiz-result').classList.add('hidden');
+  document.getElementById('quiz-play').classList.remove('hidden');
+  showQuestion();
+}
+function showQuestion(){
+  answered=false;
+  const q=quiz[qIdx];
+  document.getElementById('q-count').textContent='第 '+(qIdx+1)+' / 10 关';
+  document.getElementById('q-score-top').textContent='⭐ '+qScore;
+  document.getElementById('q-prog').style.width=((qIdx+1)*10)+'%';
+  document.getElementById('q-prompt').textContent=q.prompt;
+  const big=document.getElementById('q-big');
+  big.textContent=q.big; big.className='q-big'+(q.small?' small':'');
+  document.getElementById('q-feedback').textContent='';
+  document.getElementById('q-next').classList.add('hidden');
+  const opts=document.getElementById('q-opts'); opts.innerHTML='';
+  q.opts.forEach(o=>{
+    const b=document.createElement('button');
+    b.className='opt';
+    if(q.render==='p') b.innerHTML='<span class="op pinyin-font">'+o+'</span>';
+    else if(q.render==='c') b.innerHTML='<span class="oc">'+o+'</span>';
+    else b.textContent=o;
+    b.onclick=()=>answer(b,o,q);
+    opts.appendChild(b);
+  });
+}
+function answer(btn,val,q){
+  if(answered) return; answered=true;
+  const right = val===q.correct;
+  const buttons=document.querySelectorAll('#q-opts .opt');
+  buttons.forEach(b=>{
+    b.disabled=true;
+    const bv = q.render==='p'? b.querySelector('.op').textContent : (q.render==='c'? b.querySelector('.oc').textContent : b.textContent);
+    if(bv===q.correct) b.classList.add('correct');
+    else if(b===btn) b.classList.add('wrong');
+  });
+  const fb=document.getElementById('q-feedback');
+  if(right){ qScore++; fb.style.color='#3d7a2a'; fb.textContent=['太棒了！🎉','答对啦！⭐','真厉害！👏','完全正确！✨'][Math.floor(Math.random()*4)]; }
+  else { fb.style.color='var(--red)'; fb.textContent='没关系，正确答案已经标出来啦 💪'; }
+  if(q.char) speak(q.char);
+  document.getElementById('q-score-top').textContent='⭐ '+qScore;
+  document.getElementById('q-next').classList.remove('hidden');
+  document.getElementById('q-next').textContent = qIdx<9 ? '下一关 →' : '看结果 🏁';
+}
+function nextQuestion(){
+  if(qIdx<9){ qIdx++; showQuestion(); }
+  else showResult();
+}
+function showResult(){
+  document.getElementById('quiz-play').classList.add('hidden');
+  const r=document.getElementById('quiz-result'); r.classList.remove('hidden');
+  const stars = qScore>=9?'⭐⭐⭐':qScore>=6?'⭐⭐':qScore>=3?'⭐':'🌱';
+  let msg;
+  if(qScore>=9) msg='识字小达人！你太厉害啦！';
+  else if(qScore>=6) msg='很不错哦，再练练就满分啦！';
+  else if(qScore>=3) msg='有进步！多读多写就会越来越好~';
+  else msg='没关系，慢慢来，回去再学一学吧！';
+  r.innerHTML='<div class="q-stars">'+stars+'</div>'+
+    '<div class="q-score">'+qScore+' / 10</div>'+
+    '<div class="q-msg">'+msg+'</div>'+
+    '<button class="q-next" onclick="startQuiz()">再来一次 🔄</button>';
+}
+
+/* ===================== 生字本 ===================== */
+/* ---- 存储层（自动保存，平台支持时跨会话保留，否则当次有效）---- */
+const Store = {
+  mem:{},
+  async get(k){
+    try{ if(window.storage && window.storage.get){ const r=await window.storage.get(k,false); if(r&&r.value!=null) return JSON.parse(r.value); return null; } }catch(e){}
+    return (k in this.mem)? this.mem[k] : null;
+  },
+  async set(k,v){ this.mem[k]=v; try{ if(window.storage && window.storage.set){ await window.storage.set(k, JSON.stringify(v), false); } }catch(e){} }
+};
+
+/* ---- 提示条 ---- */
+let toastTimer=null;
+function toast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+/* ---- 拆解任意字/词 ---- */
+const CJK=/[\u4e00-\u9fff]/;
+const RAD_MAP={'氵':'water','水':'water','木':'wood','纟':'silk','糸':'silk','口':'mouth','女':'woman',
+  '足':'foot','⻊':'foot','扌':'hand','手':'hand','亻':'person','人':'person','艹':'grass','艸':'grass',
+  '心':'heart','忄':'heart','宀':'roof','辶':'walk','火':'fire','灬':'fire','日':'sun'};
+function decompose(text){
+  const chars=[...text].filter(c=>CJK.test(c));
+  if(!chars.length) return null;
+  let pys=[];
+  try{ if(window.cnchar) pys=cnchar.spell(chars.join(''),'low','tone','array'); }catch(e){}
+  if(!Array.isArray(pys)) pys=[];
+  const out=chars.map((c,i)=>{
+    if(byChar[c]){
+      const d=byChar[c]; const rk=d.rad||d.evolve||null;
+      return {c, py:d.p, radical: rk?RAD[rk].g:'独体', struct:(d.struct==='独体'?'独体字':d.struct+'结构'), radKey:rk, rich:true};
+    }
+    let radical='', struct='';
+    try{ if(window.cnchar && cnchar.radical){ const r=(cnchar.radical(c)||[])[0]||{}; radical=r.radical||''; struct=r.struct||''; } }catch(e){}
+    return {c, py: pys[i]||'', radical: radical||'—', struct: struct||'', radKey: RAD_MAP[radical]||null};
+  });
+  return {word:text, py: chars.map((c,i)=>pys[i]||'').join(' '), chars:out};
+}
+
+/* ---- 语音输入 ---- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const voiceOK = !!SR;
+let recog=null;
+function startVoice(input, btn, stripSpaces){
+  if(!voiceOK){ toast('这个浏览器不支持语音，直接打字也可以～'); input.focus(); return; }
+  try{
+    if(recog){ try{recog.abort();}catch(e){} }
+    recog = new SR(); recog.lang='zh-CN'; recog.interimResults=false; recog.maxAlternatives=1;
+    btn.classList.add('rec');
+    recog.onresult=e=>{ let t=e.results[0][0].transcript||''; if(stripSpaces) t=t.replace(/[\s，。、！？,.!?]/g,''); input.value=t; };
+    recog.onerror=e=>{ toast(e.error==='not-allowed'?'请允许麦克风权限后再试':'没听清，再试一次或直接打字'); };
+    recog.onend=()=>btn.classList.remove('rec');
+    recog.start();
+  }catch(err){ btn.classList.remove('rec'); toast('语音启动失败，直接打字吧'); }
+}
+
+/* ---- 状态 ---- */
+let NOTE=[];
+const SCENES=['写作文','读课文','课外阅读','听写','生活中','其他'];
+let newScene='写作文';
+let filterScene='全部';
+
+async function loadNote(){ NOTE=(await Store.get('shengziben'))||[]; renderScenePicker(); renderNote(); }
+async function saveNote(){ await Store.set('shengziben', NOTE); }
+
+function renderScenePicker(){
+  const box=document.getElementById('nb-scenes');
+  box.innerHTML = SCENES.map(s=>'<button class="scene-chip'+(s===newScene?' sel':'')+'" onclick="pickScene(\''+s+'\')">'+s+'</button>').join('');
+}
+function pickScene(s){ newScene=s; renderScenePicker(); }
+
+function addEntry(){
+  const inp=document.getElementById('nb-word');
+  const raw=(inp.value||'').trim();
+  const dec=decompose(raw);
+  if(!dec){ toast('请先输入一个汉字或词语～'); inp.focus(); return; }
+  const note=(document.getElementById('nb-note').value||'').trim();
+  const entry={ id:Date.now(), word:dec.word, py:dec.py, dec:dec.chars, scene:newScene, note, ts:Date.now(), reviews:0 };
+  NOTE.unshift(entry); saveNote();
+  inp.value=''; document.getElementById('nb-note').value='';
+  filterScene='全部'; renderNote();
+  speak(dec.word);
+  toast('✅ 已加入生字本：'+dec.word);
+}
+
+function delEntry(id){ NOTE=NOTE.filter(e=>e.id!==id); saveNote(); renderNote(); }
+
+function decCellHTML(d){
+  const known = d.radKey && RAD[d.radKey];
+  const badge = known ? '<span class="dec-rad" style="background:'+RAD[d.radKey].color+'">'+d.radical+'</span>' : '<b>'+d.radical+'</b>';
+  const cls = known ? 'dec-cell known' : 'dec-cell';
+  const click = known ? ' onclick="openRad(\''+d.radKey+'\')"' : '';
+  return '<div class="'+cls+'"'+click+'><div class="dc-c">'+d.c+'</div>'+
+    (d.py?'<div class="dc-p">'+d.py+'</div>':'')+
+    '<div class="dc-r">部首 '+badge+(d.struct?'<br>'+d.struct:'')+'</div></div>';
+}
+
+function renderNote(){
+  document.getElementById('nb-count').innerHTML='我的生字本 <small>'+NOTE.length+'</small> 个';
+  document.getElementById('nb-review').disabled = NOTE.length===0;
+
+  // 场景筛选
+  const used=[...new Set(NOTE.map(e=>e.scene))];
+  const filters=['全部',...SCENES.filter(s=>used.includes(s))];
+  if(!filters.includes(filterScene)) filterScene='全部';
+  document.getElementById('nb-filter').innerHTML = NOTE.length? filters.map(f=>{
+    const n = f==='全部'?NOTE.length:NOTE.filter(e=>e.scene===f).length;
+    return '<button class="filter-chip'+(f===filterScene?' sel':'')+'" onclick="setFilter(\''+f+'\')">'+f+' '+n+'</button>';
+  }).join('') : '';
+
+  const list=document.getElementById('nb-list');
+  const shown = filterScene==='全部'?NOTE:NOTE.filter(e=>e.scene===filterScene);
+  if(!shown.length){
+    list.innerHTML='<div class="empty"><span class="big">📖</span>还没有记录的生字。<br>上面说一个、或打一个不会的字试试吧！</div>';
+    return;
+  }
+  list.innerHTML = shown.map(e=>{
+    const knownRad = e.dec.find(d=>d.radKey && RAD[d.radKey]);
+    let hint='';
+    if(knownRad){ const r=RAD[knownRad.radKey]; hint='<div class="dec-hint">💡 「'+r.g+'」'+r.name+'：'+r.story+'</div>'; }
+    return '<div class="entry">'+
+      '<div class="entry-top">'+
+        '<div class="entry-word">'+e.word+'</div>'+
+        '<div class="entry-meta">'+
+          '<div class="entry-py">'+(e.py||'')+'</div>'+
+          '<div class="entry-tags"><span class="tag tag-scene">📍 '+e.scene+'</span>'+
+            (e.reviews>0?'<span class="tag tag-rev">复习 '+e.reviews+' 次</span>':'')+'</div>'+
+        '</div>'+
+        '<div class="entry-acts">'+
+          '<button class="ibtn" onclick="speak(\''+e.word+'\')" title="读一读"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M19 5a10 10 0 0 1 0 14"/></svg></button>'+
+          '<button class="ibtn" onclick="delEntry('+e.id+')" title="删除"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>'+
+        '</div>'+
+      '</div>'+
+      (e.note?'<div class="entry-note">「'+e.note+'」</div>':'')+
+      '<div class="entry-dec">'+e.dec.map(decCellHTML).join('')+'</div>'+
+      hint+
+    '</div>';
+  }).join('');
+}
+function setFilter(f){ filterScene=f; renderNote(); }
+
+/* ---- 复习闪卡 ---- */
+let revQueue=[], revIdx=0, revFlipped=false, revDone=0;
+function startReview(){
+  const set = filterScene==='全部'?NOTE:NOTE.filter(e=>e.scene===filterScene);
+  if(!set.length){ toast('先录入一些生字吧～'); return; }
+  revQueue = shuffle(set.slice()); revIdx=0; revDone=0; revFlipped=false;
+  document.getElementById('rev-overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+  renderRev();
+}
+function renderRev(){
+  const card=document.getElementById('rev-card');
+  if(revIdx>=revQueue.length){
+    const stars = revDone>=revQueue.length?'⭐⭐⭐':'⭐';
+    card.innerHTML='<div class="q-result"><div class="q-stars">🎉</div>'+
+      '<div class="q-msg">复习完成！一共练了 <b>'+revQueue.length+'</b> 个字。<br>记住的字，会越来越牢哦～</div>'+
+      '<button class="q-next" onclick="closeReview()">完成</button></div>';
+    return;
+  }
+  const e=revQueue[revIdx];
+  const scopeLabel = filterScene==='全部'?'全部':('【'+filterScene+'】');
+  card.innerHTML='<div class="rev-top"><span>'+scopeLabel+' · 第 '+(revIdx+1)+' / '+revQueue.length+'</span>'+
+    '<button class="rev-close" onclick="closeReview()">×</button></div>'+
+    '<div class="rev-scene">在 <b>'+e.scene+'</b> 时遇到的'+(e.note?'：'+e.note:'')+'</div>'+
+    '<div class="rev-face" id="rev-face" onclick="flipRev()">'+
+      '<div class="rev-word">'+e.word+'</div>'+
+      '<div class="rev-flip-hint">先想想读音和偏旁，再点一下看答案 👆</div>'+
+    '</div>';
+  revFlipped=false;
+}
+function flipRev(){
+  if(revFlipped) return; revFlipped=true;
+  const e=revQueue[revIdx];
+  speak(e.word);
+  const knownRad = e.dec.find(d=>d.radKey && RAD[d.radKey]);
+  let hint='';
+  if(knownRad){ const r=RAD[knownRad.radKey]; hint='<div class="dec-hint" style="margin-top:12px">💡 '+r.story+'</div>'; }
+  const face=document.getElementById('rev-face');
+  face.style.cursor='default'; face.onclick=null;
+  face.innerHTML='<div class="rev-py">'+(e.py||'')+'</div>'+
+    '<div class="rev-back-dec">'+e.dec.map(decCellHTML).join('')+'</div>'+hint;
+  const card=document.getElementById('rev-card');
+  card.insertAdjacentHTML('beforeend','<div class="rev-buttons">'+
+    '<button class="rev-again" onclick="reviewMark(false)">🤔 再练练</button>'+
+    '<button class="rev-got" onclick="reviewMark(true)">😀 记住了</button></div>');
+}
+function reviewMark(got){
+  const e=revQueue[revIdx];
+  if(got){ const real=NOTE.find(x=>x.id===e.id); if(real){real.reviews++;} revDone++; saveNote(); }
+  else { revQueue.push(e); } // 没记住的排到最后再练一次
+  revIdx++; renderRev();
+}
+function closeReview(){
+  document.getElementById('rev-overlay').classList.remove('show');
+  document.body.style.overflow=''; speechSynthesis.cancel(); renderNote();
+}
+
+/* ---- 绑定录入控件 ---- */
+document.getElementById('nb-add').onclick=addEntry;
+document.getElementById('nb-word').addEventListener('keydown',e=>{ if(e.key==='Enter') addEntry(); });
+document.getElementById('nb-word-mic').onclick=function(){ startVoice(document.getElementById('nb-word'), this, true); };
+document.getElementById('nb-note-mic').onclick=function(){ startVoice(document.getElementById('nb-note'), this, false); };
+document.getElementById('nb-voice-tip').textContent = voiceOK
+  ? '🎤 点麦克风说话即可（首次需允许麦克风权限）。若在聊天预览里没反应，可下载文件用 Chrome 打开。'
+  : '🎤 当前环境不支持语音，直接打字就好（用 Chrome 浏览器打开可支持语音）。';
+
+/* ===================== 模式切换 ===================== */
+function switchMode(m){
+  document.getElementById('tab-learn').classList.toggle('active', m==='learn');
+  document.getElementById('tab-quiz').classList.toggle('active', m==='quiz');
+  document.getElementById('tab-notebook').classList.toggle('active', m==='notebook');
+  document.getElementById('mode-learn').classList.toggle('hidden', m!=='learn');
+  document.getElementById('mode-quiz').classList.toggle('hidden', m!=='quiz');
+  document.getElementById('mode-notebook').classList.toggle('hidden', m!=='notebook');
+  if(m==='quiz') startQuiz();
+  else speechSynthesis.cancel();
+}
+
+/* ===================== 初始化 ===================== */
+renderPicker();
+renderDetail();
+document.querySelector('.chip[data-c="江"]')?.classList.add('sel');
+loadNote();
+</script>
+</body>
+</html>

@@ -2,25 +2,24 @@
 // trials — measures tapping/pointing speed, NOT math. The median response time
 // × multiplier (computeLatencyGateMs) becomes this child's latency gate.
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { computeLatencyGateMs } from '../engine';
+import { computeLatencyGateMs, type ContentPack } from '../engine';
 import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
-import { pack } from './pack';
 
 interface Props {
+  pack: ContentPack;
   adapter: StorageAdapter;
   studentId: string;
   onDone: (gateMs: number) => void;
 }
-
-const TRIALS = pack.engine_config.individualized_goal.probe_problem_count;
 
 // deterministic-ish neutral targets 1..9 (no RNG dep needed for a warmup)
 function targetAt(i: number): number {
   return ((i * 7 + 3) % 9) + 1;
 }
 
-export function Probe({ adapter, studentId, onDone }: Props) {
+export function Probe({ pack, adapter, studentId, onDone }: Props) {
+  const TRIALS = pack.engine_config.individualized_goal.probe_problem_count;
   const [trial, setTrial] = useState(0);
   const timesRef = useRef<number[]>([]);
   const startRef = useRef<number>(Date.now());

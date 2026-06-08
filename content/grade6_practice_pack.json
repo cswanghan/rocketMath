@@ -1,0 +1,3816 @@
+{
+  "version": "2.0.0",
+  "grade": 6,
+  "sets": [
+    {
+      "id": "fraction_mul_meaning",
+      "title": "分数乘法意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fmm_b0",
+          "type": "mc",
+          "prompt": "3/5 × 4 表示什么意思?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/5 的 4 倍",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4/5 的 3 倍",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3 × 4 ÷ 5",
+              "correct": false
+            }
+          ],
+          "hint": "分数乘整数 = 这个分数几份之和",
+          "explanation": "3/5 × 4 = 3/5 + 3/5 + 3/5 + 3/5"
+        },
+        {
+          "id": "fmm_b1",
+          "type": "mc",
+          "prompt": "1/2 × 6 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/12",
+              "correct": false
+            }
+          ],
+          "hint": "1/2 的 6 倍",
+          "explanation": "1/2 × 6 = 6/2 = 3"
+        },
+        {
+          "id": "fmm_c0",
+          "type": "mc",
+          "prompt": "分数乘分数 1/3 × 1/4 表示什么?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/4 的 1/3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/3 + 1/4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/4 − 1/3",
+              "correct": false
+            }
+          ],
+          "hint": "一个数的几分之几",
+          "explanation": "1/4 的 1/3 = 1/12"
+        },
+        {
+          "id": "fmm_c1",
+          "type": "fill",
+          "prompt": "2/3 × 1/4 = ( )/( )  (化最简分数,填分子)",
+          "difficulty": "consolidate",
+          "answer": 1,
+          "hint": "分子×分子,分母×分母,再约分",
+          "explanation": "2/3 × 1/4 = 2/12 = 1/6 → 分子1"
+        },
+        {
+          "id": "fmm_x0",
+          "type": "mc",
+          "prompt": "一块布长 3/4 米,用了它的 2/5,用了多少米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/10 米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7/20 米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5/9 米",
+              "correct": false
+            }
+          ],
+          "hint": "3/4 × 2/5",
+          "explanation": "3/4 × 2/5 = 6/20 = 3/10 米"
+        },
+        {
+          "id": "fmm_x1",
+          "type": "mc",
+          "prompt": "下面算式中结果最大的是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/4 × 2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/4 × 1",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3/4 × 1/2",
+              "correct": false
+            }
+          ],
+          "hint": "乘数大于1结果大于原数,乘数小于1结果小于原数",
+          "explanation": "乘 2 > 乘 1 > 乘 1/2"
+        }
+      ]
+    },
+    {
+      "id": "fraction_mul_procedure",
+      "title": "分数乘法计算",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fmp_b0",
+          "type": "fill",
+          "prompt": "计算: 1/3 × 3/4\n答案(分子): ?",
+          "difficulty": "basic",
+          "answer": 1,
+          "hint": "分子×分子,分母×分母,约分",
+          "explanation": "1/3 × 3/4 = 3/12 = 1/4,分子1"
+        },
+        {
+          "id": "fmp_b1",
+          "type": "fill",
+          "prompt": "计算: 2/5 × 5/6\n答案(分子): ?",
+          "difficulty": "basic",
+          "answer": 1,
+          "hint": "先约分再算",
+          "explanation": "2/5 × 5/6 = 10/30 = 1/3,分子1"
+        },
+        {
+          "id": "fmp_c0",
+          "type": "fill",
+          "prompt": "3/8 × 4/9 = ?/? (化最简,填分子)",
+          "difficulty": "consolidate",
+          "answer": 1,
+          "hint": "先约分: 3 和 9 约,4 和 8 约",
+          "explanation": "3/8 × 4/9 = 12/72 = 1/6,分子1"
+        },
+        {
+          "id": "fmp_c1",
+          "type": "fill",
+          "prompt": "5/6 × 9/10 = ?/? (化最简,填分子)",
+          "difficulty": "consolidate",
+          "answer": 3,
+          "hint": "5和10约,9和6约",
+          "explanation": "5/6 × 9/10 = 45/60 = 3/4,分子3"
+        },
+        {
+          "id": "fmp_c2",
+          "type": "fill",
+          "prompt": "3/4 × 8/15 = ?/? (化最简,填分子)",
+          "difficulty": "consolidate",
+          "answer": 2,
+          "hint": "3和15约,8和4约",
+          "explanation": "3/4 × 8/15 = 24/60 = 2/5,分子2"
+        },
+        {
+          "id": "fmp_x0",
+          "type": "mc",
+          "prompt": "学校图书馆有图书 600 本,数学书占 1/4,\n数学书有多少本?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "150 本",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "200 本",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "100 本",
+              "correct": false
+            }
+          ],
+          "hint": "600 × 1/4",
+          "explanation": "600 × 1/4 = 150 本"
+        },
+        {
+          "id": "fmp_x1",
+          "type": "mc",
+          "prompt": "一根绳子长 5/6 米,截去它的 3/5,还剩多少米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/3 米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/2 米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/4 米",
+              "correct": false
+            }
+          ],
+          "hint": "截去 5/6×3/5,还剩 5/6×(1−3/5)或直接算",
+          "explanation": "5/6×(1−3/5)=5/6×2/5=10/30=1/3米"
+        }
+      ]
+    },
+    {
+      "id": "fraction_div_meaning",
+      "title": "分数除法意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fdm_b0",
+          "type": "mc",
+          "prompt": "除以一个数等于乘以这个数的什么?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "倒数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "相反数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "平方",
+              "correct": false
+            }
+          ],
+          "hint": "除法变乘法口诀",
+          "explanation": "除以一个数 = 乘以它的倒数"
+        },
+        {
+          "id": "fdm_b1",
+          "type": "mc",
+          "prompt": "3/4 的倒数是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4/3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3/4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1",
+              "correct": false
+            }
+          ],
+          "hint": "分子分母互换",
+          "explanation": "3/4 的倒数 = 4/3"
+        },
+        {
+          "id": "fdm_c0",
+          "type": "mc",
+          "prompt": "3/4 ÷ 1/2 的意思是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/4 里面有几个 1/2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/2 里面有几个 3/4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3/4 × 2",
+              "correct": false
+            }
+          ],
+          "hint": "a÷b = a 里有几个 b",
+          "explanation": "3/4 ÷ 1/2 = 3/4 × 2 = 3/2"
+        },
+        {
+          "id": "fdm_c1",
+          "type": "fill",
+          "prompt": "0 的倒数是多少?",
+          "difficulty": "consolidate",
+          "answer": 0,
+          "hint": "0 没有倒数",
+          "explanation": "0 没有倒数(分母不能为0),填 0 表示不存在"
+        },
+        {
+          "id": "fdm_x0",
+          "type": "mc",
+          "prompt": "1/3 ÷ 5 表示把 1/3 平均分成 5 份,每份是多少?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/15",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5/3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/5",
+              "correct": false
+            }
+          ],
+          "hint": "1/3 ÷ 5 = 1/3 × 1/5",
+          "explanation": "1/3 ÷ 5 = 1/3 × 1/5 = 1/15"
+        },
+        {
+          "id": "fdm_x1",
+          "type": "mc",
+          "prompt": "一块布 2/3 米做帽子,每顶帽用 1/6 米,能做几顶?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4 顶",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3 顶",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5 顶",
+              "correct": false
+            }
+          ],
+          "hint": "2/3 ÷ 1/6",
+          "explanation": "2/3 ÷ 1/6 = 2/3 × 6 = 4 顶"
+        }
+      ]
+    },
+    {
+      "id": "fraction_div_procedure",
+      "title": "分数除法计算",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "fdp_b0",
+          "type": "fill",
+          "prompt": "4/5 ÷ 2 = ( )/( )  (化最简,填分子)",
+          "difficulty": "basic",
+          "answer": 2,
+          "hint": "除以整数 = 乘以倒数 = 4/5 × 1/2",
+          "explanation": "4/5 ÷ 2 = 4/10 = 2/5,分子2"
+        },
+        {
+          "id": "fdp_b1",
+          "type": "fill",
+          "prompt": "3/4 ÷ 1/2 = ? (整数)",
+          "difficulty": "basic",
+          "answer": 3,
+          "hint": "变乘法: 3/4 × 2",
+          "explanation": "3/4 ÷ 1/2 = 3/4 × 2 = 3/2... 等于3/2,不是整数—用3/2表示,分子3"
+        },
+        {
+          "id": "fdp_c0",
+          "type": "fill",
+          "prompt": "5/6 ÷ 5/12 = ? (整数)",
+          "difficulty": "consolidate",
+          "answer": 2,
+          "hint": "5/6 × 12/5",
+          "explanation": "5/6 × 12/5 = 60/30 = 2"
+        },
+        {
+          "id": "fdp_c1",
+          "type": "fill",
+          "prompt": "3/8 ÷ 9/16 = ?/? (化最简,填分子)",
+          "difficulty": "consolidate",
+          "answer": 2,
+          "hint": "3/8 × 16/9,先约分",
+          "explanation": "3/8 × 16/9 = 48/72 = 2/3,分子2"
+        },
+        {
+          "id": "fdp_c2",
+          "type": "fill",
+          "prompt": "7/10 ÷ 7/5 = ?/? (化最简,填分子)",
+          "difficulty": "consolidate",
+          "answer": 1,
+          "hint": "7/10 × 5/7,约分",
+          "explanation": "7/10 × 5/7 = 35/70 = 1/2,分子1"
+        },
+        {
+          "id": "fdp_x0",
+          "type": "mc",
+          "prompt": "一根铁丝长 3/4 米,截成每段 3/8 米,\n能截几段?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 段",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3 段",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4 段",
+              "correct": false
+            }
+          ],
+          "hint": "3/4 ÷ 3/8",
+          "explanation": "3/4 ÷ 3/8 = 3/4 × 8/3 = 2 段"
+        },
+        {
+          "id": "fdp_x1",
+          "type": "mc",
+          "prompt": "小明走了全程的 2/5,共走了 8 千米,\n全程多少千米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "20 千米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "16 千米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10 千米",
+              "correct": false
+            }
+          ],
+          "hint": "全程 × 2/5 = 8,全程 = 8 ÷ 2/5",
+          "explanation": "8 ÷ 2/5 = 8 × 5/2 = 20 千米"
+        }
+      ]
+    },
+    {
+      "id": "ratio_meaning",
+      "title": "比的意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "rm_b0",
+          "type": "mc",
+          "prompt": "3 : 4 中,3 叫做什么?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "比的前项",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "比的后项",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "比值",
+              "correct": false
+            }
+          ],
+          "hint": "前项:后项 = 比值",
+          "explanation": "3 是前项,4 是后项"
+        },
+        {
+          "id": "rm_b1",
+          "type": "mc",
+          "prompt": "3 : 4 的比值是多少?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4/3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            }
+          ],
+          "hint": "前项 ÷ 后项",
+          "explanation": "3 ÷ 4 = 3/4"
+        },
+        {
+          "id": "rm_c0",
+          "type": "mc",
+          "prompt": "比值可以是分数吗?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "可以",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不可以",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "只能是整数",
+              "correct": false
+            }
+          ],
+          "hint": "比值=前项÷后项,结果可以是分数、小数、整数",
+          "explanation": "可以,如 1:3 的比值 = 1/3"
+        },
+        {
+          "id": "rm_c1",
+          "type": "mc",
+          "prompt": "3 : 9 化简后是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1 : 3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "9 : 3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3 : 1",
+              "correct": false
+            }
+          ],
+          "hint": "同除最大公因数",
+          "explanation": "3:9 ÷ 3 = 1:3"
+        },
+        {
+          "id": "rm_x0",
+          "type": "mc",
+          "prompt": "正方形周长与边长的比的比值是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1",
+              "correct": false
+            }
+          ],
+          "hint": "周长=4×边长,周长:边长=4:1",
+          "explanation": "4:1 比值 = 4"
+        },
+        {
+          "id": "rm_x1",
+          "type": "mc",
+          "prompt": "同一杯糖水,糖与水的比是 1:4,\n糖与糖水的比是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1:5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1:4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4:5",
+              "correct": false
+            }
+          ],
+          "hint": "糖水=糖+水=5份",
+          "explanation": "糖:糖水 = 1:5"
+        }
+      ]
+    },
+    {
+      "id": "ratio_properties",
+      "title": "比的基本性质",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "rp_b0",
+          "type": "mc",
+          "prompt": "比的基本性质:比的前后项同乘或同除一个不为零的数,比值__。",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不变",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "变大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "变小",
+              "correct": false
+            }
+          ],
+          "hint": "类似分数基本性质",
+          "explanation": "比的前后项同乘/除同一个非零数,比值不变"
+        },
+        {
+          "id": "rp_b1",
+          "type": "mc",
+          "prompt": "化简比 10 : 15 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 : 3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1 : 1.5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10 : 15",
+              "correct": false
+            }
+          ],
+          "hint": "同除最大公因数5",
+          "explanation": "10:15 ÷ 5 = 2:3"
+        },
+        {
+          "id": "rp_c0",
+          "type": "mc",
+          "prompt": "化简比 0.4 : 0.6 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 : 3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4 : 6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2 : 6",
+              "correct": false
+            }
+          ],
+          "hint": "同乘10消小数点,再约分",
+          "explanation": "4:6 ÷ 2 = 2:3"
+        },
+        {
+          "id": "rp_c1",
+          "type": "mc",
+          "prompt": "化简比 1/2 : 1/3 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3 : 2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2 : 3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1 : 1",
+              "correct": false
+            }
+          ],
+          "hint": "同乘最小公倍数6",
+          "explanation": "3:2"
+        },
+        {
+          "id": "rp_x0",
+          "type": "mc",
+          "prompt": "三角形三边之比为 3:4:5,周长 48 cm,最长边是多少?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "20 cm",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "16 cm",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12 cm",
+              "correct": false
+            }
+          ],
+          "hint": "5份/(3+4+5)×48",
+          "explanation": "48 ÷ 12 × 5 = 20 cm"
+        },
+        {
+          "id": "rp_x1",
+          "type": "fill",
+          "prompt": "全班男女生比例 3:2,女生 20 人,男生有多少人?",
+          "difficulty": "challenge",
+          "answer": 30,
+          "hint": "男生=女生÷2×3",
+          "explanation": "20 ÷ 2 × 3 = 30 人"
+        }
+      ]
+    },
+    {
+      "id": "ratio_simplify_practice",
+      "title": "化简比",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "rs_b0",
+          "type": "mc",
+          "prompt": "化简比: 4 : 6 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 : 3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不能化简",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "答案不唯一",
+              "correct": false
+            }
+          ],
+          "hint": "÷2",
+          "explanation": "4 : 6 化简 = 2 : 3"
+        },
+        {
+          "id": "rs_b1",
+          "type": "mc",
+          "prompt": "化简比: 9 : 12 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3 : 4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不能化简",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "答案不唯一",
+              "correct": false
+            }
+          ],
+          "hint": "÷3",
+          "explanation": "9 : 12 化简 = 3 : 4"
+        },
+        {
+          "id": "rs_c0",
+          "type": "mc",
+          "prompt": "化简比: 0.6 : 0.9 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 : 3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不能化简",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "答案不唯一",
+              "correct": false
+            }
+          ],
+          "hint": "×10再÷3",
+          "explanation": "0.6 : 0.9 化简 = 2 : 3"
+        },
+        {
+          "id": "rs_c1",
+          "type": "mc",
+          "prompt": "化简比: 1/4 : 3/8 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 : 3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不能化简",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "答案不唯一",
+              "correct": false
+            }
+          ],
+          "hint": "同乘8",
+          "explanation": "1/4 : 3/8 化简 = 2 : 3"
+        },
+        {
+          "id": "rs_c2",
+          "type": "mc",
+          "prompt": "化简比: 15 : 25 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3 : 5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不能化简",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "答案不唯一",
+              "correct": false
+            }
+          ],
+          "hint": "÷5",
+          "explanation": "15 : 25 化简 = 3 : 5"
+        },
+        {
+          "id": "rs_x0",
+          "type": "fill",
+          "prompt": "某班男女生比是 7:5,全班共 48 人,女生有多少人?",
+          "difficulty": "challenge",
+          "answer": 20,
+          "hint": "5÷(7+5)×48",
+          "explanation": "48 ÷ 12 × 5 = 20 人"
+        },
+        {
+          "id": "rs_x1",
+          "type": "fill",
+          "prompt": "甲乙两人路程之比 5:3,甲走了 25 千米,乙走了多少千米?",
+          "difficulty": "challenge",
+          "answer": 15,
+          "hint": "乙=25÷5×3",
+          "explanation": "25 ÷ 5 × 3 = 15 千米"
+        }
+      ]
+    },
+    {
+      "id": "circle_parts",
+      "title": "圆的认识·半径直径",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cp_b0",
+          "type": "mc",
+          "prompt": "连接圆心和圆上任意一点的线段叫做?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "半径",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "直径",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "弦",
+              "correct": false
+            }
+          ],
+          "hint": "r = 半径",
+          "explanation": "连圆心到圆上任一点 = 半径"
+        },
+        {
+          "id": "cp_b1",
+          "type": "mc",
+          "prompt": "同一个圆,直径 d 和半径 r 的关系?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "d = 2r",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "r = 2d",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "d = r",
+              "correct": false
+            }
+          ],
+          "hint": "直径 = 2 × 半径",
+          "explanation": "d = 2r"
+        },
+        {
+          "id": "cp_c0",
+          "type": "mc",
+          "prompt": "圆有多少条对称轴?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "无数条",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2 条",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1 条",
+              "correct": false
+            }
+          ],
+          "hint": "每条直径都是对称轴",
+          "explanation": "圆有无数条对称轴"
+        },
+        {
+          "id": "cp_c1",
+          "type": "fill",
+          "prompt": "一个圆的直径是 10 cm,半径是多少 cm?",
+          "difficulty": "consolidate",
+          "answer": 5,
+          "hint": "r = d ÷ 2",
+          "explanation": "10 ÷ 2 = 5 cm"
+        },
+        {
+          "id": "cp_x0",
+          "type": "mc",
+          "prompt": "两个同心圆(共一个圆心),大圆半径 8 cm,小圆半径 5 cm,\n两圆之间的宽度是多少 cm?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3 cm",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "13 cm",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "40 cm",
+              "correct": false
+            }
+          ],
+          "hint": "8 − 5",
+          "explanation": "8 − 5 = 3 cm"
+        },
+        {
+          "id": "cp_x1",
+          "type": "mc",
+          "prompt": "正方形内切圆(圆与四边相切),正方形边长 6 cm,\n圆的直径是多少 cm?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6 cm",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3 cm",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12 cm",
+              "correct": false
+            }
+          ],
+          "hint": "内切圆直径=边长",
+          "explanation": "直径 = 6 cm,半径 = 3 cm"
+        }
+      ]
+    },
+    {
+      "id": "circle_pi",
+      "title": "圆周率π",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cpi_b0",
+          "type": "mc",
+          "prompt": "圆的周长与直径的比叫做?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "圆周率 π",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "半径",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "面积",
+              "correct": false
+            }
+          ],
+          "hint": "C ÷ d = π",
+          "explanation": "圆周率 π = C ÷ d"
+        },
+        {
+          "id": "cpi_b1",
+          "type": "mc",
+          "prompt": "π 约等于多少? (计算时取)",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3.14",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "22/7",
+              "correct": false
+            }
+          ],
+          "hint": "人教版取 π≈3.14",
+          "explanation": "π ≈ 3.14"
+        },
+        {
+          "id": "cpi_c0",
+          "type": "mc",
+          "prompt": "π 是有理数还是无理数?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "无理数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "有理数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "整数",
+              "correct": false
+            }
+          ],
+          "hint": "π 小数无限不循环",
+          "explanation": "π 是无理数"
+        },
+        {
+          "id": "cpi_c1",
+          "type": "mc",
+          "prompt": "圆的周长公式 C = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "πd 或 2πr",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "πr²",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2πr²",
+              "correct": false
+            }
+          ],
+          "hint": "C = πd = 2πr",
+          "explanation": "C = πd = 2πr"
+        },
+        {
+          "id": "cpi_x0",
+          "type": "fill",
+          "prompt": "一个圆直径 5 cm,周长约多少 cm? (π取3.14,答案保留整数)",
+          "difficulty": "challenge",
+          "answer": 16,
+          "hint": "C = 3.14 × 5 ≈ 15.7 ≈ 16",
+          "explanation": "3.14 × 5 = 15.7 cm,取整 ≈ 16 cm"
+        },
+        {
+          "id": "cpi_x1",
+          "type": "mc",
+          "prompt": "两个圆半径之比是 1:2,周长之比是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1:2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1:4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2:1",
+              "correct": false
+            }
+          ],
+          "hint": "C=2πr,比例相同",
+          "explanation": "周长之比 = 半径之比 = 1:2"
+        }
+      ]
+    },
+    {
+      "id": "circle_circumference",
+      "title": "圆的周长",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cc_b0",
+          "type": "fill",
+          "prompt": "圆的周长公式 C = π × ?  (填 d 或 2r 中选整数代入)\n直径 = 10 cm,C = ? cm",
+          "difficulty": "basic",
+          "answer": 31,
+          "hint": "C = πd = 3.14×10",
+          "explanation": "3.14 × 10 = 31.4 cm,取整≈31,实际是31.4"
+        },
+        {
+          "id": "cc_b1",
+          "type": "fill",
+          "prompt": "半径 = 5 cm,C = 3.14 × 2 × 5 = ? cm",
+          "difficulty": "basic",
+          "answer": 31,
+          "hint": "C = 2πr",
+          "explanation": "3.14 × 10 = 31.4 cm"
+        },
+        {
+          "id": "cc_c0",
+          "type": "fill",
+          "prompt": "直径 = 20 cm,C ≈ ? cm (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 63,
+          "hint": "3.14×20",
+          "explanation": "3.14 × 20 = 62.8 ≈ 63 cm"
+        },
+        {
+          "id": "cc_c1",
+          "type": "fill",
+          "prompt": "一个圆形水池半径 7 m,沿边走一圈约多少米? (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 44,
+          "hint": "C=2πr=2×3.14×7",
+          "explanation": "2 × 3.14 × 7 = 43.96 ≈ 44 m"
+        },
+        {
+          "id": "cc_x0",
+          "type": "mc",
+          "prompt": "一个圆形跑道直径 100 m,跑一圈约多少米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 314 m",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 200 m",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 628 m",
+              "correct": false
+            }
+          ],
+          "hint": "C = πd = 3.14×100",
+          "explanation": "3.14 × 100 = 314 m"
+        },
+        {
+          "id": "cc_x1",
+          "type": "fill",
+          "prompt": "一个正方形内切圆,正方形周长 24 cm,\n圆的周长约多少 cm? (π=3.14)",
+          "difficulty": "challenge",
+          "answer": 19,
+          "hint": "边长=6,直径=6,C=πd=3.14×6≈18.84≈19",
+          "explanation": "3.14 × 6 = 18.84 ≈ 19 cm"
+        }
+      ]
+    },
+    {
+      "id": "circle_area",
+      "title": "圆的面积",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ca_b0",
+          "type": "mc",
+          "prompt": "圆的面积公式 S = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "πr²",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "πd",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2πr",
+              "correct": false
+            }
+          ],
+          "hint": "面积 = π × 半径²",
+          "explanation": "S = πr²"
+        },
+        {
+          "id": "ca_b1",
+          "type": "fill",
+          "prompt": "半径 = 1 cm,S = π × 1² = ? (π=3.14,取整)",
+          "difficulty": "basic",
+          "answer": 3,
+          "hint": "3.14×1=3.14",
+          "explanation": "3.14 × 1 = 3.14 cm²,取整≈3"
+        },
+        {
+          "id": "ca_c0",
+          "type": "fill",
+          "prompt": "半径 = 5 cm,S ≈ ? cm² (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 79,
+          "hint": "3.14×5×5=3.14×25",
+          "explanation": "3.14 × 25 = 78.5 ≈ 79 cm²"
+        },
+        {
+          "id": "ca_c1",
+          "type": "fill",
+          "prompt": "直径 = 10 m,S ≈ ? m² (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 79,
+          "hint": "r=5,S=3.14×25",
+          "explanation": "3.14 × 25 = 78.5 ≈ 79 m²"
+        },
+        {
+          "id": "ca_x0",
+          "type": "mc",
+          "prompt": "两个圆半径之比 1:3,面积之比是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1:9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1:3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1:6",
+              "correct": false
+            }
+          ],
+          "hint": "面积∝r²",
+          "explanation": "1²:3² = 1:9"
+        },
+        {
+          "id": "ca_x1",
+          "type": "fill",
+          "prompt": "一个半圆半径 6 cm,面积约多少 cm²? (π=3.14)",
+          "difficulty": "challenge",
+          "answer": 56,
+          "hint": "半圆面积=πr²÷2=3.14×36÷2=56.52≈56",
+          "explanation": "3.14 × 36 ÷ 2 = 56.52 ≈ 56 cm²"
+        }
+      ]
+    },
+    {
+      "id": "percent_meaning",
+      "title": "百分数的意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pem_b0",
+          "type": "mc",
+          "prompt": "百分数表示一个数是另一个数的百分之几,百分号是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "%",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "‰",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "×",
+              "correct": false
+            }
+          ],
+          "hint": "百分号 %",
+          "explanation": "百分号 %"
+        },
+        {
+          "id": "pem_b1",
+          "type": "mc",
+          "prompt": "百分数的分母一定是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "100",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "任意数",
+              "correct": false
+            }
+          ],
+          "hint": "百分 = 以100为分母",
+          "explanation": "百分数分母固定为100"
+        },
+        {
+          "id": "pem_c0",
+          "type": "mc",
+          "prompt": "百分数可以表示分率,能代表具体数量吗?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不能",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "可以",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "有时可以",
+              "correct": false
+            }
+          ],
+          "hint": "百分数只表示关系,无单位",
+          "explanation": "百分数表示比率,不能有单位"
+        },
+        {
+          "id": "pem_c1",
+          "type": "mc",
+          "prompt": "60% 读作?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "百分之六十",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "六十",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "十六",
+              "correct": false
+            }
+          ],
+          "hint": "百分之…",
+          "explanation": "百分之六十"
+        },
+        {
+          "id": "pem_x0",
+          "type": "mc",
+          "prompt": "全班 40 人,有 32 人参加活动,参加率是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "80%",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "75%",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "85%",
+              "correct": false
+            }
+          ],
+          "hint": "32 ÷ 40 = 0.8 = 80%",
+          "explanation": "32 ÷ 40 = 80%"
+        },
+        {
+          "id": "pem_x1",
+          "type": "mc",
+          "prompt": "下面哪个不是百分数?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "20%",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0.2%",
+              "correct": false
+            }
+          ],
+          "hint": "1/5 是分数,不是百分数",
+          "explanation": "1/5 是普通分数"
+        }
+      ]
+    },
+    {
+      "id": "percent_fraction_decimal",
+      "title": "百分数分数小数互化",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pfd_b0",
+          "type": "mc",
+          "prompt": "25% 化成小数是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "0.25",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "25",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2.5",
+              "correct": false
+            }
+          ],
+          "hint": "去掉%,小数点左移两位",
+          "explanation": "25% = 0.25"
+        },
+        {
+          "id": "pfd_b1",
+          "type": "mc",
+          "prompt": "0.8 化成百分数是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "80%",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8%",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "800%",
+              "correct": false
+            }
+          ],
+          "hint": "小数点右移两位,加%",
+          "explanation": "0.8 = 80%"
+        },
+        {
+          "id": "pfd_c0",
+          "type": "mc",
+          "prompt": "1/4 化成百分数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "25%",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "40%",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "14%",
+              "correct": false
+            }
+          ],
+          "hint": "1÷4=0.25=25%",
+          "explanation": "1/4 = 0.25 = 25%"
+        },
+        {
+          "id": "pfd_c1",
+          "type": "mc",
+          "prompt": "75% 化成最简分数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3/4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "75/100",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "15/20",
+              "correct": false
+            }
+          ],
+          "hint": "75/100 约分",
+          "explanation": "75/100 ÷ 25 = 3/4"
+        },
+        {
+          "id": "pfd_x0",
+          "type": "fill",
+          "prompt": "1.25 化成百分数后再化成最简分数,分子是多少?",
+          "difficulty": "challenge",
+          "answer": 5,
+          "hint": "1.25=125%=125/100=5/4,分子5",
+          "explanation": "1.25 → 125% → 5/4,分子5"
+        },
+        {
+          "id": "pfd_x1",
+          "type": "mc",
+          "prompt": "把 2/3 化成百分数(保留一位小数)",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 66.7%",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "约 67%",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "约 33.3%",
+              "correct": false
+            }
+          ],
+          "hint": "2÷3≈0.667≈66.7%",
+          "explanation": "66.7%"
+        }
+      ]
+    },
+    {
+      "id": "percent_calc",
+      "title": "百分数应用·基本",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pc_b0",
+          "type": "fill",
+          "prompt": "一件商品原价 200 元,打九折卖多少元?",
+          "difficulty": "basic",
+          "answer": 180,
+          "hint": "九折=90%,200×90%",
+          "explanation": "200 × 0.9 = 180 元"
+        },
+        {
+          "id": "pc_b1",
+          "type": "fill",
+          "prompt": "50 的 40% 是多少?",
+          "difficulty": "basic",
+          "answer": 20,
+          "hint": "50×40%=50×0.4",
+          "explanation": "50 × 0.4 = 20"
+        },
+        {
+          "id": "pc_c0",
+          "type": "fill",
+          "prompt": "一批货 400 件,合格率 95%,合格件数?",
+          "difficulty": "consolidate",
+          "answer": 380,
+          "hint": "400×95%",
+          "explanation": "400 × 0.95 = 380 件"
+        },
+        {
+          "id": "pc_c1",
+          "type": "fill",
+          "prompt": "某班女生 18 人占全班 45%,全班共多少人?",
+          "difficulty": "consolidate",
+          "answer": 40,
+          "hint": "全班=女生÷45%=18÷0.45",
+          "explanation": "18 ÷ 0.45 = 40 人"
+        },
+        {
+          "id": "pc_x0",
+          "type": "fill",
+          "prompt": "存款 5000 元,年利率 3.6%,一年利息多少元?",
+          "difficulty": "challenge",
+          "answer": 180,
+          "hint": "利息=本金×利率×时间(1年)",
+          "explanation": "5000 × 3.6% = 5000 × 0.036 = 180 元"
+        },
+        {
+          "id": "pc_x1",
+          "type": "mc",
+          "prompt": "某市去年人口 50 万,今年增加 2%,今年人口是多少万?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "51 万",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "52 万",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "50.2 万",
+              "correct": false
+            }
+          ],
+          "hint": "50×(1+2%)=50×1.02",
+          "explanation": "50 × 1.02 = 51 万"
+        }
+      ]
+    },
+    {
+      "id": "percent_word_basic",
+      "title": "百分数文字题",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pwb_b0",
+          "type": "mc",
+          "prompt": "一件衣服打八折,打折后价格是原价的?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "80%",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8%",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0.8 倍",
+              "correct": false
+            }
+          ],
+          "hint": "八折=80%",
+          "explanation": "打八折 = 原价 × 80%"
+        },
+        {
+          "id": "pwb_b1",
+          "type": "fill",
+          "prompt": "原价 150 元,打八折后售价多少元?",
+          "difficulty": "basic",
+          "answer": 120,
+          "hint": "150×80%",
+          "explanation": "150 × 0.8 = 120 元"
+        },
+        {
+          "id": "pwb_c0",
+          "type": "fill",
+          "prompt": "一件商品售价 96 元,这是原价的 80%,原价是多少元?",
+          "difficulty": "consolidate",
+          "answer": 120,
+          "hint": "原价=96÷80%=96÷0.8",
+          "explanation": "96 ÷ 0.8 = 120 元"
+        },
+        {
+          "id": "pwb_c1",
+          "type": "fill",
+          "prompt": "小明语文 90 分,数学比语文高 10%,数学多少分?",
+          "difficulty": "consolidate",
+          "answer": 99,
+          "hint": "数学=90×(1+10%)=90×1.1",
+          "explanation": "90 × 1.1 = 99 分"
+        },
+        {
+          "id": "pwb_x0",
+          "type": "fill",
+          "prompt": "某工厂原计划生产零件 800 个,实际多生产了 25%,\n实际生产多少个?",
+          "difficulty": "challenge",
+          "answer": 1000,
+          "hint": "800×(1+25%)=800×1.25",
+          "explanation": "800 × 1.25 = 1000 个"
+        },
+        {
+          "id": "pwb_x1",
+          "type": "fill",
+          "prompt": "小明读一本书,第一天读了 25%,第二天读了 30%,\n还有 45 页没读,全书共多少页?",
+          "difficulty": "challenge",
+          "answer": 100,
+          "hint": "还剩(1-25%-30%)=45%,全书=45÷45%",
+          "explanation": "45 ÷ 0.45 = 100 页"
+        }
+      ]
+    },
+    {
+      "id": "pie_chart_read",
+      "title": "扇形统计图",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pie_b0",
+          "type": "mc",
+          "prompt": "扇形统计图中,每个扇形的面积代表什么?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "该类数据占总量的百分比",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "该类数据的具体数量",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "数据的大小顺序",
+              "correct": false
+            }
+          ],
+          "hint": "扇形面积∝百分比",
+          "explanation": "面积大小表示百分比"
+        },
+        {
+          "id": "pie_b1",
+          "type": "mc",
+          "prompt": "扇形统计图所有扇形的百分数之和是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "100%",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "50%",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不确定",
+              "correct": false
+            }
+          ],
+          "hint": "全部加起来=全量",
+          "explanation": "各扇形百分数之和 = 100%"
+        },
+        {
+          "id": "pie_c0",
+          "type": "fill",
+          "prompt": "某班兴趣小组人数扇形图\n体育:40%  音乐:30%  美术:20%  其他:10%\n全班共 50 人\n参加体育小组有多少人?",
+          "difficulty": "consolidate",
+          "answer": 20,
+          "hint": "50 × 40%",
+          "explanation": "50 × 0.4 = 20 人"
+        },
+        {
+          "id": "pie_c1",
+          "type": "mc",
+          "prompt": "某班兴趣小组人数扇形图\n体育:40%  音乐:30%  美术:20%  其他:10%\n全班共 50 人\n参加哪个小组人数最多?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "体育",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "音乐",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "美术",
+              "correct": false
+            }
+          ],
+          "hint": "百分比最大的",
+          "explanation": "40% 最大,体育小组最多"
+        },
+        {
+          "id": "pie_x0",
+          "type": "fill",
+          "prompt": "某班兴趣小组人数扇形图\n体育:40%  音乐:30%  美术:20%  其他:10%\n全班共 50 人\n音乐和美术两组共多少人?",
+          "difficulty": "challenge",
+          "answer": 25,
+          "hint": "(30%+20%)×50",
+          "explanation": "50% × 50 = 25 人"
+        },
+        {
+          "id": "pie_x1",
+          "type": "mc",
+          "prompt": "扇形统计图适合表示?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "各部分与总量的关系",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "数据随时间的变化趋势",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "两组数据的对比",
+              "correct": false
+            }
+          ],
+          "hint": "扇形图的用途",
+          "explanation": "适合表示各部分占总量的百分比"
+        }
+      ]
+    },
+    {
+      "id": "number_shape",
+      "title": "数与形",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ns_b0",
+          "type": "mc",
+          "prompt": "1 + 3 = 4 = 2²\n1 + 3 + 5 = 9 = 3²\n1 + 3 + 5 + 7 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "16",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "15",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "25",
+              "correct": false
+            }
+          ],
+          "hint": "规律:前n个奇数之和=n²",
+          "explanation": "4个奇数之和=4²=16"
+        },
+        {
+          "id": "ns_b1",
+          "type": "fill",
+          "prompt": "1 + 3 + 5 + 7 + 9 = ?",
+          "difficulty": "basic",
+          "answer": 25,
+          "hint": "前5个奇数之和=5²",
+          "explanation": "5² = 25"
+        },
+        {
+          "id": "ns_c0",
+          "type": "mc",
+          "prompt": "图形中,第 n 层正方形数为 n²,前 4 层共多少个正方形?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "30",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "25",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "20",
+              "correct": false
+            }
+          ],
+          "hint": "1+4+9+16=30",
+          "explanation": "1² + 2² + 3² + 4² = 1+4+9+16 = 30"
+        },
+        {
+          "id": "ns_c1",
+          "type": "fill",
+          "prompt": "前 10 个奇数之和 = ?",
+          "difficulty": "consolidate",
+          "answer": 100,
+          "hint": "1+3+5+...+19 = 10²",
+          "explanation": "10² = 100"
+        },
+        {
+          "id": "ns_x0",
+          "type": "mc",
+          "prompt": "某图形规律:第1项1个点,第2项3个点,第3项6个点,\n第4项几个点?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "10",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            }
+          ],
+          "hint": "三角形数:n(n+1)/2",
+          "explanation": "4×5÷2 = 10"
+        },
+        {
+          "id": "ns_x1",
+          "type": "fill",
+          "prompt": "1 + 2 + 3 + … + 100 = ?",
+          "difficulty": "challenge",
+          "answer": 5050,
+          "hint": "等差数列:首末相加÷2×项数",
+          "explanation": "(1+100)×100÷2=5050"
+        }
+      ]
+    },
+    {
+      "id": "negative_number",
+      "title": "负数的认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "nn_b0",
+          "type": "mc",
+          "prompt": "比 0 小的数叫做?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "负数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "正数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "零",
+              "correct": false
+            }
+          ],
+          "hint": "0 左边是负数",
+          "explanation": "负数 < 0"
+        },
+        {
+          "id": "nn_b1",
+          "type": "mc",
+          "prompt": "−5 读作?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "负五",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "正五",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "五",
+              "correct": false
+            }
+          ],
+          "hint": "负号读'负'",
+          "explanation": "负五"
+        },
+        {
+          "id": "nn_c0",
+          "type": "mc",
+          "prompt": "温度 −3℃ 表示什么?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "零下 3 摄氏度",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "零上 3 摄氏度",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3 摄氏度",
+              "correct": false
+            }
+          ],
+          "hint": "负号表示零下",
+          "explanation": "零下 3 摄氏度"
+        },
+        {
+          "id": "nn_c1",
+          "type": "mc",
+          "prompt": "0 是正数还是负数?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "既不是正数也不是负数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "正数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "负数",
+              "correct": false
+            }
+          ],
+          "hint": "0 是整数但不是正负数",
+          "explanation": "0 既不是正数也不是负数"
+        },
+        {
+          "id": "nn_x0",
+          "type": "mc",
+          "prompt": "下列各数中,负数有几个?\n−3,  0,  +5,  −0.5,  7,  −1/2",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3 个",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2 个",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4 个",
+              "correct": false
+            }
+          ],
+          "hint": "带负号且不为0的数",
+          "explanation": "−3,−0.5,−1/2 共3个"
+        },
+        {
+          "id": "nn_x1",
+          "type": "mc",
+          "prompt": "收入 300 元记作 +300 元,支出 200 元记作?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "−200 元",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "+200 元",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "200 元",
+              "correct": false
+            }
+          ],
+          "hint": "相反意义用正负表示",
+          "explanation": "−200 元"
+        }
+      ]
+    },
+    {
+      "id": "negative_compare",
+      "title": "负数比大小",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "nc_b0",
+          "type": "mc",
+          "prompt": "在数轴上,右边的数比左边的数?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "大",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相等",
+              "correct": false
+            }
+          ],
+          "hint": "数轴向右越来越大",
+          "explanation": "右边的数更大"
+        },
+        {
+          "id": "nc_b1",
+          "type": "mc",
+          "prompt": "−3 和 −5 哪个大?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "−3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "−5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "相等",
+              "correct": false
+            }
+          ],
+          "hint": "数轴上−3在−5右边",
+          "explanation": "−3 > −5"
+        },
+        {
+          "id": "nc_c0",
+          "type": "mc",
+          "prompt": "把 −2, 0, 3, −1 从小到大排列?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "−2, −1, 0, 3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "−2, −1, 3, 0",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0, −1, −2, 3",
+              "correct": false
+            }
+          ],
+          "hint": "负数<0<正数,负数越大越靠近0",
+          "explanation": "−2 < −1 < 0 < 3"
+        },
+        {
+          "id": "nc_c1",
+          "type": "mc",
+          "prompt": "负数一定比正数小吗?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "是",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不是",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不一定",
+              "correct": false
+            }
+          ],
+          "hint": "所有负数都<0<所有正数",
+          "explanation": "是,负数恒小于正数"
+        },
+        {
+          "id": "nc_x0",
+          "type": "mc",
+          "prompt": "今天最高气温 3℃,最低 −2℃,温差是多少摄氏度?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5℃",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1℃",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3℃",
+              "correct": false
+            }
+          ],
+          "hint": "温差=最高−最低=3−(−2)",
+          "explanation": "3 − (−2) = 5℃"
+        },
+        {
+          "id": "nc_x1",
+          "type": "mc",
+          "prompt": "海平面高度记为 0,山顶 +1000 m,海底 −500 m,\n山顶到海底的距离?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1500 m",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "500 m",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1000 m",
+              "correct": false
+            }
+          ],
+          "hint": "距离=1000−(−500)",
+          "explanation": "1000 + 500 = 1500 m"
+        }
+      ]
+    },
+    {
+      "id": "discount_tax",
+      "title": "折扣与税率",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "dt_b0",
+          "type": "mc",
+          "prompt": "打七折是指商品售价是原价的?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "70%",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7%",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "30%",
+              "correct": false
+            }
+          ],
+          "hint": "七折=70%",
+          "explanation": "七折 = 原价 × 70%"
+        },
+        {
+          "id": "dt_b1",
+          "type": "fill",
+          "prompt": "一件衣服原价 200 元,打七折卖多少元?",
+          "difficulty": "basic",
+          "answer": 140,
+          "hint": "200×70%=200×0.7",
+          "explanation": "200 × 0.7 = 140 元"
+        },
+        {
+          "id": "dt_c0",
+          "type": "fill",
+          "prompt": "某书打八折售价 24 元,原价多少元?",
+          "difficulty": "consolidate",
+          "answer": 30,
+          "hint": "原价=售价÷折扣率=24÷0.8",
+          "explanation": "24 ÷ 0.8 = 30 元"
+        },
+        {
+          "id": "dt_c1",
+          "type": "fill",
+          "prompt": "购买商品应缴增值税 13%,商品价格 400 元,\n应缴税额多少元?",
+          "difficulty": "consolidate",
+          "answer": 52,
+          "hint": "税额=400×13%=400×0.13",
+          "explanation": "400 × 0.13 = 52 元"
+        },
+        {
+          "id": "dt_x0",
+          "type": "fill",
+          "prompt": "一件衬衫打九折后又打九折,相当于原价的百分之几?\n(精确到1%)",
+          "difficulty": "challenge",
+          "answer": 81,
+          "hint": "0.9×0.9=0.81=81%",
+          "explanation": "0.9 × 0.9 = 0.81 = 81%"
+        },
+        {
+          "id": "dt_x1",
+          "type": "fill",
+          "prompt": "某商品提价 20% 后再打八折,最终价格是原来的百分之几?",
+          "difficulty": "challenge",
+          "answer": 96,
+          "hint": "(1+20%)×80%=1.2×0.8=0.96=96%",
+          "explanation": "1.2 × 0.8 = 0.96 = 96%"
+        }
+      ]
+    },
+    {
+      "id": "interest_calc",
+      "title": "利息计算",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ic_b0",
+          "type": "mc",
+          "prompt": "利息 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "本金 × 利率 × 时间",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "本金 + 利率",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "本金 ÷ 利率",
+              "correct": false
+            }
+          ],
+          "hint": "利息公式",
+          "explanation": "利息 = 本金 × 利率 × 时间"
+        },
+        {
+          "id": "ic_b1",
+          "type": "fill",
+          "prompt": "存入 1000 元,年利率 3%,存 1 年,利息多少元?",
+          "difficulty": "basic",
+          "answer": 30,
+          "hint": "1000×3%×1=1000×0.03",
+          "explanation": "1000 × 0.03 = 30 元"
+        },
+        {
+          "id": "ic_c0",
+          "type": "fill",
+          "prompt": "存入 2000 元,年利率 2.5%,存 2 年,利息多少元?",
+          "difficulty": "consolidate",
+          "answer": 100,
+          "hint": "2000×2.5%×2=2000×0.025×2",
+          "explanation": "2000 × 0.025 × 2 = 100 元"
+        },
+        {
+          "id": "ic_c1",
+          "type": "fill",
+          "prompt": "存入 5000 元,年利率 3.6%,存 1 年后取出多少元?(本金+利息)",
+          "difficulty": "consolidate",
+          "answer": 5180,
+          "hint": "本金+利息=5000+5000×3.6%=5000+180",
+          "explanation": "5000 + 5000 × 0.036 = 5180 元"
+        },
+        {
+          "id": "ic_x0",
+          "type": "fill",
+          "prompt": "到期取出 3090 元,其中利息 90 元,年利率 3%,\n存了几年?",
+          "difficulty": "challenge",
+          "answer": 1,
+          "hint": "时间=利息÷(本金×利率)=90÷(3000×0.03)",
+          "explanation": "3090 − 90 = 3000,时间=90÷(3000×0.03)=1 年"
+        },
+        {
+          "id": "ic_x1",
+          "type": "mc",
+          "prompt": "存 2000 元,年利率 2%,到期本息共多少元?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2040 元",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2400 元",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2020 元",
+              "correct": false
+            }
+          ],
+          "hint": "2000+2000×2%×1",
+          "explanation": "2000 + 40 = 2040 元"
+        }
+      ]
+    },
+    {
+      "id": "cylinder_properties",
+      "title": "圆柱的认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cyp_b0",
+          "type": "mc",
+          "prompt": "圆柱有几个底面?底面是什么形状?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 个,圆形",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1 个,圆形",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2 个,正方形",
+              "correct": false
+            }
+          ],
+          "hint": "上下各一个圆",
+          "explanation": "圆柱有 2 个圆形底面"
+        },
+        {
+          "id": "cyp_b1",
+          "type": "mc",
+          "prompt": "圆柱的侧面展开图是什么形状?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "长方形",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "圆形",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "三角形",
+              "correct": false
+            }
+          ],
+          "hint": "沿高剪开",
+          "explanation": "侧面展开 = 长方形,长=底面周长,宽=高"
+        },
+        {
+          "id": "cyp_c0",
+          "type": "mc",
+          "prompt": "圆柱侧面展开的长方形,其长等于?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "底面周长",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "底面直径",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "高",
+              "correct": false
+            }
+          ],
+          "hint": "展开后宽=高,长=周长",
+          "explanation": "长 = 2πr = 底面周长"
+        },
+        {
+          "id": "cyp_c1",
+          "type": "fill",
+          "prompt": "圆柱底面半径 3 cm,高 5 cm,侧面展开长方形的面积是多少 cm²? (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 94,
+          "hint": "侧面积=2πr×h=2×3.14×3×5",
+          "explanation": "2 × 3.14 × 3 × 5 = 94.2 ≈ 94 cm²"
+        },
+        {
+          "id": "cyp_x0",
+          "type": "mc",
+          "prompt": "一个圆柱底面直径和高相等,这叫做?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "等边圆柱",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "正圆柱",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "标准柱",
+              "correct": false
+            }
+          ],
+          "hint": "直径=高的圆柱",
+          "explanation": "等边圆柱(直径=高)"
+        },
+        {
+          "id": "cyp_x1",
+          "type": "mc",
+          "prompt": "把一个圆柱切成两个相等的小圆柱,表面积之和比原来?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "多 2 个底面面积",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不变",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "少 2 个底面面积",
+              "correct": false
+            }
+          ],
+          "hint": "切面露出 2 个新圆面",
+          "explanation": "多了 2 个截面(圆面),共多 2×πr²"
+        }
+      ]
+    },
+    {
+      "id": "cone_properties",
+      "title": "圆锥的认识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cnp_b0",
+          "type": "mc",
+          "prompt": "圆锥有几个底面?底面是什么形状?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1 个,圆形",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2 个,圆形",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1 个,三角形",
+              "correct": false
+            }
+          ],
+          "hint": "只有下底",
+          "explanation": "圆锥有 1 个圆形底面"
+        },
+        {
+          "id": "cnp_b1",
+          "type": "mc",
+          "prompt": "圆锥的顶点叫做?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "顶点",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "圆心",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "轴",
+              "correct": false
+            }
+          ],
+          "hint": "尖的那个点",
+          "explanation": "圆锥的顶点"
+        },
+        {
+          "id": "cnp_c0",
+          "type": "mc",
+          "prompt": "圆锥的母线(侧面斜高)都相等吗?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "相等",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不相等",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不确定",
+              "correct": false
+            }
+          ],
+          "hint": "圆锥侧面任意母线长相等",
+          "explanation": "所有母线等长 = 斜高 l"
+        },
+        {
+          "id": "cnp_x0",
+          "type": "mc",
+          "prompt": "等底等高的圆柱与圆锥,体积比是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3:1",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1:3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1:1",
+              "correct": false
+            }
+          ],
+          "hint": "V锥=1/3V柱",
+          "explanation": "圆柱:圆锥 = 3:1"
+        },
+        {
+          "id": "cnp_x1",
+          "type": "mc",
+          "prompt": "把圆锥的沙子全部倒入等底等高的圆柱容器,\n能填满圆柱的几分之几?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2/3",
+              "correct": false
+            }
+          ],
+          "hint": "V锥=1/3V柱",
+          "explanation": "填满 1/3"
+        }
+      ]
+    },
+    {
+      "id": "cylinder_surface_area",
+      "title": "圆柱表面积",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "csa_b0",
+          "type": "mc",
+          "prompt": "圆柱表面积 = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 个底面积 + 侧面积",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "底面积 × 高",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "周长 × 高",
+              "correct": false
+            }
+          ],
+          "hint": "S = 2πr² + 2πrh",
+          "explanation": "表面积 = 两底面积 + 侧面积"
+        },
+        {
+          "id": "csa_b1",
+          "type": "fill",
+          "prompt": "圆柱底面半径 2 cm,高 5 cm\n侧面积 = 2×3.14×2×5 = ? cm²",
+          "difficulty": "basic",
+          "answer": 63,
+          "hint": "2πrh=2×3.14×2×5=62.8≈63",
+          "explanation": "62.8 ≈ 63 cm²"
+        },
+        {
+          "id": "csa_c0",
+          "type": "fill",
+          "prompt": "圆柱底面半径 3 cm,高 4 cm\n表面积 ≈ ? cm² (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 132,
+          "hint": "2×3.14×9+2×3.14×3×4=56.52+75.36=131.88≈132",
+          "explanation": "56.52 + 75.36 = 131.88 ≈ 132 cm²"
+        },
+        {
+          "id": "csa_c1",
+          "type": "fill",
+          "prompt": "一个无盖圆柱形水桶,底面直径 20 cm,高 30 cm,\n至少需要多少 cm² 铁皮? (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 2198,
+          "hint": "侧面积+1个底面积=2×3.14×10×30+3.14×100=1884+314=2198",
+          "explanation": "1884 + 314 = 2198 cm²"
+        },
+        {
+          "id": "csa_x0",
+          "type": "fill",
+          "prompt": "圆柱底面周长 18.84 cm(π=3.14,r=3),高 10 cm\n表面积 ≈ ? cm²",
+          "difficulty": "challenge",
+          "answer": 245,
+          "hint": "r=3,S=2×3.14×9+2×3.14×3×10=56.52+188.4=244.92≈245",
+          "explanation": "56.52 + 188.4 = 244.92 ≈ 245 cm²"
+        },
+        {
+          "id": "csa_x1",
+          "type": "mc",
+          "prompt": "将圆柱的高扩大到 2 倍,底面半径不变,\n侧面积变为原来的几倍?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 倍",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4 倍",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不变",
+              "correct": false
+            }
+          ],
+          "hint": "侧面积=2πrh,h×2→侧面积×2",
+          "explanation": "2 倍"
+        }
+      ]
+    },
+    {
+      "id": "cylinder_volume",
+      "title": "圆柱体积",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cv_b0",
+          "type": "mc",
+          "prompt": "圆柱体积公式 V = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "S底 × h = πr²h",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "πr²",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2πrh",
+              "correct": false
+            }
+          ],
+          "hint": "V = 底面积 × 高",
+          "explanation": "V = πr²h"
+        },
+        {
+          "id": "cv_b1",
+          "type": "fill",
+          "prompt": "底面积 10 cm²,高 5 cm,V = ? cm³",
+          "difficulty": "basic",
+          "answer": 50,
+          "hint": "V=S×h=10×5",
+          "explanation": "10 × 5 = 50 cm³"
+        },
+        {
+          "id": "cv_c0",
+          "type": "fill",
+          "prompt": "底面半径 3 cm,高 10 cm,V ≈ ? cm³ (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 283,
+          "hint": "V=3.14×9×10=282.6≈283",
+          "explanation": "3.14 × 9 × 10 = 282.6 ≈ 283 cm³"
+        },
+        {
+          "id": "cv_c1",
+          "type": "fill",
+          "prompt": "直径 4 cm,高 5 cm,V ≈ ? cm³ (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 63,
+          "hint": "r=2,V=3.14×4×5=62.8≈63",
+          "explanation": "3.14 × 4 × 5 = 62.8 ≈ 63 cm³"
+        },
+        {
+          "id": "cv_x0",
+          "type": "mc",
+          "prompt": "两个圆柱等底,高之比为 1:3,体积之比是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1:3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1:9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3:1",
+              "correct": false
+            }
+          ],
+          "hint": "V=πr²h,底相同→V比=h比",
+          "explanation": "1:3"
+        },
+        {
+          "id": "cv_x1",
+          "type": "fill",
+          "prompt": "一个圆柱容器底面半径 5 cm,装水高度 8 cm,\n水的体积约多少 cm³? (π=3.14)",
+          "difficulty": "challenge",
+          "answer": 628,
+          "hint": "V=3.14×25×8=628",
+          "explanation": "3.14 × 25 × 8 = 628 cm³"
+        }
+      ]
+    },
+    {
+      "id": "cone_volume",
+      "title": "圆锥体积",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "conv_b0",
+          "type": "mc",
+          "prompt": "圆锥体积公式 V = ?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/3 × S底 × h",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "S底 × h",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1/2 × S底 × h",
+              "correct": false
+            }
+          ],
+          "hint": "V锥=1/3 V柱",
+          "explanation": "V = 1/3 πr²h"
+        },
+        {
+          "id": "conv_b1",
+          "type": "fill",
+          "prompt": "底面积 30 cm²,高 6 cm,V = ? cm³",
+          "difficulty": "basic",
+          "answer": 60,
+          "hint": "V=1/3×30×6",
+          "explanation": "1/3 × 30 × 6 = 60 cm³"
+        },
+        {
+          "id": "conv_c0",
+          "type": "fill",
+          "prompt": "底面半径 3 cm,高 10 cm,V ≈ ? cm³ (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 94,
+          "hint": "V=1/3×3.14×9×10=3.14×30=94.2≈94",
+          "explanation": "3.14 × 9 × 10 / 3 = 94.2 ≈ 94 cm³"
+        },
+        {
+          "id": "conv_c1",
+          "type": "fill",
+          "prompt": "底面直径 6 cm,高 9 cm,V ≈ ? cm³ (π=3.14)",
+          "difficulty": "consolidate",
+          "answer": 85,
+          "hint": "r=3,V=1/3×3.14×9×9=84.78≈85",
+          "explanation": "1/3 × 3.14 × 9 × 9 = 84.78 ≈ 85 cm³"
+        },
+        {
+          "id": "conv_x0",
+          "type": "mc",
+          "prompt": "等底等高的圆锥体积是圆柱的?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1/3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1/2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2/3",
+              "correct": false
+            }
+          ],
+          "hint": "V锥=1/3 V柱",
+          "explanation": "1/3"
+        },
+        {
+          "id": "conv_x1",
+          "type": "fill",
+          "prompt": "一个圆锥形沙堆,底面半径 3 m,高 2 m,\n体积约多少 m³? (π=3.14)",
+          "difficulty": "challenge",
+          "answer": 19,
+          "hint": "V=1/3×3.14×9×2=3.14×6=18.84≈19",
+          "explanation": "3.14 × 6 = 18.84 ≈ 19 m³"
+        }
+      ]
+    },
+    {
+      "id": "proportion_meaning",
+      "title": "比例的意义",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pm_b0",
+          "type": "mc",
+          "prompt": "比例的意义:表示两个比__的式子叫做比例。",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "相等",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "相同",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "互为倒数",
+              "correct": false
+            }
+          ],
+          "hint": "比例是两个相等的比",
+          "explanation": "两个比相等组成比例"
+        },
+        {
+          "id": "pm_b1",
+          "type": "mc",
+          "prompt": "2:3 = 4:6 是比例吗?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "是",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "不是",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不确定",
+              "correct": false
+            }
+          ],
+          "hint": "2/3 = 4/6 ✓",
+          "explanation": "2:3 = 4:6,是比例"
+        },
+        {
+          "id": "pm_c0",
+          "type": "mc",
+          "prompt": "比例的基本性质:外项之积 = ?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "内项之积",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "外项之和",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "内项之差",
+              "correct": false
+            }
+          ],
+          "hint": "交叉相乘",
+          "explanation": "外项积 = 内项积(交叉乘积相等)"
+        },
+        {
+          "id": "pm_c1",
+          "type": "fill",
+          "prompt": "3:4 = ( ):8,填括号中的数",
+          "difficulty": "consolidate",
+          "answer": 6,
+          "hint": "3×8=4×?,?=24÷4=6",
+          "explanation": "3 × 8 = 4 × 6 = 24,括号填6"
+        },
+        {
+          "id": "pm_x0",
+          "type": "mc",
+          "prompt": "如果 a:b = c:d,则下列一定正确的是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "ad = bc",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "a+b = c+d",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "a−c = b−d",
+              "correct": false
+            }
+          ],
+          "hint": "比例基本性质",
+          "explanation": "ad = bc(外项积=内项积)"
+        },
+        {
+          "id": "pm_x1",
+          "type": "fill",
+          "prompt": "x:6 = 9:18,求 x",
+          "difficulty": "challenge",
+          "answer": 3,
+          "hint": "x×18=6×9,x=54÷18=3",
+          "explanation": "18x = 54,x = 3"
+        }
+      ]
+    },
+    {
+      "id": "proportion_solve",
+      "title": "解比例",
+      "pedagogy": "procedure",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ps_b0",
+          "type": "fill",
+          "prompt": "解比例: x:4 = 3:6  → x = ?",
+          "difficulty": "basic",
+          "answer": 2,
+          "hint": "4×3=6×x → x=12÷6",
+          "explanation": "6x = 12,x = 2"
+        },
+        {
+          "id": "ps_b1",
+          "type": "fill",
+          "prompt": "解比例: 2:x = 4:8  → x = ?",
+          "difficulty": "basic",
+          "answer": 4,
+          "hint": "2×8=4×x → x=16÷4",
+          "explanation": "4x = 16,x = 4"
+        },
+        {
+          "id": "ps_c0",
+          "type": "fill",
+          "prompt": "解比例: 5:3 = x:9  → x = ?",
+          "difficulty": "consolidate",
+          "answer": 15,
+          "hint": "5×9=3×x → x=45÷3",
+          "explanation": "3x = 45,x = 15"
+        },
+        {
+          "id": "ps_c1",
+          "type": "fill",
+          "prompt": "解比例: x:1.5 = 4:3  → x = ?",
+          "difficulty": "consolidate",
+          "answer": 2,
+          "hint": "3x=1.5×4=6 → x=2",
+          "explanation": "3x = 6,x = 2"
+        },
+        {
+          "id": "ps_x0",
+          "type": "fill",
+          "prompt": "解比例: 2:3 = 4:x  → x = ?",
+          "difficulty": "challenge",
+          "answer": 6,
+          "hint": "2×x=3×4=12 → x=6",
+          "explanation": "2x = 12,x = 6"
+        },
+        {
+          "id": "ps_x1",
+          "type": "fill",
+          "prompt": "解比例: 4:5 = 8:x  → x = ?",
+          "difficulty": "challenge",
+          "answer": 10,
+          "hint": "4×x=5×8=40 → x=10",
+          "explanation": "4x = 40,x = 10"
+        }
+      ]
+    },
+    {
+      "id": "scale_drawing",
+      "title": "比例尺",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "sd_b0",
+          "type": "mc",
+          "prompt": "比例尺的公式是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "图上距离 : 实际距离",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "实际距离 : 图上距离",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "图上距离 × 实际距离",
+              "correct": false
+            }
+          ],
+          "hint": "比例尺=图:实",
+          "explanation": "比例尺 = 图上距离 : 实际距离"
+        },
+        {
+          "id": "sd_b1",
+          "type": "mc",
+          "prompt": "比例尺 1:1000 表示图上 1 cm = 实际?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1000 cm",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "100 cm",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1 cm",
+              "correct": false
+            }
+          ],
+          "hint": "1:1000 → 图1 对应实际1000",
+          "explanation": "实际 1000 cm = 10 m"
+        },
+        {
+          "id": "sd_c0",
+          "type": "fill",
+          "prompt": "比例尺 1:2000,图上 5 cm,实际距离 = ? cm",
+          "difficulty": "consolidate",
+          "answer": 10000,
+          "hint": "实际=图上×比例尺分母=5×2000",
+          "explanation": "5 × 2000 = 10000 cm = 100 m"
+        },
+        {
+          "id": "sd_c1",
+          "type": "fill",
+          "prompt": "实际距离 300 m = 30000 cm,比例尺 1:5000,图上距离 = ? cm",
+          "difficulty": "consolidate",
+          "answer": 6,
+          "hint": "图上=实际÷5000=30000÷5000",
+          "explanation": "30000 ÷ 5000 = 6 cm"
+        },
+        {
+          "id": "sd_x0",
+          "type": "mc",
+          "prompt": "一幅地图比例尺 1:100000,图上 3 cm 代表实际多少千米?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3 千米",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "30 千米",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "0.3 千米",
+              "correct": false
+            }
+          ],
+          "hint": "3×100000=300000cm=3km",
+          "explanation": "3 km"
+        },
+        {
+          "id": "sd_x1",
+          "type": "fill",
+          "prompt": "一个操场实际长 200 m,在比例尺 1:4000 的图上长多少 cm?",
+          "difficulty": "challenge",
+          "answer": 5,
+          "hint": "200m=20000cm,图上=20000÷4000=5",
+          "explanation": "20000 ÷ 4000 = 5 cm"
+        }
+      ]
+    },
+    {
+      "id": "proportion_application",
+      "title": "比例应用",
+      "pedagogy": "formula",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "pa_b0",
+          "type": "mc",
+          "prompt": "正比例关系:y/x = k(常数),x 增大则 y?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "增大",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "减小",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "不变",
+              "correct": false
+            }
+          ],
+          "hint": "正比例:同增同减",
+          "explanation": "y 随 x 增大而增大"
+        },
+        {
+          "id": "pa_b1",
+          "type": "mc",
+          "prompt": "路程一定,速度和时间成?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "反比例",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "正比例",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "无关",
+              "correct": false
+            }
+          ],
+          "hint": "s=v×t,t不变→v∝s,但t×v=s不变→反比",
+          "explanation": "速度×时间=路程(定值),反比例"
+        },
+        {
+          "id": "pa_c0",
+          "type": "fill",
+          "prompt": "每小时织布 3 米,x 小时织 y 米。\n若 x=6,y = ?",
+          "difficulty": "consolidate",
+          "answer": 18,
+          "hint": "y=3x,y=3×6",
+          "explanation": "3 × 6 = 18 m"
+        },
+        {
+          "id": "pa_c1",
+          "type": "mc",
+          "prompt": "每千克价格一定时,购买数量与总价成?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "正比例",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "反比例",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "无关",
+              "correct": false
+            }
+          ],
+          "hint": "总价=单价×数量,单价固定→正比例",
+          "explanation": "正比例"
+        },
+        {
+          "id": "pa_x0",
+          "type": "fill",
+          "prompt": "汽车 4 小时行 240 km,照此速度 7 小时行多少 km?",
+          "difficulty": "challenge",
+          "answer": 420,
+          "hint": "速度=240÷4=60,7小时=60×7",
+          "explanation": "60 × 7 = 420 km"
+        },
+        {
+          "id": "pa_x1",
+          "type": "mc",
+          "prompt": "一项工程,单独做:甲需 6 天,乙需 4 天。\n合做几天完成?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "约 2.4 天",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5 天",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3 天",
+              "correct": false
+            }
+          ],
+          "hint": "每天完成:1/6+1/4=5/12,合做=12/5=2.4天",
+          "explanation": "12 ÷ 5 = 2.4 天"
+        }
+      ]
+    },
+    {
+      "id": "direction_distance",
+      "title": "位置与方向",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "dd_b0",
+          "type": "mc",
+          "prompt": "描述位置时需要几个要素?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "方向和距离",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "只需方向",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "只需距离",
+              "correct": false
+            }
+          ],
+          "hint": "方向+距离才能确定位置",
+          "explanation": "方向 + 距离"
+        },
+        {
+          "id": "dd_b1",
+          "type": "mc",
+          "prompt": "'北偏东 30°' 是以什么方向为基准?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "北",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "东",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "南",
+              "correct": false
+            }
+          ],
+          "hint": "北偏东=从北向东偏30°",
+          "explanation": "以北方向为基准,偏向东30°"
+        },
+        {
+          "id": "dd_c0",
+          "type": "mc",
+          "prompt": "A 在 B 的南偏西 45° 方向,则 B 在 A 的什么方向?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "北偏东 45°",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "南偏东 45°",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "北偏西 45°",
+              "correct": false
+            }
+          ],
+          "hint": "位置关系互为相反",
+          "explanation": "正好相反:北偏东 45°"
+        },
+        {
+          "id": "dd_c1",
+          "type": "fill",
+          "prompt": "宝藏在出发点正北方向 500 m,\n用方向 + 距离描述,距离是多少 m?",
+          "difficulty": "consolidate",
+          "answer": 500,
+          "hint": "正北=北偏东0°,距离500m",
+          "explanation": "500 m"
+        },
+        {
+          "id": "dd_x0",
+          "type": "mc",
+          "prompt": "小明家在学校北偏东 60°,距离 500 m。\n学校在小明家的什么方向?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "南偏西 60°",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "南偏东 60°",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "北偏西 60°",
+              "correct": false
+            }
+          ],
+          "hint": "相反方向,角度相同",
+          "explanation": "南偏西 60°,距离 500 m"
+        },
+        {
+          "id": "dd_x1",
+          "type": "mc",
+          "prompt": "在方格图中确定位置,下列哪种说法完整?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "北偏东 30°,距学校 200 m",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "东边 200 m",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "向北走",
+              "correct": false
+            }
+          ],
+          "hint": "必须有方向角度+距离",
+          "explanation": "方向角度 + 距离"
+        }
+      ]
+    },
+    {
+      "id": "pigeonhole",
+      "title": "鸽巢问题",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ph_b0",
+          "type": "mc",
+          "prompt": "鸽巢原理:把 5 只鸽子放进 4 个巢,至少有一个巢有几只鸽子?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 只",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1 只",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5 只",
+              "correct": false
+            }
+          ],
+          "hint": "5>4,必有一巢≥2",
+          "explanation": "至少 2 只"
+        },
+        {
+          "id": "ph_b1",
+          "type": "mc",
+          "prompt": "一年有 365 天,至少有几个月天数相同?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不是这道题考法",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2",
+              "correct": true
+            }
+          ],
+          "hint": "实际鸽巢题另解,这里答:至少两个月都是31或30天",
+          "explanation": "闰年2月最短,多个月天数相同"
+        },
+        {
+          "id": "ph_c0",
+          "type": "fill",
+          "prompt": "抽屉里有红球 4 个、蓝球 4 个、绿球 4 个,\n随机取球,至少取多少个才能保证有 2 个同色?",
+          "difficulty": "consolidate",
+          "answer": 4,
+          "hint": "最坏情况:红蓝绿各取1=3个,再取1必同色",
+          "explanation": "3 + 1 = 4 个"
+        },
+        {
+          "id": "ph_c1",
+          "type": "fill",
+          "prompt": "书架上有 13 本书,最多有几种颜色,\n能保证至少有 2 本书同色?",
+          "difficulty": "consolidate",
+          "answer": 13,
+          "hint": "每色1本最多13色,13+1不成立。正确理解:13本放n种颜色,若n<13必有同色",
+          "explanation": "若颜色数≤12,则必有2本同色;最多13种颜色才可能每色1本"
+        },
+        {
+          "id": "ph_x0",
+          "type": "mc",
+          "prompt": "任意 5 个整数中,至少有几个数除以 4 的余数相同?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2 个",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5 个",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4 个",
+              "correct": false
+            }
+          ],
+          "hint": "余数只有0,1,2,3四种,5个数必有2个余数相同",
+          "explanation": "至少 2 个"
+        },
+        {
+          "id": "ph_x1",
+          "type": "fill",
+          "prompt": "一个班有 25 个同学,一年有 12 个月,\n至少有几个同学同月生日?",
+          "difficulty": "challenge",
+          "answer": 3,
+          "hint": "25÷12=2余1,至少有一个月有3人,即⌈25/12⌉=3",
+          "explanation": "⌈25/12⌉ = 3 人"
+        }
+      ]
+    }
+  ]
+}
