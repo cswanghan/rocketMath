@@ -1,0 +1,526 @@
+{
+  "version": "2026-06",
+  "series": [
+    {
+      "id": "amc8",
+      "name": "AMC 8",
+      "subject": "math",
+      "color": "blue",
+      "description": "美国数学竞赛 AMC 8，由美国数学协会(MAA)主办，面向 8 年级及以下学生，是全球参与度最高的初中数学竞赛之一，考察数学推理与问题解决能力。中国学生需通过 MAA 认证的考点机构（学校或培训机构）报名。",
+      "format": "25 道选择题，40 分钟，不可使用计算器",
+      "gradeRange": { "min": 4, "max": 8 },
+      "officialUrl": "https://maa.org/student-programs/amc/",
+      "prepTopics": [
+        { "grade": 7, "topicId": "rational_mixed_ops", "label": "有理数混合运算" },
+        { "grade": 7, "topicId": "linear_equation_one", "label": "解一元一次方程" },
+        { "grade": 6, "topicId": "ratio_meaning", "label": "比的意义" }
+      ],
+      "vocabLink": null
+    },
+    {
+      "id": "amc10",
+      "name": "AMC 10",
+      "subject": "math",
+      "color": "blue",
+      "description": "美国数学竞赛 AMC 10，面向 10 年级及以下学生，分 A/B 两卷（可分别报名）。成绩优异者可晋级 AIME，是申请海外名校的重要数学背景证明。",
+      "format": "30 道选择题，75 分钟，不可使用计算器",
+      "gradeRange": { "min": 7, "max": 10 },
+      "officialUrl": "https://maa.org/student-programs/amc/",
+      "prepTopics": [
+        { "grade": 9, "topicId": "quadratic_eq_procedure", "label": "一元二次方程解法" },
+        { "grade": 9, "topicId": "quadratic_fn_graph", "label": "二次函数图象性质" },
+        { "grade": 7, "topicId": "coordinate_plane", "label": "平面直角坐标系" }
+      ],
+      "vocabLink": null
+    },
+    {
+      "id": "kangaroo_math",
+      "name": "袋鼠数学竞赛",
+      "subject": "math",
+      "color": "blue",
+      "description": "国际袋鼠数学竞赛(Math Kangaroo)，全球参与人数最多的青少年数学思维挑战，按年级分 A-F 六个级别（1-12 年级），题目趣味性强，重在激发数学兴趣。",
+      "format": "选择题，75 分钟，按年级分级别（A:1-2 / B:3-4 / C:5-6 / D:7-8 年级等）",
+      "gradeRange": { "min": 1, "max": 12 },
+      "officialUrl": "https://math-kangaroo.org.cn/",
+      "prepTopics": [
+        { "grade": 3, "topicId": "mult_facts", "label": "乘法口诀" },
+        { "grade": 4, "topicId": "angle_types", "label": "角的分类" },
+        { "grade": 5, "topicId": "probability_concept", "label": "可能性" }
+      ],
+      "vocabLink": null
+    },
+    {
+      "id": "hope_math",
+      "name": "希望数学（希望杯）",
+      "subject": "math",
+      "color": "blue",
+      "description": "希望杯全国数学邀请赛，国内历史悠久的中小学数学赛事，面向小学 4 年级至初中学生，采用两试制，重视课内知识的灵活运用。",
+      "format": "两试制：第一试选择/填空，第二试综合解答，各约 90 分钟",
+      "gradeRange": { "min": 4, "max": 9 },
+      "officialUrl": "http://www.hopecup.com.cn/",
+      "prepTopics": [
+        { "grade": 5, "topicId": "equation_solve_practice", "label": "解方程" },
+        { "grade": 6, "topicId": "fraction_div_procedure", "label": "分数除法计算" },
+        { "grade": 6, "topicId": "circle_area", "label": "圆的面积" }
+      ],
+      "vocabLink": null
+    },
+    {
+      "id": "aus_amc",
+      "name": "澳大利亚 AMC",
+      "subject": "math",
+      "color": "blue",
+      "description": "澳大利亚数学竞赛(Australian Mathematics Competition)，由澳大利亚数学联合会主办，全球历史最悠久的校际数学竞赛之一，中英双语试卷，分级别覆盖 1-12 年级。",
+      "format": "30 道选择题，低级别 60 分钟 / 高级别 75 分钟，中英双语",
+      "gradeRange": { "min": 1, "max": 12 },
+      "officialUrl": "https://australianamc.org.cn/",
+      "prepTopics": [
+        { "grade": 4, "topicId": "angle_measure", "label": "角的度量" },
+        { "grade": 5, "topicId": "triangle_area", "label": "三角形面积" },
+        { "grade": 6, "topicId": "ratio_simplify_practice", "label": "化简比" }
+      ],
+      "vocabLink": null
+    },
+    {
+      "id": "sasmo",
+      "name": "SASMO",
+      "subject": "math",
+      "color": "blue",
+      "description": "新加坡及亚洲学校数学奥林匹克(SASMO)，亚洲规模最大的数学竞赛之一，面向 1-12 年级，题目介于课内数学与奥数之间，适合作为竞赛入门。",
+      "format": "25 题，90 分钟，中英双语，线上考试",
+      "gradeRange": { "min": 1, "max": 12 },
+      "officialUrl": "https://en.sasmo.org.cn/",
+      "prepTopics": [
+        { "grade": 3, "topicId": "time_elapsed", "label": "经过时间" },
+        { "grade": 4, "topicId": "large_num_compare", "label": "大数比较大小" },
+        { "grade": 5, "topicId": "decimal_mul_column", "label": "小数乘法竖式" }
+      ],
+      "vocabLink": null
+    },
+    {
+      "id": "ket",
+      "name": "剑桥 KET (A2 Key)",
+      "subject": "english",
+      "color": "lavender",
+      "description": "剑桥英语 A2 Key for Schools（KET），剑桥五级证书体系的入门级别，词汇量要求约 1500-1800，适合小学高年级学生。中国大陆有 NEEA 纸笔与机考两条渠道，北京/上海等大城市每月均有机考场次。",
+      "format": "阅读写作 + 听力 + 口语，约 1.5-2 小时",
+      "gradeRange": { "min": 4, "max": 7 },
+      "officialUrl": "https://mse.neea.edu.cn",
+      "prepTopics": [],
+      "vocabLink": { "module": "english_vocab", "level": "ket" }
+    },
+    {
+      "id": "pet",
+      "name": "剑桥 PET (B1 Preliminary)",
+      "subject": "english",
+      "color": "lavender",
+      "description": "剑桥英语 B1 Preliminary for Schools（PET），剑桥五级证书体系的进阶级别，词汇量要求约 3500，适合初中学生。考期与 KET 共用同一套安排。",
+      "format": "阅读 + 写作 + 听力 + 口语，约 2.5 小时",
+      "gradeRange": { "min": 6, "max": 9 },
+      "officialUrl": "https://mse.neea.edu.cn",
+      "prepTopics": [],
+      "vocabLink": { "module": "english_vocab", "level": "pet" }
+    },
+    {
+      "id": "fce",
+      "name": "剑桥 FCE (B2 First)",
+      "subject": "english",
+      "color": "lavender",
+      "description": "剑桥英语 B2 First for Schools（FCE），词汇量要求约 6000+，适合英语能力较强的初高中学生，是许多国际学校认可的英语水平证明。",
+      "format": "阅读写作 + 听力 + 口语共 4 部分，约 3.5 小时",
+      "gradeRange": { "min": 8, "max": 12 },
+      "officialUrl": "https://mse.neea.edu.cn",
+      "prepTopics": [],
+      "vocabLink": null
+    },
+    {
+      "id": "toefl_junior",
+      "name": "小托福 TOEFL Junior",
+      "subject": "english",
+      "color": "lavender",
+      "description": "TOEFL Junior（小托福），ETS 面向 11-17 岁学生的英语能力测试，含听力、语言形式与含义、阅读三部分，成绩可对标 CEFR 等级，常用于国际学校申请。",
+      "format": "纸笔考试约 2.5 小时（听力 35 分钟 + 语言形式 45 分钟 + 阅读 50 分钟）",
+      "gradeRange": { "min": 5, "max": 9 },
+      "officialUrl": "https://www.toeflyss.cn",
+      "prepTopics": [],
+      "vocabLink": null
+    },
+    {
+      "id": "languagecert",
+      "name": "朗思 LanguageCert",
+      "subject": "english",
+      "color": "lavender",
+      "description": "朗思国际英语考试（LanguageCert International ESOL），覆盖 A1-C2 全级别，与剑桥同属 Ofqual 认证体系。中国大陆实行常年滚动报名：纸笔每月 1 场、机考每月 2 场、B1 以上可线上远程监考。",
+      "format": "纸笔 / 机考 / 线上远程监考三种形式，按级别报考",
+      "gradeRange": { "min": 4, "max": 12 },
+      "officialUrl": "http://languagecert.com.cn",
+      "prepTopics": [],
+      "vocabLink": null
+    },
+    {
+      "id": "yst_cup",
+      "name": "叶圣陶杯新作文大赛",
+      "subject": "chinese",
+      "color": "peach",
+      "description": "叶圣陶杯全国中学生新作文大赛，教育部白名单赛事，面向初中和高中学生（不含小学），分省级评奖（线上投稿）与全国总决赛（现场写作）两轮。",
+      "format": "省级评奖：自主选题线上投稿；全国总决赛：统一命题现场写作",
+      "gradeRange": { "min": 7, "max": 12 },
+      "officialUrl": "https://www.ystbds.com",
+      "prepTopics": [],
+      "vocabLink": null
+    },
+    {
+      "id": "chucai",
+      "name": "楚才作文竞赛",
+      "subject": "chinese",
+      "color": "peach",
+      "description": "楚才作文竞赛（楚才杯），创办于 1985 年的老牌作文赛事，面向小学 3 年级至高中 3 年级，线上初选 + 线下决选（武汉），通过微信小程序「楚才少年」报名。",
+      "format": "初选：线上作文投稿；决选：现场写作 150 分钟",
+      "gradeRange": { "min": 3, "max": 12 },
+      "officialUrl": "https://wh.bendibao.com/news/list_171_1.htm",
+      "prepTopics": [],
+      "vocabLink": null
+    },
+    {
+      "id": "cspj",
+      "name": "CSP-J 信息学认证",
+      "subject": "science_coding",
+      "color": "teal",
+      "description": "CCF 非专业级软件能力认证入门级（CSP-J），信息学奥赛(NOI)体系的入门赛事，考察编程基础与算法思维。要求报名当年 9 月 1 日前满 12 周岁，适合初中及以上学生。",
+      "format": "第一轮：选择/判断笔试；第二轮：现场编程 4 题（按省晋级）",
+      "gradeRange": { "min": 7, "max": 12 },
+      "officialUrl": "https://www.noi.cn/",
+      "prepTopics": [],
+      "vocabLink": null
+    },
+    {
+      "id": "lanqiao_youth",
+      "name": "蓝桥杯青少组",
+      "subject": "science_coding",
+      "color": "teal",
+      "description": "蓝桥杯大赛青少年组，教育部白名单赛事，覆盖小学至高中，按编程方向分图形化(Scratch)、Python、C++ 等组别，赛程为 STEMA 选拔测评 → 省赛 → 国赛。",
+      "format": "STEMA 线上测评（全年多场次）→ 省赛（线上）→ 国赛",
+      "gradeRange": { "min": 1, "max": 12 },
+      "officialUrl": "https://dasai.lanqiao.cn",
+      "prepTopics": [],
+      "vocabLink": null
+    }
+  ],
+  "sessions": [
+    {
+      "id": "amc8_2026",
+      "seriesId": "amc8",
+      "label": "AMC 8 2026",
+      "examDate": { "type": "exact", "value": "2026-01-22" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "考试窗口 2026 年 1 月 22-30 日"
+    },
+    {
+      "id": "amc8_2027",
+      "seriesId": "amc8",
+      "label": "AMC 8 2027",
+      "examDate": { "type": "exact", "value": "2027-01-21" },
+      "registrationStart": { "type": "tbd", "value": "2026-09" },
+      "registrationEnd": { "type": "exact", "value": "2027-01-05" },
+      "notes": "考试窗口 1 月 21-27 日；早鸟报名截止 2026-10-28，经考点机构报名通常更早"
+    },
+    {
+      "id": "amc10a_2026",
+      "seriesId": "amc10",
+      "label": "AMC 10A 2026",
+      "examDate": { "type": "exact", "value": "2026-11-05" },
+      "registrationStart": { "type": "tbd", "value": "2026-08" },
+      "registrationEnd": { "type": "exact", "value": "2026-10-28" },
+      "notes": "10-28 为早鸟报名截止，最终截止以官网为准"
+    },
+    {
+      "id": "amc10b_2026",
+      "seriesId": "amc10",
+      "label": "AMC 10B 2026",
+      "examDate": { "type": "exact", "value": "2026-11-13" },
+      "registrationStart": { "type": "tbd", "value": "2026-08" },
+      "registrationEnd": { "type": "exact", "value": "2026-10-28" },
+      "notes": "10-28 为早鸟报名截止，最终截止以官网为准"
+    },
+    {
+      "id": "kangaroo_2026",
+      "seriesId": "kangaroo_math",
+      "label": "袋鼠数学 2026",
+      "examDate": { "type": "exact", "value": "2026-03-28" },
+      "registrationStart": { "type": "month", "value": "2025-09" },
+      "registrationEnd": { "type": "exact", "value": "2026-03-17" },
+      "notes": "A-B 级上午 10:30，C-F 级下午 14:00"
+    },
+    {
+      "id": "kangaroo_2027",
+      "seriesId": "kangaroo_math",
+      "label": "袋鼠数学 2027",
+      "examDate": { "type": "tbd", "value": "2027-03" },
+      "registrationStart": { "type": "tbd", "value": "2026-09" },
+      "registrationEnd": { "type": "tbd", "value": "2027-03" },
+      "notes": "历年为 3 月最后一个周六，以官网公告为准"
+    },
+    {
+      "id": "hope_2027_r1",
+      "seriesId": "hope_math",
+      "label": "希望数学 2027 第一试",
+      "examDate": { "type": "tbd", "value": "2027-03" },
+      "registrationStart": { "type": "tbd", "value": "2026-12" },
+      "registrationEnd": { "type": "tbd", "value": "2027-02" },
+      "notes": "历年第一试在 3 月下旬、第二试在 4 月上旬；近年竞赛政策变化较多，报名前请核实官网"
+    },
+    {
+      "id": "aus_amc_2026",
+      "seriesId": "aus_amc",
+      "label": "澳洲 AMC 2026 中国赛区",
+      "examDate": { "type": "exact", "value": "2026-10-11" },
+      "registrationStart": { "type": "tbd", "value": "2026-06" },
+      "registrationEnd": { "type": "exact", "value": "2026-09-28" },
+      "notes": null
+    },
+    {
+      "id": "sasmo_2026",
+      "seriesId": "sasmo",
+      "label": "SASMO 2026 中国赛区",
+      "examDate": { "type": "exact", "value": "2026-04-18" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-03-29" },
+      "notes": null
+    },
+    {
+      "id": "sasmo_2027",
+      "seriesId": "sasmo",
+      "label": "SASMO 2027 中国赛区",
+      "examDate": { "type": "tbd", "value": "2027-04" },
+      "registrationStart": { "type": "tbd", "value": "2027-02" },
+      "registrationEnd": { "type": "tbd", "value": "2027-03" },
+      "notes": "历年约 4 月上中旬，以官网公告为准"
+    },
+    {
+      "id": "ket_2026_jun",
+      "seriesId": "ket",
+      "label": "KET 2026 年 6 月考期",
+      "examDate": { "type": "month", "value": "2026-06" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-04-27" },
+      "notes": "本月 13/14、20/21、27/28 多场（北京机考渠道），报名已截止"
+    },
+    {
+      "id": "ket_2026_jul",
+      "seriesId": "ket",
+      "label": "KET 2026 年 7 月考期",
+      "examDate": { "type": "month", "value": "2026-07" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-05-29" },
+      "notes": "参考考期 7 月 29 日，各城市安排不同"
+    },
+    {
+      "id": "ket_2026_sep",
+      "seriesId": "ket",
+      "label": "KET 2026 年 9 月考期",
+      "examDate": { "type": "month", "value": "2026-09" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-07-19" },
+      "notes": "参考考期 9 月 19 日，各城市安排不同"
+    },
+    {
+      "id": "ket_2026_q4",
+      "seriesId": "ket",
+      "label": "KET 2026 年 10-11 月考期",
+      "examDate": { "type": "tbd", "value": "2026-10" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "下半年完整考期通常 6-7 月后分批公布"
+    },
+    {
+      "id": "ket_2026_dec",
+      "seriesId": "ket",
+      "label": "KET 2026 年 12 月考期",
+      "examDate": { "type": "month", "value": "2026-12" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-10-12" },
+      "notes": "参考考期 12 月 12 日"
+    },
+    {
+      "id": "ket_2027_h1",
+      "seriesId": "ket",
+      "label": "KET 2027 上半年考期",
+      "examDate": { "type": "tbd", "value": "2027-03" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "历年 1-6 月每月均有场次，考前约 2 个月报名"
+    },
+    {
+      "id": "pet_2026_jun",
+      "seriesId": "pet",
+      "label": "PET 2026 年 6 月考期",
+      "examDate": { "type": "month", "value": "2026-06" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-04-27" },
+      "notes": "与 KET 共用考期，本月多场，报名已截止"
+    },
+    {
+      "id": "pet_2026_sep",
+      "seriesId": "pet",
+      "label": "PET 2026 年 9 月考期",
+      "examDate": { "type": "month", "value": "2026-09" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-07-19" },
+      "notes": "与 KET 共用考期，参考 9 月 19 日"
+    },
+    {
+      "id": "pet_2026_dec",
+      "seriesId": "pet",
+      "label": "PET 2026 年 12 月考期",
+      "examDate": { "type": "month", "value": "2026-12" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-10-12" },
+      "notes": "与 KET 共用考期，参考 12 月 12 日"
+    },
+    {
+      "id": "pet_2027_h1",
+      "seriesId": "pet",
+      "label": "PET 2027 上半年考期",
+      "examDate": { "type": "tbd", "value": "2027-03" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "历年 1-6 月每月均有场次，考前约 2 个月报名"
+    },
+    {
+      "id": "fce_2026_sep",
+      "seriesId": "fce",
+      "label": "FCE 2026 年 9 月考期",
+      "examDate": { "type": "month", "value": "2026-09" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-07-19" },
+      "notes": "参考考期 9 月 19 日，各城市安排不同"
+    },
+    {
+      "id": "fce_2026_dec",
+      "seriesId": "fce",
+      "label": "FCE 2026 年 12 月考期",
+      "examDate": { "type": "month", "value": "2026-12" },
+      "registrationStart": null,
+      "registrationEnd": { "type": "exact", "value": "2026-10-12" },
+      "notes": "参考考期 12 月 12 日"
+    },
+    {
+      "id": "fce_2027_h1",
+      "seriesId": "fce",
+      "label": "FCE 2027 上半年考期",
+      "examDate": { "type": "tbd", "value": "2027-03" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "历年 1-6 月多场次，考前约 2 个月报名"
+    },
+    {
+      "id": "toefljr_2026_summer",
+      "seriesId": "toefl_junior",
+      "label": "小托福 2026 暑期场",
+      "examDate": { "type": "tbd", "value": "2026-07" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "北京/上海/广州/深圳/成都每月一场，考前 10 个工作日截止报名，具体日期登录官网报名系统查询"
+    },
+    {
+      "id": "toefljr_2026_autumn",
+      "seriesId": "toefl_junior",
+      "label": "小托福 2026 秋季场",
+      "examDate": { "type": "tbd", "value": "2026-10" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "9-12 月每月一场，考前 10 个工作日截止报名"
+    },
+    {
+      "id": "languagecert_rolling",
+      "seriesId": "languagecert",
+      "label": "朗思 IESOL（常年可约）",
+      "examDate": { "type": "rolling", "value": "2026-01" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "纸笔考前至少 10 天报名、机考考前至少 5 天，线上随约随考"
+    },
+    {
+      "id": "yst_24_g3_submit",
+      "seriesId": "yst_cup",
+      "label": "叶圣陶杯第24届 高三组征稿",
+      "examDate": { "type": "tbd", "value": "2026-10" },
+      "registrationStart": { "type": "tbd", "value": "2026-09" },
+      "registrationEnd": { "type": "tbd", "value": "2026-10" },
+      "notes": "历年高三组 9-10 月征稿、12 月总决赛；高一高二组次年 2 月截稿、5 月总决赛"
+    },
+    {
+      "id": "yst_24_g12_final",
+      "seriesId": "yst_cup",
+      "label": "叶圣陶杯第24届 高一高二组总决赛",
+      "examDate": { "type": "tbd", "value": "2027-05" },
+      "registrationStart": { "type": "tbd", "value": "2026-11" },
+      "registrationEnd": { "type": "tbd", "value": "2027-02" },
+      "notes": "以官网公告为准"
+    },
+    {
+      "id": "chucai_41_final",
+      "seriesId": "chucai",
+      "label": "楚才第41届 决选",
+      "examDate": { "type": "exact", "value": "2026-02-07" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "初选晋级选手参加，武汉线下现场写作"
+    },
+    {
+      "id": "chucai_42_prelim",
+      "seriesId": "chucai",
+      "label": "楚才第42届 初选",
+      "examDate": { "type": "tbd", "value": "2026-11" },
+      "registrationStart": { "type": "tbd", "value": "2026-11" },
+      "registrationEnd": { "type": "tbd", "value": "2026-11" },
+      "notes": "历年 11 月初报名、11 月下旬线上初选"
+    },
+    {
+      "id": "chucai_42_final",
+      "seriesId": "chucai",
+      "label": "楚才第42届 决选",
+      "examDate": { "type": "tbd", "value": "2027-02" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "初选晋级后参加"
+    },
+    {
+      "id": "cspj_2026_r1",
+      "seriesId": "cspj",
+      "label": "CSP-J 2026 第一轮",
+      "examDate": { "type": "tbd", "value": "2026-09" },
+      "registrationStart": { "type": "tbd", "value": "2026-07" },
+      "registrationEnd": { "type": "tbd", "value": "2026-09" },
+      "notes": "CCF 历年 6 月底发布报名通知，第一轮约 9 月中旬"
+    },
+    {
+      "id": "cspj_2026_r2",
+      "seriesId": "cspj",
+      "label": "CSP-J 2026 第二轮",
+      "examDate": { "type": "tbd", "value": "2026-10" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "第一轮晋级后参加，10-11 月各省自行安排"
+    },
+    {
+      "id": "lanqiao_18_stema",
+      "seriesId": "lanqiao_youth",
+      "label": "蓝桥杯青少 STEMA 选拔（2026-2027 赛季）",
+      "examDate": { "type": "tbd", "value": "2026-12" },
+      "registrationStart": { "type": "tbd", "value": "2026-10" },
+      "registrationEnd": { "type": "tbd", "value": "2027-02" },
+      "notes": "STEMA 为线上多场次测评，约 10 月至次年 3 月滚动进行"
+    },
+    {
+      "id": "lanqiao_18_provincial",
+      "seriesId": "lanqiao_youth",
+      "label": "蓝桥杯青少省赛（第18届）",
+      "examDate": { "type": "tbd", "value": "2027-05" },
+      "registrationStart": null,
+      "registrationEnd": null,
+      "notes": "STEMA 晋级后参加，国赛约 5 月下旬"
+    }
+  ]
+}

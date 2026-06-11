@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { createDefaultAdapter, LOCAL_STUDENT_ID, type StorageAdapter } from '../storage';
+import { createDefaultAdapter, type StorageAdapter } from '../storage';
+import { ChildSwitcher } from './ChildSwitcher';
+import { getActiveChild, listChildren, setActiveChild, studentIdFor, type Child } from './family';
+import { setTrialSubject, trialExceeded } from '../trial';
 import { ChineseCharacters } from './ChineseCharacters';
+import { EnglishVocab } from './EnglishVocab';
+import { ExamCalendar } from './ExamCalendar';
 import { GradePicker } from './GradePicker';
 import { loadGrade, type GradeContent } from './gradeLoader';
+import { track } from '../track';
 import { KnowledgeMap } from './KnowledgeMap';
 import { LockScreen } from './LockScreen';
 import { ParentDashboard } from './ParentDashboard';
@@ -15,7 +21,7 @@ import { Race } from './Race';
 import { useTimeLock } from './useTimeLock';
 import { UserBar, useAuth } from './UserBar';
 
-type Subject = 'math' | 'chinese';
+type Subject = 'math' | 'chinese' | 'english';
 
 type Session =
   | { mode: 'probe'; trackId: string; seed: number }
@@ -38,6 +44,21 @@ export function App() {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [parent, setParent] = useState(false);
+  // 考试日历: 跨学科资讯入口, 不走 subject 体系 (无 trial/grade/content 副作用)
+  const [examCal, setExamCal] = useState(false);
+  const [authPromptFor, setAuthPromptFor] = useState<Subject | null>(null);
+  // a logged-out user who clicked a subject is sent to login.html?redirect=/?go=<subject>;
+  // on return we auto-open that subject once auth is confirmed.
+  const [pendingGo] = useState<string | null>(() => new URLSearchParams(location.search).get('go'));
+  // 统一 header 的「家长」入口可从其它页(如管理后台)深链进入: /?parent=1
+  const [pendingParent] = useState<boolean>(() => new URLSearchParams(location.search).get('parent') === '1');
+
+  // 家庭/孩子档案: 当前在学的孩子 (null = 家长本人)
+  const [activeChild, setActiveChildState] = useState<Child | null>(() => getActiveChild());
+  const [childrenList, setChildrenList] = useState<Child[]>([]);
+  const [showSwitcher, setShowSwitcher] = useState(false);
+  const studentId = studentIdFor(activeChild);
+  const pickChild = (c: Child | null) => { setActiveChild(c); setActiveChildState(c); };
 
   const active =
     session?.mode === 'play' || session?.mode === 'race' || session?.mode === 'practice';
@@ -45,10 +66,58 @@ export function App() {
 
   useEffect(() => {
     (async () => {
-      const existing = await adapter.getStudent(LOCAL_STUDENT_ID);
-      if (!existing) await adapter.putStudent({ id: LOCAL_STUDENT_ID, createdAt: Date.now() });
+      const existing = await adapter.getStudent(studentId);
+      if (!existing) await adapter.putStudent({ id: studentId, createdAt: Date.now() });
     })();
-  }, [adapter]);
+  }, [adapter, studentId]);
+
+  // sync the active child to the global tracker (per-child 埋点)
+  useEffect(() => { setActiveChild(activeChild); }, [activeChild]);
+
+  // 数学免费体验用完 → /track.js 派发事件,弹登录
+  useEffect(() => {
+    function onBlock(e: Event) {
+      const s = ((e as CustomEvent).detail?.subject || 'math') as Subject;
+      setSession(null);
+      setSubject(null);
+      setAuthPromptFor(s);
+    }
+    window.addEventListener('rm-trial-block', onBlock);
+    return () => window.removeEventListener('rm-trial-block', onBlock);
+  }, []);
+
+  // load this parent's children; prompt "谁在学习?" the first time after login
+  useEffect(() => {
+    if (!user) { setChildrenList([]); return; }
+    let alive = true;
+    listChildren().then((cs) => {
+      if (!alive) return;
+      setChildrenList(cs);
+      if (activeChild && !cs.some((c) => c.id === activeChild.id)) pickChild(null);
+      if (cs.length > 0 && !getActiveChild()) setShowSwitcher(true);
+    });
+    return () => { alive = false; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  useEffect(() => {
+    if (!pendingParent) return;
+    setParent(true);
+    const u = new URL(location.href);
+    u.searchParams.delete('parent');
+    window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+  }, [pendingParent]);
+
+  useEffect(() => {
+    if (!user || !pendingGo) return;
+    if (pendingGo === 'math' || pendingGo === 'chinese' || pendingGo === 'english') {
+      setSubject(pendingGo);
+      setAuthPromptFor(null);
+      const u = new URL(location.href);
+      u.searchParams.delete('go');
+      window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+    }
+  }, [user, pendingGo]);
 
   useEffect(() => {
     if (grade === null) { setContent(null); return; }
@@ -61,6 +130,26 @@ export function App() {
     );
     return () => { cancelled = true; };
   }, [grade]);
+
+  const userBar = (
+    <UserBar
+      user={user}
+      onLogout={logout}
+      onLogin={login}
+      activeChild={activeChild}
+      onSwitchChild={() => setShowSwitcher(true)}
+      onParent={user ? () => setParent(true) : undefined}
+    />
+  );
+  const switcherEl = showSwitcher ? (
+    <ChildSwitcher
+      childrenList={childrenList}
+      active={activeChild}
+      onPick={pickChild}
+      onChange={setChildrenList}
+      onClose={() => setShowSwitcher(false)}
+    />
+  ) : null;
 
   if (loadError) {
     return (
@@ -77,16 +166,43 @@ export function App() {
   if (parent) {
     return (
       <ParentGate onCancel={() => setParent(false)}>
-        <ParentDashboard adapter={adapter} studentId={LOCAL_STUDENT_ID} onExit={() => setParent(false)} />
+        <ParentDashboard adapter={adapter} studentId={studentId} onExit={() => setParent(false)} />
       </ParentGate>
     );
   }
 
-  if (!subject) {
+  if (examCal) {
     return (
       <>
-        <UserBar user={user} onLogout={logout} onLogin={login} />
-        <Portal onSelect={setSubject} />
+        {userBar}
+        {switcherEl}
+        <ExamCalendar onBack={() => setExamCal(false)} />
+      </>
+    );
+  }
+
+  if (!subject) {
+    // homepage open to all. Logged-out users get a free trial (10 ops/subject)
+    // before the login prompt — lowers the barrier to try.
+    const choose = (s: Subject) => {
+      track('subject_select', { subject: s, authed: !!user });
+      if (user) { setTrialSubject(null); setSubject(s); return; }
+      if (trialExceeded(s)) {
+        track('login_prompt_shown', { subject: s, reason: 'trial_over' });
+        setAuthPromptFor(s);
+      } else {
+        setTrialSubject(s);
+        setSubject(s); // 进入免费体验
+      }
+    };
+    return (
+      <>
+        {userBar}
+        {switcherEl}
+        <Portal onSelect={choose} onExamCal={() => setExamCal(true)} />
+        {authPromptFor && (
+          <LoginPrompt subject={authPromptFor} onClose={() => setAuthPromptFor(null)} />
+        )}
       </>
     );
   }
@@ -94,8 +210,19 @@ export function App() {
   if (subject === 'chinese') {
     return (
       <>
-        <UserBar user={user} onLogout={logout} onLogin={login} />
+        {userBar}
+        {switcherEl}
         <ChineseCharacters onBack={() => setSubject(null)} />
+      </>
+    );
+  }
+
+  if (subject === 'english') {
+    return (
+      <>
+        {userBar}
+        {switcherEl}
+        <EnglishVocab onBack={() => setSubject(null)} />
       </>
     );
   }
@@ -104,11 +231,15 @@ export function App() {
   if (!grade || !content) {
     return (
       <>
-        <UserBar user={user} onLogout={logout} onLogin={login} />
+        {userBar}
+        {switcherEl}
         {grade && !content ? (
           <div className="portal"><p className="portal-subtitle">加载中...</p></div>
         ) : (
-          <GradePicker onSelect={setGrade} onBack={() => setSubject(null)} />
+          <GradePicker
+            onSelect={(g) => { track('grade_select', { grade: g }); setGrade(g); }}
+            onBack={() => setSubject(null)}
+          />
         )}
       </>
     );
@@ -120,20 +251,21 @@ export function App() {
   if (!session) {
     return (
       <>
-      <UserBar user={user} onLogout={logout} onLogin={login} />
+      {userBar}
+        {switcherEl}
       <KnowledgeMap
         pack={pack}
         knowledgeMap={knowledgeMap}
         adapter={adapter}
-        studentId={LOCAL_STUDENT_ID}
+        studentId={studentId}
         onPlay={async (trackId) => {
-          const student = await adapter.getStudent(LOCAL_STUDENT_ID);
+          track('topic_open', { kind: 'play', trackId, grade });
+          const student = await adapter.getStudent(studentId);
           const mode = student?.latencyGateMs ? 'play' : 'probe';
           setSession({ mode, trackId, seed: newSeed() });
         }}
-        onRace={(trackId) => setSession({ mode: 'race', trackId, seed: newSeed() })}
-        onPractice={(setId) => setSession({ mode: 'practice', setId, seed: newSeed() })}
-        onParent={() => setParent(true)}
+        onRace={(trackId) => { track('topic_open', { kind: 'race', trackId, grade }); setSession({ mode: 'race', trackId, seed: newSeed() }); }}
+        onPractice={(setId) => { track('topic_open', { kind: 'practice', setId, grade }); setSession({ mode: 'practice', setId, seed: newSeed() }); }}
         onBack={() => { setGrade(null); setSession(null); }}
       />
       </>
@@ -145,7 +277,7 @@ export function App() {
       <Probe
         pack={pack}
         adapter={adapter}
-        studentId={LOCAL_STUDENT_ID}
+        studentId={studentId}
         onDone={() => setSession({ mode: 'play', trackId: session.trackId, seed: session.seed })}
       />
     );
@@ -158,7 +290,7 @@ export function App() {
         trackId={session.trackId}
         pack={pack}
         adapter={adapter}
-        studentId={LOCAL_STUDENT_ID}
+        studentId={studentId}
         seed={session.seed}
         onExit={() => setSession(null)}
       />
@@ -172,7 +304,7 @@ export function App() {
         setId={session.setId}
         practicePack={practicePack}
         adapter={adapter}
-        studentId={LOCAL_STUDENT_ID}
+        studentId={studentId}
         seed={session.seed}
         onExit={() => setSession(null)}
       />
@@ -185,9 +317,30 @@ export function App() {
       trackId={session.trackId}
       pack={pack}
       adapter={adapter}
-      studentId={LOCAL_STUDENT_ID}
+      studentId={studentId}
       seed={session.seed}
       onExit={() => setSession(null)}
     />
+  );
+}
+
+function LoginPrompt({ subject, onClose }: { subject: Subject; onClose: () => void }) {
+  const name = subject === 'math' ? '数学' : subject === 'chinese' ? '语文' : '英语';
+  const go = () => {
+    track('login_prompt_click', { subject });
+    window.location.href = '/login.html?redirect=' + encodeURIComponent('/?go=' + subject);
+  };
+  return (
+    <div className="overlay" onClick={onClose}>
+      <div className="card" onClick={(e) => e.stopPropagation()}>
+        <div style={{ fontSize: '3rem' }}>🌱</div>
+        <div className="card-title">免费体验结束啦</div>
+        <p style={{ color: 'var(--muted)', margin: 0, lineHeight: 1.6 }}>
+          {name}的试用次数用完了。登录 / 注册后无限畅学，还能保存学习进度、经验值和错题本，换设备也能继续。
+        </p>
+        <button className="primary" onClick={go}>登录 / 注册,继续学{name}</button>
+        <button className="ghost" onClick={onClose}>再看看</button>
+      </div>
+    </div>
   );
 }
