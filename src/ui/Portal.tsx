@@ -4,9 +4,12 @@ import { useParallax } from './useParallax';
 interface Props {
   onSelect: (subject: 'math' | 'chinese' | 'english') => void;
   onExamCal: () => void;
+  /** 有进行中的备考目标时显示「继续备考」入口 */
+  resumePrep?: { name: string; masteredCount?: number; total?: number } | null;
+  onResumePrep?: () => void;
 }
 
-export function Portal({ onSelect, onExamCal }: Props) {
+export function Portal({ onSelect, onExamCal, resumePrep, onResumePrep }: Props) {
   const { ref, onPointerMove, onPointerLeave } = useParallax<HTMLDivElement>();
   return (
     <div className="portal" ref={ref} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
@@ -50,6 +53,20 @@ export function Portal({ onSelect, onExamCal }: Props) {
         </span>
         <CardArt kind="examCal" />
       </button>
+      {resumePrep && onResumePrep && (
+        <button className="pcard prep-resume" onClick={onResumePrep}>
+          <span className="pill pill-peach">备考中</span>
+          <span className="portal-banner-body">
+            <span className="portal-banner-label">继续备考 · {resumePrep.name}</span>
+            <span className="portal-banner-desc">
+              {resumePrep.total
+                ? `已掌握 ${resumePrep.masteredCount ?? 0}/${resumePrep.total} 个知识点，继续冲鸭`
+                : '查看备考清单，逐个攻克知识点'}
+            </span>
+          </span>
+          <span className="prep-resume-arrow">→</span>
+        </button>
+      )}
     </div>
   );
 }

@@ -16,8 +16,11 @@ import { ParentGate } from './ParentGate';
 import { Play } from './Play';
 import { Portal } from './Portal';
 import { PracticeScreen } from './PracticeScreen';
+import { PrepScreen } from './PrepScreen';
 import { Probe } from './Probe';
 import { Race } from './Race';
+import { loadExamCalendar } from './examLoader';
+import { readPrepTarget, savePrepTarget } from './prep';
 import { useTimeLock } from './useTimeLock';
 import { UserBar, useAuth } from './UserBar';
 
@@ -46,6 +49,12 @@ export function App() {
   const [parent, setParent] = useState(false);
   // 考试日历: 跨学科资讯入口, 不走 subject 体系 (无 trial/grade/content 副作用)
   const [examCal, setExamCal] = useState(false);
+  // 我要备考: 进入某考试系列的备考清单 (自包含子导航, 不走全局 session)
+  const [prepSeriesId, setPrepSeriesId] = useState<string | null>(null);
+  // 首页「继续备考」胶囊用的已存目标 (名称从 exam_calendar 解析)
+  const [prepResume, setPrepResume] = useState<
+    { seriesId: string; name: string; masteredCount?: number; total?: number } | null
+  >(null);
   const [authPromptFor, setAuthPromptFor] = useState<Subject | null>(null);
   // a logged-out user who clicked a subject is sent to login.html?redirect=/?go=<subject>;
   // on return we auto-open that subject once auth is confirmed.
@@ -131,6 +140,22 @@ export function App() {
     return () => { cancelled = true; };
   }, [grade]);
 
+  // 「继续备考」胶囊: 读 localStorage 目标并从 exam_calendar 解析名称。
+  // prepSeriesId 变化时重查 → 离开备考页后完成度即时刷新。
+  useEffect(() => {
+    let alive = true;
+    const target = readPrepTarget(studentId);
+    if (!target) { setPrepResume(null); return; }
+    loadExamCalendar().then((d) => {
+      if (!alive) return;
+      const s = d.series.find((x) => x.id === target.seriesId);
+      setPrepResume(
+        s ? { seriesId: s.id, name: s.name, masteredCount: target.masteredCount, total: target.total } : null,
+      );
+    });
+    return () => { alive = false; };
+  }, [studentId, prepSeriesId]);
+
   const userBar = (
     <UserBar
       user={user}
@@ -171,12 +196,32 @@ export function App() {
     );
   }
 
-  if (examCal) {
+  if (prepSeriesId) {
     return (
       <>
         {userBar}
         {switcherEl}
-        <ExamCalendar onBack={() => setExamCal(false)} />
+        <PrepScreen
+          seriesId={prepSeriesId}
+          adapter={adapter}
+          studentId={studentId}
+          onBack={() => setPrepSeriesId(null)}
+        />
+      </>
+    );
+  }
+
+  if (examCal) {
+    const startPrep = (seriesId: string) => {
+      savePrepTarget(studentId, seriesId);
+      setExamCal(false);
+      setPrepSeriesId(seriesId);
+    };
+    return (
+      <>
+        {userBar}
+        {switcherEl}
+        <ExamCalendar onBack={() => setExamCal(false)} onStartPrep={startPrep} />
       </>
     );
   }
@@ -199,7 +244,12 @@ export function App() {
       <>
         {userBar}
         {switcherEl}
-        <Portal onSelect={choose} onExamCal={() => setExamCal(true)} />
+        <Portal
+          onSelect={choose}
+          onExamCal={() => setExamCal(true)}
+          resumePrep={prepResume}
+          onResumePrep={prepResume ? () => setPrepSeriesId(prepResume.seriesId) : undefined}
+        />
         {authPromptFor && (
           <LoginPrompt subject={authPromptFor} onClose={() => setAuthPromptFor(null)} />
         )}

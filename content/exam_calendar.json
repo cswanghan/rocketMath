@@ -1,5 +1,5 @@
 {
-  "version": "2026-06.2",
+  "version": "2026-06.3",
   "series": [
     {
       "id": "amc8",
@@ -15,19 +15,54 @@
       "officialUrl": "https://maa.org/student-programs/amc/",
       "prepTopics": [
         {
+          "grade": 5,
+          "topicId": "prime_composite",
+          "label": "质数与合数"
+        },
+        {
+          "grade": 5,
+          "topicId": "divisibility_rules",
+          "label": "2/3/5整除特征"
+        },
+        {
+          "grade": 6,
+          "topicId": "ratio_meaning",
+          "label": "比的意义"
+        },
+        {
+          "grade": 6,
+          "topicId": "percent_calc",
+          "label": "百分数应用·基本"
+        },
+        {
+          "grade": 6,
+          "topicId": "pigeonhole",
+          "label": "鸽巢问题"
+        },
+        {
           "grade": 7,
           "topicId": "rational_mixed_ops",
           "label": "有理数混合运算"
         },
         {
           "grade": 7,
-          "topicId": "linear_equation_one",
-          "label": "解一元一次方程"
+          "topicId": "linear_equation_app",
+          "label": "一元一次方程应用"
         },
         {
-          "grade": 6,
-          "topicId": "ratio_meaning",
-          "label": "比的意义"
+          "grade": 7,
+          "topicId": "coordinate_plane",
+          "label": "平面直角坐标系"
+        },
+        {
+          "grade": 8,
+          "topicId": "triangle_angle_sum",
+          "label": "三角形内角和与外角"
+        },
+        {
+          "grade": 8,
+          "topicId": "pythagorean_theorem",
+          "label": "勾股定理"
         }
       ],
       "vocabLink": null
@@ -46,6 +81,31 @@
       "officialUrl": "https://maa.org/student-programs/amc/",
       "prepTopics": [
         {
+          "grade": 7,
+          "topicId": "equation_system",
+          "label": "二元一次方程组"
+        },
+        {
+          "grade": 7,
+          "topicId": "inequality_group",
+          "label": "不等式与不等式组"
+        },
+        {
+          "grade": 8,
+          "topicId": "factorization_formula",
+          "label": "公式法因式分解"
+        },
+        {
+          "grade": 8,
+          "topicId": "linear_function_graph",
+          "label": "一次函数图象与性质"
+        },
+        {
+          "grade": 8,
+          "topicId": "pythagorean_theorem",
+          "label": "勾股定理"
+        },
+        {
           "grade": 9,
           "topicId": "quadratic_eq_procedure",
           "label": "一元二次方程解法"
@@ -56,9 +116,19 @@
           "label": "二次函数图象性质"
         },
         {
-          "grade": 7,
-          "topicId": "coordinate_plane",
-          "label": "平面直角坐标系"
+          "grade": 9,
+          "topicId": "similar_triangle_concept",
+          "label": "相似三角形概念与性质"
+        },
+        {
+          "grade": 9,
+          "topicId": "circle_inscribed_angle",
+          "label": "圆周角与圆心角"
+        },
+        {
+          "grade": 9,
+          "topicId": "probability_classical",
+          "label": "古典概型计算"
         }
       ],
       "vocabLink": null
@@ -77,19 +147,54 @@
       "officialUrl": "https://maa.org/student-programs/amc/",
       "prepTopics": [
         {
+          "grade": 8,
+          "topicId": "factorization_formula",
+          "label": "公式法因式分解"
+        },
+        {
+          "grade": 8,
+          "topicId": "quadratic_radical_simplify",
+          "label": "二次根式化简运算"
+        },
+        {
+          "grade": 9,
+          "topicId": "quadratic_eq_procedure",
+          "label": "一元二次方程解法"
+        },
+        {
           "grade": 9,
           "topicId": "quadratic_fn_graph",
           "label": "二次函数图象性质"
         },
         {
           "grade": 9,
-          "topicId": "circle_properties",
-          "label": "圆的基本性质"
+          "topicId": "quadratic_fn_application",
+          "label": "二次函数应用"
         },
         {
-          "grade": 8,
-          "topicId": "factorization_formula",
-          "label": "公式法因式分解"
+          "grade": 9,
+          "topicId": "similar_triangle_proof",
+          "label": "相似三角形判定与证明"
+        },
+        {
+          "grade": 9,
+          "topicId": "circle_inscribed_angle",
+          "label": "圆周角与圆心角"
+        },
+        {
+          "grade": 9,
+          "topicId": "trig_definition",
+          "label": "锐角三角函数定义"
+        },
+        {
+          "grade": 9,
+          "topicId": "trig_special_values",
+          "label": "特殊角三角函数值"
+        },
+        {
+          "grade": 9,
+          "topicId": "trig_application",
+          "label": "三角函数应用"
         }
       ],
       "vocabLink": null
@@ -123,14 +228,44 @@
       "officialUrl": "https://mathleague.org.cn/",
       "prepTopics": [
         {
+          "grade": 3,
+          "topicId": "times_word",
+          "label": "倍数应用题"
+        },
+        {
           "grade": 4,
-          "topicId": "mul3x2_column",
-          "label": "三位数乘两位数竖式"
+          "topicId": "four_ops_order",
+          "label": "四则运算顺序"
+        },
+        {
+          "grade": 4,
+          "topicId": "chicken_rabbit",
+          "label": "鸡兔同笼"
+        },
+        {
+          "grade": 4,
+          "topicId": "avg_calculate",
+          "label": "求平均数"
         },
         {
           "grade": 5,
-          "topicId": "equation_oral",
-          "label": "简单方程口算"
+          "topicId": "tree_planting",
+          "label": "植树问题"
+        },
+        {
+          "grade": 5,
+          "topicId": "find_defective",
+          "label": "找次品"
+        },
+        {
+          "grade": 6,
+          "topicId": "percent_word_basic",
+          "label": "百分数文字题"
+        },
+        {
+          "grade": 6,
+          "topicId": "pigeonhole",
+          "label": "鸽巢问题"
         }
       ],
       "vocabLink": null
@@ -154,14 +289,49 @@
           "label": "乘法口诀"
         },
         {
+          "grade": 3,
+          "topicId": "combination",
+          "label": "搭配(组合)"
+        },
+        {
+          "grade": 3,
+          "topicId": "sets",
+          "label": "集合(重叠问题)"
+        },
+        {
           "grade": 4,
           "topicId": "angle_types",
           "label": "角的分类"
         },
         {
+          "grade": 4,
+          "topicId": "observation_3d",
+          "label": "观察物体"
+        },
+        {
+          "grade": 4,
+          "topicId": "optimization",
+          "label": "优化问题"
+        },
+        {
           "grade": 5,
           "topicId": "probability_concept",
           "label": "可能性"
+        },
+        {
+          "grade": 5,
+          "topicId": "tree_planting",
+          "label": "植树问题"
+        },
+        {
+          "grade": 6,
+          "topicId": "number_shape",
+          "label": "数与形"
+        },
+        {
+          "grade": 6,
+          "topicId": "pigeonhole",
+          "label": "鸽巢问题"
         }
       ],
       "vocabLink": null
@@ -180,14 +350,49 @@
       "officialUrl": "http://www.hopecup.com.cn/",
       "prepTopics": [
         {
+          "grade": 4,
+          "topicId": "four_ops_order",
+          "label": "四则运算顺序"
+        },
+        {
+          "grade": 4,
+          "topicId": "smart_calc",
+          "label": "简便运算"
+        },
+        {
+          "grade": 4,
+          "topicId": "chicken_rabbit",
+          "label": "鸡兔同笼"
+        },
+        {
           "grade": 5,
           "topicId": "equation_solve_practice",
           "label": "解方程"
         },
         {
+          "grade": 5,
+          "topicId": "divisibility_rules",
+          "label": "2/3/5整除特征"
+        },
+        {
+          "grade": 5,
+          "topicId": "tree_planting",
+          "label": "植树问题"
+        },
+        {
           "grade": 6,
           "topicId": "fraction_div_procedure",
           "label": "分数除法计算"
+        },
+        {
+          "grade": 6,
+          "topicId": "ratio_meaning",
+          "label": "比的意义"
+        },
+        {
+          "grade": 6,
+          "topicId": "percent_word_basic",
+          "label": "百分数文字题"
         },
         {
           "grade": 6,
@@ -211,19 +416,54 @@
       "officialUrl": "https://australianamc.org.cn/",
       "prepTopics": [
         {
+          "grade": 3,
+          "topicId": "area_formula",
+          "label": "长方形正方形面积"
+        },
+        {
+          "grade": 3,
+          "topicId": "combination",
+          "label": "搭配(组合)"
+        },
+        {
           "grade": 4,
           "topicId": "angle_measure",
           "label": "角的度量"
         },
         {
+          "grade": 4,
+          "topicId": "chicken_rabbit",
+          "label": "鸡兔同笼"
+        },
+        {
           "grade": 5,
           "topicId": "triangle_area",
-          "label": "三角形面积"
+          "label": "三角形面积公式"
+        },
+        {
+          "grade": 5,
+          "topicId": "divisibility_rules",
+          "label": "2/3/5整除特征"
+        },
+        {
+          "grade": 5,
+          "topicId": "find_defective",
+          "label": "找次品"
         },
         {
           "grade": 6,
-          "topicId": "ratio_simplify_practice",
-          "label": "化简比"
+          "topicId": "ratio_meaning",
+          "label": "比的意义"
+        },
+        {
+          "grade": 6,
+          "topicId": "percent_calc",
+          "label": "百分数应用·基本"
+        },
+        {
+          "grade": 6,
+          "topicId": "circle_area",
+          "label": "圆的面积"
         }
       ],
       "vocabLink": null
@@ -243,18 +483,53 @@
       "prepTopics": [
         {
           "grade": 3,
-          "topicId": "time_elapsed",
-          "label": "经过时间"
+          "topicId": "combination",
+          "label": "搭配(组合)"
+        },
+        {
+          "grade": 3,
+          "topicId": "sets",
+          "label": "集合(重叠问题)"
+        },
+        {
+          "grade": 3,
+          "topicId": "times_word",
+          "label": "倍数应用题"
         },
         {
           "grade": 4,
-          "topicId": "large_num_compare",
-          "label": "大数比较大小"
+          "topicId": "four_ops_order",
+          "label": "四则运算顺序"
+        },
+        {
+          "grade": 4,
+          "topicId": "chicken_rabbit",
+          "label": "鸡兔同笼"
+        },
+        {
+          "grade": 4,
+          "topicId": "smart_calc",
+          "label": "简便运算"
         },
         {
           "grade": 5,
-          "topicId": "decimal_mul_column",
-          "label": "小数乘法竖式"
+          "topicId": "divisibility_rules",
+          "label": "2/3/5整除特征"
+        },
+        {
+          "grade": 5,
+          "topicId": "tree_planting",
+          "label": "植树问题"
+        },
+        {
+          "grade": 6,
+          "topicId": "percent_word_basic",
+          "label": "百分数文字题"
+        },
+        {
+          "grade": 6,
+          "topicId": "pigeonhole",
+          "label": "鸽巢问题"
         }
       ],
       "vocabLink": null

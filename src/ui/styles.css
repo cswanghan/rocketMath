@@ -2058,3 +2058,146 @@ p.exam-modal-section { border-bottom: none; padding-bottom: 0; }
   .exam-card { padding: 10px 12px; gap: 10px; }
   .exam-card-datecol { min-width: 44px; font-size: 0.8rem; }
 }
+
+/* ====== 我要备考 (PrepScreen) ====== */
+/* 首页「继续备考」入口 (macaron, peach 底, 与考试日历横幅同宽) */
+.prep-resume {
+  width: min(900px, 100%);
+  margin-top: 14px;
+  background: var(--p-peach);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 26px;
+  text-align: left;
+}
+.prep-resume .portal-banner-label { color: var(--p-peach-ink); font-size: 1.3rem; }
+.prep-resume-arrow {
+  margin-left: auto;
+  font-size: 1.4rem;
+  color: var(--p-peach-ink);
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* 备考详情里的「开始备考」CTA (品牌绿, 复用 .primary 观感) */
+.prep-cta {
+  background: var(--btn-grad);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 9px 20px;
+  cursor: pointer;
+  box-shadow: var(--btn-shadow);
+}
+.prep-cta:hover { box-shadow: var(--btn-shadow-hover); }
+.prep-cta.is-disabled {
+  background: var(--inset);
+  color: var(--muted);
+  box-shadow: none;
+  cursor: default;
+  font-weight: 600;
+}
+
+/* 备考清单页 (macaron 学习风, 复用 .map 容器) */
+.prep-screen { padding-top: 48px; }
+.prep-header { margin-bottom: 18px; }
+.prep-title {
+  font-family: var(--font-hand);
+  font-size: 2rem;
+  color: var(--title-ink);
+  margin: 0 0 4px;
+}
+
+/* 整体完成度 */
+.prep-progress {
+  background: var(--panel);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+  padding: 16px 18px;
+  margin-bottom: 22px;
+}
+.prep-progress-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+.prep-progress-count { font-weight: 700; color: var(--text); }
+.prep-progress-pct { font-size: 1.3rem; font-weight: 800; color: var(--good-ink); }
+.prep-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--inset);
+  overflow: hidden;
+}
+.prep-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--btn-grad);
+  transition: width 0.3s ease;
+}
+
+/* 分组 (按年级) */
+.prep-group { margin-bottom: 22px; }
+.prep-group-title {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin: 0 0 10px;
+}
+.prep-list { display: flex; flex-direction: column; gap: 8px; }
+
+/* 知识点行 */
+.prep-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+  padding: 13px 18px;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  color: var(--text);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.prep-row:not(:disabled):hover { transform: translateY(-2px); box-shadow: var(--shadow-card); }
+.prep-row:disabled { cursor: default; opacity: 0.65; }
+.prep-row-mark {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.prep-row.state-mastered .prep-row-mark { background: var(--p-mint-pill); color: var(--good-ink); }
+.prep-row.state-in_progress .prep-row-mark { background: var(--p-peach-pill); color: var(--p-peach-ink); }
+.prep-row.state-not_started .prep-row-mark { background: var(--inset); color: var(--muted); }
+.prep-row.state-unavailable .prep-row-mark { background: var(--inset); color: var(--muted); }
+.prep-row.state-vocab .prep-row-mark { background: var(--p-lavender-pill); }
+.prep-row-body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.prep-row-name { font-weight: 700; font-size: 0.98rem; }
+.prep-row-meta { font-size: 0.82rem; color: var(--muted); }
+
+.prep-empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 40px 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 560px) {
+  .prep-resume { flex-direction: row; padding: 14px 18px; }
+  .prep-screen { padding-top: 52px; }
+  .prep-row { padding: 12px 14px; gap: 10px; }
+}

@@ -11,6 +11,8 @@ import {
 
 interface Props {
   onBack: () => void;
+  /** 「开始备考」：进入该考试系列的备考清单 */
+  onStartPrep?: (seriesId: string) => void;
 }
 
 const WEEKDAYS = ['一', '二', '三', '四', '五', '六', '日'];
@@ -81,7 +83,7 @@ function daysUntil(spec: DateSpec | null, today: Date): number | null {
   return Math.round((end.getTime() - base.getTime()) / 86400000);
 }
 
-export function ExamCalendar({ onBack }: Props) {
+export function ExamCalendar({ onBack, onStartPrep }: Props) {
   const today = new Date();
   const [data, setData] = useState<ExamCalendarData | null>(null);
   const [viewYear, setViewYear] = useState(today.getFullYear());
@@ -285,7 +287,12 @@ export function ExamCalendar({ onBack }: Props) {
       )}
 
       {selected && (
-        <DetailModal s={selected} today={today} onClose={() => setSelected(null)} />
+        <DetailModal
+          s={selected}
+          today={today}
+          onClose={() => setSelected(null)}
+          onStartPrep={onStartPrep}
+        />
       )}
     </div>
   );
@@ -338,12 +345,15 @@ function DetailModal({
   s,
   today,
   onClose,
+  onStartPrep,
 }: {
   s: SessionWithSeries;
   today: Date;
   onClose: () => void;
+  onStartPrep?: (seriesId: string) => void;
 }) {
   const past = isPast(s.examDate, today);
+  const hasPrep = s.series.prepTopics.length > 0 || !!s.series.vocabLink;
   return (
     <div className="overlay" onClick={onClose}>
       <div className="card exam-modal" onClick={(e) => e.stopPropagation()}>
@@ -390,6 +400,23 @@ function DetailModal({
           </p>
         )}
         <div className="exam-modal-actions">
+          {onStartPrep && (
+            hasPrep ? (
+              <button
+                className="prep-cta"
+                onClick={() => {
+                  track('prep_start', { seriesId: s.seriesId, from: 'exam_detail' });
+                  onStartPrep(s.seriesId);
+                }}
+              >
+                开始备考 →
+              </button>
+            ) : (
+              <span className="prep-cta is-disabled" aria-disabled>
+                备考内容建设中
+              </span>
+            )
+          )}
           <a
             className="ecal-link"
             href={s.series.officialUrl}
