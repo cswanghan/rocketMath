@@ -1708,7 +1708,7 @@ body {
 /* ====== 考试日历 (ExamCalendar) ====== */
 .pill-teal { background: var(--p-teal); color: var(--p-teal-ink); }
 
-/* 首页横幅入口 */
+/* 首页横幅入口 (保持 macaron, 与首页风格一致) */
 .portal-banner {
   width: min(900px, 100%);
   margin-top: 22px;
@@ -1737,211 +1737,324 @@ body {
   font-size: 0.88rem;
 }
 
-/* 页面容器 (复用 .map 宽度) */
-.exam-cal { padding-top: 54px; }
+/* —— 日历页: 编辑部/纸面数据表风格 (区别于全站 macaron) —— */
+.exam-cal {
+  --ed-ink: #2a2620;
+  --ed-paper: #fffdf6;
+  --ed-paper2: #f6f0e0;
+  --ed-line: #e6dfca;
+  --ed-line2: #cfc5a8;
+  --ed-mut: #8f8772;
+  --ed-blue: #2356c7;
+  --ed-oxide: #bb4d12;
+  --ed-red: #d92d20;
+  --ed-mono: 'SF Mono', ui-monospace, Menlo, Consolas, 'Courier New', monospace;
+  padding-top: 54px;
+  color: var(--ed-ink);
+}
+/* 学科色: 印刷油墨感, 仅用于文字/标记, 不做色块填充 */
+.exam-cal .subj-math, .exam-modal .subj-math { color: var(--ed-blue); }
+.exam-cal .subj-english, .exam-modal .subj-english { color: #7b4fc0; }
+.exam-cal .subj-chinese, .exam-modal .subj-chinese { color: #bb4d12; }
+.exam-cal .subj-science_coding, .exam-modal .subj-science_coding { color: #1a7a64; }
+
 .exam-cal-header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 8px;
 }
 .exam-cal-title {
-  font-family: var(--font-hand);
-  font-size: 2rem;
-  font-weight: 400;
-  color: var(--title-ink);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--ed-ink);
   margin: 0;
 }
-.cal-nav { display: flex; align-items: center; gap: 10px; }
-.cal-nav-btn {
-  background: var(--panel);
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  padding: 6px 14px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: var(--text-soft);
-  box-shadow: var(--shadow-soft);
-}
-.cal-nav-btn:hover { color: var(--text); }
-.cal-month-label {
-  font-size: 1.05rem;
+.ecal-title-en {
+  color: var(--ed-blue);
+  font-family: var(--ed-mono);
+  font-size: 1.1rem;
   font-weight: 700;
-  min-width: 96px;
-  text-align: center;
+  letter-spacing: 0.08em;
 }
-
-/* 学科筛选 */
-.cal-filter-bar {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
+.ecal-meta {
+  font-family: var(--ed-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--ed-mut);
+  margin: 0 0 16px;
+  border-bottom: 1px solid var(--ed-line);
+  padding-bottom: 14px;
 }
-.cal-filter-bar .pill {
+.cal-nav { display: flex; align-items: center; gap: 8px; }
+.cal-nav-btn {
+  font-family: var(--ed-mono);
+  font-size: 0.72rem;
+  background: transparent;
+  border: 1px solid var(--ed-line2);
+  border-radius: 999px;
+  padding: 4px 12px;
   cursor: pointer;
-  border: 1.5px solid transparent;
-  opacity: 0.55;
-  transition: opacity 0.12s ease;
+  color: var(--ed-mut);
+  box-shadow: none;
 }
-.cal-filter-bar .pill:hover { opacity: 0.85; }
-.cal-filter-bar .pill.pill-active { border-color: currentColor; opacity: 1; }
+.cal-nav-btn:hover { color: var(--ed-ink); border-color: var(--ed-mut); }
+.cal-month-label {
+  font-family: var(--ed-mono);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  min-width: 88px;
+  text-align: center;
+  color: var(--ed-ink);
+}
 
-/* 月历网格 */
+/* 学科筛选: 描边 tab (参考 Terminal/Notebook/Editorial) */
+.cal-filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.ecal-tab {
+  font-family: var(--ed-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  background: transparent;
+  border: 1px solid var(--ed-line2);
+  border-radius: 999px;
+  padding: 5px 14px;
+  cursor: pointer;
+  color: var(--ed-mut);
+}
+.ecal-tab:hover { color: var(--ed-ink); }
+.ecal-tab.is-active {
+  color: var(--ed-blue);
+  border-color: var(--ed-blue);
+  font-weight: 700;
+}
+
+/* 月历: 细线表格 */
 .cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  background: var(--panel);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-soft);
-  padding: 14px;
+  gap: 1px;
+  background: var(--ed-line);
+  border: 1px solid var(--ed-line);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: none;
+  padding: 0;
 }
 .cal-weekday {
+  background: var(--ed-paper2);
   text-align: center;
-  font-size: 0.72rem;
+  font-family: var(--ed-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
   font-weight: 700;
-  color: var(--muted);
-  padding: 4px 0;
+  color: var(--ed-mut);
+  padding: 7px 0;
 }
 .cal-day {
-  min-height: 46px;
-  padding: 4px 2px;
-  border-radius: 10px;
+  background: var(--ed-paper);
+  min-height: 52px;
+  padding: 6px 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
-  font-size: 0.88rem;
-  color: var(--text);
+  gap: 4px;
+  border-radius: 0;
 }
-.cal-day.is-past { opacity: 0.42; }
-.cal-day.has-exam { cursor: pointer; background: var(--inset); }
-.cal-day.has-exam:hover { background: var(--p-teal); }
+.cal-day.is-past .cal-day-num { color: var(--ed-mut); opacity: 0.55; }
+.cal-day.has-exam { cursor: pointer; }
+.cal-day.has-exam:hover { background: var(--ed-paper2); }
+.cal-day.has-exam .cal-day-num { font-weight: 700; }
 .cal-day-num {
-  width: 26px;
-  height: 26px;
+  font-family: var(--ed-mono);
+  font-size: 0.82rem;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .cal-day.is-today .cal-day-num {
-  background: var(--accent);
+  background: var(--ed-blue);
   color: #fff;
   border-radius: 50%;
   font-weight: 700;
 }
 .cal-dots { display: flex; gap: 3px; flex-wrap: wrap; justify-content: center; }
-.exam-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.exam-dot.dot-blue { background: var(--p-blue-ink); }
-.exam-dot.dot-peach { background: var(--p-peach-ink); }
-.exam-dot.dot-mint { background: var(--p-mint-ink); }
-.exam-dot.dot-lavender { background: var(--p-lavender-ink); }
-.exam-dot.dot-teal { background: var(--p-teal-ink); }
-.exam-dot.dot-pink { background: var(--p-pink-ink); }
-/* month/tbd 类型: 日期未精确, 空心虚线点 */
-.exam-dot.dot-vague { background: transparent; border: 1.5px dashed var(--muted); }
+.exam-dot { width: 6px; height: 6px; border-radius: 1px; flex-shrink: 0; }
+.exam-dot.dot-blue { background: var(--ed-blue); }
+.exam-dot.dot-lavender { background: #7b4fc0; }
+.exam-dot.dot-peach { background: #bb4d12; }
+.exam-dot.dot-teal { background: #1a7a64; }
+.exam-dot.dot-mint { background: #1a7a64; }
+.exam-dot.dot-pink { background: #bb4d12; }
+/* month/tbd 类型: 日期未精确, 空心虚线 */
+.exam-dot.dot-vague { background: transparent; border: 1px dashed var(--ed-mut); }
 
-/* 当月考试列表 */
+/* 当月考试: 表格行式列表 */
 .cal-section-title {
-  font-family: var(--font-hand);
-  font-size: 1.3rem;
-  font-weight: 400;
-  color: var(--text-soft);
-  margin: 26px 0 12px;
-  border-bottom: 2px dashed var(--line-strong);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ed-ink);
+  margin: 26px 0 10px;
   padding-bottom: 6px;
+  border-bottom: 1px solid var(--ed-line2);
 }
-.cal-session-list { display: flex; flex-direction: column; gap: 10px; }
+.cal-session-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--ed-line);
+  border-radius: 6px;
+  background: var(--ed-paper);
+  overflow: hidden;
+}
+.cal-session-list:empty { display: none; }
 .exam-cal-empty {
-  color: var(--muted);
+  font-family: var(--ed-mono);
+  font-size: 0.8rem;
+  color: var(--ed-mut);
   text-align: center;
-  padding: 22px 0;
+  padding: 20px 0;
+  margin: 0;
 }
+.cal-session-list .exam-cal-empty { padding: 20px; }
 .exam-card {
-  background: var(--panel);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  background: transparent;
   border: none;
-  border-left: 4px solid transparent;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-soft);
-  padding: 14px 18px;
+  border-top: 1px solid var(--ed-line);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 12px 16px;
   text-align: left;
   cursor: pointer;
   font: inherit;
-  color: var(--text);
-  transition: transform 0.14s ease, box-shadow 0.14s ease;
+  color: var(--ed-ink);
+  transition: background 0.12s ease;
 }
-.exam-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card);
-}
-.exam-card.subject-math { border-left-color: var(--p-blue-ink); }
-.exam-card.subject-english { border-left-color: var(--p-lavender-ink); }
-.exam-card.subject-chinese { border-left-color: var(--p-peach-ink); }
-.exam-card.subject-science_coding { border-left-color: var(--p-teal-ink); }
-.exam-card-main { display: flex; flex-direction: column; gap: 3px; }
-.exam-card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.exam-card-name { font-weight: 700; font-size: 1rem; }
-.exam-card-date { font-size: 0.85rem; color: var(--text-soft); }
-.exam-card-reg { font-size: 0.82rem; color: var(--accent2-ink); }
-.exam-card-reg.is-closed { color: var(--muted); text-decoration: line-through; }
-.exam-card-grades { font-size: 0.78rem; color: var(--muted); }
-.exam-past-tag { color: var(--muted); font-size: 0.78rem; font-style: italic; }
-.exam-closing-tag {
-  color: var(--bad);
-  font-size: 0.75rem;
+.exam-card:first-child { border-top: none; }
+.exam-card:hover { background: var(--ed-paper2); transform: none; box-shadow: none; }
+.exam-card.is-past { color: var(--ed-mut); }
+.exam-card-datecol {
+  font-family: var(--ed-mono);
+  font-size: 0.88rem;
   font-weight: 700;
+  color: var(--ed-oxide);
+  min-width: 52px;
+  flex-shrink: 0;
 }
+.exam-card.is-past .exam-card-datecol { color: var(--ed-mut); }
+.exam-card-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.exam-card-top { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.exam-card-name { font-weight: 700; font-size: 0.95rem; }
+.exam-card-meta {
+  font-family: var(--ed-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--ed-mut);
+}
+.exam-card-meta .is-closed { text-decoration: line-through; }
 
-/* 详情弹窗 */
+/* 文字标签 (印刷感, 无底色) */
+.ecal-tag {
+  font-family: var(--ed-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--ed-mut);
+}
+.ecal-tag.is-mut { color: var(--ed-mut); font-weight: 400; }
+.ecal-tag.is-warn { color: var(--ed-red); }
+
+/* 详情弹窗: 纸面卡片 */
 .exam-modal {
   width: min(560px, 100%);
   max-height: min(86vh, 720px);
   overflow-y: auto;
   gap: 14px;
+  background: var(--ed-paper);
+  border: 1px solid var(--ed-line2);
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(42, 38, 32, 0.18);
+  color: var(--ed-ink);
 }
 .exam-modal-name {
-  font-family: var(--font-hand);
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: var(--title-ink);
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--ed-ink);
   margin: 0;
+  font-family: inherit;
 }
-.exam-modal-session { color: var(--muted); font-size: 0.85rem; margin-top: -8px; }
-.exam-modal-pills { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; align-items: center; }
+.exam-modal-session {
+  font-family: var(--ed-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--ed-mut);
+  margin-top: -10px;
+}
+.exam-modal-pills { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; align-items: baseline; }
 .exam-modal-section {
-  background: var(--inset);
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
+  background: transparent;
+  border-top: 1px solid var(--ed-line);
+  border-bottom: 1px solid var(--ed-line);
+  border-radius: 0;
+  padding: 12px 2px;
   text-align: left;
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 0.88rem;
+  line-height: 1.75;
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
+p.exam-modal-section { border-bottom: none; padding-bottom: 0; }
 .exam-modal-row { display: flex; gap: 10px; align-items: baseline; }
-.exam-modal-label { color: var(--muted); font-size: 0.8rem; min-width: 56px; flex-shrink: 0; }
+.exam-modal-label {
+  font-family: var(--ed-mono);
+  color: var(--ed-mut);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  min-width: 64px;
+  flex-shrink: 0;
+}
+/* 备考建议: 左侧竖线 callout */
 .exam-prep-hint {
   font-size: 0.84rem;
-  color: var(--text-soft);
+  line-height: 1.7;
+  color: var(--ed-ink);
   text-align: left;
   margin: 0;
-  padding: 0 2px;
+  padding: 2px 0 2px 12px;
+  border-left: 3px solid var(--ed-blue);
 }
-.exam-modal-actions { display: flex; gap: 10px; justify-content: center; align-items: center; }
-.exam-modal-actions .primary { text-decoration: none; }
+.exam-modal-actions { display: flex; gap: 18px; justify-content: center; align-items: center; }
+.ecal-link {
+  font-family: var(--ed-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ed-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.exam-modal .ghost { color: var(--ed-mut); }
 
 @media (max-width: 560px) {
   .portal-banner { flex-direction: column; align-items: flex-start; gap: 10px; }
   .portal-banner .card-art { width: 100%; }
   .exam-cal { padding-top: 58px; }
-  .cal-grid { padding: 8px; gap: 2px; }
-  .cal-day { min-height: 38px; font-size: 0.78rem; }
-  .cal-day-num { width: 22px; height: 22px; }
+  .cal-day { min-height: 42px; padding: 4px 2px; }
+  .cal-day-num { font-size: 0.74rem; width: 20px; height: 20px; }
   .exam-dot { width: 5px; height: 5px; }
-  .exam-card { padding: 12px 14px; }
+  .exam-card { padding: 10px 12px; gap: 10px; }
+  .exam-card-datecol { min-width: 44px; font-size: 0.8rem; }
 }

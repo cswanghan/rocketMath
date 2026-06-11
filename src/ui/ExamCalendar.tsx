@@ -15,20 +15,13 @@ interface Props {
 
 const WEEKDAYS = ['一', '二', '三', '四', '五', '六', '日'];
 
-const FILTERS: { key: ExamSubject | 'all'; label: string; pillClass: string }[] = [
-  { key: 'all', label: '全部', pillClass: 'pill-blue' },
-  { key: 'math', label: '数学', pillClass: 'pill-blue' },
-  { key: 'english', label: '英语', pillClass: 'pill-lavender' },
-  { key: 'chinese', label: '语文', pillClass: 'pill-peach' },
-  { key: 'science_coding', label: '科学·编程', pillClass: 'pill-teal' },
+const FILTERS: { key: ExamSubject | 'all'; label: string }[] = [
+  { key: 'all', label: '全部' },
+  { key: 'math', label: '数学' },
+  { key: 'english', label: '英语' },
+  { key: 'chinese', label: '语文' },
+  { key: 'science_coding', label: '科学·编程' },
 ];
-
-const SUBJECT_PILL: Record<ExamSubject, string> = {
-  math: 'pill-blue',
-  english: 'pill-lavender',
-  chinese: 'pill-peach',
-  science_coding: 'pill-teal',
-};
 
 // "YYYY-MM-DD" | "YYYY-MM" → { year, month(0-based), day | null }
 function parseSpec(spec: DateSpec): { year: number; month: number; day: number | null } {
@@ -49,6 +42,15 @@ function formatSpec(spec: DateSpec | null): string {
   if (spec.type === 'exact') return `${p.year}年${p.month + 1}月${p.day}日`;
   if (spec.type === 'month') return `${p.year}年${p.month + 1}月（具体日期见官网）`;
   return `待官宣（预计 ${p.year}年${p.month + 1}月）`;
+}
+
+// 列表行左侧的日期列文字
+function dateCol(spec: DateSpec): string {
+  if (spec.type === 'rolling') return '随时';
+  if (spec.type === 'tbd') return '待定';
+  const p = parseSpec(spec);
+  if (spec.type === 'month') return `${p.month + 1}月内`;
+  return `${String(p.month + 1).padStart(2, '0')}/${String(p.day).padStart(2, '0')}`;
 }
 
 // 周一起始的月历格子; null = 空白补位
@@ -170,25 +172,32 @@ export function ExamCalendar({ onBack }: Props) {
         ← 返回
       </button>
       <header className="exam-cal-header">
-        <h1 className="exam-cal-title">考试日历</h1>
+        <h1 className="exam-cal-title">
+          考试日历 <span className="ecal-title-en">EXAM CALENDAR</span>
+        </h1>
         <div className="cal-nav">
           <button className="cal-nav-btn" onClick={() => nav('prev')} aria-label="上一月">
             ◀
           </button>
           <span className="cal-month-label">
-            {viewYear}年{viewMonth + 1}月
+            {viewYear}-{String(viewMonth + 1).padStart(2, '0')}
           </span>
           <button className="cal-nav-btn" onClick={() => nav('next')} aria-label="下一月">
             ▶
           </button>
         </div>
       </header>
+      <p className="ecal-meta">
+        {data
+          ? `收录 ${data.series.length} 项考试 · ${data.sessions.length} 个场次 · 日期经官网核验 · 未官宣场次以预估月份标注`
+          : '数据加载中'}
+      </p>
 
       <div className="cal-filter-bar">
         {FILTERS.map((f) => (
           <button
             key={f.key}
-            className={`pill ${f.pillClass} ${filterSubject === f.key ? 'pill-active' : ''}`}
+            className={`ecal-tab ${filterSubject === f.key ? 'is-active' : ''}`}
             onClick={() => pickFilter(f.key)}
           >
             {f.label}
@@ -296,28 +305,31 @@ function SessionCard({
   const regClosed = regLeft !== null && regLeft < 0;
   const regClosing = !past && regLeft !== null && regLeft >= 0 && regLeft <= 14;
   return (
-    <button className={`exam-card subject-${s.series.subject}`} onClick={onClick}>
-      <div className="exam-card-main">
-        <div className="exam-card-top">
+    <button className={`exam-card ${past ? 'is-past' : ''}`} onClick={onClick}>
+      <span className="exam-card-datecol">{dateCol(s.examDate)}</span>
+      <span className="exam-card-main">
+        <span className="exam-card-top">
           <span className="exam-card-name">{s.label}</span>
-          <span className={`pill ${SUBJECT_PILL[s.series.subject]}`}>
+          <span className={`ecal-tag subj-${s.series.subject}`}>
             {EXAM_SUBJECT_CN[s.series.subject]}
           </span>
-          {s.examDate.type === 'tbd' && <span className="soon-tag">待官宣</span>}
-          {past && <span className="exam-past-tag">已结束</span>}
-          {regClosing && <span className="exam-closing-tag">报名即将截止</span>}
-        </div>
-        <div className="exam-card-date">考试：{formatSpec(s.examDate)}</div>
-        {s.registrationEnd && !past && (
-          <div className={`exam-card-reg ${regClosed ? 'is-closed' : ''}`}>
-            报名截止：{formatSpec(s.registrationEnd)}
-            {regClosed ? '（已截止）' : ''}
-          </div>
-        )}
-        <div className="exam-card-grades">
+          {s.examDate.type === 'tbd' && <span className="ecal-tag is-mut">待官宣</span>}
+          {past && <span className="ecal-tag is-mut">已结束</span>}
+          {regClosing && <span className="ecal-tag is-warn">⚠ 报名即将截止</span>}
+        </span>
+        <span className="exam-card-meta">
           适合 {s.series.gradeRange.min}-{s.series.gradeRange.max} 年级
-        </div>
-      </div>
+          {s.registrationEnd && !past && (
+            <>
+              {' · '}
+              <span className={regClosed ? 'is-closed' : ''}>
+                报名截止 {formatSpec(s.registrationEnd)}
+                {regClosed ? '（已截止）' : ''}
+              </span>
+            </>
+          )}
+        </span>
+      </span>
     </button>
   );
 }
@@ -338,13 +350,13 @@ function DetailModal({
         <h2 className="exam-modal-name">{s.series.name}</h2>
         {s.label !== s.series.name && <div className="exam-modal-session">{s.label}</div>}
         <div className="exam-modal-pills">
-          <span className={`pill ${SUBJECT_PILL[s.series.subject]}`}>
+          <span className={`ecal-tag subj-${s.series.subject}`}>
             {EXAM_SUBJECT_CN[s.series.subject]}
           </span>
-          <span className="pill pill-mint">
-            {s.series.gradeRange.min}-{s.series.gradeRange.max} 年级
+          <span className="ecal-tag">
+            适合 {s.series.gradeRange.min}-{s.series.gradeRange.max} 年级
           </span>
-          {past && <span className="exam-past-tag">已结束</span>}
+          {past && <span className="ecal-tag is-mut">已结束</span>}
         </div>
         <p className="exam-modal-section">{s.series.description}</p>
         <div className="exam-modal-section">
@@ -379,7 +391,7 @@ function DetailModal({
         )}
         <div className="exam-modal-actions">
           <a
-            className="primary"
+            className="ecal-link"
             href={s.series.officialUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -387,7 +399,7 @@ function DetailModal({
               track('exam_cal_official_url', { seriesId: s.seriesId, url: s.series.officialUrl })
             }
           >
-            前往官网 →
+            前往官网 ↗
           </a>
           <button className="ghost" onClick={onClose}>
             关闭

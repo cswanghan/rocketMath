@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy:cf": "vite build && wrangler pages deploy dist --project-name=rocket-math",
+    "deploy:cf": "vite build && wrangler pages deploy dist --project-name=rocket-learning",
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
