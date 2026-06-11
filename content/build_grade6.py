@@ -1284,44 +1284,1573 @@ def pigeonhole():
     return make_set("pigeonhole", "鸽巢问题", "logic", probs)
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# SECTION 2B — EXTRA PROBLEMS (added to existing sets)
+# ═══════════════════════════════════════════════════════════════════════════
+
+# ── Helpers ────────────────────────────────────────────────────────────────
+
+from fractions import Fraction as _F
+
+
+def _frac_str(n, d):
+    """Return '3/4' string for fraction n/d (already reduced by caller)."""
+    return f"{n}/{d}"
+
+
+# ── 分数乘法意义 extra ──────────────────────────────────────────────────────
+
+def _fraction_mul_meaning_extra():
+    probs = []
+    # Parametric: fraction × integer problems
+    specs = [
+        # (n, d, k)  answer = n*k//d  (all integer)
+        (1, 3, 12), (2, 5, 15), (3, 4, 8), (1, 6, 18),
+        (3, 5, 20), (2, 7, 14), (5, 6, 12), (4, 9, 27),
+    ]
+    for i, (n, d, k) in enumerate(specs):
+        ans = n * k // d
+        assert n * k % d == 0
+        pid = f"fmm_e{i}"
+        prompt = f"{n}/{d} × {k} = ?  (整数结果)"
+        wrong1 = ans + 1
+        wrong2 = ans - 1 if ans > 1 else ans + 2
+        wrong3 = n * d  # plausible wrong
+        opts = [ans, wrong1, wrong2]
+        # ensure distinct
+        seen = {ans}
+        for w in [wrong1, wrong2, wrong3, ans + 3, ans * 2]:
+            if w not in seen and w > 0:
+                seen.add(w)
+                if len(seen) == 4:
+                    break
+        opts = sorted(seen)
+        ci = opts.index(ans)
+        probs.append(P_mc(pid, prompt, opts, ci,
+                          f"{n}/{d} × {k} = {n}×{k}/{d}",
+                          f"{n}/{d} × {k} = {n*k}/{d} = {ans}", B if i < 4 else C))
+    # Two challenge word problems
+    probs.append(P_fill("fmm_e8",
+                         "一瓶油重 3/4 千克,买了 3 瓶,共重多少千克? (化最简分数,填分子)",
+                         9,
+                         "3/4 × 3 = 9/4,分子9",
+                         "3/4 × 3 = 9/4 千克,分子9", C))
+    probs.append(P_fill("fmm_e9",
+                         "一根绳子长 5/6 米,用了它的 3/4,用了多少米? (化最简分数,填分子)",
+                         5,
+                         "5/6 × 3/4 = 15/24 = 5/8 米,分子5",
+                         "5/6 × 3/4 = 15/24 = 5/8 米,分子5", X))
+    probs.append(P_mc("fmm_e10",
+                       "下列哪个算式结果小于 3/4?",
+                       ["3/4 × 2/3", "3/4 × 1", "3/4 × 4/3"],
+                       0, "乘以小于1的数结果变小", "3/4 × 2/3 = 1/2 < 3/4", C))
+    probs.append(P_mc("fmm_e11",
+                       "2/3 × 9 = ?",
+                       ["6", "3", "18"],
+                       0, "2/3 × 9 = 18/3 = 6", "18 ÷ 3 = 6", B))
+    return probs
+
+
+# ── 分数乘法计算 extra ──────────────────────────────────────────────────────
+
+def _fraction_mul_procedure_extra():
+    probs = []
+    # Parametric fraction × fraction, answer in reduced form
+    # (n1, d1, n2, d2) → answer = F(n1,d1)*F(n2,d2)
+    pairs = [
+        (1, 2, 1, 3),   # 1/6
+        (2, 3, 3, 4),   # 1/2
+        (3, 5, 5, 9),   # 1/3
+        (4, 7, 7, 8),   # 1/2
+        (5, 6, 3, 10),  # 1/4
+        (7, 8, 4, 21),  # 1/6
+        (3, 4, 8, 9),   # 2/3
+        (5, 12, 4, 15), # 1/9
+        (11, 12, 6, 11),# 1/2
+        (9, 10, 5, 27), # 1/6
+    ]
+    for i, (n1, d1, n2, d2) in enumerate(pairs):
+        res = _F(n1, d1) * _F(n2, d2)
+        rn, rd = res.numerator, res.denominator
+        diff = B if i < 3 else (C if i < 7 else X)
+        if rd == 1:
+            ans_str = str(rn)
+        else:
+            ans_str = f"{rn}/{rd}"
+        prompt = f"计算: {n1}/{d1} × {n2}/{d2} = ?/? (化最简,填分子)"
+        # answer = numerator of reduced fraction
+        probs.append(P_fill(f"fmp_e{i}", prompt, rn,
+                             f"约分后分子为{rn}",
+                             f"{n1}/{d1} × {n2}/{d2} = {rn}/{rd},分子{rn}", diff))
+    # Word problems
+    probs.append(P_mc("fmp_e10",
+                       "操场长 3/4 km,宽是长的 2/3,面积是多少 km²?",
+                       ["1/2 km²", "1/3 km²", "5/12 km²"],
+                       0, "S = 3/4 × 2/3", "3/4 × 2/3 = 6/12 = 1/2 km²", X))
+    probs.append(P_fill("fmp_e11",
+                         "一桶油 3/5 吨,用了其中的 5/6,还剩多少吨? (填分子)",
+                         1,
+                         "剩余 = 3/5 × (1 - 5/6) = 3/5 × 1/6 = 3/30 = 1/10,分子1",
+                         "3/5 × 1/6 = 1/10 吨,分子1", X))
+    return probs
+
+
+# ── 分数除法意义 extra ──────────────────────────────────────────────────────
+
+def _fraction_div_meaning_extra():
+    probs = []
+    #倒数 problems
+    recip_specs = [
+        # (n, d) → reciprocal is (d, n)
+        (2, 5), (3, 7), (5, 8), (4, 11), (1, 9),
+    ]
+    for i, (n, d) in enumerate(recip_specs):
+        pid = f"fdm_e{i}"
+        correct = f"{d}/{n}"
+        wrong1 = f"{n}/{d}"
+        wrong2 = f"{n+1}/{d}"
+        wrong3 = f"{d}/{n+1}"
+        probs.append(P_mc(pid, f"{n}/{d} 的倒数是?",
+                          [correct, wrong1, wrong2],
+                          0, "分子分母互换",
+                          f"{n}/{d} 的倒数 = {d}/{n}", B if i < 3 else C))
+    # Division concept
+    probs.append(P_mc("fdm_e5",
+                       "3/5 ÷ 3/10 的意思是什么?",
+                       ["3/5 里有几个 3/10", "3/10 里有几个 3/5", "3/5 × 3/10"],
+                       0, "a÷b=a里有多少个b",
+                       "3/5 ÷ 3/10 = 3/5 × 10/3 = 2", C))
+    probs.append(P_fill("fdm_e6",
+                         "2/7 ÷ 4 = ( )/( )  (化最简,填分子)", 1,
+                         "2/7 × 1/4 = 2/28 = 1/14,分子1",
+                         "2/7 ÷ 4 = 2/28 = 1/14,分子1", B))
+    probs.append(P_mc("fdm_e7",
+                       "一块蛋糕吃了 3/4,还剩 1/4,每次吃 1/8,还能再吃几次?",
+                       ["2 次", "4 次", "8 次"],
+                       0, "1/4 ÷ 1/8 = 1/4 × 8 = 2",
+                       "1/4 ÷ 1/8 = 2 次", X))
+    probs.append(P_mc("fdm_e8",
+                       "除以 2/3 等于乘以多少?",
+                       ["3/2", "2/3", "1"],
+                       0, "÷ (n/d) = × (d/n)",
+                       "÷ 2/3 = × 3/2", B))
+    probs.append(P_mc("fdm_e9",
+                       "5/6 ÷ 5/6 = ?",
+                       ["1", "25/36", "0"],
+                       0, "任何不为0的数除以自身=1",
+                       "5/6 ÷ 5/6 = 1", B))
+    probs.append(P_fill("fdm_e10",
+                         "一袋米重 5/4 千克,每次舀 5/8 千克,能舀几次?",
+                         2, "5/4 ÷ 5/8 = 5/4 × 8/5 = 2",
+                         "5/4 × 8/5 = 40/20 = 2 次", C))
+    probs.append(P_mc("fdm_e11",
+                       "9 的倒数是?",
+                       ["1/9", "9", "-9"],
+                       0, "整数n倒数=1/n",
+                       "9 的倒数 = 1/9", B))
+    return probs
+
+
+# ── 分数除法计算 extra ──────────────────────────────────────────────────────
+
+def _fraction_div_procedure_extra():
+    probs = []
+    # Parametric: a/b ÷ c/d = (a*d)/(b*c) reduced
+    specs = [
+        # (n1,d1,n2,d2)
+        (1, 2, 1, 4),   # = 2
+        (3, 4, 3, 8),   # = 2
+        (4, 5, 2, 5),   # = 2
+        (5, 6, 5, 18),  # = 3
+        (2, 3, 4, 9),   # = 3/2 → fill numerator 3
+        (7, 8, 7, 4),   # = 1/2
+        (5, 9, 10, 27), # = 3/2
+        (3, 7, 6, 49),  # = 7/2
+        (11, 12, 11, 4),# = 1/3
+        (9, 10, 3, 5),  # = 3/2
+    ]
+    for i, (n1, d1, n2, d2) in enumerate(specs):
+        res = _F(n1, d1) / _F(n2, d2)
+        rn, rd = res.numerator, res.denominator
+        diff = B if i < 3 else (C if i < 7 else X)
+        prompt = f"计算: {n1}/{d1} ÷ {n2}/{d2} = ? (化最简,填分子)"
+        probs.append(P_fill(f"fdp_e{i}", prompt, rn,
+                             f"变乘法: {n1}/{d1} × {d2}/{n2}",
+                             f"{n1}/{d1} × {d2}/{n2} = {rn}/{rd},分子{rn}", diff))
+    # Word problems
+    probs.append(P_fill("fdp_e10",
+                         "用 5/6 米布做手帕,每块用 1/12 米,能做几块?",
+                         10, "5/6 ÷ 1/12 = 5/6 × 12 = 10",
+                         "5/6 × 12 = 60/6 = 10 块", X))
+    probs.append(P_mc("fdp_e11",
+                       "一段路程 2/3 km,骑车速度 1/6 km/min,需几分钟?",
+                       ["4 分钟", "1/9 分钟", "2 分钟"],
+                       0, "时间 = 路程 ÷ 速度 = 2/3 ÷ 1/6",
+                       "2/3 × 6 = 4 分钟", X))
+    return probs
+
+
+# ── 比的意义 extra ──────────────────────────────────────────────────────────
+
+def _ratio_meaning_extra():
+    probs = []
+    # Ratio value problems
+    ratio_specs = [
+        # (a, b) → value = F(a,b)
+        (5, 2), (6, 4), (8, 3), (10, 4), (9, 6),
+        (15, 5), (14, 7), (12, 8),
+    ]
+    for i, (a, b) in enumerate(ratio_specs):
+        val = _F(a, b)
+        vn, vd = val.numerator, val.denominator
+        val_str = str(vn) if vd == 1 else f"{vn}/{vd}"
+        wrong1_n = vn + 1 if vd == 1 else vn + vd
+        wrong2_n = vn - 1 if vn > 1 else vn + 2
+        # just give numeric options
+        w1 = str(_F(a+1, b)) if vd > 1 else str(vn + 1)
+        w2 = str(_F(a, b+1))
+        diff = B if i < 4 else C
+        probs.append(P_mc(f"rm_e{i}", f"{a} : {b} 的比值是?",
+                          [val_str, w1, w2],
+                          0, "比值 = 前项 ÷ 后项",
+                          f"{a} ÷ {b} = {val_str}", diff))
+    # Additional concept problems
+    probs.append(P_mc("rm_e8",
+                       "比的后项可以为 0 吗?",
+                       ["不可以", "可以", "视情况而定"],
+                       0, "除数不能为0,后项不能为0",
+                       "后项相当于除数,不能为0", C))
+    probs.append(P_fill("rm_e9",
+                         "一班男生 24 人,女生 16 人,男生与女生的比化简后前项是?",
+                         3, "24:16 ÷ 8 = 3:2,前项3",
+                         "24:16 = 3:2,前项3", C))
+    probs.append(P_mc("rm_e10",
+                       "圆的直径与半径的比是?",
+                       ["2:1", "1:2", "1:1"],
+                       0, "d=2r → d:r = 2:1",
+                       "直径:半径 = 2:1", X))
+    probs.append(P_mc("rm_e11",
+                       "4:5 与 8:10 是相等的比吗?",
+                       ["是", "不是", "不确定"],
+                       0, "4/5 = 8/10 ✓",
+                       "4:5 = 8:10,相等", B))
+    return probs
+
+
+# ── 比的基本性质 extra ──────────────────────────────────────────────────────
+
+def _ratio_properties_extra():
+    probs = []
+    # Simplify ratio problems (parametric)
+    simp_specs = [
+        # (a, b) → simplified (a//gcd, b//gcd)
+        (6, 9), (8, 12), (15, 20), (21, 28), (18, 24),
+        (36, 48), (24, 36), (45, 60),
+    ]
+    import math as _math
+    for i, (a, b) in enumerate(simp_specs):
+        g = _math.gcd(a, b)
+        sa, sb = a // g, b // g
+        result = f"{sa} : {sb}"
+        wrong1 = f"{a//2} : {b//2}" if (a % 2 == 0 and b % 2 == 0 and (a//2, b//2) != (sa, sb)) else f"{sa+1} : {sb}"
+        wrong2 = f"{a} : {b}"
+        diff = B if i < 3 else C
+        probs.append(P_mc(f"rp_e{i}", f"化简比: {a} : {b} = ?",
+                          [result, wrong1, wrong2],
+                          0, f"÷ {g}",
+                          f"{a}:{b} ÷ {g} = {sa}:{sb}", diff))
+    # Decimal and fraction ratio
+    probs.append(P_mc("rp_e8",
+                       "化简比 0.8 : 1.2 = ?",
+                       ["2 : 3", "4 : 6", "8 : 12"],
+                       0, "×10 再 ÷4",
+                       "8:12 ÷ 4 = 2:3", C))
+    probs.append(P_mc("rp_e9",
+                       "化简比 1/3 : 1/2 = ?",
+                       ["2 : 3", "1 : 2", "3 : 2"],
+                       0, "同乘最小公倍数6",
+                       "2:3", C))
+    probs.append(P_fill("rp_e10",
+                         "甲乙两人速度比 3:5,甲速度 12 km/h,乙速度多少 km/h?",
+                         20, "乙 = 12 ÷ 3 × 5",
+                         "12 ÷ 3 × 5 = 20 km/h", X))
+    probs.append(P_mc("rp_e11",
+                       "比 3:4 中,前项扩大 3 倍,要使比值不变,后项应?",
+                       ["扩大 3 倍", "缩小 3 倍", "不变"],
+                       0, "比值不变需同倍",
+                       "后项也扩大 3 倍,变为 9:12,比值仍 3/4", C))
+    return probs
+
+
+# ── 化简比 extra ────────────────────────────────────────────────────────────
+
+def _ratio_simplify_extra():
+    probs = []
+    import math as _math
+    specs = [
+        # integer ratios
+        (12, 16), (25, 35), (32, 48), (27, 36), (40, 64),
+        (63, 84), (56, 70), (48, 72),
+    ]
+    for i, (a, b) in enumerate(specs):
+        g = _math.gcd(a, b)
+        sa, sb = a // g, b // g
+        result = f"{sa} : {sb}"
+        diff = B if i < 4 else C
+        probs.append(P_mc(f"rs_e{i}", f"化简比: {a} : {b} = ?",
+                          [result, f"{a//2}:{b//2}" if a % 2 == 0 else f"{sa+1}:{sb}", f"{a}:{b}"],
+                          0, f"÷ {g}",
+                          f"{a}:{b} ÷ {g} = {sa}:{sb}", diff))
+    # Fraction ratio
+    probs.append(P_mc("rs_e8",
+                       "化简比 2/3 : 4/9 = ?",
+                       ["3 : 2", "2 : 3", "1 : 2"],
+                       0, "同乘9: 6:4, 再÷2=3:2",
+                       "6:4 ÷ 2 = 3:2", C))
+    probs.append(P_fill("rs_e9",
+                         "一份食谱需要面粉和糖的比是 5:2,需要糖 40 g,\n需要面粉多少克?",
+                         100, "面粉 = 40 ÷ 2 × 5",
+                         "40 ÷ 2 × 5 = 100 g", X))
+    probs.append(P_fill("rs_e10",
+                         "化简比 1.5 : 2.5 = ? : 5 (填前项)",
+                         3, "1.5:2.5 = 3:5",
+                         "×2: 3:5", C))
+    probs.append(P_mc("rs_e11",
+                       "三角形三边比 2:3:4,周长 36 cm,最短边是多少 cm?",
+                       ["8 cm", "12 cm", "16 cm"],
+                       0, "2份/(2+3+4)×36",
+                       "36 ÷ 9 × 2 = 8 cm", X))
+    return probs
+
+
+# ── 圆的认识 extra ──────────────────────────────────────────────────────────
+
+def _circle_parts_extra():
+    probs = []
+    # diameter / radius conversions (parametric)
+    r_specs = [2, 3, 4, 6, 7, 8, 9, 10]  # given radius, find diameter
+    for i, r in enumerate(r_specs):
+        d = 2 * r
+        diff = B if i < 4 else C
+        probs.append(P_fill(f"cp_e{i}", f"圆的半径 = {r} cm,直径 = ? cm",
+                             d, "d = 2r", f"2 × {r} = {d} cm", diff))
+    # diameter → radius
+    d_specs = [6, 14, 18, 22]
+    for i, d in enumerate(d_specs):
+        r = d // 2
+        probs.append(P_fill(f"cp_er{i}", f"圆的直径 = {d} cm,半径 = ? cm",
+                             r, "r = d ÷ 2", f"{d} ÷ 2 = {r} cm", B if i < 2 else C))
+    return probs
+
+
+# ── 圆周率 extra ────────────────────────────────────────────────────────────
+
+def _circle_pi_extra():
+    probs = []
+    probs.append(P_mc("cpi_e0",
+                       "半径为 r 的圆,周长与半径的比是?",
+                       ["2π", "π", "πr"],
+                       0, "C/r = 2πr/r = 2π",
+                       "2π (与半径无关)", X))
+    probs.append(P_mc("cpi_e1",
+                       "周长是 6.28 cm 的圆,直径是多少 cm? (π=3.14)",
+                       ["2 cm", "4 cm", "1 cm"],
+                       0, "d = C ÷ π = 6.28 ÷ 3.14",
+                       "6.28 ÷ 3.14 = 2 cm", C))
+    probs.append(P_fill("cpi_e2",
+                         "C = 31.4 cm 的圆,半径是多少 cm? (π=3.14)",
+                         5, "r = C ÷ (2π) = 31.4 ÷ 6.28",
+                         "31.4 ÷ 6.28 = 5 cm", C))
+    probs.append(P_mc("cpi_e3",
+                       "π 是一个循环小数吗?",
+                       ["不是,π是无限不循环小数", "是", "π=3.14 是有限小数"],
+                       0, "无限不循环=无理数",
+                       "π 是无限不循环小数,是无理数", C))
+    probs.append(P_fill("cpi_e4",
+                         "直径 = 8 cm,C = ? cm (π=3.14)",
+                         # 3.14*8=25.12 → rounded to nearest int: 25
+                         25, "C = πd = 3.14 × 8 = 25.12 ≈ 25",
+                         "3.14 × 8 = 25.12 ≈ 25 cm", B))
+    probs.append(P_mc("cpi_e5",
+                       "两圆直径之比 2:5,周长之比是?",
+                       ["2:5", "4:25", "5:2"],
+                       0, "C=πd,比例相同",
+                       "周长之比 = 直径之比 = 2:5", X))
+    probs.append(P_fill("cpi_e6",
+                         "周长 C = 62.8 cm,直径 = ? cm (π=3.14)",
+                         20, "d = 62.8 ÷ 3.14",
+                         "62.8 ÷ 3.14 = 20 cm", C))
+    probs.append(P_mc("cpi_e7",
+                       "圆周率 π > 3,π < 4,以下最精确的是?",
+                       ["3.14159…", "3.14", "3"],
+                       0, "π ≈ 3.14159…",
+                       "π 的近似值 3.14159…", X))
+    probs.append(P_fill("cpi_e8",
+                         "直径 = 14 cm,C ≈ ? cm (π=3.14)",
+                         44, "C = 3.14 × 14 = 43.96 ≈ 44",
+                         "3.14 × 14 = 43.96 ≈ 44 cm", C))
+    probs.append(P_mc("cpi_e9",
+                       "已知 C = 2πr,若 r 增大 2 倍,C 变为原来的?",
+                       ["2 倍", "4 倍", "√2 倍"],
+                       0, "C∝r,r×2→C×2",
+                       "C 变为 2 倍", X))
+    probs.append(P_fill("cpi_e10",
+                         "C = 18.84 cm,r = ? cm (π=3.14)",
+                         3, "r = C/(2π) = 18.84/6.28",
+                         "18.84 ÷ 6.28 = 3 cm", C))
+    probs.append(P_fill("cpi_e11",
+                         "直径 = 4 cm,C = ? cm (π=3.14)",
+                         # 3.14*4=12.56 ≈ 13
+                         13, "C = 3.14 × 4 = 12.56 ≈ 13",
+                         "3.14 × 4 = 12.56 ≈ 13 cm", B))
+    return probs
+
+
+# ── 圆的周长 extra ──────────────────────────────────────────────────────────
+
+def _circle_circumference_extra():
+    probs = []
+    # Parametric: given r, compute C = 2*3.14*r (round to nearest int)
+    r_list = [1, 2, 3, 4, 6, 7, 8, 9, 10, 15]
+    for i, r in enumerate(r_list):
+        c_exact = 2 * 3.14 * r
+        c_int = round(c_exact)
+        diff = B if i < 3 else (C if i < 7 else X)
+        probs.append(P_fill(f"cc_e{i}",
+                             f"半径 r = {r} cm,周长 C ≈ ? cm (π=3.14)",
+                             c_int,
+                             f"C = 2×3.14×{r}",
+                             f"2 × 3.14 × {r} = {c_exact:.2f} ≈ {c_int} cm", diff))
+    # Reverse: given C, find r
+    c_specs = [(62.8, 10), (18.84, 3), (25.12, 4)]
+    for i, (c, r) in enumerate(c_specs):
+        probs.append(P_fill(f"cc_er{i}",
+                             f"周长 C = {c} cm,半径 r = ? cm (π=3.14)",
+                             r, f"r = C / (2π) = {c} / 6.28",
+                             f"{c} ÷ 6.28 = {r} cm", C))
+    return probs
+
+
+# ── 圆的面积 extra ──────────────────────────────────────────────────────────
+
+def _circle_area_extra():
+    probs = []
+    # Parametric: given r, compute S = 3.14 * r^2 (round to nearest int)
+    r_list = [2, 3, 4, 6, 7, 8, 10]
+    for i, r in enumerate(r_list):
+        s_exact = 3.14 * r * r
+        s_int = round(s_exact)
+        diff = B if i < 2 else (C if i < 5 else X)
+        probs.append(P_fill(f"ca_e{i}",
+                             f"圆的半径 r = {r} cm,面积 S ≈ ? cm² (π=3.14)",
+                             s_int,
+                             f"S = 3.14 × {r}²",
+                             f"3.14 × {r*r} = {s_exact:.2f} ≈ {s_int} cm²", diff))
+    # Given diameter, find area
+    d_specs = [(4, round(3.14 * 4)), (10, round(3.14 * 25)), (6, round(3.14 * 9))]
+    for i, (d, s) in enumerate(d_specs):
+        r = d // 2
+        probs.append(P_fill(f"ca_ed{i}",
+                             f"圆的直径 d = {d} cm,面积 S ≈ ? cm² (π=3.14)",
+                             s, f"r={r}, S=3.14×{r}²",
+                             f"3.14 × {r*r} = {s} cm²", C))
+    # Word / ratio problems
+    probs.append(P_mc("ca_e7",
+                       "两圆半径之比 2:3,面积之比是?",
+                       ["4:9", "2:3", "8:27"],
+                       0, "面积∝r²",
+                       "2²:3² = 4:9", X))
+    probs.append(P_fill("ca_e8",
+                         "圆的半径扩大 3 倍,面积变为原来的几倍?",
+                         9, "S = πr² → (3r)² = 9r²",
+                         "面积扩大 9 倍", X))
+    return probs
+
+
+# ── 百分数意义 extra ────────────────────────────────────────────────────────
+
+def _percent_meaning_extra():
+    probs = []
+    # Convert percentage ↔ decimal (parametric)
+    pct_specs = [
+        (10, 0.10), (30, 0.30), (45, 0.45), (60, 0.60),
+        (75, 0.75), (90, 0.90), (5, 0.05), (15, 0.15),
+    ]
+    for i, (pct, dec) in enumerate(pct_specs):
+        diff = B if i < 4 else C
+        probs.append(P_mc(f"pem_e{i}", f"{pct}% 化成小数是?",
+                          [str(dec), str(dec * 10), str(dec / 10)],
+                          0, "去掉%,小数点左移两位",
+                          f"{pct}% = {dec}", diff))
+    probs.append(P_fill("pem_e8",
+                         "全校 500 人,参加运动会 400 人,参加率是多少%?",
+                         80, "400÷500=0.8=80%",
+                         "400 ÷ 500 = 80%", C))
+    probs.append(P_mc("pem_e9",
+                       "200% 表示什么?",
+                       ["是原来的 2 倍", "是原来的 200 倍", "是原来的 1/2"],
+                       0, "200% = 2",
+                       "200% = 2.0,即 2 倍", X))
+    probs.append(P_mc("pem_e10",
+                       "下列百分数最大的是?",
+                       ["150%", "99%", "100%"],
+                       0, "150% = 1.5 > 1",
+                       "150% = 1.5 最大", C))
+    probs.append(P_fill("pem_e11",
+                         "某工厂合格率 98%,生产 200 件,合格件数是多少?",
+                         196, "200×98%=200×0.98",
+                         "200 × 0.98 = 196 件", C))
+    return probs
+
+
+# ── 百分数分数小数互化 extra ────────────────────────────────────────────────
+
+def _percent_fraction_decimal_extra():
+    probs = []
+    # Decimal → percent
+    dec_to_pct = [
+        (0.35, 35), (0.06, 6), (1.5, 150), (0.005, 0.5),
+        (0.125, 12.5), (0.04, 4),
+    ]
+    for i, (dec, pct) in enumerate(dec_to_pct):
+        diff = B if i < 2 else C
+        pct_str = f"{int(pct)}%" if pct == int(pct) else f"{pct}%"
+        probs.append(P_mc(f"pfd_e{i}", f"{dec} 化成百分数是?",
+                          [pct_str, f"{pct*10}%", f"{pct/10}%"],
+                          0, "小数点右移两位,加%",
+                          f"{dec} = {pct_str}", diff))
+    # Fraction → percent
+    frac_to_pct = [
+        (_F(1, 5), "20%"), (_F(3, 8), "37.5%"), (_F(7, 20), "35%"),
+        (_F(1, 8), "12.5%"), (_F(3, 5), "60%"),
+    ]
+    for i, (frac, pct_str) in enumerate(frac_to_pct):
+        frac_label = f"{frac.numerator}/{frac.denominator}"
+        diff = C if i < 3 else X
+        w1 = pct_str.replace("%", "")  # wrong: just the number
+        w2 = f"{frac.denominator}%"
+        probs.append(P_mc(f"pfd_ef{i}", f"{frac_label} 化成百分数是?",
+                          [pct_str, w2, w1],
+                          0, f"{frac.numerator} ÷ {frac.denominator}",
+                          f"{frac_label} = {float(frac)*100:.1f}% = {pct_str}", diff))
+    # Percent → fraction (simplified)
+    pct_to_frac = [
+        (40, _F(2, 5)), (60, _F(3, 5)), (12, _F(3, 25)),
+    ]
+    for i, (pct, frac) in enumerate(pct_to_frac):
+        fn, fd = frac.numerator, frac.denominator
+        probs.append(P_mc(f"pfd_egf{i}", f"{pct}% 化成最简分数是?",
+                          [f"{fn}/{fd}", f"{pct}/100", f"{fn+1}/{fd}"],
+                          0, f"{pct}/100 约分",
+                          f"{pct}/100 = {fn}/{fd}", C))
+    return probs
+
+
+# ── 百分数计算 extra ────────────────────────────────────────────────────────
+
+def _percent_calc_extra():
+    probs = []
+    # Parametric: base × pct% = ?
+    specs = [
+        # (base, pct_int) → answer = base*pct//100  (exact integers only)
+        (200, 30, 60), (500, 20, 100), (150, 60, 90),
+        (240, 25, 60), (180, 50, 90), (320, 75, 240),
+        (600, 15, 90), (400, 35, 140),
+    ]
+    for i, (base, pct, ans) in enumerate(specs):
+        assert base * pct % 100 == 0 and base * pct // 100 == ans
+        diff = B if i < 3 else (C if i < 6 else X)
+        probs.append(P_fill(f"pc_e{i}", f"{base} 的 {pct}% 是多少?",
+                             ans, f"{base} × {pct}%",
+                             f"{base} × 0.{pct:02d} = {ans}", diff))
+    # Reverse: find base given pct
+    probs.append(P_fill("pc_e8",
+                         "某数的 25% 是 50,这个数是多少?",
+                         200, "某数 = 50 ÷ 25% = 50 ÷ 0.25",
+                         "50 ÷ 0.25 = 200", C))
+    probs.append(P_fill("pc_e9",
+                         "某班参加兴趣班的有 18 人,占全班的 60%,全班有多少人?",
+                         30, "全班 = 18 ÷ 60% = 18 ÷ 0.6",
+                         "18 ÷ 0.6 = 30 人", C))
+    probs.append(P_mc("pc_e10",
+                       "商品售价 240 元是成本的 120%,成本是多少元?",
+                       ["200 元", "288 元", "220 元"],
+                       0, "成本 = 240 ÷ 120% = 240 ÷ 1.2",
+                       "240 ÷ 1.2 = 200 元", X))
+    probs.append(P_fill("pc_e11",
+                         "存款 8000 元,年利率 4.5%,一年利息多少元?",
+                         360, "利息 = 8000 × 4.5% = 8000 × 0.045",
+                         "8000 × 0.045 = 360 元", X))
+    return probs
+
+
+# ── 百分数文字题 extra ──────────────────────────────────────────────────────
+
+def _percent_word_basic_extra():
+    probs = []
+    probs.append(P_fill("pwb_e0",
+                         "一件外套打六折,原价 300 元,现价多少元?",
+                         180, "300 × 60%",
+                         "300 × 0.6 = 180 元", B))
+    probs.append(P_fill("pwb_e1",
+                         "售价 120 元,这是原价的 75%,原价是多少元?",
+                         160, "原价 = 120 ÷ 75% = 120 ÷ 0.75",
+                         "120 ÷ 0.75 = 160 元", C))
+    probs.append(P_fill("pwb_e2",
+                         "某商店上月卖出 500 件,本月增加 20%,本月卖出多少件?",
+                         600, "500 × (1 + 20%) = 500 × 1.2",
+                         "500 × 1.2 = 600 件", C))
+    probs.append(P_fill("pwb_e3",
+                         "图书馆原有图书 4000 册,借出 15%,还剩多少册?",
+                         3400, "4000 × (1 - 15%) = 4000 × 0.85",
+                         "4000 × 0.85 = 3400 册", C))
+    probs.append(P_mc("pwb_e4",
+                       "商品降价 10% 再降价 10%,相当于原价的?",
+                       ["81%", "80%", "90%"],
+                       0, "0.9 × 0.9 = 0.81",
+                       "0.9 × 0.9 = 81%", X))
+    probs.append(P_fill("pwb_e5",
+                         "小红考了 90 分,比小明高 20%,小明考了多少分?",
+                         75, "小明 = 90 ÷ (1 + 20%) = 90 ÷ 1.2",
+                         "90 ÷ 1.2 = 75 分", X))
+    probs.append(P_fill("pwb_e6",
+                         "一批零件 600 个,不合格率 5%,合格多少个?",
+                         570, "600 × (1 - 5%) = 600 × 0.95",
+                         "600 × 0.95 = 570 个", C))
+    probs.append(P_fill("pwb_e7",
+                         "果园收苹果 2000 kg,其中红富士占 45%,红富士有多少 kg?",
+                         900, "2000 × 45% = 2000 × 0.45",
+                         "2000 × 0.45 = 900 kg", B))
+    probs.append(P_mc("pwb_e8",
+                       "某产品今年比去年增产 25%,去年产量 1200 件,今年多少件?",
+                       ["1500 件", "1450 件", "1600 件"],
+                       0, "1200 × (1 + 25%) = 1200 × 1.25",
+                       "1200 × 1.25 = 1500 件", C))
+    probs.append(P_fill("pwb_e9",
+                         "全班 40 人,男生占 55%,女生有多少人?",
+                         18, "女生 = 40 × (1 - 55%) = 40 × 0.45",
+                         "40 × 0.45 = 18 人", C))
+    probs.append(P_mc("pwb_e10",
+                       "甲是乙的 150%,甲比乙多多少?",
+                       ["多 50%", "多 150%", "少 50%"],
+                       0, "甲 = 乙×1.5 → 多乙×0.5 = 50%",
+                       "甲比乙多 50%", X))
+    probs.append(P_fill("pwb_e11",
+                         "一件商品打九折后再打八折,最终售价是原价的多少%?",
+                         72, "0.9 × 0.8 = 0.72 = 72%",
+                         "0.9 × 0.8 = 72%", X))
+    return probs
+
+
+# ── 扇形统计图 extra ────────────────────────────────────────────────────────
+
+def _pie_chart_read_extra():
+    probs = []
+    table2 = "水果店销售量扇形图\n苹果:35%  香蕉:25%  橙子:20%  其他:20%\n共售出 200 件"
+    probs.append(P_fill("pie_e0",
+                         table2 + "\n卖出苹果多少件?",
+                         70, "200 × 35%",
+                         "200 × 0.35 = 70 件", C))
+    probs.append(P_fill("pie_e1",
+                         table2 + "\n卖出香蕉和橙子共多少件?",
+                         90, "(25%+20%) × 200",
+                         "45% × 200 = 90 件", C))
+    probs.append(P_mc("pie_e2",
+                       table2 + "\n卖得最少的是?",
+                       ["香蕉和橙子并列", "苹果", "其他(与橙子并列)"],
+                       2, "20%=20%为最小",
+                       "橙子和其他都是20%,并列最少", X))
+    probs.append(P_mc("pie_e3",
+                       "扇形统计图中,某扇形圆心角是 90°,该类数据占总量的?",
+                       ["25%", "90%", "1/2"],
+                       0, "90°/360°=1/4=25%",
+                       "90 ÷ 360 = 25%", C))
+    probs.append(P_fill("pie_e4",
+                         "某班兴趣统计:数学兴趣占 40%,全班50人,\n对数学感兴趣的有多少人?",
+                         20, "50 × 40%",
+                         "50 × 0.4 = 20 人", B))
+    probs.append(P_mc("pie_e5",
+                       "某商店4种商品各占销售额的25%,\n这张扇形图的4个扇形面积?",
+                       ["完全相等", "可能不等", "最大那个占50%"],
+                       0, "各25%则各扇形相等",
+                       "4个扇形完全相等", B))
+    probs.append(P_fill("pie_e6",
+                         table2 + "\n苹果比橙子多卖多少件?",
+                         30, "(35%-20%)×200",
+                         "15% × 200 = 30 件", C))
+    probs.append(P_mc("pie_e7",
+                       "扇形图中某类占 60°,另一类占 120°,则两类合计占全部的?",
+                       ["50%", "33%", "60%"],
+                       0, "(60+120)/360 = 180/360 = 50%",
+                       "180° ÷ 360° = 50%", X))
+    probs.append(P_fill("pie_e8",
+                         "扇形图中,已知某扇形占全图 30%,圆心角是多少度?",
+                         108, "360 × 30% = 108°",
+                         "360 × 0.3 = 108°", X))
+    probs.append(P_mc("pie_e9",
+                       "扇形统计图各扇形圆心角之和是多少度?",
+                       ["360°", "180°", "270°"],
+                       0, "圆心角合计=整圆",
+                       "360°", B))
+    probs.append(P_fill("pie_e10",
+                         table2 + "\n若苹果件数增加 50%,苹果新销售量是多少件?",
+                         105, "70 × (1+50%) = 70 × 1.5",
+                         "70 × 1.5 = 105 件", X))
+    probs.append(P_mc("pie_e11",
+                       "下面哪种统计图最适合表示各月销售额的变化趋势?",
+                       ["折线统计图", "扇形统计图", "条形统计图"],
+                       0, "折线图反映变化趋势",
+                       "折线统计图", C))
+    return probs
+
+
+# ── 数与形 extra ────────────────────────────────────────────────────────────
+
+def _number_shape_extra():
+    probs = []
+    # Odd-number sums: sum of first n odd numbers = n^2
+    for n in range(1, 9):
+        odd_sum = n * n
+        last_odd = 2 * n - 1
+        seq_str = " + ".join(str(2*k-1) for k in range(1, n+1))
+        if n <= 3:
+            diff = B
+        elif n <= 6:
+            diff = C
+        else:
+            diff = X
+        probs.append(P_fill(f"ns_e{n-1}",
+                             f"1 + 3 + 5 + … + {last_odd} = ?",
+                             odd_sum,
+                             f"前{n}个奇数之和 = {n}²",
+                             f"{n}² = {odd_sum}", diff))
+    # Triangular numbers
+    probs.append(P_mc("ns_e8",
+                       "三角形数规律: 1, 3, 6, 10, 15, …\n第 6 项是?",
+                       ["21", "20", "18"],
+                       0, "第n项 = n(n+1)/2",
+                       "6×7÷2 = 21", X))
+    probs.append(P_fill("ns_e9",
+                         "1 + 2 + 3 + … + 50 = ?",
+                         1275, "(1+50)×50÷2",
+                         "51 × 25 = 1275", X))
+    probs.append(P_mc("ns_e10",
+                       "前 n 个奇数之和 = n²,前 7 个奇数之和是?",
+                       ["49", "50", "42"],
+                       0, "7² = 49",
+                       "7² = 49", C))
+    probs.append(P_fill("ns_e11",
+                         "正方形由小正方形拼成,第 n 行有 n² 个,\n前 5 行共有多少个小正方形?",
+                         55, "1+4+9+16+25=55",
+                         "1²+2²+3²+4²+5² = 55", X))
+    return probs
+
+
+# ── 负数的认识 extra ────────────────────────────────────────────────────────
+
+def _negative_number_extra():
+    probs = []
+    contexts = [
+        ("海拔 −200 m 表示", "海平面以下 200 m", "海平面以上 200 m", "200 m 深处的山", B),
+        ("盈利 +500 元,亏损 200 元记作", "−200 元", "+200 元", "200 元", B),
+        ("比 0 大的数是", "正数", "负数", "零", B),
+        ("下列数中属于负数的是", "−0.5", "0", "+3", B),
+        ("气温 −10℃ 比 −5℃", "低", "高", "相等", C),
+        ("下列数中最小的是", "−8", "0", "−1", C),
+    ]
+    for i, (prompt, a, b, c, diff) in enumerate(contexts):
+        probs.append(P_mc(f"nn_e{i}", prompt + "?",
+                          [a, b, c], 0,
+                          "负数表示与正数相反的意义",
+                          a, diff))
+    probs.append(P_mc("nn_e6",
+                       "−3/4 是负数吗?",
+                       ["是", "不是", "不确定"],
+                       0, "负分数也是负数",
+                       "是,负分数也是负数", B))
+    probs.append(P_fill("nn_e7",
+                         "某地海拔 −45 m,另一地海拔 +120 m,\n两地海拔相差多少 m?",
+                         165, "120 − (−45) = 120 + 45",
+                         "120 + 45 = 165 m", X))
+    probs.append(P_mc("nn_e8",
+                       "整数包括哪些?",
+                       ["正整数、0、负整数", "正整数和0", "只有正整数"],
+                       0, "整数 = 正整数 ∪ {0} ∪ 负整数",
+                       "整数包括正整数、0、负整数", C))
+    probs.append(P_mc("nn_e9",
+                       "数轴上,0 的左边是什么数?",
+                       ["负数", "正数", "零"],
+                       0, "数轴左负右正",
+                       "0 左边是负数", B))
+    probs.append(P_fill("nn_e10",
+                         "某股票今天涨 3 元记 +3,跌 5 元记 −5,\n两天净变化是多少元?",
+                         -2, "+3 + (−5) = −2",
+                         "净变化 = 3 − 5 = −2 元 (用 -2 表示亏 2 元)", X))
+    probs.append(P_mc("nn_e11",
+                       "下列说法正确的是?",
+                       ["负数都小于0", "0是负数", "正数都小于负数"],
+                       0, "负数定义: < 0",
+                       "负数都小于0", B))
+    return probs
+
+
+# ── 负数比大小 extra ────────────────────────────────────────────────────────
+
+def _negative_compare_extra():
+    probs = []
+    # Parametric comparisons
+    cmp_specs = [
+        (-5, -3, "-3"), (-10, -1, "-1"), (-2, 2, "2"),
+        (-7, -8, "-7"), (0, -4, "0"), (-1, -100, "-1"),
+    ]
+    for i, (a, b, larger) in enumerate(cmp_specs):
+        diff = B if i < 3 else C
+        probs.append(P_mc(f"nc_e{i}", f"{a} 和 {b} 哪个大?",
+                          [str(larger), str(a if str(a) != larger else b), "相等"],
+                          0, "数轴右边更大",
+                          f"{larger} 更大", diff))
+    # Ordering
+    probs.append(P_mc("nc_e6",
+                       "从小到大排列: −6, 2, −1, 0",
+                       ["−6, −1, 0, 2", "−6, 0, −1, 2", "−1, −6, 0, 2"],
+                       0, "负数<0<正数,越小越靠左",
+                       "−6 < −1 < 0 < 2", C))
+    probs.append(P_mc("nc_e7",
+                       "从大到小排列: −3, 5, −10, 1",
+                       ["5, 1, −3, −10", "5, 1, −10, −3", "1, 5, −3, −10"],
+                       0, "从右到左读数轴",
+                       "5 > 1 > −3 > −10", C))
+    probs.append(P_fill("nc_e8",
+                         "最高温 5℃,最低温 −3℃,日温差是多少℃?",
+                         8, "温差 = 5 − (−3) = 8",
+                         "5 − (−3) = 5 + 3 = 8℃", C))
+    probs.append(P_mc("nc_e9",
+                       "|−7| 与 |−4| 哪个大?",
+                       ["|−7| 大", "|−4| 大", "相等"],
+                       0, "绝对值=距0距离",
+                       "|−7| = 7 > |−4| = 4", X))
+    probs.append(P_fill("nc_e10",
+                         "山顶气温 −8℃,山脚比山顶高 20℃,山脚气温是多少℃?",
+                         12, "−8 + 20 = 12",
+                         "−8 + 20 = 12℃", X))
+    probs.append(P_mc("nc_e11",
+                       "以下4个数 −5, 3, −2, 0 中,最接近0的负数是?",
+                       ["−2", "−5", "0"],
+                       0, "负数中绝对值最小的最接近0",
+                       "−2 绝对值最小,最接近0", C))
+    return probs
+
+
+# ── 折扣与税率 extra ────────────────────────────────────────────────────────
+
+def _discount_tax_extra():
+    probs = []
+    # Discount problems: original × discount_pct% = sale_price
+    disc_specs = [
+        # (original, pct_int, sale)
+        (500, 80, 400), (120, 75, 90), (640, 50, 320),
+        (360, 60, 216), (450, 70, 315), (800, 90, 720),
+    ]
+    for i, (orig, pct, sale) in enumerate(disc_specs):
+        assert orig * pct // 100 == sale and orig * pct % 100 == 0
+        diff = B if i < 3 else C
+        probs.append(P_fill(f"dt_e{i}",
+                             f"原价 {orig} 元,打{pct//10}折,售价多少元?",
+                             sale, f"{orig} × {pct}%",
+                             f"{orig} × {pct/100:.2f} = {sale} 元", diff))
+    # Reverse: find original from sale and discount
+    rev_specs = [
+        # (sale, pct, original)
+        (72, 90, 80), (150, 75, 200), (240, 80, 300),
+    ]
+    for i, (sale, pct, orig) in enumerate(rev_specs):
+        assert sale * 100 // pct == orig and sale * 100 % pct == 0
+        diff = C if i < 2 else X
+        probs.append(P_fill(f"dt_er{i}",
+                             f"打{pct//10}折后售价 {sale} 元,原价多少元?",
+                             orig, f"原价 = {sale} ÷ {pct}%",
+                             f"{sale} ÷ 0.{pct} = {orig} 元", diff))
+    # Tax
+    probs.append(P_fill("dt_e6",
+                         "商品价格 600 元,增值税率 9%,税额多少元?",
+                         54, "600 × 9%",
+                         "600 × 0.09 = 54 元", C))
+    probs.append(P_mc("dt_e7",
+                       "打九折后再打九折,共优惠了原价的多少?",
+                       ["19%", "18%", "20%"],
+                       0, "最终 = 0.81,优惠 = 1 - 0.81 = 0.19 = 19%",
+                       "1 − 0.9 × 0.9 = 0.19 = 19%", X))
+    probs.append(P_mc("dt_e8",
+                       "甲比乙贵 20%,乙比甲便宜多少?",
+                       ["约 16.7%", "20%", "25%"],
+                       0, "甲=乙×1.2 → 乙=甲÷1.2,乙比甲少 1−1/1.2=1/6≈16.7%",
+                       "1 − 1/1.2 = 1/6 ≈ 16.7%", X))
+    return probs
+
+
+# ── 利息计算 extra ──────────────────────────────────────────────────────────
+
+def _interest_calc_extra():
+    probs = []
+    # Parametric: interest = principal × rate × years (exact integer result)
+    specs = [
+        # (principal, rate_pct, years, interest)
+        (1000, 2, 1, 20), (2000, 3, 2, 120),
+        (5000, 4, 1, 200), (3000, 2, 3, 180),
+        (4000, 5, 2, 400), (6000, 3, 1, 180),
+        (10000, 2, 2, 400), (8000, 4, 3, 960),
+    ]
+    for i, (p, r, t, interest) in enumerate(specs):
+        assert p * r * t % 100 == 0 and p * r * t // 100 == interest
+        diff = B if i < 3 else (C if i < 6 else X)
+        probs.append(P_fill(f"ic_e{i}",
+                             f"存入 {p} 元,年利率 {r}%,存 {t} 年,利息是多少元?",
+                             interest, f"{p} × {r}% × {t}",
+                             f"{p} × {r/100} × {t} = {interest} 元", diff))
+    # Total amount (principal + interest)
+    probs.append(P_fill("ic_e8",
+                         "存入 4000 元,年利率 2.5%,存 2 年,\n到期取出本金和利息共多少元?",
+                         4200, "利息=4000×2.5%×2=200,总额=4000+200",
+                         "4000 + 200 = 4200 元", C))
+    probs.append(P_mc("ic_e9",
+                       "年利率 3%,存 3 年的总利率是多少? (单利)",
+                       ["9%", "3%", "27%"],
+                       0, "3% × 3 = 9%",
+                       "3 年总利率 = 3 × 3% = 9%", X))
+    probs.append(P_fill("ic_e10",
+                         "到期取出 5300 元,其中利息 300 元,年利率 3%,存了几年?",
+                         2, "本金=5000,年数=300÷(5000×3%)",
+                         "300 ÷ (5000 × 0.03) = 2 年", X))
+    probs.append(P_mc("ic_e11",
+                       "利率越高,同样本金同样年限,利息?",
+                       ["越多", "越少", "不变"],
+                       0, "利息 = 本金 × 利率 × 时间,利率↑→利息↑",
+                       "利率越高,利息越多", B))
+    return probs
+
+
+# ── 圆柱的认识 extra ────────────────────────────────────────────────────────
+
+def _cylinder_properties_extra():
+    probs = []
+    probs.append(P_mc("cyp_e0",
+                       "圆柱的两个底面是?",
+                       ["完全相同的两个圆", "不同大小的圆", "椭圆"],
+                       0, "圆柱上下底面相同",
+                       "两个完全相同的圆形", B))
+    probs.append(P_mc("cyp_e1",
+                       "圆柱的高是指?",
+                       ["两底面之间的距离", "侧面的斜线", "底面半径"],
+                       0, "高 = 两底面间垂直距离",
+                       "两个底面之间的距离", B))
+    probs.append(P_fill("cyp_e2",
+                         "圆柱底面半径 4 cm,高 6 cm,侧面积 ≈ ? cm² (π=3.14)",
+                         150, "侧面积=2πrh=2×3.14×4×6=150.72≈151? 重新算",
+                         "2 × 3.14 × 4 × 6 = 150.72 ≈ 151 cm²", C))
+    # Fix: 2*3.14*4*6 = 150.72 ≈ 151
+    probs[-1] = P_fill("cyp_e2",
+                        "圆柱底面半径 4 cm,高 6 cm,侧面积 ≈ ? cm² (π=3.14)",
+                        round(2 * 3.14 * 4 * 6),
+                        "侧面积=2×3.14×4×6",
+                        f"2 × 3.14 × 4 × 6 = {2*3.14*4*6:.2f} ≈ {round(2*3.14*4*6)} cm²", C)
+    probs.append(P_fill("cyp_e3",
+                         "圆柱底面直径 10 cm,高 8 cm,侧面积 ≈ ? cm² (π=3.14)",
+                         round(3.14 * 10 * 8),
+                         "侧面积=πdh=3.14×10×8",
+                         f"3.14 × 10 × 8 = {3.14*10*8:.2f} ≈ {round(3.14*10*8)} cm²", C))
+    probs.append(P_mc("cyp_e4",
+                       "沿圆柱轴截面(过直径)截开,截面是什么形状?",
+                       ["长方形", "正方形", "圆形"],
+                       0, "过轴截面=矩形",
+                       "截面为长方形(宽=直径,高=高)", X))
+    probs.append(P_fill("cyp_e5",
+                         "圆柱底面周长 25.12 cm(π=3.14,r=4),高 5 cm,\n侧面积 ≈ ? cm²",
+                         round(25.12 * 5),
+                         "侧面积 = 底面周长 × 高",
+                         f"25.12 × 5 = {25.12*5:.2f} ≈ {round(25.12*5)} cm²", C))
+    probs.append(P_mc("cyp_e6",
+                       "圆柱侧面展开后是长方形,其宽等于?",
+                       ["高", "底面周长", "直径"],
+                       0, "展开后宽=圆柱高",
+                       "宽 = 高", C))
+    probs.append(P_mc("cyp_e7",
+                       "圆柱底面半径扩大2倍,高不变,侧面积变为原来的?",
+                       ["2 倍", "4 倍", "不变"],
+                       0, "侧面积=2πrh,r×2→S×2",
+                       "2 倍", X))
+    probs.append(P_fill("cyp_e8",
+                         "圆柱底面半径 2 cm,高 10 cm,侧面积 ≈ ? cm² (π=3.14)",
+                         round(2 * 3.14 * 2 * 10),
+                         "侧面积=2πrh=2×3.14×2×10",
+                         f"2 × 3.14 × 2 × 10 = {2*3.14*2*10:.2f} ≈ {round(2*3.14*2*10)} cm²", C))
+    probs.append(P_mc("cyp_e9",
+                       "圆柱有几条对称轴?",
+                       ["无数条", "2 条", "1 条"],
+                       0, "通过轴的每个平面都是对称面",
+                       "圆柱有无数条对称轴", X))
+    probs.append(P_fill("cyp_e10",
+                         "一个圆柱等底等高,底面半径 5 cm,高也是 5 cm,\n侧面积 ≈ ? cm² (π=3.14)",
+                         round(2 * 3.14 * 5 * 5),
+                         "侧面积=2πrh=2×3.14×5×5",
+                         f"2 × 3.14 × 5 × 5 = {2*3.14*5*5:.2f} ≈ {round(2*3.14*5*5)} cm²", X))
+    probs.append(P_mc("cyp_e11",
+                       "圆柱的底面是圆形,下列关于圆柱的说法正确的是?",
+                       ["侧面展开是长方形,长=底面周长", "侧面展开是圆形", "高等于半径"],
+                       0, "展开长方形的长=底面周长",
+                       "侧面展开是长方形,长=底面周长", C))
+    return probs
+
+
+# ── 圆锥的认识 extra ────────────────────────────────────────────────────────
+
+def _cone_properties_extra():
+    probs = []
+    probs.append(P_mc("cnp_e0",
+                       "圆锥有几个顶点?",
+                       ["1 个", "2 个", "0 个"],
+                       0, "圆锥只有1个顶点(尖端)",
+                       "1 个顶点", B))
+    probs.append(P_mc("cnp_e1",
+                       "圆锥的底面是什么形状?",
+                       ["圆形", "三角形", "正方形"],
+                       0, "圆锥底面是圆",
+                       "圆形", B))
+    probs.append(P_mc("cnp_e2",
+                       "圆锥的侧面展开图是什么形状?",
+                       ["扇形", "三角形", "圆形"],
+                       0, "圆锥侧面展开为扇形",
+                       "扇形", C))
+    probs.append(P_fill("cnp_e3",
+                         "等底等高的圆柱体积是 90 cm³,\n圆锥体积是多少 cm³?",
+                         30, "V锥 = 1/3 × V柱",
+                         "90 ÷ 3 = 30 cm³", B))
+    probs.append(P_mc("cnp_e4",
+                       "一个圆锥底面半径 3 cm,高 4 cm,\n底面积是多少 cm²? (π=3.14)",
+                       [f"{round(3.14*9)} cm²", "12.56 cm²", "37.68 cm²"],
+                       0, "S = πr² = 3.14 × 9",
+                       f"3.14 × 9 = {3.14*9:.2f} ≈ {round(3.14*9)} cm²", C))
+    probs.append(P_fill("cnp_e5",
+                         "等底等高圆柱 V=240 cm³,\n对应圆锥体积多少 cm³?",
+                         80, "V锥=1/3×240=80",
+                         "240 ÷ 3 = 80 cm³", B))
+    probs.append(P_mc("cnp_e6",
+                       "下列关于圆锥说法正确的是?",
+                       ["有且仅有1个底面", "有2个底面", "底面是三角形"],
+                       0, "圆锥=1个圆形底面+侧面+顶点",
+                       "有且仅有1个圆形底面", B))
+    probs.append(P_fill("cnp_e7",
+                         "一个圆锥形容器装满沙子,等底等高圆柱能装多少倍这样的圆锥?",
+                         3, "V柱=3×V锥",
+                         "圆柱 = 3 × 圆锥", C))
+    probs.append(P_mc("cnp_e8",
+                       "圆锥的高是指?",
+                       ["顶点到底面圆心的距离", "母线长度", "底面直径"],
+                       0, "高=顶点到底面的垂直距离",
+                       "顶点到底面圆心的距离", B))
+    probs.append(P_fill("cnp_e9",
+                         "一个圆锥底面积 50 cm²,高 6 cm,体积是多少 cm³?",
+                         100, "V = 1/3 × 50 × 6",
+                         "1/3 × 50 × 6 = 100 cm³", C))
+    probs.append(P_mc("cnp_e10",
+                       "圆锥侧面展开图的扇形弧长等于?",
+                       ["底面圆周长", "母线长", "底面直径"],
+                       0, "展开扇形弧长=底面周长",
+                       "等于底面圆的周长", X))
+    probs.append(P_fill("cnp_e11",
+                         "圆锥底面半径 3 cm,高 4 cm,体积 ≈ ? cm³ (π=3.14)",
+                         round(1/3 * 3.14 * 9 * 4),
+                         "V=1/3×3.14×9×4",
+                         f"1/3 × 3.14 × 9 × 4 = {1/3*3.14*9*4:.2f} ≈ {round(1/3*3.14*9*4)} cm³", C))
+    return probs
+
+
+# ── 圆柱表面积 extra ────────────────────────────────────────────────────────
+
+def _cylinder_surface_area_extra():
+    probs = []
+    # Parametric surface area: S = 2πr² + 2πrh
+    sa_specs = [
+        # (r, h) → S = round(2*3.14*(r*r + r*h))
+        (1, 2), (2, 3), (3, 5), (4, 4), (5, 6),
+        (2, 10), (6, 4), (3, 8),
+    ]
+    for i, (r, h) in enumerate(sa_specs):
+        s = round(2 * 3.14 * (r * r + r * h))
+        diff = B if i < 3 else (C if i < 6 else X)
+        probs.append(P_fill(f"csa_e{i}",
+                             f"圆柱底面半径 {r} cm,高 {h} cm,\n表面积 ≈ ? cm² (π=3.14)",
+                             s, f"S=2πr²+2πrh=2×3.14×({r}²+{r}×{h})",
+                             f"2 × 3.14 × ({r*r} + {r*h}) = {s} cm²", diff))
+    # No-lid cylinder
+    probs.append(P_fill("csa_e8",
+                         "无盖圆柱形水桶底面半径 5 cm,高 10 cm,\n所需铁皮面积 ≈ ? cm² (π=3.14)",
+                         round(3.14 * 5 * 5 + 2 * 3.14 * 5 * 10),
+                         "侧面积+1底面=πr²+2πrh=3.14×25+2×3.14×5×10",
+                         f"3.14×25 + 2×3.14×5×10 = {3.14*25+2*3.14*5*10:.2f} ≈ {round(3.14*25+2*3.14*5*10)} cm²", C))
+    probs.append(P_mc("csa_e9",
+                       "圆柱底面直径扩大2倍,高不变,表面积变为原来约多少倍?",
+                       ["4 倍", "2 倍", "3 倍"],
+                       0, "r²和rh都×4,表面积×4",
+                       "底面积×4,侧面积也×4,共×4倍(近似)", X))
+    probs.append(P_fill("csa_e10",
+                         "圆柱底面半径 6 cm,高 5 cm,\n表面积 ≈ ? cm² (π=3.14)",
+                         round(2 * 3.14 * (36 + 30)),
+                         "S=2πr(r+h)=2×3.14×6×(6+5)",
+                         f"2×3.14×6×11 = {2*3.14*6*11:.2f} ≈ {round(2*3.14*6*11)} cm²", C))
+    probs.append(P_mc("csa_e11",
+                       "圆柱表面积公式 S = ?",
+                       ["2πr² + 2πrh", "πr²h", "2πr²"],
+                       0, "两底面+侧面",
+                       "S = 2πr² + 2πrh", B))
+    return probs
+
+
+# ── 圆柱体积 extra ──────────────────────────────────────────────────────────
+
+def _cylinder_volume_extra():
+    probs = []
+    # Parametric: V = round(3.14 * r^2 * h)
+    v_specs = [
+        (1, 5), (2, 4), (3, 6), (4, 5), (5, 4),
+        (2, 8), (6, 3), (3, 9), (4, 10), (7, 2),
+    ]
+    for i, (r, h) in enumerate(v_specs):
+        v = round(3.14 * r * r * h)
+        diff = B if i < 3 else (C if i < 7 else X)
+        probs.append(P_fill(f"cv_e{i}",
+                             f"圆柱底面半径 {r} cm,高 {h} cm,\n体积 V ≈ ? cm³ (π=3.14)",
+                             v, f"V=πr²h=3.14×{r}²×{h}",
+                             f"3.14 × {r*r} × {h} = {3.14*r*r*h:.2f} ≈ {v} cm³", diff))
+    # Reverse: find h given V and r
+    probs.append(P_fill("cv_e10",
+                         "圆柱底面半径 5 cm,体积 314 cm³,\n高 h = ? cm (π=3.14)",
+                         4, "h = V ÷ (πr²) = 314 ÷ (3.14×25)",
+                         "314 ÷ 78.5 = 4 cm", X))
+    probs.append(P_mc("cv_e11",
+                       "底面积相同的圆柱,高扩大3倍,体积变为?",
+                       ["3 倍", "9 倍", "1/3"],
+                       0, "V=S底×h,S底不变→V∝h",
+                       "体积变为 3 倍", C))
+    return probs
+
+
+# ── 圆锥体积 extra ──────────────────────────────────────────────────────────
+
+def _cone_volume_extra():
+    probs = []
+    # Parametric: V = round(1/3 * 3.14 * r^2 * h)
+    cv_specs = [
+        (1, 6), (2, 3), (3, 7), (4, 6), (5, 3),
+        (3, 4), (6, 5), (2, 9), (4, 12), (5, 6),
+    ]
+    for i, (r, h) in enumerate(cv_specs):
+        v = round(1/3 * 3.14 * r * r * h)
+        diff = B if i < 3 else (C if i < 7 else X)
+        probs.append(P_fill(f"conv_e{i}",
+                             f"圆锥底面半径 {r} cm,高 {h} cm,\n体积 V ≈ ? cm³ (π=3.14)",
+                             v, f"V=1/3×πr²h=1/3×3.14×{r}²×{h}",
+                             f"1/3 × 3.14 × {r*r} × {h} = {1/3*3.14*r*r*h:.2f} ≈ {v} cm³", diff))
+    probs.append(P_fill("conv_e10",
+                         "等底等高的圆柱体积 270 cm³,圆锥体积是多少 cm³?",
+                         90, "V锥=V柱÷3=270÷3",
+                         "270 ÷ 3 = 90 cm³", B))
+    probs.append(P_mc("conv_e11",
+                       "圆锥半径不变,高变为原来2倍,体积变为?",
+                       ["2 倍", "4 倍", "6 倍"],
+                       0, "V=1/3πr²h,h×2→V×2",
+                       "体积变为 2 倍", C))
+    return probs
+
+
+# ── 比例的意义 extra ────────────────────────────────────────────────────────
+
+def _proportion_meaning_extra():
+    probs = []
+    # Is this a proportion? (a:b = c:d iff a*d = b*c)
+    prop_specs = [
+        # (a, b, c, d, is_proportion)
+        (2, 3, 4, 6, True), (1, 2, 3, 5, False),
+        (3, 4, 6, 8, True), (5, 6, 10, 11, False),
+        (2, 5, 4, 10, True), (7, 3, 14, 5, False),
+    ]
+    for i, (a, b, c, d, is_prop) in enumerate(prop_specs):
+        correct = "是" if is_prop else "不是"
+        wrong = "不是" if is_prop else "是"
+        expl = f"{a}×{d}={a*d}, {b}×{c}={b*c}"
+        reason = "外积=内积" if is_prop else "外积≠内积"
+        diff = B if i < 3 else C
+        probs.append(P_mc(f"pm_e{i}",
+                          f"{a}:{b} = {c}:{d} 是比例吗?",
+                          [correct, wrong, "不确定"],
+                          0, reason, expl, diff))
+    # Solve for unknown in proportion
+    solve_specs = [
+        # a:b = c:x → x = b*c/a
+        (3, 4, 6, 8), (2, 5, 4, 10), (5, 3, 10, 6),
+        (4, 7, 8, 14), (6, 1, 12, 2),
+    ]
+    for i, (a, b, c, x) in enumerate(solve_specs):
+        assert a * x == b * c
+        diff = C if i < 3 else X
+        probs.append(P_fill(f"pm_es{i}",
+                             f"解比例: {a}:{b} = {c}:x → x = ?",
+                             x, f"{a}×x={b}×{c}",
+                             f"{b*c} ÷ {a} = {x}", diff))
+    return probs
+
+
+# ── 解比例 extra ────────────────────────────────────────────────────────────
+
+def _proportion_solve_extra():
+    probs = []
+    # Parametric: a*d = b*c, solve for x in position a,b,c,or d
+    specs = [
+        # problem text, answer
+        ("3:x = 9:12", 4, "3×12=9×x→x=4"),
+        ("x:5 = 8:10", 4, "10x=40→x=4"),
+        ("4:3 = x:9", 12, "3x=36→x=12"),
+        ("6:x = 4:6", 9, "6×6=4×x→x=9"),
+        ("x:7 = 3:21", 1, "21x=21→x=1"),
+        ("5:8 = x:40", 25, "8x=200→x=25"),
+        ("x:12 = 3:4", 9, "4x=36→x=9"),
+        ("2:9 = 4:x", 18, "2x=36→x=18"),
+        ("x:0.5 = 6:3", 1, "3x=3→x=1"),
+        ("7:x = 14:6", 3, "7×6=14×x→x=3"),
+    ]
+    for i, (expr, ans, hint_expl) in enumerate(specs):
+        diff = B if i < 3 else (C if i < 7 else X)
+        probs.append(P_fill(f"ps_e{i}",
+                             f"解比例: {expr}  → x = ?",
+                             ans, hint_expl, hint_expl, diff))
+    # Word problem
+    probs.append(P_fill("ps_e10",
+                         "一辆汽车3小时行180 km,按同样速度5小时行多少 km?\n(用比例方法)",
+                         300, "3:180=5:x,3x=900→x=300",
+                         "3x = 900,x = 300 km", X))
+    probs.append(P_mc("ps_e11",
+                       "比例的基本性质:两外项之积等于?",
+                       ["两内项之积", "两前项之积", "两后项之积"],
+                       0, "外项积=内项积",
+                       "两内项之积", B))
+    return probs
+
+
+# ── 比例尺 extra ────────────────────────────────────────────────────────────
+
+def _scale_drawing_extra():
+    probs = []
+    # Parametric: map_dist, scale_denom → real_dist_cm
+    scale_specs = [
+        # (map_cm, scale_denom, real_km_or_cm, unit, diff)
+        (3, 1000, 3000, "cm", B),
+        (5, 5000, 25000, "cm", B),
+        (2, 10000, 20000, "cm", C),
+        (4, 2000, 8000, "cm", C),
+        (6, 50000, 300000, "cm", X),
+        (1, 100000, 100000, "cm", X),
+    ]
+    for i, (map_cm, denom, real_cm, unit, diff) in enumerate(scale_specs):
+        assert map_cm * denom == real_cm
+        probs.append(P_fill(f"sd_e{i}",
+                             f"比例尺 1:{denom},图上 {map_cm} cm,\n实际距离 = ? cm",
+                             real_cm, f"实际={map_cm}×{denom}",
+                             f"{map_cm} × {denom} = {real_cm} cm", diff))
+    # Reverse: given real and scale, find map distance
+    rev_specs = [
+        # (real_cm, scale_denom, map_cm)
+        (6000, 2000, 3), (15000, 5000, 3), (40000, 10000, 4),
+    ]
+    for i, (real_cm, denom, map_cm) in enumerate(rev_specs):
+        assert real_cm // denom == map_cm and real_cm % denom == 0
+        probs.append(P_fill(f"sd_er{i}",
+                             f"比例尺 1:{denom},实际距离 {real_cm} cm,\n图上距离 = ? cm",
+                             map_cm, f"图上={real_cm}÷{denom}",
+                             f"{real_cm} ÷ {denom} = {map_cm} cm", C))
+    probs.append(P_mc("sd_e6",
+                       "缩小比例尺的图上距离比实际距离?",
+                       ["小", "大", "相等"],
+                       0, "地图是缩小的,图上<实际",
+                       "图上距离 < 实际距离", B))
+    probs.append(P_fill("sd_e7",
+                         "一条铁路实际长 600 km,在比例尺 1:6000000 的地图上\n应画多少 cm?",
+                         10, "600km=60000000cm,图上=60000000÷6000000=10",
+                         "600 × 100000 ÷ 6000000 = 10 cm", X))
+    probs.append(P_fill("sd_e8",
+                         "比例尺 1:3000,图上 4 cm,实际 = ? m",
+                         120, "实际=4×3000=12000cm=120m",
+                         "4 × 3000 = 12000 cm = 120 m", C))
+    probs.append(P_mc("sd_e9",
+                       "比例尺越大(如1:100 vs 1:10000),地图表示的范围?",
+                       ["越小,越详细", "越大,越粗略", "不变"],
+                       0, "比例尺越大,缩小倍数越小→范围越小越详细",
+                       "范围越小,但越详细", X))
+    return probs
+
+
+# ── 比例应用 extra ──────────────────────────────────────────────────────────
+
+def _proportion_application_extra():
+    probs = []
+    # Direct proportion problems
+    probs.append(P_fill("pa_e0",
+                         "单价 5 元,买 x 件总价 y 元,x=8 时 y=?",
+                         40, "y=5x=5×8",
+                         "5 × 8 = 40 元", B))
+    probs.append(P_fill("pa_e1",
+                         "打字速度每分钟 80 字,x 分钟打 y 字,x=15 时 y=?",
+                         1200, "y=80×15",
+                         "80 × 15 = 1200 字", B))
+    probs.append(P_mc("pa_e2",
+                       "面积一定,长和宽成什么比例?",
+                       ["反比例", "正比例", "无关"],
+                       0, "长×宽=面积(定),反比例",
+                       "反比例", C))
+    probs.append(P_mc("pa_e3",
+                       "y = 3x,x 和 y 成什么关系?",
+                       ["正比例", "反比例", "无关"],
+                       0, "y/x=3(常数)=正比例",
+                       "y/x=3,正比例", B))
+    probs.append(P_fill("pa_e4",
+                         "速度 60 km/h,t=4 h,路程 s = ? km",
+                         240, "s=v×t=60×4",
+                         "60 × 4 = 240 km", B))
+    probs.append(P_mc("pa_e5",
+                       "xy = 12,x 和 y 成什么关系?",
+                       ["反比例", "正比例", "无关"],
+                       0, "xy=k(常数)=反比例",
+                       "反比例", C))
+    probs.append(P_fill("pa_e6",
+                         "工厂 5 天生产零件 1500 个,照此速度 12 天生产多少个?",
+                         3600, "每天=300,12天=300×12",
+                         "1500 ÷ 5 × 12 = 3600 个", C))
+    probs.append(P_mc("pa_e7",
+                       "甲独做需 8 天,乙独做需 12 天,\n合做每天完成全部工程的?",
+                       ["1/8 + 1/12 = 5/24", "1/8 − 1/12", "1/20"],
+                       0, "合做=甲+乙",
+                       "1/8 + 1/12 = 3/24 + 2/24 = 5/24", X))
+    probs.append(P_fill("pa_e8",
+                         "正比例:y 与 x 的比值等于 k(常数),\n已知 x=3,y=9,求 k=?",
+                         3, "k=y/x=9/3",
+                         "k = 9 ÷ 3 = 3", B))
+    probs.append(P_mc("pa_e9",
+                       "下列各量中,哪两个量成正比例?",
+                       ["路程一定时,速度与时间", "速度一定时,路程与时间", "时间一定时,路程与速度"],
+                       1, "速度×时间=路程,速度固定→路程∝时间",
+                       "速度一定时,路程与时间成正比例", C))
+    probs.append(P_fill("pa_e10",
+                         "一辆汽车2小时行120 km,8小时行多少 km?(正比例)",
+                         480, "120÷2×8=480",
+                         "60 × 8 = 480 km", C))
+    probs.append(P_mc("pa_e11",
+                       "同样的工作量,工作效率和完成时间成?",
+                       ["反比例", "正比例", "无关"],
+                       0, "效率×时间=工作量(定)→反比例",
+                       "反比例", C))
+    return probs
+
+
+# ── 位置与方向 extra ────────────────────────────────────────────────────────
+
+def _direction_distance_extra():
+    probs = []
+    # Cardinal direction problems
+    probs.append(P_mc("dd_e0",
+                       "北偏东 45° 方向,俗称?",
+                       ["东北方向", "正东", "东南"],
+                       0, "45°=对角线=东北",
+                       "东北方向", B))
+    probs.append(P_mc("dd_e1",
+                       "A 在 B 的正东方,则 B 在 A 的?",
+                       ["正西方", "正东方", "正北方"],
+                       0, "相反方向",
+                       "正西方", B))
+    probs.append(P_mc("dd_e2",
+                       "描述位置,下面哪个信息是多余的?",
+                       ["颜色", "方向", "距离"],
+                       0, "颜色不影响位置",
+                       "颜色与位置无关", B))
+    probs.append(P_mc("dd_e3",
+                       "'南偏西 30°,距出发点 500 m'——这描述完整吗?",
+                       ["完整", "不完整,缺方向", "不完整,缺距离"],
+                       0, "方向角度+距离=完整",
+                       "完整,有方向(角)和距离", C))
+    probs.append(P_mc("dd_e4",
+                       "B 在 A 的北偏东 60°,距离 400 m;\n则 A 在 B 的?",
+                       ["南偏西 60°,400 m", "北偏西 60°,400 m", "南偏东 60°,400 m"],
+                       0, "互为相反方向,距离不变",
+                       "南偏西 60°,400 m", C))
+    probs.append(P_fill("dd_e5",
+                         "某地图上,北偏东 45° 距离 100 m 的建筑物,\n实际方向是东北,实际距离是多少 m?",
+                         100, "图上=实际(无比例尺换算)",
+                         "100 m", B))
+    probs.append(P_mc("dd_e6",
+                       "在实地测量时,'北偏东30°'表示从?",
+                       ["正北出发,向东偏转30°", "正东出发,向北偏转30°", "任意基准"],
+                       0, "北偏东=以北为基准向东偏",
+                       "以正北方向为基准,向东偏转30°", C))
+    probs.append(P_mc("dd_e7",
+                       "从出发点向北走 3 km,再向东走 4 km,到达终点;\n终点距出发点多远? (直线距离)",
+                       ["5 km", "7 km", "1 km"],
+                       0, "勾股定理: √(3²+4²)=5",
+                       "3² + 4² = 5² → 5 km", X))
+    probs.append(P_mc("dd_e8",
+                       "罗盘/指南针北方为基准,顺时针90°是?",
+                       ["东", "西", "南"],
+                       0, "顺时针90°=东",
+                       "正东方向", B))
+    probs.append(P_mc("dd_e9",
+                       "学校在图书馆南偏西 40°,则图书馆在学校的?",
+                       ["北偏东 40°", "南偏东 40°", "北偏西 40°"],
+                       0, "互为相反",
+                       "北偏东 40°", C))
+    probs.append(P_fill("dd_e10",
+                         "在方格纸上,每格 1 cm 代表实际 100 m,\n图上 3 格 = 实际多少 m?",
+                         300, "3 × 100 = 300",
+                         "3 × 100 = 300 m", C))
+    probs.append(P_mc("dd_e11",
+                       "地图上通常用什么表示方向?",
+                       ["指向标(箭头指北)", "颜色深浅", "等高线"],
+                       0, "指向标箭头通常指向正北",
+                       "指向标(箭头指北)", B))
+    return probs
+
+
+# ── 鸽巢问题 extra ──────────────────────────────────────────────────────────
+
+def _pigeonhole_extra():
+    probs = []
+    # Classic pigeonhole: n items into k boxes → at least ceil(n/k) per box
+    import math as _math
+    specs = [
+        # (n_items, k_boxes, min_per_box, description)
+        (10, 3, 4, "10个球放进3个盒子"),
+        (7, 2, 4, "7本书分给2个孩子"),
+        (13, 4, 4, "13只鞋放4个架子"),
+        (20, 6, 4, "20个苹果装6个篮子"),
+        (30, 7, 5, "30只鸽子进7个巢"),
+        (50, 12, 5, "50名学生住12间宿舍"),
+        (100, 9, 12, "100个糖果分给9个小孩"),
+        (365, 7, 53, "一年365天分成7天/周"),
+    ]
+    for i, (n, k, expected, desc) in enumerate(specs):
+        actual = _math.ceil(n / k)
+        assert actual == expected, f"{n}/{k} ceil={actual} expected={expected}"
+        diff = B if i < 3 else (C if i < 6 else X)
+        probs.append(P_fill(f"ph_e{i}",
+                             f"鸽巢原理: {desc},\n至少有一个容器装了多少个?",
+                             expected,
+                             f"⌈{n}/{k}⌉ = {expected}",
+                             f"⌈{n}/{k}⌉ = {expected}", diff))
+    probs.append(P_mc("ph_e8",
+                       "任意13个人中,至少有几个人同月出生?",
+                       ["2 人", "1 人", "13 人"],
+                       0, "⌈13/12⌉=2",
+                       "⌈13/12⌉ = 2 人", C))
+    probs.append(P_mc("ph_e9",
+                       "从1~10中任取6个数,至少有几个数的和超过10?",
+                       ["无法确定", "不一定", "至少1对数"],
+                       2, "这是配对问题,较复杂",
+                       "复杂版鸽巢,答案因分析方式而异", X))
+    # Use a better problem
+    probs[-1] = P_fill("ph_e9",
+                        "一个班有31名同学,一周有5天上课,\n至少有几名同学同一天过生日?",
+                        7, "⌈31/5⌉=7",
+                        "⌈31/5⌉ = 7 人", X)
+    probs.append(P_mc("ph_e10",
+                       "5只鸽子放进4个巢,至少有一个巢里的鸽子数 ≥ ?",
+                       ["2 只", "3 只", "5 只"],
+                       0, "⌈5/4⌉=2",
+                       "⌈5/4⌉ = 2 只", B))
+    probs.append(P_fill("ph_e11",
+                         "把100个不同整数放进10个抽屉,\n至少有一个抽屉放了多少个?",
+                         10, "⌈100/10⌉=10",
+                         "100 ÷ 10 = 10,至少10个", C))
+    return probs
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# MODIFIED SET FUNCTIONS — inject extras into existing sets
+# ═══════════════════════════════════════════════════════════════════════════
+
 # ── 组合函数 ───────────────────────────────────────────────────────────────
+
+def _extend(s, extras):
+    """Append extra problems to an existing set dict."""
+    s["problems"].extend(extras)
+    return s
+
+
+def kg_comb6():
+    p = [
+        P_mc("kgcb6_b0", "从 5 个人中选 1 人当组长,有几种选法?", [5, 10, 1, 25], 0, "就是 5 个人", "5 种", B),
+        P_mc("kgcb6_b1", "从 5 个人中选 2 人(不分先后),有几种选法?", [10, 20, 5, 25], 0, "5×4÷2", "10 种", B),
+        P_mc("kgcb6_b2", "3 件上衣、4 条裤子、2 双鞋,搭配一套有几种?", [24, 9, 12, 18], 0, "分步相乘", "3×4×2=24", B),
+        P_mc("kgcb6_c0", "从 6 个人中选 3 人,有几种选法?", [20, 18, 120, 15], 0, "6×5×4÷(3×2×1)", "20 种", C),
+        P_mc("kgcb6_c1", "用数字 1~5 组成三位数(数字可以重复),共几个?", [125, 60, 100, 243], 0, "每位都有 5 种选择", "5×5×5=125", C),
+        P_mc("kgcb6_c2", "8 支队伍单败淘汰赛决出冠军,共比几场?", [7, 8, 4, 15], 0, "每场淘汰 1 队,要淘汰 7 队", "7 场", C),
+        P_mc("kgcb6_c3", "A 到 B 有 3 条路,B 到 C 有 4 条,C 到 D 有 2 条,从 A 到 D 有几种走法?", [24, 9, 12, 18], 0, "分步相乘", "3×4×2=24", C),
+        P_mc("kgcb6_x0", "7 个人排成一排,甲必须站最左端,有几种排法?", [720, 5040, 49, 120], 0, "其余 6 人全排列", "6×5×4×3×2×1=720", X),
+        P_mc("kgcb6_x1", "从 1~9 中选 3 个不同数字组成三位数,共几个?", [504, 729, 84, 168], 0, "9×8×7", "504 个", X),
+        P_mc("kgcb6_x2", "10 个人每两人握一次手,共握几次?", [45, 90, 100, 55], 0, "10×9÷2", "45 次", X),
+    ]
+    return make_set("kg_comb6", "组合计数入门", "logic", p)
+
+
+def kg_reason6():
+    p = [
+        P_mc("kgr6_b0", "5 个连续整数,中间一个是 10,这 5 个数的和是?", [50, 40, 55, 45], 0, "和 = 中间数 ×5", "10×5=50", B),
+        P_mc("kgr6_b1", "两个数的和是 20,差是 4,较大的数是?", [12, 8, 16, 10], 0, "(和+差)÷2", "(20+4)÷2=12", B),
+        P_mc("kgr6_b2", "一个数的 3 倍加 5 等于 23,这个数是?", [6, 9, 7, 8], 0, "(23−5)÷3", "6", B),
+        P_mc("kgr6_c0", "鸡兔同笼,头共 10,脚共 28,兔有几只?", [4, 6, 5, 3], 0, "假设全是鸡共 20 只脚,每换一只兔多 2 只脚", "(28−20)÷2=4", C),
+        P_mc("kgr6_c1", "五人赛跑,名次为 甲>乙>丙>丁>戊(甲第一)。第 3 名是谁?", ["甲", "乙", "丙", "丁"], 2, "顺着数到第 3 个", "丙", C),
+        P_mc("kgr6_c2", "一根绳子对折再对折后长 25 厘米,原来长多少?", [100, 75, 50, 125], 0, "对折两次相当于分成 4 段", "25×4=100", C),
+        P_mc("kgr6_c3", "甲是乙的 3 倍,两数相差 16,乙是多少?", [8, 24, 6, 4], 0, "3 份−1 份=2 份=16", "16÷2=8", C),
+        P_mc("kgr6_x0", "把 1~9 填入三阶幻方,使每行、每列、每条对角线的和都相等,正中间一格是?", [5, 1, 9, 3], 0, "总和 45,每行 15", "中心是 5", X),
+        P_mc("kgr6_x1", "一个两位数,交换十位与个位后比原数大 36,十位与个位相差几?", [4, 2, 6, 3], 0, "差 ×9=36", "36÷9=4", X),
+        P_mc("kgr6_x2", "1+2+3+…+100 的和,末位数字是几?", [0, 5, 1, 2], 0, "和是 5050", "末位是 0", X),
+    ]
+    return make_set("kg_reason6", "推理与最值", "logic", p)
+
 
 def build_practice_pack():
     sets = [
         # 上册
-        fraction_mul_meaning(),
-        fraction_mul_procedure(),
-        fraction_div_meaning(),
-        fraction_div_procedure(),
-        ratio_meaning(),
-        ratio_properties(),
-        ratio_simplify_practice(),
-        circle_parts(),
-        circle_pi(),
-        circle_circumference(),
-        circle_area(),
-        percent_meaning(),
-        percent_fraction_decimal(),
-        percent_calc(),
-        percent_word_basic(),
-        pie_chart_read(),
-        number_shape(),
+        _extend(fraction_mul_meaning(),     _fraction_mul_meaning_extra()),
+        _extend(fraction_mul_procedure(),   _fraction_mul_procedure_extra()),
+        _extend(fraction_div_meaning(),     _fraction_div_meaning_extra()),
+        _extend(fraction_div_procedure(),   _fraction_div_procedure_extra()),
+        _extend(ratio_meaning(),            _ratio_meaning_extra()),
+        _extend(ratio_properties(),         _ratio_properties_extra()),
+        _extend(ratio_simplify_practice(),  _ratio_simplify_extra()),
+        _extend(circle_parts(),             _circle_parts_extra()),
+        _extend(circle_pi(),                _circle_pi_extra()),
+        _extend(circle_circumference(),     _circle_circumference_extra()),
+        _extend(circle_area(),              _circle_area_extra()),
+        _extend(percent_meaning(),          _percent_meaning_extra()),
+        _extend(percent_fraction_decimal(), _percent_fraction_decimal_extra()),
+        _extend(percent_calc(),             _percent_calc_extra()),
+        _extend(percent_word_basic(),       _percent_word_basic_extra()),
+        _extend(pie_chart_read(),           _pie_chart_read_extra()),
+        _extend(number_shape(),             _number_shape_extra()),
         # 下册
-        negative_number(),
-        negative_compare(),
-        discount_tax(),
-        interest_calc(),
-        cylinder_properties(),
-        cone_properties(),
-        cylinder_surface_area(),
-        cylinder_volume(),
-        cone_volume(),
-        proportion_meaning(),
-        proportion_solve(),
-        scale_drawing(),
-        proportion_application(),
-        direction_distance(),
-        pigeonhole(),
+        _extend(negative_number(),          _negative_number_extra()),
+        _extend(negative_compare(),         _negative_compare_extra()),
+        _extend(discount_tax(),             _discount_tax_extra()),
+        _extend(interest_calc(),            _interest_calc_extra()),
+        _extend(cylinder_properties(),      _cylinder_properties_extra()),
+        _extend(cone_properties(),          _cone_properties_extra()),
+        _extend(cylinder_surface_area(),    _cylinder_surface_area_extra()),
+        _extend(cylinder_volume(),          _cylinder_volume_extra()),
+        _extend(cone_volume(),              _cone_volume_extra()),
+        _extend(proportion_meaning(),       _proportion_meaning_extra()),
+        _extend(proportion_solve(),         _proportion_solve_extra()),
+        _extend(scale_drawing(),            _scale_drawing_extra()),
+        _extend(proportion_application(),   _proportion_application_extra()),
+        _extend(direction_distance(),       _direction_distance_extra()),
+        _extend(pigeonhole(),               _pigeonhole_extra()),
+        # 竞赛拓展·袋鼠思维
+        kg_comb6(),
+        kg_reason6(),
     ]
     return {"version": "2.0.0", "grade": 6, "sets": sets}
 
@@ -1393,6 +2922,10 @@ UNITS_G6 = [
     ]),
     ("l5", "lower", 5, "鸽巢问题", [
         ("pigeonhole",             "鸽巢问题",            "logic",     []),
+    ]),
+    ("compkg", "lower", 99, "竞赛拓展·袋鼠思维", [
+        ("kg_comb6",               "组合计数入门",        "logic",     []),
+        ("kg_reason6",             "推理与最值",          "logic",     []),
     ]),
 ]
 
@@ -1502,3 +3035,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # 题目来源标注: 写完 practice+knowledge_map 后,从 km 自动推导 source
+    from source_tags import tag_practice_file
+    _n, _u = tag_practice_file(6)
+    print(f"source-tagged {_n} problems (grade 6)" + (f"  UNMAPPED {_u}" if _u else ""))

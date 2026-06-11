@@ -1,0 +1,309 @@
+{
+  "textbook": "人教版",
+  "grade": 8,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "三角形",
+      "topicIds": [
+        "triangle_angle_sum",
+        "isosceles_triangle"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "全等三角形",
+      "topicIds": [
+        "congruent_triangle_concept",
+        "congruent_triangle_proof"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "轴对称",
+      "topicIds": [
+        "axial_symmetry"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "整式的乘法与因式分解",
+      "topicIds": [
+        "power_rules_practice",
+        "factorization_common",
+        "factorization_formula"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "分式",
+      "topicIds": [
+        "fraction_algebra_concept",
+        "fraction_equation"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "二次根式",
+      "topicIds": [
+        "quadratic_radical",
+        "quadratic_radical_simplify"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "勾股定理",
+      "topicIds": [
+        "pythagorean_theorem"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "平行四边形",
+      "topicIds": [
+        "parallelogram_properties",
+        "rectangle_rhombus_square"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "一次函数",
+      "topicIds": [
+        "linear_function_concept",
+        "linear_function_graph"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "数据的分析",
+      "topicIds": [
+        "data_analysis",
+        "data_variance"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "triangle_angle_sum",
+      "unitId": "u1",
+      "title": "三角形内角和与外角",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "triangle_angles",
+      "problemSetId": "triangle_angle_sum"
+    },
+    {
+      "id": "isosceles_triangle",
+      "unitId": "u1",
+      "title": "等腰三角形",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "triangle_angle_sum"
+      ],
+      "status": "ready",
+      "problemSetId": "isosceles_triangle"
+    },
+    {
+      "id": "congruent_triangle_concept",
+      "unitId": "u2",
+      "title": "全等三角形判定",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "isosceles_triangle"
+      ],
+      "status": "ready",
+      "problemSetId": "congruent_triangle_concept"
+    },
+    {
+      "id": "congruent_triangle_proof",
+      "unitId": "u2",
+      "title": "全等三角形证明",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "congruent_triangle_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "congruent_triangle_proof"
+    },
+    {
+      "id": "axial_symmetry",
+      "unitId": "u3",
+      "title": "轴对称",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "congruent_triangle_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "axial_symmetry"
+    },
+    {
+      "id": "power_rules_practice",
+      "unitId": "u4",
+      "title": "幂的运算",
+      "pedagogy": "procedure",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "power_rules",
+      "problemSetId": "power_rules_practice"
+    },
+    {
+      "id": "factorization_common",
+      "unitId": "u4",
+      "title": "提公因式法因式分解",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "power_rules_practice"
+      ],
+      "status": "ready",
+      "problemSetId": "factorization_common"
+    },
+    {
+      "id": "factorization_formula",
+      "unitId": "u4",
+      "title": "公式法因式分解",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "factorization_common"
+      ],
+      "status": "ready",
+      "problemSetId": "factorization_formula"
+    },
+    {
+      "id": "fraction_algebra_concept",
+      "unitId": "u5",
+      "title": "分式的意义",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "factorization_formula"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_algebra_concept"
+    },
+    {
+      "id": "fraction_equation",
+      "unitId": "u5",
+      "title": "分式方程",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "fraction_algebra_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_equation"
+    },
+    {
+      "id": "quadratic_radical",
+      "unitId": "l1",
+      "title": "二次根式",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "quadratic_radical"
+    },
+    {
+      "id": "quadratic_radical_simplify",
+      "unitId": "l1",
+      "title": "二次根式化简运算",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "quadratic_radical"
+      ],
+      "status": "ready",
+      "problemSetId": "quadratic_radical_simplify"
+    },
+    {
+      "id": "pythagorean_theorem",
+      "unitId": "l2",
+      "title": "勾股定理",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "quadratic_radical"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "pythagorean_triple",
+      "problemSetId": "pythagorean_theorem"
+    },
+    {
+      "id": "parallelogram_properties",
+      "unitId": "l3",
+      "title": "平行四边形性质",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "parallelogram_properties"
+    },
+    {
+      "id": "rectangle_rhombus_square",
+      "unitId": "l3",
+      "title": "矩形菱形正方形",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "parallelogram_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "rectangle_rhombus_square"
+    },
+    {
+      "id": "linear_function_concept",
+      "unitId": "l4",
+      "title": "一次函数概念",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "linear_func_val",
+      "problemSetId": "linear_function_concept"
+    },
+    {
+      "id": "linear_function_graph",
+      "unitId": "l4",
+      "title": "一次函数图象与性质",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "linear_function_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "linear_function_graph"
+    },
+    {
+      "id": "data_analysis",
+      "unitId": "l5",
+      "title": "数据的分析",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "mean_median",
+      "problemSetId": "data_analysis"
+    },
+    {
+      "id": "data_variance",
+      "unitId": "l5",
+      "title": "方差计算",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "data_analysis"
+      ],
+      "status": "ready",
+      "problemSetId": "data_variance"
+    }
+  ]
+}

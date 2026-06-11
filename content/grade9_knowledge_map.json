@@ -1,0 +1,309 @@
+{
+  "textbook": "人教版",
+  "grade": 9,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "一元二次方程",
+      "topicIds": [
+        "quadratic_eq_concept",
+        "quadratic_eq_procedure",
+        "quadratic_eq_application"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "二次函数",
+      "topicIds": [
+        "quadratic_fn_concept",
+        "quadratic_fn_graph",
+        "quadratic_fn_application"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "旋转",
+      "topicIds": [
+        "rotation_properties"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "圆",
+      "topicIds": [
+        "circle_properties",
+        "circle_tangent",
+        "circle_inscribed_angle"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "概率初步",
+      "topicIds": [
+        "probability_concept",
+        "probability_classical",
+        "probability_tree"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "反比例函数",
+      "topicIds": [
+        "inverse_proportion_fn"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "相似",
+      "topicIds": [
+        "similar_triangle_concept",
+        "similar_triangle_proof"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "锐角三角函数",
+      "topicIds": [
+        "trig_definition",
+        "trig_special_values",
+        "trig_application"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "投影与视图",
+      "topicIds": [
+        "projection_view"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "quadratic_eq_concept",
+      "unitId": "u1",
+      "title": "一元二次方程概念",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "quadratic_roots",
+      "problemSetId": "quadratic_eq_concept"
+    },
+    {
+      "id": "quadratic_eq_procedure",
+      "unitId": "u1",
+      "title": "一元二次方程解法",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "quadratic_eq_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "quadratic_eq_procedure"
+    },
+    {
+      "id": "quadratic_eq_application",
+      "unitId": "u1",
+      "title": "一元二次方程应用",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "quadratic_eq_procedure"
+      ],
+      "status": "ready",
+      "problemSetId": "quadratic_eq_application"
+    },
+    {
+      "id": "quadratic_fn_concept",
+      "unitId": "u2",
+      "title": "二次函数概念",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "quadratic_eq_concept"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "quadratic_fn_vertex",
+      "problemSetId": "quadratic_fn_concept"
+    },
+    {
+      "id": "quadratic_fn_graph",
+      "unitId": "u2",
+      "title": "二次函数图象性质",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "quadratic_fn_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "quadratic_fn_graph"
+    },
+    {
+      "id": "quadratic_fn_application",
+      "unitId": "u2",
+      "title": "二次函数应用",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "quadratic_fn_graph"
+      ],
+      "status": "ready",
+      "problemSetId": "quadratic_fn_application"
+    },
+    {
+      "id": "rotation_properties",
+      "unitId": "u3",
+      "title": "旋转的性质",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "rotation_properties"
+    },
+    {
+      "id": "circle_properties",
+      "unitId": "u4",
+      "title": "圆的基本性质",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "circle_properties"
+    },
+    {
+      "id": "circle_tangent",
+      "unitId": "u4",
+      "title": "切线与切线长",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "circle_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "circle_tangent"
+    },
+    {
+      "id": "circle_inscribed_angle",
+      "unitId": "u4",
+      "title": "圆周角与圆心角",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "circle_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "circle_inscribed_angle"
+    },
+    {
+      "id": "probability_concept",
+      "unitId": "u5",
+      "title": "概率的基本概念",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "probability_count",
+      "problemSetId": "probability_concept"
+    },
+    {
+      "id": "probability_classical",
+      "unitId": "u5",
+      "title": "古典概型计算",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "probability_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "probability_classical"
+    },
+    {
+      "id": "probability_tree",
+      "unitId": "u5",
+      "title": "概率树图与列举",
+      "pedagogy": "data",
+      "dependsOn": [
+        "probability_classical"
+      ],
+      "status": "ready",
+      "problemSetId": "probability_tree"
+    },
+    {
+      "id": "inverse_proportion_fn",
+      "unitId": "l1",
+      "title": "反比例函数",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "inverse_proportion_fn"
+    },
+    {
+      "id": "similar_triangle_concept",
+      "unitId": "l2",
+      "title": "相似三角形概念与性质",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "similar_ratio",
+      "problemSetId": "similar_triangle_concept"
+    },
+    {
+      "id": "similar_triangle_proof",
+      "unitId": "l2",
+      "title": "相似三角形判定与证明",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "similar_triangle_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "similar_triangle_proof"
+    },
+    {
+      "id": "trig_definition",
+      "unitId": "l3",
+      "title": "锐角三角函数定义",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "trig_definition"
+    },
+    {
+      "id": "trig_special_values",
+      "unitId": "l3",
+      "title": "特殊角三角函数值",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "trig_definition"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "special_angle_trig",
+      "problemSetId": "trig_special_values"
+    },
+    {
+      "id": "trig_application",
+      "unitId": "l3",
+      "title": "三角函数应用",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "trig_special_values"
+      ],
+      "status": "ready",
+      "problemSetId": "trig_application"
+    },
+    {
+      "id": "projection_view",
+      "unitId": "l4",
+      "title": "投影与视图",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "projection_view"
+    }
+  ]
+}

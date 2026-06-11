@@ -192,6 +192,16 @@
       "topicIds": [
         "combination"
       ]
+    },
+    {
+      "id": "compkg",
+      "term": "lower",
+      "index": 9,
+      "title": "竞赛拓展·袋鼠思维",
+      "topicIds": [
+        "kg_pattern3",
+        "kg_count3"
+      ]
     }
   ],
   "topics": [
@@ -677,6 +687,24 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "combination"
+    },
+    {
+      "id": "kg_pattern3",
+      "unitId": "compkg",
+      "title": "找规律",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_pattern3"
+    },
+    {
+      "id": "kg_count3",
+      "unitId": "compkg",
+      "title": "趣味计数",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_count3"
     }
   ]
 }

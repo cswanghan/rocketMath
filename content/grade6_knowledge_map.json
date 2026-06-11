@@ -137,6 +137,16 @@
       "topicIds": [
         "pigeonhole"
       ]
+    },
+    {
+      "id": "compkg",
+      "term": "lower",
+      "index": 99,
+      "title": "竞赛拓展·袋鼠思维",
+      "topicIds": [
+        "kg_comb6",
+        "kg_reason6"
+      ]
     }
   ],
   "topics": [
@@ -482,6 +492,24 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "pigeonhole"
+    },
+    {
+      "id": "kg_comb6",
+      "unitId": "compkg",
+      "title": "组合计数入门",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_comb6"
+    },
+    {
+      "id": "kg_reason6",
+      "unitId": "compkg",
+      "title": "推理与最值",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_reason6"
     }
   ]
 }

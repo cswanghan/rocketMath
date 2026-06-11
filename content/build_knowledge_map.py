@@ -105,6 +105,10 @@ UNITS = [
     ("l8", "lower", 8, "数学广角——搭配", [
         ("combination", "搭配(组合)", "logic", [], S, None),
     ]),
+    ("compkg", "lower", 9, "竞赛拓展·袋鼠思维", [
+        ("kg_pattern3", "找规律", "logic", [], R, None),
+        ("kg_count3", "趣味计数", "logic", [], R, None),
+    ]),
 ]
 
 
@@ -164,3 +168,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # 题目来源标注: 写完 practice+knowledge_map 后,从 km 自动推导 source
+    from source_tags import tag_practice_file
+    _n, _u = tag_practice_file(3)
+    print(f"source-tagged {_n} problems (grade 3)" + (f"  UNMAPPED {_u}" if _u else ""))

@@ -1,0 +1,585 @@
+{
+  "version": "1.0.0",
+  "grade": 7,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "轻松",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "标准",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "挑战",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "rational_add_sub",
+      "name": "有理数加减法口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "rat_add_0_n3p5",
+              "prompt": "(-3) + 5 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add_0_4pn6",
+              "prompt": "(4) + (-6) = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add_0_n7p7",
+              "prompt": "(-7) + 7 = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add_0_8pn3",
+              "prompt": "(8) + (-3) = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "rat_add_1_n4pn6",
+              "prompt": "(-4) + (-6) = ?",
+              "answer": -10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add_1_n9p13",
+              "prompt": "(-9) + 13 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add_1_15pn8",
+              "prompt": "(15) + (-8) = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add_1_n12p5",
+              "prompt": "(-12) + 5 = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "rat_sub_2_3mn5",
+              "prompt": "(3) - (-5) = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_sub_2_n6m4",
+              "prompt": "(-6) - 4 = ?",
+              "answer": -10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_sub_2_0mn8",
+              "prompt": "(0) - (-8) = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_sub_2_n5mn3",
+              "prompt": "(-5) - (-3) = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "rat_add3_3_3_n7_4",
+              "prompt": "3 + (-7) + 4 = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add3_3_n2_6_n4",
+              "prompt": "(-2) + 6 + (-4) = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add3_3_5_n9_6",
+              "prompt": "5 + (-9) + 6 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_add3_3_n8_3_n1",
+              "prompt": "(-8) + 3 + (-1) = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "rational_mul_div",
+      "name": "有理数乘除法口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "rat_mul_0_n3x4",
+              "prompt": "(-3) × 4 = ?",
+              "answer": -12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_mul_0_5xn2",
+              "prompt": "5 × (-2) = ?",
+              "answer": -10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_mul_0_n6xn3",
+              "prompt": "(-6) × (-3) = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_mul_0_7xn3",
+              "prompt": "7 × (-3) = ?",
+              "answer": -21,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "rat_mul_1_n8x5",
+              "prompt": "(-8) × 5 = ?",
+              "answer": -40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_mul_1_n4xn9",
+              "prompt": "(-4) × (-9) = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_mul_1_3xn7",
+              "prompt": "3 × (-7) = ?",
+              "answer": -21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_mul_1_n6x6",
+              "prompt": "(-6) × 6 = ?",
+              "answer": -36,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "rat_div_2_n12d4",
+              "prompt": "(-12) ÷ 4 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_div_2_20dn5",
+              "prompt": "20 ÷ (-5) = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_div_2_n18dn6",
+              "prompt": "(-18) ÷ (-6) = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_div_2_36dn9",
+              "prompt": "36 ÷ (-9) = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "rat_div_3_n48d8",
+              "prompt": "(-48) ÷ 8 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_div_3_n35dn7",
+              "prompt": "(-35) ÷ (-7) = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_div_3_42dn6",
+              "prompt": "42 ÷ (-6) = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "rat_div_3_n56dn8",
+              "prompt": "(-56) ÷ (-8) = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "rational_power",
+      "name": "有理数乘方口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "rat_pow_0_n2e2",
+              "prompt": "(-2)^2 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_0_n3e2",
+              "prompt": "(-3)^2 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_0_n2e3",
+              "prompt": "(-2)^3 = ?",
+              "answer": -8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_0_n1e5",
+              "prompt": "(-1)^5 = ?",
+              "answer": -1,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "rat_pow_1_n4e2",
+              "prompt": "(-4)^2 = ?",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_1_n5e2",
+              "prompt": "(-5)^2 = ?",
+              "answer": 25,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_1_n2e4",
+              "prompt": "(-2)^4 = ?",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_1_n3e3",
+              "prompt": "(-3)^3 = ?",
+              "answer": -27,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "rat_pow_2_n1e100",
+              "prompt": "(-1)^100 = ?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_2_n1e101",
+              "prompt": "(-1)^101 = ?",
+              "answer": -1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_2_n2e5",
+              "prompt": "(-2)^5 = ?",
+              "answer": -32,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_2_3e4",
+              "prompt": "3^4 = ?",
+              "answer": 81,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "rat_pow_3_n5e3",
+              "prompt": "(-5)^3 = ?",
+              "answer": -125,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_3_2e7",
+              "prompt": "2^7 = ?",
+              "answer": 128,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_3_n4e3",
+              "prompt": "(-4)^3 = ?",
+              "answer": -64,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "rat_pow_3_4e4",
+              "prompt": "4^4 = ?",
+              "answer": 256,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "monomial_eval",
+      "name": "单项式代值口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "mono_eval_0_2x_x3",
+              "prompt": "当 x = 3 时，2x = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_0_3x_xn2",
+              "prompt": "当 x = -2 时，3x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_0_5x_x4",
+              "prompt": "当 x = 4 时，5x = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_0_n4x_x3",
+              "prompt": "当 x = 3 时，-4x = ?",
+              "answer": -12,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "mono_eval_1_x²_x3",
+              "prompt": "当 x = 3 时，x² = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_1_x²_xn4",
+              "prompt": "当 x = -4 时，x² = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_1_nx²_x2",
+              "prompt": "当 x = 2 时，-x² = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_1_2x²_xn3",
+              "prompt": "当 x = -3 时，2x² = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "mono_eval_2_3x²_xn2",
+              "prompt": "当 x = -2 时，3x² = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_2_n2x³_x2",
+              "prompt": "当 x = 2 时，-2x³ = ?",
+              "answer": -16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_2_4x²_x3",
+              "prompt": "当 x = 3 时，4x² = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_2_x³_xn3",
+              "prompt": "当 x = -3 时，x³ = ?",
+              "answer": -27,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "mono_eval_3_5x²_xn2",
+              "prompt": "当 x = -2 时，5x² = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_3_n3x³_x2",
+              "prompt": "当 x = 2 时，-3x³ = ?",
+              "answer": -24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_3_2x²px_x3",
+              "prompt": "当 x = 3 时，2x²+x = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "mono_eval_3_x²n2x_xn1",
+              "prompt": "当 x = -1 时，x²-2x = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "rational_number_concept",
+    "number_line",
+    "absolute_value",
+    "rational_mixed_ops",
+    "polynomial_add_sub",
+    "linear_equation_one",
+    "linear_equation_app",
+    "geometry_intro",
+    "parallel_lines",
+    "real_number_sqrt",
+    "coordinate_plane",
+    "equation_system",
+    "inequality_group",
+    "data_statistics"
+  ]
+}

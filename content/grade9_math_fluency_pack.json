@@ -1,0 +1,764 @@
+{
+  "version": "1.0.0",
+  "grade": 9,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "轻松",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "标准",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "挑战",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "quadratic_roots",
+      "name": "一元二次方程整数根口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "qr_s_-5_6",
+              "prompt": "x²-5x+6=0 两根之和 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_-7_12",
+              "prompt": "x²-7x+12=0 两根之和 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_-6_8",
+              "prompt": "x²-6x+8=0 两根之和 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_-9_20",
+              "prompt": "x²-9x+20=0 两根之和 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "qr_p_-5_6",
+              "prompt": "x²-5x+6=0 两根之积 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_-7_12",
+              "prompt": "x²-7x+12=0 两根之积 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_-8_15",
+              "prompt": "x²-8x+15=0 两根之积 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_-9_18",
+              "prompt": "x²-9x+18=0 两根之积 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "qr_min_-5_6",
+              "prompt": "x²-5x+6=0 较小根 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_min_-7_12",
+              "prompt": "x²-7x+12=0 较小根 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_min_-8_15",
+              "prompt": "x²-8x+15=0 较小根 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_min_-6_9",
+              "prompt": "x²-6x+9=0 较小根 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "qr_s_1_-6",
+              "prompt": "x²+1x-6=0 两根之和 = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_2_-8",
+              "prompt": "x²+2x-8=0 两根之和 = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_3_-10",
+              "prompt": "x²+3x-10=0 两根之和 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_4_-12",
+              "prompt": "x²+4x-12=0 两根之和 = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "qr_p_1_-6",
+              "prompt": "x²+1x-6=0 两根之积 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_2_-8",
+              "prompt": "x²+2x-8=0 两根之积 = ?",
+              "answer": -8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_3_-10",
+              "prompt": "x²+3x-10=0 两根之积 = ?",
+              "answer": -10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_4_-12",
+              "prompt": "x²+4x-12=0 两根之积 = ?",
+              "answer": -12,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "qr_max_1_-6",
+              "prompt": "x²+1x-6=0 较大根 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_max_2_-8",
+              "prompt": "x²+2x-8=0 较大根 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_max_3_-10",
+              "prompt": "x²+3x-10=0 较大根 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_max_5_-14",
+              "prompt": "x²+5x-14=0 较大根 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "quadratic_fn_vertex",
+      "name": "二次函数顶点对称轴口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "qfv_axis_0_2",
+              "prompt": "y=(x-2)²+3  对称轴 x = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_0_3",
+              "prompt": "y=(x-3)²+1  对称轴 x = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_0_-1",
+              "prompt": "y=(x+1)²+4  对称轴 x = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_0_-4",
+              "prompt": "y=(x+4)²  对称轴 x = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "qfv_vy_1_3",
+              "prompt": "y=(x-2)²+3  顶点纵坐标 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_1_1",
+              "prompt": "y=(x-3)²+1  顶点纵坐标 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_1_-5",
+              "prompt": "y=2(x)²-5  顶点纵坐标 = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_1_7",
+              "prompt": "y=(x+4)²+7  顶点纵坐标 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "qfv_axis_std_2_-4",
+              "prompt": "y=x²-4x+3  对称轴 x = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_std_2_6",
+              "prompt": "y=x²+6x+5  对称轴 x = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_std_2_-2",
+              "prompt": "y=x²-2x-3  对称轴 x = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_std_2_-8",
+              "prompt": "y=2x²-8x+10  对称轴 x = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "qfv_vy_std_3_-4",
+              "prompt": "y=x²-4x+3  顶点纵坐标 = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_std_3_6",
+              "prompt": "y=x²+6x+5  顶点纵坐标 = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_std_3_-2",
+              "prompt": "y=x²-2x-3  顶点纵坐标 = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_std_3_-8",
+              "prompt": "y=2x²-8x+10  顶点纵坐标 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "special_angle_trig",
+      "name": "特殊角三角函数口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "sat_0_0",
+              "prompt": "sin___°= 1/2, 此锐角为几度?",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_0_1",
+              "prompt": "cos___°= 1/2, 此锐角为几度?",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_0_2",
+              "prompt": "tan___°= 1,   此锐角为几度?",
+              "answer": 45,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_0_3",
+              "prompt": "sin___°= 1,   此角为几度?",
+              "answer": 90,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "sat_1_0",
+              "prompt": "cos___°= √3/2, 此锐角为几度?",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_1_1",
+              "prompt": "sin___°= √3/2, 此锐角为几度?",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_1_2",
+              "prompt": "tan___°= √3,   此锐角为几度?",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_1_3",
+              "prompt": "cos___°= 0,    此角为几度?",
+              "answer": 90,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "sat_2_0",
+              "prompt": "直角△斜边=10,∠A=30°,A的对边=10×sin30°=?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_2_1",
+              "prompt": "直角△斜边=10,∠A=60°,A的邻边=10×cos60°=?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_2_2",
+              "prompt": "直角△斜边=20,∠A=30°,A的对边=20×sin30°=?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_2_3",
+              "prompt": "直角△斜边=20,∠A=60°,A的邻边=20×cos60°=?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "sat_3_0",
+              "prompt": "直角△邻边=3,∠A=45°,对边=3×tan45°=?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_3_1",
+              "prompt": "直角△邻边=5,∠A=45°,对边=5×tan45°=?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_3_2",
+              "prompt": "直角△斜边=6,∠A=30°,A的对边=6×sin30°=?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_3_3",
+              "prompt": "直角△斜边=8,∠A=30°,A的对边=8×sin30°=?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "probability_count",
+      "name": "概率古典概型计数口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "prob_0_0",
+              "prompt": "掷一枚骰子,出现偶数点的等可能结果有几个?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_0_1",
+              "prompt": "掷一枚骰子,出现3的倍数点的等可能结果有几个?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_0_2",
+              "prompt": "掷一枚骰子,所有等可能结果共几个?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_0_3",
+              "prompt": "掷一枚骰子,出现奇数点的等可能结果有几个?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "prob_1_0",
+              "prompt": "一个装有3个红球2个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_1_1",
+              "prompt": "一个装有4个黑球3个白球的袋子,随机摸一个\n全部等可能结果共几种?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_1_2",
+              "prompt": "从1,2,3,4,5中随机取一个数\n取到奇数有几种等可能结果?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_1_3",
+              "prompt": "从1,2,3,4,5中随机取一个数\n取到大于3的数有几种等可能结果?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "prob_2_0",
+              "prompt": "从1~10中随机取一数\n等可能结果共几个?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_2_1",
+              "prompt": "从1~10中随机取一数\n取到质数的有利结果有几个?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_2_2",
+              "prompt": "从1~10中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_2_3",
+              "prompt": "从1~10中随机取一数\n取到4的因数的有利结果有几个?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "prob_3_0",
+              "prompt": "掷两枚硬币,正反两面各一,全部等可能结果共几个?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_3_1",
+              "prompt": "掷两枚硬币,恰好一正一反的有利结果有几个?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_3_2",
+              "prompt": "掷两枚硬币,至少一个正面的有利结果有几个?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_3_3",
+              "prompt": "掷两枚硬币,两面都是正面的有利结果有几个?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "similar_ratio",
+      "name": "相似三角形边长口算",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "simr_0_0",
+              "prompt": "两相似△相似比 2:1,较大对应边=6,\n较小对应边 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_0_1",
+              "prompt": "两相似△相似比 3:1,较大对应边=9,\n较小对应边 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_0_2",
+              "prompt": "两相似△相似比 2:1,较大对应边=8,\n较小对应边 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_0_3",
+              "prompt": "两相似△相似比 3:1,较大对应边=12,\n较小对应边 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "simr_1_0",
+              "prompt": "两相似△相似比 2:1,较小对应边=4,\n较大对应边 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_1_1",
+              "prompt": "两相似△相似比 3:1,较小对应边=5,\n较大对应边 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_1_2",
+              "prompt": "两相似△相似比 2:1,较小对应边=7,\n较大对应边 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_1_3",
+              "prompt": "两相似△相似比 4:1,较小对应边=3,\n较大对应边 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "simr_2_0",
+              "prompt": "两相似△相似比 3:2,较大对应边=6,\n较小对应边 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_2_1",
+              "prompt": "两相似△相似比 3:2,较大对应边=9,\n较小对应边 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_2_2",
+              "prompt": "两相似△相似比 4:3,较大对应边=12,\n较小对应边 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_2_3",
+              "prompt": "两相似△相似比 5:2,较大对应边=10,\n较小对应边 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "simr_3_0",
+              "prompt": "两相似△相似比 3:2,较小对应边=4,\n较大对应边 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_3_1",
+              "prompt": "两相似△相似比 5:3,较小对应边=6,\n较大对应边 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_3_2",
+              "prompt": "两相似△相似比 4:3,较小对应边=9,\n较大对应边 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_3_3",
+              "prompt": "两相似△相似比 5:2,较小对应边=4,\n较大对应边 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "quadratic_eq_procedure",
+    "quadratic_fn_graph",
+    "quadratic_fn_application",
+    "circle_properties",
+    "circle_tangent",
+    "circle_inscribed_angle",
+    "rotation_properties",
+    "probability_tree",
+    "inverse_proportion_fn",
+    "similar_triangle_proof",
+    "trig_application",
+    "projection_view"
+  ]
+}

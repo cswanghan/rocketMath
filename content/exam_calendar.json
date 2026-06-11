@@ -1,5 +1,5 @@
 {
-  "version": "2026-06.3",
+  "version": "2026-06.4",
   "series": [
     {
       "id": "amc8",
@@ -295,23 +295,23 @@
         },
         {
           "grade": 3,
-          "topicId": "sets",
-          "label": "集合(重叠问题)"
+          "topicId": "kg_pattern3",
+          "label": "找规律"
+        },
+        {
+          "grade": 3,
+          "topicId": "kg_count3",
+          "label": "趣味计数"
         },
         {
           "grade": 4,
-          "topicId": "angle_types",
-          "label": "角的分类"
+          "topicId": "kg_smart4",
+          "label": "巧算速算"
         },
         {
           "grade": 4,
-          "topicId": "observation_3d",
-          "label": "观察物体"
-        },
-        {
-          "grade": 4,
-          "topicId": "optimization",
-          "label": "优化问题"
+          "topicId": "kg_logic4",
+          "label": "逻辑推理"
         },
         {
           "grade": 5,
@@ -320,18 +320,23 @@
         },
         {
           "grade": 5,
-          "topicId": "tree_planting",
-          "label": "植树问题"
+          "topicId": "kg_parity5",
+          "label": "奇偶与整除趣题"
+        },
+        {
+          "grade": 5,
+          "topicId": "kg_count5",
+          "label": "计数与路径"
         },
         {
           "grade": 6,
-          "topicId": "number_shape",
-          "label": "数与形"
+          "topicId": "kg_comb6",
+          "label": "组合计数入门"
         },
         {
           "grade": 6,
-          "topicId": "pigeonhole",
-          "label": "鸽巢问题"
+          "topicId": "kg_reason6",
+          "label": "推理与最值"
         }
       ],
       "vocabLink": null
@@ -398,6 +403,16 @@
           "grade": 6,
           "topicId": "circle_area",
           "label": "圆的面积"
+        },
+        {
+          "grade": 4,
+          "topicId": "kg_smart4",
+          "label": "巧算速算"
+        },
+        {
+          "grade": 6,
+          "topicId": "kg_reason6",
+          "label": "推理与最值"
         }
       ],
       "vocabLink": null
@@ -464,6 +479,16 @@
           "grade": 6,
           "topicId": "circle_area",
           "label": "圆的面积"
+        },
+        {
+          "grade": 4,
+          "topicId": "kg_logic4",
+          "label": "逻辑推理"
+        },
+        {
+          "grade": 5,
+          "topicId": "kg_count5",
+          "label": "计数与路径"
         }
       ],
       "vocabLink": null
@@ -530,6 +555,16 @@
           "grade": 6,
           "topicId": "pigeonhole",
           "label": "鸽巢问题"
+        },
+        {
+          "grade": 5,
+          "topicId": "kg_count5",
+          "label": "计数与路径"
+        },
+        {
+          "grade": 6,
+          "topicId": "kg_comb6",
+          "label": "组合计数入门"
         }
       ],
       "vocabLink": null

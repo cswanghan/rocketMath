@@ -1,0 +1,265 @@
+{
+  "textbook": "人教版",
+  "grade": 7,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "有理数",
+      "topicIds": [
+        "rational_number_concept",
+        "number_line",
+        "absolute_value",
+        "rational_mixed_ops"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "整式的加减",
+      "topicIds": [
+        "polynomial_concept",
+        "polynomial_add_sub"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "一元一次方程",
+      "topicIds": [
+        "linear_equation_one",
+        "linear_equation_app"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "几何图形初步",
+      "topicIds": [
+        "geometry_intro"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "相交线与平行线",
+      "topicIds": [
+        "parallel_lines"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "实数",
+      "topicIds": [
+        "real_number_sqrt"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "平面直角坐标系",
+      "topicIds": [
+        "coordinate_plane"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "二元一次方程组",
+      "topicIds": [
+        "equation_system"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "不等式与不等式组",
+      "topicIds": [
+        "inequality_group"
+      ]
+    },
+    {
+      "id": "l6",
+      "term": "lower",
+      "index": 6,
+      "title": "数据的收集整理与描述",
+      "topicIds": [
+        "data_statistics"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "rational_number_concept",
+      "unitId": "u1",
+      "title": "有理数的概念",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "rational_number_concept"
+    },
+    {
+      "id": "number_line",
+      "unitId": "u1",
+      "title": "数轴与有理数",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "rational_number_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "number_line"
+    },
+    {
+      "id": "absolute_value",
+      "unitId": "u1",
+      "title": "绝对值",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "number_line"
+      ],
+      "status": "ready",
+      "problemSetId": "absolute_value"
+    },
+    {
+      "id": "rational_mixed_ops",
+      "unitId": "u1",
+      "title": "有理数混合运算",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "absolute_value"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "rational_add_sub",
+      "problemSetId": "rational_mixed_ops"
+    },
+    {
+      "id": "polynomial_concept",
+      "unitId": "u2",
+      "title": "单项式与多项式",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "rational_mixed_ops"
+      ],
+      "status": "ready",
+      "problemSetId": "polynomial_concept"
+    },
+    {
+      "id": "polynomial_add_sub",
+      "unitId": "u2",
+      "title": "整式加减",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "polynomial_concept"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "monomial_eval",
+      "problemSetId": "polynomial_add_sub"
+    },
+    {
+      "id": "linear_equation_one",
+      "unitId": "u3",
+      "title": "解一元一次方程",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "polynomial_add_sub"
+      ],
+      "status": "ready",
+      "problemSetId": "linear_equation_one"
+    },
+    {
+      "id": "linear_equation_app",
+      "unitId": "u3",
+      "title": "一元一次方程应用",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "linear_equation_one"
+      ],
+      "status": "ready",
+      "problemSetId": "linear_equation_app"
+    },
+    {
+      "id": "geometry_intro",
+      "unitId": "u4",
+      "title": "直线射线线段与角",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geometry_intro"
+    },
+    {
+      "id": "parallel_lines",
+      "unitId": "l1",
+      "title": "相交线与平行线",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "geometry_intro"
+      ],
+      "status": "ready",
+      "problemSetId": "parallel_lines"
+    },
+    {
+      "id": "real_number_sqrt",
+      "unitId": "l2",
+      "title": "平方根与立方根",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "rational_number_concept"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "rational_power",
+      "problemSetId": "real_number_sqrt"
+    },
+    {
+      "id": "coordinate_plane",
+      "unitId": "l3",
+      "title": "平面直角坐标系",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "number_line"
+      ],
+      "status": "ready",
+      "problemSetId": "coordinate_plane"
+    },
+    {
+      "id": "equation_system",
+      "unitId": "l4",
+      "title": "二元一次方程组",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "linear_equation_one"
+      ],
+      "status": "ready",
+      "problemSetId": "equation_system"
+    },
+    {
+      "id": "inequality_group",
+      "unitId": "l5",
+      "title": "不等式与不等式组",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "linear_equation_one"
+      ],
+      "status": "ready",
+      "problemSetId": "inequality_group"
+    },
+    {
+      "id": "data_statistics",
+      "unitId": "l6",
+      "title": "数据的收集整理与描述",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "data_statistics"
+    }
+  ]
+}

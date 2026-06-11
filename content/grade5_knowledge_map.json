@@ -158,6 +158,16 @@
       "topicIds": [
         "find_defective"
       ]
+    },
+    {
+      "id": "compkg",
+      "term": "lower",
+      "index": 99,
+      "title": "竞赛拓展·袋鼠思维",
+      "topicIds": [
+        "kg_parity5",
+        "kg_count5"
+      ]
     }
   ],
   "topics": [
@@ -542,6 +552,24 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "find_defective"
+    },
+    {
+      "id": "kg_parity5",
+      "unitId": "compkg",
+      "title": "奇偶与整除趣题",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_parity5"
+    },
+    {
+      "id": "kg_count5",
+      "unitId": "compkg",
+      "title": "计数与路径",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_count5"
     }
   ]
 }

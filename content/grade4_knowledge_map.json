@@ -172,6 +172,16 @@
       "topicIds": [
         "chicken_rabbit"
       ]
+    },
+    {
+      "id": "compkg",
+      "term": "lower",
+      "index": 99,
+      "title": "竞赛拓展·袋鼠思维",
+      "topicIds": [
+        "kg_smart4",
+        "kg_logic4"
+      ]
     }
   ],
   "topics": [
@@ -528,6 +538,24 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "chicken_rabbit"
+    },
+    {
+      "id": "kg_smart4",
+      "unitId": "compkg",
+      "title": "巧算速算",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_smart4"
+    },
+    {
+      "id": "kg_logic4",
+      "unitId": "compkg",
+      "title": "逻辑推理",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_logic4"
     }
   ]
 }
