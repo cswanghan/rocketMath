@@ -15943,6 +15943,782 @@
           }
         }
       ]
+    },
+    {
+      "id": "geo_angle4",
+      "title": "角度计算与推理",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ga4_b0",
+          "type": "mc",
+          "prompt": "一个直角是多少度?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "90",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "180",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "60",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "45",
+              "correct": false
+            }
+          ],
+          "hint": "直角像方块的角",
+          "explanation": "90°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_b1",
+          "type": "mc",
+          "prompt": "一个平角是多少度?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "180",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "90",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "360",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "270",
+              "correct": false
+            }
+          ],
+          "hint": "平角是一条直线",
+          "explanation": "180°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_b2",
+          "type": "mc",
+          "prompt": "钟面 6 点整,时针与分针的夹角是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "180",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "90",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "150",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "120",
+              "correct": false
+            }
+          ],
+          "hint": "正好一上一下",
+          "explanation": "180°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_c0",
+          "type": "mc",
+          "prompt": "三角形的内角和是多少度?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "180",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "360",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "90",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "270",
+              "correct": false
+            }
+          ],
+          "hint": "撕角拼一拼成平角",
+          "explanation": "180°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_c1",
+          "type": "mc",
+          "prompt": "三角形两个角是 50° 和 60°,第三个角是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "70",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "80",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "60",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "110",
+              "correct": false
+            }
+          ],
+          "hint": "用 180 减",
+          "explanation": "180−50−60=70°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_c2",
+          "type": "mc",
+          "prompt": "直角三角形的一个锐角是 35°,另一个锐角是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "55",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "65",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "45",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "90",
+              "correct": false
+            }
+          ],
+          "hint": "两锐角和是 90°",
+          "explanation": "90−35=55°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_c3",
+          "type": "mc",
+          "prompt": "钟面 3 点整,时针与分针的夹角是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "90",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "30",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "60",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "120",
+              "correct": false
+            }
+          ],
+          "hint": "相差 3 大格,每格 30°",
+          "explanation": "3×30°=90°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_x0",
+          "type": "mc",
+          "prompt": "等腰三角形顶角是 40°,一个底角是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "70",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "40",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "100",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "80",
+              "correct": false
+            }
+          ],
+          "hint": "两底角相等,先减顶角",
+          "explanation": "(180−40)÷2=70°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_x1",
+          "type": "mc",
+          "prompt": "一个角的余角是 30°,这个角是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "60",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "30",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "150",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "120",
+              "correct": false
+            }
+          ],
+          "hint": "余角相加是 90°",
+          "explanation": "90−30=60°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        },
+        {
+          "id": "ga4_x2",
+          "type": "mc",
+          "prompt": "四边形的内角和是多少度?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "360",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "180",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "540",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "270",
+              "correct": false
+            }
+          ],
+          "hint": "分成两个三角形",
+          "explanation": "2×180=360°",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "角度计算与推理",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 角度计算与推理"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo_figure4",
+      "title": "图形计数与拼组",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "gf4_b0",
+          "type": "mc",
+          "prompt": "一条直线上有 3 个点,共有几条线段?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "6",
+              "correct": false
+            }
+          ],
+          "hint": "每两点一条",
+          "explanation": "AB、BC、AC",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_b1",
+          "type": "mc",
+          "prompt": "一个长方形画两条对角线,能数出几个三角形?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "8",
+              "correct": false
+            }
+          ],
+          "hint": "对角线交叉分成 4 块",
+          "explanation": "4 个",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_b2",
+          "type": "mc",
+          "prompt": "2×2 的方格里,正方形一共有几个?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "8",
+              "correct": false
+            }
+          ],
+          "hint": "别忘了大的那个",
+          "explanation": "4 个小 + 1 个大 = 5",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_c0",
+          "type": "mc",
+          "prompt": "3×3 的方格里,1×1 的小正方形有几个?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "8",
+              "correct": false
+            }
+          ],
+          "hint": "一行 3 个,共 3 行",
+          "explanation": "3×3=9",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_c1",
+          "type": "mc",
+          "prompt": "一排 3 个相同的小正方形,能数出几个长方形?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "5",
+              "correct": false
+            }
+          ],
+          "hint": "单个、两个一组、三个一组都算",
+          "explanation": "3+2+1=6",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_c2",
+          "type": "mc",
+          "prompt": "大三角形从顶点向底边引 2 条线,把底边分成 3 段,共有几个三角形?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "底边上有 4 个点,选 2 个配顶点",
+          "explanation": "C(4,2)=6",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_c3",
+          "type": "mc",
+          "prompt": "5 个点(任意三点不在一条直线上),两两连线段,最多几条?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "10",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "20",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "25",
+              "correct": false
+            }
+          ],
+          "hint": "每两点一条,5×4÷2",
+          "explanation": "10 条",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_x0",
+          "type": "mc",
+          "prompt": "3×3 的方格里,所有正方形(含 2×2、3×3)一共几个?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "14",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "13",
+              "correct": false
+            }
+          ],
+          "hint": "分大小数:9+4+1",
+          "explanation": "14 个",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_x1",
+          "type": "mc",
+          "prompt": "从五边形的一个顶点出发,能画几条对角线?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "1",
+              "correct": false
+            }
+          ],
+          "hint": "不能连自己和相邻两点",
+          "explanation": "5−3=2",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        },
+        {
+          "id": "gf4_x2",
+          "type": "mc",
+          "prompt": "6 个点两两连线段,最多几条?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "15",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "30",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "21",
+              "correct": false
+            }
+          ],
+          "hint": "6×5÷2",
+          "explanation": "15 条",
+          "source": {
+            "edition": "人教版",
+            "grade": 4,
+            "gradeLabel": "四年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "图形计数与拼组",
+            "label": "人教版 · 四年级 · 竞赛拓展·几何 · 图形计数与拼组"
+          }
+        }
+      ]
     }
   ]
 }

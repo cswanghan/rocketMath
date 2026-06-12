@@ -1,5 +1,5 @@
 {
-  "version": "2026-06.5",
+  "version": "2026-06.6",
   "series": [
     {
       "id": "amc8",
@@ -83,6 +83,26 @@
           "grade": 6,
           "topicId": "comb_casework6",
           "label": "分类枚举计数"
+        },
+        {
+          "grade": 4,
+          "topicId": "geo_angle4",
+          "label": "角度计算与推理"
+        },
+        {
+          "grade": 4,
+          "topicId": "geo_figure4",
+          "label": "图形计数与拼组"
+        },
+        {
+          "grade": 5,
+          "topicId": "geo_area5",
+          "label": "面积割补与组合"
+        },
+        {
+          "grade": 6,
+          "topicId": "geo_circle6",
+          "label": "圆与阴影面积"
         }
       ],
       "vocabLink": null
@@ -154,6 +174,11 @@
           "grade": 6,
           "topicId": "nt_remainder6",
           "label": "余数与周期问题"
+        },
+        {
+          "grade": 6,
+          "topicId": "geo_circle6",
+          "label": "圆与阴影面积"
         }
       ],
       "vocabLink": null
@@ -372,6 +397,16 @@
           "grade": 6,
           "topicId": "kg_reason6",
           "label": "推理与最值"
+        },
+        {
+          "grade": 4,
+          "topicId": "geo_angle4",
+          "label": "角度计算与推理"
+        },
+        {
+          "grade": 4,
+          "topicId": "geo_figure4",
+          "label": "图形计数与拼组"
         }
       ],
       "vocabLink": null
@@ -448,6 +483,16 @@
           "grade": 6,
           "topicId": "kg_reason6",
           "label": "推理与最值"
+        },
+        {
+          "grade": 5,
+          "topicId": "geo_area5",
+          "label": "面积割补与组合"
+        },
+        {
+          "grade": 6,
+          "topicId": "geo_circle6",
+          "label": "圆与阴影面积"
         }
       ],
       "vocabLink": null
@@ -524,6 +569,16 @@
           "grade": 5,
           "topicId": "kg_count5",
           "label": "计数与路径"
+        },
+        {
+          "grade": 4,
+          "topicId": "geo_angle4",
+          "label": "角度计算与推理"
+        },
+        {
+          "grade": 5,
+          "topicId": "geo_area5",
+          "label": "面积割补与组合"
         }
       ],
       "vocabLink": null
@@ -610,6 +665,16 @@
           "grade": 6,
           "topicId": "comb_casework6",
           "label": "分类枚举计数"
+        },
+        {
+          "grade": 5,
+          "topicId": "geo_area5",
+          "label": "面积割补与组合"
+        },
+        {
+          "grade": 6,
+          "topicId": "geo_circle6",
+          "label": "圆与阴影面积"
         }
       ],
       "vocabLink": null

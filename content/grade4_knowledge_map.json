@@ -182,6 +182,16 @@
         "kg_smart4",
         "kg_logic4"
       ]
+    },
+    {
+      "id": "compgeo",
+      "term": "lower",
+      "index": 100,
+      "title": "竞赛拓展·几何",
+      "topicIds": [
+        "geo_angle4",
+        "geo_figure4"
+      ]
     }
   ],
   "topics": [
@@ -556,6 +566,24 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "kg_logic4"
+    },
+    {
+      "id": "geo_angle4",
+      "unitId": "compgeo",
+      "title": "角度计算与推理",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geo_angle4"
+    },
+    {
+      "id": "geo_figure4",
+      "unitId": "compgeo",
+      "title": "图形计数与拼组",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geo_figure4"
     }
   ]
 }

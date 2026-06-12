@@ -178,6 +178,15 @@
         "nt_gcd_lcm5",
         "comb_principle5"
       ]
+    },
+    {
+      "id": "compgeo",
+      "term": "lower",
+      "index": 101,
+      "title": "竞赛拓展·几何",
+      "topicIds": [
+        "geo_area5"
+      ]
     }
   ],
   "topics": [
@@ -598,6 +607,15 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "comb_principle5"
+    },
+    {
+      "id": "geo_area5",
+      "unitId": "compgeo",
+      "title": "面积割补与组合",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geo_area5"
     }
   ]
 }

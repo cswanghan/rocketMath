@@ -157,6 +157,15 @@
         "nt_remainder6",
         "comb_casework6"
       ]
+    },
+    {
+      "id": "compgeo",
+      "term": "lower",
+      "index": 101,
+      "title": "竞赛拓展·几何",
+      "topicIds": [
+        "geo_circle6"
+      ]
     }
   ],
   "topics": [
@@ -538,6 +547,15 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "comb_casework6"
+    },
+    {
+      "id": "geo_circle6",
+      "unitId": "compgeo",
+      "title": "圆与阴影面积",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geo_circle6"
     }
   ]
 }

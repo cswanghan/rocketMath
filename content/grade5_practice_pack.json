@@ -18987,6 +18987,394 @@
           }
         }
       ]
+    },
+    {
+      "id": "geo_area5",
+      "title": "面积割补与组合",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "gar5_b0",
+          "type": "mc",
+          "prompt": "长 5 厘米、宽 3 厘米的长方形面积是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "15",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "16",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "30",
+              "correct": false
+            }
+          ],
+          "hint": "长×宽",
+          "explanation": "5×3=15",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_b1",
+          "type": "mc",
+          "prompt": "边长 4 厘米的正方形面积是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "16",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "边长×边长",
+          "explanation": "4×4=16",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_b2",
+          "type": "mc",
+          "prompt": "底 6、高 4 的平行四边形面积是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "24",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "48",
+              "correct": false
+            }
+          ],
+          "hint": "底×高",
+          "explanation": "6×4=24",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_c0",
+          "type": "mc",
+          "prompt": "底 8、高 5 的三角形面积是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "20",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "40",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "13",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "10",
+              "correct": false
+            }
+          ],
+          "hint": "底×高÷2",
+          "explanation": "8×5÷2=20",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_c1",
+          "type": "mc",
+          "prompt": "上底 3、下底 5、高 4 的梯形面积是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "16",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "32",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "20",
+              "correct": false
+            }
+          ],
+          "hint": "(上底+下底)×高÷2",
+          "explanation": "(3+5)×4÷2=16",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_c2",
+          "type": "mc",
+          "prompt": "长 10、宽 6 的长方形,中间挖去边长 2 的正方形,剩下面积?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "56",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "60",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "64",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "52",
+              "correct": false
+            }
+          ],
+          "hint": "大面积减去小面积",
+          "explanation": "60−4=56",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_c3",
+          "type": "mc",
+          "prompt": "把平行四边形剪拼成长方形,面积会怎样?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不变",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "变大",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "变小",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "变一半",
+              "correct": false
+            }
+          ],
+          "hint": "只是换了形状",
+          "explanation": "面积不变",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_x0",
+          "type": "mc",
+          "prompt": "L 形:大长方形 8×6 去掉右上角 3×2 的小长方形,面积?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "42",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "48",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "54",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "40",
+              "correct": false
+            }
+          ],
+          "hint": "割补法:整块减小块",
+          "explanation": "48−6=42",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_x1",
+          "type": "mc",
+          "prompt": "正方形边长扩大到原来的 2 倍,面积变为原来的几倍?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "3",
+              "correct": false
+            }
+          ],
+          "hint": "长和宽都变 2 倍",
+          "explanation": "2×2=4 倍",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        },
+        {
+          "id": "gar5_x2",
+          "type": "mc",
+          "prompt": "三角形面积是 24,底是 8,高是多少?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "由面积反推:面积×2÷底",
+          "explanation": "24×2÷8=6",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·几何",
+            "topic": "面积割补与组合",
+            "label": "人教版 · 五年级 · 竞赛拓展·几何 · 面积割补与组合"
+          }
+        }
+      ]
     }
   ]
 }
