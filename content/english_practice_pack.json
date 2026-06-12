@@ -1,0 +1,1178 @@
+{
+  "version": "1.0.0",
+  "subject": "english",
+  "sets": [
+    {
+      "id": "ket_grammar",
+      "title": "KET 基础语法",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "keg_b0",
+          "type": "mc",
+          "prompt": "She ___ a teacher.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "is",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "are",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "am",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "be",
+              "correct": false
+            }
+          ],
+          "hint": "主语是 she,用 is",
+          "explanation": "She is a teacher."
+        },
+        {
+          "id": "keg_b1",
+          "type": "mc",
+          "prompt": "I ___ to school every day.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "go",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "goes",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "going",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "went",
+              "correct": false
+            }
+          ],
+          "hint": "主语 I,一般现在时用原形",
+          "explanation": "I go to school every day."
+        },
+        {
+          "id": "keg_b2",
+          "type": "mc",
+          "prompt": "There ___ two cats on the sofa.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "are",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "is",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "am",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "be",
+              "correct": false
+            }
+          ],
+          "hint": "two cats 是复数,用 are",
+          "explanation": "There are two cats."
+        },
+        {
+          "id": "keg_c0",
+          "type": "mc",
+          "prompt": "He ___ football yesterday.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "played",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "plays",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "play",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "playing",
+              "correct": false
+            }
+          ],
+          "hint": "yesterday 是过去,用过去式",
+          "explanation": "He played football yesterday."
+        },
+        {
+          "id": "keg_c1",
+          "type": "mc",
+          "prompt": "This is ___ apple.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "an",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "a",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "the",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "/",
+              "correct": false
+            }
+          ],
+          "hint": "apple 以元音音素开头,用 an",
+          "explanation": "an apple"
+        },
+        {
+          "id": "keg_c2",
+          "type": "mc",
+          "prompt": "My sister is taller ___ me.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "than",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "then",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "as",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "to",
+              "correct": false
+            }
+          ],
+          "hint": "比较级后用 than",
+          "explanation": "taller than me"
+        },
+        {
+          "id": "keg_c3",
+          "type": "mc",
+          "prompt": "Look! They ___ now.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "are running",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "run",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "runs",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "ran",
+              "correct": false
+            }
+          ],
+          "hint": "now 表示正在进行",
+          "explanation": "are running"
+        },
+        {
+          "id": "keg_x0",
+          "type": "mc",
+          "prompt": "___ you like coffee?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "Do",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "Does",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "Are",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "Is",
+              "correct": false
+            }
+          ],
+          "hint": "实义动词 like 的一般疑问用 Do",
+          "explanation": "Do you like coffee?"
+        },
+        {
+          "id": "keg_x1",
+          "type": "mc",
+          "prompt": "If it rains tomorrow, I ___ at home.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "will stay",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "stayed",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "stay",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "staying",
+              "correct": false
+            }
+          ],
+          "hint": "条件句主句用将来时",
+          "explanation": "I will stay at home."
+        },
+        {
+          "id": "keg_x2",
+          "type": "mc",
+          "prompt": "She has lived here ___ 2010.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "since",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "for",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "from",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "at",
+              "correct": false
+            }
+          ],
+          "hint": "since + 时间点",
+          "explanation": "since 2010"
+        }
+      ]
+    },
+    {
+      "id": "ket_reading",
+      "title": "KET 看图读标识",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ker_b0",
+          "type": "mc",
+          "prompt": "标识「NO SMOKING」的意思是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "禁止吸烟",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "请吸烟",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "小心地滑",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "保持安静",
+              "correct": false
+            }
+          ],
+          "hint": "no + 动名词 = 禁止",
+          "explanation": "禁止吸烟"
+        },
+        {
+          "id": "ker_b1",
+          "type": "mc",
+          "prompt": "门上写着「PUSH」,你应该?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "推门",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "拉门",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "敲门",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "锁门",
+              "correct": false
+            }
+          ],
+          "hint": "push 是推",
+          "explanation": "推门"
+        },
+        {
+          "id": "ker_b2",
+          "type": "mc",
+          "prompt": "商店门口「OPEN 9:00–18:00」表示?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "营业时间 9 点到 18 点",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "9 折优惠",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9 号开业",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "停业",
+              "correct": false
+            }
+          ],
+          "hint": "open + 时间 = 营业时间",
+          "explanation": "营业时间 9:00–18:00"
+        },
+        {
+          "id": "ker_c0",
+          "type": "mc",
+          "prompt": "公园里「Keep off the grass」的意思是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "请勿践踏草坪",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "保持草坪整洁",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "在草坪上玩",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "草坪出售",
+              "correct": false
+            }
+          ],
+          "hint": "keep off = 远离",
+          "explanation": "请勿践踏草坪"
+        },
+        {
+          "id": "ker_c1",
+          "type": "mc",
+          "prompt": "票上写「SOLD OUT」表示?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "售罄",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "打折",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "免费",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "预售",
+              "correct": false
+            }
+          ],
+          "hint": "sold out = 卖光了",
+          "explanation": "售罄"
+        },
+        {
+          "id": "ker_c2",
+          "type": "mc",
+          "prompt": "墙上的「EXIT」指示?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "出口",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "入口",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "厕所",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "电梯",
+              "correct": false
+            }
+          ],
+          "hint": "exit = 出口",
+          "explanation": "出口"
+        },
+        {
+          "id": "ker_c3",
+          "type": "mc",
+          "prompt": "图书馆里「Please be quiet」的意思是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "请保持安静",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "请排队",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "请关门",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "请登记",
+              "correct": false
+            }
+          ],
+          "hint": "quiet = 安静",
+          "explanation": "请保持安静"
+        },
+        {
+          "id": "ker_x0",
+          "type": "mc",
+          "prompt": "广告「Buy one get one free」表示?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "买一送一",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "第二件半价",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "全场免费",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "买一付二",
+              "correct": false
+            }
+          ],
+          "hint": "get one free = 免费得一件",
+          "explanation": "买一送一"
+        },
+        {
+          "id": "ker_x1",
+          "type": "mc",
+          "prompt": "机器上贴「OUT OF ORDER」表示?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "故障,停止使用",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "正在营业",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "免费使用",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "请排队",
+              "correct": false
+            }
+          ],
+          "hint": "out of order = 出故障",
+          "explanation": "故障,停止使用"
+        },
+        {
+          "id": "ker_x2",
+          "type": "mc",
+          "prompt": "「Tickets must be bought before boarding」意思是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "上车前必须买票",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "车上可以补票",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "凭票免费",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "禁止带票",
+              "correct": false
+            }
+          ],
+          "hint": "must be bought before boarding",
+          "explanation": "上车前必须买票"
+        }
+      ]
+    },
+    {
+      "id": "pet_grammar",
+      "title": "PET 语法进阶",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "peg_b0",
+          "type": "mc",
+          "prompt": "I have ___ finished my homework.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "already",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "yet",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "still",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "ever",
+              "correct": false
+            }
+          ],
+          "hint": "肯定句中「已经」用 already",
+          "explanation": "have already finished"
+        },
+        {
+          "id": "peg_b1",
+          "type": "mc",
+          "prompt": "This book is ___ than that one.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "more interesting",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "interestinger",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "most interesting",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "interesting",
+              "correct": false
+            }
+          ],
+          "hint": "多音节词比较级用 more",
+          "explanation": "more interesting than"
+        },
+        {
+          "id": "peg_b2",
+          "type": "mc",
+          "prompt": "He's the man ___ helped me.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "who",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "which",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "whom",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "what",
+              "correct": false
+            }
+          ],
+          "hint": "先行词是人作主语,用 who",
+          "explanation": "the man who helped me"
+        },
+        {
+          "id": "peg_c0",
+          "type": "mc",
+          "prompt": "If I ___ rich, I would travel the world.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "were",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "am",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "will be",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "be",
+              "correct": false
+            }
+          ],
+          "hint": "与现在事实相反的虚拟,用 were",
+          "explanation": "If I were rich…"
+        },
+        {
+          "id": "peg_c1",
+          "type": "mc",
+          "prompt": "She asked me where I ___.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "lived",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "live",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "do live",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "living",
+              "correct": false
+            }
+          ],
+          "hint": "宾语从句用陈述语序 + 过去时呼应",
+          "explanation": "where I lived"
+        },
+        {
+          "id": "peg_c2",
+          "type": "mc",
+          "prompt": "The car ___ by my father every weekend.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "is washed",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "washes",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "washed",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "washing",
+              "correct": false
+            }
+          ],
+          "hint": "被动语态 be + 过去分词",
+          "explanation": "is washed"
+        },
+        {
+          "id": "peg_c3",
+          "type": "mc",
+          "prompt": "I'm looking forward to ___ you.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "seeing",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "see",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "saw",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "seen",
+              "correct": false
+            }
+          ],
+          "hint": "look forward to 的 to 是介词,后接动名词",
+          "explanation": "looking forward to seeing"
+        },
+        {
+          "id": "peg_x0",
+          "type": "mc",
+          "prompt": "You ___ smoke here. It's not allowed.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "mustn't",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "needn't",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "don't have to",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "can",
+              "correct": false
+            }
+          ],
+          "hint": "表示「禁止」用 mustn't",
+          "explanation": "mustn't smoke"
+        },
+        {
+          "id": "peg_x1",
+          "type": "mc",
+          "prompt": "By the time we arrived, the film ___.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "had started",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "started",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "starts",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "has started",
+              "correct": false
+            }
+          ],
+          "hint": "过去的过去用过去完成时",
+          "explanation": "the film had started"
+        },
+        {
+          "id": "peg_x2",
+          "type": "mc",
+          "prompt": "I'd rather ___ at home tonight.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "stay",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "to stay",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "staying",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "stayed",
+              "correct": false
+            }
+          ],
+          "hint": "would rather + 动词原形",
+          "explanation": "I'd rather stay"
+        }
+      ]
+    },
+    {
+      "id": "pet_reading",
+      "title": "PET 阅读理解",
+      "pedagogy": "concept",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "per_b0",
+          "type": "mc",
+          "prompt": "Tom usually walks to school, but when it rains he takes the bus.\n问:下雨时 Tom 怎么去上学?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "坐公交车",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "走路",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "骑自行车",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "坐爸爸的车",
+              "correct": false
+            }
+          ],
+          "hint": "when it rains he takes the bus",
+          "explanation": "下雨时坐公交"
+        },
+        {
+          "id": "per_b1",
+          "type": "mc",
+          "prompt": "The museum opens at 10 a.m. every day except Mondays, when it is closed.\n问:博物馆哪天不开门?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "周一",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "周日",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "周末",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "每天",
+              "correct": false
+            }
+          ],
+          "hint": "except Mondays, when it is closed",
+          "explanation": "周一闭馆"
+        },
+        {
+          "id": "per_c0",
+          "type": "mc",
+          "prompt": "Lucy bought the red dress because the blue one was too expensive.\n问:Lucy 为什么没买蓝裙子?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "太贵了",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "颜色不喜欢",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "尺码不对",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "卖完了",
+              "correct": false
+            }
+          ],
+          "hint": "the blue one was too expensive",
+          "explanation": "蓝裙子太贵"
+        },
+        {
+          "id": "per_c1",
+          "type": "mc",
+          "prompt": "The train to London leaves at 8:15. Please arrive ten minutes early.\n问:建议几点到车站?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "8:05",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8:15",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8:25",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "8:00",
+              "correct": false
+            }
+          ],
+          "hint": "ten minutes early = 提前十分钟",
+          "explanation": "8:15 提前 10 分钟 = 8:05"
+        },
+        {
+          "id": "per_c2",
+          "type": "mc",
+          "prompt": "Anna likes both swimming and reading, but her favourite hobby is painting.\n问:Anna 最喜欢的爱好是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "画画",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "游泳",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "阅读",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "三个都是",
+              "correct": false
+            }
+          ],
+          "hint": "favourite hobby is painting",
+          "explanation": "画画"
+        },
+        {
+          "id": "per_x0",
+          "type": "mc",
+          "prompt": "The shop offers free delivery on orders over £20.\n问:怎样才能享受免费配送?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "订单超过 20 英镑",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "任何订单",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "会员专享",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "周末下单",
+              "correct": false
+            }
+          ],
+          "hint": "free delivery on orders over £20",
+          "explanation": "订单满 20 英镑"
+        },
+        {
+          "id": "per_x1",
+          "type": "mc",
+          "prompt": "Although it was raining, the children went outside to play.\n问:孩子们出去玩时天气如何?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "在下雨",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "晴天",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "下雪",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "刮风",
+              "correct": false
+            }
+          ],
+          "hint": "Although it was raining = 尽管在下雨",
+          "explanation": "下雨"
+        },
+        {
+          "id": "per_x2",
+          "type": "mc",
+          "prompt": "Sam can come on Friday or Saturday, but not Sunday.\n问:Sam 哪天不能来?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "周日",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "周五",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "周六",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "都能来",
+              "correct": false
+            }
+          ],
+          "hint": "but not Sunday",
+          "explanation": "周日不能来"
+        }
+      ]
+    }
+  ]
+}

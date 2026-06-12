@@ -2,7 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { track } from '../track';
 import type { StorageAdapter } from '../storage';
 import type { Topic } from '../map/types';
+import type { PracticePack } from '../practice';
 import { loadGrade, type GradeContent } from './gradeLoader';
+import { loadEnglishPack } from './englishLoader';
 import { loadExamCalendar } from './examLoader';
 import type { ExamSeries } from './examTypes';
 import { MASTERY_LABEL, topicMastery, type MasteryState } from './prepMastery';
@@ -19,14 +21,11 @@ interface Props {
   onBack: () => void;
 }
 
-// 一个备考知识点：把 prepTopic 解析到其所在年级的 Topic + 该年级内容包（供跨年级渲染练习）
-interface PrepItem {
-  key: string; // `${grade}:${topicId}`
-  grade: number;
-  topic: Topic;
-  content: GradeContent;
-  label: string;
-}
+// 一个备考知识点。math: 解析到所在年级的 Topic + 该年级内容包（跨年级渲染练习）；
+// english: 解析到英语练习包里的某个题集（不按年级组织）。
+type PrepItem =
+  | { kind: 'math'; key: string; group: string; label: string; status: string; grade: number; content: GradeContent; topic: Topic }
+  | { kind: 'english'; key: string; group: string; label: string; status: string; pack: PracticePack; setId: string };
 
 type View =
   | { kind: 'list' }
@@ -39,6 +38,7 @@ const GRADE_LABELS: Record<number, string> = {
   3: '三年级', 4: '四年级', 5: '五年级', 6: '六年级', 7: '初一', 8: '初二', 9: '初三',
 };
 const gradeLabel = (g: number) => GRADE_LABELS[g] ?? `${g}年级`;
+const ENGLISH_GROUP = '英语阅读·语法';
 
 const MARK: Record<MasteryState, string> = {
   mastered: '✓',
@@ -49,6 +49,15 @@ const MARK: Record<MasteryState, string> = {
 
 const newSeed = () => Date.now() & 0xffffffff;
 
+async function itemMastery(adapter: StorageAdapter, studentId: string, it: PrepItem): Promise<MasteryState> {
+  if (it.kind === 'english') {
+    const rec = await adapter.getPractice(studentId, it.setId);
+    if (rec?.completed) return 'mastered';
+    return rec && rec.bestFirstTry > 0 ? 'in_progress' : 'not_started';
+  }
+  return topicMastery(adapter, studentId, it.content.pack, it.topic);
+}
+
 export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
   const [series, setSeries] = useState<ExamSeries | null>(null);
   const [items, setItems] = useState<PrepItem[]>([]);
@@ -56,7 +65,7 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<View>({ kind: 'list' });
 
-  // 加载考试系列 + 跨年级解析所有备考知识点
+  // 加载考试系列 + 解析所有备考知识点（数学跨年级、英语单独包）
   useEffect(() => {
     let alive = true;
     (async () => {
@@ -68,18 +77,29 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
       setSeries(s);
       if (!s) { setLoading(false); return; }
 
-      const grades = [...new Set(s.prepTopics.map((p) => p.grade))];
-      const loaded = await Promise.all(grades.map((g) => loadGrade(g).catch(() => null)));
+      const needEnglish = s.prepTopics.some((p) => p.pack === 'english');
+      const grades = [...new Set(s.prepTopics.filter((p) => p.pack !== 'english' && p.grade != null).map((p) => p.grade!))];
+      const [gradeContents, englishPack] = await Promise.all([
+        Promise.all(grades.map((g) => loadGrade(g).catch(() => null))),
+        needEnglish ? loadEnglishPack().catch(() => null) : Promise.resolve(null),
+      ]);
       const byGrade = new Map<number, GradeContent>();
-      grades.forEach((g, i) => { if (loaded[i]) byGrade.set(g, loaded[i]!); });
+      grades.forEach((g, i) => { if (gradeContents[i]) byGrade.set(g, gradeContents[i]!); });
 
       const its: PrepItem[] = [];
       for (const pt of s.prepTopics) {
-        const content = byGrade.get(pt.grade);
-        if (!content) continue;
-        const topic = content.knowledgeMap.topics.find((t) => t.id === pt.topicId);
-        if (!topic) continue;
-        its.push({ key: `${pt.grade}:${pt.topicId}`, grade: pt.grade, topic, content, label: pt.label || topic.title });
+        if (pt.pack === 'english') {
+          if (!englishPack) continue;
+          const set = englishPack.sets.find((x) => x.id === pt.topicId);
+          if (!set) continue;
+          its.push({ kind: 'english', key: `en:${pt.topicId}`, group: ENGLISH_GROUP, label: pt.label || set.title, status: 'ready', pack: englishPack, setId: pt.topicId });
+        } else {
+          const content = byGrade.get(pt.grade!);
+          if (!content) continue;
+          const topic = content.knowledgeMap.topics.find((t) => t.id === pt.topicId);
+          if (!topic) continue;
+          its.push({ kind: 'math', key: `${pt.grade}:${pt.topicId}`, group: gradeLabel(pt.grade!), label: pt.label || topic.title, status: topic.status, grade: pt.grade!, content, topic });
+        }
       }
       if (!alive) return;
       setItems(its);
@@ -90,7 +110,7 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
 
   const refreshMastery = useCallback(async () => {
     const entries = await Promise.all(
-      items.map(async (it) => [it.key, await topicMastery(adapter, studentId, it.content.pack, it.topic)] as const),
+      items.map(async (it) => [it.key, await itemMastery(adapter, studentId, it)] as const),
     );
     setMastery(Object.fromEntries(entries));
     const mastered = entries.filter(([, m]) => m === 'mastered').length;
@@ -100,7 +120,12 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
   useEffect(() => { if (items.length) refreshMastery(); }, [items, refreshMastery]);
 
   const openTopic = async (it: PrepItem) => {
-    if (it.topic.status !== 'ready') return;
+    if (it.status !== 'ready') return;
+    if (it.kind === 'english') {
+      track('prep_open_topic', { seriesId, kind: 'english', setId: it.setId });
+      setView({ kind: 'practice', item: it, seed: newSeed() });
+      return;
+    }
     if (it.topic.problemSetId) {
       track('prep_open_topic', { seriesId, grade: it.grade, topicId: it.topic.id, kind: 'practice' });
       setView({ kind: 'practice', item: it, seed: newSeed() });
@@ -115,8 +140,8 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
 
   const exitToList = () => { setView({ kind: 'list' }); refreshMastery(); };
 
-  // —— 练习子视图（跨年级：用 item 所在年级的内容包）——
-  if (view.kind === 'probe') {
+  // —— 练习子视图 ——
+  if (view.kind === 'probe' && view.item.kind === 'math') {
     return (
       <Probe
         pack={view.item.content.pack}
@@ -126,7 +151,7 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
       />
     );
   }
-  if (view.kind === 'play') {
+  if (view.kind === 'play' && view.item.kind === 'math') {
     return (
       <Play
         key={'prep-play' + view.item.key + view.seed}
@@ -140,11 +165,14 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
     );
   }
   if (view.kind === 'practice') {
+    const it = view.item;
+    const pack = it.kind === 'english' ? it.pack : it.content.practicePack;
+    const setId = it.kind === 'english' ? it.setId : it.topic.problemSetId!;
     return (
       <PracticeScreen
-        key={'prep-prac' + view.item.key + view.seed}
-        setId={view.item.topic.problemSetId!}
-        practicePack={view.item.content.practicePack}
+        key={'prep-prac' + it.key + view.seed}
+        setId={setId}
+        practicePack={pack}
         adapter={adapter}
         studentId={studentId}
         seed={view.seed}
@@ -175,7 +203,13 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
     );
   }
 
-  const grades = [...new Set(items.map((i) => i.grade))].sort((a, b) => a - b);
+  // 分组顺序：数学按年级升序，英语阅读·语法置后
+  const groupOrder: string[] = [];
+  [...new Set(items.filter((i) => i.kind === 'math').map((i) => (i as Extract<PrepItem, { kind: 'math' }>).grade))]
+    .sort((a, b) => a - b)
+    .forEach((g) => groupOrder.push(gradeLabel(g)));
+  if (items.some((i) => i.kind === 'english')) groupOrder.push(ENGLISH_GROUP);
+
   const masteredCount = items.filter((i) => mastery[i.key] === 'mastered').length;
   const pct = items.length ? Math.round((masteredCount / items.length) * 100) : 0;
   const hasContent = items.length > 0 || !!series.vocabLink;
@@ -198,11 +232,11 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
         </div>
       )}
 
-      {grades.map((g) => (
+      {groupOrder.map((g) => (
         <section key={g} className="prep-group">
-          <h2 className="prep-group-title">{gradeLabel(g)}</h2>
+          <h2 className="prep-group-title">{g}</h2>
           <div className="prep-list">
-            {items.filter((i) => i.grade === g).map((it) => (
+            {items.filter((i) => i.group === g).map((it) => (
               <PrepRow key={it.key} item={it} state={mastery[it.key] ?? 'not_started'} onOpen={openTopic} />
             ))}
           </div>
@@ -246,7 +280,7 @@ function PrepRow({
   state: MasteryState;
   onOpen: (it: PrepItem) => void;
 }) {
-  const ready = item.topic.status === 'ready' && state !== 'unavailable';
+  const ready = item.status === 'ready' && state !== 'unavailable';
   return (
     <button
       className={`prep-row state-${state}`}

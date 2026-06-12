@@ -1,5 +1,5 @@
 {
-  "version": "2026-06.6",
+  "version": "2026-06.7",
   "series": [
     {
       "id": "amc8",
@@ -691,7 +691,18 @@
         "max": 7
       },
       "officialUrl": "https://mse.neea.edu.cn",
-      "prepTopics": [],
+      "prepTopics": [
+        {
+          "topicId": "ket_grammar",
+          "label": "KET 基础语法",
+          "pack": "english"
+        },
+        {
+          "topicId": "ket_reading",
+          "label": "KET 看图读标识",
+          "pack": "english"
+        }
+      ],
       "vocabLink": {
         "module": "english_vocab",
         "level": "ket"
@@ -709,7 +720,18 @@
         "max": 9
       },
       "officialUrl": "https://mse.neea.edu.cn",
-      "prepTopics": [],
+      "prepTopics": [
+        {
+          "topicId": "pet_grammar",
+          "label": "PET 语法进阶",
+          "pack": "english"
+        },
+        {
+          "topicId": "pet_reading",
+          "label": "PET 阅读理解",
+          "pack": "english"
+        }
+      ],
       "vocabLink": {
         "module": "english_vocab",
         "level": "pet"

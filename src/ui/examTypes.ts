@@ -12,11 +12,13 @@ export interface DateSpec {
   value: string; // "YYYY-MM-DD" | "YYYY-MM"
 }
 
-// 备考知识点联动(下期实现跳转): 引用 knowledge_map 的 Topic.id
+// 备考知识点。math: grade + topicId 引用 knowledge_map 的 Topic.id；
+// english: pack:'english' + topicId 引用 english_practice_pack 的 set.id（无 grade）。
 export interface PrepTopic {
-  grade: number;
+  grade?: number;
   topicId: string;
   label: string;
+  pack?: 'english';
 }
 
 // 英语考试联动到背单词模块(下期实现跳转)
