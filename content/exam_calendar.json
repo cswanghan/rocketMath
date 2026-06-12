@@ -1,5 +1,5 @@
 {
-  "version": "2026-06.4",
+  "version": "2026-06.5",
   "series": [
     {
       "id": "amc8",
@@ -63,6 +63,26 @@
           "grade": 8,
           "topicId": "pythagorean_theorem",
           "label": "勾股定理"
+        },
+        {
+          "grade": 5,
+          "topicId": "nt_gcd_lcm5",
+          "label": "最大公因数与最小公倍数"
+        },
+        {
+          "grade": 5,
+          "topicId": "comb_principle5",
+          "label": "加法与乘法原理"
+        },
+        {
+          "grade": 6,
+          "topicId": "nt_remainder6",
+          "label": "余数与周期问题"
+        },
+        {
+          "grade": 6,
+          "topicId": "comb_casework6",
+          "label": "分类枚举计数"
         }
       ],
       "vocabLink": null
@@ -129,6 +149,11 @@
           "grade": 9,
           "topicId": "probability_classical",
           "label": "古典概型计算"
+        },
+        {
+          "grade": 6,
+          "topicId": "nt_remainder6",
+          "label": "余数与周期问题"
         }
       ],
       "vocabLink": null
@@ -266,6 +291,16 @@
           "grade": 6,
           "topicId": "pigeonhole",
           "label": "鸽巢问题"
+        },
+        {
+          "grade": 5,
+          "topicId": "comb_principle5",
+          "label": "加法与乘法原理"
+        },
+        {
+          "grade": 6,
+          "topicId": "comb_casework6",
+          "label": "分类枚举计数"
         }
       ],
       "vocabLink": null
@@ -565,6 +600,16 @@
           "grade": 6,
           "topicId": "kg_comb6",
           "label": "组合计数入门"
+        },
+        {
+          "grade": 5,
+          "topicId": "nt_gcd_lcm5",
+          "label": "最大公因数与最小公倍数"
+        },
+        {
+          "grade": 6,
+          "topicId": "comb_casework6",
+          "label": "分类枚举计数"
         }
       ],
       "vocabLink": null

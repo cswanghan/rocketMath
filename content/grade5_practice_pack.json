@@ -18211,6 +18211,782 @@
           }
         }
       ]
+    },
+    {
+      "id": "nt_gcd_lcm5",
+      "title": "最大公因数与最小公倍数",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ntg5_b0",
+          "type": "mc",
+          "prompt": "12 和 18 的最大公因数是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "36",
+              "correct": false
+            }
+          ],
+          "hint": "找两个数公有的最大因数",
+          "explanation": "12=2×2×3,18=2×3×3,公有 2×3=6",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_b1",
+          "type": "mc",
+          "prompt": "4 和 6 的最小公倍数是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "24",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "10",
+              "correct": false
+            }
+          ],
+          "hint": "找两个数最小的公共倍数",
+          "explanation": "4 的倍数 4,8,12…;6 的倍数 6,12… 最小是 12",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_b2",
+          "type": "mc",
+          "prompt": "8 和 12 的最大公因数是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "24",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "8",
+              "correct": false
+            }
+          ],
+          "hint": "公有因数里最大的",
+          "explanation": "8=2×2×2,12=2×2×3,公有 2×2=4",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_c0",
+          "type": "mc",
+          "prompt": "最大公因数是 1 的两个数,叫做?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "互质数",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "质数",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "合数",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "倍数",
+              "correct": false
+            }
+          ],
+          "hint": "没有公共大于 1 的因数",
+          "explanation": "如 8 和 9 互质",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_c1",
+          "type": "mc",
+          "prompt": "6 和 9 的最小公倍数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "18",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "54",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "15",
+              "correct": false
+            }
+          ],
+          "hint": "6,12,18…;9,18… 最小公共倍数",
+          "explanation": "18",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_c2",
+          "type": "mc",
+          "prompt": "24 分米和 36 分米的绳子,都剪成同样长的最长小段,每段几分米?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "72",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "求最大公因数",
+          "explanation": "GCD(24,36)=12",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_c3",
+          "type": "mc",
+          "prompt": "甲每 4 天值一次班,乙每 6 天一次,今天同时值班,至少几天后再同时?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "24",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "10",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "2",
+              "correct": false
+            }
+          ],
+          "hint": "求最小公倍数",
+          "explanation": "LCM(4,6)=12",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_x0",
+          "type": "mc",
+          "prompt": "36 和 48 的最大公因数是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "144",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "24",
+              "correct": false
+            }
+          ],
+          "hint": "分解质因数找公有部分",
+          "explanation": "36=2²×3²,48=2⁴×3,公有 2²×3=12",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_x1",
+          "type": "mc",
+          "prompt": "一个数既是 6 的倍数又是 8 的倍数,最小是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "24",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "48",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "12",
+              "correct": false
+            }
+          ],
+          "hint": "求最小公倍数",
+          "explanation": "LCM(6,8)=24",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        },
+        {
+          "id": "ntg5_x2",
+          "type": "mc",
+          "prompt": "两数最大公因数 4、最小公倍数 24,其中一个是 8,另一个是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "24",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "16",
+              "correct": false
+            }
+          ],
+          "hint": "两数之积 = 最大公因数 × 最小公倍数",
+          "explanation": "4×24÷8=12",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "最大公因数与最小公倍数",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 最大公因数与最小公倍数"
+          }
+        }
+      ]
+    },
+    {
+      "id": "comb_principle5",
+      "title": "加法与乘法原理",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cp5_b0",
+          "type": "mc",
+          "prompt": "从甲地到乙地有 2 趟火车、3 趟汽车,共有几种走法?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "3",
+              "correct": false
+            }
+          ],
+          "hint": "分类用加法",
+          "explanation": "2+3=5",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_b1",
+          "type": "mc",
+          "prompt": "上衣 3 件、裤子 4 条,搭配一套有几种?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "7",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "分步用乘法",
+          "explanation": "3×4=12",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_b2",
+          "type": "mc",
+          "prompt": "从 2 种饮料、3 种点心里各选一样,有几种搭配?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "2",
+              "correct": false
+            }
+          ],
+          "hint": "分步用乘法",
+          "explanation": "2×3=6",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_c0",
+          "type": "mc",
+          "prompt": "书架上层 4 本、下层 5 本,任取一本,有几种取法?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "20",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "上层或下层,用加法",
+          "explanation": "4+5=9",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_c1",
+          "type": "mc",
+          "prompt": "用 1,2,3,4 组成两位数(数字可重复),有几个?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "16",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "十位 4 种、个位 4 种",
+          "explanation": "4×4=16",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_c2",
+          "type": "mc",
+          "prompt": "A 到 B 有 3 条路,B 到 C 有 2 条,A 经 B 到 C 有几种走法?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "2",
+              "correct": false
+            }
+          ],
+          "hint": "分步用乘法",
+          "explanation": "3×2=6",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_c3",
+          "type": "mc",
+          "prompt": "3 名男生、2 名女生,选 1 人当代表,有几种选法?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "2",
+              "correct": false
+            }
+          ],
+          "hint": "男或女,用加法",
+          "explanation": "3+2=5",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_x0",
+          "type": "mc",
+          "prompt": "用 0,1,2 组成三位数(数字可重复,首位不为 0),有几个?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "18",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "27",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "首位只能 1 或 2",
+          "explanation": "2×3×3=18",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_x1",
+          "type": "mc",
+          "prompt": "从 5 件不同礼物里选 2 件,分别送给甲和乙,有几种送法?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "20",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "10",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "25",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "7",
+              "correct": false
+            }
+          ],
+          "hint": "甲 5 种、乙剩 4 种",
+          "explanation": "5×4=20",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        },
+        {
+          "id": "cp5_x2",
+          "type": "mc",
+          "prompt": "一道选择题有 4 个选项,连续 3 道这样的题,答案组合共几种?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "64",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "16",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "81",
+              "correct": false
+            }
+          ],
+          "hint": "每题 4 种、分步相乘",
+          "explanation": "4×4×4=64",
+          "source": {
+            "edition": "人教版",
+            "grade": 5,
+            "gradeLabel": "五年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "加法与乘法原理",
+            "label": "人教版 · 五年级 · 竞赛拓展·数论与组合 · 加法与乘法原理"
+          }
+        }
+      ]
     }
   ]
 }

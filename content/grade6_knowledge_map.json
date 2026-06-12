@@ -147,6 +147,16 @@
         "kg_comb6",
         "kg_reason6"
       ]
+    },
+    {
+      "id": "compnt",
+      "term": "lower",
+      "index": 100,
+      "title": "竞赛拓展·数论与组合",
+      "topicIds": [
+        "nt_remainder6",
+        "comb_casework6"
+      ]
     }
   ],
   "topics": [
@@ -510,6 +520,24 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "kg_reason6"
+    },
+    {
+      "id": "nt_remainder6",
+      "unitId": "compnt",
+      "title": "余数与周期问题",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "nt_remainder6"
+    },
+    {
+      "id": "comb_casework6",
+      "unitId": "compnt",
+      "title": "分类枚举计数",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "comb_casework6"
     }
   ]
 }

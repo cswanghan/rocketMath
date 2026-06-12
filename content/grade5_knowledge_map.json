@@ -168,6 +168,16 @@
         "kg_parity5",
         "kg_count5"
       ]
+    },
+    {
+      "id": "compnt",
+      "term": "lower",
+      "index": 100,
+      "title": "竞赛拓展·数论与组合",
+      "topicIds": [
+        "nt_gcd_lcm5",
+        "comb_principle5"
+      ]
     }
   ],
   "topics": [
@@ -570,6 +580,24 @@
       "dependsOn": [],
       "status": "ready",
       "problemSetId": "kg_count5"
+    },
+    {
+      "id": "nt_gcd_lcm5",
+      "unitId": "compnt",
+      "title": "最大公因数与最小公倍数",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "nt_gcd_lcm5"
+    },
+    {
+      "id": "comb_principle5",
+      "unitId": "compnt",
+      "title": "加法与乘法原理",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "comb_principle5"
     }
   ]
 }

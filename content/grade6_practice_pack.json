@@ -15414,6 +15414,782 @@
           }
         }
       ]
+    },
+    {
+      "id": "nt_remainder6",
+      "title": "余数与周期问题",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "ntr6_b0",
+          "type": "mc",
+          "prompt": "17 除以 5,余数是?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "1",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "4",
+              "correct": false
+            }
+          ],
+          "hint": "17=5×3+2",
+          "explanation": "余 2",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_b1",
+          "type": "mc",
+          "prompt": "下面哪个数除以 4 余 1?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "9",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "16",
+              "correct": false
+            }
+          ],
+          "hint": "试着减 1 后能否被 4 整除",
+          "explanation": "9−1=8,能被 4 整除",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_b2",
+          "type": "mc",
+          "prompt": "今天星期一,100 天后是星期几?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "星期三",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "星期二",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "星期一",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "星期四",
+              "correct": false
+            }
+          ],
+          "hint": "100÷7=14 余 2",
+          "explanation": "一往后数 2 天是三",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_c0",
+          "type": "mc",
+          "prompt": "10 个 2 连乘(2×2×…×2),个位数字是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "6",
+              "correct": false
+            }
+          ],
+          "hint": "2 的幂个位按 2,4,8,6 循环",
+          "explanation": "10÷4 余 2,对应 4",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_c1",
+          "type": "mc",
+          "prompt": "1,2,3,1,2,3,… 第 50 个数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "1",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "50",
+              "correct": false
+            }
+          ],
+          "hint": "每 3 个循环,50÷3 余 2",
+          "explanation": "第 2 个是 2",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_c2",
+          "type": "mc",
+          "prompt": "一个数除以 3 余 2、除以 5 余 2,最小的两位数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "17",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "32",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "22",
+              "correct": false
+            }
+          ],
+          "hint": "除 3 和除 5 都余 2 → 除 15 余 2",
+          "explanation": "15+2=17",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_c3",
+          "type": "mc",
+          "prompt": "100 除以 7,余数是?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "2",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "1",
+              "correct": false
+            }
+          ],
+          "hint": "7×14=98",
+          "explanation": "100−98=2",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_x0",
+          "type": "mc",
+          "prompt": "3 的 20 次方,个位数字是?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "1",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "9",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "7",
+              "correct": false
+            }
+          ],
+          "hint": "3 的幂个位按 3,9,7,1 循环",
+          "explanation": "20÷4 余 0,对应第 4 个 1",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_x1",
+          "type": "mc",
+          "prompt": "现在 8 点,经过 100 小时后是几点?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "12点",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "8点",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4点",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "0点",
+              "correct": false
+            }
+          ],
+          "hint": "100÷24 余 4",
+          "explanation": "8+4=12 点",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        },
+        {
+          "id": "ntr6_x2",
+          "type": "mc",
+          "prompt": "珠子按 红黄蓝绿 四色循环穿,第 2024 个是什么颜色?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "绿",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "红",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "黄",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "蓝",
+              "correct": false
+            }
+          ],
+          "hint": "2024÷4 余 0,对应第 4 个",
+          "explanation": "绿色",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "余数与周期问题",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 余数与周期问题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "comb_casework6",
+      "title": "分类枚举计数",
+      "pedagogy": "logic",
+      "maxTries": 2,
+      "problems": [
+        {
+          "id": "cw6_b0",
+          "type": "mc",
+          "prompt": "用 1,2,3 组成三位数(数字不重复),有几个?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "9",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "27",
+              "correct": false
+            }
+          ],
+          "hint": "3×2×1",
+          "explanation": "6 个",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_b1",
+          "type": "mc",
+          "prompt": "投两个骰子,点数和为 4 的情况有几种?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "6",
+              "correct": false
+            }
+          ],
+          "hint": "(1,3)(2,2)(3,1)",
+          "explanation": "3 种",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_b2",
+          "type": "mc",
+          "prompt": "从 4 个人中选 2 人握手,共几次?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "8",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "12",
+              "correct": false
+            }
+          ],
+          "hint": "4×3÷2",
+          "explanation": "6 次",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_c0",
+          "type": "mc",
+          "prompt": "用 5 角和 1 元硬币凑成 2 元,有几种凑法?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "3",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "5",
+              "correct": false
+            }
+          ],
+          "hint": "按 1 元的张数分类:0/1/2 张",
+          "explanation": "3 种",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_c1",
+          "type": "mc",
+          "prompt": "两位数中,十位与个位数字之和为 5 的有几个?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "5",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "十位从 1 到 5",
+          "explanation": "14,23,32,41,50 共 5 个",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_c2",
+          "type": "mc",
+          "prompt": "从 1~9 中选 2 个不同数字,和为 10 的有几组?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "8",
+              "correct": false
+            }
+          ],
+          "hint": "配对找",
+          "explanation": "1+9,2+8,3+7,4+6 共 4 组",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_c3",
+          "type": "mc",
+          "prompt": "投两个骰子,点数和为 7 的有几种?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "6",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "4",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "7",
+              "correct": false
+            }
+          ],
+          "hint": "从 (1,6) 数到 (6,1)",
+          "explanation": "6 种",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_x0",
+          "type": "mc",
+          "prompt": "用 0,1,2,3 组成没有重复数字的三位数(首位不为 0),有几个?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "18",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "24",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "12",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "9",
+              "correct": false
+            }
+          ],
+          "hint": "总数减去 0 在首位的",
+          "explanation": "24−6=18",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_x1",
+          "type": "mc",
+          "prompt": "3 个相同的苹果分给 2 个小朋友(可以有人分到 0 个),有几种分法?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "4",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "6",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "2",
+              "correct": false
+            }
+          ],
+          "hint": "按第一人分到的个数分类",
+          "explanation": "(0,3)(1,2)(2,1)(3,0) 共 4 种",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        },
+        {
+          "id": "cw6_x2",
+          "type": "mc",
+          "prompt": "平面上 5 个点(任意三点不在一条线上),最多能连几条线段?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "10",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "20",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "25",
+              "correct": false
+            }
+          ],
+          "hint": "每两点连一条,5×4÷2",
+          "explanation": "10 条",
+          "source": {
+            "edition": "人教版",
+            "grade": 6,
+            "gradeLabel": "六年级",
+            "unit": "竞赛拓展·数论与组合",
+            "topic": "分类枚举计数",
+            "label": "人教版 · 六年级 · 竞赛拓展·数论与组合 · 分类枚举计数"
+          }
+        }
+      ]
     }
   ]
 }
