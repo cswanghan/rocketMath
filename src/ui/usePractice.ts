@@ -19,6 +19,8 @@ import {
 import type { StorageAdapter } from '../storage';
 import type { PracticePack } from '../practice';
 import { getSetFromPack } from './gradeLoader';
+import { track } from '../track';
+import { CHECKIN_XP, recordCheckIn } from './streak';
 
 // Correct-but-slower-than-this practice answers are flagged for parent attention.
 const SLOW_PRACTICE_MS = 20000;
@@ -104,6 +106,10 @@ export function usePractice(
       const elapsedMs = ctx.now() - presentedAtRef.current; // valid for ANSWER events
       const res = practiceStep(game.state, event, ctx);
       gameRef.current = res;
+      if (event.type === 'ANSWER') {
+        const ci = recordCheckIn(studentId);
+        if (ci.firstToday) void adapter.addXp(studentId, CHECKIN_XP);
+      }
       if (res.action.kind === 'PRESENT') {
         seqRef.current += 1;
         presentedAtRef.current = ctx.now();
@@ -167,6 +173,24 @@ export function usePractice(
           total: res.action.total,
           updatedAt: ctx.now(),
         });
+        track('practice_complete', {
+          setId,
+          firstTryCorrect: res.action.firstTryCorrect,
+          total: res.action.total,
+        });
+      }
+      // 埋点: 每次作答(对/错/揭晓答案)
+      if (event.type === 'ANSWER') {
+        const k = res.action.kind;
+        if (k === 'CORRECT' || k === 'WRONG' || k === 'REVEAL') {
+          track('practice_answer', {
+            setId,
+            result: k.toLowerCase(),
+            difficulty: res.action.problem.difficulty ?? 'consolidate',
+            firstTry: k === 'CORRECT' ? res.action.firstTry : false,
+            ms: elapsedMs,
+          });
+        }
       }
       force();
     },

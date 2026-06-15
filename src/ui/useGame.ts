@@ -23,6 +23,8 @@ import {
 } from '../engine';
 import { FLUENCY_XP } from '../practice';
 import { classifyOutcome, type StorageAdapter } from '../storage';
+import { track } from '../track';
+import { CHECKIN_XP, recordCheckIn } from './streak';
 
 export type View =
   | { mode: 'prompt'; fact: Fact; isRetest: boolean }
@@ -122,6 +124,8 @@ export function useGame(
       // --- persist (fire-and-forget) ---
       void adapter.putTrackState(studentId, trackId, res.state);
       if (event.type === 'ANSWER') {
+        const ci = recordCheckIn(studentId);
+        if (ci.firstToday) void adapter.addXp(studentId, CHECKIN_XP);
         const outcome = classifyOutcome(prev, res.action);
         if (outcome === 'hit') {
           sessionXpRef.current += FLUENCY_XP;
@@ -159,8 +163,23 @@ export function useGame(
           elapsedMs: event.elapsedMs,
           outcome,
         });
+        track('fluency_answer', {
+          trackId,
+          level: prev.currentLevel,
+          phase: prev.phase,
+          outcome,
+          ms: event.elapsedMs,
+          xp: outcome === 'hit' ? FLUENCY_XP : 0,
+        });
+      }
+      if (res.action.kind === 'PHASE_COMPLETE') {
+        track('fluency_phase_done', { trackId, phase: prev.phase });
+      }
+      if (res.action.kind === 'LEVEL_COMPLETE') {
+        track('fluency_level_done', { trackId, level: prev.currentLevel });
       }
       if (res.action.kind === 'RACE_RESULT') {
+        track('race_result', { trackId, level: prev.currentLevel, correctPerMin: res.action.correctPerMin });
         void adapter.putRaceResult({
           studentId,
           trackId,

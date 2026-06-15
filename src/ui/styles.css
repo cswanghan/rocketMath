@@ -2201,3 +2201,67 @@ p.exam-modal-section { border-bottom: none; padding-bottom: 0; }
   .prep-screen { padding-top: 52px; }
   .prep-row { padding: 12px 14px; gap: 10px; }
 }
+
+/* ====== 每日打卡 (StreakCard) ====== */
+.streak-card {
+  width: min(900px, 100%);
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 16px 22px;
+  margin: 0 0 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+.streak-card.done { background: linear-gradient(135deg, #fff7ec 0%, #ffe9cf 100%); }
+.streak-celebrate {
+  font-weight: 800;
+  color: var(--p-peach-ink);
+  font-size: 0.95rem;
+  background: #fff3df;
+  border-radius: 999px;
+  padding: 7px 14px;
+  align-self: flex-start;
+}
+.streak-main { display: flex; align-items: center; gap: 14px; }
+.streak-flame { font-size: 2.2rem; line-height: 1; flex-shrink: 0; }
+.streak-text { display: flex; flex-direction: column; gap: 2px; }
+.streak-count { font-size: 1.05rem; color: var(--text); }
+.streak-count b { font-size: 1.4rem; color: var(--title-ink); padding: 0 2px; }
+.streak-sub { font-size: 0.85rem; color: var(--muted); }
+
+.streak-week { display: flex; gap: 10px; }
+.streak-day { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.streak-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--inset);
+  border: 2px solid var(--line-strong);
+}
+.streak-day.on .streak-dot {
+  background: var(--btn-grad);
+  border-color: transparent;
+  box-shadow: 0 2px 6px rgba(43, 178, 76, 0.35);
+}
+.streak-day-label { font-size: 0.72rem; color: var(--muted); }
+.streak-day.on .streak-day-label { color: var(--good-ink); font-weight: 700; }
+
+.streak-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.streak-badge {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--accent2-ink);
+  background: var(--p-peach-pill);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+@media (max-width: 560px) {
+  .streak-card { padding: 14px 16px; margin-bottom: 18px; }
+  .streak-flame { font-size: 1.8rem; }
+  .streak-dot { width: 18px; height: 18px; }
+  .streak-week { gap: 7px; }
+}

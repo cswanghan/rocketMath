@@ -21,6 +21,7 @@ import { Probe } from './Probe';
 import { Race } from './Race';
 import { loadExamCalendar } from './examLoader';
 import { readPrepTarget, savePrepTarget } from './prep';
+import { readStreak, takeNewMilestone } from './streak';
 import { useTimeLock } from './useTimeLock';
 import { UserBar, useAuth } from './UserBar';
 
@@ -55,6 +56,8 @@ export function App() {
   const [prepResume, setPrepResume] = useState<
     { seriesId: string; name: string; masteredCount?: number; total?: number } | null
   >(null);
+  // 每日打卡: 本轮新达成的里程碑天数 (回首页时取一次,庆祝用)
+  const [celebrate, setCelebrate] = useState<number | null>(null);
   const [authPromptFor, setAuthPromptFor] = useState<Subject | null>(null);
   // a logged-out user who clicked a subject is sent to login.html?redirect=/?go=<subject>;
   // on return we auto-open that subject once auth is confirmed.
@@ -156,6 +159,15 @@ export function App() {
     return () => { alive = false; };
   }, [studentId, prepSeriesId]);
 
+  // 是否停留在首页(无锁屏/家长/备考/日历/学科)
+  const onHome = !locked && !parent && !prepSeriesId && !examCal && !subject;
+  // 回到首页时取一次新里程碑(side-effect);StrictMode 双跑时不把已取到的覆盖为 null
+  useEffect(() => {
+    if (!onHome) { setCelebrate(null); return; }
+    const m = takeNewMilestone(studentId);
+    if (m != null) setCelebrate(m);
+  }, [onHome, studentId]);
+
   const userBar = (
     <UserBar
       user={user}
@@ -249,6 +261,8 @@ export function App() {
           onExamCal={() => setExamCal(true)}
           resumePrep={prepResume}
           onResumePrep={prepResume ? () => setPrepSeriesId(prepResume.seriesId) : undefined}
+          streak={readStreak(studentId)}
+          celebrate={celebrate}
         />
         {authPromptFor && (
           <LoginPrompt subject={authPromptFor} onClose={() => setAuthPromptFor(null)} />
