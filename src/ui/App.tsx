@@ -21,7 +21,7 @@ import { Probe } from './Probe';
 import { Race } from './Race';
 import { loadExamCalendar } from './examLoader';
 import { readPrepTarget, savePrepTarget } from './prep';
-import { readStreak, takeNewMilestone } from './streak';
+import { CHECKIN_XP, readStreak, recordCheckIn, takeNewMilestone } from './streak';
 import { useTimeLock } from './useTimeLock';
 import { UserBar, useAuth } from './UserBar';
 
@@ -158,6 +158,19 @@ export function App() {
     });
     return () => { alive = false; };
   }, [studentId, prepSeriesId]);
+
+  // 语文/英语 iframe 学习时,track.js 会 postMessage 过来 → 记一次每日打卡
+  useEffect(() => {
+    function onMsg(e: MessageEvent) {
+      if (e.origin !== window.location.origin) return;
+      const d = e.data;
+      if (!d || d.source !== 'rm' || d.type !== 'activity') return;
+      const r = recordCheckIn(studentId);
+      if (r.firstToday) void adapter.addXp(studentId, CHECKIN_XP);
+    }
+    window.addEventListener('message', onMsg);
+    return () => window.removeEventListener('message', onMsg);
+  }, [studentId, adapter]);
 
   // 是否停留在首页(无锁屏/家长/备考/日历/学科)
   const onHome = !locked && !parent && !prepSeriesId && !examCal && !subject;
