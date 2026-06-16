@@ -1019,14 +1019,17 @@ function showResult(){
 }
 
 /* ===================== 生字本 ===================== */
-/* ---- 存储层（自动保存，平台支持时跨会话保留，否则当次有效）---- */
+/* ---- 存储层：localStorage 持久化（同源、跨会话保留），按当前孩子隔离；
+       localStorage 不可用时退回当次内存。键：rm.<name>.<studentId> ---- */
 const Store = {
   mem:{},
+  _sid(){ try{ const c=JSON.parse(localStorage.getItem('rm.child')||'null'); return (c&&c.id)?('child_'+c.id):'local'; }catch(e){ return 'local'; } },
+  _key(k){ return 'rm.'+k+'.'+this._sid(); },
   async get(k){
-    try{ if(window.storage && window.storage.get){ const r=await window.storage.get(k,false); if(r&&r.value!=null) return JSON.parse(r.value); return null; } }catch(e){}
+    try{ const raw=localStorage.getItem(this._key(k)); if(raw!=null) return JSON.parse(raw); }catch(e){}
     return (k in this.mem)? this.mem[k] : null;
   },
-  async set(k,v){ this.mem[k]=v; try{ if(window.storage && window.storage.set){ await window.storage.set(k, JSON.stringify(v), false); } }catch(e){} }
+  async set(k,v){ this.mem[k]=v; try{ localStorage.setItem(this._key(k), JSON.stringify(v)); }catch(e){} }
 };
 
 /* ---- 提示条 ---- */

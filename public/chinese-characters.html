@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cnchar-radical/cnchar.radical.min.js"></script>
 <script>try{ if(window.cnchar && window.cncharRadical){ cnchar.use(cncharRadical); } }catch(e){}</script>
+<script src="/track.js"></script>
 <style>
 :root{
   --paper:#f4ead6;
@@ -854,6 +855,7 @@ function renderDetail(){
 /* ---------- 选字 ---------- */
 function selectChar(ch){
   current = byChar[ch];
+  window.rmTrack && rmTrack('char_view', { char: ch, source: 'characters' });
   document.querySelectorAll('.chip').forEach(el=>el.classList.toggle('sel', el.dataset.c===ch));
   renderDetail();
   speak(ch);
@@ -955,6 +957,7 @@ function makeQ(type,c){
 }
 
 function startQuiz(){ buildQuiz(); qIdx=0; qScore=0;
+  window.rmTrack && rmTrack('char_quiz_start', {});
   document.getElementById('quiz-result').classList.add('hidden');
   document.getElementById('quiz-play').classList.remove('hidden');
   showQuestion();
@@ -984,6 +987,7 @@ function showQuestion(){
 function answer(btn,val,q){
   if(answered) return; answered=true;
   const right = val===q.correct;
+  window.rmTrack && rmTrack('char_quiz_answer', { type: q.type, correct: right });
   const buttons=document.querySelectorAll('#q-opts .opt');
   buttons.forEach(b=>{
     b.disabled=true;
@@ -1004,6 +1008,7 @@ function nextQuestion(){
   else showResult();
 }
 function showResult(){
+  window.rmTrack && rmTrack('char_quiz_result', { score: qScore, total: 10 });
   document.getElementById('quiz-play').classList.add('hidden');
   const r=document.getElementById('quiz-result'); r.classList.remove('hidden');
   const stars = qScore>=9?'⭐⭐⭐':qScore>=6?'⭐⭐':qScore>=3?'⭐':'🌱';
@@ -1019,14 +1024,17 @@ function showResult(){
 }
 
 /* ===================== 生字本 ===================== */
-/* ---- 存储层（自动保存，平台支持时跨会话保留，否则当次有效）---- */
+/* ---- 存储层：localStorage 持久化（同源、跨会话保留），按当前孩子隔离；
+       localStorage 不可用时退回当次内存。键：rm.<name>.<studentId> ---- */
 const Store = {
   mem:{},
+  _sid(){ try{ const c=JSON.parse(localStorage.getItem('rm.child')||'null'); return (c&&c.id)?('child_'+c.id):'local'; }catch(e){ return 'local'; } },
+  _key(k){ return 'rm.'+k+'.'+this._sid(); },
   async get(k){
-    try{ if(window.storage && window.storage.get){ const r=await window.storage.get(k,false); if(r&&r.value!=null) return JSON.parse(r.value); return null; } }catch(e){}
+    try{ const raw=localStorage.getItem(this._key(k)); if(raw!=null) return JSON.parse(raw); }catch(e){}
     return (k in this.mem)? this.mem[k] : null;
   },
-  async set(k,v){ this.mem[k]=v; try{ if(window.storage && window.storage.set){ await window.storage.set(k, JSON.stringify(v), false); } }catch(e){} }
+  async set(k,v){ this.mem[k]=v; try{ localStorage.setItem(this._key(k), JSON.stringify(v)); }catch(e){} }
 };
 
 /* ---- 提示条 ---- */
@@ -1099,6 +1107,7 @@ function addEntry(){
   const note=(document.getElementById('nb-note').value||'').trim();
   const entry={ id:Date.now(), word:dec.word, py:dec.py, dec:dec.chars, scene:newScene, note, ts:Date.now(), reviews:0 };
   NOTE.unshift(entry); saveNote();
+  window.rmTrack && rmTrack('shengziben_add', { word: dec.word, scene: newScene });
   inp.value=''; document.getElementById('nb-note').value='';
   filterScene='全部'; renderNote();
   speak(dec.word);
@@ -1167,6 +1176,7 @@ function startReview(){
   const set = filterScene==='全部'?NOTE:NOTE.filter(e=>e.scene===filterScene);
   if(!set.length){ toast('先录入一些生字吧～'); return; }
   revQueue = shuffle(set.slice()); revIdx=0; revDone=0; revFlipped=false;
+  window.rmTrack && rmTrack('shengziben_review_start', { count: revQueue.length, scene: filterScene });
   document.getElementById('rev-overlay').classList.add('show');
   document.body.style.overflow='hidden';
   renderRev();
@@ -1209,6 +1219,7 @@ function flipRev(){
 }
 function reviewMark(got){
   const e=revQueue[revIdx];
+  window.rmTrack && rmTrack('shengziben_review_mark', { word: e && e.word, got: !!got });
   if(got){ const real=NOTE.find(x=>x.id===e.id); if(real){real.reviews++;} revDone++; saveNote(); }
   else { revQueue.push(e); } // 没记住的排到最后再练一次
   revIdx++; renderRev();
