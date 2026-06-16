@@ -6,7 +6,8 @@
 <title>生字小课堂</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
+<!-- 拼音字体改用 Nunito：Baloo 2 的一声长音 ā 字形位置错乱(显示成 ta¯) -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cnchar-radical/cnchar.radical.min.js"></script>
@@ -40,7 +41,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 .kai{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;}
-.pinyin-font{font-family:"Baloo 2",sans-serif;}
+.pinyin-font{font-family:"Nunito",sans-serif;}
 
 /* ---------- Header ---------- */
 header{
@@ -157,7 +158,7 @@ header{
 .act:active{transform:scale(.96);}
 .act svg{width:18px;height:18px;}
 
-.pinyin{font-family:"Baloo 2",sans-serif;font-size:38px;color:var(--red);font-weight:600;margin:4px 0 0;letter-spacing:1px;}
+.pinyin{font-family:"Nunito",sans-serif;font-size:38px;color:var(--red);font-weight:600;margin:4px 0 0;letter-spacing:1px;}
 .mean{font-size:15px;color:var(--ink-soft);margin-top:2px;}
 
 .divider{height:1px;background:var(--line);margin:22px 0 18px;position:relative;}
@@ -233,7 +234,7 @@ header{
 }
 .fam-chip:hover{transform:translateY(-2px);border-color:var(--red-soft);}
 .fam-chip .fc{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:30px;line-height:1;}
-.fam-chip .fp{font-family:"Baloo 2",sans-serif;font-size:12px;color:var(--red);margin-top:3px;}
+.fam-chip .fp{font-family:"Nunito",sans-serif;font-size:12px;color:var(--red);margin-top:3px;}
 
 /* ---------- Quiz ---------- */
 .quiz{max-width:560px;margin:0 auto;}
@@ -251,7 +252,7 @@ header{
   padding:15px;text-align:center;transition:.14s;
 }
 .opt .oc{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:30px;margin-right:6px;}
-.opt .op{font-family:"Baloo 2",sans-serif;color:var(--red);}
+.opt .op{font-family:"Nunito",sans-serif;color:var(--red);}
 .opt:hover:not(:disabled){border-color:var(--red-soft);}
 .opt.correct{background:#e6f2e0;border-color:#7bb366;color:#3d7a2a;}
 .opt.wrong{background:#fae3de;border-color:var(--red);color:var(--red);}
@@ -265,7 +266,7 @@ header{
 .q-next:hover{transform:translateY(-1px);}
 .q-result{text-align:center;padding:10px 0;}
 .q-stars{font-size:44px;letter-spacing:6px;margin:10px 0;}
-.q-score{font-size:46px;font-weight:700;font-family:"Baloo 2",sans-serif;color:var(--red);}
+.q-score{font-size:46px;font-weight:700;font-family:"Nunito",sans-serif;color:var(--red);}
 .q-msg{font-size:17px;margin:8px 0 22px;color:var(--ink);}
 .hidden{display:none!important;}
 .footer-note{text-align:center;font-size:11px;color:var(--ink-faint);margin-top:30px;letter-spacing:1px;}
@@ -315,7 +316,7 @@ header{
 /* ---------- 生字本 列表 ---------- */
 .nb-list-head{display:flex;align-items:center;justify-content:space-between;margin:24px 4px 12px;gap:10px;flex-wrap:wrap;}
 .nb-count{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:18px;font-weight:700;}
-.nb-count small{font-family:"Baloo 2",sans-serif;color:var(--red);font-weight:700;}
+.nb-count small{font-family:"Nunito",sans-serif;color:var(--red);font-weight:700;}
 .review-btn{
   border:none;background:var(--ink);color:var(--paper-2);cursor:pointer;font-family:inherit;
   font-size:14px;font-weight:700;padding:10px 20px;border-radius:11px;transition:.15s;
@@ -337,7 +338,7 @@ header{
 .entry-top{display:flex;align-items:flex-start;gap:12px;}
 .entry-word{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-size:38px;line-height:1;color:var(--ink);}
 .entry-meta{flex:1;min-width:0;}
-.entry-py{font-family:"Baloo 2",sans-serif;font-size:18px;color:var(--red);font-weight:600;}
+.entry-py{font-family:"Nunito",sans-serif;font-size:18px;color:var(--red);font-weight:600;}
 .entry-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:5px;}
 .tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;}
 .tag-scene{background:var(--red-wash);color:var(--red);}
@@ -355,7 +356,7 @@ header{
   background:var(--paper-3);border:1px solid var(--line);border-radius:11px;padding:8px 10px;min-width:64px;text-align:center;
 }
 .dec-cell .dc-c{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:26px;line-height:1;}
-.dec-cell .dc-p{font-family:"Baloo 2",sans-serif;font-size:12px;color:var(--red);margin-top:2px;}
+.dec-cell .dc-p{font-family:"Nunito",sans-serif;font-size:12px;color:var(--red);margin-top:2px;}
 .dec-cell .dc-r{font-size:11px;color:var(--ink-soft);margin-top:4px;}
 .dec-cell .dc-r b{color:var(--ink);}
 .dec-cell.known{cursor:pointer;}
@@ -365,7 +366,7 @@ header{
 .cd-tian{width:168px;height:168px;flex:0 0 auto;}
 .cd-info{flex:1;min-width:0;}
 .cd-char{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:40px;line-height:1;color:var(--ink);}
-.cd-py{font-family:"Baloo 2",sans-serif;font-size:18px;color:var(--red);margin-top:6px;}
+.cd-py{font-family:"Nunito",sans-serif;font-size:18px;color:var(--red);margin-top:6px;}
 .cd-meta{font-size:13px;color:var(--ink-soft);margin-top:8px;}
 .cd-btns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
 .cd-btn{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 16px;
@@ -390,7 +391,7 @@ header{
 }
 .rev-word{font-family:"Kaiti SC","STKaiti","Kaiti","楷体",serif;font-size:74px;line-height:1.1;color:var(--ink);}
 .rev-flip-hint{font-size:13px;color:var(--ink-faint);margin-top:14px;}
-.rev-py{font-family:"Baloo 2",sans-serif;font-size:30px;color:var(--red);font-weight:600;margin:2px 0 14px;}
+.rev-py{font-family:"Nunito",sans-serif;font-size:30px;color:var(--red);font-weight:600;margin:2px 0 14px;}
 .rev-back-dec{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;}
 .rev-buttons{display:flex;gap:11px;margin-top:18px;}
 .rev-buttons button{
