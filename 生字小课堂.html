@@ -360,6 +360,17 @@ header{
 .dec-cell .dc-r b{color:var(--ink);}
 .dec-cell.known{cursor:pointer;}
 .dec-cell.known:hover{border-color:var(--red-soft);}
+/* 单字详情(生字本点字) */
+.cd-head{display:flex;gap:16px;align-items:center;}
+.cd-tian{width:168px;height:168px;flex:0 0 auto;}
+.cd-info{flex:1;min-width:0;}
+.cd-char{font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:40px;line-height:1;color:var(--ink);}
+.cd-py{font-family:"Baloo 2",sans-serif;font-size:18px;color:var(--red);margin-top:6px;}
+.cd-meta{font-size:13px;color:var(--ink-soft);margin-top:8px;}
+.cd-btns{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.cd-btn{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 16px;
+  font-size:14px;font-family:inherit;cursor:pointer;color:var(--ink);}
+.cd-btn:hover{border-color:var(--red-soft);}
 .dec-rad{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;color:#fff;
   font-family:"Kaiti SC","STKaiti","Kaiti",serif;font-size:13px;vertical-align:-3px;margin-right:2px;}
 .dec-hint{font-size:11px;color:var(--ink-faint);margin-top:8px;line-height:1.6;}
@@ -798,6 +809,57 @@ document.getElementById('btn-stroke').onclick=()=>{
 };
 document.getElementById('btn-speak').onclick=()=>speak(current.c);
 
+/* ---------- 单字详情(生字本里点字看笔顺) ---------- */
+let cmWriter=null;
+function makeStroke(targetId, ch){
+  const target=document.getElementById(targetId); if(!target) return null;
+  target.innerHTML=''; let w=null, ready=false, fell=false;
+  function fb(){ if(fell)return; fell=true; target.innerHTML='<span class="static-char">'+ch+'</span>'; }
+  if(typeof HanziWriter==='undefined'){ fb(); return null; }
+  try{
+    w=HanziWriter.create(target, ch, {
+      width:168,height:168,padding:12,strokeColor:'#34302a',radicalColor:'#bf3f2b',
+      showOutline:true,showCharacter:true,strokeAnimationSpeed:0.9,delayBetweenStrokes:160,
+      charDataLoader:function(c,onComplete){
+        fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/'+encodeURIComponent(c)+'.json')
+          .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+          .then(d=>{ ready=true; onComplete(d); setTimeout(()=>{ try{ w.animateCharacter(); }catch(e){} },150); })
+          .catch(()=>fb());
+      }
+    });
+  }catch(e){ fb(); }
+  setTimeout(()=>{ if(!ready) fb(); }, 3500);
+  return w;
+}
+function openCharDetail(el){
+  const c=el.dataset.c, py=el.dataset.py||'', rad=el.dataset.rad||'', struct=el.dataset.struct||'', radKey=el.dataset.radkey||'';
+  const known = radKey && RAD[radKey];
+  const badge = known ? '<span class="dec-rad" style="background:'+RAD[radKey].color+'">'+rad+'</span>' : '<b>'+rad+'</b>';
+  let html='<div class="grip"></div>';
+  html+='<div class="cd-head">'+
+      '<div class="tian cd-tian"><div id="cm-target"></div></div>'+
+      '<div class="cd-info">'+
+        '<div class="cd-char">'+c+'</div>'+
+        (py?'<div class="cd-py pinyin-font">'+py+'</div>':'')+
+        '<div class="cd-meta">部首 '+badge+(struct?' · '+struct:'')+'</div>'+
+        '<div class="cd-btns">'+
+          '<button class="cd-btn" id="cd-anim">✍️ 看笔顺</button>'+
+          '<button class="cd-btn" id="cd-speak">🔊 读一读</button>'+
+          (known?'<button class="cd-btn" id="cd-rad">🧩 部首一家人</button>':'')+
+        '</div>'+
+      '</div>'+
+    '</div>';
+  if(known){ const r=RAD[radKey]; html+='<div class="rad-story">💡 「'+r.g+'」'+r.name+'：'+r.story+'</div>'; }
+  document.getElementById('sheet').innerHTML=html;
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+  cmWriter = makeStroke('cm-target', c);
+  document.getElementById('cd-anim').onclick=()=>{ if(cmWriter && cmWriter.animateCharacter){ try{ cmWriter.animateCharacter(); }catch(e){ speak(c); } } else speak(c); };
+  document.getElementById('cd-speak').onclick=()=>speak(c);
+  if(known){ const rb=document.getElementById('cd-rad'); if(rb) rb.onclick=()=>openRad(radKey); }
+  window.rmTrack && rmTrack('shengziben_char_detail', { word: c });
+}
+
 /* ---------- 结构图标 ---------- */
 function structIcon(struct){
   if(struct==='左右') return '<div class="struct-icon"><div class="si-cell"></div><div class="si-cell"></div></div>';
@@ -1113,9 +1175,9 @@ function delEntry(id){ NOTE=NOTE.filter(e=>e.id!==id); saveNote(); renderNote();
 function decCellHTML(d){
   const known = d.radKey && RAD[d.radKey];
   const badge = known ? '<span class="dec-rad" style="background:'+RAD[d.radKey].color+'">'+d.radical+'</span>' : '<b>'+d.radical+'</b>';
-  const cls = known ? 'dec-cell known' : 'dec-cell';
-  const click = known ? ' onclick="openRad(\''+d.radKey+'\')"' : '';
-  return '<div class="'+cls+'"'+click+'><div class="dc-c">'+d.c+'</div>'+
+  const attrs = 'data-c="'+d.c+'" data-py="'+(d.py||'')+'" data-rad="'+(d.radical||'')+'" data-struct="'+(d.struct||'')+'" data-radkey="'+(d.radKey||'')+'"';
+  // 整个单字格可点 → 打开笔顺详情
+  return '<div class="dec-cell known" '+attrs+' onclick="openCharDetail(this)"><div class="dc-c">'+d.c+'</div>'+
     (d.py?'<div class="dc-p">'+d.py+'</div>':'')+
     '<div class="dc-r">部首 '+badge+(d.struct?'<br>'+d.struct:'')+'</div></div>';
 }
