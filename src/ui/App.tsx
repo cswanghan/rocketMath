@@ -64,6 +64,9 @@ export function App() {
   const [pendingGo] = useState<string | null>(() => new URLSearchParams(location.search).get('go'));
   // 统一 header 的「家长」入口可从其它页(如管理后台)深链进入: /?parent=1
   const [pendingParent] = useState<boolean>(() => new URLSearchParams(location.search).get('parent') === '1');
+  // ket-online 导流: /?from=ket → 落英语背单词 + 显示欢迎条 + 埋点来源
+  const [pendingFrom] = useState<string | null>(() => new URLSearchParams(location.search).get('from'));
+  const [fromKet, setFromKet] = useState<boolean>(() => new URLSearchParams(location.search).get('from') === 'ket');
 
   // 家庭/孩子档案: 当前在学的孩子 (null = 家长本人)
   const [activeChild, setActiveChildState] = useState<Child | null>(() => getActiveChild());
@@ -130,6 +133,17 @@ export function App() {
       window.history.replaceState({}, '', u.pathname + u.search + u.hash);
     }
   }, [user, pendingGo]);
+
+  // ket-online 导流入站: 落英语背单词(匿名也可,走 trial),埋点来源,清洗 URL
+  useEffect(() => {
+    if (pendingFrom !== 'ket') return;
+    track('inbound', { from: 'ket', go: 'english' });
+    setSubject('english');
+    const u = new URL(location.href);
+    u.searchParams.delete('from');
+    u.searchParams.delete('go');
+    window.history.replaceState({}, '', u.pathname + u.search + u.hash);
+  }, [pendingFrom]);
 
   useEffect(() => {
     if (grade === null) { setContent(null); return; }
@@ -201,6 +215,15 @@ export function App() {
     />
   ) : null;
 
+  // 从 ket-online 过来的欢迎条 (落在英语/首页时显示, 可关闭)
+  const fromKetWelcome = fromKet ? (
+    <div className="from-ket-welcome">
+      <span>👋 欢迎从 KET 练习过来！星芽还有袋鼠数学 · 汉字 · 每日打卡</span>
+      <button className="fkw-explore" onClick={() => { setFromKet(false); setSubject(null); }}>看看全部 →</button>
+      <button className="fkw-x" aria-label="关闭" onClick={() => setFromKet(false)}>×</button>
+    </div>
+  ) : null;
+
   if (loadError) {
     return (
       <div className="error-screen">
@@ -269,6 +292,7 @@ export function App() {
       <>
         {userBar}
         {switcherEl}
+        {fromKetWelcome}
         <Portal
           onSelect={choose}
           onExamCal={() => setExamCal(true)}
@@ -299,7 +323,7 @@ export function App() {
       <>
         {userBar}
         {switcherEl}
-        <EnglishVocab onBack={() => setSubject(null)} />
+        <EnglishVocab onBack={() => setSubject(null)} banner={fromKetWelcome} />
       </>
     );
   }

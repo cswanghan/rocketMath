@@ -2265,3 +2265,53 @@ p.exam-modal-section { border-bottom: none; padding-bottom: 0; }
   .streak-dot { width: 18px; height: 18px; }
   .streak-week { gap: 7px; }
 }
+
+/* ====== ket-online 导流欢迎条 ====== */
+.from-ket-welcome {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(900px, 100%);
+  margin: 8px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--p-mint);
+  color: var(--p-mint-ink);
+  border-radius: 999px;
+  padding: 10px 44px 10px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+.from-ket-welcome .fkw-explore {
+  margin-left: auto;
+  background: var(--btn-grad);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 6px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.from-ket-welcome .fkw-x {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--p-mint-ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0.7;
+  line-height: 1;
+}
+.from-ket-welcome .fkw-x:hover { opacity: 1; }
+
+@media (max-width: 560px) {
+  .from-ket-welcome { font-size: 0.82rem; padding: 9px 38px 9px 14px; border-radius: 16px; }
+  .from-ket-welcome .fkw-explore { margin-left: 0; }
+}
