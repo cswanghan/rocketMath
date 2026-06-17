@@ -874,14 +874,16 @@ const STRUCT_NOTE={'左右':'左边 + 右边','上下':'上面 + 下面','半包
 /* ---------- 渲染详情 ---------- */
 function renderDetail(){
   const c = current;
-  document.getElementById('d-pinyin').textContent = c.p;
-  document.getElementById('d-mean').textContent = '含义：'+c.mean;
+  document.getElementById('d-pinyin').textContent = c.p || '';
+  const meanEl=document.getElementById('d-mean');
+  meanEl.textContent = c.mean ? ('含义：'+c.mean) : '';
+  meanEl.style.display = c.mean ? '' : 'none';
   buildWriter(c.c);
 
   const area = document.getElementById('struct-area');
-  let html = '<div class="struct-row">'+structIcon(c.struct)+
+  let html = (c.struct && STRUCT_NOTE[c.struct]) ? ('<div class="struct-row">'+structIcon(c.struct)+
     '<span class="struct-tag">'+c.struct+'结构</span>'+
-    '<span class="struct-note">（'+STRUCT_NOTE[c.struct]+'）</span></div>';
+    '<span class="struct-note">（'+STRUCT_NOTE[c.struct]+'）</span></div>') : '';
 
   if(c.struct==='独体'){
     html += '<div class="solo-note">「<b>'+c.c+'</b>」是<b>独体字</b>，不能再拆开啦，它本身就是一块汉字的小积木。';
@@ -891,7 +893,7 @@ function renderDetail(){
       html += '<br><button class="act" style="margin-top:10px" onclick="openRad(\''+c.evolve+'\')">看看它的「一家人」 →</button>';
     }
     html += '</div>';
-  } else {
+  } else if(c.parts && c.parts.length){
     html += '<div class="parts">';
     c.parts.forEach((pt,i)=>{
       if(i>0) html+='<span class="plus">+</span>';
@@ -911,14 +913,28 @@ function renderDetail(){
         '关键偏旁是 <b style="color:'+r.color+'">'+r.g+'</b>（'+r.name+'）—— 它告诉我们这个字和 <b style="color:'+r.color+'">'+r.theme.split(' · ')[0]+'</b> 有关。'+
         '<br><button class="act" style="margin-top:10px" onclick="openRad(\''+radPart.rad+'\')">点偏旁，看「一家人」 →</button></div>';
     }
+  } else if(c.rad && RAD[c.rad]){
+    const r=RAD[c.rad];
+    html += '<div class="solo-note" style="border-color:'+r.color+'33">关键偏旁是 <b style="color:'+r.color+'">'+r.g+'</b>（'+r.name+'）—— 这个字和 <b style="color:'+r.color+'">'+r.theme.split(' · ')[0]+'</b> 有关。'+
+      '<br><button class="act" style="margin-top:10px" onclick="openRad(\''+c.rad+'\')">点偏旁，看「一家人」 →</button></div>';
+  } else {
+    html += '<div class="solo-note">这个字先看看上面的「笔顺」和「读一读」，把它记住吧～</div>';
   }
   area.innerHTML = html;
 }
 
 /* ---------- 选字 ---------- */
+// 生字本里的字不在内置字库时，用拆字结果即时构造一个「轻量」字卡(仍有笔顺/拼音/部首)
+function buildCharInfo(ch){
+  let d={c:ch,py:'',radical:'',struct:'',radKey:null};
+  try{ const dec=decompose(ch); if(dec&&dec.chars[0]) d=dec.chars[0]; }catch(e){}
+  let st=(d.struct||'').replace('字','').replace('结构','');
+  if(!STRUCT_NOTE[st]) st='';
+  return { c:ch, p:d.py||'', mean:'', struct:st, rad:d.radKey||null, parts:[], light:true };
+}
 function selectChar(ch){
-  current = byChar[ch];
-  window.rmTrack && rmTrack('char_view', { char: ch, source: 'characters' });
+  current = byChar[ch] || buildCharInfo(ch);
+  window.rmTrack && rmTrack('char_view', { char: ch, source: byChar[ch]?'characters':'shengziben' });
   document.querySelectorAll('.chip').forEach(el=>el.classList.toggle('sel', el.dataset.c===ch));
   renderDetail();
   speak(ch);
@@ -931,6 +947,16 @@ function selectChar(ch){
 function renderPicker(){
   const wrap = document.getElementById('picker');
   let html='';
+  // 「我的生字本」：把用户加过的字延伸到学一学(置顶)
+  const mine=[...new Set((NOTE||[]).flatMap(e=>[...((e&&e.word)||'')].filter(x=>/[一-鿿]/.test(x))))];
+  if(mine.length){
+    html += '<div class="group"><div class="group-head">'+
+      '<div class="rad-badge" style="background:var(--gold)">本</div>'+
+      '<div><div class="gtitle">我的生字本</div><div class="gtheme">你加过的字 · 点字学笔顺</div></div></div>';
+    html += '<div class="chips">';
+    mine.forEach(ch=>{ html += '<div class="chip" data-c="'+ch+'" onclick="selectChar(\''+ch+'\')">'+ch+'</div>'; });
+    html += '</div></div>';
+  }
   GROUPS.forEach(g=>{
     const r = g.rad ? RAD[g.rad] : null;
     const color = r ? r.color : g.color;
@@ -1176,7 +1202,7 @@ function mergeNotes(a,b){
 }
 async function loadNote(){
   NOTE=(await Store.get('shengziben'))||[];
-  renderScenePicker(); renderNote();                 // 本地先渲染,不等网络
+  renderScenePicker(); renderNote(); renderPicker();                 // 本地先渲染,不等网络
   const cloud=await cloudGet();
   if(cloud){
     const before=NOTE.length;
@@ -1185,7 +1211,7 @@ async function loadNote(){
     await Store.set('shengziben', NOTE); await Store.set('shengziben_ts', ts);
     // 合并后若与云端不一致(本地有云端没有的字)，整本回推
     if(NOTE.length!==((cloud.data&&cloud.data.length)||0) || before!==NOTE.length) cloudPut(NOTE, ts);
-    renderScenePicker(); renderNote();
+    renderScenePicker(); renderNote(); renderPicker();
   }
 }
 async function saveNote(){
@@ -1210,12 +1236,12 @@ function addEntry(){
   NOTE.unshift(entry); saveNote();
   window.rmTrack && rmTrack('shengziben_add', { word: dec.word, scene: newScene });
   inp.value=''; document.getElementById('nb-note').value='';
-  filterScene='全部'; renderNote();
+  filterScene='全部'; renderNote(); renderPicker();
   speak(dec.word);
   toast('✅ 已加入生字本：'+dec.word);
 }
 
-function delEntry(id){ NOTE=NOTE.filter(e=>e.id!==id); saveNote(); renderNote(); }
+function delEntry(id){ NOTE=NOTE.filter(e=>e.id!==id); saveNote(); renderNote(); renderPicker(); }
 
 function decCellHTML(d){
   const known = d.radKey && RAD[d.radKey];
