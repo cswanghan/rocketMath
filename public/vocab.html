@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星芽 · 英语背单词</title>
+    <meta name="description" content="按剑桥 KET / PET 官方主题词表背单词，支持主题筛选、每日 20 词计划、音频跟读、听写模式。10 分钟 / 天，自然记住高频词。">
+    <link rel="canonical" href="https://ket-online.pages.dev/vocab">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="KET & PET 官方主题词背诵">
+    <meta property="og:description" content="官方主题词表 · 每日 20 词 · 音频跟读 · 听写模式。">
+    <meta property="og:url" content="https://ket-online.pages.dev/vocab">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f6efe4;
+            --panel: rgba(255, 251, 246, 0.84);
+            --line: rgba(89, 62, 42, 0.12);
+            --text: #2d241d;
+            --muted: #76675e;
+            --accent: #99604b;
+            --accent-soft: rgba(153, 96, 75, 0.1);
+            --shadow: 0 18px 48px rgba(74, 48, 34, 0.12);
+            --radius: 28px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            font-family: 'Manrope', 'Noto Serif SC', sans-serif;
+            background:
+                radial-gradient(circle at left top, rgba(201, 111, 93, 0.16), transparent 24%),
+                radial-gradient(circle at right 16%, rgba(108, 141, 163, 0.18), transparent 22%),
+                linear-gradient(180deg, #fbf7f0 0%, var(--bg) 100%);
+        }
+
+        .shell {
+            width: min(1320px, calc(100vw - 24px));
+            margin: 12px auto 20px;
+            display: grid;
+            grid-template-columns: minmax(292px, 320px) minmax(0, 1fr);
+            gap: 14px;
+            align-items: start;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+            min-width: 0;
+        }
+
+        .sidebar {
+            padding: 16px 14px;
+            position: sticky;
+            top: 12px;
+            max-height: calc(100vh - 24px);
+            overflow: auto;
+            display: grid;
+            gap: 12px;
+            align-self: start;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(118, 103, 94, 0.22);
+            border-radius: 999px;
+        }
+
+        .brand {
+            padding: 4px 6px 12px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.86rem;
+        }
+
+        .brand h1 {
+            margin: 8px 0 4px;
+            font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            font-size: 1.75rem;
+            line-height: 0.95;
+        }
+
+        .brand p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.58;
+            font-size: 0.84rem;
+        }
+
+        .section-title {
+            margin: 0 0 8px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+        }
+
+        .level-filters,
+        .topic-filters {
+            display: grid;
+            gap: 8px;
+        }
+
+        .filter-btn,
+        .topic-chip {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: rgba(255,255,255,0.72);
+            color: inherit;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+        }
+
+        .filter-btn:hover,
+        .topic-chip:hover {
+            transform: translateY(-1px);
+            border-color: rgba(153, 96, 75, 0.32);
+        }
+
+        .filter-btn.active,
+        .topic-chip.active {
+            background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,244,238,0.88));
+            border-color: rgba(153, 96, 75, 0.4);
+            box-shadow: inset 0 0 0 1px rgba(153, 96, 75, 0.1);
+        }
+
+        .filter-btn {
+            padding: 10px 12px;
+            display: grid;
+            gap: 2px;
+        }
+
+        .filter-btn span {
+            font-size: 0.74rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .filter-btn strong {
+            font-size: 1rem;
+        }
+
+        .topic-filters {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .topic-chip {
+            padding: 10px 12px;
+            display: grid;
+            gap: 4px;
+        }
+
+        .topic-chip span {
+            font-size: 0.78rem;
+            line-height: 1.3;
+        }
+
+        .topic-chip strong {
+            font-size: 0.78rem;
+            color: var(--accent);
+        }
+
+        .source-card {
+            padding: 12px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.68);
+            border: 1px solid var(--line);
+            display: grid;
+            gap: 8px;
+        }
+
+        .status-card {
+            padding: 12px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.72);
+            border: 1px solid var(--line);
+            display: grid;
+            gap: 8px;
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .status-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            background: rgba(153, 96, 75, 0.08);
+            color: var(--accent);
+            border: 1px solid rgba(153, 96, 75, 0.12);
+        }
+
+        .status-note {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.7;
+        }
+
+        .status-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.84rem;
+        }
+
+        .daily-stats {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+        }
+
+        .daily-stat {
+            border-radius: 18px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.82);
+            padding: 10px 12px;
+            display: grid;
+            gap: 4px;
+        }
+
+        .daily-stat strong {
+            font-size: 1.25rem;
+        }
+
+        .daily-stat span {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .daily-target-select {
+            font: inherit;
+            font-size: 1.25rem;
+            font-weight: 700;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 2px 6px;
+            background: rgba(255,255,255,0.9);
+            color: var(--text);
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            text-align: center;
+            width: fit-content;
+        }
+
+        .daily-btn {
+            border: none;
+            border-radius: 16px;
+            padding: 12px 14px;
+            font: inherit;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(135deg, #99604b, #7b4937);
+            box-shadow: 0 10px 24px rgba(123, 73, 55, 0.18);
+        }
+
+        .focus-filters {
+            display: grid;
+            gap: 8px;
+        }
+
+        .focus-chip {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: rgba(255,255,255,0.72);
+            padding: 10px 12px;
+            text-align: left;
+            cursor: pointer;
+            font: inherit;
+            color: inherit;
+        }
+
+        .focus-chip.active {
+            background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,244,238,0.88));
+            border-color: rgba(153, 96, 75, 0.4);
+        }
+
+        .focus-chip strong {
+            display: block;
+            font-size: 0.94rem;
+        }
+
+        .focus-chip span {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .toggle-card {
+            padding: 12px;
+            border-radius: 22px;
+            background: rgba(255,255,255,0.68);
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        .toggle-copy strong {
+            display: block;
+            font-size: 0.94rem;
+        }
+
+        .toggle-copy span {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        .switch {
+            position: relative;
+            width: 54px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            inset: 0;
+            background: rgba(118, 103, 94, 0.24);
+            border-radius: 999px;
+            transition: background 0.16s ease;
+            cursor: pointer;
+        }
+
+        .slider::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: 4px;
+            top: 4px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+            transition: transform 0.16s ease;
+        }
+
+        .switch input:checked + .slider {
+            background: linear-gradient(135deg, #99604b, #7b4937);
+        }
+
+        .switch input:checked + .slider::before {
+            transform: translateX(22px);
+        }
+
+        .toggle-stack {
+            display: grid;
+            gap: 8px;
+        }
+
+        .source-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.7;
+        }
+
+        .source-links {
+            display: grid;
+            gap: 8px;
+        }
+
+        .source-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.84rem;
+            line-height: 1.5;
+        }
+
+        .content {
+            display: grid;
+            gap: 18px;
+            min-width: 0;
+        }
+
+        .hero,
+        .mode-bar,
+        .session,
+        .preview {
+            padding: 18px;
+        }
+
+        .hero {
+            display: grid;
+            gap: 12px;
+        }
+
+        .eyebrow {
+            font-size: 0.76rem;
+            color: var(--accent);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .hero h2 {
+            margin: 0;
+            font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            line-height: 0.9;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.85;
+            max-width: 70ch;
+        }
+
+        .overview-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .hero-action-btn {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 10px 16px;
+            font: inherit;
+            cursor: pointer;
+            background: rgba(255,255,255,0.8);
+            color: var(--text);
+            transition: transform 0.16s ease, border-color 0.16s ease;
+        }
+        .hero-action-btn:hover {
+            transform: translateY(-1px);
+            border-color: rgba(153, 96, 75, 0.36);
+        }
+        .hero-action-btn.primary {
+            color: white;
+            border-color: transparent;
+            background: linear-gradient(135deg, #99604b, #7b4937);
+            box-shadow: 0 10px 24px rgba(123, 73, 55, 0.18);
+        }
+
+        .metric {
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.7);
+            display: grid;
+            gap: 5px;
+        }
+
+        .metric-num {
+            font-size: 1.85rem;
+            font-weight: 700;
+        }
+
+        .metric-label {
+            font-size: 0.82rem;
+            color: var(--muted);
+        }
+
+        .mode-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .mode-bar-label {
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--muted);
+            margin-right: 6px;
+        }
+
+        .mode-tab {
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.74);
+            border-radius: 999px;
+            padding: 8px 12px;
+            font: inherit;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .mode-tab.active {
+            color: white;
+            border-color: transparent;
+            background: linear-gradient(135deg, #99604b, #7d4a38);
+            box-shadow: 0 10px 24px rgba(125, 74, 56, 0.18);
+        }
+
+        .session {
+            display: grid;
+            gap: 12px;
+        }
+
+        .session-meta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+        }
+
+        .session-meta span {
+            min-width: 0;
+        }
+
+        .word-stage,
+        .result-card {
+            border-radius: 26px;
+            padding: 18px;
+            border: 1px solid var(--line);
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,248,242,0.86)),
+                linear-gradient(135deg, rgba(153,96,75,0.06), rgba(108,141,163,0.06));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.92);
+            min-width: 0;
+        }
+
+        .stage-topline {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+            align-items: center;
+        }
+
+        .topic-badge,
+        .status-badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.76);
+            border: 1px solid var(--line);
+            color: var(--muted);
+        }
+
+        .stage-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+
+        .mini-btn {
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.8);
+            color: var(--muted);
+            border-radius: 999px;
+            padding: 8px 12px;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .mini-btn.active {
+            color: white;
+            border-color: transparent;
+            background: linear-gradient(135deg, #99604b, #7b4937);
+        }
+
+        .prompt-label {
+            font-size: 0.76rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .headline {
+            margin-top: 10px;
+            font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            line-height: 0.9;
+            overflow-wrap: anywhere;
+        }
+
+        .subline {
+            margin-top: 10px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .meaning-card,
+        .example-card,
+        .input-card {
+            margin-top: 14px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.76);
+            padding: 14px 16px;
+        }
+
+        .meaning-card {
+            filter: blur(8px);
+            transition: filter 0.24s ease;
+            user-select: none;
+        }
+
+        .meaning-card.reveal {
+            filter: blur(0);
+            user-select: auto;
+        }
+
+        .section-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--muted);
+        }
+
+        .meaning-card strong {
+            display: block;
+            font-size: 1.25rem;
+        }
+
+        .meaning-card p,
+        .example-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .input-card {
+            display: grid;
+            gap: 8px;
+        }
+
+        .input-card label {
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .input-card input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            font: inherit;
+            background: white;
+            outline: none;
+        }
+
+        .input-card input:focus {
+            border-color: rgba(153, 96, 75, 0.42);
+            box-shadow: 0 0 0 4px rgba(153, 96, 75, 0.1);
+        }
+
+        .tool-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .feedback-box {
+            min-height: 0;
+        }
+
+        .feedback-box.correct,
+        .feedback-box.wrong {
+            display: grid;
+            gap: 6px;
+            padding: 14px 16px;
+            border-radius: 18px;
+            border: 1px solid var(--line);
+        }
+
+        .feedback-box.correct {
+            background: rgba(108, 146, 112, 0.12);
+            color: #335a3e;
+        }
+
+        .feedback-box.wrong {
+            background: rgba(190, 106, 88, 0.12);
+            color: #7a4033;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .controls button,
+        .tool-row button,
+        .result-card button {
+            border: none;
+            border-radius: 18px;
+            padding: 12px 16px;
+            font: inherit;
+            cursor: pointer;
+            transition: transform 0.16s ease, opacity 0.16s ease;
+        }
+
+        .controls button:hover,
+        .tool-row button:hover,
+        .result-card button:hover {
+            transform: translateY(-1px);
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, #99604b, #7b4937);
+            color: white;
+            box-shadow: 0 10px 24px rgba(123, 73, 55, 0.2);
+        }
+
+        .secondary-btn {
+            background: rgba(255,255,255,0.84);
+            color: var(--text);
+            border: 1px solid var(--line);
+        }
+
+        .ghost-btn {
+            background: rgba(153, 96, 75, 0.08);
+            color: var(--accent);
+        }
+
+        .result-card h3 {
+            margin: 0 0 10px;
+            font-family: 'Cormorant Garamond', 'Noto Serif SC', serif;
+            font-size: 2.3rem;
+        }
+
+        .result-card p {
+            margin: 0 0 16px;
+            color: var(--muted);
+            line-height: 1.8;
+            max-width: 56ch;
+        }
+
+        .preview {
+            display: grid;
+            gap: 12px;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .preview-card {
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.74);
+            padding: 14px;
+            min-width: 0;
+        }
+
+        .preview-word {
+            font-weight: 800;
+            font-size: 1rem;
+            overflow-wrap: anywhere;
+        }
+
+        .preview-meta {
+            margin: 6px 0 8px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .preview-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.88rem;
+        }
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 18px;
+            transform: translateX(-50%) translateY(12px);
+            padding: 12px 16px;
+            border-radius: 999px;
+            background: rgba(45, 36, 29, 0.94);
+            color: white;
+            font-size: 0.86rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.16s ease, transform 0.16s ease;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.18);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 1080px) {
+            .shell {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                max-height: none;
+                overflow: visible;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .preview-grid,
+            .overview-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .shell {
+                width: min(100vw - 14px, 100%);
+                margin-top: 8px;
+            }
+
+            .topic-filters,
+            .overview-stats,
+            .preview-grid,
+            .daily-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero,
+            .mode-bar,
+            .session,
+            .preview,
+            .sidebar {
+                padding: 18px;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .controls button,
+            .tool-row button,
+            .result-card button,
+            .daily-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/support.html" style="position:fixed;top:12px;right:12px;z-index:9999;background:#ffe8e0;color:#e0573c;text-decoration:none;font-size:13px;font-weight:600;padding:6px 12px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)">🖨️ 打印版</a>
+    <div class="shell">
+        <aside class="panel sidebar">
+            <div class="brand">
+                <h1>Word Voyage</h1>
+                <p data-i18n="brandDesc">按 Cambridge English 官方主题词组织，支持等级筛选、主题筛选、今日 20 词，以及词卡、拼写、听写、例句挖空四种训练方式。</p>
+                <button class="i18n-toggle" onclick="I18n.toggle()" style="margin-top:8px;padding:4px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,0.8);font-size:0.82rem;font-family:inherit;cursor:pointer;">EN</button>
+            </div>
+
+            <section>
+                <h3 class="section-title">Level</h3>
+                <div class="level-filters" id="levelFilters"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Topic</h3>
+                <div class="topic-filters" id="topicFilters"></div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Focus</h3>
+                <div class="focus-filters" id="focusFilters"></div>
+            </section>
+
+            <section class="status-card" id="syncCard"></section>
+
+            <section class="status-card" id="dailyCard"></section>
+
+            <section class="toggle-stack">
+                <div class="toggle-card">
+                    <div class="toggle-copy">
+                        <strong data-i18n="toggleUnmastered">只看未掌握</strong>
+                        <span data-i18n="toggleUnmasteredDesc">隐藏已经连续答对两次的熟词。</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="onlyUnmasteredToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-card">
+                    <div class="toggle-copy">
+                        <strong data-i18n="toggleRandom">随机顺序</strong>
+                        <span data-i18n="toggleRandomDesc">每次重建队列时打乱当前词池。</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="randomOrderToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="toggle-card">
+                    <div class="toggle-copy">
+                        <strong data-i18n="toggleAudioOnly">纯听模式</strong>
+                        <span data-i18n="toggleAudioOnlyDesc">在听写模式下隐藏文字提示，只保留语音。</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="audioOnlyToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </section>
+
+            <section class="source-card">
+                <h3 class="section-title" style="margin:0;">Official Source</h3>
+                <p data-i18n="sourceDesc">主题维度参考 Cambridge English 官方 A2 Key / B1 Preliminary vocabulary list 的 topic headings。</p>
+                <div class="source-links" id="sourceLinks"></div>
+            </section>
+        </aside>
+
+        <main class="content">
+            <section class="panel hero">
+                <div class="eyebrow" id="heroEyebrow"></div>
+                <h2 id="heroTitle"></h2>
+                <p id="heroDesc"></p>
+                <div class="hero-actions" id="heroActions"></div>
+                <div class="overview-stats" id="overviewStats"></div>
+            </section>
+
+            <section class="panel mode-bar">
+                <span class="mode-bar-label">Mode</span>
+                <button class="mode-tab active" data-mode="flashcard" data-i18n="modeFlashcard">词卡模式</button>
+                <button class="mode-tab" data-mode="spelling" data-i18n="modeSpelling">拼写模式</button>
+                <button class="mode-tab" data-mode="dictation" data-i18n="modeDictation">听写模式</button>
+                <button class="mode-tab" data-mode="cloze" data-i18n="modeCloze">例句挖空</button>
+            </section>
+
+            <section class="panel mode-bar def-bar">
+                <span class="mode-bar-label" data-i18n="defLangLabel">释义</span>
+                <button class="mode-tab active" id="defZh" data-i18n="defLangZh">中文</button>
+                <button class="mode-tab" id="defEn" data-i18n="defLangEn">English</button>
+            </section>
+
+            <section class="panel session">
+                <div class="session-meta" id="sessionMeta"></div>
+                <div id="stage"></div>
+                <div class="feedback-box" id="feedbackBox"></div>
+                <div class="controls" id="controls"></div>
+            </section>
+
+            <section class="panel preview">
+                <h3 class="section-title" style="margin:0;">Preview Pool</h3>
+                <div class="preview-grid" id="previewGrid"></div>
+            </section>
+        </main>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+    window.I18N = {
+        zh: {
+            backHome: '← 返回 KET&PET 首页',
+            brandDesc: '按 Cambridge English 官方主题词组织，支持等级筛选、主题筛选、今日 20 词，以及词卡、拼写、听写、例句挖空四种训练方式。',
+            toggleUnmastered: '只看未掌握',
+            toggleUnmasteredDesc: '隐藏已经连续答对两次的熟词。',
+            toggleRandom: '随机顺序',
+            toggleRandomDesc: '每次重建队列时打乱当前词池。',
+            toggleAudioOnly: '纯听模式',
+            toggleAudioOnlyDesc: '在听写模式下隐藏文字提示，只保留语音。',
+            sourceDesc: '主题维度参考 Cambridge English 官方 A2 Key / B1 Preliminary vocabulary list 的 topic headings。',
+            modeFlashcard: '词卡模式',
+            modeSpelling: '拼写模式',
+            modeDictation: '听写模式',
+            modeCloze: '例句挖空',
+            // vocab-app.js dynamic strings
+            focusAll: '全部词池',
+            focusDaily: '每日 {n} 词',
+            focusWrong: '错词本',
+            focusFavorites: '收藏夹',
+            wordsUnit: '个词',
+            dailyPlanCount: '今日计划词数',
+            dailyMastered: '今日已掌握',
+            dailyReview: '需复习词数',
+            dailyGoal: '每日目标',
+            dailyBtnActive: '正在训练今日计划',
+            dailyBtnSwitch: '切到每日 {n} 词',
+            heroDescDaily: '系统会按今日日期、当前等级/主题和你的掌握情况，优先挑出 {n} 个值得复习的单词。',
+            heroDescTopic: '当前筛选的是 {topic} 主题词。可以切换词卡、拼写、听写和例句挖空四种训练模式。',
+            heroDescAll: '词汇按 Cambridge English 官方 A2 Key / B1 Preliminary 主题维度组织，支持主题筛选、每日计划和云端同步。',
+            heroDailyContinue: '继续今日 {n} 词',
+            heroDailySwitch: '切到今日 {n} 词',
+            heroBrowseAll: '浏览全部主题',
+            heroBackAll: '回到全部主题',
+            heroSwitchCloze: '切到例句挖空',
+            heroSwitchDictation: '切到听写模式',
+            statFiltered: '筛选词数',
+            statMastered: '已掌握',
+            statTopics: '主题数',
+            statTotal: '完整词库',
+            sessionMastered: '{mastered} / {total} 已掌握',
+            emptyTitle: '当前筛选没有词条',
+            emptyDesc: '换一个等级或主题试试，或者回到 All Topics 模式继续刷词。',
+            roundDoneTitle: '这轮已经完成',
+            roundDoneDesc: '当前筛选下的词已经过完一轮。你可以重新开始，或者切换到其他主题继续复习。',
+            restartBtn: '重新开始本轮',
+            btnSpeak: '英式发音',
+            btnSpeakSentence: '朗读例句',
+            defLangLabel: '释义',
+            defLangZh: '中文',
+            defLangEn: 'English',
+            labelMeaning: '中文释义',
+            labelExample: '例句',
+            btnPlayWord: '播放单词',
+            btnPlaySentence: '播放例句',
+            hintMask: '首尾提示 {mask}',
+            audioOnlyOn: '纯听模式已开启',
+            labelContext: '语境提示',
+            audioOnlyListenFirst: '先听发音，再尝试拼写。',
+            inputSpell: '写出英文单词',
+            dictationNoText: '纯听模式：无文字提示',
+            dictationListen: '听单词和例句后再输入',
+            inputDictation: '听写输入',
+            labelAnswer: '答案提示',
+            clozeListenFirst: '先听例句，再填写单词',
+            clozeFromMeaning: '根据例句补全单词',
+            labelCloze: '例句挖空',
+            clozeHidden: '文字提示已隐藏，请先播放例句。',
+            inputCloze: '填入英文单词',
+            statusMastered: '熟词',
+            statusLearning: '待巩固',
+            btnFavorited: '已收藏',
+            btnFavorite: '收藏',
+            feedbackCorrect: '答对了',
+            feedbackWrong: '这次没答对',
+            continueNext: '继续下一个',
+            toggleMeaningShow: '显示释义',
+            toggleMeaningHide: '收起释义',
+            btnAgain: '再看一次',
+            btnKnown: '记住了',
+            btnReveal: '直接看答案',
+            btnAgainLater: '不会，稍后再来',
+            btnSubmit: '提交答案',
+            revealMsg: '正确答案是 {word}，意思是"{meaning}"。',
+            correctMsg: '正确答案就是 {word}。继续保持。',
+            toastNoSpeech: '当前浏览器不支持语音播放',
+            formatJustNow: '刚刚',
+            syncGuest: '未登录，进度仅保存在当前浏览器。',
+            syncSyncing: '同步中',
+            syncReady: '云端已连接',
+            syncError: '同步异常',
+            syncLocal: '本地模式',
+            syncGuestLabel: '游客',
+            syncNotYet: '尚未同步',
+            syncAccount: '账号：{name}',
+            syncLastSync: '最近同步：{time}',
+            syncLoginLink: '登录后同步',
+            syncConnected: '已连接云端进度，同步账号 {name}。',
+            syncExpired: '登录已失效，已切回本地模式。',
+            syncUpdated: '本地进度已更新，等待同步...',
+            syncMerged: '已同步 {n} 个词条。',
+            syncSaved: '云端已保存 {n} 条更新。',
+            syncFailed: '云端同步失败，进度仍已保存在本地。',
+            toastSynced: '云端进度已同步',
+            toastSyncFailed: '同步失败，已保留本地记录',
+            syncReadyOffline: '已登录，但云端进度暂时不可用。',
+        },
+        en: {
+            backHome: '← Back to Home',
+            brandDesc: 'Organised by official Cambridge English topic headings. Filter by level and topic, use daily 20 words, and practice with flashcards, spelling, dictation, or cloze.',
+            toggleUnmastered: 'Unmastered only',
+            toggleUnmasteredDesc: 'Hide words answered correctly twice in a row.',
+            toggleRandom: 'Random order',
+            toggleRandomDesc: 'Shuffle the pool each time the queue is rebuilt.',
+            toggleAudioOnly: 'Audio only',
+            toggleAudioOnlyDesc: 'Hide text hints in dictation mode, keep audio only.',
+            sourceDesc: 'Topic headings follow the official Cambridge English A2 Key / B1 Preliminary vocabulary list.',
+            modeFlashcard: 'Flashcard',
+            modeSpelling: 'Spelling',
+            modeDictation: 'Dictation',
+            modeCloze: 'Cloze',
+            focusAll: 'All words',
+            focusDaily: 'Daily {n}',
+            focusWrong: 'Wrong words',
+            focusFavorites: 'Favorites',
+            wordsUnit: 'words',
+            dailyPlanCount: 'Planned today',
+            dailyMastered: 'Mastered today',
+            dailyReview: 'Need review',
+            dailyGoal: 'Daily goal',
+            dailyBtnActive: 'Training daily plan',
+            dailyBtnSwitch: 'Switch to daily {n}',
+            heroDescDaily: 'Based on today\'s date, your level/topic, and mastery, the system picks the {n} words most worth reviewing.',
+            heroDescTopic: 'Filtered to {topic} topic words. Switch between flashcard, spelling, dictation, and cloze modes.',
+            heroDescAll: 'Vocabulary organised by official Cambridge English A2 Key / B1 Preliminary topics, with topic filters, daily plans, and cloud sync.',
+            heroDailyContinue: 'Continue daily {n}',
+            heroDailySwitch: 'Switch to daily {n}',
+            heroBrowseAll: 'Browse all topics',
+            heroBackAll: 'Back to all topics',
+            heroSwitchCloze: 'Switch to Cloze',
+            heroSwitchDictation: 'Switch to Dictation',
+            statFiltered: 'Filtered',
+            statMastered: 'Mastered',
+            statTopics: 'Topics',
+            statTotal: 'Total library',
+            sessionMastered: '{mastered} / {total} mastered',
+            emptyTitle: 'No words match current filters',
+            emptyDesc: 'Try a different level or topic, or go back to All Topics.',
+            roundDoneTitle: 'Round complete',
+            roundDoneDesc: 'You\'ve gone through all words in this filter. Restart or switch to another topic.',
+            restartBtn: 'Restart this round',
+            btnSpeak: 'Pronounce',
+            btnSpeakSentence: 'Read sentence',
+            defLangLabel: 'Definition',
+            defLangZh: '中文',
+            defLangEn: 'English',
+            labelMeaning: 'Chinese meaning',
+            labelExample: 'Example',
+            btnPlayWord: 'Play word',
+            btnPlaySentence: 'Play sentence',
+            hintMask: 'Hint: {mask}',
+            audioOnlyOn: 'Audio-only mode on',
+            labelContext: 'Context hint',
+            audioOnlyListenFirst: 'Listen first, then try to spell.',
+            inputSpell: 'Type the English word',
+            dictationNoText: 'Audio only: no text hints',
+            dictationListen: 'Listen to word and sentence, then type',
+            inputDictation: 'Dictation input',
+            labelAnswer: 'Answer hint',
+            clozeListenFirst: 'Listen to the sentence, then fill in the word',
+            clozeFromMeaning: 'Complete the word from the sentence',
+            labelCloze: 'Sentence cloze',
+            clozeHidden: 'Text hidden — play the sentence first.',
+            inputCloze: 'Fill in the English word',
+            statusMastered: 'Mastered',
+            statusLearning: 'Learning',
+            btnFavorited: 'Favorited',
+            btnFavorite: 'Favorite',
+            feedbackCorrect: 'Correct!',
+            feedbackWrong: 'Not quite right',
+            continueNext: 'Next word',
+            toggleMeaningShow: 'Show meaning',
+            toggleMeaningHide: 'Hide meaning',
+            btnAgain: 'See again',
+            btnKnown: 'Got it',
+            btnReveal: 'Show answer',
+            btnAgainLater: 'Skip for now',
+            btnSubmit: 'Submit',
+            revealMsg: 'The answer is {word}, meaning "{meaning}".',
+            correctMsg: 'Correct! The answer is {word}. Keep going.',
+            toastNoSpeech: 'Speech synthesis not supported in this browser',
+            formatJustNow: 'just now',
+            syncGuest: 'Not logged in — progress saved locally only.',
+            syncSyncing: 'Syncing',
+            syncReady: 'Cloud connected',
+            syncError: 'Sync error',
+            syncLocal: 'Local mode',
+            syncGuestLabel: 'Guest',
+            syncNotYet: 'Not synced yet',
+            syncAccount: 'Account: {name}',
+            syncLastSync: 'Last sync: {time}',
+            syncLoginLink: 'Login to sync',
+            syncConnected: 'Cloud progress connected for {name}.',
+            syncExpired: 'Session expired — switched to local mode.',
+            syncUpdated: 'Local progress updated, syncing...',
+            syncMerged: 'Synced {n} words.',
+            syncSaved: 'Cloud saved {n} updates.',
+            syncFailed: 'Cloud sync failed — progress still saved locally.',
+            toastSynced: 'Cloud progress synced',
+            toastSyncFailed: 'Sync failed — local records kept',
+            syncReadyOffline: 'Logged in, but cloud progress temporarily unavailable.',
+        },
+    };
+    </script>
+    <script src="/track.js"></script>
+    <script src="i18n.js"></script>
+    <script src="vocab-data.js"></script>
+    <script src="vocab-app.js"></script>
+</body>
+</html>
