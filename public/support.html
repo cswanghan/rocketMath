@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>打印版 & 支持作者 · 星芽</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet" />
+<script src="/track.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:linear-gradient(170deg,#eef3ff,#fff7ef 60%,#fff);color:#222;min-height:100vh;padding:0 0 60px}
+  .top{display:flex;align-items:center;gap:8px;padding:16px 18px}
+  .top a{color:#5b6ef5;text-decoration:none;font-size:15px}
+  .wrap{max-width:560px;margin:0 auto;padding:0 18px}
+  .hero{text-align:center;padding:8px 0 22px}
+  .hero .logo{font-size:22px;color:#5b6ef5;font-weight:800}
+  .hero h1{font-family:'ZCOOL KuaiLe',sans-serif;font-size:30px;margin:10px 0 6px;color:#1a1a2e}
+  .hero p{color:#666;font-size:15px;line-height:1.7}
+  .card{background:#fff;border-radius:18px;padding:22px 20px;margin:16px 0;box-shadow:0 6px 24px rgba(91,110,245,.08);border:1px solid #eef0f7}
+  .card h2{font-size:18px;color:#5b6ef5;display:flex;align-items:center;gap:8px;margin-bottom:6px}
+  .card .lead{color:#555;font-size:14px;line-height:1.7;margin-bottom:14px}
+  .price{display:flex;align-items:baseline;gap:8px;margin:6px 0 14px}
+  .price .now{font-size:30px;font-weight:800;color:#e0573c}
+  .price .was{color:#aab;text-decoration:line-through;font-size:15px}
+  .price .tag{background:#ffe8e0;color:#e0573c;border-radius:20px;padding:2px 10px;font-size:12px}
+  .btn{display:block;text-align:center;background:linear-gradient(135deg,#5b6ef5,#7c5bf5);color:#fff;text-decoration:none;border-radius:14px;padding:15px;font-size:17px;font-weight:700;margin:10px 0;box-shadow:0 6px 16px rgba(91,110,245,.28)}
+  .btn.ghost{background:#fff;color:#5b6ef5;border:2px solid #5b6ef5;box-shadow:none}
+  .btn.xianyu{background:linear-gradient(135deg,#ffb300,#ff7a00)}
+  .feats{list-style:none;margin:8px 0}
+  .feats li{padding:7px 0;font-size:14.5px;color:#333;display:flex;gap:9px}
+  .feats li b{color:#5b6ef5}
+  .qrs{display:flex;gap:14px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+  .qr{text-align:center;flex:1;min-width:140px}
+  .qr .imgbox{width:100%;aspect-ratio:1;border-radius:14px;background:#f4f6fb;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px dashed #cdd4e6}
+  .qr img{width:100%;height:100%;object-fit:contain}
+  .qr .ph{color:#9aa3b8;font-size:12px;padding:14px;text-align:center;line-height:1.6}
+  .qr .lbl{margin-top:8px;font-size:14px;font-weight:600}
+  .qr .wx{color:#09b83e}.qr .ali{color:#1678ff}
+  .steps{counter-reset:s;margin:12px 0 0}
+  .steps li{counter-increment:s;list-style:none;position:relative;padding:8px 0 8px 34px;font-size:14px;color:#444;line-height:1.6}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:7px;width:23px;height:23px;background:#5b6ef5;color:#fff;border-radius:50%;text-align:center;line-height:23px;font-size:13px;font-weight:700}
+  .why{background:#fbfcff;border:1px solid #eef0f7;border-radius:14px;padding:16px;color:#666;font-size:13.5px;line-height:1.8}
+  .why b{color:#5b6ef5}
+  .foot{text-align:center;color:#aab;font-size:12px;margin-top:24px;line-height:1.8}
+  .foot a{color:#8b93b8}
+  .contact{margin-top:10px;font-size:13px;color:#666;text-align:center;background:#fff7ef;border-radius:12px;padding:12px}
+  .contact b{color:#e0573c}
+  .samples{display:flex;gap:8px;overflow-x:auto;margin:6px 0 12px;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .samples figure{flex:0 0 auto;text-align:center}
+  .samples img{height:170px;border-radius:10px;border:1px solid #eef0f7;box-shadow:0 3px 10px rgba(0,0,0,.07);display:block}
+  .samples figcaption{font-size:11.5px;color:#9aa3b8;margin-top:5px}
+  .samples-hint{font-size:12px;color:#9aa3b8;margin:2px 0 2px}
+</style>
+</head>
+<body>
+  <!-- ╔═══════════════════════════════════════════════════════╗
+       ║  配置区：上架后只需改这里（一处填完，全页生效）        ║
+       ╚═══════════════════════════════════════════════════════╝ -->
+  <script>
+  window.RM_CONFIG = {
+    xianyuOral:  "",  // 口算闲鱼商品链接（粘整条 https://… ；留空则自动隐藏闲鱼按钮）
+    xianyuZitie: "",  // 偏旁识字字帖 闲鱼商品链接
+    wechatId:    "",  // 你的微信号（买家加你领 PDF；留空显示「待填」）
+    // 收款码：把图片放到 public/pay-wechat.png 与 public/pay-alipay.png 即可，无需改这里
+  };
+  </script>
+
+  <div class="top"><a href="javascript:history.length>1?history.back():location.href='/'">‹ 返回</a></div>
+  <div class="wrap">
+    <div class="hero">
+      <div class="logo">🚀 星芽</div>
+      <h1>打印版练习册</h1>
+      <p>把孩子每天最需要练的内容，打印出来天天练。<br>人教版口算 + 偏旁识字字帖，附完整答案/拼音，家长省心。</p>
+    </div>
+
+    <!-- 产品卡：口算 -->
+    <div class="card" id="oral">
+      <h2>📘 人教版口算天天练（PDF）</h2>
+      <div class="price">
+        <span class="now">¥9.9</span>
+        <span class="was">¥19.9</span>
+        <span class="tag">早鸟价</span>
+      </div>
+      <ul class="feats">
+        <li><span>✦</span><span><b>30 天 × 60 题</b>，按难度科学编排，覆盖整学期口算考点</span></li>
+        <li><span>✦</span><span>每页含<b>限时栏 + 错题栏 + 家长签字</b>，培养计算速度</span></li>
+        <li><span>✦</span><span>附<b>完整参考答案</b>，对错一目了然</span></li>
+        <li><span>✦</span><span>高清 A4，手机下单，<b>在家直接打印</b></span></li>
+        <li><span>✦</span><span>可选 <b>三 / 四 / 五 / 六年级</b>，或 3-6 年级超值套装</span></li>
+      </ul>
+      <div class="samples-hint">📷 样张预览（实际打印效果）</div>
+      <div class="samples">
+        <figure><img src="/samples/oral-cover.png" alt="口算封面" loading="lazy"><figcaption>封面</figcaption></figure>
+        <figure><img src="/samples/oral-practice.png" alt="练习样张" loading="lazy"><figcaption>每日练习</figcaption></figure>
+        <figure><img src="/samples/oral-answer.png" alt="答案样张" loading="lazy"><figcaption>完整答案</figcaption></figure>
+      </div>
+      <a class="btn xianyu" id="btn-xianyu-oral" href="#XIANYU_LINK" data-track="buy_xianyu">🛒 去闲鱼一键购买（推荐 · 担保交易）</a>
+      <a class="btn ghost" href="#pay" data-track="buy_direct">💛 直接支持作者购买（扫码 ¥9.9）</a>
+    </div>
+
+    <!-- 产品卡：偏旁识字字帖（承接生字本用户）-->
+    <div class="card" id="zitie">
+      <h2>✍️ 偏旁识字字帖（PDF）</h2>
+      <div class="price">
+        <span class="now">¥9.9</span>
+        <span class="was">¥19.9</span>
+        <span class="tag">早鸟价</span>
+      </div>
+      <ul class="feats">
+        <li><span>✦</span><span><b>63 个基础汉字按偏旁字族编排</b>（氵→江河湖海流），认一个偏旁带出一串字</span></li>
+        <li><span>✦</span><span><b>田字格描红</b> + 拼音 + 每字 2 个组词，笔顺规范</span></li>
+        <li><span>✦</span><span>配合<b>免费生字本 App</b>：任意汉字 AI 拆字 + 笔顺动画</span></li>
+        <li><span>✦</span><span>高清 A4，手机下单，<b>在家直接打印</b></span></li>
+      </ul>
+      <div class="samples-hint">📷 样张预览（实际打印效果）</div>
+      <div class="samples">
+        <figure><img src="/samples/zitie-cover.png" alt="字帖封面" loading="lazy"><figcaption>封面</figcaption></figure>
+        <figure><img src="/samples/zitie-inside.png" alt="字帖内页" loading="lazy"><figcaption>田字格描红</figcaption></figure>
+      </div>
+      <a class="btn xianyu" id="btn-xianyu-zitie" href="#XIANYU_LINK" data-track="buy_xianyu_zitie">🛒 去闲鱼一键购买（字帖）</a>
+      <a class="btn ghost" href="#pay" data-track="buy_direct_zitie">💛 直接支持作者购买（扫码 ¥9.9）</a>
+    </div>
+
+    <!-- 赞赏/直购 -->
+    <div class="card" id="pay">
+      <h2>💛 扫码支持 / 直接购买</h2>
+      <div class="lead">这些工具我免费做给孩子用，服务器和域名都要钱。如果对孩子有帮助，欢迎请作者喝杯咖啡，或直接 ¥9.9 购买打印版 ☕</div>
+      <div class="qrs">
+        <div class="qr">
+          <div class="imgbox">
+            <!-- TODO: 放微信收款码图片到 public/pay-wechat.png -->
+            <img src="/pay-wechat.png" alt="微信收款码" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ph" style="display:none">在此放<br>微信收款码<br>(pay-wechat.png)</div>
+          </div>
+          <div class="lbl wx">微信扫码</div>
+        </div>
+        <div class="qr">
+          <div class="imgbox">
+            <!-- TODO: 放支付宝收款码图片到 public/pay-alipay.png -->
+            <img src="/pay-alipay.png" alt="支付宝收款码" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="ph" style="display:none">在此放<br>支付宝收款码<br>(pay-alipay.png)</div>
+          </div>
+          <div class="lbl ali">支付宝扫码</div>
+        </div>
+      </div>
+      <ol class="steps">
+        <li>扫码付款 <b>¥9.9</b>（购买打印版）或任意金额（赞赏支持）</li>
+        <li>付款备注里写上 <b>「打印版 + 年级」</b>，例如「打印版 三年级」</li>
+        <li>加作者微信 <b>（见下方）</b>，发你完整 PDF，可永久打印</li>
+      </ol>
+      <div class="contact">
+        购买后加微信领取打印版：<b id="wechat-id">（微信号待填）</b><br>（或在闲鱼下单，平台自动担保、免加好友）
+      </div>
+    </div>
+
+    <!-- 为什么收费 -->
+    <div class="why">
+      <b>关于收费</b>：在线版（自动批改、语音读题、错题本、知识地图）<b>始终免费</b>。
+      打印版是把题目重新排版成「可在家打印的纸质练习册」，省去你找题、排版、对答案的时间——
+      这部分内容收一点点工本费，也帮我把免费在线版继续做下去。谢谢支持 🙏
+    </div>
+
+    <div class="foot">
+      🚀 星芽 · 让每个孩子都能轻松练好基本功<br>
+      免费在线版：<a href="/">rocket-learning.pages.dev</a>
+    </div>
+  </div>
+
+  <script>
+  /* 用 RM_CONFIG 填充链接/微信号；未填的闲鱼按钮自动隐藏，避免死链接 */
+  (function(){
+    var c = window.RM_CONFIG || {};
+    function wire(id, url){
+      var el = document.getElementById(id); if (!el) return;
+      if (url && url.indexOf('#') !== 0) { el.href = url; }
+      else { el.style.display = 'none'; }
+    }
+    wire('btn-xianyu-oral',  c.xianyuOral);
+    wire('btn-xianyu-zitie', c.xianyuZitie);
+    var wx = document.getElementById('wechat-id');
+    if (wx && c.wechatId) wx.textContent = c.wechatId;
+  })();
+  </script>
+</body>
+</html>

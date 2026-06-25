@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Printable Workbooks · 星芽 StarSprout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+<script src="/track.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Nunito',-apple-system,'PingFang SC','Segoe UI',sans-serif;background:linear-gradient(170deg,#fff5f0,#f3f7ff 55%,#fff);color:#222;min-height:100vh;padding:0 0 60px}
+  .top{display:flex;align-items:center;justify-content:space-between;padding:16px 18px}
+  .top a{color:#bf3f2b;text-decoration:none;font-size:15px;font-weight:700}
+  .lang{font-size:13px;color:#888}
+  .wrap{max-width:600px;margin:0 auto;padding:0 18px}
+  .hero{text-align:center;padding:8px 0 18px}
+  .hero .logo{font-size:22px;color:#bf3f2b;font-weight:800}
+  .hero h1{font-family:'ZCOOL KuaiLe',sans-serif;font-size:30px;margin:10px 0 4px;color:#1a1a2e}
+  .hero p{color:#666;font-size:15px;line-height:1.7}
+  .hero .zh{color:#999;font-size:13px}
+  .card{background:#fff;border-radius:18px;padding:22px 20px;margin:16px 0;box-shadow:0 6px 24px rgba(191,63,43,.08);border:1px solid #f3ece8}
+  .tagrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+  .pill{background:#fdeee9;color:#bf3f2b;border-radius:20px;padding:3px 11px;font-size:12px;font-weight:700}
+  .card h2{font-size:19px;color:#1a1a2e;margin-bottom:3px}
+  .card .zh2{color:#999;font-size:13px;margin-bottom:10px}
+  .price{display:flex;align-items:baseline;gap:10px;margin:8px 0 14px;flex-wrap:wrap}
+  .price .now{font-size:26px;font-weight:800;color:#e0573c}
+  .price .alt{color:#888;font-size:14px}
+  .feats{list-style:none;margin:6px 0}
+  .feats li{padding:6px 0;font-size:14.5px;color:#333;display:flex;gap:9px;line-height:1.5}
+  .feats li b{color:#bf3f2b}
+  .btn{display:block;text-align:center;color:#fff;text-decoration:none;border-radius:14px;padding:15px;font-size:16px;font-weight:800;margin:9px 0;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+  .btn.gum{background:linear-gradient(135deg,#ff90e8,#e0573c)}
+  .btn.carou{background:linear-gradient(135deg,#ffb300,#ff7a00)}
+  .btn.ghost{background:#fff;color:#bf3f2b;border:2px solid #bf3f2b;box-shadow:none}
+  .pay{background:#fbf7f4;border:1px solid #f0e6df;border-radius:14px;padding:16px;margin-top:10px}
+  .pay h3{font-size:15px;color:#bf3f2b;margin-bottom:8px}
+  .steps{counter-reset:s;margin:4px 0 0}
+  .steps li{counter-increment:s;list-style:none;position:relative;padding:7px 0 7px 32px;font-size:13.5px;color:#444;line-height:1.55}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:22px;height:22px;background:#bf3f2b;color:#fff;border-radius:50%;text-align:center;line-height:22px;font-size:12px;font-weight:800}
+  .why{background:#fbfcff;border:1px solid #eef0f7;border-radius:14px;padding:16px;color:#666;font-size:13.5px;line-height:1.8;margin-top:6px}
+  .why b{color:#bf3f2b}
+  .free{text-align:center;background:#eef4ff;border-radius:14px;padding:16px;margin-top:16px}
+  .free b{color:#5b6ef5}
+  .foot{text-align:center;color:#aab;font-size:12px;margin-top:22px;line-height:1.8}
+  .foot a{color:#8b93b8}
+  .samples{display:flex;gap:8px;overflow-x:auto;margin:6px 0 12px;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .samples figure{flex:0 0 auto;text-align:center}
+  .samples img{height:170px;border-radius:10px;border:1px solid #f3ece8;box-shadow:0 3px 10px rgba(0,0,0,.07);display:block}
+  .samples figcaption{font-size:11.5px;color:#9aa3b8;margin-top:5px}
+  .samples-hint{font-size:12px;color:#9aa3b8;margin:2px 0}
+</style>
+</head>
+<body>
+  <!-- ╔═══════════════════════════════════════════════════════╗
+       ║  CONFIG: fill once after you create the listings.      ║
+       ║  上架后只需改这里（一处填完，全页生效）                ║
+       ╚═══════════════════════════════════════════════════════╝ -->
+  <script>
+  window.RM_CONFIG = {
+    gumroadZitie:   "",  // Gumroad product URL — Chinese workbook（留空则隐藏该按钮）
+    carousellZitie: "",  // Carousell listing URL — Chinese workbook
+    gumroadMath:    "",  // Gumroad product URL — Mental Math
+    carousellMath:  "",  // Carousell listing URL — Mental Math
+    paypalId:       "",  // your PayPal.me id (just the id, e.g. "janewang")
+    whatsapp:       "",  // WhatsApp number incl. country code, e.g. "+65 8123 4567"
+  };
+  </script>
+
+  <div class="top">
+    <a href="javascript:history.length>1?history.back():location.href='/'">‹ Back</a>
+    <span class="lang">English · 简体中文</span>
+  </div>
+  <div class="wrap">
+    <div class="hero">
+      <div class="logo">🌱 星芽 StarSprout</div>
+      <h1>Printable Workbooks</h1>
+      <p>Made by a parent, for parents in Singapore &amp; Malaysia.<br>Simplified Chinese + Hanyu Pinyin · A4 · print at home.</p>
+      <p class="zh">为新马华裔家庭设计 · 简体 + 汉语拼音 · 在家打印</p>
+    </div>
+
+    <!-- 字帖 (hero) -->
+    <div class="card">
+      <div class="tagrow"><span class="pill">Chinese 中文</span><span class="pill">Ages 6–9</span><span class="pill">63 characters</span></div>
+      <h2>Learn Chinese by Radicals — Character Workbook</h2>
+      <div class="zh2">星芽 · 偏旁识字字帖（63 个基础汉字）</div>
+      <div class="price"><span class="now">S$5</span><span class="alt">· RM15 · US$3.90</span></div>
+      <ul class="feats">
+        <li><span>✦</span><span>Characters grouped by <b>radical families</b> (氵→江河湖海流) — learn the pattern, unlock the family</span></li>
+        <li><span>✦</span><span><b>田字格</b> tracing grids + Hanyu Pinyin + 2 example words each</span></li>
+        <li><span>✦</span><span>Built for <b>华小 / MOE Chinese</b> — simplified characters, works with any textbook</span></li>
+        <li><span>✦</span><span>Free companion app with <b>AI character breakdown</b> for any character</span></li>
+      </ul>
+      <div class="samples-hint">📷 Sample pages / 样张预览</div>
+      <div class="samples">
+        <figure><img src="/samples/zitie-cover.png" alt="cover" loading="lazy"><figcaption>Cover</figcaption></figure>
+        <figure><img src="/samples/zitie-inside.png" alt="inside" loading="lazy"><figcaption>田字格 tracing</figcaption></figure>
+      </div>
+      <a class="btn gum" id="btn-gum-zitie" href="#GUMROAD_ZITIE" data-track="buy_zitie_gumroad">⬇️ Instant download (Gumroad)</a>
+      <a class="btn carou" id="btn-carou-zitie" href="#CAROUSELL_ZITIE" data-track="buy_zitie_carousell">🛒 Buy on Carousell (SG/MY)</a>
+    </div>
+
+    <!-- Mental Math -->
+    <div class="card">
+      <div class="tagrow"><span class="pill">Math 数学</span><span class="pill">Grade 3–6</span><span class="pill">30 days</span></div>
+      <h2>Mental Math · Daily Practice</h2>
+      <div class="zh2">口算天天练（每天一页，附答案）</div>
+      <div class="price"><span class="now">S$4</span><span class="alt">· RM12 · US$2.90 / grade</span></div>
+      <ul class="feats">
+        <li><span>✦</span><span><b>30 days × 60 sums</b>, graded difficulty, timer &amp; mistake box on every page</span></li>
+        <li><span>✦</span><span>Full answer key — build speed and accuracy, no marking stress for parents</span></li>
+        <li><span>✦</span><span>Grades 3–6 available, or the 4-grade bundle</span></li>
+      </ul>
+      <div class="samples-hint">📷 Sample pages / 样张预览</div>
+      <div class="samples">
+        <figure><img src="/samples/math-cover.png" alt="cover" loading="lazy"><figcaption>Cover</figcaption></figure>
+        <figure><img src="/samples/oral-practice.png" alt="practice" loading="lazy"><figcaption>Daily page</figcaption></figure>
+        <figure><img src="/samples/oral-answer.png" alt="answers" loading="lazy"><figcaption>Answer key</figcaption></figure>
+      </div>
+      <a class="btn gum" id="btn-gum-math" href="#GUMROAD_MATH" data-track="buy_math_gumroad">⬇️ Instant download (Gumroad)</a>
+      <a class="btn carou" id="btn-carou-math" href="#CAROUSELL_MATH" data-track="buy_math_carousell">🛒 Buy on Carousell (SG/MY)</a>
+    </div>
+
+    <!-- Payment / direct -->
+    <div class="card">
+      <h2>Prefer to pay directly?</h2>
+      <div class="pay">
+        <h3>PayPal / bank transfer</h3>
+        <ol class="steps">
+          <li>Pay via <b id="paypal-line">PayPal.me/your-id</b> (or PayNow / DuitNow — see below)</li>
+          <li>Note which workbook + grade in the payment, e.g. "Chinese workbook" or "Mental Math G3"</li>
+          <li>WhatsApp the receipt to <b id="whatsapp-line">+65 XXXX XXXX</b> — we'll send the PDF right away</li>
+        </ol>
+      </div>
+      <div class="pay" style="margin-top:10px">
+        <h3>本地家长（中文）</h3>
+        <ol class="steps">
+          <li>用 PayNow(新) / DuitNow(马) / PayPal 付款</li>
+          <li>备注「字帖」或「口算 + 年级」</li>
+          <li>把付款截图 WhatsApp 给我，马上发你 PDF（可永久打印）</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="why">
+      <b>About the price</b> — the online app (auto-marking, read-aloud, mistake book, AI character breakdown) is <b>always free</b>. These printable workbooks are a re-typeset, ready-to-print version that saves you the hours of finding, formatting and answer-checking. A small fee keeps the free app running. Thank you 🙏
+    </div>
+
+    <div class="free">
+      🌱 Try the <b>free web app</b> first — works on any phone, no install.<br>
+      <b>rocket-learning.pages.dev</b>
+    </div>
+
+    <div class="foot">
+      星芽 StarSprout · Helping every child build strong foundations<br>
+      <a href="/">rocket-learning.pages.dev</a>
+    </div>
+  </div>
+
+  <script>
+  /* Fill links/contact from RM_CONFIG; unfilled store buttons hide automatically. */
+  (function(){
+    var c = window.RM_CONFIG || {};
+    function wire(id, url){
+      var el = document.getElementById(id); if (!el) return;
+      if (url && url.indexOf('#') !== 0) { el.href = url; }
+      else { el.style.display = 'none'; }
+    }
+    wire('btn-gum-zitie',   c.gumroadZitie);
+    wire('btn-carou-zitie', c.carousellZitie);
+    wire('btn-gum-math',    c.gumroadMath);
+    wire('btn-carou-math',  c.carousellMath);
+    var pp = document.getElementById('paypal-line');
+    if (pp && c.paypalId) pp.textContent = 'PayPal.me/' + c.paypalId;
+    var wa = document.getElementById('whatsapp-line');
+    if (wa && c.whatsapp) wa.textContent = c.whatsapp;
+  })();
+  </script>
+</body>
+</html>
