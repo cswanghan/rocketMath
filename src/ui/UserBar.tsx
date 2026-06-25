@@ -55,13 +55,27 @@ interface Props {
   user: UserInfo | null;
   onLogout: () => void;
   onLogin: () => void;
+  activeChild?: { name: string; avatar: string } | null;
+  onSwitchChild?: () => void;
+  onParent?: () => void;
 }
 
-export function UserBar({ user, onLogout, onLogin }: Props) {
+export function UserBar({ user, onLogout, onLogin, activeChild, onSwitchChild, onParent }: Props) {
   return (
     <div className="user-bar">
+      <a className="user-print-link" href="/support.html" title="口算天天练 · 打印版">🖨️ 打印版</a>
       {user ? (
         <>
+          {onSwitchChild && (
+            <button className="child-chip" onClick={onSwitchChild} title="切换孩子档案">
+              <span className="child-chip-av">{activeChild ? activeChild.avatar : '👨‍👧'}</span>
+              <span className="child-chip-nm">{activeChild ? activeChild.name : '家长'}</span>
+              <span className="child-chip-caret">▾</span>
+            </button>
+          )}
+          {onParent && (
+            <button className="user-parent-link" onClick={onParent}>家长</button>
+          )}
           {user.role === 'admin' && (
             <a className="user-admin-link" href="/admin.html">管理后台</a>
           )}

@@ -23,6 +23,15 @@ export interface Field {
   answer: number | string;
 }
 
+export interface Source {
+  edition: string; // 教材版本, e.g. 人教版
+  grade: number;
+  gradeLabel: string; // 七年级
+  unit: string | null; // 教材单元
+  topic: string | null; // 知识点
+  label: string; // 人教版 · 七年级 · 有理数 · 有理数的概念
+}
+
 export interface Problem {
   id: string;
   type: ProblemType;
@@ -33,6 +42,7 @@ export interface Problem {
   fields?: Field[]; // steps (e.g. 商 + 余数)
   hint?: string; // shown on a wrong try
   explanation?: string; // shown on correct / reveal
+  source?: Source; // 题目来源标注 (教材出处+知识点), auto-derived from knowledge_map
 }
 
 export interface ProblemSet {

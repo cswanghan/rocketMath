@@ -14,7 +14,6 @@ interface Props {
   onPlay: (trackId: string) => void;
   onRace: (trackId: string) => void;
   onPractice: (setId: string) => void;
-  onParent: () => void;
   onBack?: () => void;
 }
 
@@ -29,7 +28,9 @@ interface PracProg {
   total: number;
 }
 
-const GRADE_LABELS: Record<number, string> = { 3: '三年级', 4: '四年级', 5: '五年级', 6: '六年级' };
+const GRADE_LABELS: Record<number, string> = {
+  3: '三年级', 4: '四年级', 5: '五年级', 6: '六年级', 7: '初一', 8: '初二', 9: '初三',
+};
 function gradeLabel(g: number): string { return GRADE_LABELS[g] ?? `${g}年级`; }
 
 const TERMS: { key: Term; label: string }[] = [
@@ -37,7 +38,7 @@ const TERMS: { key: Term; label: string }[] = [
   { key: 'lower', label: '下册' },
 ];
 
-export function KnowledgeMap({ pack, knowledgeMap, adapter, studentId, onPlay, onRace, onPractice, onParent, onBack }: Props) {
+export function KnowledgeMap({ pack, knowledgeMap, adapter, studentId, onPlay, onRace, onPractice, onBack }: Props) {
   const [progress, setProgress] = useState<Record<string, Prog>>({});
   const [pracProgress, setPracProgress] = useState<Record<string, PracProg>>({});
   const [xp, setXp] = useState(0);
@@ -83,9 +84,6 @@ export function KnowledgeMap({ pack, knowledgeMap, adapter, studentId, onPlay, o
       {onBack && (
         <button className="map-back" onClick={onBack}>← 返回</button>
       )}
-      <button className="parent-entry" onClick={onParent} title="家长">
-        👨‍👧 家长
-      </button>
       <h1 className="title">🚀 {gradeLabel(knowledgeMap.grade)}数学 · 知识地图</h1>
       <p className="subtitle">
         {knowledgeMap.textbook} · {knowledgeMap.topics.length} 个知识点 · 已上线 {readyCount}

@@ -1,18 +1,24 @@
+import { useParallax } from './useParallax';
+
 interface Props {
   onSelect: (grade: number) => void;
   onBack: () => void;
 }
 
 const GRADES = [
-  { grade: 3, label: '三年级', desc: '乘除法·周长面积·分数初步', tag: '基础', color: 'blue' },
-  { grade: 4, label: '四年级', desc: '大数·角度·小数·运算定律', tag: '进阶', color: 'peach' },
-  { grade: 5, label: '五年级', desc: '方程·多边形面积·因数倍数', tag: '提高', color: 'mint' },
-  { grade: 6, label: '六年级', desc: '分数运算·百分数·圆·比例', tag: '冲刺', color: 'lavender' },
+  { grade: 3, label: '三年级', desc: '乘除法·周长面积·分数初步', tag: '小学', color: 'blue' },
+  { grade: 4, label: '四年级', desc: '大数·角度·小数·运算定律', tag: '小学', color: 'peach' },
+  { grade: 5, label: '五年级', desc: '方程·多边形面积·因数倍数', tag: '小学', color: 'mint' },
+  { grade: 6, label: '六年级', desc: '分数运算·百分数·圆·比例', tag: '小学', color: 'lavender' },
+  { grade: 7, label: '初一', desc: '有理数·整式·方程·几何', tag: '初中', color: 'blue' },
+  { grade: 8, label: '初二', desc: '全等·因式分解·函数·勾股', tag: '初中', color: 'peach' },
+  { grade: 9, label: '初三', desc: '二次方程·二次函数·圆·相似', tag: '初中', color: 'mint' },
 ] as const;
 
 export function GradePicker({ onSelect, onBack }: Props) {
+  const { ref, onPointerMove, onPointerLeave } = useParallax<HTMLDivElement>();
   return (
-    <div className="portal">
+    <div className="portal" ref={ref} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
       <span className="scrawl" style={{ top: '14%', right: '12%', transform: 'rotate(7deg)' }}>
         选你的关卡
       </span>

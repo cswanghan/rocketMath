@@ -22,8 +22,8 @@ export function checkAnswer(problem: Problem, response: Response): boolean {
       return response.kind === 'value' && problem.answer !== undefined && valueEq(problem.answer, response.value);
     case 'steps': {
       if (response.kind !== 'fields' || !problem.fields) return false;
-      return problem.fields.every((f) => {
-        const got = response.values[f.id];
+      return problem.fields.every((f, i) => {
+        const got = response.values[f.id || `f${i}`];
         return got !== undefined && valueEq(f.answer, got);
       });
     }

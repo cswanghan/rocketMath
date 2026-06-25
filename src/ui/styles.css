@@ -1598,6 +1598,17 @@ body {
 .user-parent-link:hover {
   background: var(--p-lavender-pill);
 }
+.user-print-link {
+  color: #e0573c;
+  background: #ffe8e0;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 12px;
+  transition: all 0.15s;
+}
+.user-print-link:hover { background: #ffd9cd; }
 
 /* ============ family / 孩子档案 ============ */
 .child-chip {

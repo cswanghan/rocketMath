@@ -177,18 +177,22 @@ function ProblemView({
       {problem.type === 'steps' && (
         <>
           <div className="fields">
-            {problem.fields?.map((f) => (
-              <label key={f.id} className="field">
-                <span className="field-label">{f.label}</span>
-                <input
-                  className="fill-input small"
-                  inputMode="numeric"
-                  value={fields[f.id] ?? ''}
-                  onChange={(e) => setFields({ ...fields, [f.id]: e.target.value.replace(/[^\d]/g, '').slice(0, 4) })}
-                  placeholder="?"
-                />
-              </label>
-            ))}
+            {problem.fields?.map((f, i) => {
+              // 字段缺 id 时退回索引 key,避免多个输入框共用 fields[undefined] 而联动
+              const key = f.id || `f${i}`;
+              return (
+                <label key={key} className="field">
+                  <span className="field-label">{f.label}</span>
+                  <input
+                    className="fill-input small"
+                    inputMode="text"
+                    value={fields[key] ?? ''}
+                    onChange={(e) => setFields({ ...fields, [key]: e.target.value.slice(0, 24) })}
+                    placeholder="?"
+                  />
+                </label>
+              );
+            })}
           </div>
           <button className="primary" onClick={onSubmit}>
             提交
@@ -212,10 +216,17 @@ function ProblemView({
 // 竖式 prompts (contain the box bar) need monospace alignment; everything else
 // is prose / mc and must wrap normally instead of overflowing.
 function Prompt({ problem }: { problem: Problem }) {
-  return problem.prompt.includes('─') ? (
-    <pre className="problem-prompt">{problem.prompt}</pre>
-  ) : (
-    <div className="problem-text">{problem.prompt}</div>
+  return (
+    <>
+      {problem.prompt.includes('─') ? (
+        <pre className="problem-prompt">{problem.prompt}</pre>
+      ) : (
+        <div className="problem-text">{problem.prompt}</div>
+      )}
+      {problem.source?.label && (
+        <div className="problem-source" title="题目来源">📖 {problem.source.label}</div>
+      )}
+    </>
   );
 }
 

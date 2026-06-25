@@ -92,16 +92,20 @@ describe('validatePack', () => {
     expect(() => validatePack(dup)).toThrow(/duplicate fact id/);
   });
 
-  it('rejects an uncomputable prompt', () => {
-    const bad = makePack([
+  it('accepts a non-computable prompt (word problems, equations, fractions)', () => {
+    // computeFromPrompt only understands simple two-operand arithmetic, so it
+    // returns null for grade 4-9 content (e.g. 'x + 8 = 15', '1/2 × 8 = ?').
+    // Such prompts are legitimately uncheckable, not invalid — validateFact only
+    // cross-checks the answer when the prompt IS computable, so these are accepted.
+    const ok = makePack([
       {
         trackId: 'x',
         name: 'x',
         enabled: true,
-        levels: [{ level: 'A', new_facts: [{ id: 'q', prompt: 'banana', answer: 1, learningType: 'fact_recall' }] }],
+        levels: [{ level: 'A', new_facts: [{ id: 'q', prompt: 'x + 8 = 15', answer: 7, learningType: 'fact_recall' }] }],
       },
     ]);
-    expect(() => validatePack(bad)).toThrow(/not computable/);
+    expect(() => validatePack(ok)).not.toThrow();
   });
 
   it('rejects a track with no levels', () => {

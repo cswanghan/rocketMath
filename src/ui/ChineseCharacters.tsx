@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useParallax } from './useParallax';
 
 type ChineseMode = 'characters' | 'reading' | null;
 
@@ -8,6 +9,7 @@ interface Props {
 
 export function ChineseCharacters({ onBack }: Props) {
   const [mode, setMode] = useState<ChineseMode>(null);
+  const parallax = useParallax<HTMLDivElement>();
 
   if (mode === 'characters') {
     return (
@@ -28,7 +30,12 @@ export function ChineseCharacters({ onBack }: Props) {
   }
 
   return (
-    <div className="chinese-portal">
+    <div
+      className="chinese-portal"
+      ref={parallax.ref}
+      onPointerMove={parallax.onPointerMove}
+      onPointerLeave={parallax.onPointerLeave}
+    >
       <button className="map-back" onClick={onBack}>← 返回</button>
       <h1 className="portal-title">语文</h1>
       <p className="portal-subtitle">选择学习模式</p>

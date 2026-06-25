@@ -64,6 +64,39 @@ export async function loadGrade(grade: number): Promise<GradeContent> {
       map = m.default as unknown as KnowledgeMap;
       break;
     }
+    case 7: {
+      const [f, p, m] = await Promise.all([
+        import('../../content/grade7_math_fluency_pack.json'),
+        import('../../content/grade7_practice_pack.json'),
+        import('../../content/grade7_knowledge_map.json'),
+      ]);
+      fluency = f.default as unknown as ContentPack;
+      practice = p.default as unknown as PracticePack;
+      map = m.default as unknown as KnowledgeMap;
+      break;
+    }
+    case 8: {
+      const [f, p, m] = await Promise.all([
+        import('../../content/grade8_math_fluency_pack.json'),
+        import('../../content/grade8_practice_pack.json'),
+        import('../../content/grade8_knowledge_map.json'),
+      ]);
+      fluency = f.default as unknown as ContentPack;
+      practice = p.default as unknown as PracticePack;
+      map = m.default as unknown as KnowledgeMap;
+      break;
+    }
+    case 9: {
+      const [f, p, m] = await Promise.all([
+        import('../../content/grade9_math_fluency_pack.json'),
+        import('../../content/grade9_practice_pack.json'),
+        import('../../content/grade9_knowledge_map.json'),
+      ]);
+      fluency = f.default as unknown as ContentPack;
+      practice = p.default as unknown as PracticePack;
+      map = m.default as unknown as KnowledgeMap;
+      break;
+    }
     default:
       throw new Error(`Unsupported grade: ${grade}`);
   }

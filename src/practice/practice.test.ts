@@ -53,6 +53,16 @@ describe('checkAnswer', () => {
     expect(checkAnswer(steps, { kind: 'fields', values: { q: '9', r: '3' } })).toBe(false);
     expect(checkAnswer(steps, { kind: 'fields', values: { q: '9' } })).toBe(false);
   });
+  it('steps: fields without ids grade by position (no shared-key linkage)', () => {
+    // regression: 初中 packs ship steps fields with no id; the UI/grader must
+    // key them by index (f0, f1, …) so the boxes are independent.
+    const noId = {
+      id: 'q5', type: 'steps', prompt: '解方程组',
+      fields: [{ label: '3x=?', answer: '9' }, { label: 'x=?', answer: '3' }],
+    } as unknown as Problem;
+    expect(checkAnswer(noId, { kind: 'fields', values: { f0: '9', f1: '3' } })).toBe(true);
+    expect(checkAnswer(noId, { kind: 'fields', values: { f0: '9', f1: '9' } })).toBe(false);
+  });
   it('mismatched response kind fails closed', () => {
     expect(checkAnswer(fill, { kind: 'choice', choiceId: 'a' } as Response)).toBe(false);
     expect(checkAnswer(mc, { kind: 'value', value: 'c' } as Response)).toBe(false);

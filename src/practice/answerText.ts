@@ -8,7 +8,7 @@ export function responseText(problem: Problem, r: Response): string {
   if (r.kind === 'value') return r.value;
   // fields
   if (problem.fields) {
-    return problem.fields.map((f) => `${f.label} ${r.values[f.id] ?? '?'}`).join(' , ');
+    return problem.fields.map((f, i) => `${f.label} ${r.values[f.id || `f${i}`] ?? '?'}`).join(' , ');
   }
   return Object.values(r.values).join(' , ');
 }
