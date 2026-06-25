@@ -28,14 +28,27 @@ export async function verifyPassword(password: string, stored: string): Promise<
   return computed === hashB64;
 }
 
-function base64url(data: string): string {
-  return btoa(data).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+// base64url over raw bytes (Latin1-safe). Used for the HMAC signature.
+function bytesToB64url(bytes: Uint8Array): string {
+  let s = '';
+  for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+  return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 }
 
-function base64urlDecode(str: string): string {
+// base64url over a string, encoded as UTF-8 first so non-Latin1 chars
+// (e.g. Chinese usernames) don't make btoa throw. ASCII input encodes
+// byte-for-byte identically to the old impl → existing tokens stay valid.
+function strToB64url(str: string): string {
+  return bytesToB64url(encoder.encode(str));
+}
+
+function b64urlToBytes(str: string): Uint8Array {
   str = str.replace(/-/g, '+').replace(/_/g, '/');
   while (str.length % 4) str += '=';
-  return atob(str);
+  const bin = atob(str);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+  return out;
 }
 
 export async function signJWT(
@@ -43,16 +56,16 @@ export async function signJWT(
   secret: string,
   expiresInSeconds = 86400 * 7
 ): Promise<string> {
-  const header = base64url(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
+  const header = strToB64url(JSON.stringify({ alg: 'HS256', typ: 'JWT' }));
   const now = Math.floor(Date.now() / 1000);
-  const body = base64url(JSON.stringify({ ...payload, iat: now, exp: now + expiresInSeconds }));
+  const body = strToB64url(JSON.stringify({ ...payload, iat: now, exp: now + expiresInSeconds }));
   const data = `${header}.${body}`;
 
   const key = await crypto.subtle.importKey(
     'raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
   );
   const sig = await crypto.subtle.sign('HMAC', key, encoder.encode(data));
-  const signature = base64url(String.fromCharCode(...new Uint8Array(sig)));
+  const signature = bytesToB64url(new Uint8Array(sig));
 
   return `${data}.${signature}`;
 }
@@ -69,11 +82,11 @@ export async function verifyJWT(
       'raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']
     );
     const data = `${header}.${body}`;
-    const sig = Uint8Array.from(base64urlDecode(signature), c => c.charCodeAt(0));
+    const sig = b64urlToBytes(signature);
     const valid = await crypto.subtle.verify('HMAC', key, sig, encoder.encode(data));
     if (!valid) return null;
 
-    const payload = JSON.parse(base64urlDecode(body));
+    const payload = JSON.parse(new TextDecoder().decode(b64urlToBytes(body)));
     if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) return null;
 
     return payload;
