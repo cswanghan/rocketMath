@@ -4,3 +4,7 @@ coverage/
 *.local
 .DS_Store
 .vite/
+
+# 私密资产：付费 PDF 生成器 + 内部营销/定价 SOP（勿推公开仓库）
+printable/
+promo-out/
