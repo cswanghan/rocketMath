@@ -116,6 +116,16 @@
   });
   window.addEventListener('pagehide', function () { flush(true); });
 
+  // 自动: data-track 点击(购买按钮等), 委托绑定 + 立即 flush(跳外链前尽量发出去)
+  document.addEventListener('click', function (e) {
+    try {
+      var el = e.target && e.target.closest ? e.target.closest('[data-track]') : null;
+      if (!el) return;
+      track(el.getAttribute('data-track'), { href: el.href || '', text: (el.innerText || '').slice(0, 30) });
+      flush(true);
+    } catch (err) {}
+  }, true);
+
   // 自动: 页面访问 + 停留时长
   var t0 = Date.now();
   track('page_view', { title: document.title, ref: document.referrer || '' });
