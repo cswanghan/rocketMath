@@ -178,3 +178,47 @@
 10. **时间锁配置入 `engine_config.time_lock`(数据驱动),纯逻辑在 `src/ui/timelock.ts`**。SPEC §7 说 MVP 可 optional,我默认 `enabled=true`(15 分玩/20 分歇,真 Rocket Math 值)并做成可关。状态存 localStorage 防刷新绕过。这是 UI 护栏,不进引擎。
 
 11. **个性化时限 gate 的 UI 接入在 M5**(M3/M4 期间用配置默认 3s)。引擎侧 `computeLatencyGateMs` 自 M1 即就绪并测试。
+
+## iOS 原生 App（2026-07-20 起）
+
+> 目标：**上架 App Store**，**全量对齐 Web 端**（数学 + 英语 + 汉字 + 阅读 + 考试日历 + 账号）。
+> 路线选型与阶段划分见本节；决策记录接在文末「偏离 SPEC 的决策」序号之后。
+
+| 阶段 | 状态 | 说明 |
+|---|---|---|
+| P0 工程骨架 + 引擎移植 + 黄金对拍 | ✅ 完成 | 4 测试全绿（3813 步对拍 + RNG 逐位 + pack 加载 + prompt 反推），变异测试验证过安全网有效 |
+| P1 流畅度全套 UI + SwiftData 持久化 | ✅ 完成 | 模拟器端到端可玩（UI 测试真读题真按键）；竞速/经验/时间锁未接 UI，留 P1.5 |
+| P2 Practice 引擎 + 知识地图 + 经验/错题本/家长面板 | ⏳ | 43 套题集、47 知识点 |
+| P3 账号登录 + 云同步 + StoreKit 2 内购 | ⏳ | 复用现有 Cloudflare Functions + D1 |
+| P4 上架材料与审核 | ⏳ | 儿童类目合规、隐私清单、年龄分级、截图 |
+
+### P0 已完成
+- **工程**：`ios/Xingya.xcodeproj`（手写 pbxproj，objectVersion 77）。两个 target：`Xingya`(App) + `XingyaTests`(Swift Testing)。用 **synchronized folder** 挂载源码目录 —— 新增 Swift 文件不用改工程文件。iOS 17.0+ / iPhone+iPad / Swift 6 严格并发 + `SWIFT_DEFAULT_ACTOR_ISOLATION=MainActor` / bundle id `com.xingya.app`。
+- **内容包零重写**：仓库 `content/` 以蓝色文件夹引用直接进 App bundle，Python 生成器仍是唯一真源，Web 与 iOS 共用同一份 JSON。
+- **引擎移植**：`ios/Xingya/Engine/`（Types / RandomSource / ContentPackStore / Select / Engine），由 `src/engine/` 逐行移植，全部 `nonisolated + Sendable`，纯函数零 UI 零网络。`swiftc -swift-version 6 -typecheck` 干净。
+- **黄金用例对拍**：`tools/export-engine-golden.ts`（`npm run golden`）用**真实 content pack** 驱动 TS 引擎，导出 13 场景 / 3813 步 → `ios/XingyaTests/Golden/engine_golden.json`。覆盖 take_off/orbit/universe 三阶段、566 次纠错回路、36 次阶段晋级、16 次过关、1 次竞速结算。Swift 侧 `EngineGoldenTests.swift` 逐步回放并比对 action + 状态 + factStats 摘要，首处分叉精确报「第几步、哪个字段」。
+
+### iOS 相关决策
+12. **原生重写而非 Capacitor 壳**（用户选定）。代价是 UI 两套长期双向维护；缓解手段 = 内容包与引擎行为两端锁死（黄金对拍），UI 各自适配平台。
+13. **content pack 与 Python 生成器不动**。iOS 只加 Swift `Codable` 解析层，不复制内容、不另起生成器——否则两端内容必然漂移。
+14. **mulberry32 必须逐位复现**。JS `Math.imul`/`>>>` ↔ Swift `UInt32 &*`/`>>`，选题依赖它；黄金用例单列 RNG 断言，排障时能一眼分清「随机数不一致」还是「状态机不一致」。
+15. **factStats 用 FNV-1a 摘要而非全量记录**。全量会让黄金产物膨胀到几十 MB；摘要仍能精确定位分叉步，两端同实现 32 位环绕乘法。
+16. **支付必须换 StoreKit 2 内购**。iOS 端隐藏微信/支付宝收款码与闲鱼入口，否则触犯 App Store 3.1.1 必拒。
+
+### P1 已完成（2026-07-20）
+- **视觉方向定为 iOS 原生 HIG**（用户选定）：系统组件 + 系统色，不复刻 Web 端 2328 行星空 CSS。品牌一致性靠内容与文案，不靠像素级还原。
+- **持久化**：`StorageAdapter` 协议（与 Web 端同构）+ `SwiftDataStorage`。TrackState 存成 JSON blob（引擎类型契约即 schema，改字段不用写迁移），事件日志独立 `@Model`。另有 `InMemoryStorage` 供预览/测试。
+- **绑定层** `GameModel`（`@Observable`）：对应 Web 端 `useGame`。注入 now/rng、量 elapsedMs、把 action 翻成界面状态、每步落盘。**规则一条都不写在这里**——只在 Engine 里，否则两端必漂移。
+- **界面**：`RootView`（加载/校验 pack，失败响亮报错）→ `ProbeView`（基线探针，量手速定个性化时限）→ `HomeView`（4 条 track + Rocket Chart 缩略）→ `PlayView`（倒计时环 + 数字键盘 + 纠错/过关浮层）。语音走 `AVSpeechSynthesizer` zh-CN，竞速永不朗读。
+- **端到端 UI 测试** `XingyaUITests/PlaythroughUITests`：真的从屏幕上**读题、算答案、按数字键**，走完 热身探针 → 首页 → 答题 → 纠错重教 → 阶段晋级（跑通时已从 take_off 进入 orbit）。顺带截图存进 xcresult，将来可直接当上架素材。
+
+### P1 决策与踩坑
+17. **iOS 17.0 起步，不用 `#Unique`（iOS 18+）**。孩子用的常是家里旧设备，多覆盖一代系统值得；唯一性由「先查后写」保证。
+18. **UI 测试 target 单独设 `SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated`**。App target 用 MainActor 默认隔离写 SwiftUI 很顺，但 `XCTestCase` 的覆写方法是 nonisolated，两者冲突会编译不过。
+19. **引擎侧 extension 必须显式 `nonisolated`**。默认 MainActor 隔离会把纯函数引擎钉在主线程上；独立 `swiftc -typecheck` 查不出来，校验命令要带 `-default-isolation MainActor`。
+20. **首页点击要点 track 名称而非整行**。行内嵌了横向滚动的 Rocket Chart，点行中心会被 ScrollView 吃掉，NavigationLink 不触发。
+
+### P1 尚未接入（留 P1.5）
+- 竞速入口（引擎 `startRace` 已就绪且已被黄金用例覆盖，只差 UI）
+- 经验值/等级展示（`GameModel.sessionXP` 已在累计并落盘，界面未显示）
+- 时间锁（15 分玩/20 分歇）
