@@ -26,6 +26,14 @@ struct AnswerEventRecord: Sendable {
     var outcome: String
 }
 
+/// Practice 题集的完成记录：存最佳「一次答对」数，供知识地图显示掌握度。
+struct PracticeRecord: Sendable, Equatable {
+    var setId: String
+    var bestFirstTryCorrect: Int
+    var total: Int
+    var completedAt: Int
+}
+
 @MainActor
 protocol StorageAdapter: AnyObject {
     func student(id: String) -> StudentRecord?
@@ -37,6 +45,10 @@ protocol StorageAdapter: AnyObject {
 
     func appendEvent(_ event: AnswerEventRecord)
     func events(studentId: String, limit: Int) -> [AnswerEventRecord]
+
+    func practiceRecord(studentId: String, setId: String) -> PracticeRecord?
+    /// 只在超过历史最佳时更新（一次答对越多越好）。
+    func putPracticeRecord(_ record: PracticeRecord, studentId: String)
 }
 
 /// 答题结果分类。对应 Web 端 src/storage/outcome.ts：由「答前状态 + 结果 action」
@@ -66,6 +78,7 @@ final class InMemoryStorage: StorageAdapter {
     private var students: [String: StudentRecord] = [:]
     private var trackStates: [String: TrackState] = [:]
     private var eventLog: [AnswerEventRecord] = []
+    private var practiceRecords: [String: PracticeRecord] = [:]
 
     private func key(_ studentId: String, _ trackId: String) -> String { "\(studentId)|\(trackId)" }
 
@@ -90,5 +103,15 @@ final class InMemoryStorage: StorageAdapter {
 
     func events(studentId: String, limit: Int) -> [AnswerEventRecord] {
         eventLog.filter { $0.studentId == studentId }.suffix(limit).map { $0 }
+    }
+
+    func practiceRecord(studentId: String, setId: String) -> PracticeRecord? {
+        practiceRecords[key(studentId, setId)]
+    }
+
+    func putPracticeRecord(_ record: PracticeRecord, studentId: String) {
+        let k = key(studentId, record.setId)
+        if let existing = practiceRecords[k], existing.bestFirstTryCorrect >= record.bestFirstTryCorrect { return }
+        practiceRecords[k] = record
     }
 }

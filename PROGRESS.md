@@ -188,7 +188,7 @@
 |---|---|---|
 | P0 工程骨架 + 引擎移植 + 黄金对拍 | ✅ 完成 | 4 测试全绿（3813 步对拍 + RNG 逐位 + pack 加载 + prompt 反推），变异测试验证过安全网有效 |
 | P1 流畅度全套 UI + SwiftData 持久化 | ✅ 完成 | 模拟器端到端可玩（UI 测试真读题真按键）；竞速/经验/时间锁未接 UI，留 P1.5 |
-| P2 Practice 引擎 + 知识地图 + 经验/错题本/家长面板 | ⏳ | 43 套题集、47 知识点 |
+| P2 Practice 引擎 + 知识地图 + Practice UI | ✅ 三年级完成 | 引擎黄金对拍(洗牌逐位) + 知识地图首页 + mc/fill/steps 练习界面, 端到端可玩。错题本/家长面板留 P2.5 |
 | P3 账号登录 + 云同步 + StoreKit 2 内购 | ⏳ | 复用现有 Cloudflare Functions + D1 |
 | P4 上架材料与审核 | ⏳ | 儿童类目合规、隐私清单、年龄分级、截图 |
 
@@ -228,3 +228,22 @@
 21. **UI 测试用 `UITEST_MEMORY` 启动参数切内存 SwiftData**。持久化数据会让「探针跳过 + 恢复到 orbit」破坏断言的可复现性；内存库保证每次从 A 关起飞。
 22. **竞速全局倒计时用 `race.endsAt`（epoch）而非本地计时器**，到点主动 `next()` 触发 `finishRace`，即便孩子停手也会结算。
 23. **`LevelBar` 放 Rocket Chart 下方而非 VStack 顶部**：inline 导航栏会和顶部内容重叠。
+
+### P2 已完成（2026-07-21，三年级）
+- **Practice 引擎移植**：`ios/Xingya/Practice/`（PracticeTypes/Check/Engine/AnswerText）由 `src/practice/` 逐行移植。`AnswerValue` 用 enum 兼容数字/字符串答案。黄金对拍 `tools/export-practice-golden.ts`（16 场景/真实 practice pack）→ Swift 逐步比对，**洗牌顺序 order 逐位复现**（依赖 mulberry32）。
+- **知识地图**：`Map/KnowledgeMap.swift`（types + loader）+ `Map/AppContent.swift`（一个年级三份数据打包 + topic→路由判定：fluency 进限时训练 / ready practice 进 Practice / 否则「即将上线」）。
+- **知识地图首页** `KnowledgeMapView`：上/下册 segmented + 单元 section + topic 卡片（pedagogy 图标 ⚡口算/💡概念/ƒ公式/▦竖式/🧩推理/📊数据 + 掌握度标注）。取代原 fluency-only HomeView 成为新首页。
+- **Practice 界面** `PracticeView`：mc（单选）/ fill（填空）/ steps（多格，如商+余数）三种输入，关卡进度条（基础→夯实→拔高），答错给提示可重试、超 maxTries 揭示答案+解析、完成总结。经验按难度分档 + 一次答对翻倍（`xpForCorrect`）。
+- **持久化**：`StorageAdapter` 加 `PracticeRecord`（最佳一次答对）+ SwiftData `PracticeRecordModel`，只在超过历史最佳时更新。
+- 端到端 UI 测试扩展：地图首页 → 竖式练习（答错→提示→连错→揭示答案「72+15=87」→下一题）→ 返回 → fluency 答题 → 竞速。53 秒全绿。
+
+### P2 决策/踩坑
+24. **Practice 答对停在 `.correct` 庆祝态而非自动跳下一题**：对拍 Web 端 usePractice 的 `correct` view mode，让答对反馈（+经验）可见，孩子点「下一题」再进。
+25. **`AnswerValue` 用 enum(number/text) 而非 Any**：practice pack 的 answer 既有数字(59)又有字符串，Codable 单值容器按序尝试解码；比对时数字按数值、文本按 trim 相等（对齐 Web 端 valueEq）。
+26. **UI 测试内存模式禁用时间锁**：测试墙钟慢，跑满 15 分钟会触发休息屏挡住操作——曾导致一次跑了 2120 秒后卡死。`UITEST_MEMORY` 时 `TimeLockService(config: nil)`。
+27. **知识地图 List 懒加载**：屏幕外 topic 不在无障碍树里，UI 测试要 `swipeUp` 滚动到目标可点为止。
+
+### P2 尚未接入（留 P2.5）
+- 错题本（`MistakeRecord`：记录答错题供家长复盘）
+- 家长入口（PIN 门 + 家长面板 + DeepSeek 一键总结，复用现有 Cloudflare Function）
+- 多年级切换（`AppContent.load(grade:)` 已参数化，只差 GradePicker UI；4–9 年级 pack 已在 bundle）

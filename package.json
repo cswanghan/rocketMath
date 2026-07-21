@@ -13,7 +13,8 @@
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
     "content": "python3 content/build_content_pack.py",
-    "golden": "npx tsx tools/export-engine-golden.ts"
+    "golden": "npx tsx tools/export-engine-golden.ts",
+    "golden:practice": "npx tsx tools/export-practice-golden.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

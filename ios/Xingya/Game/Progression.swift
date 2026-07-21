@@ -4,8 +4,15 @@
 import Foundation
 
 /// 答对一道流畅度题的经验（限时训练无难度分档）。与 Web 端 FLUENCY_XP 一致。
-/// Practice 的 xpForCorrect（按难度分档 + 一次答对翻倍）随 P2 移植时补。
 let fluencyXP = 8
+
+private let baseXP: [Difficulty: Int] = [.basic: 5, .consolidate: 10, .challenge: 20]
+
+/// 答对一道 Practice 题的经验，一次答对翻倍。对应 Web 端 xpForCorrect。
+func xpForCorrect(difficulty: Difficulty?, firstTry: Bool) -> Int {
+    let base = baseXP[difficulty ?? .consolidate] ?? 10
+    return firstTry ? base * 2 : base
+}
 
 struct LevelInfo: Equatable {
     let level: Int

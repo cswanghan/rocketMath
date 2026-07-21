@@ -66,10 +66,27 @@ final class AnswerEventModel {
     }
 }
 
+@Model
+final class PracticeRecordModel {
+    var studentId: String = ""
+    var setId: String = ""
+    var bestFirstTryCorrect: Int = 0
+    var total: Int = 0
+    var completedAt: Int = 0
+
+    init(studentId: String, setId: String, bestFirstTryCorrect: Int, total: Int, completedAt: Int) {
+        self.studentId = studentId
+        self.setId = setId
+        self.bestFirstTryCorrect = bestFirstTryCorrect
+        self.total = total
+        self.completedAt = completedAt
+    }
+}
+
 @MainActor
 final class SwiftDataStorage: StorageAdapter {
     static let schema: [any PersistentModel.Type] = [
-        StudentModel.self, TrackStateModel.self, AnswerEventModel.self,
+        StudentModel.self, TrackStateModel.self, AnswerEventModel.self, PracticeRecordModel.self,
     ]
 
     private let context: ModelContext
@@ -171,6 +188,35 @@ final class SwiftDataStorage: StorageAdapter {
                 outcome: $0.outcome
             )
         }
+    }
+
+    // ----- Practice 记录 -----------------------------------------------------
+
+    private func fetchPractice(_ studentId: String, _ setId: String) -> PracticeRecordModel? {
+        let descriptor = FetchDescriptor<PracticeRecordModel>(
+            predicate: #Predicate { $0.studentId == studentId && $0.setId == setId }
+        )
+        return try? context.fetch(descriptor).first
+    }
+
+    func practiceRecord(studentId: String, setId: String) -> PracticeRecord? {
+        guard let m = fetchPractice(studentId, setId) else { return nil }
+        return PracticeRecord(setId: m.setId, bestFirstTryCorrect: m.bestFirstTryCorrect, total: m.total, completedAt: m.completedAt)
+    }
+
+    func putPracticeRecord(_ record: PracticeRecord, studentId: String) {
+        if let m = fetchPractice(studentId, record.setId) {
+            guard record.bestFirstTryCorrect > m.bestFirstTryCorrect else { return } // 只在超过历史最佳时更新
+            m.bestFirstTryCorrect = record.bestFirstTryCorrect
+            m.total = record.total
+            m.completedAt = record.completedAt
+        } else {
+            context.insert(PracticeRecordModel(
+                studentId: studentId, setId: record.setId,
+                bestFirstTryCorrect: record.bestFirstTryCorrect, total: record.total, completedAt: record.completedAt
+            ))
+        }
+        save()
     }
 
     private func save() {

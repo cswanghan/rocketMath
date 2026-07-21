@@ -22,11 +22,14 @@ final class PlaythroughUITests: XCTestCase {
         app.launch()
 
         try runProbe(app)
-        attach(app, name: "02-首页")
+        attach(app, name: "02-知识地图首页")
 
-        // 点 track 名称本身：整行里嵌了横向滚动的 Rocket Chart，点行中心会被它吃掉
+        try runPractice(app)
+
+        // fluency topic：滚回顶部点标题进入限时训练
         let trackLabel = app.staticTexts["乘法口诀"]
-        XCTAssertTrue(trackLabel.waitForExistence(timeout: 5), "首页应列出乘法口诀")
+        for _ in 0..<12 where !trackLabel.isHittable { app.swipeDown() }
+        XCTAssertTrue(trackLabel.isHittable, "首页应列出乘法口诀")
         trackLabel.tap()
 
         let onPlayScreen = app.staticTexts["起飞 Take-Off"].waitForExistence(timeout: 5)
@@ -37,6 +40,38 @@ final class PlaythroughUITests: XCTestCase {
         attach(app, name: "04-答题进行中")
 
         try runRace(app)
+    }
+
+    // ----- Practice（非限时练习）--------------------------------------------
+
+    private func runPractice(_ app: XCUIApplication) throws {
+        let topic = app.staticTexts["三位数加法竖式"]
+        XCTAssertTrue(scrollTo(topic, in: app), "地图应列出竖式练习 topic")
+        topic.tap()
+
+        // 关卡进度条 + 竖式题目应出现
+        XCTAssertTrue(app.staticTexts["基础"].waitForExistence(timeout: 5), "应进入 Practice 并显示关卡进度条")
+        attach(app, name: "07-竖式练习")
+
+        // 连错两次触发揭示答案（maxTries=2），覆盖 wrong→reveal 链路
+        let field = app.textFields.firstMatch
+        XCTAssertTrue(field.waitForExistence(timeout: 3), "竖式题应有填空框")
+        field.tap()
+        field.typeText("999")
+        app.buttons["确定"].tap()
+        XCTAssertTrue(app.staticTexts["第 1 次尝试"].waitForExistence(timeout: 3), "答错应显示提示与尝试次数")
+
+        let field2 = app.textFields.firstMatch
+        field2.tap()
+        field2.typeText("888")
+        app.buttons["确定"].tap()
+        XCTAssertTrue(app.staticTexts["看一下正确答案"].waitForExistence(timeout: 3), "连错两次应揭示答案")
+        attach(app, name: "08-竖式揭示答案")
+
+        // 揭示后进入下一题，然后退回地图
+        app.buttons["下一题"].tap()
+        app.navigationBars.buttons.firstMatch.tap() // 返回地图
+        XCTAssertTrue(app.staticTexts["三位数加法竖式"].waitForExistence(timeout: 5), "应返回知识地图列表")
     }
 
     // ----- 竞速 --------------------------------------------------------------
@@ -74,7 +109,7 @@ final class PlaythroughUITests: XCTestCase {
             app.buttons[String(target)].tap()
             if step > 30 { XCTFail("探针没有在预期次数内结束") }
         }
-        XCTAssertTrue(app.navigationBars["星芽"].waitForExistence(timeout: 5), "探针结束后应进入首页")
+        XCTAssertTrue(app.staticTexts["乘法口诀"].waitForExistence(timeout: 5), "探针结束后应进入知识地图首页")
     }
 
     /// 探针目标数字来自无障碍标签「请按 N」
@@ -158,6 +193,16 @@ final class PlaythroughUITests: XCTestCase {
     }
 
     // ----- 截图 --------------------------------------------------------------
+
+    /// List 懒加载：屏幕外的 cell 不在树里，先滚到它可点为止。
+    private func scrollTo(_ element: XCUIElement, in app: XCUIApplication, maxSwipes: Int = 12) -> Bool {
+        var tries = 0
+        while !element.isHittable && tries < maxSwipes {
+            app.swipeUp()
+            tries += 1
+        }
+        return element.isHittable
+    }
 
     /// 失败时把元素树留在 xcresult 里，省得靠猜
     private func attachText(_ text: String, name: String) {
