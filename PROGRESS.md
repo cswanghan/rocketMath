@@ -218,7 +218,13 @@
 19. **引擎侧 extension 必须显式 `nonisolated`**。默认 MainActor 隔离会把纯函数引擎钉在主线程上；独立 `swiftc -typecheck` 查不出来，校验命令要带 `-default-isolation MainActor`。
 20. **首页点击要点 track 名称而非整行**。行内嵌了横向滚动的 Rocket Chart，点行中心会被 ScrollView 吃掉，NavigationLink 不触发。
 
-### P1 尚未接入（留 P1.5）
-- 竞速入口（引擎 `startRace` 已就绪且已被黄金用例覆盖，只差 UI）
-- 经验值/等级展示（`GameModel.sessionXP` 已在累计并落盘，界面未显示）
-- 时间锁（15 分玩/20 分歇）
+### P1.5 已完成（2026-07-21）
+- **竞速**：`RaceView`（选速度 🐢轻松/🚀标准/⚡挑战 → 全局倒计时 → 连续答题 → 每分钟答对数结算）。复用同一 `GameModel.startRace`，竞速全程不朗读、只看对错不看时限。端到端 UI 测试已覆盖（选速度 → 答题 → 计数）。
+- **经验/等级**：`Progression.swift`（`levelFromXp` 三角曲线，数值对拍 Web 端）+ 顶部 `LevelBar`。答对累加并落盘，跨会话恢复。
+- **时间锁**：`TimeLock.swift`（纯 reducer + `TimeLockService` 持久到 UserDefaults）+ `LockView` 休息锁屏。玩满 15 分强制歇 20 分，重开 App 躲不掉。
+- 单元测试 10 个（经验门槛/等级进度/时间锁触发与解锁）全绿，数值与 Web 端一致。
+
+### P1.5 决策/踩坑
+21. **UI 测试用 `UITEST_MEMORY` 启动参数切内存 SwiftData**。持久化数据会让「探针跳过 + 恢复到 orbit」破坏断言的可复现性；内存库保证每次从 A 关起飞。
+22. **竞速全局倒计时用 `race.endsAt`（epoch）而非本地计时器**，到点主动 `next()` 触发 `finishRace`，即便孩子停手也会结算。
+23. **`LevelBar` 放 Rocket Chart 下方而非 VStack 顶部**：inline 导航栏会和顶部内容重叠。

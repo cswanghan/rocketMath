@@ -7,9 +7,6 @@
 import Foundation
 import Observation
 
-/// 答对一题的经验值，与 Web 端 FLUENCY_XP 保持一致。
-let fluencyXP = 8
-
 @MainActor
 @Observable
 final class GameModel {
@@ -29,6 +26,13 @@ final class GameModel {
     /// 每出一道新题 +1，驱动倒计时环重置与输入框清空
     private(set) var promptSeq = 0
     private(set) var sessionXP = 0
+    /// 学生累计总经验（含历史），驱动顶部等级展示
+    private(set) var totalXP = 0
+    /// 最近一次答对获得的经验，用于「+N」浮标动画；每次出新题清零
+    private(set) var lastGainXP = 0
+
+    var levelInfo: LevelInfo { levelFromXp(totalXP) }
+    var isRace: Bool { trackState?.race != nil }
 
     let track: Track
     let latencyGateMs: Int
@@ -54,6 +58,7 @@ final class GameModel {
         self.mastery = pack.engineConfig.mastery
 
         let student = storage.student(id: studentId)
+        self.totalXP = student?.xp ?? 0
         let gate = student?.latencyGateMs ?? Int(pack.engineConfig.latencyGateSeconds * 1000)
         self.latencyGateMs = gate
         self.context = EngineContext(
@@ -112,6 +117,7 @@ final class GameModel {
         if case .prompt = result.action {
             promptStartedAt = Date()
             promptSeq += 1
+            lastGainXP = 0
         }
         persist(result: result, previous: previous, event: event)
     }
@@ -138,6 +144,8 @@ final class GameModel {
         let outcome = AnswerOutcome.classify(previous: previous, action: result.action)
         if outcome == .hit {
             sessionXP += fluencyXP
+            totalXP += fluencyXP
+            lastGainXP = fluencyXP
             storage.addXp(studentId, fluencyXP)
         }
         storage.appendEvent(AnswerEventRecord(

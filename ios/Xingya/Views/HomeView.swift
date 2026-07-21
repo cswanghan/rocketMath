@@ -38,7 +38,7 @@ struct HomeView: View {
     @ViewBuilder
     private func playDestination(for track: Track) -> some View {
         if let model = try? GameModel(trackId: track.trackId, pack: pack, storage: storage, studentId: studentId) {
-            PlayView(model: model)
+            PlayView(model: model, pack: pack, storage: storage, studentId: studentId)
         } else {
             ContentUnavailableView(
                 "这条 track 打不开",

@@ -8,17 +8,26 @@ struct PlayView: View {
     @State private var model: GameModel
     @State private var input = ""
     @State private var ringProgress: Double = 1
+    @State private var lastPromptAt = Date()
     @Environment(SpeechService.self) private var speech
+    @Environment(TimeLockService.self) private var timeLock
     @Environment(\.dismiss) private var dismiss
 
-    init(model: GameModel) {
+    private let pack: ContentPack
+    private let storage: any StorageAdapter
+    private let studentId: String
+
+    init(model: GameModel, pack: ContentPack, storage: any StorageAdapter, studentId: String) {
         _model = State(initialValue: model)
+        self.pack = pack
+        self.storage = storage
+        self.studentId = studentId
     }
 
     private var gateSeconds: Double { Double(model.latencyGateMs) / 1000 }
 
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 16) {
             header
             RocketChartView(
                 levels: model.track.levels.map(\.level),
@@ -26,6 +35,7 @@ struct PlayView: View {
                 current: model.trackState?.currentLevel ?? "A",
                 compact: true
             )
+            LevelBar(info: model.levelInfo)
             Spacer(minLength: 0)
             stage
             Spacer(minLength: 0)
@@ -34,6 +44,14 @@ struct PlayView: View {
         .navigationTitle(model.track.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    RaceView(trackId: model.track.trackId, pack: pack, storage: storage, studentId: studentId)
+                } label: {
+                    Image(systemName: "flag.checkered")
+                }
+                .accessibilityLabel("竞速")
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     speech.isMuted.toggle()
@@ -44,8 +62,13 @@ struct PlayView: View {
             }
         }
         .overlay { overlay }
-        // 每出一道新题：清空输入、重置倒计时环、到点判超时
+        .overlay { if timeLock.isLocked { lockCover } }
+        // 每出一道新题：累计活跃时间到时间锁、清空输入、重置倒计时环、到点判超时
         .task(id: model.promptSeq) {
+            let now = Date()
+            timeLock.tick(deltaMs: Int(now.timeIntervalSince(lastPromptAt) * 1000))
+            lastPromptAt = now
+
             input = ""
             guard case .prompt = model.viewState else { return }
             ringProgress = 1
@@ -53,6 +76,13 @@ struct PlayView: View {
             try? await Task.sleep(for: .milliseconds(model.latencyGateMs))
             guard !Task.isCancelled else { return }
             model.timeoutMiss()
+        }
+    }
+
+    private var lockCover: some View {
+        ZStack {
+            Rectangle().fill(.regularMaterial).ignoresSafeArea()
+            LockView()
         }
     }
 

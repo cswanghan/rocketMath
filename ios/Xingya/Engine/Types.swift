@@ -168,7 +168,7 @@ nonisolated struct IndividualizedGoal: Codable, Sendable {
     }
 }
 
-nonisolated struct TimeLock: Codable, Sendable {
+nonisolated struct TimeLockConfig: Codable, Sendable {
     let enabled: Bool
     let playMinutes: Int
     let breakMinutes: Int
@@ -186,7 +186,7 @@ nonisolated struct EngineConfig: Codable, Sendable {
     let interleaveRules: InterleaveRules
     let milestoneRaces: MilestoneRaces
     let individualizedGoal: IndividualizedGoal
-    let timeLock: TimeLock?
+    let timeLock: TimeLockConfig?
 
     enum CodingKeys: String, CodingKey {
         case latencyGateSeconds = "latency_gate_seconds"

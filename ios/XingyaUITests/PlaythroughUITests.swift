@@ -16,7 +16,9 @@ final class PlaythroughUITests: XCTestCase {
 
     func testFullPlaythrough() throws {
         let app = XCUIApplication()
-        app.launchArguments += ["-AppleLanguages", "(zh-Hans)"]
+        app.launchArguments += ["-AppleLanguages", "(zh-Hans)", "UITEST_MEMORY"]
+        // 清掉上一轮残留的时间锁，避免中途被休息屏挡住
+        app.launchArguments += ["-xingya.timelock", ""]
         app.launch()
 
         try runProbe(app)
@@ -33,6 +35,31 @@ final class PlaythroughUITests: XCTestCase {
 
         try play(app, rounds: 14)
         attach(app, name: "04-答题进行中")
+
+        try runRace(app)
+    }
+
+    // ----- 竞速 --------------------------------------------------------------
+
+    private func runRace(_ app: XCUIApplication) throws {
+        app.buttons["竞速"].tap()
+        XCTAssertTrue(app.staticTexts["标准"].waitForExistence(timeout: 5), "应显示竞速速度选择")
+        attach(app, name: "05-竞速选速度")
+
+        // 选最短的挑战档（60 秒），但测试里只答几题就截图，不等满时长
+        app.staticTexts["挑战"].tap()
+
+        // 答对几题证明竞速答题链路通
+        for _ in 0..<6 {
+            guard let (_, answer) = currentQuestion(app) else {
+                _ = app.staticTexts.firstMatch.waitForExistence(timeout: 1)
+                continue
+            }
+            type(answer, in: app)
+            // 竞速键盘答完即提交，无「确定」；这里点确定按钮（RaceNumpad 仍有确定键）
+            if app.buttons["确定"].exists { app.buttons["确定"].tap() }
+        }
+        attach(app, name: "06-竞速进行中")
     }
 
     // ----- 热身探针 ----------------------------------------------------------
