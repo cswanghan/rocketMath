@@ -22,6 +22,7 @@ struct PracticeView: View {
             }
         }
         .padding()
+        .background(Theme.pageBackground.ignoresSafeArea())
         .navigationTitle(model.set.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -131,13 +132,15 @@ struct PracticeView: View {
 
     private func promptText(_ problem: Problem) -> some View {
         Text(problem.prompt)
-            .font(.system(size: 22, weight: .medium, design: .rounded))
-            .monospaced()
+            .font(.system(size: 40, weight: .bold, design: .monospaced))
+            .foregroundStyle(Theme.ink)
             .multilineTextAlignment(.leading)
             .frame(maxWidth: .infinity, alignment: .leading)
             .textSelection(.enabled)
-            .padding()
-            .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 16))
+            .padding(24)
+            .background(Theme.card, in: .rect(cornerRadius: 20))
+            .overlay(RoundedRectangle(cornerRadius: 20).strokeBorder(.white, lineWidth: 2))
+            .shadow(color: Theme.shadowColor.opacity(0.14), radius: 10, y: 6)
             .accessibilityLabel("题目 \(problem.prompt)")
     }
 
@@ -153,21 +156,24 @@ struct PracticeView: View {
     // ----- 三种输入 ----------------------------------------------------------
 
     private func choicesInput(_ problem: Problem) -> some View {
-        VStack(spacing: 10) {
+        VStack(spacing: 12) {
             ForEach(problem.choices ?? []) { choice in
                 Button {
                     choiceId = choice.id
                 } label: {
-                    HStack {
+                    HStack(spacing: 14) {
                         Image(systemName: choiceId == choice.id ? "largecircle.fill.circle" : "circle")
+                            .font(.title2)
                             .foregroundStyle(choiceId == choice.id ? Color.accentColor : .secondary)
-                        Text(choice.label).multilineTextAlignment(.leading)
+                        Text(choice.label)
+                            .font(.title3)
+                            .multilineTextAlignment(.leading)
                         Spacer()
                     }
-                    .padding()
+                    .padding(18)
                     .background(
                         (choiceId == choice.id ? Color.accentColor.opacity(0.12) : Color(.secondarySystemBackground)),
-                        in: .rect(cornerRadius: 12)
+                        in: .rect(cornerRadius: 14)
                     )
                 }
                 .buttonStyle(.plain)
@@ -179,23 +185,28 @@ struct PracticeView: View {
     private func fillInput(_ problem: Problem) -> some View {
         TextField("答案", text: $fillText)
             .keyboardType(.numbersAndPunctuation)
-            .textFieldStyle(.roundedBorder)
-            .font(.title2)
+            .font(.system(size: 34, weight: .heavy, design: .rounded))
+            .foregroundStyle(Theme.ink)
             .multilineTextAlignment(.center)
+            .padding(.vertical, 18)
+            .background(Theme.card, in: .rect(cornerRadius: 16))
+            .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Theme.brand.opacity(0.5), lineWidth: 2))
+            .shadow(color: Theme.shadowColor.opacity(0.1), radius: 8, y: 4)
             .submitLabel(.done)
             .onSubmit { submit(problem) }
     }
 
     private func stepsInput(_ problem: Problem) -> some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 14) {
             ForEach(Array((problem.fields ?? []).enumerated()), id: \.element.id) { i, field in
-                HStack {
-                    Text(field.label).font(.headline)
+                HStack(spacing: 14) {
+                    Text(field.label).font(.title3.weight(.medium))
                     TextField("", text: binding(for: field.id.isEmpty ? "f\(i)" : field.id))
                         .keyboardType(.numbersAndPunctuation)
-                        .textFieldStyle(.roundedBorder)
-                        .font(.title3)
+                        .font(.system(size: 30, weight: .semibold, design: .rounded))
                         .multilineTextAlignment(.center)
+                        .padding(.vertical, 14)
+                        .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 14))
                 }
             }
         }

@@ -41,6 +41,7 @@ struct PlayView: View {
             Spacer(minLength: 0)
         }
         .padding()
+        .background(Theme.pageBackground.ignoresSafeArea())
         .navigationTitle(model.track.name)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -136,18 +137,25 @@ struct PlayView: View {
             VStack(spacing: 20) {
                 ZStack {
                     Circle()
-                        .stroke(Color(.tertiarySystemFill), lineWidth: 10)
+                        .fill(Theme.card)
+                        .shadow(color: Theme.shadowColor.opacity(0.18), radius: 14, y: 8)
+                    Circle()
+                        .stroke(Theme.track, lineWidth: 14)
                     Circle()
                         .trim(from: 0, to: ringProgress)
-                        .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 10, lineCap: .round))
+                        .stroke(
+                            AngularGradient(colors: [Theme.brand2, Theme.brand], center: .center),
+                            style: StrokeStyle(lineWidth: 14, lineCap: .round)
+                        )
                         .rotationEffect(.degrees(-90))
                     Text(fact.prompt)
-                        .font(.system(size: 44, weight: .bold, design: .rounded))
+                        .font(.system(size: 60, weight: .heavy, design: .rounded))
+                        .foregroundStyle(Theme.ink)
                         .monospacedDigit()
                         .minimumScaleFactor(0.5)
                         .padding(.horizontal, 24)
                 }
-                .frame(width: 200, height: 200)
+                .frame(width: 220, height: 220)
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel("题目 \(fact.prompt)")
 
@@ -158,11 +166,14 @@ struct PlayView: View {
                 }
 
                 Text(input.isEmpty ? " " : input)
-                    .font(.system(size: 36, weight: .semibold, design: .rounded))
+                    .font(.system(size: 44, weight: .heavy, design: .rounded))
+                    .foregroundStyle(Theme.ink)
                     .monospacedDigit()
                     .frame(maxWidth: .infinity)
-                    .frame(height: 56)
-                    .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 14))
+                    .frame(height: 64)
+                    .background(Theme.card, in: .rect(cornerRadius: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(.white, lineWidth: 2))
+                    .shadow(color: Theme.shadowColor.opacity(0.12), radius: 8, y: 4)
                     .accessibilityLabel(input.isEmpty ? "还没输入答案" : "你的答案 \(input)")
 
                 NumpadView(
@@ -252,8 +263,9 @@ struct PlayView: View {
             Rectangle().fill(.ultraThinMaterial).ignoresSafeArea()
             VStack(spacing: 20, content: content)
                 .padding(28)
-                .background(Color(.systemBackground), in: .rect(cornerRadius: 24))
-                .shadow(radius: 20, y: 8)
+                .background(Theme.card, in: .rect(cornerRadius: 26))
+                .overlay(RoundedRectangle(cornerRadius: 26).strokeBorder(.white, lineWidth: 2))
+                .shadow(color: Theme.shadowColor.opacity(0.3), radius: 24, y: 10)
                 .padding(32)
         }
         .transition(.opacity)

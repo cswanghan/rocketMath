@@ -38,6 +38,7 @@ struct RaceView: View {
                 chooseScreen
             }
         }
+        .background(Theme.pageBackground.ignoresSafeArea())
         .navigationTitle("竞速")
         .navigationBarTitleDisplayMode(.inline)
     }
