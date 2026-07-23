@@ -28,6 +28,18 @@ nonisolated enum Pedagogy: String, Codable, Sendable {
         case .data: "chart.bar.fill"
         }
     }
+
+    /// 糖果卡片图标 emoji
+    var emoji: String {
+        switch self {
+        case .fluency: "🔢"
+        case .procedure: "✏️"
+        case .formula: "📐"
+        case .concept: "💡"
+        case .logic: "🧩"
+        case .data: "📊"
+        }
+    }
 }
 
 nonisolated enum TopicStatus: String, Codable, Sendable {
