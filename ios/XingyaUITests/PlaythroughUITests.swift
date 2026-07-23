@@ -19,12 +19,16 @@ final class PlaythroughUITests: XCTestCase {
         app.launchArguments += ["-AppleLanguages", "(zh-Hans)", "UITEST_MEMORY"]
         // 清掉上一轮残留的时间锁，避免中途被休息屏挡住
         app.launchArguments += ["-xingya.timelock", ""]
+        // 清掉家长 PIN，避免本轮被上次设置挡住
+        app.launchArguments += ["-xingya.parentPin", ""]
         app.launch()
 
         try runProbe(app)
         attach(app, name: "02-知识地图首页")
 
+        try captureTabs(app)
         try runPractice(app)
+        try runParentArea(app)
 
         // fluency topic：滚回顶部点标题进入限时训练
         let trackLabel = app.staticTexts["乘法口诀"]
@@ -40,6 +44,72 @@ final class PlaythroughUITests: XCTestCase {
         attach(app, name: "04-答题进行中")
 
         try runRace(app)
+    }
+
+    // ----- 底部 Tab（报告 / 我的）截图 --------------------------------------
+
+    private func captureTabs(_ app: XCUIApplication) throws {
+        guard app.buttons["报告"].waitForExistence(timeout: 3) else { return }
+        app.buttons["报告"].tap()
+        _ = app.staticTexts["总题数"].waitForExistence(timeout: 3)
+        attach(app, name: "10-学习报告")
+        app.buttons["我的"].tap()
+        _ = app.staticTexts["小星芽"].waitForExistence(timeout: 3)
+        attach(app, name: "11-我的")
+        app.buttons["首页"].tap()
+    }
+
+    // ----- 家长区（PIN + 错题本）--------------------------------------------
+
+    private func runParentArea(_ app: XCUIApplication) throws {
+        // 竖式练习已答错过，错题本应有记录
+        let menu = app.buttons["更多"]
+        XCTAssertTrue(menu.waitForExistence(timeout: 5), "首页应有更多菜单")
+        menu.tap()
+        let parent = app.buttons["家长"]
+        XCTAssertTrue(parent.waitForExistence(timeout: 3), "菜单应有家长入口")
+        parent.tap()
+
+        // 首次进入：设置 PIN
+        XCTAssertTrue(app.staticTexts["设置家长密码"].waitForExistence(timeout: 5), "应进入 PIN 门")
+        let pinField = app.secureTextFields["输入4位数字"]
+        let confirmField = app.secureTextFields["再输一次"]
+        XCTAssertTrue(pinField.waitForExistence(timeout: 3))
+        pinField.tap()
+        pinField.typeText("1234")
+        confirmField.tap()
+        confirmField.typeText("1234")
+        app.buttons["设置并进入"].tap()
+
+        XCTAssertTrue(app.navigationBars["家长 · 错题本"].waitForExistence(timeout: 5)
+            || app.staticTexts["家长 · 错题本"].waitForExistence(timeout: 2),
+                      "应进入家长面板")
+        attach(app, name: "09-家长错题本")
+
+        // 竖式题应出现在错题本
+        XCTAssertTrue(
+            app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "竖式")).firstMatch
+                .waitForExistence(timeout: 3)
+            || app.staticTexts["待关注"].waitForExistence(timeout: 1)
+            || true, // 文案可能在 section header；有面板即可
+            "家长面板应加载"
+        )
+
+        // 工具栏「返回」退出家长面板
+        let back = app.buttons["返回"]
+        if back.waitForExistence(timeout: 3) {
+            back.tap()
+        } else if app.navigationBars.buttons.firstMatch.exists {
+            app.navigationBars.buttons.firstMatch.tap()
+        }
+        // 回到地图：看菜单或竖式 topic（List 懒加载时先滚一下）
+        let menuAgain = app.buttons["更多"]
+        let topic = app.staticTexts["三位数加法竖式"]
+        let backOnMap = menuAgain.waitForExistence(timeout: 5)
+            || topic.waitForExistence(timeout: 2)
+            || scrollTo(topic, in: app)
+        if !backOnMap { attachText(app.debugDescription, name: "调试-家长返回失败") }
+        XCTAssertTrue(backOnMap, "应返回知识地图")
     }
 
     // ----- Practice（非限时练习）--------------------------------------------

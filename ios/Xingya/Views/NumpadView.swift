@@ -17,8 +17,11 @@ struct NumpadView: View {
             }
             key("⌫", role: .secondary, accessibilityLabel: "删除") { onDelete() }
             key("0") { onDigit(0) }
-            key("确定", role: .primary, accessibilityLabel: "确定") { onSubmit() }
-                .disabled(submitDisabled)
+            // 不用 .disabled()：disabled 的 .plain 自定义按钮会被 XCUITest 排除，
+            // 改为按钮常在、在动作里拦截（视觉仍按 submitDisabled 变灰）。
+            key("确定", role: .primary, accessibilityLabel: "确定") {
+                if !submitDisabled { onSubmit() }
+            }
         }
     }
 
@@ -47,6 +50,8 @@ struct NumpadView: View {
         }
         .buttonStyle(.plain)
         .accessibilityLabel(accessibilityLabel ?? label)
+        .accessibilityIdentifier(accessibilityLabel ?? label)
+        .accessibilityAddTraits(.isButton)
         .sensoryFeedback(.impact(weight: .light), trigger: label.isEmpty)
     }
 
