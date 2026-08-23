@@ -1,0 +1,497 @@
+/* 语文识字。视觉沿用 Web 端 chinese-characters.html: 大字 + 彩色偏旁 + 小积木拆解。 */
+
+@import '../../styles/lang.wxss';
+
+.chinese {
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.link-btn {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 8rpx 0 8rpx 16rpx;
+}
+
+/* ---- 学一学: 字详情 -------------------------------------------------------- */
+
+.detail-card {
+  padding: 32rpx;
+}
+
+.glyph-row {
+  display: flex;
+  align-items: center;
+  gap: 28rpx;
+}
+
+/* 详情里的田字格贴左边, 右侧留给拼音/结构 (共用样式默认是居中的) */
+.glyph-row .tianzige {
+  margin: 0;
+}
+
+.glyph-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.py-big {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: var(--accent-ink);
+}
+
+.mean-line {
+  display: block;
+  font-size: 26rpx;
+  color: var(--text-soft);
+  margin-top: 6rpx;
+}
+
+.struct-line {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 24rpx;
+  color: var(--muted);
+  margin: 10rpx 0 16rpx;
+}
+
+.struct-icon {
+  font-size: 30rpx;
+  color: var(--p-lavender-ink);
+}
+
+/* ---- 拆解积木 -------------------------------------------------------------- */
+
+.parts-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 28rpx;
+}
+
+.plus {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.part {
+  flex: 1;
+  min-width: 160rpx;
+  text-align: center;
+  padding: 20rpx 12rpx;
+  border-radius: var(--radius-sm);
+  border: 3rpx solid var(--line-strong);
+  background: var(--inset);
+}
+
+.part-rad {
+  background: var(--panel);
+}
+
+.part-glyph {
+  display: block;
+  font-size: 56rpx;
+  line-height: 1.2;
+  font-weight: 600;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.part-label {
+  display: block;
+  font-size: 22rpx;
+  color: var(--muted);
+  margin-top: 4rpx;
+}
+
+.solo-note,
+.light-note {
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: var(--text-soft);
+  background: var(--inset);
+  border-radius: var(--radius-sm);
+  padding: 20rpx 24rpx;
+  margin-top: 24rpx;
+}
+
+.light-note {
+  color: var(--muted);
+}
+
+.evolve,
+.rad-hint {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  font-size: 26rpx;
+  color: var(--text-soft);
+  background: var(--p-blue);
+  border-radius: var(--radius-sm);
+  padding: 18rpx 24rpx;
+  margin-top: 20rpx;
+}
+
+.evolve-glyph,
+.hint-glyph {
+  font-size: 44rpx;
+  font-weight: 700;
+  line-height: 1;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.hint-text {
+  flex: 1;
+}
+
+/* ---- 字表分组 -------------------------------------------------------------- */
+
+.group {
+  margin-bottom: 32rpx;
+}
+
+.group-head {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 0 8rpx 12rpx;
+}
+
+.group-glyph {
+  font-size: 48rpx;
+  font-weight: 700;
+  line-height: 1;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.group-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 800;
+}
+
+.group-theme {
+  display: block;
+  font-size: 22rpx;
+  color: var(--muted);
+}
+
+.group-more {
+  font-size: 34rpx;
+  color: var(--muted);
+}
+
+.char-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.char-cell {
+  width: 108rpx;
+  height: 108rpx;
+  line-height: 108rpx;
+  text-align: center;
+  font-size: 52rpx;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+  background: var(--panel);
+  border: 2rpx solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+}
+
+.char-on {
+  background: var(--p-peach);
+  border-color: var(--accent2);
+}
+
+/* ---- 闯一闯 ---------------------------------------------------------------- */
+
+.quiz-intro {
+  text-align: center;
+  padding: 56rpx 40rpx;
+}
+
+.q-card {
+  text-align: center;
+  padding: 40rpx 32rpx;
+}
+
+.q-glyph {
+  font-size: 140rpx;
+  line-height: 1.1;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+/* 主题题问的是偏旁, 字形本身不是重点, 缩小一号 */
+.q-glyph-sm {
+  font-size: 96rpx;
+  color: var(--p-lavender-ink);
+}
+
+.q-prompt {
+  font-size: 30rpx;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 16rpx 0 28rpx;
+}
+
+.opt-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.opt {
+  flex: 1 1 40%;
+  min-width: 220rpx;
+  box-sizing: border-box;
+  padding: 24rpx 16rpx;
+  border-radius: var(--radius-sm);
+  border: 3rpx solid var(--line-strong);
+  background: var(--panel);
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.opt-char {
+  font-size: 56rpx;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.opt-py {
+  font-size: 34rpx;
+  letter-spacing: 2rpx;
+}
+
+.opt-correct {
+  background: var(--p-mint);
+  border-color: var(--good);
+  color: var(--p-mint-ink);
+}
+
+.opt-wrong {
+  background: var(--p-peach);
+  border-color: var(--bad);
+  color: var(--p-peach-ink);
+}
+
+.result-stars {
+  font-size: 72rpx;
+  line-height: 1.2;
+  margin-bottom: 12rpx;
+}
+
+/* ---- 生字本 ---------------------------------------------------------------- */
+
+.add-card {
+  padding: 28rpx 32rpx 32rpx;
+}
+
+.word-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--inset);
+  border: 2rpx solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 20rpx 24rpx;
+  font-size: 32rpx;
+  margin: 8rpx 0 20rpx;
+}
+
+.note-input {
+  font-size: 28rpx;
+}
+
+.nb-head {
+  margin: 8rpx 0 16rpx;
+}
+
+.nb-count {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.note-item {
+  padding: 24rpx 28rpx;
+}
+
+.note-word {
+  font-size: 44rpx;
+  font-weight: 700;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+  margin-right: 12rpx;
+}
+
+.note-py {
+  font-size: 24rpx;
+  color: var(--muted);
+}
+
+.note-del {
+  font-size: 30rpx;
+  color: var(--muted);
+  padding: 8rpx 0 8rpx 20rpx;
+}
+
+.cells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 16rpx;
+}
+
+.cell {
+  min-width: 130rpx;
+  text-align: center;
+  padding: 14rpx 10rpx;
+  border-radius: 16rpx;
+  border: 3rpx solid var(--line-strong);
+  background: var(--inset);
+}
+
+.cell-c {
+  display: block;
+  font-size: 46rpx;
+  line-height: 1.2;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.cell-py {
+  display: block;
+  font-size: 22rpx;
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+
+.cell-sub {
+  display: block;
+  font-size: 20rpx;
+  color: var(--muted);
+}
+
+.note-note,
+.note-rev {
+  display: block;
+  font-size: 24rpx;
+  color: var(--muted);
+  margin-top: 12rpx;
+}
+
+/* ---- 偏旁浮层 -------------------------------------------------------------- */
+
+.rad-card {
+  max-height: 78vh;
+  overflow-y: auto;
+}
+
+.rad-big {
+  font-size: 96rpx;
+  line-height: 1.1;
+  font-weight: 700;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.rad-theme {
+  font-size: 26rpx;
+  color: var(--text-soft);
+  margin-bottom: 12rpx;
+}
+
+.rad-story {
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--text-soft);
+  background: var(--inset);
+  border-radius: var(--radius-sm);
+  padding: 20rpx 24rpx;
+  text-align: left;
+}
+
+.fam-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14rpx;
+  margin: 24rpx 0 28rpx;
+}
+
+.fam {
+  width: 108rpx;
+  padding: 10rpx 0;
+  border-radius: 16rpx;
+  background: var(--panel);
+  border: 2rpx solid var(--line);
+}
+
+.fam-c {
+  display: block;
+  font-size: 48rpx;
+  line-height: 1.2;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.fam-p {
+  display: block;
+  font-size: 20rpx;
+  color: var(--muted);
+}
+
+/* ---- 复习浮层 -------------------------------------------------------------- */
+
+.rev-card {
+  max-height: 82vh;
+  overflow-y: auto;
+}
+
+.rev-pos {
+  display: block;
+  font-size: 22rpx;
+  color: var(--muted);
+}
+
+.rev-word {
+  font-size: 110rpx;
+  line-height: 1.3;
+  font-weight: 500;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.rev-scene {
+  font-size: 24rpx;
+  color: var(--muted);
+  margin-bottom: 20rpx;
+}
+
+.rev-py {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--accent-ink);
+}
+
+.rev-story,
+.rev-note {
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: var(--text-soft);
+  background: var(--inset);
+  border-radius: var(--radius-sm);
+  padding: 16rpx 20rpx;
+  margin-top: 16rpx;
+  text-align: left;
+}
+
+.rev-tip {
+  font-size: 26rpx;
+  color: var(--muted);
+  margin: 20rpx 0 24rpx;
+}
+
+.rev-card .ctrl-row {
+  margin-top: 24rpx;
+}

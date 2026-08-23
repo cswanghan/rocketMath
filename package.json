@@ -12,7 +12,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
-    "content": "python3 content/build_content_pack.py"
+    "content": "python3 content/build_content_pack.py",
+    "mini": "npm run mini:engine && npm run mini:content",
+    "mini:engine": "node scripts/build-mini-engine.mjs",
+    "mini:content": "node scripts/build-mini-content.mjs",
+    "mini:test": "node scripts/test-mini-pages.mjs",
+    "mini:preview": "node scripts/preview-mini.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

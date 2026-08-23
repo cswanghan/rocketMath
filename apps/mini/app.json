@@ -1,0 +1,74 @@
+{
+  "pages": [
+    "pages/portal/portal",
+    "pages/grade/grade",
+    "pages/mine/mine"
+  ],
+  "subPackages": [
+    {
+      "root": "packages/math",
+      "name": "math",
+      "pages": [
+        "pages/map/map",
+        "pages/play/play",
+        "pages/probe/probe",
+        "pages/race/race",
+        "pages/practice/practice"
+      ]
+    },
+    {
+      "root": "packages/lang",
+      "name": "lang",
+      "pages": [
+        "pages/vocab/vocab",
+        "pages/chinese/chinese",
+        "pages/reading/reading"
+      ]
+    },
+    {
+      "root": "packages/exam",
+      "name": "exam",
+      "pages": [
+        "pages/calendar/calendar",
+        "pages/prep/prep"
+      ]
+    },
+    {
+      "root": "packages/parent",
+      "name": "parent",
+      "pages": [
+        "pages/dashboard/dashboard"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/portal/portal": {
+      "network": "all",
+      "packages": ["math"]
+    },
+    "pages/grade/grade": {
+      "network": "all",
+      "packages": ["math"]
+    }
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#fcfbf9",
+    "navigationBarTitleText": "星芽",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f4f1ea",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#94908a",
+    "selectedColor": "#28a847",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      { "pagePath": "pages/portal/portal", "text": "学习" },
+      { "pagePath": "pages/mine/mine", "text": "我的" }
+    ]
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

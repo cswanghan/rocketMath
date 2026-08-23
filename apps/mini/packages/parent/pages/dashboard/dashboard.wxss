@@ -1,0 +1,176 @@
+/* 家长区。PIN 门 + 错题本 + 数据管理。
+ * 通用卡片/按钮/pill 在 app.wxss, 这里只写这一页特有的。 */
+
+/* ---- PIN 门 -------------------------------------------------------------- */
+
+.gate-card {
+  margin-top: 120rpx;
+  padding: 56rpx 40rpx;
+  text-align: center;
+}
+
+.pin-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--inset);
+  border: 2rpx solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+  letter-spacing: 12rpx;
+  text-align: center;
+}
+
+.gate-error {
+  color: var(--bad);
+  font-size: 26rpx;
+  margin-bottom: 20rpx;
+}
+
+/* ---- 等级面板 ------------------------------------------------------------ */
+
+.level-row {
+  margin-bottom: 18rpx;
+}
+
+.level-badge {
+  background: var(--p-blue-pill);
+  color: var(--p-blue-ink);
+  font-size: 32rpx;
+  font-weight: 800;
+  padding: 8rpx 24rpx;
+  border-radius: 999rpx;
+  margin-right: 20rpx;
+}
+
+.level-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.level-xp {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.level-next {
+  color: var(--muted);
+  font-size: 24rpx;
+}
+
+.level-bar {
+  height: 16rpx;
+  border-radius: 999rpx;
+  background: var(--inset);
+  overflow: hidden;
+}
+
+.level-bar-fill {
+  height: 100%;
+  background: var(--btn-grad);
+  border-radius: 999rpx;
+}
+
+.focus-line {
+  margin-top: 18rpx;
+  font-size: 26rpx;
+  color: var(--text-soft);
+}
+
+/* ---- 总结 ---------------------------------------------------------------- */
+
+.summary-card {
+  margin-top: 24rpx;
+  background: var(--p-lavender);
+  border-color: var(--p-lavender-pill);
+}
+
+.summary-src {
+  display: block;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: var(--p-lavender-ink);
+  margin-bottom: 12rpx;
+}
+
+/* 总结正文是多行纯文本, 换行要原样保留 */
+.summary-text {
+  display: block;
+  font-size: 27rpx;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ---- 错题卡 -------------------------------------------------------------- */
+
+.mistake-card {
+  padding: 26rpx 28rpx;
+  margin-bottom: 18rpx;
+}
+
+.mistake-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pill-gap {
+  margin-left: 12rpx;
+}
+
+/* 答错 —— app.wxss 里没有红 pill, 只有这里用 */
+.pill-bad {
+  background: var(--p-peach-pill);
+  color: var(--bad);
+}
+
+.mistake-time {
+  margin-left: auto;
+  font-size: 22rpx;
+  color: var(--muted);
+}
+
+.mistake-prompt {
+  margin-top: 14rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.mistake-answers {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+}
+
+.ans-wrong {
+  color: var(--bad);
+  margin-right: 24rpx;
+}
+
+.ans-right {
+  color: var(--good-ink);
+}
+
+.mark-btn {
+  margin-top: 18rpx;
+}
+
+/* ---- 数据管理 ------------------------------------------------------------ */
+
+.btn-danger {
+  background: var(--bad);
+  color: #fff;
+  box-shadow: 0 8rpx 22rpx rgba(240, 86, 74, 0.28);
+}
+
+.btn-danger-ghost {
+  background: transparent;
+  color: var(--bad);
+  border: 2rpx solid var(--bad);
+}

@@ -1,0 +1,85 @@
+<view class="page">
+  <view class="page-title">今天学什么？</view>
+  <view class="page-subtitle">
+    <block wx:if="{{childName}}">{{childName}} · 选择一个学科开始吧</block>
+    <block wx:else>选择一个学科开始吧</block>
+  </view>
+
+  <!-- 每日打卡 -->
+  <view class="streak-card {{streak.doneToday ? 'done' : ''}}" wx:if="{{streak}}">
+    <view class="streak-celebrate" wx:if="{{celebrate}}" bindtap="onDismissCelebrate">
+      🎉 达成 {{celebrate}} 天连续学习！太棒啦
+    </view>
+    <view class="streak-main">
+      <text class="streak-flame">{{streak.current > 0 ? '🔥' : '🌱'}}</text>
+      <view class="streak-text">
+        <view class="streak-count">
+          <block wx:if="{{streak.current > 0}}">连续学习 <text class="streak-num">{{streak.current}}</text> 天</block>
+          <block wx:else>今天还没学习</block>
+        </view>
+        <view class="streak-sub">{{streak.doneToday ? '今日已打卡，继续保持！' : '挑一科开始，点亮今天 ✨'}}</view>
+      </view>
+    </view>
+    <view class="streak-week">
+      <view class="streak-day {{item.on ? 'on' : ''}}" wx:for="{{streak.week}}" wx:key="label">
+        <view class="streak-dot"></view>
+        <text class="streak-day-label">{{item.label}}</text>
+      </view>
+    </view>
+    <view class="streak-badges" wx:if="{{streak.badges.length}}">
+      <text class="streak-badge" wx:for="{{streak.badges}}" wx:key="*this">🏅{{item}}天</text>
+    </view>
+  </view>
+
+  <!-- 学科 -->
+  <view class="pcard subject-card subject-math" data-subject="math" bindtap="onSubject" hover-class="pcard--pressed">
+    <text class="pill pill-blue">学科</text>
+    <text class="card-label">数学</text>
+    <text class="card-desc">计算流畅度训练 · 47 个知识点</text>
+    <text class="subject-emoji">🚀</text>
+  </view>
+
+  <view class="pcard subject-card subject-chinese" data-subject="chinese" bindtap="onSubject" hover-class="pcard--pressed">
+    <text class="pill pill-peach">学科</text>
+    <text class="card-label">语文</text>
+    <text class="card-desc">生字学习 · 笔顺 · 偏旁</text>
+    <text class="subject-emoji">✍️</text>
+  </view>
+
+  <view class="pcard subject-card subject-english" data-subject="english" bindtap="onSubject" hover-class="pcard--pressed">
+    <text class="pill pill-lavender">学科</text>
+    <text class="card-label">英语</text>
+    <text class="card-desc">KET · PET 背单词</text>
+    <text class="subject-emoji">🔤</text>
+  </view>
+
+  <!-- 考试日历 -->
+  <view class="pcard banner-card" bindtap="onExamCal" hover-class="pcard--pressed">
+    <text class="pill pill-teal">资讯</text>
+    <text class="card-label">考试日历</text>
+    <text class="card-desc">AMC · 袋鼠数学 · KET/PET — 报名时间一目了然</text>
+  </view>
+
+  <!-- 继续备考 -->
+  <view class="pcard banner-card" wx:if="{{prepResume}}" bindtap="onResumePrep" hover-class="pcard--pressed">
+    <text class="pill pill-peach">备考中</text>
+    <text class="card-label">继续备考 · {{prepResume.name}}</text>
+    <text class="card-desc">
+      <block wx:if="{{prepResume.total}}">已掌握 {{prepResume.masteredCount}}/{{prepResume.total}} 个知识点，继续冲鸭</block>
+      <block wx:else>查看备考清单，逐个攻克知识点</block>
+    </text>
+  </view>
+</view>
+
+<!-- 免费体验用尽 -->
+<view class="overlay" wx:if="{{loginPromptFor}}" bindtap="onCloseLoginPrompt">
+  <view class="overlay-card" catchtap="noop">
+    <view class="overlay-emoji">🌱</view>
+    <view class="overlay-title">免费体验结束啦</view>
+    <view class="overlay-body">
+      登录后无限畅学，还能保存学习进度、经验值和错题本，换设备也能继续。
+    </view>
+    <button class="btn btn-primary" bindtap="onLogin">微信一键登录</button>
+    <button class="btn btn-ghost" style="margin-top:20rpx" bindtap="onCloseLoginPrompt">再看看</button>
+  </view>
+</view>

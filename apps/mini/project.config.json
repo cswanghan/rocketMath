@@ -1,0 +1,36 @@
+{
+  "description": "星芽 StarSprout 小程序",
+  "packOptions": {
+    "ignore": [
+      { "type": "file", "value": "package.json" },
+      { "type": "file", "value": "tsconfig.mini.json" },
+      { "type": "file", "value": "README.md" }
+    ],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "compileHotReLoad": true,
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "ignoreUploadUnusedFiles": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.5.5",
+  "appid": "touristappid",
+  "projectname": "starsprout-mini",
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}

@@ -1,0 +1,108 @@
+<view class="page exam-cal">
+  <button class="btn back-btn" bindtap="onExit">‹ 返回</button>
+
+  <view class="page-title">考试日历</view>
+  <view class="page-subtitle">{{metaText}}</view>
+
+  <view class="tab-row">
+    <view class="tab {{f.active ? 'tab-on' : ''}}" wx:for="{{filters}}" wx:key="key" wx:for-item="f"
+          data-key="{{f.key}}" bindtap="onPickFilter">{{f.label}}</view>
+  </view>
+
+  <view class="pcard cal-card">
+    <view class="cal-nav">
+      <view class="nav-btn" data-dir="prev" bindtap="onNav">◀</view>
+      <text class="month-label" bindtap="onToday">{{monthLabel}}</text>
+      <view class="nav-btn" data-dir="next" bindtap="onNav">▶</view>
+    </view>
+
+    <view class="cal-grid">
+      <text class="weekday" wx:for="{{weekdays}}" wx:key="*this" wx:for-item="w">{{w}}</text>
+      <block wx:for="{{cells}}" wx:key="key" wx:for-item="c">
+        <view wx:if="{{c.empty}}" class="cal-day"></view>
+        <view wx:else class="cal-day {{c.isToday ? 'is-today' : ''}} {{c.past ? 'is-past' : ''}} {{c.dots.length ? 'has-exam' : ''}}"
+              data-id="{{c.sessionId}}" data-source="dot" bindtap="onOpenSession">
+          <text class="day-num">{{c.day}}</text>
+          <view class="dots" wx:if="{{c.dots.length}}">
+            <view class="dot {{d.cls}}" wx:for="{{c.dots}}" wx:key="id" wx:for-item="d"></view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="section-title">本月考试</view>
+  <view class="empty-hint" wx:if="{{!monthList.length}}">{{emptyText}}</view>
+  <view class="pcard exam-item {{s.past ? 'is-past' : ''}}" wx:for="{{monthList}}" wx:key="id" wx:for-item="s"
+        data-id="{{s.id}}" data-source="list" bindtap="onOpenSession" hover-class="pcard--pressed">
+    <view class="row">
+      <text class="datecol">{{s.dateCol}}</text>
+      <view class="exam-main">
+        <view class="exam-top">
+          <text class="exam-name">{{s.label}}</text>
+          <text class="pill subj-{{s.subject}}">{{s.subjectCN}}</text>
+          <text class="pill pill-gray" wx:if="{{s.tbd}}">待官宣</text>
+          <text class="pill pill-gray" wx:if="{{s.past}}">已结束</text>
+          <text class="pill pill-warn" wx:if="{{s.regClosing}}">⚠ 报名即将截止</text>
+        </view>
+        <text class="exam-meta">{{s.meta}}</text>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{regList.length}}">
+    <view class="section-title">本月报名截止</view>
+    <view class="pcard exam-item" wx:for="{{regList}}" wx:key="id" wx:for-item="s"
+          data-id="{{s.id}}" data-source="list" bindtap="onOpenSession" hover-class="pcard--pressed">
+      <view class="row">
+        <text class="datecol">{{s.dateCol}}</text>
+        <view class="exam-main">
+          <view class="exam-top">
+            <text class="exam-name">{{s.label}}</text>
+            <text class="pill subj-{{s.subject}}">{{s.subjectCN}}</text>
+            <text class="pill pill-warn" wx:if="{{s.regClosing}}">⚠ 报名即将截止</text>
+          </view>
+          <text class="exam-meta">{{s.meta}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- ==== 详情浮层 ======================================================== -->
+  <view class="overlay" wx:if="{{detail}}" bindtap="onCloseDetail">
+    <view class="overlay-card detail-card" catchtap="noop">
+      <view class="detail-name">{{detail.name}}</view>
+      <view class="detail-session" wx:if="{{detail.sessionLabel}}">{{detail.sessionLabel}}</view>
+      <view class="detail-pills">
+        <text class="pill subj-{{detail.subject}}">{{detail.subjectCN}}</text>
+        <text class="pill pill-gray">{{detail.gradeText}}</text>
+        <text class="pill pill-gray" wx:if="{{detail.past}}">已结束</text>
+      </view>
+      <view class="detail-desc">{{detail.description}}</view>
+      <view class="detail-rows">
+        <view class="detail-row">
+          <text class="detail-label">考试形式</text>
+          <text class="detail-value">{{detail.format}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">考试时间</text>
+          <text class="detail-value">{{detail.examTime}}</text>
+        </view>
+        <view class="detail-row">
+          <text class="detail-label">报名窗口</text>
+          <text class="detail-value">{{detail.regWindow}}</text>
+        </view>
+        <view class="detail-row" wx:if="{{detail.notes}}">
+          <text class="detail-label">备注</text>
+          <text class="detail-value">{{detail.notes}}</text>
+        </view>
+      </view>
+      <view class="prep-hint" wx:if="{{detail.prepHint}}">💡 备考建议：{{detail.prepHint}}</view>
+
+      <button class="btn btn-primary" wx:if="{{detail.hasPrep}}" bindtap="onStartPrep">开始备考 →</button>
+      <view class="prep-todo" wx:else>备考内容建设中</view>
+      <button class="btn btn-plain btn-gap" bindtap="onCopyUrl">复制官网地址</button>
+      <button class="btn btn-ghost btn-gap" bindtap="onCloseDetail">关闭</button>
+    </view>
+  </view>
+</view>

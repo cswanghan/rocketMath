@@ -1,0 +1,136 @@
+/* 阅读识字。正文里命中的字标亮可点, 下方是生字表。 */
+
+@import '../../styles/lang.wxss';
+
+.reading {
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+/* ---- 录入 ------------------------------------------------------------------ */
+
+.article-input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 320rpx;
+  background: var(--inset);
+  border: 2rpx solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  line-height: 1.7;
+  margin: 8rpx 0 12rpx;
+}
+
+.input-foot {
+  margin-bottom: 20rpx;
+}
+
+.count {
+  font-size: 24rpx;
+  color: var(--muted);
+}
+
+.clear-btn {
+  font-size: 24rpx;
+  color: var(--accent);
+  padding: 8rpx 0 8rpx 20rpx;
+}
+
+/* ---- 阅读 ------------------------------------------------------------------ */
+
+.stats {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--text-soft);
+  margin-bottom: 16rpx;
+}
+
+/* 头卡里的两行筛选比正文紧一点 */
+.tab-tight {
+  margin-bottom: 10rpx;
+}
+
+.tab-tight:last-child {
+  margin-bottom: 0;
+}
+
+.article {
+  font-size: 36rpx;
+  line-height: 2;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.plain {
+  color: var(--text-soft);
+}
+
+/* 命中字: 底色标亮 —— 比下划线在小字号下更容易一眼扫到 */
+.hit {
+  background: var(--p-peach);
+  color: var(--p-peach-ink);
+  font-weight: 600;
+  border-radius: 6rpx;
+  padding: 2rpx 4rpx;
+}
+
+.hit-done {
+  background: var(--p-mint);
+  color: var(--p-mint-ink);
+}
+
+.list-head {
+  margin: 8rpx 0 16rpx;
+}
+
+.list-count {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14rpx;
+}
+
+.chip {
+  width: 118rpx;
+  text-align: center;
+  padding: 10rpx 0 8rpx;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 2rpx solid var(--line);
+  box-shadow: var(--shadow-soft);
+}
+
+.chip-done {
+  background: var(--p-mint);
+  border-color: var(--good);
+}
+
+.chip-char {
+  display: block;
+  font-size: 52rpx;
+  line-height: 1.2;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+.chip-count {
+  display: block;
+  font-size: 20rpx;
+  color: var(--muted);
+}
+
+/* ---- 单字浮层 -------------------------------------------------------------- */
+
+.detail-count {
+  font-size: 26rpx;
+  color: var(--muted);
+  margin: 24rpx 0 20rpx;
+}
+
+.ctrl-gap {
+  margin-top: 24rpx;
+}

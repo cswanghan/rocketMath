@@ -1,0 +1,64 @@
+<!-- 选速度 -->
+<view class="play" wx:if="{{!picked}}">
+  <view class="play-head">
+    <text class="head-btn" bindtap="onExit">← 返回</text>
+    <view class="spacer"></view>
+    <text class="phase-badge">🚀 竞速</text>
+  </view>
+
+  <view class="page-title">选择速度</view>
+  <view class="page-subtitle">时间越短，挑战越大 💪</view>
+
+  <view
+    class="speed-card"
+    wx:for="{{speeds}}"
+    wx:key="id"
+    data-seconds="{{item.seconds}}"
+    bindtap="onPickSpeed"
+    hover-class="speed-card--pressed"
+  >
+    <text class="speed-emoji">{{item.emoji}}</text>
+    <text class="speed-label">{{item.label}}</text>
+    <view class="spacer"></view>
+    <text class="speed-time">{{item.timeText}}</text>
+  </view>
+</view>
+
+<!-- 比赛中 -->
+<view class="play" wx:else>
+  <view class="play-head">
+    <text class="head-btn" bindtap="onExit">← 返回</text>
+    <view class="spacer"></view>
+    <text class="phase-badge">🚀 竞速</text>
+    <text class="timer {{low ? 'timer-low' : ''}}">⏱ {{timeLabel}}</text>
+  </view>
+
+  <view class="stage" wx:if="{{mode === 'prompt'}}">
+    <view class="prompt">{{prompt}}</view>
+    <view class="answer-box">{{input}}</view>
+    <view class="numpad">
+      <view
+        class="key"
+        wx:for="{{digits}}"
+        wx:key="*this"
+        data-d="{{item}}"
+        bindtap="onDigit"
+        hover-class="key--pressed"
+      >{{item}}</view>
+      <view class="key key-fn" bindtap="onBackspace" hover-class="key--pressed">⌫</view>
+      <view class="key" data-d="0" bindtap="onDigit" hover-class="key--pressed">0</view>
+      <view class="key key-enter" bindtap="onEnter" hover-class="key--pressed">✓</view>
+    </view>
+  </view>
+
+  <view class="loading-hint" wx:elif="{{mode !== 'race_result'}}">准备竞速…</view>
+</view>
+
+<!-- 成绩 -->
+<view class="overlay" wx:if="{{mode === 'race_result'}}">
+  <view class="overlay-card celebrate">
+    <view class="overlay-title">🏁 时间到！</view>
+    <view class="big-fact"><text class="big-answer">{{correctPerMin}}</text> 题 / 分钟</view>
+    <button class="btn btn-primary" style="margin-top:32rpx" bindtap="onExit">回到地图</button>
+  </view>
+</view>

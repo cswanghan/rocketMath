@@ -1,0 +1,6 @@
+{
+  "name": "starsprout-mini",
+  "private": true,
+  "//": "小程序侧全是 CommonJS。仓库根 package.json 是 type:module, 会波及整棵目录树, 这里覆盖回 commonjs, 让 vendor 产物在 node 下也能直接 require 做验证。无 dependencies, 开发者工具的『构建 npm』不会有任何动作。",
+  "type": "commonjs"
+}

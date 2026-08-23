@@ -1,0 +1,86 @@
+<view class="page parent">
+  <button class="btn back-btn" bindtap="onExit">‹ 返回</button>
+
+  <!-- ---- PIN 门 ---- -->
+  <block wx:if="{{!unlocked}}">
+    <view class="pcard gate-card">
+      <view class="overlay-emoji">🔒</view>
+      <view class="overlay-title">{{mode === 'set' ? '设置家长密码' : '家长验证'}}</view>
+      <view class="overlay-body">
+        {{mode === 'set' ? '第一次进入，请设置一个 4 位数字密码' : '请输入 4 位家长密码'}}
+      </view>
+      <input class="pin-input" type="number" maxlength="4" focus="{{true}}"
+             placeholder="输入4位数字" value="{{pinVal}}" bindinput="onPinInput" />
+      <input wx:if="{{mode === 'set'}}" class="pin-input" type="number" maxlength="4"
+             placeholder="再输一次" value="{{confirmVal}}" bindinput="onConfirmInput" />
+      <view class="gate-error" wx:if="{{gateError}}">{{gateError}}</view>
+      <button class="btn btn-primary" bindtap="onSubmitPin">
+        {{mode === 'set' ? '设置并进入' : '进入'}}
+      </button>
+    </view>
+  </block>
+
+  <!-- ---- 错题本 ---- -->
+  <block wx:else>
+    <view class="page-title">👨‍👧 家长 · 错题本</view>
+
+    <view class="loading-hint" wx:if="{{!ready}}">加载中…</view>
+
+    <block wx:else>
+      <view class="pcard">
+        <view class="row level-row">
+          <text class="level-badge">Lv.{{level.level}}</text>
+          <view class="level-text">
+            <view class="level-xp">⭐ {{xp}} 经验</view>
+            <view class="level-next">再练 {{level.toNext}} 点升到 Lv.{{level.level + 1}}</view>
+          </view>
+        </view>
+        <view class="level-bar">
+          <view class="level-bar-fill"
+                style="width:{{level.span ? level.intoLevel / level.span * 100 : 0}}%"></view>
+        </view>
+        <view class="focus-line">
+          待关注 {{activeCount}} 道（错 {{wrongTotal}} · 慢 {{slowTotal}}）
+        </view>
+      </view>
+
+      <button class="btn {{activeCount ? 'btn-primary' : 'btn-plain'}}"
+              disabled="{{loading || !activeCount}}" bindtap="onSummarize">
+        {{loading ? '正在生成…' : '✨ 一键总结'}}
+      </button>
+
+      <view class="pcard summary-card" wx:if="{{summaryText}}">
+        <text class="summary-src">{{summarySource === 'AI' ? '🤖 AI 分析' : '📊 本地分析'}}</text>
+        <text class="summary-text">{{summaryText}}</text>
+      </view>
+
+      <view class="empty-hint" wx:if="{{!activeCount}}">🎉 暂无待订正的错题。</view>
+
+      <block wx:for="{{groups}}" wx:key="topic" wx:for-item="g">
+        <view class="section-title">{{g.topic}} · {{g.count}} 题</view>
+        <view class="pcard mistake-card" wx:for="{{g.items}}" wx:key="id" wx:for-item="m">
+          <view class="mistake-head">
+            <text class="pill {{m.badgeCls}}">{{m.badge}}</text>
+            <text class="pill {{m.diffCls}} pill-gap" wx:if="{{m.diffLabel}}">{{m.diffLabel}}</text>
+            <text class="mistake-time" wx:if="{{m.timeText}}">{{m.timeText}}</text>
+          </view>
+          <view class="mistake-prompt">{{m.prompt}}</view>
+          <view class="mistake-answers">
+            <text class="ans-right" wx:if="{{m.slow}}">答对（但偏慢）：{{m.correctAnswer}}</text>
+            <block wx:else>
+              <text class="ans-wrong">孩子答：{{m.yourAnswer}}</text>
+              <text class="ans-right">正确：{{m.correctAnswer}}</text>
+            </block>
+          </view>
+          <button class="btn btn-ghost btn-sm mark-btn" data-id="{{m.id}}" bindtap="onCorrect">
+            ✓ 标为已订正
+          </button>
+        </view>
+      </block>
+
+      <view class="section-title">数据管理</view>
+      <button class="btn btn-danger" bindtap="onResetProgress">🔄 重置完成度和经验</button>
+      <button class="btn btn-danger-ghost btn-gap" bindtap="onClearMistakes">🗑 清空错题本</button>
+    </block>
+  </block>
+</view>

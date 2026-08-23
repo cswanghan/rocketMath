@@ -1,0 +1,54 @@
+<view class="page prep">
+  <button class="btn back-btn" bindtap="onExit">‹ 返回</button>
+
+  <view class="loading-hint" wx:if="{{!ready}}">备考清单加载中…</view>
+
+  <block wx:elif="{{notFound}}">
+    <view class="empty-hint">未找到该考试</view>
+  </block>
+
+  <block wx:else>
+    <view class="page-title">🎯 备考 · {{name}}</view>
+    <view class="page-subtitle">{{format}}</view>
+
+    <view class="pcard head-card" wx:if="{{total}}">
+      <view class="row">
+        <text class="head-num">{{masteredCount}}</text>
+        <text class="head-den">/{{total}} 个知识点已掌握</text>
+        <view class="spacer"></view>
+        <text class="head-den">{{pct}}%</text>
+      </view>
+      <view class="bar"><view class="bar-fill" style="width:{{pct}}%"></view></view>
+    </view>
+
+    <block wx:for="{{groups}}" wx:key="key" wx:for-item="g">
+      <view class="section-title">{{g.title}}</view>
+      <view class="pcard prep-row {{r.ready ? '' : 'is-locked'}} state-{{r.state}}"
+            wx:for="{{g.rows}}" wx:key="key" wx:for-item="r"
+            data-key="{{r.key}}" bindtap="onOpen" hover-class="{{r.ready ? 'pcard--pressed' : ''}}">
+        <view class="row">
+          <text class="prep-mark">{{r.mark}}</text>
+          <view class="prep-body">
+            <text class="prep-name">{{r.label}}</text>
+            <text class="prep-meta">{{r.meta}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{vocab}}">
+      <view class="section-title">英语词汇</view>
+      <view class="pcard prep-row state-vocab" bindtap="onVocab" hover-class="pcard--pressed">
+        <view class="row">
+          <text class="prep-mark">📖</text>
+          <view class="prep-body">
+            <text class="prep-name">{{vocab.label}}</text>
+            <text class="prep-meta">背单词 →</text>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="empty-hint" wx:if="{{empty}}">该考试的备考内容正在建设中，敬请期待 🛠️</view>
+  </block>
+</view>

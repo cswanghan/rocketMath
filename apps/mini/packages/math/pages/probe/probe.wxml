@@ -1,0 +1,36 @@
+<view class="play">
+  <view class="probe-head">
+    <view class="page-title">热身 🖐️</view>
+    <view class="page-subtitle">按下你看到的数字，越快越好</view>
+    <view class="prog">{{trial + 1}} / {{total}}</view>
+  </view>
+
+  <view class="stage">
+    <view class="prompt probe-target">{{target}}</view>
+    <view class="numpad">
+      <view
+        class="key"
+        wx:for="{{digits}}"
+        wx:key="*this"
+        data-d="{{item}}"
+        bindtap="onTap"
+        hover-class="key--pressed"
+      >{{item}}</view>
+      <view class="key key-fn key-disabled">⌫</view>
+      <view class="key" data-d="0" bindtap="onTap" hover-class="key--pressed">0</view>
+      <view class="key key-fn key-disabled">✓</view>
+    </view>
+  </view>
+</view>
+
+<view class="overlay" wx:if="{{done}}">
+  <view class="overlay-card celebrate">
+    <view class="overlay-emoji">🎯</view>
+    <view class="overlay-title">热身完成！</view>
+    <view class="overlay-body">
+      给你定的答题时限是 <text class="big-answer">{{gateSec}}</text> 秒。
+      这是按你自己的手速算的 —— 比别人慢或快都不重要，只跟昨天的自己比。
+    </view>
+    <button class="btn btn-primary" bindtap="onFinish">开始练习</button>
+  </view>
+</view>

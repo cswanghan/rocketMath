@@ -1,0 +1,238 @@
+<view class="page chinese">
+  <button class="btn back-btn" bindtap="onExit">‹ 返回</button>
+
+  <view class="row">
+    <view style="flex:1">
+      <view class="page-title">语文识字</view>
+      <view class="page-subtitle">偏旁一家人 · 拆字联想 · 生字本</view>
+    </view>
+    <view class="link-btn" bindtap="onOpenReading">阅读识字 ›</view>
+  </view>
+
+  <view class="tab-row">
+    <view class="tab tab-lg {{tab === 'learn' ? 'tab-on' : ''}}" data-tab="learn" bindtap="onSwitchTab">学一学</view>
+    <view class="tab tab-lg {{tab === 'quiz' ? 'tab-on' : ''}}" data-tab="quiz" bindtap="onSwitchTab">闯一闯</view>
+    <view class="tab tab-lg {{tab === 'notebook' ? 'tab-on' : ''}}" data-tab="notebook" bindtap="onSwitchTab">生字本</view>
+  </view>
+
+  <!-- ==== 学一学 ========================================================== -->
+  <block wx:if="{{tab === 'learn'}}">
+    <view class="pcard detail-card" wx:if="{{detail}}">
+      <view class="glyph-row">
+        <!-- 田字格。Web 端是 hanzi-writer 笔顺动画, 小程序没有那个库, 这里静态展示 -->
+        <view class="tianzige">
+          <view class="tzg-h"></view>
+          <view class="tzg-v"></view>
+          <text class="tzg-char">{{detail.char}}</text>
+        </view>
+        <view class="glyph-meta">
+          <text class="py-big">{{detail.pinyin}}</text>
+          <text class="mean-line" wx:if="{{detail.mean}}">{{detail.mean}}</text>
+          <view class="struct-line" wx:if="{{detail.structTag}}">
+            <text class="struct-icon">{{detail.structIcon}}</text>
+            <text>{{detail.structTag}}{{detail.structNote}}</text>
+          </view>
+          <button class="btn btn-plain btn-sm" bindtap="onSpeakChar" wx:if="{{speechOn}}">🔊 读一读</button>
+        </view>
+      </view>
+
+      <!-- 拆解: 每个部件一块小积木 -->
+      <view class="parts-row" wx:if="{{detail.parts.length}}">
+        <block wx:for="{{detail.parts}}" wx:key="label" wx:for-item="p">
+          <text class="plus" wx:if="{{index > 0}}">+</text>
+          <view class="part {{p.radKey ? 'part-rad' : ''}}" style="{{p.color ? 'border-color:' + p.color : ''}}"
+                data-rad="{{p.radKey}}" bindtap="onOpenRad">
+            <text class="part-glyph" style="{{p.color ? 'color:' + p.color : ''}}">{{p.glyph}}</text>
+            <text class="part-label">{{p.label}}</text>
+          </view>
+        </block>
+      </view>
+
+      <view class="solo-note" wx:if="{{detail.soloNote}}">{{detail.soloNote}}</view>
+
+      <view class="evolve" wx:if="{{detail.evolve}}" data-rad="{{detail.evolve.key}}" bindtap="onOpenRad">
+        <text>它当偏旁时会变成</text>
+        <text class="evolve-glyph" style="color:{{detail.evolve.color}}">{{detail.evolve.glyph}}</text>
+        <text>（{{detail.evolve.name}}）›</text>
+      </view>
+
+      <view class="rad-hint" wx:if="{{detail.radHint}}" data-rad="{{detail.radHint.key}}" bindtap="onOpenRad">
+        <text class="hint-glyph" style="color:{{detail.radHint.color}}">{{detail.radHint.glyph}}</text>
+        <text class="hint-text">「{{detail.radHint.name}}」的字大多和{{detail.radHint.theme}}有关 · 看看一家人 ›</text>
+      </view>
+
+      <view class="light-note" wx:if="{{detail.light}}">这个字还没收进字库，先读一读、写一写吧～</view>
+    </view>
+
+    <view class="group" wx:for="{{groups}}" wx:key="key" wx:for-item="g">
+      <view class="group-head" data-rad="{{g.radKey}}" bindtap="onOpenRad">
+        <text class="group-glyph" style="color:{{g.color}}">{{g.glyph}}</text>
+        <view style="flex:1">
+          <text class="group-title">{{g.title}}</text>
+          <text class="group-theme">{{g.theme}}</text>
+        </view>
+        <text class="group-more" wx:if="{{g.radKey}}">›</text>
+      </view>
+      <view class="char-grid">
+        <view class="char-cell {{sel === c ? 'char-on' : ''}}" wx:for="{{g.chars}}" wx:key="*this" wx:for-item="c"
+              data-c="{{c}}" bindtap="onPickChar">{{c}}</view>
+      </view>
+    </view>
+  </block>
+
+  <!-- ==== 闯一闯 ========================================================== -->
+  <block wx:elif="{{tab === 'quiz'}}">
+    <view class="pcard quiz-intro" wx:if="{{quizState === 'intro'}}">
+      <view class="overlay-emoji">🎯</view>
+      <view class="done-title">识字小闯关</view>
+      <view class="done-body">{{qTotal}} 道题：认读音、找一家人、猜偏旁的意思。答错也没关系，正确答案会告诉你。</view>
+      <button class="btn btn-primary" bindtap="onStartQuiz">开始闯关</button>
+    </view>
+
+    <block wx:elif="{{quizState === 'play'}}">
+      <view class="pcard head-card">
+        <view class="row">
+          <text class="head-num">第 {{qIndex}} 题</text>
+          <view class="spacer"></view>
+          <text class="head-den">答对 {{qScore}} / {{qTotal}}</text>
+        </view>
+        <view class="bar"><view class="bar-fill" style="width:{{qPct}}%"></view></view>
+      </view>
+
+      <view class="pcard q-card">
+        <view class="q-glyph {{q.small ? 'q-glyph-sm' : ''}}">{{q.big}}</view>
+        <view class="q-prompt">{{q.prompt}}</view>
+        <view class="opt-grid">
+          <view class="opt opt-{{o.state}} {{q.render === 'char' ? 'opt-char' : ''}} {{q.render === 'pinyin' ? 'opt-py' : ''}}"
+                wx:for="{{qOpts}}" wx:key="value" wx:for-item="o"
+                data-v="{{o.value}}" bindtap="onAnswer">{{o.value}}</view>
+        </view>
+      </view>
+
+      <view class="feedback {{qFeedbackOk ? 'fb-correct' : 'fb-wrong'}}" wx:if="{{qAnswered}}">
+        <view class="fb-title">{{qFeedback}}</view>
+      </view>
+      <button class="btn btn-primary" wx:if="{{qAnswered}}" bindtap="onNextQuestion">
+        {{qIndex >= qTotal ? '看结果' : '下一题'}}
+      </button>
+    </block>
+
+    <view class="pcard done-card" wx:else>
+      <view class="result-stars">{{qResult.stars}}</view>
+      <view class="done-title">答对 {{qResult.score}} / {{qResult.total}}</view>
+      <view class="done-body">{{qResult.msg}}</view>
+      <button class="btn btn-primary" bindtap="onStartQuiz">再来一轮</button>
+      <button class="btn btn-ghost btn-gap" data-tab="learn" bindtap="onSwitchTab">回去学一学</button>
+    </view>
+  </block>
+
+  <!-- ==== 生字本 ========================================================== -->
+  <block wx:else>
+    <view class="pcard add-card">
+      <text class="section-label">加一个字/词</text>
+      <input class="word-input" placeholder="例如：藏 / 迷路" value="{{wordInput}}" bindinput="onWordInput" />
+      <text class="section-label">在哪遇到的</text>
+      <view class="tab-row">
+        <view class="tab {{s.active ? 'tab-on' : ''}}" wx:for="{{scenes}}" wx:key="key" wx:for-item="s"
+              data-s="{{s.key}}" bindtap="onPickScene">{{s.key}}</view>
+      </view>
+      <input class="word-input note-input" placeholder="备注（可不填）：写错成什么了？" value="{{noteInput}}" bindinput="onNoteInput" />
+      <button class="btn btn-primary" bindtap="onAddEntry">加入生字本</button>
+      <text class="sync-text" wx:if="{{syncText}}">{{syncText}}</text>
+    </view>
+
+    <view class="row nb-head">
+      <text class="nb-count">共 {{noteCount}} 条</text>
+      <view class="spacer"></view>
+      <button class="btn btn-plain btn-sm" bindtap="onStartReview" wx:if="{{noteCount}}">开始复习</button>
+    </view>
+
+    <view class="tab-row" wx:if="{{noteCount}}">
+      <view class="tab {{f.active ? 'tab-on' : ''}}" wx:for="{{filters}}" wx:key="key" wx:for-item="f"
+            data-s="{{f.key}}" bindtap="onPickFilter">{{f.label}}</view>
+    </view>
+
+    <view class="empty-hint" wx:if="{{!noteList.length}}">
+      还没有生字。孩子写错的字、读不出的字，加进来，随时能复习。
+    </view>
+
+    <view class="pcard note-item" wx:for="{{noteList}}" wx:key="id" wx:for-item="e">
+      <view class="row">
+        <text class="note-word">{{e.word}}</text>
+        <text class="note-py" wx:if="{{e.py}}">{{e.py}}</text>
+        <view class="spacer"></view>
+        <text class="pill pill-gray">{{e.scene}}</text>
+        <text class="note-del" data-id="{{e.id}}" bindtap="onDelEntry">✕</text>
+      </view>
+      <view class="cells">
+        <view class="cell" wx:for="{{e.cells}}" wx:key="c" wx:for-item="d"
+              style="{{d.color ? 'border-color:' + d.color : ''}}">
+          <text class="cell-c">{{d.c}}</text>
+          <text class="cell-py" wx:if="{{d.py}}">{{d.py}}</text>
+          <text class="cell-sub">{{d.radical}}{{d.struct ? ' · ' + d.struct : ''}}</text>
+        </view>
+      </view>
+      <text class="note-note" wx:if="{{e.note}}">备注：{{e.note}}</text>
+      <text class="note-rev" wx:if="{{e.reviews}}">已复习 {{e.reviews}} 次</text>
+    </view>
+  </block>
+
+  <!-- ==== 偏旁一家人浮层 =================================================== -->
+  <view class="overlay" wx:if="{{radSheet}}" bindtap="onCloseRad">
+    <view class="overlay-card rad-card" catchtap="noop">
+      <view class="rad-big" style="color:{{radSheet.color}}">{{radSheet.glyph}}</view>
+      <view class="overlay-title">{{radSheet.name}}</view>
+      <view class="rad-theme">常和「{{radSheet.themeWord}}」有关 · {{radSheet.theme}}</view>
+      <view class="rad-story">{{radSheet.story}}</view>
+      <view class="fam-grid">
+        <view class="fam" wx:for="{{radSheet.family}}" wx:key="c" wx:for-item="f"
+              data-c="{{f.c}}" bindtap="onPickFromRad">
+          <text class="fam-c">{{f.c}}</text>
+          <text class="fam-p">{{f.p}}</text>
+        </view>
+      </view>
+      <button class="btn btn-ghost" bindtap="onCloseRad">知道啦</button>
+    </view>
+  </view>
+
+  <!-- ==== 复习浮层 ======================================================== -->
+  <view class="overlay" wx:if="{{review}}">
+    <view class="overlay-card rev-card">
+      <block wx:if="{{review.finished}}">
+        <view class="overlay-emoji">🎉</view>
+        <view class="overlay-title">复习完啦</view>
+        <view class="overlay-body">这一轮过了 {{review.total}} 个字，记住的下次会少出现。</view>
+        <button class="btn btn-primary" bindtap="onCloseReview">收工</button>
+      </block>
+      <block wx:else>
+        <text class="rev-pos">{{review.scopeLabel}} {{review.position}} / {{review.total}}</text>
+        <view class="rev-word" bindtap="onFlipReview">{{review.word}}</view>
+        <view class="rev-scene">在「{{review.scene}}」遇到的</view>
+
+        <block wx:if="{{review.flipped}}">
+          <view class="rev-py" wx:if="{{review.py}}">{{review.py}}</view>
+          <view class="cells">
+            <view class="cell" wx:for="{{review.cells}}" wx:key="c" wx:for-item="d"
+                  style="{{d.color ? 'border-color:' + d.color : ''}}">
+              <text class="cell-c">{{d.c}}</text>
+              <text class="cell-py" wx:if="{{d.py}}">{{d.py}}</text>
+              <text class="cell-sub">{{d.radical}}{{d.struct ? ' · ' + d.struct : ''}}</text>
+            </view>
+          </view>
+          <view class="rev-story" wx:if="{{review.story}}">{{review.story}}</view>
+          <view class="rev-note" wx:if="{{review.note}}">备注：{{review.note}}</view>
+          <view class="ctrl-row">
+            <button class="btn btn-ghost ctrl-half" data-got="no" bindtap="onMarkReview">再练一次</button>
+            <button class="btn btn-primary ctrl-half" data-got="yes" bindtap="onMarkReview">记住了 ✓</button>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="rev-tip">先自己读一读、想想怎么写，再翻开看答案</view>
+          <button class="btn btn-primary" bindtap="onFlipReview">翻开看看</button>
+        </block>
+
+        <button class="btn btn-ghost btn-gap" bindtap="onCloseReview">退出复习</button>
+      </block>
+    </view>
+  </view>
+</view>
