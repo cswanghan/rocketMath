@@ -2,15 +2,21 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
 <title>生字小课堂</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- 拼音字体改用 Nunito：Baloo 2 的一声长音 ā 字形位置错乱(显示成 ta¯) -->
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/cnchar-radical/cnchar.radical.min.js"></script>
+<script src="/platform.js"></script>
+<script>
+/* 网站继续加载 Nunito 与笔顺库。iOS 壳不请求 Google Fonts / jsDelivr。 */
+if (!window.RM_NATIVE) {
+  document.write(
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap">' +
+    '<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js"><\/script>' +
+    '<script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"><\/script>' +
+    '<script src="https://cdn.jsdelivr.net/npm/cnchar-radical/cnchar.radical.min.js"><\/script>'
+  );
+}
+</script>
 <script>try{ if(window.cnchar && window.cncharRadical){ cnchar.use(cncharRadical); } }catch(e){}</script>
 <script src="/track.js"></script>
 <style>
@@ -769,12 +775,20 @@ function pickVoice(){
 }
 if('speechSynthesis' in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
 function speak(text){
-  if(!('speechSynthesis' in window)) return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang='zh-CN'; u.rate=0.55; u.pitch=1.05;
-  if(zhVoice) u.voice=zhVoice;
-  speechSynthesis.speak(u);
+  try {
+    if(!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang='zh-CN'; u.rate=0.55; u.pitch=1.05;
+    if(zhVoice) u.voice=zhVoice;
+    speechSynthesis.speak(u);
+    speechSynthesis.resume();
+  } catch (e) {}
+}
+function loadStrokeJson(c){
+  if (window.RM_NATIVE) return Promise.reject(new Error('native-no-cdn'));
+  return fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/'+encodeURIComponent(c)+'.json')
+    .then(r=>{ if(!r.ok) throw 0; return r.json(); });
 }
 
 /* ---------- 笔顺 ---------- */
@@ -797,8 +811,7 @@ function buildWriter(ch){
       showOutline:true, showCharacter:true,
       strokeAnimationSpeed:0.9, delayBetweenStrokes:180,
       charDataLoader:function(c,onComplete){
-        fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/'+encodeURIComponent(c)+'.json')
-          .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+        loadStrokeJson(c)
           .then(d=>{ strokeReady=true; document.getElementById('stroke-label').textContent='写一写'; onComplete(d); })
           .catch(()=>fallback());
       }
@@ -824,8 +837,7 @@ function makeStroke(targetId, ch){
       width:168,height:168,padding:12,strokeColor:'#34302a',radicalColor:'#bf3f2b',
       showOutline:true,showCharacter:true,strokeAnimationSpeed:0.9,delayBetweenStrokes:160,
       charDataLoader:function(c,onComplete){
-        fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/'+encodeURIComponent(c)+'.json')
-          .then(r=>{ if(!r.ok) throw 0; return r.json(); })
+        loadStrokeJson(c)
           .then(d=>{ ready=true; onComplete(d); setTimeout(()=>{ try{ w.animateCharacter(); }catch(e){} },150); })
           .catch(()=>fb());
       }
@@ -1159,7 +1171,7 @@ function decompose(text){
 
 /* ---- 语音输入 ---- */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-const voiceOK = !!SR;
+const voiceOK = !!SR && !window.RM_NATIVE;
 let recog=null;
 function startVoice(input, btn, stripSpaces){
   if(!voiceOK){ toast('这个浏览器不支持语音，直接打字也可以～'); input.focus(); return; }
@@ -1185,14 +1197,14 @@ function nbToken(){ try{ return localStorage.getItem('token')||''; }catch(e){ re
 function nbChildKey(){ try{ const c=JSON.parse(localStorage.getItem('rm.child')||'null'); return (c&&c.id)?String(c.id):'0'; }catch(e){ return '0'; } }
 async function cloudGet(){
   const t=nbToken(); if(!t) return null;
-  try{ const r=await fetch('/api/shengzi/notebook?child='+encodeURIComponent(nbChildKey()),{headers:{Authorization:'Bearer '+t}});
+  try{ const r=await fetch((window.rmApi?rmApi('/api/shengzi/notebook'):'/api/shengzi/notebook')+'?child='+encodeURIComponent(nbChildKey()),{headers:{Authorization:'Bearer '+t}});
     if(!r.ok) return null; return await r.json(); }catch(e){ return null; }
 }
 let nbPutTimer=null;
 function cloudPut(arr, ts){
   const t=nbToken(); if(!t) return;
   clearTimeout(nbPutTimer);
-  nbPutTimer=setTimeout(()=>{ fetch('/api/shengzi/notebook',{method:'POST',
+  nbPutTimer=setTimeout(()=>{ fetch(window.rmApi?rmApi('/api/shengzi/notebook'):'/api/shengzi/notebook',{method:'POST',
     headers:{'Content-Type':'application/json',Authorization:'Bearer '+t},
     body:JSON.stringify({data:arr,updatedAt:ts,child:nbChildKey()})}).catch(()=>{}); }, 600);
 }

@@ -1,17 +1,20 @@
 import { useCallback, useEffect, useState } from 'react';
 import { levelFromXp } from '../practice';
 import type { MistakeRecord, StorageAdapter } from '../storage';
+import { shellPolicy, apiUrl } from '../platform';
+import { DeleteAccount } from './DeleteAccount';
 import { fmtSec, llmPayload, localSummaryText, summarize } from './summary';
 
 interface Props {
   adapter: StorageAdapter;
   studentId: string;
   onExit: () => void;
+  onAccountDeleted: () => void;
 }
 
 const DIFF_LABEL: Record<string, string> = { basic: '基础', consolidate: '夯实', challenge: '拔高' };
 
-export function ParentDashboard({ adapter, studentId, onExit }: Props) {
+export function ParentDashboard({ adapter, studentId, onExit, onAccountDeleted }: Props) {
   const [mistakes, setMistakes] = useState<MistakeRecord[]>([]);
   const [xp, setXp] = useState(0);
   const [summaryText, setSummaryText] = useState('');
@@ -38,9 +41,15 @@ export function ParentDashboard({ adapter, studentId, onExit }: Props) {
   const generate = useCallback(async () => {
     setLoading(true);
     setSummarySource('');
+    if (!shellPolicy().remoteSummary) {
+      setSummaryText(localSummaryText(summaryData));
+      setSummarySource('本地');
+      setLoading(false);
+      return;
+    }
     const payload = llmPayload(summaryData);
     try {
-      const resp = await fetch('/api/summarize', {
+      const resp = await fetch(apiUrl('/api/summarize'), {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify(payload),
@@ -164,6 +173,7 @@ export function ParentDashboard({ adapter, studentId, onExit }: Props) {
         <button className="danger-btn ghost-danger" onClick={clearMistakes}>
           🗑 清空错题本
         </button>
+        <DeleteAccount onDeleted={onAccountDeleted} />
       </div>
     </div>
   );

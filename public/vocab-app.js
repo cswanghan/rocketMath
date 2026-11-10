@@ -1059,7 +1059,8 @@ function attachDefLangEvents() {
 function apiFetch(path, options = {}) {
   const headers = new Headers(options.headers || {});
   if (state.auth.token) headers.set('Authorization', `Bearer ${state.auth.token}`);
-  return fetch(path, { ...options, headers });
+  const url = window.rmApi ? window.rmApi(path) : path;
+  return fetch(url, { ...options, headers });
 }
 
 async function verifyAuth() {
@@ -1071,7 +1072,12 @@ async function verifyAuth() {
 
   try {
     const response = await apiFetch('/api/auth/me');
-    if (!response.ok) throw new Error('unauthorized');
+    if (response.status === 401 || response.status === 403) {
+      const expired = new Error('unauthorized');
+      expired.code = 'unauthorized';
+      throw expired;
+    }
+    if (!response.ok) throw new Error('server');
     const data = await response.json();
     state.auth.user = data.user || state.auth.user;
     if (state.auth.user) {
@@ -1081,14 +1087,19 @@ async function verifyAuth() {
     state.auth.message = I18n.t('syncConnected').replace('{name}', (state.auth.user && state.auth.user.username) || '');
     trackEvent('vocab_sync_ready', { user: (state.auth.user && state.auth.user.username) || '' });
     return true;
-  } catch {
-    state.auth.status = 'guest';
-    state.auth.message = I18n.t('syncExpired');
-    state.auth.token = '';
-    state.auth.user = null;
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    trackEvent('vocab_sync_guest');
+  } catch (err) {
+    if (err && err.code === 'unauthorized') {
+      state.auth.status = 'guest';
+      state.auth.message = I18n.t('syncExpired');
+      state.auth.token = '';
+      state.auth.user = null;
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      trackEvent('vocab_sync_guest');
+      return false;
+    }
+    state.auth.status = 'error';
+    state.auth.message = I18n.t('syncReadyOffline');
     return false;
   }
 }

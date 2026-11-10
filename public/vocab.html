@@ -2,7 +2,9 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <script src="/platform.js"></script>
     <title>星芽 · 英语背单词</title>
     <meta name="description" content="按剑桥 KET / PET 官方主题词表背单词，支持主题筛选、每日 20 词计划、音频跟读、听写模式。10 分钟 / 天，自然记住高频词。">
     <link rel="canonical" href="https://ket-online.pages.dev/vocab">
@@ -10,9 +12,11 @@
     <meta property="og:title" content="KET & PET 官方主题词背诵">
     <meta property="og:description" content="官方主题词表 · 每日 20 词 · 音频跟读 · 听写模式。">
     <meta property="og:url" content="https://ket-online.pages.dev/vocab">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+      if (!window.RM_NATIVE) {
+        document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600&display=swap">');
+      }
+    </script>
     <style>
         :root {
             --bg: #f6efe4;

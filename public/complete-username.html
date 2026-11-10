@@ -2,11 +2,14 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>星芽 · 设置用户名</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <script src="/platform.js"></script>
+    <script>
+      if (!window.RM_NATIVE) {
+        document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap">');
+      }
+    </script>
     <script src="/track.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -76,7 +79,7 @@
         e.preventDefault();
         const username = document.getElementById('username').value.trim();
         try {
-            const r = await fetch('/api/auth/complete-username', {
+            const r = await fetch(window.rmApi ? window.rmApi('/api/auth/complete-username') : '/api/auth/complete-username', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -7,7 +7,7 @@
  */
 (function () {
   if (window.rmTrack) return; // 防重复加载
-  var ENDPOINT = '/api/track';
+  var ENDPOINT = window.rmApi ? window.rmApi('/api/track') : '/api/track';
   var ANON_KEY = 'rm.anon';
   var FLUSH_EVERY = 15000;
   var MAX_BATCH = 12;
@@ -35,6 +35,8 @@
   var queue = [];
 
   function send(payload, beacon) {
+    // iOS 壳不上传行为事件。试用次数仍在下面的 maybeTrial 里本地计数。
+    if (window.RM_NATIVE) return;
     var body = JSON.stringify(payload);
     try {
       if (beacon && navigator.sendBeacon) {

@@ -2,14 +2,20 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no">
 <title>阅读识字</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/cnchar-poly/cnchar.poly.min.js"></script>
+<script src="/platform.js"></script>
+<script>
+if (!window.RM_NATIVE) {
+  document.write(
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&display=swap">' +
+    '<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.5.0/dist/hanzi-writer.min.js"><\/script>' +
+    '<script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"><\/script>' +
+    '<script src="https://cdn.jsdelivr.net/npm/cnchar-poly/cnchar.poly.min.js"><\/script>'
+  );
+}
+</script>
 <script src="/track.js"></script>
 <style>
 :root {
@@ -643,6 +649,10 @@ function initWriter(containerId, ch) {
       showOutline: true,
       showCharacter: true,
       charDataLoader: function(c, onComplete) {
+        if (window.RM_NATIVE) {
+          el.innerHTML = '<div style="text-align:center;padding:40px;color:#a99e8c">暂无笔顺数据</div>';
+          return;
+        }
         fetch('https://cdn.jsdelivr.net/npm/hanzi-writer-data@2.0/' + encodeURIComponent(c) + '.json')
           .then(function(r) { return r.json(); })
           .then(onComplete)

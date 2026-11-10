@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
+import { decideAuthRefresh, type SessionUser } from '../auth-session';
+import { apiUrl, shellPolicy } from '../platform';
 
-interface UserInfo {
-  id: number;
-  username: string;
-  role: string;
-}
+type UserInfo = SessionUser;
 
 export function useAuth() {
   const [user, setUser] = useState<UserInfo | null>(() => {
@@ -22,19 +20,21 @@ export function useAuth() {
       setUser(null);
       return;
     }
-    fetch('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
-      .then(r => {
-        if (!r.ok) throw new Error();
-        return r.json();
+    fetch(apiUrl('/api/auth/me'), { headers: { Authorization: `Bearer ${token}` } })
+      .then(async (r) => {
+        const data = r.ok ? await r.json().catch(() => ({})) : {};
+        return decideAuthRefresh({ status: r.status, user: data.user });
       })
-      .then(data => {
-        setUser(data.user);
-        localStorage.setItem('user', JSON.stringify(data.user));
-      })
-      .catch(() => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        setUser(null);
+      .catch(() => decideAuthRefresh({ status: null }))
+      .then((decision) => {
+        if (decision.action === 'clear') {
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          setUser(null);
+        } else if (decision.action === 'set') {
+          setUser(decision.user);
+          localStorage.setItem('user', JSON.stringify(decision.user));
+        }
       });
   }, []);
 
@@ -61,9 +61,12 @@ interface Props {
 }
 
 export function UserBar({ user, onLogout, onLogin, activeChild, onSwitchChild, onParent }: Props) {
+  const policy = shellPolicy();
   return (
     <div className="user-bar">
-      <a className="user-print-link" href="/support.html" title="口算天天练 · 打印版">🖨️ 打印版</a>
+      {policy.externalCommerce && (
+        <a className="user-print-link" href="/support.html" title="口算天天练 · 打印版">🖨️ 打印版</a>
+      )}
       {user ? (
         <>
           {onSwitchChild && (
@@ -76,7 +79,7 @@ export function UserBar({ user, onLogout, onLogin, activeChild, onSwitchChild, o
           {onParent && (
             <button className="user-parent-link" onClick={onParent}>家长</button>
           )}
-          {user.role === 'admin' && (
+          {user.role === 'admin' && !policy.native && (
             <a className="user-admin-link" href="/admin.html">管理后台</a>
           )}
           <span className="user-avatar">{user.username.charAt(0).toUpperCase()}</span>
