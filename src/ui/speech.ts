@@ -26,13 +26,19 @@ export function cancel(): void {
 }
 
 export function speak(text: string): void {
-  if (isMuted()) return;
-  if (typeof speechSynthesis === 'undefined' || typeof SpeechSynthesisUtterance === 'undefined') return;
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'zh-CN';
-  u.rate = 0.95;
-  speechSynthesis.speak(u);
+  if (isMuted() || !text) return;
+  try {
+    if (typeof speechSynthesis === 'undefined' || typeof SpeechSynthesisUtterance === 'undefined') return;
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'zh-CN';
+    u.rate = 0.95;
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+    // WKWebView can leave the utterance paused unless resume() runs in the tap.
+    speechSynthesis.resume();
+  } catch {
+    /* a missing zh-CN voice must not break the drill */
+  }
 }
 
 /** Turn a fact prompt + answer into spoken Chinese, e.g. "2 乘 5 等于 10". */

@@ -2,12 +2,16 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
     <title>星芽 · 登录</title>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <script src="/platform.js"></script>
+    <script>
+      if (!window.RM_NATIVE) {
+        document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap">');
+        document.write('<script src="https://accounts.google.com/gsi/client" async defer><\/script>');
+      }
+    </script>
     <script src="/track.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,8 +28,10 @@
                               radial-gradient(900px 600px at 92% 4%, #fdf0e3 0%, transparent 58%),
                               linear-gradient(180deg,#fff 0%, #faf8f4 70%, #f3efe7 100%);
             background-attachment: fixed;
-            min-height: 100vh; color: var(--text);
-            display: flex; align-items: center; justify-content: center; padding: 20px;
+            min-height: 100vh; min-height: 100dvh; color: var(--text);
+            display: flex; align-items: center; justify-content: center;
+            padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right))
+                     max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left));
         }
         .auth-container { width: 100%; max-width: 400px; }
         .auth-header { text-align: center; margin-bottom: 36px; }
@@ -62,7 +68,7 @@
         }
         .form-input {
             width: 100%; padding: 13px 15px; border: 1.5px solid var(--border); border-radius: 12px;
-            font-size: 0.98rem; font-family: inherit; color: var(--text);
+            font-size: 16px; font-family: inherit; color: var(--text);
             background: var(--input-bg); transition: border-color 0.2s; outline: none;
         }
         .form-input:focus { border-color: var(--accent); }
@@ -73,6 +79,7 @@
             background: linear-gradient(135deg, #3ccb63 0%, #28a847 100%); color: white; font-size: 1.05rem;
             font-family: inherit; font-weight: 700; cursor: pointer; transition: transform .14s, box-shadow .14s, filter .14s;
             margin-top: 6px; box-shadow: 0 8px 22px rgba(43,178,76,.30);
+            min-height: 44px;
         }
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(43,178,76,.38); filter: brightness(1.04); }
         .submit-btn:active { transform: scale(.98); }
@@ -147,7 +154,10 @@
             <button class="submit-btn" type="submit">登录</button>
             <div class="message" id="loginMsg"></div>
 
-            <div class="divider"><span>或</span></div>
+            <div class="divider" id="googleDivider"><span>或</span></div>
+            <p id="nativeLoginNote" hidden style="color:var(--text-dim);font-size:0.85rem;line-height:1.5;margin-top:14px">
+              iOS 版请使用用户名和密码。Google 登录不能在应用内页面完成。
+            </p>
             <div class="google-btn-wrap" id="googleBtnWrap"></div>
             <div class="message" id="googleMsg"></div>
         </form>
@@ -163,7 +173,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">邮箱</label>
-                <input class="form-input" name="email" type="email" placeholder="用于找回密码" required>
+                <input class="form-input" name="email" type="email" placeholder="账号邮箱" required>
             </div>
             <div class="form-group">
                 <label class="form-label">手机号（选填）</label>
@@ -180,6 +190,7 @@
 </div>
 
 <script>
+    function api(path) { return window.rmApi ? window.rmApi(path) : path; }
     const _redirect = new URLSearchParams(location.search).get('redirect') || '/';
     function getRedirect() {
         if (_redirect.startsWith('/')) return _redirect;
@@ -193,11 +204,11 @@
     } else {
         const token = localStorage.getItem('token');
         if (token) {
-            fetch('/api/auth/me', { headers: { 'Authorization': `Bearer ${token}` } })
+            fetch(api('/api/auth/me'), { headers: { 'Authorization': `Bearer ${token}` } })
                 .then(r => {
                     if (r.ok) {
                         window.location.href = getRedirect();
-                    } else {
+                    } else if (r.status === 401 || r.status === 403) {
                         localStorage.removeItem('token');
                         localStorage.removeItem('user');
                     }
@@ -225,7 +236,7 @@
         }
         if (!gcode) return;
         try {
-            const r = await fetch('/api/auth/google-exchange', {
+            const r = await fetch(api('/api/auth/google-exchange'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ code: gcode }),
@@ -270,7 +281,7 @@
         window.rmTrack && rmTrack('login_submit', { method: 'password' });
 
         try {
-            const r = await fetch('/api/auth/login', {
+            const r = await fetch(api('/api/auth/login'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
@@ -294,7 +305,7 @@
 
     async function initGoogleSignIn() {
         try {
-            const r = await fetch('/api/auth/google-config');
+            const r = await fetch(api('/api/auth/google-config'));
             const cfg = await r.json();
             const clientId = cfg.clientId || '';
             if (!clientId) return;
@@ -322,7 +333,7 @@
 
     async function handleGoogleCredential(resp) {
         try {
-            const r = await fetch('/api/auth/google', {
+            const r = await fetch(api('/api/auth/google'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ credential: resp.credential }),
@@ -347,7 +358,14 @@
         }
     }
 
-    initGoogleSignIn();
+    if (window.RM_NATIVE) {
+        const divider = document.getElementById('googleDivider');
+        if (divider) divider.style.display = 'none';
+        const note = document.getElementById('nativeLoginNote');
+        if (note) note.hidden = false;
+    } else {
+        initGoogleSignIn();
+    }
 
     async function handleRegister(e) {
         e.preventDefault();
@@ -361,7 +379,7 @@
 
         window.rmTrack && rmTrack('register_submit', {});
         try {
-            const r = await fetch('/api/auth/register', {
+            const r = await fetch(api('/api/auth/register'), {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),

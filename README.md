@@ -2,6 +2,12 @@
 
 Local-first、单机单人的 Web 应用,用 Rocket Math 的 mastery-learning 模型训练三年级数学**计算流畅度**(automaticity)。完整需求见 [`SPEC.md`](./SPEC.md),进度与决策见 [`PROGRESS.md`](./PROGRESS.md)。
 
+iOS 壳的显示名是 **星芽**（与页面标题一致）。Rocket Math 是模型来源，不是商店名称。上架步骤、已核对的数据和仍需 Mac 验证的项目见 [`docs/ios-app-store.md`](./docs/ios-app-store.md)。
+
+```bash
+npm run ios:sync   # 构建网页资源并拷进 ios/App；归档仍要在 Mac 上用 Xcode
+```
+
 ## 快速开始
 
 ```bash

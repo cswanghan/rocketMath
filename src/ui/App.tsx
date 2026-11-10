@@ -67,6 +67,7 @@ export function App() {
   // ket-online 导流: /?from=ket → 落英语背单词 + 显示欢迎条 + 埋点来源
   const [pendingFrom] = useState<string | null>(() => new URLSearchParams(location.search).get('from'));
   const [fromKet, setFromKet] = useState<boolean>(() => new URLSearchParams(location.search).get('from') === 'ket');
+  const [persistWarning, setPersistWarning] = useState<string | null>(null);
 
   // 家庭/孩子档案: 当前在学的孩子 (null = 家长本人)
   const [activeChild, setActiveChildState] = useState<Child | null>(() => getActiveChild());
@@ -80,11 +81,32 @@ export function App() {
   const { locked, remainingMs } = useTimeLock(active, content?.pack.engine_config);
 
   useEffect(() => {
+    let alive = true;
     (async () => {
-      const existing = await adapter.getStudent(studentId);
-      if (!existing) await adapter.putStudent({ id: studentId, createdAt: Date.now() });
+      try {
+        const existing = await adapter.getStudent(studentId);
+        if (!existing) await adapter.putStudent({ id: studentId, createdAt: Date.now() });
+        if (alive) setPersistWarning(null);
+      } catch {
+        if (alive) {
+          setPersistWarning('这台设备暂时没能保存学习进度。这次练习可以继续，但离开后可能丢失。');
+        }
+      }
     })();
+    return () => { alive = false; };
   }, [adapter, studentId]);
+
+  useEffect(() => {
+    const id = 'persist-warning';
+    document.getElementById(id)?.remove();
+    if (!persistWarning) return;
+    const el = document.createElement('div');
+    el.id = id;
+    el.className = 'persist-warning';
+    el.textContent = persistWarning;
+    document.body.appendChild(el);
+    return () => el.remove();
+  }, [persistWarning]);
 
   // sync the active child to the global tracker (per-child 埋点)
   useEffect(() => { setActiveChild(activeChild); }, [activeChild]);
@@ -239,7 +261,16 @@ export function App() {
   if (parent) {
     return (
       <ParentGate onCancel={() => setParent(false)}>
-        <ParentDashboard adapter={adapter} studentId={studentId} onExit={() => setParent(false)} />
+        <ParentDashboard
+          adapter={adapter}
+          studentId={studentId}
+          onExit={() => setParent(false)}
+          onAccountDeleted={() => {
+            pickChild(null);
+            logout();
+            setParent(false);
+          }}
+        />
       </ParentGate>
     );
   }

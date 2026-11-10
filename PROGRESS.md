@@ -2,6 +2,12 @@
 
 按 SPEC.md §10 维护:每个里程碑记完成项 + 偏离 SPEC 的决策及理由。
 
+## iOS 壳（2026-11-10）
+
+- 没有改学习流程，也没有改显示名。新增 Capacitor iOS 工程，显示名「星芽」，bundle id 占位 `app.xingya.learn`。
+- 壳内关闭行为上传、DeepSeek 总结、外部支付入口、Google 登录、Google Fonts、jsDelivr 笔顺和语音输入。口算仍走本地 IndexedDB。断网不再清除登录。家长区可删除云端账号（`DELETE /api/auth/account`，需先部署，本轮未部署）。
+- 清单：`docs/ios-app-store.md`。Linux 不能代替 Xcode 运行。
+
 ## 状态总览
 
 | 里程碑 | 状态 | 说明 |

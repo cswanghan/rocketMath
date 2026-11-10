@@ -1,4 +1,5 @@
 // 家庭/孩子档案客户端 + 当前孩子(active child)本地状态。
+import { apiUrl } from '../platform';
 export interface Child {
   id: number;
   name: string;
@@ -41,7 +42,7 @@ function headers(): Record<string, string> {
 
 export async function listChildren(): Promise<Child[]> {
   try {
-    const r = await fetch('/api/family/children', { headers: headers() });
+    const r = await fetch(apiUrl('/api/family/children'), { headers: headers() });
     if (!r.ok) return [];
     const d = await r.json();
     return (d.children || []) as Child[];
@@ -51,14 +52,14 @@ export async function listChildren(): Promise<Child[]> {
 }
 
 export async function createChild(input: { name: string; avatar?: string; grade?: number | null }): Promise<Child> {
-  const r = await fetch('/api/family/children', { method: 'POST', headers: headers(), body: JSON.stringify(input) });
+  const r = await fetch(apiUrl('/api/family/children'), { method: 'POST', headers: headers(), body: JSON.stringify(input) });
   const d = await r.json();
   if (!r.ok) throw new Error(d.error || '创建失败');
   return d as Child;
 }
 
 export async function updateChild(input: { id: number; name?: string; avatar?: string; grade?: number | null }): Promise<void> {
-  const r = await fetch('/api/family/children', { method: 'PATCH', headers: headers(), body: JSON.stringify(input) });
+  const r = await fetch(apiUrl('/api/family/children'), { method: 'PATCH', headers: headers(), body: JSON.stringify(input) });
   if (!r.ok) {
     const d = await r.json().catch(() => ({}));
     throw new Error(d.error || '修改失败');
@@ -66,7 +67,7 @@ export async function updateChild(input: { id: number; name?: string; avatar?: s
 }
 
 export async function deleteChild(id: number): Promise<void> {
-  const r = await fetch('/api/family/children', { method: 'DELETE', headers: headers(), body: JSON.stringify({ id }) });
+  const r = await fetch(apiUrl('/api/family/children'), { method: 'DELETE', headers: headers(), body: JSON.stringify({ id }) });
   if (!r.ok) {
     const d = await r.json().catch(() => ({}));
     throw new Error(d.error || '删除失败');

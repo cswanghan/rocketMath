@@ -17,13 +17,22 @@
     "mini:engine": "node scripts/build-mini-engine.mjs",
     "mini:content": "node scripts/build-mini-content.mjs",
     "mini:test": "node scripts/test-mini-pages.mjs",
-    "mini:preview": "node scripts/preview-mini.mjs"
+    "mini:preview": "node scripts/preview-mini.mjs",
+    "ios:icon": "python3 scripts/generate-app-icon.py",
+    "ios:sync": "npm run build && npx cap sync ios && node scripts/strip-ios-commerce.mjs && node scripts/install-ios-icon.mjs"
   },
   "dependencies": {
+    "@capacitor/app": "^7.1.2",
+    "@capacitor/core": "^7.6.10",
+    "@capacitor/keyboard": "^7.0.6",
+    "@capacitor/splash-screen": "^7.0.5",
+    "@capacitor/status-bar": "^7.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "^7.6.10",
+    "@capacitor/ios": "^7.6.10",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
