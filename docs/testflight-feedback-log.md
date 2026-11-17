@@ -23,7 +23,8 @@
 - 日志根目录：`/var/folders/lm/_dzb6kfj32zgr8wwbjncckxw0000gn/T/rocketmath-feedback11-lxde946y`，本机指针文件为 `/tmp/rocketmath-feedback11-path`。日志与 xcresult 不纳入源码提交。
 - 尚未完成：Build 11 真机安装与键盘复测、真实外接键盘验收。上述 iPhone/iPad 结果均为模拟器结果，不能写成物理设备通过；本轮也未重新验收 Apple 登录、购买或恢复购买。
 - 源码已推送至 `codex/testflight-numeric-input`，PR：https://github.com/cswanghan/rocketMath/pull/5 。
-- 上传进展：20:46开始从最终归档上传；20:48停在分析文件传输队列，未完成安装包交付。保留日志并在20:59有序结束停滞进程；重试返回Xcode账号凭据不可用，随后确认Mac已锁屏，正在等待解锁。Build 11尚未确认上传完成或加入测试组；手机上现有Build 10不会因源码修复或本地归档自动更新。本轮没有撤回或替换Build 10的App Store审核提交。
+- 上传完成：2026-11-17 21:35:52（Asia/Shanghai），最终归档上传返回 `Upload succeeded` / `EXPORT SUCCEEDED`，退出码0；App Store Connect已接收1.0.0(11)。此前先遇到Xcode账号失效，用户重新登录后又确认系统代理阻塞Apple文件服务器：相同URLSession请求使用系统代理超时，直连正常。临时为该Apple上传域名增加直连例外后上传成功，进程结束已核对原代理例外列表完整恢复。没有更改源码或构建号来重试。手机上现有Build 10不会自动更新；本轮没有撤回或替换Build 10的App Store审核提交。
+- TestFlight分发：21:44核对时，Build 11已完成处理并加入现有“发布验收”内部测试组（1名测试员），中文测试说明已保存。构建ID为 `044a63d2-e6d5-477d-b8a3-ce95a6a6d10a`。可通过TestFlight更新至1.0.0(11)后继续真机验收；该状态不代表App Store审核通过。
 
 ## 定时检查
 
