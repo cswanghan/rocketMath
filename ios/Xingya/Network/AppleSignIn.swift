@@ -45,7 +45,7 @@ enum AppleSignInClientError: LocalizedError {
         switch self {
         case .cancelled: return nil
         case .unavailable: return L10n.catalogText("Apple 登录未配置或暂时不可用，请稍后重试。")
-        case .invalid: return L10n.catalogText("Apple 登录验证已失效，请重新使用 Apple 登录。")
+        case .invalid: return L10n.catalogText("无法验证 Apple 登录，请重新使用 Apple 登录。")
         }
     }
 }

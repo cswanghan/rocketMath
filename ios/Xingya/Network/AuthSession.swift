@@ -135,7 +135,11 @@ final class AuthSession {
             let challengeData = try await APIClient.request("/api/auth/apple-challenge", method: "POST",
                 body: ChallengeBody(nonceHash: AppleSignInNonce.hash(rawNonce)), transport: transport)
             let challenge = try APIClient.decode(AppleSignInChallenge.self, from: challengeData)
-            guard !challenge.challengeId.isEmpty, challenge.expiresAt > Date().timeIntervalSince1970 else {
+            // The server owns challenge expiry. A device clock ahead of the
+            // server must not reject a freshly issued challenge. These immutable
+            // locals stay alive across the system sheet and app suspension; a
+            // subsequent attempt always generates a new nonce and challenge.
+            guard !challenge.challengeId.isEmpty else {
                 throw AppleSignInClientError.invalid
             }
             guard startedAt == revision else { return }

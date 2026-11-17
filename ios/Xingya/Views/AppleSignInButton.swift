@@ -29,6 +29,9 @@ struct AppleSignInButton: UIViewRepresentable {
         weak var button: ASAuthorizationAppleIDButton?
         private let auth: AuthSession
         private let onSuccess: @MainActor () -> Void
+        // Keep the active authorization strongly owned while the app is inactive
+        // or backgrounded. Only a callback or explicit view dismissal finishes it;
+        // scene-phase changes must not clear its state or start another request.
         private var controller: ASAuthorizationController?
         private var continuation: CheckedContinuation<AppleSignInCredential, Error>?
         private var expectedState: String?

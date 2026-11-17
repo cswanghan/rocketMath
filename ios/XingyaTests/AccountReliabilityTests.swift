@@ -144,6 +144,39 @@ struct AccountReliabilityTests {
         #expect(auth.lastError != nil)
     }
 
+    @Test("离线启动和重新打开保留已登录账号、Keychain 和本机学习记录")
+    func offlineRefreshAndRelaunchKeepSession() async throws {
+        let fixture = try AuthFixture()
+        defer { fixture.clean() }
+        let storage = InMemoryStorage()
+        storage.putStudent(.init(id: "local", createdAt: 1, xp: 80))
+        let firstLaunch = fixture.session(offline: true)
+        await firstLaunch.refreshMe()
+        #expect(firstLaunch.isLoggedIn)
+        #expect(firstLaunch.user?.id == 1)
+        #expect(fixture.tokens.value == "test-session")
+        #expect(fixture.tokens.deletes == 0)
+        let reopened = fixture.session(offline: true)
+        await reopened.refreshMe()
+        #expect(reopened.isLoggedIn)
+        #expect(reopened.token == "test-session")
+        #expect(reopened.user == firstLaunch.user)
+        #expect(fixture.tokens.deletes == 0)
+        #expect(storage.student(id: "local")?.xp == 80)
+    }
+
+    @Test("只有确认 401 才退出；服务器错误或无效响应保留离线会话")
+    func refreshDistinguishesInvalidSessionFromServiceFailure() async throws {
+        for status in [200, 401, 503] {
+            let fixture = try AuthFixture()
+            defer { fixture.clean() }
+            let auth = fixture.session(status: status, body: "{}")
+            await auth.refreshMe()
+            #expect(auth.isLoggedIn == (status != 401))
+            #expect(fixture.tokens.deletes == (status == 401 ? 1 : 0))
+        }
+    }
+
     @Test("登录只写安全存储，不写 UserDefaults token")
     func loginStorage() async throws {
         let fixture = try AuthFixture()

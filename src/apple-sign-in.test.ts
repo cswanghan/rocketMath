@@ -1,7 +1,7 @@
 import { afterEach, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { appleSignInFixture } from './test-support/apple-sign-in-fixture';
 import { SQLiteD1 } from './test-support/sqlite-d1';
-import { acquireAppleLock, appleNonceHash, verifyAppleIdentity } from './apple-sign-in';
+import { acquireAppleLock, APPLE_CHALLENGE_LIFETIME_SECONDS, appleNonceHash, verifyAppleIdentity } from './apple-sign-in';
 import { hashPassword, signJWT, verifyJWT, verifyPassword } from './auth';
 import { getRequestUser } from './request-auth';
 import { onRequestPost as challenge } from '../functions/api/auth/apple-challenge';
@@ -53,6 +53,7 @@ beforeEach(() => {
   fixture.setRefreshToken(true); fixture.codeTokens.clear();
   fixture.calls.length = 0; fixture.issuedRefreshTokens.length = 0; fixture.revoked.length = 0;
   vi.stubGlobal('fetch', fixture.fetcher);
+  vi.spyOn(console, 'warn').mockImplementation(() => {});
 });
 afterEach(() => { db.sqlite.close(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 
@@ -66,7 +67,7 @@ describe('Apple identity signature and claims', () => {
     ['issuer', { iss: 'https://attacker.invalid' }], ['audience', { aud: 'another.app' }],
     ['expired', { exp: 1 }], ['missing expiry', { exp: undefined }], ['missing nonce', { nonce: undefined }],
     ['wrong nonce', { nonce: 'wrong' }], ['missing sub', { sub: undefined }],
-    ['future issue time', { iat: 9999999999 }], ['old issue time', { iat: 1 }],
+    ['future issue time', { iat: 9999999999 }], ['invalid issue time', { iat: 0 }],
     ['malformed verified email', { email: 'invalid-address' }],
   ])('rejects %s', async (_, overrides) => {
     const nonce = fixture.rawNonce();
@@ -174,13 +175,144 @@ describe('Apple nonce lifecycle and configuration', () => {
     expect(fixture.revoked.length).toBe(1);
   });
   it('rejects malformed bodies with sanitized responses and no credential logs', async () => {
-    const spies = ['log', 'error', 'warn', 'info', 'debug'].map(method => vi.spyOn(console, method as 'log'));
+    const spies = ['log', 'error', 'info', 'debug'].map(method => vi.spyOn(console, method as 'log'));
     for (const body of [null, [], {}, { rawNonce: 'invalid', identityToken: 'fixture-identity', authorizationCode: 'fixture-code' }]) {
       const response = await appleLogin(context(body));
       expect(response.status).toBe(400);
       expect((await response.text()).includes('fixture-identity')).toBe(false);
     }
     for (const spy of spies) expect(spy).not.toHaveBeenCalled();
+    expect(console.warn).toHaveBeenCalledTimes(4);
+    for (const call of vi.mocked(console.warn).mock.calls) {
+      expect(call).toEqual(['apple_sign_in_failed', {
+        stage: 'request', reason: 'request_invalid', code: 'apple_invalid',
+      }]);
+    }
+  });
+});
+
+describe('slow authorization and safe failure diagnostics', () => {
+  it('accepts first authorization completed after 11 minutes in the Apple sheet', async () => {
+    const started = Date.now();
+    const clock = vi.spyOn(Date, 'now').mockReturnValue(started);
+    const body = await authorization();
+    expect(row('SELECT expires_at-created_at lifetime FROM apple_sign_in_challenges').lifetime)
+      .toBe(APPLE_CHALLENGE_LIFETIME_SECONDS);
+    clock.mockReturnValue(started + 11 * 60_000);
+    // Apple issues the code/token when the user finishes authorization, not when
+    // our challenge was requested before showing the sheet.
+    body.identityToken = await fixture.token(body.rawNonce);
+    fixture.codeTokens.set(body.authorizationCode, body.identityToken);
+    const response = await appleLogin(context({ ...body, fullName: { givenName: 'First authorization' } }));
+    expect(response.status).toBe(200);
+    expect(row('SELECT apple_name FROM users').apple_name).toBe('First authorization');
+    expect(console.warn).not.toHaveBeenCalled();
+    expect((await appleLogin(context(body))).status).toBe(400);
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'challenge', reason: 'challenge_consumed', code: 'apple_invalid',
+    });
+  });
+  it('uses the signed expiry for a delayed callback, without a separate 10-minute issued-at limit', async () => {
+    const started = Date.now();
+    const clock = vi.spyOn(Date, 'now').mockReturnValue(started);
+    const body = await authorization({ exp: Math.floor(started / 1000) + 1800 });
+    clock.mockReturnValue(started + 12 * 60_000);
+    // The code exchange fixture succeeds; a real expired code is still rejected
+    // by Apple. This test covers our identity/challenge gate, not Apple code TTL.
+    expect((await appleLogin(context(body))).status).toBe(200);
+  });
+  it('still rejects an expired challenge even when a fresh, signed Apple token is supplied', async () => {
+    const started = Date.now();
+    const clock = vi.spyOn(Date, 'now').mockReturnValue(started);
+    const body = await authorization();
+    clock.mockReturnValue(started + (APPLE_CHALLENGE_LIFETIME_SECONDS + 1) * 1000);
+    body.identityToken = await fixture.token(body.rawNonce);
+    fixture.codeTokens.set(body.authorizationCode, body.identityToken);
+    expect((await appleLogin(context(body))).status).toBe(400);
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'challenge', reason: 'challenge_expired', code: 'apple_invalid',
+    });
+    expect(fixture.issuedRefreshTokens).toHaveLength(0);
+  });
+  it('distinguishes missing challenge and a challenge bound to a different valid nonce', async () => {
+    const first = await authorization();
+    const second = await authorization();
+    expect((await appleLogin(context({ ...first, challengeId: 'missing' }))).status).toBe(400);
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'challenge', reason: 'challenge_missing', code: 'apple_invalid',
+    });
+    expect((await appleLogin(context({ ...first, challengeId: second.challengeId }))).status).toBe(400);
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'challenge', reason: 'challenge_nonce_mismatch', code: 'apple_invalid',
+    });
+    expect((await appleLogin(context(first))).status).toBe(200);
+  });
+  it.each([
+    ['audience_invalid', { aud: 'other.app' }], ['token_expired', { exp: 1 }],
+    ['nonce_invalid', { nonce: 'other-nonce' }], ['issuer_invalid', { iss: 'https://example.invalid' }],
+  ])('records exact identity rejection %s without exposing claims', async (reason, claims) => {
+    const body = await authorization(claims);
+    const response = await appleLogin(context(body));
+    expect(response.status).toBe(400);
+    expect(await response.json()).toEqual({ code: 'apple_invalid', error: '无法验证 Apple 登录，请重新使用 Apple 登录。' });
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', { stage: 'identity', reason, code: 'apple_invalid' });
+    const logs = JSON.stringify(vi.mocked(console.warn).mock.calls);
+    for (const secret of [body.identityToken, body.authorizationCode, body.rawNonce, body.challengeId, 'fixture-apple-subject']) {
+      expect(logs).not.toContain(secret);
+    }
+  });
+  it.each([
+    ['network', new Error('secret token or request in transport error')],
+    ['timeout', new DOMException('secret in timeout text', 'TimeoutError')],
+  ])('classifies JWKS %s outages as retryable availability failures, not expired credentials', async (suffix, error) => {
+    const body = await authorization();
+    vi.stubGlobal('fetch', async () => { throw error; });
+    const response = await appleLogin(context(body));
+    expect(response.status).toBe(503);
+    expect(await response.json()).toMatchObject({ code: 'apple_unavailable' });
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'identity', reason: `jwks_${suffix}`, code: 'apple_unavailable',
+    });
+  });
+  it.each([
+    ['invalid_grant', 400, 'apple_invalid'], ['invalid_client', 503, 'apple_unavailable'],
+    ['invalid_request', 503, 'apple_unavailable'], ['secret-unrecognized-error', 503, 'apple_unavailable'],
+  ])('logs only the allowlisted Apple exchange code (%s), never descriptions or credentials', async (error, status, code) => {
+    const body = await authorization();
+    fixture.setExchange(400, String(error), `secret description ${body.authorizationCode} ${body.identityToken}`);
+    const response = await appleLogin(context(body));
+    expect(response.status).toBe(status);
+    const payload = await response.json();
+    expect(payload).toMatchObject({ code });
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'code_exchange', reason: 'exchange_rejected', code, upstreamStatus: 400,
+      upstreamError: error === 'secret-unrecognized-error' ? 'unknown' : error,
+    });
+    const output = JSON.stringify([vi.mocked(console.warn).mock.calls, payload]);
+    for (const secret of [body.identityToken, body.authorizationCode, body.rawNonce,
+      String(fixture.env.APPLE_SIGN_IN_PRIVATE_KEY), 'secret description', 'secret-unrecognized-error']) {
+      expect(output).not.toContain(secret);
+    }
+    expect(count('users')).toBe(0);
+  });
+  it('records code-exchange network failures without logging an exception message', async () => {
+    const body = await authorization();
+    vi.stubGlobal('fetch', (input: RequestInfo | URL, init?: RequestInit) => {
+      if (String(input).endsWith('/auth/token')) throw new Error(body.authorizationCode);
+      return fixture.fetcher(input, init);
+    });
+    expect((await appleLogin(context(body))).status).toBe(503);
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'code_exchange', reason: 'exchange_network', code: 'apple_unavailable',
+    });
+  });
+  it('records malformed JWKS as an upstream failure', async () => {
+    const body = await authorization();
+    vi.stubGlobal('fetch', async () => new Response('not-json', { status: 200 }));
+    expect((await appleLogin(context(body))).status).toBe(503);
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'identity', reason: 'jwks_malformed', code: 'apple_unavailable',
+    });
   });
 });
 

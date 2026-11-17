@@ -34,6 +34,8 @@ export async function appleSignInFixture() {
   let revokeStatus = 200;
   let revokeBody = '';
   let exchangeStatus = 200;
+  let exchangeError = 'fixture-exchange-error';
+  let exchangeDescription = '';
   let includeRefreshToken = true;
   let exchangeSubstitution: string | undefined;
   const issuedRefreshTokens: string[] = [];
@@ -57,7 +59,7 @@ export async function appleSignInFixture() {
     nativeParametersValid = form.get('client_id') === env.APPLE_SIGN_IN_CLIENT_ID && !form.has('redirect_uri')
       && init?.method === 'POST' && (init.headers as Record<string, string>)['Content-Type'] === 'application/x-www-form-urlencoded';
     if (url === 'https://appleid.apple.com/auth/token') {
-      if (exchangeStatus !== 200) return Response.json({ error: 'fixture-exchange-error' }, { status: exchangeStatus });
+      if (exchangeStatus !== 200) return Response.json({ error: exchangeError, error_description: exchangeDescription }, { status: exchangeStatus });
       const idToken = exchangeSubstitution || codeTokens.get(form.get('code') || '');
       if (!idToken || form.get('grant_type') !== 'authorization_code') return new Response('', { status: 400 });
       codeTokens.delete(form.get('code') || '');
@@ -76,7 +78,9 @@ export async function appleSignInFixture() {
   return { env, rawNonce, token, codeTokens, calls, fetcher, issuedRefreshTokens, revoked,
     get clientSecretValid() { return clientSecretValid; }, get nativeParametersValid() { return nativeParametersValid; },
     setRevoke(status: number, body = '') { revokeStatus = status; revokeBody = body; },
-    setExchange(status: number) { exchangeStatus = status; },
+    setExchange(status: number, error = 'fixture-exchange-error', description = '') {
+      exchangeStatus = status; exchangeError = error; exchangeDescription = description;
+    },
     setRefreshToken(included: boolean) { includeRefreshToken = included; },
     substituteExchange(value: string) { exchangeSubstitution = value; },
   };

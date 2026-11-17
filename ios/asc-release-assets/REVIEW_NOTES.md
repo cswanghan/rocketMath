@@ -1,34 +1,26 @@
-# App Review Notes（版本审核备注，粘贴到 App Review Information）
+# App Review Notes — 1.0.0 (6), internal draft
 
-**本稿不是已经提交的审核回复，也不是发布完成。** 只给协调进程粘贴到 ASC。
-针对 Guideline 2.3 Accurate Metadata：被拒的是 1.0.0 **build 1**。请将本备注与即将上传的 **build 2** 以及下方会员真实界面截图一起使用。
-演示账号：用户名 `appstore_review`。密码请从仓库已有文档 `ios/ASC_SUBMIT.md` 复制，不要另设新密码。
+**Not submitted. Not ready to claim physical-device or Sandbox acceptance.** See `docs/asc-reviewer-notes.md` for current evidence and open checks. The backend has not been deployed and no build has been uploaded in this work.
 
-```
-This resubmission is Xingya 1.0.0 build 2 (App Apple ID 6793418759, bundle com.hanwang.xingya). The previous rejected binary was 1.0.0 build 1 (Guideline 2.3 Accurate Metadata). That rejection said premium cloud sync and AI parent summaries described in the metadata could not be found. This build includes the real monthly-membership UI and flows described below. Practice, fluency, and on-device analysis remain free and work offline without an account or subscription.
+## Draft text
 
-How to review the free core
-1. Open the app, choose Grade 3 (or any grade 3–9), complete the first-run warm-up probe if it appears, then use the Home tab.
-2. Open an unlocked knowledge-map topic. Fluency items use a timer; written-calculation and concept items are untimed practice.
-3. After feedback, tap Continue (or the English equivalent). The app does not auto-advance.
-4. The Report tab shows on-device results. These features work without sign-in and without a subscription.
+This change addresses the Sign in with Apple and in-app purchase failures reported for Xingya 1.0.0 (5) under Guidelines 2.1(a) and 2.1(b).
 
-How to review membership (cloud sync + remote AI parent summaries)
-5. Open the Me tab → Account (账号 / Account).
-6. Sign in with the review account if you need to test sync or membership binding. Sign-in is optional for practice.
-7. Scroll to Monthly membership. The app loads the auto-renewable product com.hanwang.xingya.premium.monthly (subscription group 22563981, product Apple ID 6832887439). You should see the StoreKit display name, description, displayPrice, a monthly period, Subscribe, and Restore. The price is not hard-coded in the UI.
-8. Please complete a Sandbox purchase or restore with this review account. After server validation, the app should show that membership is active. Sandbox entitlements are labeled as sandbox test access, not a production payment.
-9. Cloud sync: on the Account screen, use Sync now. It is a manual action (not a silent toggle). Success applies the server merge. Failures say so and leave offline practice available.
-10. Remote AI parent summary: Me tab → Parent, set a 4-digit PIN on first use (device-local; we do not prescribe a PIN). In the parent mistake book, a signed-in, validated member can request a remote AI parent summary. A successful remote result is labeled as a remote AI parent summary. If the remote service fails, the app labels the result as free local analysis and does not present it as a cloud AI result. Local analysis is always available without a membership and is not evidence of the remote feature.
+In the recovered local source, a Sign in with Apple challenge expired five minutes after the user began authorization. Slow first-time consent could therefore be rejected. Build 6 allows a 30-minute authorization window while retaining one-use challenges, cryptographic nonce checks and token validation. Authorization state survives waiting and app background/foreground transitions. Cancellation returns silently. Verification errors no longer all claim that authorization expired. The server records categorized failure reasons without credentials or raw Apple responses. These are source-confirmed defects; we have not reproduced the rejection on Apple's review devices.
 
-Account deletion and subscriptions
-11. Account → Delete account, then confirm (Guideline 5.1.1(v)). Deleting the Xingya account does not cancel the Apple subscription; use Manage subscriptions first.
-12. The membership section includes auto-renewal terms, Manage subscriptions, the Apple Standard EULA, and the privacy policy.
+The previous product-loading path did not retry an empty StoreKit catalog and could show raw purchase errors. Build 6 retries temporary failures and empty results with bounded backoff, requests the catalog again when the Account screen reappears, and offers a localized Retry action. Purchase cancellation returns silently. Successful server entitlement binding is preserved without a redundant second status request turning a completed purchase into a reported failure.
 
-Other notes
-- No special hardware. No advertising identifier.
-- This is the app’s first subscription; it should be submitted together with this app version. The product is still Prepare for Submission until you attach it to the version.
-- In-app prices come from StoreKit displayPrice. A saved China baseline in App Store Connect is not an approved live price.
-- Privacy and support URLs: https://rocket-math-4kg.pages.dev/privacy.html and https://rocket-math-4kg.pages.dev/app-support.html (reachable). Contact: cswanghan@gmail.com. The live pages are still a July 2026 draft; an email update is pending deploy.
-- We have not completed a real Sandbox purchase/restore in this session while the account holder is away. Please use the review account and Sandbox to verify purchase, restore, sync, and the remote summary. If a product catalog cannot load, the app shows that it is temporarily unavailable and free practice continues; that empty state is not a successful membership demo.
-```
+Review paths:
+
+1. Free practice: choose a grade, finish the initial warm-up if shown, then open Home. Free practice and on-device reports do not require an account or subscription.
+2. Apple sign-in: Me → Account → Sign in / Create account → Continue with Apple. This is separate from the username/password review-account path.
+3. Subscription: sign in with the review account from the controlled App Review Information fields, then open Me → Account → Monthly membership. The product is `com.hanwang.xingya.premium.monthly`. Name and price come from StoreKit. If temporarily unavailable, choose Retry or revisit Account.
+4. Complete a Sandbox purchase and confirm active membership after server verification. Canceling should produce no error. To restore, use the original Xingya account and tap Restore purchases.
+5. Account → Sync now performs manual server-verified cloud sync. Me → Parent → remote AI parent summary requires valid membership and an actual server response. Local analysis is free and is not proof of a remote result.
+6. The membership section includes Manage subscriptions, renewal terms, privacy policy and the Apple Standard EULA. Deleting a Xingya account does not cancel its Apple subscription.
+
+## Evidence required before submission
+
+Automated validation passed: 400 Vitest tests, TypeScript checking, Vite build, 90 unit tests plus 3 login UI tests on each iPhone/iPad simulator (iOS 26.5), and an unsigned generic iOS Release build with CFBundleVersion 6. Full commands and evidence boundaries are documented in the repository. **Fresh-install Sign in with Apple on physical iPhone/iPad and real Sandbox product loading, purchase and restore have not been performed in this task.** Neither simulator injection tests nor the local StoreKit configuration establishes availability in App Review's storefront. Do not remove this limitation or claim end-to-end verification until those runs are actually completed and recorded.
+
+According to the November 17 Issue #2 comment, the subscription is Ready for Review and currently unattached to a submission. The account holder must recheck the current state and include the subscription with build 6 in a later authorized submission. No deployment, upload or resubmission was performed here.

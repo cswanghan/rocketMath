@@ -1,87 +1,89 @@
-# 星芽 1.0.0 build 2：审核导航与证据草稿
+# 星芽 1.0.0 (6)：Issue #2 修复与审核说明草稿
 
-**仅文档草稿，未发送回复/邮件，未提交 ASC。** 下面路径按当前源码核对；后端未部署、真实 Sandbox 尚未验证，不能把这些步骤描述为已经实测通过。协调进程完成全部前提及证据采集后，才可整理为实际审核备注。
+更新：2026-11-17（Asia/Shanghai）。**未部署、未上传、未重新提审；本稿不是已通过验收的声明。**
 
-## 已核实的审核背景
+## 依据与源码
 
-事实由用户转述协调进程的浏览器核验，本轮未再访问 ASC。
+- [Issue #2](https://github.com/cswanghan/rocketMath/issues/2)：1.0.0 (5) 于 11 月 16 日因 Guideline 2.1(a) Apple 登录错误、2.1(b) IAP “Item Unavailable” 再次被拒。
+- 已读取[最新评论](https://github.com/cswanghan/rocketMath/issues/2#issuecomment-6934156190)。评论记录 11 月 17 日 ASC 只读检查：协议有效，银行/税务无待办，月订在 175 个地区（含美国）可用、US $2.99/月，状态为 Ready for Review；当前不在任何提交中。这是评论中的检查结果，不是本次重新访问 ASC 的结果，也不等于商品已批准或 Sandbox 实测通过。
+- 本地实际实现为原生 SwiftUI / AuthenticationServices / StoreKit 2，后端为 Cloudflare Pages Functions，不是远端 Capacitor 壳。源码已先以 `75acdc9` 独立保存，包含此前未提交的本地修改。依赖、缓存、凭据、归档、测试结果包与临时日志未纳入提交，原本地文件保留。审核草稿中的密码已脱敏。
+- 起始 Xcode 项目版本仍为 build 3，本仓库本地归档也不能证明与审核中的 build 5 二进制完全一致。因此以下根因是对**本地最新源码**确认的问题，未把它描述成对 Apple 审核环境的现场复现。修复后 App Debug/Release 构建号均为 **6**，版本保持 1.0.0。
+- 现有练习引擎修改仅保留在源码恢复提交中；Issue #2 修复不改练习引擎。
 
-- 应用星芽：Apple ID `6793418759`，Bundle `com.hanwang.xingya`。旧 iOS 1.0.0 build 1 为 **Rejected / Unresolved Issues**；最近反馈为 **7 月 29 日，Guideline 2.3 Accurate Metadata**，尚无开发者回复。
-- 苹果未找到旧描述中的会员云同步增强和 AI 家长总结。旧表述中的条件性上架措辞不是新版本的交付方式；本地免费分析不能当作远程 AI 证明。
-- 唯一月订 `com.hanwang.xingya.premium.monthly`，组 `22563981`，商品 Apple ID `6832887439`，状态 **Prepare for Submission**。中国大陆基准价 **CNY 18.00 已保存**，其他地区自动换算；中英文已保存，家庭共享关闭，无介绍优惠。Paid Apps 协议及银行/税务 Active。
-- **订阅可用性已纠正为 175/175，包含中国大陆（应用同为 175/175）**，由协调进程新近核实。**商品仍为 Prepare for Submission，审核截图仍缺、尚未提交**。地区配置不代表已可售或审核通过；真实 Sandbox 商品加载/购买仍未验证。
-- 源码 App 版本为 1.0.0 build 2；deinit 修复后，协调进程已完成 iPhone/iPad 全量 scheme 测试，各 44 项 Swift Testing + Playthrough 通过。尚未生成新 Archive 或上传 build 2。
+## 已定位的问题与修复
 
-[已核实商品页（人工导航，本轮未打开）](https://appstoreconnect.apple.com/apps/6793418759/distribution/subscriptions/6832887439)
+### Apple 登录
 
-## 发送审核备注前必须具备的条件
+1. 服务端挑战在展示 Apple 授权界面之前创建，却只有 300 秒有效期；慢速首次授权可能在回调时被拒。改为 30 分钟、每次请求新 nonce/challenge，仍执行原子单次消费、防重放、签名、audience、nonce 和 token 到期验证。
+2. 移除客户端依赖设备时钟的提前到期判断，以及服务端独立于 token `exp` 的 10 分钟 `iat` 年龄限制。授权控制器、来源窗口和当前 state 在等待及前后台切换期间保持；缺省的可选 state 允许通过，明确不匹配的 state 仍拒绝，旧/重复回调不会完成新请求。Apple 凭据不写入持久存储。
+3. 取消授权静默返回。验证失败不再一律称为“已失效”。服务端诊断仅记录固定的阶段、原因、HTTP 状态及白名单 Apple 错误码，不记录令牌、授权码、nonce、用户资料、密钥或原始响应。
+4. Apple 返回 `invalid_grant` 不能证明单一原因：过期、已使用或客户端不匹配均可能产生该错误。日志保留实际错误类别，不猜测为“过期”。
 
-1. 新版本完整 iPhone/iPad scheme 已由协调进程验证通过（44 项 Swift Testing + Playthrough / 设备）；付费墙截图专项修正后仍待重跑。需使用新的截图/结果目录，不覆盖旧 `ios/build`、`ios/store`、Archive、成功结果包或备份。
-2. 两项会员功能的后端已部署：D1 会员表及数学表、登录/approved 校验、Apple 官方 API 验证配置、AI 提供方 secret 均正确。具体名称与配置边界见 [会员实现说明](membership-implementation.md)。本文不包含密钥或密码。
-3. 专用原生审核账号状态为 `approved`，本机数据首次归属于该账号。购买时通过服务器分配的 appAccountToken 关联；已有订阅需要有效 **Apple Sandbox** 交易且关联同一原生账号，不能靠客户端会员开关或人工勾一个布尔值。
-4. 审核/TestFlight 使用 Production API 时，配置保持 `APPLE_IAP_ENVIRONMENT=Production`：未知交易先查询 Production，只有 Apple 返回 HTTP 404 且 JSON 数字 `errorCode=4040010` 才查询 Sandbox。两环境均须验证商品、Bundle、有效订阅和当前账号 appAccountToken；保存环境后按绑定环境刷新。无需审核用户 ID 名单，旧名单切换路径已移除。Sandbox 响应标记 `environment=Sandbox` / `entitlement=sandbox_test`，仅为测试权益，不是生产付款。此后端源码增量待部署，无新增 D1 schema；不能把单测通过写成真实 Sandbox 已验证。[Apple 官方规则](https://developer.apple.com/documentation/appstoreserverapi)
-5. 协调进程在真实 Sandbox 验证商品加载、购买/恢复、服务端账号绑定和两项功能；不使用个人真实 Apple ID/资金。中国大陆已包含在 ASC 可用地区中，但地区勾选不能替代实际商店加载/购买验证。
-6. 审核账号凭据由协调进程核验后放入 ASC 的受控审核信息字段，**不复制到本稿**。家长 PIN 是设备本地设置；首次进入自设 4 位 PIN，不在本文编造固定 PIN 或联系人。
+### 月订与恢复
 
-当前以上完整条件尚未满足。商品截图缺失、后端未部署、Sandbox 未验证仍为未解除阻断；中国大陆地区配置已纠正；支持/隐私邮箱已确认，但网页联系信息仍待部署；历史无账号标记购买问题仍需处理。
+1. 商品 ID 保持 `com.hanwang.xingya.premium.monthly`。空响应和暂时请求错误进行有限退避重试，重新进入账号页或回到前台可再次请求。
+2. 商品错误独立于会员刷新结果，显示中英文友好文案及“重试”按钮；购买/恢复不显示原始 StoreKit “Item Unavailable”。取消购买静默返回。
+3. 保留购买后的服务端账号绑定：POST 成功返回的已验证权益直接成为当前状态，不用第二次 GET 的失败推翻成功购买。前台刷新避开正在进行的购买/恢复。
+4. 恢复购买仍经 App Store 同步、当前权益读取与服务端账号核验；网络失败保留本地登录，离线打开不因网络错误退出账号。
 
-## 按当前界面的逐步导航
+实现依据：[Apple 用户验证](https://developer.apple.com/documentation/signinwithapple/verifying-a-user)、[Sign in with Apple 响应错误](https://developer.apple.com/documentation/technotes/tn3107-resolving-sign-in-with-apple-response-errors)、[StoreKit 取消购买结果](https://developer.apple.com/documentation/storekit/product/purchaseresult/usercancelled)。
 
-### 1. 免费功能：无需登录或订阅
+## 本次实际验证
 
-首次启动选择年级（例如三年级），完成热身探针，进入底部 Tab 的「首页」。打开一个已实现的口算或练习主题，完成真实作答/纠错；「报告」可查看本机结果。断网仍可练习，未订阅也不阻断这条流程。
+本次使用 Xcode 27.1（27A9275）。以下均为本机实际执行结果：
 
-为后续总结演示，在专用测试数据中保留至少一道未订正错题或偏慢题；不要使用孩子真名或其他真实个人信息。家长区没有待关注题时，总结按钮会禁用，不能拿空状态作为远程 AI 成功证据。
+| 验证 | 实际结果 |
+| --- | --- |
+| `npm test` | 9 个套件、400 项通过；Apple 登录 66 项，原生会员后端 217 项 |
+| `npx tsc --noEmit --pretty false` | 通过 |
+| `npm run build` | Vite 构建通过，未部署 |
+| iPhone 17 Pro Max / iOS 26.5 Simulator | 90 项单元测试 + 3 项 Apple 登录界面测试通过；xcresult 93 passed / 0 failed / 0 skipped |
+| iPad Air 11-inch (M4) / iOS 26.5 Simulator | 90 项单元测试 + 3 项 Apple 登录界面测试通过；xcresult 93 passed / 0 failed / 0 skipped |
+| `xcodebuild` generic iOS Release | **BUILD SUCCEEDED**，`CODE_SIGNING_ALLOWED=NO`（未签名编译验证，不是上传包） |
+| Release App 的生成 Info.plist | `com.hanwang.xingya` / `1.0.0` / `CFBundleVersion=6` |
+| `git diff --check`、凭据/产物检查、练习引擎基线比较 | 修复差异检查通过；无新增凭据或构建产物；与恢复基线相比练习引擎无变化 |
 
-### 2. 登录与月订购买/恢复
+首轮 iPhone 测试确实发现 4 条英文文案断言失败；补齐资源目录后，最终两端均全通过。原始失败与最终结果保存在独立目录，没有覆盖旧项目测试产物。
 
-点击底部「我的」→「👤 账号」→「登录 / 注册」，使用核验过的专用原生审核账号。登录不会自动上传学习数据。向下滚动至「会员 · Monthly membership」：
+回归范围包括：延迟首次回调、前后台通知期间保留 controller/state/nonce、设备时钟偏差、取消后新 nonce/challenge、旧回调隔离、空商品→1/2 秒退避→成功、重新请求/耗尽后重试、本地化、购买/恢复取消、前台刷新竞争、POST 绑定后无冗余 GET、恢复账号归属、离线会话保持。
 
-- 查看 StoreKit 返回的商品名、描述、价格及“每月 / per month”。价格随实际商店地区显示，不在 UI 写死人民币 18 元。
-- 点击「订阅月度会员 · Subscribe」，完成 **Sandbox** 购买；已有购买则点击「恢复购买 · Restore purchases」。服务器须验证 Apple 状态和账号标记后才显示有效会员。
-- 成功时可见「月度会员有效」，Sandbox 权益另标「Sandbox 测试权益，不代表生产购买」。取消、待批准、无可恢复购买或验证错误须如实保留，不能截成成功证明。
-- 若目录为空/服务端不可用或提示历史购买未关联，停止这条成功演示并记录问题；不要切换到本地模拟数据或再付一次费掩盖失败。
+**边界：** 原生生命周期测试使用通知和注入回调；后端延迟测试使用签名 fixture 与模拟 code exchange；商品测试使用本地 `Configuration.storekit` 与注入接口。Apple 真实授权码仍由 Apple 按其有效期验证，本次没有延长它。UI 测试没有按下真实 Apple 授权按钮。这些测试不证明真实 Apple ID、真实 Sandbox、生产部署或审核环境验收。
 
-### 3. 云同步：真实上传、合并回传和跨设备确认
+复现命令（将设备 ID 替换为本机同类模拟器）：
 
-仍在「账号」页的「云同步」区，点击「立即同步」。这不是开关：客户端先复核会员/本机归属，执行 **POST `/api/progress/sync`**，服务器写入并合并后返回快照，客户端再应用结果。成功提示为：
+```sh
+npm test
+npx tsc --noEmit --pretty false
+npm run build
+xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya \
+  -destination 'platform=iOS Simulator,id=<device-id>' \
+  -derivedDataPath /tmp/xingya-issue2-simulator \
+  -resultBundlePath /tmp/xingya-issue2-tests.xcresult \
+  -parallel-testing-enabled NO -only-testing:XingyaTests \
+  -only-testing:XingyaUITests/AppleSignInUITests test
+xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
+  -destination 'generic/platform=iOS' -derivedDataPath /tmp/xingya-issue2-release \
+  CODE_SIGNING_ALLOWED=NO build
+```
 
-> 已同步 · 服务端合并结果已应用：N 条学习记录，另含经验与手速阈值。
+本机证据：`/tmp/rocketmath-issue2/npm-test.log`、`web-build.log`、`device-final.log`、`iphone-final.log`、`ipad-final.log`、`iPhone-final.xcresult`、`iPad-final.xcresult`。这些是本地产物，未加入 Git。
 
-`N` 是回传的关卡、练习和错题记录数，不含单独的经验/手速阈值记录；若只有经验，不应把零条误解为上传失败。HTTP/会员失败显示「同步失败」，不得作为成功证据。
+## 待完成验收（未通过、未执行）
 
-验证云端恢复时，在**另一台专用、无他人数据的测试设备/干净测试安装**完成基础引导，再登录同一个原生账号并恢复会员，点击同一个「立即同步」。确认设备 A 的一条专用样例错题/练习最佳成绩及经验能从服务端合并进入设备 B。现有 UI **没有独立“拉取”按钮**；POST 同时上传并返回合并结果，另外存在 GET 拉取 API 供逻辑测试。不要为演示删除真实用户数据，也不要在已归属 A 的本机上改登录 B 尝试转移数据。
+- [ ] 真机 iPhone 与 iPad，全新安装、新 Apple 账号，首次授权、延迟数分钟、后台/前台后成功登录；取消无错误。
+- [ ] 在审核对应系统（Issue 记录 iPadOS 27.2.1）和真实 App Store/Sandbox 商品目录上验证。Xcode 本地 `.storekit` 配置和注入测试不是该证据。
+- [ ] 审核账号 `appstore_review` → 我的 → 账号 → 会员，真实 Sandbox 商品加载、购买、取消、恢复及后端权益绑定；凭据只从 ASC 受控审核信息取用。
+- [ ] 真机离线重启保持登录，免费练习仍可用。
+- [ ] 在后续单独授权的发布流程中部署对应后端，核实线上配置、数据库迁移与诊断；本次未部署，不能声称线上已修复。
+- [ ] 后续重新确认 ASC 协议/税务/银行/美国 storefront，以及订阅状态，并将订阅与 build 6 同时加入新提交；本次未进行此操作。
 
-同步范围仅为经验、手速阈值、关卡、练习最佳成绩和错题；不承诺完整答题事件、完整报告、年级设置或家长 PIN 跨设备恢复。它也不是云端重置协议。
+## 审核路径草稿
 
-### 4. 远程 AI 家长总结：与本地免费分析明确区分
+1. 首次启动选择年级并完成引导。免费练习无需登录或购买。
+2. Apple 登录独立路径：我的 → 账号 → 登录/注册 → Continue with Apple。首次授权可以等待后完成；取消应直接返回，屏幕没有错误。
+3. 订阅路径：我的 → 账号 → 使用审核账号登录。向下滚动至会员，等待 StoreKit 返回本地化名称、价格和每月周期。暂时不可用时使用“重试”，或者离开后再次进入账号页。
+4. 使用 Sandbox 完成月订；服务器绑定成功后应显示有效会员。取消不应显示错误。已有购买使用“恢复购买”，保持原星芽账号。
+5. 购买后可在账号页执行“立即同步”；家长中心内的远程 AI 家长总结应明确显示远程来源。它们仍需真实后端端到端验证，不能用本地分析充当远程结果。
+6. 会员区提供恢复、管理订阅、自动续订说明、隐私政策及 Apple Standard EULA。删除星芽账号不会取消 Apple 订阅。
 
-返回底部「我的」→「👨‍👩‍👧 家长中心」，完成首次 PIN 设置/验证，进入「家长 · 错题本」。也可从「首页」右上角菜单进入「家长」。
-
-- 在本机归属匹配且会员已验证时，「家长总结」区按钮为 **「远程 AI 家长总结」**。点击后请求 **POST `/api/native/summarize`**，服务器再次验证会员，再调用远程 AI 提供方。
-- **成功证据必须是结果上方的「远程 AI 家长总结」来源标签及真实远程返回正文**（可访问性标识 `parent-summary-source`）。仅看到按钮名称、会员标记或一段本地统计文案不算成功。
-- 未登录/未订阅/归属不符时可使用 **「本地免费分析」**。远程密钥/网络不可用、接口返回 HTML/空摘要/失败状态时，结果标 **「本地免费分析」**，并提示远程未返回有效结果。它不是会员远程结果，不得用作本次 2.3 问题的已解决证据。
-- 远程功能尚未在真实后端验证；当前测试桩的固定摘要也不能拿来充当实测远程 AI。
-
-### 5. 管理、取消、恢复和条款
-
-返回「我的 → 账号 → 会员」，查看自动续订说明，打开「管理订阅 · Manage subscriptions」进入 Apple 管理界面。取消自动续费不应立即剥夺尚在有效期的会员；后续到期/撤销则应被服务端拒绝。点击「恢复购买」验证同一账号恢复流程。
-
-同一区域可打开「使用条款 · Apple Standard EULA」和隐私政策；「关于」还有 App 支持。[隐私政策](https://rocket-math-4kg.pages.dev/privacy.html)与 [App 支持](https://rocket-math-4kg.pages.dev/app-support.html) URL **已核实可达**。支持/隐私联系邮箱：[cswanghan@gmail.com](mailto:cswanghan@gmail.com)。线上仍为 2026-07 旧稿，尚未包含此邮箱，本轮仅更新源码与发布草稿，网页更新待部署；未向外发送邮件或写入 ASC。删除原生账号不会取消 Apple 订阅。
-
-## 可提交的证据类型（采集完成后才可使用）
-
-| 能力/问题 | 证据 | 不能替代它的内容 |
-| --- | --- | --- |
-| 商品与付费墙 | 新构建中商店返回的名称、价格、周期、权益、恢复/管理/EULA 界面的新截图；补充订阅商品审核截图 | 本地 `.storekit` 示例价、旧截图、Prepare for Submission 状态本身 |
-| 免费核心路径 | 无订阅的真实口算/练习/纠错/报告录屏，可补断网验证 | 只启动到首页 |
-| 购买与账号绑定 | Sandbox 购买或恢复录屏、有效会员与 Sandbox 标签；必要的脱敏验证状态/时间证据 | 自报 isPremium、测试桩响应、无 token 历史交易被强行认领 |
-| 云同步 | 设备 A 真实同步成功提示、设备 B 同账号合并后出现同一测试错题/成绩；脱敏请求状态与结果数量 | 仅一个“开启同步”的按钮或本机数据截图 |
-| 远程 AI | 真实会员请求成功的来源标签和结果正文，必要时配脱敏请求状态、时间与提供方调用成功记录 | 本地免费分析、固定 mock 文本、失败 fallback |
-| 生命周期/失败 | 取消仍有效、到期/撤销后拒绝、无购买恢复、网络失败显示本地的测试记录 | 将错误页隐藏后宣称已全流程通过 |
-
-所有证据只用演示/空状态和专用测试数据；不包含真实邮箱、token、Authorization header、完整 JWS、accountToken、交易编号、孩子真名或密钥。截图必须保存到**新的**独立目录，不能覆盖 `ios/store` 或旧 Archive/截图/备份。新付费墙截图尚待协调进程重跑修正后的 `PaywallScreenshotUITests` 后导出。测试等待加载结束，再分别采集商品/价格周期与恢复入口、自动续订说明、管理订阅与 EULA。若只出现空目录，将附件标为 `paywall-unavailable-*`，不能作为商品就绪截图。TestAction 已挂本地 `Configuration.storekit`；其价格是本地示例，截图不证明 ASC 商品已批准或真实 Sandbox 购买成功。此前加载中的截图仅为失败诊断，不作为 ASC 终稿。
-
-## 供后续整理成审核回复的说明要点（未发送）
-
-针对 Guideline 2.3，应说明本次源码版本为 1.0.0 build 2，核心练习免费，唯一月订提供手动云同步和远程 AI 家长总结，并附上述准确入口、审核账号条件及实测证据。**只有实际部署和 Sandbox 演示通过后，才可把措辞改成“已验证可用”并提交。** 当前不能声称已解决拒审、商品已批准、中国大陆已可购买或 build 2 已上传。
+只有上述真机与 Sandbox 证据补齐后，才能把外发审核备注写成“已实测通过”。英文草稿见 `ios/asc-release-assets/REVIEW_NOTES.md`。

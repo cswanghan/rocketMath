@@ -8,6 +8,7 @@ struct AccountView: View {
     let studentId: String
     var onClose: () -> Void
 
+    @Environment(\.scenePhase) private var scenePhase
     @Environment(AuthSession.self) private var auth
     @Environment(StoreKitService.self) private var store
 
@@ -141,9 +142,17 @@ struct AccountView: View {
                 Text("请求清理账号关联的云端学习记录并停用账号。服务端保留去除登录标识的账号占位记录，订阅关联记录保留以防重复认领，非全部日志和备份删除。只有服务器确认成功后才退出。本机数据和原账号关联保留。删除账号不会取消 Apple 订阅，请先管理订阅。")
             }
             .task {
-                await auth.refreshMe()
+                // SwiftUI restarts this task on each appearance; do not cache an
+                // empty catalog or wait for the account API before contacting Apple.
                 await store.loadProducts()
-                await store.refresh()
+                guard !Task.isCancelled else { return }
+                await auth.refreshMe()
+                await store.refreshWhenIdle()
+            }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active {
+                    Task { await store.refreshAfterForeground() }
+                }
             }
         }
     }

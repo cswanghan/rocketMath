@@ -23,8 +23,12 @@ struct MembershipSection: View {
                 if store.isLoading || store.isRefreshing {
                     ProgressView("正在加载 / 验证会员…").tint(Theme.brand)
                 }
-                if store.products.isEmpty && !store.isLoading {
-                    BrandNotice(message: "暂时无法加载订阅。请稍后重试，仍可继续免费练习。")
+                if !store.isLoading && (store.products.isEmpty || store.catalogError != nil) {
+                    BrandNotice(message: L10n.text(store.catalogError ?? StoreErrorMessage.catalogUnavailable))
+                        .accessibilityIdentifier("membership-catalog-error")
+                    BrandSecondaryButton("重试加载商品") { Task { await store.loadProducts() } }
+                        .disabled(store.isRefreshing)
+                        .accessibilityIdentifier("membership-retry-products")
                 }
                 ForEach(store.products, id: \.id) { product in
                     VStack(alignment: .leading, spacing: 10) {
@@ -65,7 +69,7 @@ struct MembershipSection: View {
                         .font(Theme.captionFont).foregroundStyle(Theme.sub)
                 }
                 BrandTextButton("刷新商品与权益") {
-                    Task { await store.loadProducts(); await store.refresh() }
+                    Task { await store.loadProducts(); await store.refreshWhenIdle() }
                 }
                 .disabled(store.isLoading || store.isRefreshing)
                 if let message = store.feedback.message { BrandNotice(message: L10n.text(message)) }

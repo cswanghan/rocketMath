@@ -2,7 +2,7 @@ import type { Database, PagesHandler } from '../../../src/server-types';
 import { signJWT } from '../../../src/auth';
 import { acquireAppleLock, AppleSignInError, appleErrorResponse, appleJSON, appleNonceHash, appleRequestBody,
   consumeAppleChallenge, encryptAppleRefreshToken, exchangeAppleCode, requireAppleSignInConfig,
-  verifyAppleIdentity, revokeAppleRefreshToken, type AppleSignInEnvironment } from '../../../src/apple-sign-in';
+  verifyAppleIdentity, revokeAppleRefreshToken, type AppleSignInStage, type AppleSignInEnvironment } from '../../../src/apple-sign-in';
 
 interface Env extends AppleSignInEnvironment { DB: Database; JWT_SECRET?: string }
 interface User { id: number; username: string; role: string; status: string }
@@ -17,33 +17,41 @@ function firstName(body: Record<string, unknown>): string | null {
 }
 
 export const onRequestPost: PagesHandler<Env> = async ({ request, env }) => {
+  let stage: AppleSignInStage = 'configuration';
   try {
     await requireAppleSignInConfig(env);
-    if (!env.JWT_SECRET) throw new AppleSignInError('apple_unavailable');
+    if (!env.JWT_SECRET) throw new AppleSignInError('apple_unavailable', 503, 'configuration');
+    stage = 'request';
     const body = await appleRequestBody(request);
     if (typeof body.identityToken !== 'string' || typeof body.authorizationCode !== 'string'
         || !body.authorizationCode || body.authorizationCode.length > 4096
         || typeof body.rawNonce !== 'string' || !/^[a-f0-9]{64}$/.test(body.rawNonce)
         || typeof body.challengeId !== 'string' || body.challengeId.length > 64) {
-      throw new AppleSignInError('apple_invalid', 400);
+      throw new AppleSignInError('apple_invalid', 400, 'request_invalid');
     }
     const hash = await appleNonceHash(body.rawNonce);
+    stage = 'identity';
     const identity = await verifyAppleIdentity(body.identityToken, hash);
+    stage = 'challenge';
     await consumeAppleChallenge(env.DB, body.challengeId, hash);
+    stage = 'account_lock';
     const lock = await acquireAppleLock(env.DB, identity.sub);
     try {
+      stage = 'account';
       const db = env.DB;
       let user = await db.prepare('SELECT id, username, role, status FROM users WHERE apple_sub = ?')
         .bind(identity.sub).first<User>();
-      if (user && !['approved', 'deleting'].includes(user.status)) throw new AppleSignInError('apple_account_unavailable', 403);
+      if (user && !['approved', 'deleting'].includes(user.status)) throw new AppleSignInError('apple_account_unavailable', 403, 'account_unavailable');
       const email = identity.email || null;
       if (!user && email) {
         // Case-insensitive conflict check is stricter than SQLite's original
         // unique email column. No user lookup by email is ever used to sign in.
         const collision = await db.prepare('SELECT id FROM users WHERE lower(email) = lower(?)').bind(email).first();
-        if (collision) throw new AppleSignInError('apple_email_conflict', 409);
+        if (collision) throw new AppleSignInError('apple_email_conflict', 409, 'email_conflict');
       }
+      stage = 'code_exchange';
       const refreshToken = await exchangeAppleCode(env, body.authorizationCode, identity);
+      stage = 'token_storage';
       const encrypted = await encryptAppleRefreshToken(env, identity.sub, refreshToken);
       const tokenId = crypto.randomUUID();
       const statements = [lock.fence()];
@@ -58,18 +66,19 @@ export const onRequestPost: PagesHandler<Env> = async ({ request, env }) => {
       try {
         await lock.renew();
         const results = await db.batch(statements);
-        if (results.some(r => !r.success) || results.at(-1)?.results.length !== 1) throw new AppleSignInError('apple_unavailable');
+        if (results.some(r => !r.success) || results.at(-1)?.results.length !== 1) throw new AppleSignInError('apple_unavailable', 503, 'token_storage');
       } catch {
         // No app session is issued unless revocation storage was confirmed.
         // Compensate a failed write with revoke; a lost response can safely be
         // retried via a fresh Apple authorization. Never log either credential.
         await revokeAppleRefreshToken(env, identity.sub, encrypted).catch(() => {});
         if (email && await db.prepare('SELECT id FROM users WHERE lower(email) = lower(?) AND (apple_sub IS NULL OR apple_sub <> ?)')
-          .bind(email, identity.sub).first()) throw new AppleSignInError('apple_email_conflict', 409);
-        throw new AppleSignInError('apple_unavailable');
+          .bind(email, identity.sub).first()) throw new AppleSignInError('apple_email_conflict', 409, 'email_conflict');
+        throw new AppleSignInError('apple_unavailable', 503, 'token_storage');
       }
+      stage = 'session';
       user = await db.prepare('SELECT id, username, role, status FROM users WHERE apple_sub = ?').bind(identity.sub).first<User>();
-      if (!user || !['approved', 'deleting'].includes(user.status)) throw new AppleSignInError('apple_account_unavailable', 403);
+      if (!user || !['approved', 'deleting'].includes(user.status)) throw new AppleSignInError('apple_account_unavailable', 403, 'account_unavailable');
       const publicUser = { id: user.id, username: user.username, role: user.role };
       const token = await signJWT({ userId: user.id, username: user.username, role: user.role }, env.JWT_SECRET);
       // A fresh, verified Apple authorization can recover a lost/expired delete
@@ -79,5 +88,5 @@ export const onRequestPost: PagesHandler<Env> = async ({ request, env }) => {
       // A release outage expires after 120s; never expose SQL or credential data.
       await lock.release().catch(() => {});
     }
-  } catch (error) { return appleErrorResponse(error); }
+  } catch (error) { return appleErrorResponse(error, stage); }
 };

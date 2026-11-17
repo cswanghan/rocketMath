@@ -10,6 +10,7 @@ final class StoreKitService {
     private(set) var isLoading = false
     private(set) var isRefreshing = false
     private(set) var lastError: String?
+    private(set) var catalogError: String?
     private(set) var feedback: PurchaseFeedback = .idle
     private(set) var serverMembership: ServerMembership?
     private var pendingPurchase: CurrentMembership?
@@ -20,6 +21,8 @@ final class StoreKitService {
     private var revision = 0
     private var entitlementRevision = 0
     private var updatesTask: Task<Void, Never>?
+    private let requestProducts: @MainActor ([String]) async throws -> [Product]
+    private let purchaseProduct: @MainActor (Product, UUID) async throws -> Product.PurchaseResult
     private let waitForRetry: @MainActor (Int) async throws -> Void
     private let transport: APIClient.Transport
     private let readEntitlements: @MainActor () async -> [CurrentMembership]
@@ -34,10 +37,16 @@ final class StoreKitService {
          restorePurchases: @escaping @MainActor () async throws -> Void = { try await AppStore.sync() },
          finishTransactions: @escaping @MainActor (UUID) async -> Void = StoreKitService.finishBoundTransactions,
          observeTransactions: Bool = true,
+         requestProducts: @escaping @MainActor ([String]) async throws -> [Product] = { try await Product.products(for: $0) },
+         purchaseProduct: @escaping @MainActor (Product, UUID) async throws -> Product.PurchaseResult = {
+             try await $0.purchase(options: [.appAccountToken($1)])
+         },
          waitForRetry: @escaping @MainActor (Int) async throws -> Void = { attempt in
              try await Task.sleep(for: .seconds(attempt))
          }) {
         self.waitForRetry = waitForRetry
+        self.requestProducts = requestProducts
+        self.purchaseProduct = purchaseProduct
         self.transport = transport
         self.readEntitlements = readEntitlements
         self.restorePurchases = restorePurchases
@@ -75,6 +84,24 @@ final class StoreKitService {
         checkedUserID = nil
         serverMembership = nil
         isRefreshing = false
+    }
+
+    // Foreground notifications can arrive as Apple's payment sheet closes.
+    // Let the running purchase/restore finish its own authoritative delivery.
+    func refreshWhenIdle() async {
+        guard !isLoading, !isRefreshing else { return }
+        await refresh()
+    }
+
+    // Account owns this sequence when becoming active. Catalog loading sets
+    // isLoading, so the app-level idle refresh may skip the same notification.
+    // Check before starting: returning from a running payment/restore sheet must
+    // not queue a redundant refresh behind that operation's successful binding.
+    func refreshAfterForeground() async {
+        guard !isLoading else { return }
+        await loadProducts()
+        guard !Task.isCancelled else { return }
+        await refreshWhenIdle()
     }
 
     func refresh() async {
@@ -131,7 +158,7 @@ final class StoreKitService {
             if pendingPurchase != nil && Self.canAwaitDelivery(error) {
                 feedback = .verificationPending
                 lastError = nil
-            } else { lastError = error.localizedDescription }
+            } else { lastError = StoreErrorMessage.message(for: error, restoring: true) }
         }
     }
 
@@ -139,18 +166,38 @@ final class StoreKitService {
         guard !isLoading else { return }
         isLoading = true
         defer { isLoading = false }
-        lastError = nil
-        // Catalog failure must not prevent local entitlement restoration.
+        catalogError = nil
+        // The catalog is independent of server membership. A membership refresh
+        // must never erase this error, and a failed catalog must not block restore.
         await refreshEntitlements()
         do {
-            products = try await Product.products(for: StoreProductID.all).filter {
-                $0.id == StoreProductID.premiumMonthly && $0.type == .autoRenewable
-                    && $0.subscription?.subscriptionPeriod.unit == .month
-                    && $0.subscription?.subscriptionPeriod.value == 1
+            for attempt in 0..<3 {
+                try Task.checkCancellation()
+                do {
+                    let loaded = try await requestProducts(StoreProductID.all).filter {
+                        $0.id == StoreProductID.premiumMonthly && $0.type == .autoRenewable
+                            && $0.subscription?.subscriptionPeriod.unit == .month
+                            && $0.subscription?.subscriptionPeriod.value == 1
+                    }
+                    try Task.checkCancellation()
+                    if !loaded.isEmpty {
+                        products = loaded
+                        return
+                    }
+                } catch {
+                    if StoreErrorMessage.isCancellation(error) { throw CancellationError() }
+                    // Retry transient StoreKit failures just like an empty response.
+                }
+                if attempt < 2 { try await waitForRetry(1 << attempt) }
             }
-        } catch {
             products = []
-            lastError = "商品暂时无法加载，请重试。"
+            catalogError = StoreErrorMessage.catalogUnavailable
+        } catch {
+            // Leaving Account cancels its task, not the user's membership.
+            if !StoreErrorMessage.isCancellation(error) {
+                products = []
+                catalogError = StoreErrorMessage.catalogUnavailable
+            }
         }
     }
 
@@ -180,7 +227,7 @@ final class StoreKitService {
             guard entitlements.isEmpty else {
                 throw APIError.http(status: 409, message: "已发现购买，请先恢复购买并核对原账号；请勿再次付费。")
             }
-            switch try await product.purchase(options: [.appAccountToken(account.accountToken)]) {
+            switch try await purchaseProduct(product, account.accountToken) {
             case .success(let result):
                 let transaction = try verified(result)
                 try await deliverVerifiedPurchase(
@@ -189,13 +236,19 @@ final class StoreKitService {
                                       revoked: transaction.revocationDate != nil, upgraded: transaction.isUpgraded),
                     accountToken: account.accountToken, token: token, userID: userID,
                     finish: { await transaction.finish() })
-            case .userCancelled: feedback = .cancelled
+            case .userCancelled: feedback = .idle
             case .pending: feedback = .pending
             @unknown default: throw APIError.decoding
             }
         } catch {
             feedback = .idle
-            lastError = error.localizedDescription
+            if StoreErrorMessage.isProductUnavailable(error) {
+                products = []
+                catalogError = StoreErrorMessage.purchaseUnavailable
+                lastError = nil
+            } else {
+                lastError = StoreErrorMessage.message(for: error, restoring: false)
+            }
         }
     }
 
@@ -279,7 +332,7 @@ final class StoreKitService {
             else if hasPendingPurchase && lastError == nil { feedback = .verificationPending }
             else if entitlements.isEmpty && lastError == nil { feedback = .nothingToRestore }
             else if self.auth?.isLoggedIn != true { lastError = "购买已检查；请登录原购买账号后验证云端权益。" }
-        } catch { lastError = error.localizedDescription }
+        } catch { lastError = StoreErrorMessage.message(for: error, restoring: true) }
     }
 
     private func received(_ result: VerificationResult<Transaction>) async {
@@ -323,5 +376,41 @@ final class StoreKitService {
                   t.appAccountToken == accountToken else { continue }
             await t.finish()
         }
+    }
+}
+
+
+/// Never surface raw StoreKit diagnostics such as "Item Unavailable" to families.
+/// API ownership conflicts retain an actionable account-recovery message.
+enum StoreErrorMessage {
+    static let catalogUnavailable = "暂时无法加载订阅。请检查网络或稍后重试，仍可继续免费练习。"
+    static let purchaseUnavailable = "此订阅暂时不可购买，请刷新商品后重试。仍可继续免费练习。"
+    static let purchaseFailed = "购买暂时无法完成，请稍后重试。如已扣款，请使用「恢复购买」，不要重复付费。"
+    static let restoreFailed = "暂时无法恢复购买，请检查网络后重试。现有购买不会丢失。"
+    static let accountConflict = "购买未关联当前账号。请使用原购买账号恢复；请勿再次付费。"
+
+    static func isCancellation(_ error: Error) -> Bool {
+        if error is CancellationError { return true }
+        if case StoreKitError.userCancelled = error { return true }
+        if case StoreKitError.systemError(let underlying) = error { return isCancellation(underlying) }
+        let ns = error as NSError
+        return (ns.domain == SKErrorDomain && ns.code == SKError.paymentCancelled.rawValue)
+            || (ns.domain == NSURLErrorDomain
+                && [URLError.cancelled.rawValue, URLError.userCancelledAuthentication.rawValue].contains(ns.code))
+    }
+
+    static func message(for error: Error, restoring: Bool) -> String? {
+        if isCancellation(error) { return nil }
+        if case APIError.notAuthenticated = error { return "请先登录要关联会员的账号。" }
+        if case APIError.http(let status, _) = error, status == 409 { return accountConflict }
+        if isProductUnavailable(error) { return purchaseUnavailable }
+        return restoring ? restoreFailed : purchaseFailed
+    }
+
+    static func isProductUnavailable(_ error: Error) -> Bool {
+        if case Product.PurchaseError.productUnavailable = error { return true }
+        if case StoreKitError.notAvailableInStorefront = error { return true }
+        let ns = error as NSError
+        return ns.domain == SKErrorDomain && ns.code == SKError.storeProductNotAvailable.rawValue
     }
 }

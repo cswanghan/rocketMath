@@ -17788,6 +17788,159 @@
           }
         }
       }
+    },
+    "无法验证 Apple 登录，请重新使用 Apple 登录。": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to verify Sign in with Apple. Please try again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法验证 Apple 登录，请重新使用 Apple 登录。"
+          }
+        }
+      }
+    },
+    "暂时无法加载订阅。请检查网络或稍后重试，仍可继续免费练习。": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscriptions are temporarily unavailable. Check your connection or try again later. Free practice is still available."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法加载订阅。请检查网络或稍后重试，仍可继续免费练习。"
+          }
+        }
+      }
+    },
+    "重试加载商品": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry loading products"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重试加载商品"
+          }
+        }
+      }
+    },
+    "此订阅暂时不可购买，请刷新商品后重试。仍可继续免费练习。": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This subscription is temporarily unavailable. Refresh the products and try again. Free practice is still available."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此订阅暂时不可购买，请刷新商品后重试。仍可继续免费练习。"
+          }
+        }
+      }
+    },
+    "购买暂时无法完成，请稍后重试。如已扣款，请使用「恢复购买」，不要重复付费。": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The purchase could not be completed. Try again later. If you were charged, use Restore purchases instead of paying again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "购买暂时无法完成，请稍后重试。如已扣款，请使用「恢复购买」，不要重复付费。"
+          }
+        }
+      }
+    },
+    "暂时无法恢复购买，请检查网络后重试。现有购买不会丢失。": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchases could not be restored. Check your connection and try again. Your purchases are safe."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法恢复购买，请检查网络后重试。现有购买不会丢失。"
+          }
+        }
+      }
+    },
+    "购买未关联当前账号。请使用原购买账号恢复；请勿再次付费。": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This purchase is not linked to this account. Restore it with the original account; do not pay again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "购买未关联当前账号。请使用原购买账号恢复；请勿再次付费。"
+          }
+        }
+      }
+    },
+    "请先登录要关联会员的账号。": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in to the account you want to link with this membership first."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请先登录要关联会员的账号。"
+          }
+        }
+      }
+    },
+    "购买已检查；请登录原购买账号后验证云端权益。": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchases checked. Sign in with the original account to verify your membership."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "购买已检查；请登录原购买账号后验证云端权益。"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

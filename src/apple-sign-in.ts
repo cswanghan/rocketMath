@@ -4,6 +4,9 @@ const ISSUER = 'https://appleid.apple.com';
 const CLIENT_ID = 'com.hanwang.xingya';
 const encoder = new TextEncoder();
 const now = () => Math.floor(Date.now() / 1000);
+// Starts before Apple's authorization sheet, which may require a slow first-time
+// consent/2FA flow. Apple's token expiry and one-use code remain authoritative.
+export const APPLE_CHALLENGE_LIFETIME_SECONDS = 30 * 60;
 
 // Deliberately separate from every StoreKit / App Store Server API credential.
 export interface AppleSignInEnvironment {
@@ -14,12 +17,30 @@ export interface AppleSignInEnvironment {
   APPLE_SIGN_IN_TOKEN_ENCRYPTION_KEY?: string;
 }
 
+type AppleFailureReason =
+  | 'configuration' | 'request_invalid' | 'token_malformed' | 'algorithm_invalid'
+  | 'jwks_network' | 'jwks_timeout' | 'jwks_http' | 'jwks_malformed' | 'signing_key_unknown'
+  | 'signature_invalid' | 'issuer_invalid' | 'audience_invalid' | 'token_expired'
+  | 'token_time_invalid' | 'subject_invalid' | 'nonce_invalid' | 'email_invalid'
+  | 'challenge_duplicate' | 'challenge_missing' | 'challenge_nonce_mismatch'
+  | 'challenge_expired' | 'challenge_consumed' | 'challenge_rejected'
+  | 'exchange_network' | 'exchange_timeout' | 'exchange_rejected' | 'exchange_malformed'
+  | 'exchange_subject_mismatch' | 'token_storage' | 'account_busy' | 'account_unavailable'
+  | 'email_conflict' | 'revocation_failed' | 'internal_error';
+type AppleOAuthError = 'invalid_request' | 'invalid_client' | 'invalid_grant'
+  | 'unauthorized_client' | 'unsupported_grant_type' | 'invalid_scope' | 'server_error'
+  | 'temporarily_unavailable' | 'unknown';
+export type AppleSignInStage = 'configuration' | 'request' | 'challenge_create' | 'identity'
+  | 'challenge' | 'account_lock' | 'account' | 'code_exchange' | 'token_storage' | 'session';
+
 export class AppleSignInError extends Error {
   constructor(public code: 'apple_unavailable' | 'apple_invalid' | 'apple_email_conflict' | 'apple_account_unavailable',
-    public status = 503) { super(code); }
+    public status = 503, public reason: AppleFailureReason = 'internal_error',
+    public upstreamStatus?: number, public upstreamError?: AppleOAuthError) { super(code); }
 }
-const invalid = () => new AppleSignInError('apple_invalid', 400);
-const unavailable = () => new AppleSignInError('apple_unavailable');
+const invalid = (reason: AppleFailureReason = 'request_invalid') => new AppleSignInError('apple_invalid', 400, reason);
+const unavailable = (reason: AppleFailureReason = 'configuration') => new AppleSignInError('apple_unavailable', 503, reason);
+const isTimeout = (error: unknown) => error instanceof Error && ['AbortError', 'TimeoutError'].includes(error.name);
 
 function base64url(bytes: Uint8Array): string {
   return btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -71,50 +92,72 @@ type AppleJWK = JsonWebKey & { kid: string };
 // Only Apple's fixed HTTPS JWKS is consulted; no token-supplied key/URL is used.
 // Fetch per authorization (also handles key rotation without stale kid caches).
 export async function verifyAppleIdentity(token: string, nonceHash: string): Promise<AppleIdentity> {
+  let header: { alg?: unknown; kid?: unknown; crit?: unknown };
+  let claims: Record<string, unknown>;
+  let signature: Uint8Array<ArrayBuffer>;
+  const parts = token.split('.');
   try {
-    const parts = token.split('.');
-    if (parts.length !== 3 || token.length > 16384 || !/^[a-f0-9]{64}$/.test(nonceHash)) throw invalid();
-    const header = JSON.parse(new TextDecoder().decode(decode(parts[0])));
-    if (header.alg !== 'RS256' || typeof header.kid !== 'string' || header.crit) throw invalid();
-    const response = await fetch(`${ISSUER}/auth/keys`, { signal: AbortSignal.timeout(10000), redirect: 'error' });
-    if (!response.ok) throw unavailable();
+    if (parts.length !== 3 || token.length > 16384 || !/^[a-f0-9]{64}$/.test(nonceHash)) throw invalid('token_malformed');
+    header = JSON.parse(new TextDecoder().decode(decode(parts[0])));
+    claims = JSON.parse(new TextDecoder().decode(decode(parts[1])));
+    signature = decode(parts[2]);
+    if (!header || typeof header !== 'object' || !claims || typeof claims !== 'object'
+        || Array.isArray(header) || Array.isArray(claims)) throw invalid('token_malformed');
+  } catch { throw invalid('token_malformed'); }
+  if (header.alg !== 'RS256' || typeof header.kid !== 'string' || header.crit) throw invalid('algorithm_invalid');
+  let response: Response;
+  try {
+    response = await fetch(`${ISSUER}/auth/keys`, { signal: AbortSignal.timeout(10000), redirect: 'error' });
+  } catch (error) { throw unavailable(isTimeout(error) ? 'jwks_timeout' : 'jwks_network'); }
+  if (!response.ok) throw new AppleSignInError('apple_unavailable', 503, 'jwks_http', response.status);
+  let key: CryptoKey;
+  try {
     const jwks = await response.json() as { keys: AppleJWK[] };
+    if (!Array.isArray(jwks.keys)) throw unavailable('jwks_malformed');
     const jwk = jwks.keys.find(k => k.kid === header.kid && k.kty === 'RSA' && k.alg === 'RS256' && k.use === 'sig');
-    if (!jwk) throw invalid();
-    const key = await crypto.subtle.importKey('jwk', jwk, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['verify']);
-    if (!await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, decode(parts[2]), encoder.encode(`${parts[0]}.${parts[1]}`))) throw invalid();
-    const claims = JSON.parse(new TextDecoder().decode(decode(parts[1])));
-    if (claims.iss !== ISSUER || claims.aud !== CLIENT_ID || !Number.isSafeInteger(claims.exp) || claims.exp <= now()
-        || !Number.isSafeInteger(claims.iat) || claims.iat > now() + 30 || claims.iat < now() - 600
-        || typeof claims.sub !== 'string' || !claims.sub || claims.sub.length > 255
-        || claims.nonce !== nonceHash) throw invalid();
-    // Apple's Managed Apple Accounts can have an empty or unverified email.
-    // Identity is the signed sub, never email. Omit unverified profile data so it
-    // cannot collide with, link to, or overwrite an existing account's email.
-    const verifiedEmail = claims.email_verified === true || claims.email_verified === 'true';
-    let email: string | undefined;
-    if (verifiedEmail && claims.email !== undefined && claims.email !== '') {
-      if (typeof claims.email !== 'string' || claims.email.length > 254
-          || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(claims.email)) throw invalid();
-      email = claims.email;
-    }
-    return { sub: claims.sub, nonce: claims.nonce, email };
+    if (!jwk) throw invalid('signing_key_unknown');
+    key = await crypto.subtle.importKey('jwk', jwk, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['verify']);
   } catch (error) {
     if (error instanceof AppleSignInError) throw error;
-    throw invalid();
+    if (isTimeout(error)) throw unavailable('jwks_timeout');
+    throw unavailable('jwks_malformed');
   }
+  if (!await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, signature, encoder.encode(`${parts[0]}.${parts[1]}`))) {
+    throw invalid('signature_invalid');
+  }
+  if (claims.iss !== ISSUER) throw invalid('issuer_invalid');
+  if (claims.aud !== CLIENT_ID) throw invalid('audience_invalid');
+  if (typeof claims.exp !== 'number' || !Number.isSafeInteger(claims.exp)) throw invalid('token_time_invalid');
+  if (claims.exp <= now()) throw invalid('token_expired');
+  // Do not invent a shorter lifetime than the signed exp. A delayed/backgrounded
+  // callback is bound by the nonce, the one-use server challenge and Apple's code.
+  if (typeof claims.iat !== 'number' || !Number.isSafeInteger(claims.iat)
+      || claims.iat <= 0 || claims.iat > now() + 60 || claims.iat >= claims.exp) throw invalid('token_time_invalid');
+  if (typeof claims.sub !== 'string' || !claims.sub || claims.sub.length > 255) throw invalid('subject_invalid');
+  if (claims.nonce !== nonceHash) throw invalid('nonce_invalid');
+  // Apple's Managed Apple Accounts can have an empty or unverified email.
+  // Identity is the signed sub, never email. Omit unverified profile data so it
+  // cannot collide with, link to, or overwrite an existing account's email.
+  const verifiedEmail = claims.email_verified === true || claims.email_verified === 'true';
+  let email: string | undefined;
+  if (verifiedEmail && claims.email !== undefined && claims.email !== '') {
+    if (typeof claims.email !== 'string' || claims.email.length > 254
+        || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(claims.email)) throw invalid('email_invalid');
+    email = claims.email;
+  }
+  return { sub: claims.sub, nonce: nonceHash, email };
 }
 
 export async function createAppleChallenge(db: Database, hash: string) {
   if (!/^[a-f0-9]{64}$/.test(hash)) throw invalid();
-  // Tombstones outlive both the five-minute challenge and accepted token age.
+  // Keep consumed nonce tombstones beyond the authorization window.
   await db.prepare('DELETE FROM apple_sign_in_challenges WHERE expires_at < ?').bind(now() - 86400).run();
   const id = crypto.randomUUID();
-  const expiresAt = now() + 300;
+  const expiresAt = now() + APPLE_CHALLENGE_LIFETIME_SECONDS;
   const inserted = await db.prepare(`INSERT INTO apple_sign_in_challenges (id, nonce_hash, created_at, expires_at)
     VALUES (?, ?, ?, ?) ON CONFLICT(nonce_hash) DO NOTHING RETURNING id`)
     .bind(id, hash, now(), expiresAt).first();
-  if (!inserted) throw invalid();
+  if (!inserted) throw invalid('challenge_duplicate');
   return { challengeId: id, expiresAt };
 }
 
@@ -122,7 +165,17 @@ export async function consumeAppleChallenge(db: Database, challengeId: string, h
   const consumed = await db.prepare(`UPDATE apple_sign_in_challenges SET consumed_at = ?
     WHERE id = ? AND nonce_hash = ? AND consumed_at IS NULL AND expires_at > ? RETURNING id`)
     .bind(now(), challengeId, hash, now()).first();
-  if (!consumed) throw invalid();
+  if (!consumed) {
+    // The atomic UPDATE above is the only authority to accept a challenge. This
+    // read is diagnostic only; concurrent requests cannot bypass the one-use gate.
+    const row = await db.prepare('SELECT nonce_hash, expires_at, consumed_at FROM apple_sign_in_challenges WHERE id = ?')
+      .bind(challengeId).first<{ nonce_hash: string; expires_at: number; consumed_at: number | null }>();
+    if (!row) throw invalid('challenge_missing');
+    if (row.nonce_hash !== hash) throw invalid('challenge_nonce_mismatch');
+    if (row.consumed_at !== null) throw invalid('challenge_consumed');
+    if (row.expires_at <= now()) throw invalid('challenge_expired');
+    throw invalid('challenge_rejected');
+  }
 }
 
 async function applePost(env: AppleSignInEnvironment, endpoint: 'token' | 'revoke', fields: Record<string, string>) {
@@ -134,14 +187,37 @@ async function applePost(env: AppleSignInEnvironment, endpoint: 'token' | 'revok
 }
 
 export async function exchangeAppleCode(env: AppleSignInEnvironment, code: string, identity: AppleIdentity) {
-  const response = await applePost(env, 'token', { code, grant_type: 'authorization_code' });
-  if (!response.ok) throw unavailable(); // Never expose Apple's body (may contain credentials).
-  const result = await response.json() as { id_token?: string; refresh_token?: string; error?: unknown };
-  if (result.error || typeof result.id_token !== 'string' || typeof result.refresh_token !== 'string'
-      || !result.refresh_token || result.refresh_token.length > 8192) throw unavailable();
+  let response: Response;
+  try {
+    response = await applePost(env, 'token', { code, grant_type: 'authorization_code' });
+  } catch (error) {
+    if (error instanceof AppleSignInError) throw error;
+    throw unavailable(isTimeout(error) ? 'exchange_timeout' : 'exchange_network');
+  }
+  // Only an allowlisted OAuth code and HTTP status may reach diagnostics. Never
+  // retain/log error_description, response bodies, tokens, codes or client_secret.
+  let result: { id_token?: unknown; refresh_token?: unknown; error?: unknown };
+  try {
+    result = await response.json();
+    if (!result || typeof result !== 'object' || Array.isArray(result)) throw unavailable('exchange_malformed');
+  } catch (error) {
+    if (isTimeout(error)) throw unavailable('exchange_timeout');
+    throw new AppleSignInError('apple_unavailable', 503, 'exchange_malformed', response.status);
+  }
+  if (!response.ok || result.error) {
+    const allowed: AppleOAuthError[] = ['invalid_request', 'invalid_client', 'invalid_grant', 'unauthorized_client',
+      'unsupported_grant_type', 'invalid_scope', 'server_error', 'temporarily_unavailable'];
+    const upstreamError = allowed.find(value => value === result.error) ?? 'unknown';
+    // invalid_grant can mean expired OR already consumed OR issued to another
+    // client. Preserve Apple's exact category; do not invent a specific expiry.
+    throw new AppleSignInError(upstreamError === 'invalid_grant' ? 'apple_invalid' : 'apple_unavailable',
+      upstreamError === 'invalid_grant' ? 400 : 503, 'exchange_rejected', response.status, upstreamError);
+  }
+  if (typeof result.id_token !== 'string' || typeof result.refresh_token !== 'string'
+      || !result.refresh_token || result.refresh_token.length > 8192) throw unavailable('exchange_malformed');
   try {
     const exchanged = await verifyAppleIdentity(result.id_token, identity.nonce);
-    if (exchanged.sub !== identity.sub) throw invalid();
+    if (exchanged.sub !== identity.sub) throw invalid('exchange_subject_mismatch');
   } catch (error) {
     await revokeRawAppleRefreshToken(env, result.refresh_token).catch(() => {});
     throw error;
@@ -167,7 +243,7 @@ export async function revokeAppleRefreshToken(env: AppleSignInEnvironment, sub: 
 async function revokeRawAppleRefreshToken(env: AppleSignInEnvironment, token: string) {
   const response = await applePost(env, 'revoke', { token, token_type_hint: 'refresh_token' });
   // Apple documents 200 with an empty body, also for already-invalidated tokens.
-  if (response.status !== 200 || (await response.text()).trim() !== '') throw unavailable();
+  if (response.status !== 200 || (await response.text()).trim() !== '') throw unavailable('revocation_failed');
 }
 
 export async function acquireAppleLock(db: Database, sub: string) {
@@ -175,7 +251,7 @@ export async function acquireAppleLock(db: Database, sub: string) {
   const row = await db.prepare(`INSERT INTO apple_sign_in_locks (apple_sub, owner, expires_at) VALUES (?, ?, ?)
     ON CONFLICT(apple_sub) DO UPDATE SET owner = excluded.owner, expires_at = excluded.expires_at
     WHERE apple_sign_in_locks.expires_at < ? RETURNING owner`).bind(sub, owner, now() + 120, now()).first();
-  if (!row) throw unavailable();
+  if (!row) throw unavailable('account_busy');
   return {
     // Put this first in any write batch. A lost/expired lease causes a NOT NULL
     // violation, rolling back the whole batch instead of committing stale work.
@@ -189,7 +265,7 @@ export async function acquireAppleLock(db: Database, sub: string) {
       const valid = await db.prepare(`UPDATE apple_sign_in_locks SET expires_at = ?
         WHERE apple_sub = ? AND owner = ? AND expires_at > ? RETURNING owner`)
         .bind(now() + 120, sub, owner, now()).first();
-      if (!valid) throw unavailable();
+      if (!valid) throw unavailable('account_busy');
     },
     async release() {
       await db.prepare('DELETE FROM apple_sign_in_locks WHERE apple_sub = ? AND owner = ?').bind(sub, owner).run();
@@ -197,11 +273,18 @@ export async function acquireAppleLock(db: Database, sub: string) {
   };
 }
 
-export function appleErrorResponse(error: unknown): Response {
-  const known = error instanceof AppleSignInError ? error : unavailable();
+export function appleErrorResponse(error: unknown, stage: AppleSignInStage): Response {
+  const known = error instanceof AppleSignInError ? error : unavailable('internal_error');
+  // Deliberately build the diagnostic from finite categories. Never serialize
+  // the Error/request/identity, and never include account or challenge identifiers.
+  console.warn('apple_sign_in_failed', {
+    stage, reason: known.reason, code: known.code,
+    ...(known.upstreamStatus === undefined ? {} : { upstreamStatus: known.upstreamStatus }),
+    ...(known.upstreamError === undefined ? {} : { upstreamError: known.upstreamError }),
+  });
   const messages = {
     apple_unavailable: 'Apple 登录未配置或暂时不可用，请稍后重试。',
-    apple_invalid: 'Apple 登录验证已失效，请重新使用 Apple 登录。',
+    apple_invalid: '无法验证 Apple 登录，请重新使用 Apple 登录。',
     apple_email_conflict: '此邮箱已用于其他星芽账号，请使用原来的登录方式。Apple 账号不会自动合并。',
     apple_account_unavailable: '此账号不可用或正在删除，请稍后重试。',
   };

@@ -63,7 +63,7 @@ struct XingyaApp: App {
             .task { if container == nil && !openingFailed { openStore() } }
             .task(id: auth.token) { await store.connect(auth) }
             .onChange(of: scenePhase) { _, phase in
-                if phase == .active { Task { await store.refresh() } }
+                if phase == .active { Task { await store.refreshWhenIdle() } }
             }
         }
     }

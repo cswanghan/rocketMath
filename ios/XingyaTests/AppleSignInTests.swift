@@ -89,6 +89,130 @@ struct AppleSignInTests {
         #expect(!auth.isBusy)
     }
 
+    @Test("延迟首次授权跨后台切换保留原 controller、nonce 和 state", arguments: [false, true])
+    func delayedAuthorizationAcrossBackground(deviceClockAhead: Bool) async throws {
+        let fixture = AppleAuthFixture()
+        defer { fixture.clean() }
+        var registeredHash: String?
+        var submittedNonce: String?
+        var loginRequests = 0
+        let auth = AuthSession(defaults: fixture.defaults, secure: fixture.tokens) { request in
+            let body = try #require(try JSONSerialization.jsonObject(with: request.httpBody!) as? [String: Any])
+            if request.url?.path == "/api/auth/apple-challenge" {
+                registeredHash = body["nonceHash"] as? String
+                // A past timestamp models a device clock ahead of the server;
+                // only the server may decide whether its challenge has expired.
+                let expiry = deviceClockAhead ? 1 : Date().timeIntervalSince1970 + 1800
+                return fixture.response(request, "{\"challengeId\":\"delayed-first-login\",\"expiresAt\":\(expiry)}")
+            }
+            loginRequests += 1
+            submittedNonce = body["rawNonce"] as? String
+            #expect(body["challengeId"] as? String == "delayed-first-login")
+            let name = body["fullName"] as? [String: String]
+            #expect(name?["givenName"] == "First")
+            #expect(name?["familyName"] == "Authorization")
+            return fixture.response(request, fixture.loginBody)
+        }
+        let origin = UIWindow(frame: CGRect(x: 0, y: 0, width: 600, height: 800))
+        let button = ASAuthorizationAppleIDButton()
+        origin.addSubview(button)
+        var pendingController: ASAuthorizationController?
+        let coordinator = AppleSignInButton.Coordinator(auth: auth, onSuccess: {}, performRequests: {
+            pendingController = $0 // Deliberately return without delivering a callback.
+        })
+        coordinator.button = button
+        let authorization = Task {
+            await auth.signInWithApple { challenge, nonce in
+                try await coordinator.authorize(challenge: challenge, rawNonce: nonce)
+            }
+        }
+        defer { coordinator.detach() }
+        for _ in 0..<100 where pendingController == nil { await Task.yield() }
+        let controller = try #require(pendingController)
+        let request = try #require(controller.authorizationRequests.first as? ASAuthorizationAppleIDRequest)
+        let initialState = request.state
+        let initialNonce = request.nonce
+        #expect(auth.isBusy)
+        #expect(loginRequests == 0)
+        NotificationCenter.default.post(name: UIApplication.willResignActiveNotification, object: nil)
+        NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: nil)
+        button.removeFromSuperview()
+        await Task.yield()
+        #expect(auth.isBusy)
+        #expect(auth.lastError == nil)
+        #expect(controller.presentationContextProvider?.presentationAnchor(for: controller) === origin)
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
+        origin.addSubview(button)
+        #expect(request.state == initialState)
+        #expect(request.nonce == initialNonce)
+        coordinator.complete(controller: controller, result: .success(.init(
+            state: nil, identityToken: Data("fixture-identity".utf8),
+            authorizationCode: Data("fixture-code".utf8),
+            fullName: .init(givenName: "First", familyName: "Authorization"))))
+        await authorization.value
+        #expect(auth.isLoggedIn)
+        #expect(auth.lastError == nil)
+        #expect(!auth.isBusy)
+        #expect(loginRequests == 1)
+        #expect(initialState == "delayed-first-login")
+        #expect(initialNonce == registeredHash)
+        #expect(AppleSignInNonce.hash(try #require(submittedNonce)) == registeredHash)
+    }
+
+    @Test("取消后重试使用新 nonce 与 challenge，旧 controller 回调不能完成新请求")
+    func freshAttemptAfterCancellation() async throws {
+        let fixture = AppleAuthFixture()
+        defer { fixture.clean() }
+        var hashes: [String] = []
+        var challengeIds: [String] = []
+        var loginRequests = 0
+        let auth = AuthSession(defaults: fixture.defaults, secure: fixture.tokens) { request in
+            let body = try #require(try JSONSerialization.jsonObject(with: request.httpBody!) as? [String: Any])
+            if request.url?.path == "/api/auth/apple-challenge" {
+                hashes.append(try #require(body["nonceHash"] as? String))
+                let id = "attempt-\(hashes.count)"
+                challengeIds.append(id)
+                return fixture.response(request, "{\"challengeId\":\"\(id)\",\"expiresAt\":\(Date().timeIntervalSince1970 + 1800)}")
+            }
+            loginRequests += 1
+            #expect(body["challengeId"] as? String == "attempt-2")
+            #expect(AppleSignInNonce.hash(try #require(body["rawNonce"] as? String)) == hashes.last)
+            return fixture.response(request, fixture.loginBody)
+        }
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 600, height: 800))
+        let button = ASAuthorizationAppleIDButton()
+        window.addSubview(button)
+        var previousController: ASAuthorizationController?
+        var coordinator: AppleSignInButton.Coordinator!
+        coordinator = .init(auth: auth, onSuccess: {}, performRequests: { controller in
+            if let previousController {
+                coordinator.complete(controller: previousController, result: .failure(AppleSignInClientError.invalid))
+                #expect(auth.isBusy)
+                coordinator.complete(controller: controller, result: .success(.init(
+                    state: "attempt-2", identityToken: Data("fixture-identity".utf8),
+                    authorizationCode: Data("fixture-code".utf8))))
+            } else {
+                previousController = controller
+                coordinator.authorizationController(controller: controller,
+                    didCompleteWithError: ASAuthorizationError(.canceled))
+            }
+        })
+        coordinator.button = button
+        for attempt in 1...2 {
+            await auth.signInWithApple { challenge, nonce in
+                try await coordinator.authorize(challenge: challenge, rawNonce: nonce)
+            }
+            #expect(auth.isLoggedIn == (attempt == 2))
+            #expect(auth.lastError == nil)
+            #expect(!auth.isBusy)
+        }
+        #expect(challengeIds == ["attempt-1", "attempt-2"])
+        #expect(hashes.count == 2)
+        #expect(Set(hashes).count == 2)
+        #expect(loginRequests == 1)
+    }
+
     @Test("完成回调缺少或损坏 token/code 时不发起登录", arguments: ["missing-token", "empty-token", "invalid-utf8", "missing-code", "empty-code"])
     func incompleteCallback(kind: String) async {
         let fixture = AppleAuthFixture()

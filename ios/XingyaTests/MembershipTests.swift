@@ -1,4 +1,6 @@
 import Foundation
+import StoreKit
+import StoreKitTest
 import Testing
 @testable import Xingya
 
@@ -440,4 +442,218 @@ struct PurchaseDeliveryTests {
         #expect(store.lastError == nil)
     }
 
+}
+
+
+// Product values come from Xcode's local .storekit fixture. Catalog, purchase,
+// HTTP and retry timing are injected; these tests do not prove sandbox availability.
+@Suite("商品加载与取消购买回归（本地 StoreKit 配置与桩）", .serialized)
+@MainActor
+struct StoreProductLoadingTests {
+    private func localProduct() async throws -> (Product, SKTestSession) {
+        let session = try SKTestSession(configurationFileNamed: "Configuration")
+        session.disableDialogs = true
+        let product = try #require(try await Product.products(for: StoreProductID.all).first)
+        return (product, session)
+    }
+
+    @Test("空响应退避重试成功；账号页再次出现重新请求而不复用旧目录")
+    func retriesEmptyCatalogAndRequestsAgain() async throws {
+        let (product, session) = try await localProduct()
+        defer { session.resetToDefaultState() }
+        var calls = 0
+        var waits: [Int] = []
+        let store = StoreKitService(readEntitlements: { [] }, observeTransactions: false,
+            requestProducts: { ids in
+                #expect(ids == ["com.hanwang.xingya.premium.monthly"])
+                calls += 1
+                return calls < 3 ? [] : [product]
+            }, waitForRetry: { waits.append($0) })
+        await store.loadProducts()
+        #expect(calls == 3 && waits == [1, 2])
+        #expect(store.products.map(\.id) == StoreProductID.all)
+        #expect(store.catalogError == nil && !store.isLoading)
+        await store.loadProducts() // Account's appearance task calls this again.
+        #expect(calls == 4 && store.catalogError == nil)
+    }
+
+    @Test("重试耗尽保持可恢复的商品错误，权益刷新不能清除；手动重试可成功")
+    func exhaustedCatalogSurvivesMembershipRefresh() async throws {
+        let (product, session) = try await localProduct()
+        defer { session.resetToDefaultState() }
+        let f = try MembershipFixture(); defer { f.clean() }
+        var recovered = false
+        var calls = 0
+        let store = StoreKitService(transport: { MembershipFixture.response($0, body: f.body(active: false)) },
+            readEntitlements: { [] }, finishTransactions: { _ in }, observeTransactions: false,
+            requestProducts: { _ in calls += 1; return recovered ? [product] : [] }, waitForRetry: { _ in })
+        await store.connect(f.auth)
+        await store.loadProducts()
+        #expect(calls == 3 && store.products.isEmpty)
+        #expect(store.catalogError == StoreErrorMessage.catalogUnavailable)
+        await store.refreshWhenIdle()
+        #expect(store.catalogError == StoreErrorMessage.catalogUnavailable)
+        recovered = true
+        await store.loadProducts()
+        #expect(calls == 4 && store.products.count == 1 && store.catalogError == nil)
+    }
+
+    @Test("StoreKit 原始商品错误不展示；取消加载不重试也不显示错误")
+    func catalogErrorsAndCancellation() async {
+        var calls = 0
+        let failed = StoreKitService(readEntitlements: { [] }, observeTransactions: false,
+            requestProducts: { _ in
+                calls += 1
+                throw NSError(domain: "test.catalog", code: 1,
+                    userInfo: [NSLocalizedDescriptionKey: "Item Unavailable"])
+            }, waitForRetry: { _ in })
+        await failed.loadProducts()
+        #expect(calls == 3 && failed.products.isEmpty)
+        #expect(failed.catalogError == StoreErrorMessage.catalogUnavailable)
+        #expect(failed.lastError == nil && !failed.isLoading)
+        let cancelled = StoreKitService(readEntitlements: { [] }, observeTransactions: false,
+            requestProducts: { _ in throw CancellationError() },
+            waitForRetry: { _ in Issue.record("Cancelled catalog must not retry") })
+        await cancelled.loadProducts()
+        #expect(cancelled.catalogError == nil && !cancelled.isLoading)
+    }
+
+    @Test("重叠出现/前台通知不会重复请求或打断当前商品加载")
+    func overlappingRequestsAreCoalesced() async {
+        var calls = 0
+        var entitlementReads = 0
+        var resume: CheckedContinuation<Void, Never>?
+        let store = StoreKitService(readEntitlements: { entitlementReads += 1; return [] }, observeTransactions: false,
+            requestProducts: { _ in
+                calls += 1
+                if calls == 1 { await withCheckedContinuation { resume = $0 } }
+                return []
+            }, waitForRetry: { _ in })
+        let first = Task { await store.loadProducts() }
+        while resume == nil { await Task.yield() }
+        await store.loadProducts()
+        await store.refreshWhenIdle()
+        #expect(calls == 1 && entitlementReads == 1)
+        resume?.resume()
+        await first.value
+        #expect(calls == 3 && !store.isLoading)
+    }
+
+    @Test("购买结果取消、StoreKit 抛出取消、恢复取消均静默返回")
+    func purchaseAndRestoreCancellationAreSilent() async throws {
+        let (product, session) = try await localProduct()
+        defer { session.resetToDefaultState() }
+        let f = try MembershipFixture(); defer { f.clean() }
+        let cancellations: [Error?] = [nil, StoreKitError.userCancelled,
+            NSError(domain: SKErrorDomain, code: SKError.paymentCancelled.rawValue),
+            StoreKitError.systemError(NSError(domain: SKErrorDomain, code: SKError.paymentCancelled.rawValue))]
+        for cancellation in cancellations {
+            var purchases = 0
+            let store = StoreKitService(transport: { MembershipFixture.response($0, body: f.body(active: false)) },
+                readEntitlements: { [] }, restorePurchases: { throw StoreKitError.userCancelled },
+                finishTransactions: { _ in }, observeTransactions: false,
+                requestProducts: { _ in [product] }, purchaseProduct: { _, account in
+                    #expect(account == f.account)
+                    purchases += 1
+                    if let cancellation { throw cancellation }
+                    return .userCancelled
+                })
+            await store.connect(f.auth)
+            await store.loadProducts()
+            await store.purchase(product, auth: f.auth)
+            #expect(purchases == 1 && store.feedback == .idle && store.lastError == nil)
+            #expect(store.feedback.message == nil && !store.isLoading)
+            await store.restore()
+            #expect(store.feedback == .idle && store.lastError == nil)
+        }
+        #expect(PurchaseFeedback.cancelled.message == nil)
+    }
+
+    @Test("商品不可购买时给出本地化重试状态，不显示 Item Unavailable")
+    func unavailablePurchaseOffersCatalogRetry() async throws {
+        let (product, session) = try await localProduct()
+        defer { session.resetToDefaultState() }
+        let f = try MembershipFixture(); defer { f.clean() }
+        let store = StoreKitService(transport: { MembershipFixture.response($0, body: f.body(active: false)) },
+            readEntitlements: { [] }, finishTransactions: { _ in }, observeTransactions: false,
+            requestProducts: { _ in [product] }, purchaseProduct: { _, _ in throw Product.PurchaseError.productUnavailable })
+        await store.connect(f.auth)
+        await store.loadProducts()
+        await store.purchase(product, auth: f.auth)
+        #expect(store.products.isEmpty && store.catalogError == StoreErrorMessage.purchaseUnavailable)
+        #expect(store.feedback == .idle && store.lastError == nil)
+        await store.loadProducts()
+        #expect(store.products.count == 1 && store.catalogError == nil)
+    }
+
+    @Test("前台商品加载使应用级刷新跳过时，加载结束后仍刷新会员")
+    func foregroundRefreshesMembershipAfterCatalog() async throws {
+        let (product, session) = try await localProduct()
+        defer { session.resetToDefaultState() }
+        let f = try MembershipFixture(); defer { f.clean() }
+        var active = false
+        var events: [String] = []
+        var store: StoreKitService!
+        store = StoreKitService(transport: {
+            events.append("membership")
+            return MembershipFixture.response($0, body: f.body(active: active))
+        }, readEntitlements: { [] }, finishTransactions: { _ in }, observeTransactions: false,
+            requestProducts: { _ in
+                events.append("catalog")
+                // Reproduce the app-level active notification arriving while
+                // Account has already started its catalog request.
+                await store.refreshWhenIdle()
+                #expect(events == ["catalog"])
+                return [product]
+            })
+        await store.connect(f.auth)
+        #expect(!store.canUseCloud(f.auth))
+        active = true
+        events = []
+        await store.refreshAfterForeground()
+        #expect(events == ["catalog", "membership"])
+        #expect(store.canUseCloud(f.auth))
+    }
+
+    @Test("购买面板返回前台时不触发二次会员刷新")
+    func foregroundDoesNotInterruptPurchase() async throws {
+        let (product, session) = try await localProduct()
+        defer { session.resetToDefaultState() }
+        let f = try MembershipFixture(); defer { f.clean() }
+        var gets = 0
+        var store: StoreKitService!
+        store = StoreKitService(transport: {
+            gets += 1
+            return MembershipFixture.response($0, body: f.body(active: false))
+        }, readEntitlements: { [] }, finishTransactions: { _ in }, observeTransactions: false,
+            requestProducts: { _ in [product] }, purchaseProduct: { _, _ in
+                let before = gets
+                await store.refreshWhenIdle()
+                await store.refreshAfterForeground()
+                #expect(gets == before)
+                return .userCancelled
+            })
+        await store.connect(f.auth)
+        await store.loadProducts()
+        await store.purchase(product, auth: f.auth)
+        #expect(gets == 2) // initial connect + pre-purchase account binding token
+    }
+
+    @Test("商品/购买/恢复错误按应用语言显示")
+    func errorLocalization() {
+        let original = UserDefaults.standard.object(forKey: "appLanguage")
+        defer {
+            if let original { UserDefaults.standard.set(original, forKey: "appLanguage") }
+            else { UserDefaults.standard.removeObject(forKey: "appLanguage") }
+        }
+        let keys = [StoreErrorMessage.catalogUnavailable, StoreErrorMessage.purchaseUnavailable,
+                    StoreErrorMessage.purchaseFailed, StoreErrorMessage.restoreFailed]
+        UserDefaults.standard.set("en", forKey: "appLanguage")
+        for key in keys {
+            #expect(L10n.text(key) != key)
+            #expect(!L10n.text(key).contains("Item Unavailable"))
+        }
+        UserDefaults.standard.set("zh-Hans", forKey: "appLanguage")
+        for key in keys { #expect(L10n.text(key) == key) }
+    }
 }

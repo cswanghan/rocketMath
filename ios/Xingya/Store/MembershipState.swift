@@ -26,7 +26,7 @@ enum PurchaseFeedback: Equatable {
         switch self {
         case .idle: return nil
         case .purchasing: return "正在处理购买…"
-        case .cancelled: return "已取消购买，未开通会员。"
+        case .cancelled: return nil
         case .pending: return "购买待批准或付款确认。确认后将自动刷新，请勿重复购买。"
         case .verificationPending: return "Apple 购买已完成，会员正在验证。请勿重复购买；稍后点「恢复购买」重试。"
         case .purchased: return "购买成功，会员已关联当前账号。"
