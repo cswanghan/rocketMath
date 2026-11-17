@@ -1,6 +1,6 @@
 # 星芽 1.0.0 (7)：Issue #2 修复与审核说明草稿
 
-更新：2026-11-17（Asia/Shanghai）。**本次目标为 1.0.0 (7)，包含四年级口算内容扩充；Build 7 的完整自动化测试及未签名 Release 编译已通过，尚未归档、上传、关联 ASC 或进行真机验收。后端已获授权部署；1.0.0 (6) 已于 11:15:56 CST 云签名上传成功，11:23 在 TestFlight 确认处理完成、状态“准备提交”；11:25–11:26 已在 ASC 版本页选择并保存 Build 6 关联，尚未执行 Update Review 或重新提审。12:07 真机 Apple 登录复测仍失败，已定位 Workers 请求重定向模式不兼容；最小后端补丁及测试已完成，并于 12:18:21 部署；生产公钥获取已验证，真实 Apple 登录复测待 Mac 解锁后继续，本稿不是全部验收已通过的声明。**
+更新：2026-11-17（Asia/Shanghai）。**本次目标为 1.0.0 (7)，包含四年级口算内容扩充；Build 7 的完整自动化验证、归档及发行签名检查已完成，12:37:34 云签名上传成功；约 12:41 已独立确认 ASC 上传表“完成”、TestFlight“准备提交”；版本页仍关联 Build 6，未关联 Build 7，尚未进行 Build 7 真机验收。后端已获授权部署；1.0.0 (6) 已于 11:15:56 CST 云签名上传成功，11:23 在 TestFlight 确认处理完成、状态“准备提交”；11:25–11:26 已在 ASC 版本页选择并保存 Build 6 关联，尚未执行 Update Review 或重新提审。12:07 真机 Apple 登录复测仍失败，已定位 Workers 请求重定向模式不兼容；最小后端补丁及测试已完成，并于 12:18:21 部署；生产公钥获取已验证，真实 Apple 登录复测待 Mac 解锁后继续，本稿不是全部验收已通过的声明。**
 
 ## 依据与源码
 
@@ -40,7 +40,7 @@
 - **原有 64 题的 ID、题面、答案和所属关卡不变**，保留既有学习记录及待纠错题。只扩充内容与构建目标，不改练习引擎、随机选择逻辑、阶段阈值或纠错规则。
 - 中文、英文与小程序内容一致；未变更其他年级、practice 或知识地图题包，旧翻译词条保留。生成器新增仅生成口算包的模式，避免覆盖已有练习内容扩充。
 - 已运行 **7/7 项 TS 专项回归**，覆盖题量/答案分布、教学范围、独立算式复核（含括号、乘除优先与“万”单位）、64 题兼容、三端内容一致、100 个种子的 72 题实际出题流程及旧纠错进度恢复。另以独立 Python AST/Fraction 复算中英文共 **512 题，零错误**；只读审查通过。
-- **Build 7 完整自动化验证已通过，详见下表；尚未归档、上传或进行真机验收。不能将下方历史 Build 6 的设备、签名或上传证据视为 Build 7 真机验收。**
+- **Build 7 完整自动化验证已通过，详见下表；后续已归档并上传，尚未进行真机验收。不能将下方历史 Build 6 的设备、签名或上传证据视为 Build 7 真机验收。**
 
 ### Build 7 完整自动化验证（已完成）
 
@@ -54,14 +54,14 @@
 | generic iOS Release | **BUILD SUCCEEDED**，`CODE_SIGNING_ALLOWED=NO`；为未签名编译验证，非归档、上传或真机验收 |
 | 内容重新生成 | 输出逐字节一致 |
 
-证据位于 `ios/build/grade4-build7-zNpDh0/`：`validation-summary.json`、`UnitTests.xcresult`、`unit-test-tree.json`、`unit-summary.json`、`Grade4UITests.xcresult` 与 `release-build.log`。这些本地产物不加入 Git。此次内容测试没有进行 Apple ID／Sandbox 验收；最新后端的真实 Apple 登录仍待 Mac 解锁后复测，Build 7 尚未签名归档、上传或进行真机验收。
+证据位于 `ios/build/grade4-build7-zNpDh0/`：`validation-summary.json`、`UnitTests.xcresult`、`unit-test-tree.json`、`unit-summary.json`、`Grade4UITests.xcresult` 与 `release-build.log`。这些本地产物不加入 Git。此次内容测试没有进行 Apple ID／Sandbox 验收；最新后端的真实 Apple 登录仍待 Mac 解锁后复测，测试运行当时没有进行 Build 7 归档上传；后续已于 12:37:34 上传，当前真机验收仍未完成。
 
 ### 重定向兼容补丁已完成的验证
 
 - JWKS 与共享 token/revoke 请求两处已改为 `manual`，保留非成功状态拒绝逻辑，不跟随 3xx；新增 **10 例回归**。
 - Apple 相关测试 **76 项通过**；全套 **410/410 通过**，TypeScript 检查、Vite 构建、`git diff --check` 均通过。这些是后端补丁的新增验证，不表示重新运行了 iOS 套件。
 - 真实 **workerd/Miniflare**，`compatibilityDate=2026-06-02`：旧 `error` 模式立即 `TypeError`、**零出站**；`manual` 模式收到 **302**、`ok=false`、`redirected=false`，总出站 **1 次**且未跟随。此结果验证运行时兼容及拒绝重定向行为，不等于真实 Apple 登录成功。
-- **补丁已于 12:18:21 部署；真实 Apple 授权复测待 Mac 解锁后继续。** 生产无凭据假签名探测已进入签名拒绝阶段，详见下方部署记录；不算登录通过。四年级内容扩充纳入目标 Build 7；完整自动化验证及未签名 Release 编译已通过，尚未归档、上传或进行真机验收。
+- **补丁已于 12:18:21 部署；真实 Apple 授权复测待 Mac 解锁后继续。** 生产无凭据假签名探测已进入签名拒绝阶段，详见下方部署记录；不算登录通过。四年级内容扩充纳入目标 Build 7；完整自动化验证已通过，归档及云签名上传已完成，ASC 处理完成已确认，版本页仍关联 Build 6，Build 7 真机验收仍未完成。
 
 ## 本次实际验证
 
@@ -156,6 +156,20 @@ xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
 - 正式域名健康检查通过；Challenge HTTP 200、TTL 1800 秒。无凭据假签名探测返回 `stage=identity`、`reason=signature_invalid`、HTTP **400**，表明生产端已能获取 Apple 公钥并拒绝无效签名；**未到授权码交换，不是真实登录成功证据。**
 - 真机 Apple 登录复测因 Mac 锁屏等待用户解锁，结果仍待确认。无秘密证据记录：`/tmp/rocketmath-issue2-device/apple-manual-release-journal.json`，未加入 Git。
 
+### 四年级 Web 内容生产部署（2026-11-17 12:34:37）
+
+- 同一 `rocket-math` 生产项目部署 `102fa3d8-e873-4b4e-9ccc-6d80615a6f25`，[部署地址](https://102fa3d8.rocket-math-4kg.pages.dev)，来源提交 `9a4d9f09384a41437dc961decc687aaa4bc91f93`。
+- 正式站点四年级口算资源返回 HTTP 200，包含 **256 题**；资源 SHA 与已验证的 dist 一致。语文、数学、英语 Web 资源保持可用，不代表本次原生 iOS 加入三科。
+- API 代码与已修复的 `37c92c3` 相同；Apple Challenge HTTP 200、TTL **1800 秒**。生产数据库绑定、变量、兼容日期与 placement off 未变；**无迁移、数据重置／删除或设置变更**。这次部署没有提供新的真实 Apple 登录成功证据。
+- 无秘密部署证据：`/tmp/rocketmath-issue2-device/grade4-release-journal.json`，未加入 Git。
+
+### Build 7 归档与上传（2026-11-17 12:37:34）
+
+- **1.0.0 (7) 云签名上传成功**，delivery `a89d1e24-f0cb-4627-b3d0-3a89d4b6a7cc`。归档与开发签名产物位于 `ios/build/asc-build7-9a4d9f0-U55KFY/`，未加入 Git，尚未安装到真机。
+- 发行产物已核验版本／构建号、预期 team、`com.hanwang.xingya`、Sign in with Apple 权限、iPhone 与 iPad 支持、codesign、dSYM，以及 `get-task-allow=false`。
+- **约 12:41，ASC 上传表已明确显示 Build 7“完成”，TestFlight 行为“准备提交”，处理完成已独立确认。** 版本页仍关联 **Build 6**。取消旧构建关联按钮的普通点击及键盘 Enter 均超时；新读取的页面状态确认仍为 Build 6 且“保存”不可用，没有发生写入，未关联 Build 7。超时原因未确证。处理完成不等同重新提审或审核通过。
+- Mac 仍锁屏，设备显示 unavailable，手机仍为 **Build 6**，新 Build 7 未安装。Build 7 真机验收及最新后端真实 Apple 登录复测仍待完成。上述设备状态与浏览器操作超时分别记录，不据此判断超时原因。**尚未执行 Update Review 或 Resubmit**，原 submission 三个项目保留。
+
 ### iOS 构建上传与审核准备（截至 2026-11-17 11:29）
 
 - 本次范围仅为数学版 **1.0.0 (6)**；三科接入后续处理。
@@ -179,11 +193,13 @@ xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
 - [ ] Mac 解锁后使用真实 Apple 授权复测最新部署。
 - [x] 四年级四轨道 16 个题池已从 64 扩至 256 题，专项 TS 7/7 通过；中英文 512 题独立复算、旧 64 题兼容、CN/EN/小程序一致性审查通过。
 - [x] Build 7 全套 TS 417/417、TypeScript/Web build、本地化 18/18 与 21 包审计零标记、iOS 单元 93/93、UI 3/3 及未签名 generic iOS Release 编译通过。
-- [ ] 完成 Build 7 签名归档、上传及处理后替换 ASC 所选构建，并完成真机验收；当前尚未归档、上传或关联 Build 7，ASC 仍选择 Build 6。
+- [x] Build 7 已归档并完成发行产物验证，12:37:34 云签名上传成功；版本、bundle、team、Sign in with Apple、iPhone/iPad 支持、codesign、dSYM 与发行包 `get-task-allow=false` 均已核验。
+- [x] 约 12:41 独立确认 Build 7 上传表“完成”及 TestFlight“准备提交”。
+- [ ] 将处理完成的 Build 7 保存为版本所选构建，并完成真机验收；当前点击／Enter 操作超时后确认无写入，版本页仍关联 Build 6、保存不可用，未关联 Build 7。
 - [x] 1.0.0 (6) 云签名上传成功，并于 11:23 在 TestFlight 独立确认处理完成、状态“准备提交”。该状态不是已重新提审或审核通过。
 - [x] ASC 原 Unresolved Issues 提交已独立确认包含三个项目：iOS 1.0.0 Build 5（Rejected）、PremiumMonthly（Ready for Review）、星芽会员订阅组（Ready for Review）。
 - [x] 11:25–11:26 在 ASC 版本页选择并保存 1.0.0 Build 6；仅解除旧 Build 5 的版本构建关联，原 submission 的三个项目均保留。
-- [ ] 更新最终审核说明并执行 Update Review，确认目标 Build 7 上传处理完成并保存关联，核对三个项目及最终构建后再 Resubmit；尚未执行 Update Review 或重新提审。实际提交时核实协议/税务/银行、商品地区可用性及 App 合规声明的当前状态，不移除重建现有提交。
+- [ ] 更新最终审核说明并执行 Update Review，保存已处理完成的 Build 7 关联，核对三个项目及最终构建后再 Resubmit；尚未执行 Update Review 或重新提审。实际提交时核实协议/税务/银行、商品地区可用性及 App 合规声明的当前状态，不移除重建现有提交。
 
 ## 审核路径草稿
 
