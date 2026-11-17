@@ -5,9 +5,16 @@ struct PracticeView: View {
     @State private var choiceId: String?
     @State private var fillText = ""
     @State private var fieldValues: [String: String] = [:]
+    @State private var focusedField: String?
     @Environment(\.dismiss) private var dismiss
     @Environment(SpeechService.self) private var speech
-    init(model: PracticeModel) { _model = State(initialValue: model) }
+    init(model: PracticeModel) {
+        #if DEBUG
+        _model = State(initialValue: PracticeKeyboardUITestFixture.replacement() ?? model)
+        #else
+        _model = State(initialValue: model)
+        #endif
+    }
     private var problem: Problem? {
         switch model.viewState {
         case .present(let p), .wrong(let p, _), .correct(let p, _), .reveal(let p): p
@@ -24,7 +31,7 @@ struct PracticeView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     SessionHeader(progress: Double(max(0, model.state.index + 1)) / Double(max(1, model.state.order.count)),
-                                  title: L10n.format("第 %@ 题 / 共 %@ 题", L10n.number(max(1, model.state.index + 1)), L10n.number(model.state.order.count)), close: { dismiss() })
+                                  title: L10n.format("第 %@ 题 / 共 %@ 题", L10n.number(max(1, model.state.index + 1)), L10n.number(model.state.order.count)), close: { focusedField = nil; dismiss() })
                     HStack {
                         Text(L10n.text(model.currentTier?.rawValue ?? "练习")).font(.subheadline.bold()).padding(9)
                             .background(Theme.leafSoft, in: .rect(cornerRadius: 10))
@@ -84,10 +91,18 @@ struct PracticeView: View {
             .onChange(of: model.choiceFeedbackPending) { _, pending in
                 if pending { withAnimation { scroll.scrollTo("practice-feedback", anchor: .bottom) } }
             }
+            .onChange(of: focusedField) { _, id in
+                if let id { withAnimation { scroll.scrollTo(id, anchor: .center) } }
+            }
             }
         }.foregroundStyle(Theme.ink).background(Theme.pageBg.ignoresSafeArea()).toolbar(.hidden, for: .navigationBar)
-            .onChange(of: model.problemSeq) { choiceId = nil; fillText = ""; fieldValues = [:] }
-            .sensoryFeedback(.success, trigger: correct).onDisappear { speech.cancel() }
+            .onChange(of: model.problemSeq, initial: true) { _, _ in
+                focusedField = nil; choiceId = nil; fillText = ""; fieldValues = [:]
+                focusedField = firstFieldID
+            }
+            .onChange(of: feedback) { _, showing in if showing { focusedField = nil } }
+            .sensoryFeedback(.success, trigger: correct)
+            .onDisappear { focusedField = nil; speech.cancel() }
     }
     @ViewBuilder private func input(_ p: Problem) -> some View {
         switch p.type {
@@ -111,33 +126,68 @@ struct PracticeView: View {
                 }
             }.id("practice-choices")
         case .fill:
-            TextField(L10n.text("答案"), text: $fillText).brandField().keyboardType(.numbersAndPunctuation)
-                .font(Theme.numberFont(34)).multilineTextAlignment(.center).accessibilityIdentifier("practice-answer")
-                .submitLabel(.done).onSubmit { if canSubmit(p) { submit(p) } }
+            answerField(text: $fillText, answer: p.answer, key: "fill", label: L10n.text("答案"), identifier: "practice-answer") {
+                focusedField = nil
+            }
         case .steps:
             ForEach(Array((p.fields ?? []).enumerated()), id: \.element.id) { index, field in
                 VStack(alignment: .leading, spacing: 8) {
                     Text(L10n.text(field.label)).font(.headline)
-                    TextField(L10n.text("答案"), text: binding(field.id.isEmpty ? "f\(index)" : field.id))
-                        .brandField().keyboardType(.numbersAndPunctuation).accessibilityLabel(L10n.text(field.label))
+                    let key = fieldKey(field, index: index)
+                    let next = (p.fields ?? []).indices.contains(index + 1) ? index + 1 : nil
+                    answerField(text: binding(key), answer: field.answer, key: key, label: L10n.text(field.label),
+                                identifier: "practice-field-\(key)", hasNext: next != nil) {
+                        if let next, let nextField = p.fields?[next] {
+                            focusedField = focusID(fieldKey(nextField, index: next))
+                        } else { focusedField = nil }
+                    }
                 }
             }
+        }
+    }
+
+    private func answerField(text: Binding<String>, answer: AnswerValue?, key: String, label: String,
+                             identifier: String, hasNext: Bool = false, onAdvance: @escaping () -> Void) -> some View {
+        let id = focusID(key)
+        return PracticeAnswerField(text: text, focusedField: $focusedField, fieldID: id,
+                                   mode: PracticeAnswerInput.mode(for: answer), label: label,
+                                   identifier: identifier, hasNext: hasNext, onAdvance: onAdvance)
+            .padding(.horizontal, 16).frame(height: 60)
+            .background(Theme.sky2.opacity(0.55), in: .rect(cornerRadius: Theme.rSm))
+            .overlay(RoundedRectangle(cornerRadius: Theme.rSm)
+                .strokeBorder(focusedField == id ? Theme.brand : Theme.line, lineWidth: focusedField == id ? 2 : 1))
+            .id(id)
+    }
+
+    private func focusID(_ key: String) -> String { "\(model.problemSeq):\(key)" }
+    private func fieldKey(_ field: Field, index: Int) -> String { field.id.isEmpty ? "f\(index)" : field.id }
+    private var firstFieldID: String? {
+        guard !feedback, let problem else { return nil }
+        switch problem.type {
+        case .fill: return focusID("fill")
+        case .steps: return problem.fields?.first.map { focusID(fieldKey($0, index: 0)) }
+        case .mc: return nil
         }
     }
     private func binding(_ key: String) -> Binding<String> { Binding(get: { fieldValues[key] ?? "" }, set: { fieldValues[key] = $0 }) }
     private func canSubmit(_ p: Problem) -> Bool {
         switch p.type {
         case .mc: false // Choice taps submit directly; there is no separate check button.
-        case .fill: !fillText.trimmingCharacters(in: .whitespaces).isEmpty
-        case .steps: (p.fields ?? []).enumerated().allSatisfy { i, f in !(fieldValues[f.id.isEmpty ? "f\(i)" : f.id] ?? "").trimmingCharacters(in: .whitespaces).isEmpty }
+        case .fill: PracticeAnswerInput.isComplete(fillText, mode: PracticeAnswerInput.mode(for: p.answer))
+        case .steps: (p.fields ?? []).enumerated().allSatisfy { i, f in
+            PracticeAnswerInput.isComplete(fieldValues[fieldKey(f, index: i)] ?? "", mode: PracticeAnswerInput.mode(for: f.answer))
+        }
         }
     }
     private func submit(_ p: Problem) {
         guard canSubmit(p) else { return }
+        let editing = focusedField
+        focusedField = nil
         switch p.type {
         case .mc: if let choiceId { model.answer(.choice(choiceId)) }
         case .fill: model.answer(.value(fillText))
         case .steps: model.answer(.fields(fieldValues))
         }
+        if case .wrong = model.viewState { focusedField = editing ?? firstFieldID }
     }
 }

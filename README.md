@@ -37,6 +37,8 @@ npm test                                   # 题库、进度、输入及跨端�
 
 数学题池改变后，用 `npm run golden` 更新原生回归快照，并核对引擎阶段与计分不变。已上传或正在审核的安装包不会因源码更新而改变。当前发布采用 Build 10，实际验收与发布状态见 [Build 10 发布记录](docs/build10-release-acceptance.md)；Build 8 的真机检查保留为历史证据。
 
+Build 11 修复数字填空键盘与自动聚焦；实际验证、TestFlight 分发和新反馈处理状态见 [反馈处理记录](docs/testflight-feedback-log.md)。
+
 ## 快速开始
 
 ```bash
