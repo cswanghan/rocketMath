@@ -107,7 +107,9 @@ export async function verifyAppleIdentity(token: string, nonceHash: string): Pro
   if (header.alg !== 'RS256' || typeof header.kid !== 'string' || header.crit) throw invalid('algorithm_invalid');
   let response: Response;
   try {
-    response = await fetch(`${ISSUER}/auth/keys`, { signal: AbortSignal.timeout(10000), redirect: 'error' });
+    // Workers rejects redirect: 'error' before sending the request. Manual plus
+    // the status check below preserves the policy of never following redirects.
+    response = await fetch(`${ISSUER}/auth/keys`, { signal: AbortSignal.timeout(10000), redirect: 'manual' });
   } catch (error) { throw unavailable(isTimeout(error) ? 'jwks_timeout' : 'jwks_network'); }
   if (!response.ok) throw new AppleSignInError('apple_unavailable', 503, 'jwks_http', response.status);
   let key: CryptoKey;
@@ -182,7 +184,8 @@ async function applePost(env: AppleSignInEnvironment, endpoint: 'token' | 'revok
   return fetch(`${ISSUER}/auth/${endpoint}`, {
     method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ client_id: CLIENT_ID, client_secret: await appleClientSecret(env), ...fields }),
-    signal: AbortSignal.timeout(10000), redirect: 'error',
+    // Token exchange and revocation also reject non-success statuses below.
+    signal: AbortSignal.timeout(10000), redirect: 'manual',
   });
 }
 

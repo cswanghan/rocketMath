@@ -85,6 +85,74 @@ describe('Apple identity signature and claims', () => {
   });
 });
 
+describe('Apple requests on the Workers runtime', () => {
+  it('uses manual redirects for the fixed JWKS, token, and revocation endpoints', async () => {
+    const requests: Array<{ url: string; redirect: RequestRedirect | undefined }> = [];
+    vi.stubGlobal('fetch', (input: RequestInfo | URL, init?: RequestInit) => {
+      requests.push({ url: String(input), redirect: init?.redirect });
+      // Unlike Node fetch, Workers rejects this mode before sending a request.
+      if (init?.redirect === 'error') throw new TypeError('Invalid redirect value');
+      return fixture.fetcher(input, init);
+    });
+    const user = await login();
+    expect((await deleteAccount(context({}, user.token))).status).toBe(200);
+    expect(requests).toEqual([
+      { url: 'https://appleid.apple.com/auth/keys', redirect: 'manual' },
+      { url: 'https://appleid.apple.com/auth/token', redirect: 'manual' },
+      { url: 'https://appleid.apple.com/auth/keys', redirect: 'manual' },
+      { url: 'https://appleid.apple.com/auth/revoke', redirect: 'manual' },
+    ]);
+  });
+  it.each([302, 307, 308])('rejects a JWKS HTTP %i without following its Location', async status => {
+    const body = await authorization();
+    const fetcher = vi.fn(async (_input: RequestInfo | URL, _init?: RequestInit) => new Response('{"keys":[]}', {
+      status, headers: { Location: 'https://untrusted.invalid/secret-location' },
+    }));
+    vi.stubGlobal('fetch', fetcher);
+    expect((await appleLogin(context(body))).status).toBe(503);
+    expect(fetcher).toHaveBeenCalledTimes(1);
+    expect(fetcher).toHaveBeenCalledWith('https://appleid.apple.com/auth/keys', expect.objectContaining({ redirect: 'manual' }));
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'identity', reason: 'jwks_http', code: 'apple_unavailable', upstreamStatus: status,
+    });
+    expect(count('users')).toBe(0);
+  });
+  it.each([302, 307, 308])('rejects a token HTTP %i even with a success-shaped body', async status => {
+    const body = await authorization();
+    const fetcher = vi.fn((input: RequestInfo | URL, init?: RequestInit) => {
+      if (String(input) === 'https://appleid.apple.com/auth/token') {
+        return Promise.resolve(new Response(JSON.stringify({ id_token: body.identityToken, refresh_token: 'redirect-secret' }), {
+          status, headers: { Location: 'https://untrusted.invalid/secret-location' },
+        }));
+      }
+      return fixture.fetcher(input, init);
+    });
+    vi.stubGlobal('fetch', fetcher);
+    expect((await appleLogin(context(body))).status).toBe(503);
+    expect(fetcher.mock.calls.map(([input]) => String(input))).toEqual([
+      'https://appleid.apple.com/auth/keys', 'https://appleid.apple.com/auth/token',
+    ]);
+    expect(fetcher.mock.calls.every(([, init]) => init?.redirect === 'manual')).toBe(true);
+    expect(console.warn).toHaveBeenLastCalledWith('apple_sign_in_failed', {
+      stage: 'code_exchange', reason: 'exchange_rejected', code: 'apple_unavailable', upstreamStatus: status, upstreamError: 'unknown',
+    });
+    expect(count('users')).toBe(0);
+    expect(count('apple_sign_in_tokens')).toBe(0);
+  });
+  it.each([302, 307, 308])('does not confirm revocation after an empty HTTP %i redirect', async status => {
+    const user = await login();
+    const fetcher = vi.fn(async (_input: RequestInfo | URL, _init?: RequestInit) => new Response('', {
+      status, headers: { Location: 'https://untrusted.invalid/secret-location' },
+    }));
+    vi.stubGlobal('fetch', fetcher);
+    expect((await deleteAccount(context({}, user.token))).status).toBe(503);
+    expect(fetcher).toHaveBeenCalledTimes(1);
+    expect(fetcher).toHaveBeenCalledWith('https://appleid.apple.com/auth/revoke', expect.objectContaining({ redirect: 'manual' }));
+    expect(count('apple_sign_in_tokens')).toBe(1);
+    expect(row('SELECT status FROM users').status).toBe('deleting');
+  });
+});
+
 describe('Apple nonce lifecycle and configuration', () => {
   it('accepts a challenge once, including concurrent requests; cannot re-register its hash', async () => {
     const body = await authorization();

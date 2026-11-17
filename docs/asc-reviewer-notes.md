@@ -1,26 +1,27 @@
 # 星芽 1.0.0 (6)：Issue #2 修复与审核说明草稿
 
-更新：2026-11-17（Asia/Shanghai）。**后端已获授权部署；1.0.0 (6) 已于 11:15:56 CST 云签名上传成功，11:23 在 TestFlight 确认处理完成、状态“准备提交”；11:25–11:26 已在 ASC 版本页选择并保存 Build 6 关联，尚未执行 Update Review 或重新提审。新后端的真机 Apple 登录复测正在进行，结果待确认，本稿不是全部验收已通过的声明。**
+更新：2026-11-17（Asia/Shanghai）。**后端已获授权部署；1.0.0 (6) 已于 11:15:56 CST 云签名上传成功，11:23 在 TestFlight 确认处理完成、状态“准备提交”；11:25–11:26 已在 ASC 版本页选择并保存 Build 6 关联，尚未执行 Update Review 或重新提审。12:07 真机 Apple 登录复测仍失败，已定位 Workers 请求重定向模式不兼容；最小后端补丁及测试已完成，部署与真机复测尚待完成，本稿不是全部验收已通过的声明。**
 
 ## 依据与源码
 
 - [Issue #2](https://github.com/cswanghan/rocketMath/issues/2)：1.0.0 (5) 于 11 月 16 日因 Guideline 2.1(a) Apple 登录错误、2.1(b) IAP “Item Unavailable” 再次被拒。
 - 已读取[最新评论](https://github.com/cswanghan/rocketMath/issues/2#issuecomment-6934156190)。评论记录 11 月 17 日 ASC 只读检查：协议有效，银行/税务无待办，月订在 175 个地区（含美国）可用、US $2.99/月，状态为 Ready for Review；评论当时记录“不在任何提交中”。这是评论中的历史检查结果；本轮后续 ASC 界面已独立确认原 Unresolved Issues 提交含 App 版本、月订与订阅组三个项目，详见后文。上述状态不等于商品已批准或 Sandbox 实测通过。
 - 本地实际实现为原生 SwiftUI / AuthenticationServices / StoreKit 2，后端为 Cloudflare Pages Functions，不是远端 Capacitor 壳。源码已先以 `75acdc9` 独立保存，包含此前未提交的本地修改。依赖、缓存、凭据、归档、测试结果包与临时日志未纳入提交，原本地文件保留。审核草稿中的密码已脱敏。
-- 起始 Xcode 项目版本仍为 build 3，本仓库本地归档也不能证明与审核中的 build 5 二进制完全一致。因此以下根因是对**本地最新源码**确认的问题，未把它描述成对 Apple 审核环境的现场复现。修复后 App Debug/Release 构建号均为 **6**，版本保持 1.0.0。
+- 起始 Xcode 项目版本仍为 build 3，本仓库本地归档也不能证明与审核中的 build 5 二进制完全一致。原有源码分析不能证明 Apple 审核环境的精确失败原因；本轮后续 12:07 真机复测则已取得下述新部署的现场诊断。修复后 App Debug/Release 构建号均为 **6**，版本保持 1.0.0。
 - 现有练习引擎修改仅保留在源码恢复提交中；Issue #2 修复不改练习引擎。
 - 用户明确本次仅对数学版重新提审；原生三科接入留待后续，不把已保留的三科 Web 产物描述成本次 iOS 版本功能。
 
 ## 已定位的问题与源码修复
 
-以下后端修复已在本轮后续授权后部署。此前 09:xx–10:xx 真机记录使用旧后端，不能将其失败直接记为新部署的结果；新后端的 Apple 登录仍需真机复测。部署及无凭据健康检查证据单独列于下方。
+挑战窗口与分类诊断等改进已在 10:56 前部署，但 12:07 新鲜授权仍失败。该轮现场已确认 Workers 不支持 `redirect: "error"`，在请求构造时抛错，阻止获取 Apple 公钥；这是当前待修的已定位原因。09:xx–10:xx 旧后端失败没有同等诊断，不能全部归因于挑战 TTL。最小重定向兼容补丁已完成并通过验证，部署及真机复测待确认。
 
 ### Apple 登录
 
-1. 服务端挑战在展示 Apple 授权界面之前创建，却只有 300 秒有效期；慢速首次授权可能在回调时被拒。后端源码改为 30 分钟、每次请求新 nonce/challenge，仍执行原子单次消费、防重放、签名、audience、nonce 和 token 到期验证；部署前线上探测为 300 秒，部署后已确认 **1800 秒**。
-2. 移除客户端依赖设备时钟的提前到期判断，以及服务端独立于 token `exp` 的 10 分钟 `iat` 年龄限制。授权控制器、来源窗口和当前 state 在等待及前后台切换期间保持；缺省的可选 state 允许通过，明确不匹配的 state 仍拒绝，旧/重复回调不会完成新请求。Apple 凭据不写入持久存储。
-3. 取消授权静默返回。新源码中的验证失败不再一律称为“已失效”。已部署的服务端诊断仅记录固定的阶段、原因、HTTP 状态及白名单 Apple 错误码，不记录令牌、授权码、nonce、用户资料、密钥或原始响应。旧文案出现在部署前的真机失败记录中；新后端的真机诊断待复测收集。
-4. Apple 返回 `invalid_grant` 不能证明单一原因：过期、已使用或客户端不匹配均可能产生该错误。日志保留实际错误类别，不猜测为“过期”。
+1. **12:07 新现场确证原因：Cloudflare Workers 请求模式不兼容。** 新鲜真实 Face ID 授权后，安全诊断记录 `stage=identity`、`reason=jwks_network`、HTTP **503**。公钥请求使用 `redirect: "error"`；[Cloudflare Request 文档](https://developers.cloudflare.com/workers/runtime-apis/request/)确认 Workers 不支持此模式，会在构造 Request 时抛 `TypeError`，网络请求尚未发出。独立 `curl` 访问 Apple 公钥 URL 返回 HTTP 200 且无重定向，不能将此次失败解释为 Apple 公钥服务不可用。最小补丁已将 JWKS 和共享 token/revoke 请求两处改为 `manual`，继续通过状态检查拒绝 3xx，禁止自动跟随重定向；补丁已通过下述测试，部署及登录复测待确认。iOS 不改，继续使用已上传 Build 6。
+2. **其他已实现改进：** 服务端挑战由 300 秒延长为 30 分钟，每次请求使用新 nonce/challenge，仍执行原子单次消费、防重放、签名、audience、nonce 和 token 到期验证；线上已确认 **1800 秒**。较长窗口解决慢速授权的时限风险，不能解释所有旧即时失败，也未延长 Apple 授权码自身寿命。
+3. 移除客户端依赖设备时钟的提前到期判断，以及服务端独立于 token `exp` 的 10 分钟 `iat` 年龄限制。授权控制器、来源窗口和当前 state 在等待及前后台切换期间保持；缺省的可选 state 允许通过，明确不匹配的 state 仍拒绝，旧/重复回调不会完成新请求。Apple 凭据不写入持久存储；真实延迟／前后台成功路径仍待验收。
+4. 取消授权静默返回。验证失败不再一律称为“已失效”；已部署分类诊断在 12:07 给出了上述公钥请求失败阶段。仅记录固定阶段、原因、HTTP 状态及白名单 Apple 错误码，不记录令牌、授权码、nonce、用户资料、密钥或原始响应。
+5. Apple 返回 `invalid_grant` 不能证明单一原因：过期、已使用或客户端不匹配均可能产生该错误。日志保留实际错误类别，不猜测为“过期”。
 
 ### 月订与恢复
 
@@ -31,9 +32,16 @@
 
 实现依据：[Apple 用户验证](https://developer.apple.com/documentation/signinwithapple/verifying-a-user)、[Sign in with Apple 响应错误](https://developer.apple.com/documentation/technotes/tn3107-resolving-sign-in-with-apple-response-errors)、[StoreKit 取消购买结果](https://developer.apple.com/documentation/storekit/product/purchaseresult/usercancelled)。
 
+### 重定向兼容补丁已完成的验证（部署前）
+
+- JWKS 与共享 token/revoke 请求两处已改为 `manual`，保留非成功状态拒绝逻辑，不跟随 3xx；新增 **10 例回归**。
+- Apple 相关测试 **76 项通过**；全套 **410/410 通过**，TypeScript 检查、Vite 构建、`git diff --check` 均通过。这些是后端补丁的新增验证，不表示重新运行了 iOS 套件。
+- 真实 **workerd/Miniflare**，`compatibilityDate=2026-06-02`：旧 `error` 模式立即 `TypeError`、**零出站**；`manual` 模式收到 **302**、`ok=false`、`redirected=false`，总出站 **1 次**且未跟随。此结果验证运行时兼容及拒绝重定向行为，不等于真实 Apple 登录成功。
+- **部署及真机 Apple 授权复测仍待完成。** iOS 源码不改，继续使用已上传并关联的 Build 6。
+
 ## 本次实际验证
 
-本次使用 Xcode 27.1（27A9275）。以下均为本机实际执行结果：
+本次使用 Xcode 27.1（27A9275）。以下常规构建及 iOS 验证保留原执行范围；重定向兼容补丁的新增验证单列如下：
 
 | 验证 | 实际结果 |
 | --- | --- |
@@ -82,6 +90,8 @@ xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
 | 首次弹出的 Apple 授权页取消 | **通过** | 静默返回，没有错误提示。 |
 | 随后的首次实际 Apple 授权 | **失败** | 线上旧后端返回 `apple_invalid` 和“Apple 登录验证已失效，请重新使用 Apple 登录。”，未登录成功。 |
 | 一分钟内立即重试 Apple 授权 | **失败** | 再次返回上述错误；因此不能把全部失败归因于等待超过 5 分钟。 |
+| 12:05 新部署后的长时间授权尝试 | **失败，未单独确定该轮阶段** | 真机显示“Apple 登录未配置或暂时不可用，请稍后重试”。11:22 创建的 Challenge 未消费，未新增 Apple 用户或 token；该轮不能仅凭 UI 判定是原生授权还是后端阶段。 |
+| 12:07 新鲜真实 Face ID 授权 | **失败，已定位请求运行时不兼容** | 后端安全诊断为 `stage=identity`、`reason=jwks_network`、HTTP 503；Workers 不支持 `redirect: "error"`，Request 构造即抛错，公钥请求未发出。最小兼容补丁及测试已完成，部署和复测待完成。 |
 | 审核账号登录 | **通过** | 10:07 账号页显示 `appstore_review` 已登录、尚未开通会员；这是用户名/密码路径，不是 Apple 登录成功。 |
 | 系统测试购买页与取消 | **通过（仅展示与取消）** | 10:08 系统购买页明确显示仅用于测试、确认后不会收费；取消后静默返回。 |
 | 旧 Sandbox 身份的测试购买尝试 | **历史失败报告，具体原因未独立复核** | 10:09 用户确认后报告 Sandbox 购买权限不足。当时电脑锁定，10:19 再查看时弹窗已消失，未独立看到完整原文，当时无有效会员。换用已核实正确团队的新测试员后 10:45 购买成功，但不能据此确定旧身份失败的具体原因。 |
@@ -113,7 +123,7 @@ xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
 - 部署前重新执行 400 项测试、TypeScript 检查与 Vite 构建，均通过。明确指定生产项目，核实生产 D1 绑定与现有 Apple 登录、会员、数学进度表及索引；**未执行迁移、未重置或删除任何数据**。可选微信登录未配置所需环境变量，缺列不在本次 Apple/IAP 请求路径中，未添加非必要迁移。
 - 正式域名健康检查：主页、语文识字页、语文阅读页、词汇页及英语练习资源均 **HTTP 200**；未登录的 `/api/auth/me` 正常返回 **401**。三科 Web 产物保留。
 - 无凭据 `/api/auth/apple-challenge` 探测返回 **HTTP 200，TTL 1800 秒**，确认本次后端窗口变更已生效。未输出 Challenge ID、nonce 或秘密。
-- 分类诊断实现已经部署；接下来仅以固定 `stage`、`reason`、HTTP 状态和白名单 OAuth 类别观测，不输出请求头、凭据或原始日志。**新后端尚待真机 Apple 授权复测，不能由健康检查推断登录已成功。**
+- 分类诊断实现已经部署，仅以固定 `stage`、`reason`、HTTP 状态和白名单 OAuth 类别观测，不输出请求头、凭据或原始日志。10:56 的健康检查不证明登录成功；12:07 后续真机失败及根因记录见上文，重定向兼容补丁及测试已完成，尚待部署和真机复测。
 
 ### iOS 构建上传与审核准备（截至 2026-11-17 11:29）
 
@@ -121,18 +131,20 @@ xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
 - **11:15:56 CST：云签名构建上传成功。** Delivery/build UUID：`7e4a66da-3bf8-4b33-99d9-560f92ebec18`。
 - **11:23：ASC TestFlight 界面独立确认构建 6 为“准备提交”，处理完成。** 这不等于已安装 TestFlight 包、重新提审或审核通过；此前真机测试仍使用开发签名在位升级安装。
 - ASC 原 Unresolved Issues 提交已完整包含 iOS 1.0.0 Build 5（Rejected）、PremiumMonthly（Ready for Review）与星芽会员订阅组（Ready for Review）。**11:25–11:26：已在 ASC 版本页选择 1.0.0 Build 6 并保存；Build 5 仅从版本所选构建中解除关联，原 submission 的三个项目均未移除。** 审核说明待新后端 Apple 登录结果定稿，尚未点击 Update Review 或 Resubmit；后续继续更新原提交，无需移除或重建。**当前尚未重新提审。**
-- 新后端真机 Apple 授权于 **11:22** 收到 Challenge HTTP 200；截至 **11:29** 仍停留在系统首次姓名／邮箱授权 sheet，尚未点“继续”，后端尚无 Apple 登录 POST。**尚未完成授权或验证，不是登录成功或失败结果，也不构成延迟回调通过证据。** 已有 Sandbox 购买、绑定、恢复、在线重验证与离线保持事实保持其原有范围。
+- 新后端真机 Apple 授权于 **11:22** 收到 Challenge HTTP 200；截至 **11:29** 仍停留在系统首次姓名／邮箱授权 sheet，尚未点“继续”，后端尚无 Apple 登录 POST。**这只是 11:29 当时的状态，不构成延迟回调通过证据；后续 12:05 和 12:07 的失败及诊断见上方真机记录。** 已有 Sandbox 购买、绑定、恢复、在线重验证与离线保持事实保持其原有范围。
 
-本地真机记录与截图保存在 `/tmp/rocketmath-issue2-device/`，包括 `offline-login-preserved.png`、`offline-practice-answered.png`、`sandbox-purchase-bound.png` 和 `sandbox-restored.png`，未加入 Git；本文不包含私人设备标识或凭据。**当前 iPhone 的新 Sandbox 测试员购买、账号绑定、有效权益恢复与在线应用冷启动重验证已有成功证据；此前 Apple 登录在旧后端上失败，新后端复测、延迟／前后台授权、真机 iPad 与全新安装等仍待验收，不能声明完整修复或全部端到端验收通过。**
+本地真机记录与截图保存在 `/tmp/rocketmath-issue2-device/`，包括 `offline-login-preserved.png`、`offline-practice-answered.png`、`sandbox-purchase-bound.png` 和 `sandbox-restored.png`，未加入 Git；本文不包含私人设备标识或凭据。**当前 iPhone 的新 Sandbox 测试员购买、账号绑定、有效权益恢复与在线应用冷启动重验证已有成功证据；此前 Apple 登录在旧后端上失败，12:07 新部署的复测也失败并定位请求模式问题；重定向兼容补丁部署与复测，以及延迟／前后台授权、真机 iPad 与全新安装等仍待验收，不能声明完整修复或全部端到端验收通过。**
 
 ## 验收清单（含未完成或失败）
 
-- [ ] 真机 iPhone 与 iPad，全新安装、新 Apple 账号，首次授权、延迟数分钟、后台/前台后成功登录。当前 iPhone 在位升级路径取消已通过；旧后端上的实际授权与即时重试失败，新后端复测待完成；真机 iPad 未验证。
+- [ ] 真机 iPhone 与 iPad，全新安装、新 Apple 账号，首次授权、延迟数分钟、后台/前台后成功登录。当前 iPhone 在位升级路径取消已通过；旧后端上的实际授权与即时重试失败；12:07 新鲜授权在新部署中仍失败并定位请求模式问题，最小补丁后复测待完成；真机 iPad 未验证。
 - [ ] 在审核对应系统（Issue 记录 iPadOS 27.2.1）验证完整路径。当前 iPhone 真实商品目录加载及新测试员 Sandbox 购买已通过，不等于审核设备或完整验收；Xcode 本地 `.storekit` 配置和注入测试也不能代替它。
 - [x] 当前 iPhone 在位升级安装环境下，审核账号 `appstore_review` 配正确团队新 Sandbox 测试员完成单次购买、有效会员显示、服务端持久账号绑定、有效权益恢复与在线应用冷启动重验证。10:45 购买、10:46 恢复及重验证通过；未变更手机主 Apple ID。
 - [ ] 将上述购买、绑定、恢复及冷启动重验证扩展到真机 iPad／全新安装场景；当前结果不代表这些环境，亦未测试整机重启或完整加速续订／最终到期周期。凭据只从受控信息取用。
 - [ ] 将离线应用冷启动与免费练习验证扩展到真机 iPad／全新安装场景。当前 iPhone 在位升级环境中，会话保持、网络超时后不退出、单题判分及进入下一题已通过；未测试整机重启或完整 18 题练习。
 - [x] 后续授权后部署对应后端，核实生产配置与现有表结构，无需迁移；正式域名 Challenge 已确认 1800 秒。该项不等于真机 Apple 登录通过。
+- [x] Workers 重定向兼容补丁已完成：两处使用 `manual`，新增 10 例回归，76 项 Apple 测试及全套 410 项测试通过；TypeScript、Vite 构建与 diff 检查通过。真实 workerd/Miniflare 验证拒绝重定向，详见上方范围说明。
+- [ ] 部署 Workers 重定向兼容补丁，并使用真实 Apple 授权复测；保持 3xx 拒绝策略，不改 iOS Build 6。
 - [x] 1.0.0 (6) 云签名上传成功，并于 11:23 在 TestFlight 独立确认处理完成、状态“准备提交”。该状态不是已重新提审或审核通过。
 - [x] ASC 原 Unresolved Issues 提交已独立确认包含三个项目：iOS 1.0.0 Build 5（Rejected）、PremiumMonthly（Ready for Review）、星芽会员订阅组（Ready for Review）。
 - [x] 11:25–11:26 在 ASC 版本页选择并保存 1.0.0 Build 6；仅解除旧 Build 5 的版本构建关联，原 submission 的三个项目均保留。
