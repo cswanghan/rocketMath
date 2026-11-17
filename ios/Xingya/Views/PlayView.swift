@@ -42,12 +42,9 @@ struct PlayView: View {
                         Text("口算").font(.subheadline.bold()).padding(9).background(Theme.leafSoft, in: .rect(cornerRadius: 10))
                         Text(L10n.text(model.track.name)).font(.subheadline).foregroundStyle(Theme.sub)
                         Spacer(minLength: 0)
-                        Button { if let fact { speech.speak(L10n.text(fact.prompt)) } } label: {
-                            Image(systemName: "speaker.wave.2").frame(width: 44, height: 44)
-                        }.buttonStyle(.plain).foregroundStyle(Theme.ink)
+                        ReadAloudButton(prompt: fact.map { L10n.text($0.prompt) })
                             .background(Theme.card, in: .rect(cornerRadius: 14))
                             .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(Theme.sky1))
-                            .accessibilityLabel(L10n.text("听一听"))
                     }
                     if let fact {
                         Spacer(minLength: 0)
@@ -80,9 +77,10 @@ struct PlayView: View {
             timeLock.tick(deltaMs: min(model.latencyGateMs, Int(Date().timeIntervalSince(start) * 1000)))
         }
         .automaticallyChecksAnswers(for: model)
+        .onChange(of: model.promptSeq) { _, _ in speech.cancel() }
         .onChange(of: timeLock.isLocked) { _, locked in
             input = ""
-            if locked { model.cancelPendingAnswer() }
+            if locked { speech.cancel(); model.cancelPendingAnswer() }
             else { model.resumePromptTiming() }
         }
         .onChange(of: scenePhase) { _, phase in

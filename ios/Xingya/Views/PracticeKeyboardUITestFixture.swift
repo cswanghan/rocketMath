@@ -16,6 +16,7 @@ enum PracticeKeyboardUITestFixture {
         case "steps": selection = [(7, "rmo_x1")]
         case "fraction": selection = [(5, "fas_c1")]
         case "time": selection = [(3, "time_conversion_c7")]
+        case "angles": selection = [(4, "ant_eb2"), (4, "ant_b1"), (4, "ant_c2")]
         default: return nil
         }
         do {
