@@ -1,14 +1,15 @@
 # 星芽 1.0.0 (6)：Issue #2 修复与审核说明草稿
 
-更新：2026-11-17（Asia/Shanghai）。**后端已获授权部署；尚未上传 iOS 构建、尚未重新提审。新后端的真机 Apple 登录复测待完成，本稿不是全部验收已通过的声明。**
+更新：2026-11-17（Asia/Shanghai）。**后端已获授权部署；1.0.0 (6) 已于 11:15:56 CST 云签名上传成功，11:23 在 TestFlight 确认处理完成、状态“准备提交”；11:25–11:26 已在 ASC 版本页选择并保存 Build 6 关联，尚未执行 Update Review 或重新提审。新后端的真机 Apple 登录复测正在进行，结果待确认，本稿不是全部验收已通过的声明。**
 
 ## 依据与源码
 
 - [Issue #2](https://github.com/cswanghan/rocketMath/issues/2)：1.0.0 (5) 于 11 月 16 日因 Guideline 2.1(a) Apple 登录错误、2.1(b) IAP “Item Unavailable” 再次被拒。
-- 已读取[最新评论](https://github.com/cswanghan/rocketMath/issues/2#issuecomment-6934156190)。评论记录 11 月 17 日 ASC 只读检查：协议有效，银行/税务无待办，月订在 175 个地区（含美国）可用、US $2.99/月，状态为 Ready for Review；当前不在任何提交中。这是评论中的检查结果，不是本次重新访问 ASC 的结果，也不等于商品已批准或 Sandbox 实测通过。
+- 已读取[最新评论](https://github.com/cswanghan/rocketMath/issues/2#issuecomment-6934156190)。评论记录 11 月 17 日 ASC 只读检查：协议有效，银行/税务无待办，月订在 175 个地区（含美国）可用、US $2.99/月，状态为 Ready for Review；评论当时记录“不在任何提交中”。这是评论中的历史检查结果；本轮后续 ASC 界面已独立确认原 Unresolved Issues 提交含 App 版本、月订与订阅组三个项目，详见后文。上述状态不等于商品已批准或 Sandbox 实测通过。
 - 本地实际实现为原生 SwiftUI / AuthenticationServices / StoreKit 2，后端为 Cloudflare Pages Functions，不是远端 Capacitor 壳。源码已先以 `75acdc9` 独立保存，包含此前未提交的本地修改。依赖、缓存、凭据、归档、测试结果包与临时日志未纳入提交，原本地文件保留。审核草稿中的密码已脱敏。
 - 起始 Xcode 项目版本仍为 build 3，本仓库本地归档也不能证明与审核中的 build 5 二进制完全一致。因此以下根因是对**本地最新源码**确认的问题，未把它描述成对 Apple 审核环境的现场复现。修复后 App Debug/Release 构建号均为 **6**，版本保持 1.0.0。
 - 现有练习引擎修改仅保留在源码恢复提交中；Issue #2 修复不改练习引擎。
+- 用户明确本次仅对数学版重新提审；原生三科接入留待后续，不把已保留的三科 Web 产物描述成本次 iOS 版本功能。
 
 ## 已定位的问题与源码修复
 
@@ -105,7 +106,7 @@ xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
 
 ### 后端生产部署（截至 2026-11-17 10:56 已完成核验）
 
-用户后续已授权部署、上传和重新提审，覆盖此前禁止发布的限制。本阶段实际只完成 Cloudflare Pages 后端及 Web 产物部署，尚未上传 iOS 构建或提交 App Review。
+用户后续已授权部署、上传和重新提审，覆盖此前禁止发布的限制。截至本节 10:56 的阶段已完成 Cloudflare Pages 后端及 Web 产物部署；后续 iOS 上传事实另列于下方，尚未重新提交 App Review。
 
 - 生产项目：`rocket-math`；正式域名：[rocket-math-4kg.pages.dev](https://rocket-math-4kg.pages.dev)。部署 ID：`77e70a93-a95e-4372-aa00-37591320c63a`；[不可变部署地址](https://77e70a93.rocket-math-4kg.pages.dev)。
 - 源码：分支 `fix/2-apple-signin-iap`，完整 SHA `b0395c835dcc5d9f8909e273804e19fd25752565`，部署时工作树干净。生产部署的分支元数据为 `main`，不代表执行了 Git 合并；本阶段没有 Git 提交或合并。
@@ -113,6 +114,14 @@ xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
 - 正式域名健康检查：主页、语文识字页、语文阅读页、词汇页及英语练习资源均 **HTTP 200**；未登录的 `/api/auth/me` 正常返回 **401**。三科 Web 产物保留。
 - 无凭据 `/api/auth/apple-challenge` 探测返回 **HTTP 200，TTL 1800 秒**，确认本次后端窗口变更已生效。未输出 Challenge ID、nonce 或秘密。
 - 分类诊断实现已经部署；接下来仅以固定 `stage`、`reason`、HTTP 状态和白名单 OAuth 类别观测，不输出请求头、凭据或原始日志。**新后端尚待真机 Apple 授权复测，不能由健康检查推断登录已成功。**
+
+### iOS 构建上传与审核准备（截至 2026-11-17 11:29）
+
+- 本次范围仅为数学版 **1.0.0 (6)**；三科接入后续处理。
+- **11:15:56 CST：云签名构建上传成功。** Delivery/build UUID：`7e4a66da-3bf8-4b33-99d9-560f92ebec18`。
+- **11:23：ASC TestFlight 界面独立确认构建 6 为“准备提交”，处理完成。** 这不等于已安装 TestFlight 包、重新提审或审核通过；此前真机测试仍使用开发签名在位升级安装。
+- ASC 原 Unresolved Issues 提交已完整包含 iOS 1.0.0 Build 5（Rejected）、PremiumMonthly（Ready for Review）与星芽会员订阅组（Ready for Review）。**11:25–11:26：已在 ASC 版本页选择 1.0.0 Build 6 并保存；Build 5 仅从版本所选构建中解除关联，原 submission 的三个项目均未移除。** 审核说明待新后端 Apple 登录结果定稿，尚未点击 Update Review 或 Resubmit；后续继续更新原提交，无需移除或重建。**当前尚未重新提审。**
+- 新后端真机 Apple 授权于 **11:22** 收到 Challenge HTTP 200；截至 **11:29** 仍停留在系统首次姓名／邮箱授权 sheet，尚未点“继续”，后端尚无 Apple 登录 POST。**尚未完成授权或验证，不是登录成功或失败结果，也不构成延迟回调通过证据。** 已有 Sandbox 购买、绑定、恢复、在线重验证与离线保持事实保持其原有范围。
 
 本地真机记录与截图保存在 `/tmp/rocketmath-issue2-device/`，包括 `offline-login-preserved.png`、`offline-practice-answered.png`、`sandbox-purchase-bound.png` 和 `sandbox-restored.png`，未加入 Git；本文不包含私人设备标识或凭据。**当前 iPhone 的新 Sandbox 测试员购买、账号绑定、有效权益恢复与在线应用冷启动重验证已有成功证据；此前 Apple 登录在旧后端上失败，新后端复测、延迟／前后台授权、真机 iPad 与全新安装等仍待验收，不能声明完整修复或全部端到端验收通过。**
 
@@ -124,7 +133,10 @@ xcodebuild -project ios/Xingya.xcodeproj -scheme Xingya -configuration Release \
 - [ ] 将上述购买、绑定、恢复及冷启动重验证扩展到真机 iPad／全新安装场景；当前结果不代表这些环境，亦未测试整机重启或完整加速续订／最终到期周期。凭据只从受控信息取用。
 - [ ] 将离线应用冷启动与免费练习验证扩展到真机 iPad／全新安装场景。当前 iPhone 在位升级环境中，会话保持、网络超时后不退出、单题判分及进入下一题已通过；未测试整机重启或完整 18 题练习。
 - [x] 后续授权后部署对应后端，核实生产配置与现有表结构，无需迁移；正式域名 Challenge 已确认 1800 秒。该项不等于真机 Apple 登录通过。
-- [ ] 后续重新确认 ASC 协议/税务/银行/美国 storefront，以及订阅状态，并将订阅与 build 6 同时加入新提交；本次未进行此操作。
+- [x] 1.0.0 (6) 云签名上传成功，并于 11:23 在 TestFlight 独立确认处理完成、状态“准备提交”。该状态不是已重新提审或审核通过。
+- [x] ASC 原 Unresolved Issues 提交已独立确认包含三个项目：iOS 1.0.0 Build 5（Rejected）、PremiumMonthly（Ready for Review）、星芽会员订阅组（Ready for Review）。
+- [x] 11:25–11:26 在 ASC 版本页选择并保存 1.0.0 Build 6；仅解除旧 Build 5 的版本构建关联，原 submission 的三个项目均保留。
+- [ ] 更新最终审核说明并执行 Update Review，核对三项目及所选 Build 6 后再 Resubmit；尚未执行 Update Review 或重新提审。实际提交时核实协议/税务/银行、商品地区可用性及 App 合规声明的当前状态，不移除重建现有提交。
 
 ## 审核路径草稿
 
