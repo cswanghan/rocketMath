@@ -48,7 +48,7 @@ export function ChineseCharacters({ onBack }: Props) {
         <button className="portal-card portal-read" onClick={() => setMode('reading')}>
           <span className="portal-icon">📄</span>
           <span className="portal-label">阅读识字</span>
-          <span className="portal-desc">粘贴文章 · 提取生字</span>
+          <span className="portal-desc">原创短文 · 阅读理解 · 识字</span>
         </button>
       </div>
     </div>

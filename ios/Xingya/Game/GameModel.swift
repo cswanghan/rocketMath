@@ -11,6 +11,14 @@ import Observation
 @Observable
 final class GameModel {
 
+    struct PendingAnswer: Equatable, Sendable {
+        let id = UUID()
+        let value: Int
+        let factId: String
+        let promptSeq: Int
+        let editedAt: Date
+    }
+
     enum ViewState: Equatable {
         case loading
         case prompt(fact: Fact, isRetest: Bool)
@@ -31,6 +39,8 @@ final class GameModel {
     private(set) var totalXP = 0
     /// 最近一次答对获得的经验，用于「+N」浮标动画；每次出新题清零
     private(set) var lastGainXP = 0
+    /// An edit is captured once; the UI debounce must never change its reaction time.
+    private(set) var pendingAnswer: PendingAnswer?
 
     var levelInfo: LevelInfo { levelFromXp(totalXP) }
     var isRace: Bool { trackState?.race != nil }
@@ -43,7 +53,8 @@ final class GameModel {
     private let storage: any StorageAdapter
     private let studentId: String
     private let context: EngineContext
-    private var promptStartedAt = Date()
+    private let now: () -> Date
+    private var promptStartedAt: Date
     private var pendingAction: Action?
     /// 本会话已记入错题本的 fact（每个 fact 只记一次）
     private var missedFacts: Set<String> = []
@@ -53,11 +64,14 @@ final class GameModel {
         pack: ContentPack,
         storage: any StorageAdapter,
         studentId: String,
-        seed: UInt32 = UInt32.random(in: 0...UInt32.max)
+        seed: UInt32 = UInt32.random(in: 0...UInt32.max),
+        now: @escaping () -> Date = { Date() }
     ) throws {
         self.pack = pack
         self.storage = storage
         self.studentId = studentId
+        self.now = now
+        self.promptStartedAt = now()
         self.track = try pack.track(trackId)
         self.mastery = pack.engineConfig.mastery
 
@@ -68,7 +82,7 @@ final class GameModel {
         self.context = EngineContext(
             pack: pack,
             latencyGateMs: gate,
-            now: { Int(Date().timeIntervalSince1970 * 1000) },
+            now: { Int(now().timeIntervalSince1970 * 1000) },
             rng: Mulberry32(seed: seed)
         )
 
@@ -82,21 +96,69 @@ final class GameModel {
 
     func submit(_ value: Int) {
         guard case .prompt(let fact, _) = viewState else { return }
+        cancelPendingAnswer()
         dispatch(.answer(factId: fact.id, value: value, elapsedMs: elapsedMs()))
+    }
+
+    var promptRemainingMs: Int { max(0, latencyGateMs - elapsedMs()) }
+
+    /// Called only for an actual keypad edit, never when the view clears an old answer.
+    func queueAutomaticAnswer(_ input: String) {
+        guard case .prompt(let fact, _) = viewState else { cancelPendingAnswer(); return }
+        if finishRaceIfNeeded() { return }
+        if !isRace && elapsedMs() > latencyGateMs { timeoutMiss(); return }
+        guard let value = IntegerAnswerInput.value(of: input) else { cancelPendingAnswer(); return }
+        pendingAnswer = PendingAnswer(value: value, factId: fact.id, promptSeq: promptSeq, editedAt: now())
+    }
+
+    func cancelPendingAnswer() { pendingAnswer = nil }
+
+    /// A background interruption does not spend a child's fluency response gate.
+    /// Race still uses its absolute deadline and is never paused here.
+    func resumePromptTiming() {
+        cancelPendingAnswer()
+        guard !isRace, case .prompt = viewState else { return }
+        promptStartedAt = now()
+    }
+
+    func submitAutomaticAnswer(_ answer: PendingAnswer) {
+        guard pendingAnswer == answer, answer.promptSeq == promptSeq,
+              case .prompt(let fact, _) = viewState, fact.id == answer.factId else { return }
+        cancelPendingAnswer() // Consume before dispatch: deadline and debounce cannot both submit.
+        let enteredAtMs = Int(answer.editedAt.timeIntervalSince1970 * 1000)
+        if let race = trackState?.race, enteredAtMs >= race.endsAt {
+            _ = finishRaceIfNeeded()
+            return
+        }
+        dispatch(.answer(factId: fact.id, value: answer.value, elapsedMs: elapsedMs(at: answer.editedAt)),
+                 answeredAt: answer.editedAt)
+        _ = finishRaceIfNeeded() // Real race deadline is never extended by the debounce.
+    }
+
+    /// The race timer and input share one pending answer, including at its final tick.
+    @discardableResult
+    func finishRaceIfNeeded() -> Bool {
+        guard let race = trackState?.race, context.now() >= race.endsAt else { return false }
+        if let answer = pendingAnswer { submitAutomaticAnswer(answer) }
+        if trackState?.race != nil { dispatch(.next) }
+        return true
     }
 
     /// 倒计时归零：按超时记一次失误（value 用一个必然错的哨兵值，elapsed 超过门）
     func timeoutMiss() {
+        if let answer = pendingAnswer { submitAutomaticAnswer(answer) }
         guard case .prompt(let fact, _) = viewState else { return }
+        cancelPendingAnswer()
         dispatch(.answer(factId: fact.id, value: Int.min, elapsedMs: latencyGateMs + 1))
     }
 
     func next() {
+        cancelPendingAnswer()
         if let action = pendingAction {
             pendingAction = nil
             viewState = Self.viewState(for: action, pendingRetest: trackState?.pendingRetest)
             if case .prompt = action {
-                promptStartedAt = Date()
+                promptStartedAt = now()
                 promptSeq += 1
             }
             return
@@ -105,19 +167,27 @@ final class GameModel {
     }
 
     func startRace(durationMs: Int) {
+        cancelPendingAnswer()
         dispatch(.startRace(durationMs: durationMs))
     }
 
     // ----- 内部 --------------------------------------------------------------
 
-    private func elapsedMs() -> Int {
-        max(0, Int(Date().timeIntervalSince(promptStartedAt) * 1000))
+    private func elapsedMs(at date: Date? = nil) -> Int {
+        max(0, Int((date ?? now()).timeIntervalSince(promptStartedAt) * 1000))
     }
 
-    private func dispatch(_ event: Event) {
+    private func dispatch(_ event: Event, answeredAt: Date? = nil) {
         guard let previous = trackState else { return }
         do {
-            let result = try Engine.step(previous, event, context)
+            // Only this answer uses its last-edit time. The next prompt, race
+            // countdown and all later actions continue to use the real clock.
+            let answerContext = answeredAt.map { date in
+                EngineContext(pack: pack, latencyGateMs: latencyGateMs,
+                              now: { Int(date.timeIntervalSince1970 * 1000) }, rng: context.rng)
+            } ?? context
+            let result = try Engine.step(previous, event, answerContext)
+            cancelPendingAnswer()
             // Persist the real answer once, but hold the next engine action until Continue.
             // Race retains its existing uninterrupted timed flow.
             if case .answer(let id, let value, _) = event, previous.race == nil,
@@ -131,6 +201,7 @@ final class GameModel {
                 apply(result, previous: previous, event: event)
             }
         } catch {
+            cancelPendingAnswer()
             viewState = .failed("\(error)")
         }
     }
@@ -139,7 +210,7 @@ final class GameModel {
         trackState = result.state
         viewState = Self.viewState(for: result.action, pendingRetest: result.state.pendingRetest)
         if case .prompt = result.action {
-            promptStartedAt = Date()
+            promptStartedAt = now()
             promptSeq += 1
             lastGainXP = 0
         }

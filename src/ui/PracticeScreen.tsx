@@ -34,9 +34,10 @@ interface Props {
   studentId: string;
   seed: number;
   onExit: () => void;
+  exitLabel?: string;
 }
 
-export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit }: Props) {
+export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit, exitLabel = '回知识地图' }: Props) {
   const game = usePractice(setId, practicePack, adapter, studentId, seed);
   const title = useMemo(() => getSetFromPack(practicePack, setId)?.title ?? '练习', [practicePack, setId]);
   const { view } = game;
@@ -67,6 +68,7 @@ export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, 
       if (e.key !== 'Enter') return;
       if (view.mode === 'present' || view.mode === 'wrong') submit();
       else if (view.mode === 'correct' || view.mode === 'reveal') game.next();
+      else if (view.mode === 'retry') game.retry();
       else if (view.mode === 'complete') onExit();
     }
     window.addEventListener('keydown', onKey);
@@ -107,12 +109,12 @@ export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, 
         />
       )}
 
-      {(view.mode === 'correct' || view.mode === 'reveal') && (
+      {(view.mode === 'correct' || view.mode === 'reveal' || view.mode === 'retry') && (
         <>
           <div className="stage">
             <Prompt problem={view.problem} />
           </div>
-          <FeedbackBar view={view} onNext={game.next} />
+          <FeedbackBar view={view} onNext={view.mode === 'retry' ? game.retry : game.next} />
         </>
       )}
 
@@ -124,7 +126,7 @@ export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, 
               一次答对 <b>{view.firstTryCorrect}</b> / {view.total}
             </div>
             <button className="primary" onClick={onExit}>
-              回知识地图
+              {exitLabel}
             </button>
           </div>
         </div>
@@ -162,10 +164,10 @@ function ProblemView({
         <>
           <input
             className="fill-input"
-            inputMode="numeric"
+            inputMode="text"
             autoFocus
             value={val}
-            onChange={(e) => setVal(e.target.value.replace(/[^\d]/g, '').slice(0, 6))}
+            onChange={(e) => setVal(e.target.value.slice(0, 24))}
             placeholder="?"
           />
           <button className="primary" onClick={onSubmit}>
@@ -251,10 +253,11 @@ function FeedbackBar({
   view,
   onNext,
 }: {
-  view: Extract<PView, { mode: 'correct' } | { mode: 'reveal' }>;
+  view: Extract<PView, { mode: 'correct' } | { mode: 'reveal' } | { mode: 'retry' }>;
   onNext: () => void;
 }) {
   const correct = view.mode === 'correct';
+  const retry = view.mode === 'retry';
   const p = view.problem;
   const firstTry = view.mode === 'correct' && view.firstTry;
   const xp = correct ? xpForCorrect(p.difficulty, firstTry) : 0;
@@ -268,15 +271,16 @@ function FeedbackBar({
               <StarBurst />
               <span className="xp-pop">+{xp} ⭐{firstTry ? ' 翻倍' : ''}</span>
             </div>
+            {p.explanation && <div className="fb-hint">{p.explanation}</div>}
           </div>
         ) : (
           <div className="fb-text">
-            <div className="fb-title">正确答案:{correctText(p)}</div>
+            <div className="fb-title">{retry ? '这次选错了' : '正确答案：' + correctText(p)}</div>
             {p.explanation && <div className="fb-hint">{p.explanation}</div>}
           </div>
         )}
         <button className="primary fb-next" onClick={onNext}>
-          继续
+          {retry ? '再试一次' : '继续'}
         </button>
       </div>
     </div>

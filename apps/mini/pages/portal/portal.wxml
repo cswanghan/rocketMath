@@ -49,7 +49,7 @@
   <view class="pcard subject-card subject-english" data-subject="english" bindtap="onSubject" hover-class="pcard--pressed">
     <text class="pill pill-lavender">学科</text>
     <text class="card-label">英语</text>
-    <text class="card-desc">KET · PET 背单词</text>
+    <text class="card-desc">词汇 · 阅读 · 语法</text>
     <text class="subject-emoji">🔤</text>
   </view>
 

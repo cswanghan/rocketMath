@@ -79,6 +79,7 @@ Page({
     this.adapter = createDefaultAdapter();
     this.missed = {}; // 同一题只进一次错题本
     this.sessionXp = 0;
+    this.choiceFeedbackOpen = false;
     this.best = 0;
     wx.setNavigationBarTitle({ title: set.title });
 
@@ -97,11 +98,20 @@ Page({
   // ---- 派发 ------------------------------------------------------------------
 
   dispatch(event) {
-    if (!this.game) return;
+    if (!this.game || this.game.state.status === 'complete') return;
+    const current = this.game.action;
+    // setData can render later; the engine action and this flag change now.
+    // Guard queued taps here so XP, attempts and NEXT are consumed only once.
+    if (event.type === 'ANSWER') {
+      if (this.choiceFeedbackOpen || (current.kind !== 'PRESENT' && current.kind !== 'WRONG')) return;
+      if (current.problem.type === 'mc' && (event.response.kind !== 'choice' ||
+          !(current.problem.choices || []).some((c) => c.id === event.response.choiceId))) return;
+    } else if (current.kind !== 'CORRECT' && current.kind !== 'REVEAL') return;
     const elapsedMs = this.ctx.now() - this.presentedAt;
     const res = practiceStep(this.game.state, event, this.ctx);
     this.game = res;
     const act = res.action;
+    this.choiceFeedbackOpen = act.kind === 'WRONG' && act.problem.type === 'mc';
 
     if (event.type === 'ANSWER') {
       const ci = recordCheckIn(this.studentId);
@@ -232,7 +242,11 @@ Page({
         fieldValues: {},
       });
     } else if (act.kind === 'WRONG') {
-      Object.assign(patch, { mode: 'wrong', showHint: !!p.hint, val: '', fieldValues: {} });
+      Object.assign(patch, {
+        mode: this.choiceFeedbackOpen ? 'retry' : 'wrong',
+        showHint: !this.choiceFeedbackOpen && !!p.hint,
+        explanation: p.explanation || '', val: '', fieldValues: {},
+      });
     } else if (act.kind === 'CORRECT') {
       Object.assign(patch, {
         mode: 'correct',
@@ -279,6 +293,12 @@ Page({
     } else if (this.data.type === 'steps') {
       this.dispatch({ type: 'ANSWER', response: { kind: 'fields', values: this.data.fieldValues } });
     }
+  },
+
+  onRetry() {
+    if (!this.choiceFeedbackOpen || !this.game || this.game.action.kind !== 'WRONG' || this.game.action.problem.type !== 'mc') return;
+    this.choiceFeedbackOpen = false;
+    this.render();
   },
 
   onNext() {

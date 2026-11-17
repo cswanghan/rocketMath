@@ -34,11 +34,15 @@ final class CurriculumLocalizationUITests: XCTestCase {
         for choice in choices.allElementsBoundByIndex { assertEnglish(choice.label) }
         // All clock questions have the correct answer at ID a; b is a distractor.
         app.buttons["practice-choice-b"].tap()
-        let submit = app.buttons["practice-submit"]
-        reveal(submit, app: app); submit.tap()
+        XCTAssertFalse(app.buttons["practice-submit"].exists)
         XCTAssertTrue(app.descendants(matching: .any)["practice-incorrect"].firstMatch.waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["practice-explanation"].exists)
+        XCTAssertFalse(app.buttons["practice-choice-b"].isEnabled)
         for text in app.staticTexts.allElementsBoundByIndex { assertEnglish(text.label) }
-        reveal(submit, app: app); submit.tap()
+        let retry = app.buttons["practice-retry"]
+        reveal(retry, app: app); retry.tap()
+        let wrong = app.buttons["practice-choice-b"]
+        reveal(wrong, app: app); wrong.tap()
         XCTAssertTrue(app.buttons["practice-continue"].waitForExistence(timeout: 5))
         for text in app.staticTexts.allElementsBoundByIndex { assertEnglish(text.label) }
         app.buttons["practice-continue"].tap()

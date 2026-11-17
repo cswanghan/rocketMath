@@ -1,10 +1,8 @@
 // 阅读识字 —— 对应 Web 端 public/chinese-reading.html。
-// 粘一段课文进来, 按年级字表把「该会的字」挑出来标亮, 点开逐字过。
+// 粘一段课文进来, 按参考字表挑出练习字，也可选择原创分级短文, 点开逐字过。
 //
 // 相对 Web 端的取舍:
-//   · 没有拼音注音: Web 用 cnchar(CDN) 给任意字注音, 小程序加载不了远程脚本,
-//     内置 63 字的拼音表覆盖不了整篇课文, 与其给一半不如不给。P1 可以打一份
-//     常用字拼音表进分包再补上。
+//   · 不对任意文章自动注音；原创短文的字卡使用按出现位置审校的词语读音。
 //   · 没有笔顺动画/临摹: hanzi-writer 同理, 换成田字格静态大字。
 //   · 「已掌握」只存本地: Web 端也是 localStorage, 没有后端表, 保持一致。
 
@@ -14,6 +12,7 @@ const track = require('../../../../utils/track.js');
 const speech = require('../../../../utils/speech.js');
 
 const GRADE_CHARS = DATA.GRADE_CHARS;
+const READING_LIBRARY = DATA.READING_LIBRARY || { passages: [] };
 const GRADES = [1, 2, 3, 4, 5, 6];
 const DEFAULT_GRADE = 3;
 // 正文上限。超过这个长度逐字渲染会明显掉帧, 而一篇小学课文远到不了
@@ -40,6 +39,9 @@ Page({
     charCount: 0,
     canStart: false,
     speechOn: false,
+    library: [],
+    passageTitle: '',
+    readingQuestions: [],
 
     // 阅读视图
     statsText: '',
@@ -54,7 +56,9 @@ Page({
     loadMastered(this.studentId).forEach((c) => (this.mastered[c] = true));
     this.found = [];
     this.article = '';
-    this.setData({ speechOn: speech.available(), grades: this.gradeVM(DEFAULT_GRADE) });
+    this.selectedPassage = null;
+    this.readingAnswers = {};
+    this.setData({ speechOn: speech.available(), grades: this.gradeVM(DEFAULT_GRADE), library: this.libraryVM(DEFAULT_GRADE) });
   },
 
   onUnload() {
@@ -67,7 +71,7 @@ Page({
 
   onPickGrade(e) {
     const g = Number(e.currentTarget.dataset.g);
-    this.setData({ grade: g, grades: this.gradeVM(g) });
+    this.setData({ grade: g, grades: this.gradeVM(g), library: this.libraryVM(g) });
     if (this.data.view === 'reading') this.analyze();
   },
 
@@ -80,16 +84,63 @@ Page({
   onTextInput(e) {
     const v = e.detail.value;
     this.article = v;
+    this.selectedPassage = null;
+    this.readingAnswers = {};
+    this.setData({ passageTitle: '', readingQuestions: [] });
     const len = v.replace(/\s/g, '').length;
     this.setData({ charCount: len, canStart: len > 0 });
   },
 
   onClearText() {
     this.article = '';
+    this.selectedPassage = null;
+    this.readingAnswers = {};
+    this.setData({ passageTitle: '', readingQuestions: [] });
     this.setData({ text: '', charCount: 0, canStart: false });
   },
 
-  /** 目标字集合: 本年级 or 一到本年级累计。 */
+  libraryVM(grade) {
+    return READING_LIBRARY.passages.filter((p) => p.grade === grade).map((p) => ({ id: p.id, title: p.title, count: p.questions.length }));
+  },
+
+  onChoosePassage(e) {
+    const p = READING_LIBRARY.passages.find((entry) => entry.id === e.currentTarget.dataset.id);
+    if (!p) return;
+    this.selectedPassage = p;
+    this.readingAnswers = {};
+    this.article = p.text;
+    this.setData({ text: p.text, charCount: p.text.replace(/\s/g, '').length, canStart: true });
+    this.onStart();
+  },
+
+  renderReadingQuestions() {
+    const p = this.selectedPassage;
+    this.setData({
+      passageTitle: p ? p.title : '',
+      readingQuestions: p ? p.questions.map((q) => {
+        const answer = this.readingAnswers[q.id];
+        const correct = q.choices.find((c) => c.id === q.answer);
+        return {
+          id: q.id, prompt: q.prompt, answered: !!answer,
+          choices: q.choices.map((c) => ({ id: c.id, label: c.label,
+            state: answer ? (c.id === q.answer ? 'correct' : c.id === answer ? 'wrong' : '') : '' })),
+          feedback: answer ? (answer === q.answer ? '答对了。' : '正确答案：' + correct.label + '。') + ' ' + q.explanation + ' 原文依据：“' + q.evidence + '”。' : '',
+        };
+      }) : [],
+    });
+  },
+
+  onReadingAnswer(e) {
+    const id = e.currentTarget.dataset.qid;
+    const choice = e.currentTarget.dataset.choice;
+    if (!this.selectedPassage || this.readingAnswers[id]) return;
+    const q = this.selectedPassage.questions.find((item) => item.id === id);
+    if (!q || !q.choices.some((c) => c.id === choice)) return;
+    this.readingAnswers[id] = choice;
+    this.renderReadingQuestions();
+  },
+
+  /** 目标字集合: 本年级参考表 or 一到本年级累计。 */
   targetSet() {
     let chars = '';
     if (this.data.scope === 'current') {
@@ -109,6 +160,8 @@ Page({
       wx.showToast({ title: `太长啦，请控制在 ${MAX_TEXT} 字以内`, icon: 'none' });
       return;
     }
+    if (this.selectedPassage && this.selectedPassage.text !== text) this.selectedPassage = null;
+    this.renderReadingQuestions();
     this.analyze();
     this.setData({ view: 'reading' });
     track.track('reading_generate', {
@@ -130,6 +183,12 @@ Page({
     const order = [];
     const segments = [];
     let buf = '';
+    const readings = this.selectedPassage && this.selectedPassage.text === text
+      ? (this.selectedPassage.readings || []) : [];
+    this.readingsByIndex = {};
+    readings.forEach((r) => {
+      if (text[r.index] === r.char) this.readingsByIndex[r.index] = r;
+    });
 
     for (let i = 0; i < text.length; i += 1) {
       const ch = text[i];
@@ -143,7 +202,7 @@ Page({
           order.push(ch);
         }
         counts[ch] += 1;
-        segments.push({ hit: true, s: ch, c: ch, mastered: !!this.mastered[ch] });
+        segments.push({ hit: true, s: ch, c: ch, index: i, mastered: !!this.mastered[ch] });
       } else {
         buf += ch;
       }
@@ -151,7 +210,7 @@ Page({
     if (buf) segments.push({ hit: false, s: buf, c: '', mastered: false });
 
     this.found = order
-      .map((c) => ({ char: c, count: counts[c] }))
+      .map((c) => ({ char: c, count: counts[c], readings: readings.filter((r) => r.char === c) }))
       .sort((a, b) => b.count - a.count);
 
     this.renderReading(segments);
@@ -164,7 +223,7 @@ Page({
     this.setData({
       segments: segments || this.data.segments,
       statsText:
-        `全文 ${total} 字，含 ${this.found.length} 个${scopeLabel}生字` +
+        `全文 ${total} 字，含 ${this.found.length} 个${scopeLabel}参考字` +
         (masteredCount ? `，已掌握 ${masteredCount} 个` : ''),
       chips: this.found.map((f) => ({
         char: f.char,
@@ -177,7 +236,7 @@ Page({
   /** 只刷新掌握态, 不重扫正文。 */
   refreshMasteredFlags() {
     const segments = this.data.segments.map((s) =>
-      s.hit ? { hit: true, s: s.s, c: s.c, mastered: !!this.mastered[s.c] } : s,
+      s.hit ? Object.assign({}, s, { mastered: !!this.mastered[s.c] }) : s,
     );
     this.renderReading(segments);
   },
@@ -187,15 +246,20 @@ Page({
     if (!ch) return;
     const info = this.found.filter((f) => f.char === ch)[0];
     if (!info) return;
+    const occurrence = this.readingsByIndex[e.currentTarget.dataset.index];
+    const readings = occurrence && occurrence.char === ch ? [occurrence] : (info.readings || []);
+    const pinyin = [...new Set(readings.map((r) => r.pinyin))].join(' / ');
+    const context = [...new Set(readings.map((r) => r.word + '：' + r.pinyin))].join('；');
+    const speechText = readings.length ? [...new Set(readings.map((r) => r.word))].join('，') : ch;
     this.setData({
-      detail: { char: ch, count: info.count, mastered: !!this.mastered[ch] },
+      detail: { char: ch, count: info.count, mastered: !!this.mastered[ch], pinyin, context, speechText },
     });
-    speech.speak(ch);
+    speech.speak(speechText);
     track.track('char_view', { char: ch, source: 'reading' });
   },
 
   onSpeakDetail() {
-    if (this.data.detail) speech.speak(this.data.detail.char);
+    if (this.data.detail) speech.speak(this.data.detail.speechText);
   },
 
   onToggleMastered() {

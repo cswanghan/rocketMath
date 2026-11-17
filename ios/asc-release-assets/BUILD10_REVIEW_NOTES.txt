@@ -1,0 +1,25 @@
+Xingya 1.0.0 (10) - mathematics-only iOS release
+
+Build 10 is selected for this version and was installed through TestFlight for device checks. Builds 8 and 9 were superseded before submission.
+
+Choices check on tap with feedback/explanation. Wrong choices lock until Try again; repeated taps add no attempts. Correct/revealed answers retain Continue. Oral math and Race check after a 1-second editing pause. Digit/delete/sign changes restart it; blank/lone minus never submits. Reaction time uses the last edit; pre-deadline input is checked before timeout. Backgrounding/leaving cancels pending input; race time stays absolute. Fill-in/steps retain Check. Calibration, core engine, scoring and mastery rules are unchanged.
+
+Grades 3-9 contain 2,056 oral-math questions with existing IDs/progress structure preserved, Grade 4 answer variety, signed input and an added Grade 7 rational multiplication/division entry. Mathematics supports Chinese and English. Web Chinese/English subject modules are not native iOS features.
+
+Review paths:
+1. Choose a grade; complete warm-up if shown. Free practice and local reports work offline without an account/subscription. Enter the whole oral-math answer and pause 1 second. Use Try again or Continue to acknowledge feedback where shown.
+2. Me > Account > Sign in / Create account > Continue with Apple. Alternative credentials are in App Review Information, not repeated here.
+3. After sign-in: Me > Account > Monthly membership. Product com.hanwang.xingya.premium.monthly. StoreKit supplies name/price; empty/transient catalogs retry with backoff. Reopen Account or tap Retry if unavailable.
+4. Sandbox purchase becomes active after server verification. Restore with the original Xingya account. Authorization/purchase/restore cancellation returns silently. A secondary refresh error does not undo confirmed entitlement binding.
+5. Account > Sync now and Me > Parent > remote AI summary need active membership/server access. Local analysis is free. Manage subscriptions, renewal terms, privacy and Apple Standard EULA are available. Account deletion does not cancel the Apple subscription.
+6. Grade 7 > Home > More fluency practice > rational multiplication/division > Fluency or Race. The sign key supports negatives across the track.
+
+Build 10 simulator checks: iPhone 17 Pro/iOS26.5 passed 117 unit + 6 UI tests; iPad Air 11-inch (M4)/iOS26.5 passed 117 unit + 4 UI. Both were 1.0.0(10). Auto-check, edits, cancellation, deadline order and Chinese/English oral-math/race UI passed. These are not device/Sandbox results.
+
+Build 10 device checks on iPhone 16 Pro Max/iOS27.3: TestFlight update and launch were directly observed. For 600000, a wrong choice immediately showed explanation and locked options; Try again then the correct choice succeeded immediately. Typing 16 for 7 ten-thousands + 9 ten-thousands auto-checked correctly on retest, after two normal timeouts during inspection; records were not reset. A lone minus remained unsubmitted for about 10 seconds. In a one-minute race, editing -28 to -27 for (-3)x9 and entering -28 for (-4)x7 both auto-scored. The timer finished at 2 questions/minute. Last-millisecond deadline races were not device-tested.
+
+Historical only: Build 8 retained Apple sign-in and loaded the US$2.99 catalog. Development-signed Build 6 observed real Apple sign-in, one Sandbox purchase/binding, same-account restore, cold-start entitlement revalidation, cancellation and offline sign-in retention. None are repeated Build 10 passes.
+
+Still unverified on Build 10: fresh Apple authorization, purchase/restore, cancellation, offline cold launch, fresh installation, physical iPad, first-time Apple consent, delayed/background authorization, device reboot, full Sandbox renewal/expiry and complete record migration.
+
+Availability: 174 countries or regions, excluding mainland China.

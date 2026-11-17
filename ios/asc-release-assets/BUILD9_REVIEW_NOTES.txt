@@ -1,0 +1,27 @@
+Xingya 1.0.0 (9) — mathematics-only iOS release
+
+Historical draft, superseded before submission by Build 10. Build 9 archive, upload and processing succeeded; the user confirmed installation. Full device acceptance was not completed; these notes were not submitted.
+
+Tapping an option now checks the answer and shows feedback and explanation immediately. A wrong choice stays visible and choices lock until Try again; repeated taps do not consume extra attempts. Correct/revealed answers retain Continue. Fill-in and multi-step answers still use Check. Scoring and mastery thresholds are unchanged.
+
+Grades 3–9 contain 2,056 oral-math questions, preserving existing IDs and progress structure. This includes Grade 4 answer variety, signed input, and Grade 7 rational multiplication/division under More fluency practice. Mathematics supports Chinese and English. The separate Web Chinese/English subject modules are not native iOS features.
+
+Build 6 sign-in/subscription fixes remain: fresh authorization, retained pending state, silent cancellation and verified tokens. Empty/transient StoreKit catalogs retry with backoff; reopening Account reloads, with localized Retry. A secondary refresh failure does not undo confirmed entitlement binding.
+
+Review paths:
+1. Select a grade; complete the warm-up if shown. Practice and on-device reports are free, work offline and require no account. Tap a choice to see feedback; use Try again after a first error or Continue after a correct/revealed answer.
+2. Me → Account → Sign in / Create account → Continue with Apple. Alternatively use the credentials supplied in App Review Information; no password is repeated here.
+3. Sign in, then Me → Account → Monthly membership. Product: com.hanwang.xingya.premium.monthly. Name and price come from StoreKit. Retry or revisit Account if unavailable.
+4. After a Sandbox purchase, active membership follows server verification. Restore using the original Xingya account. Canceling purchase or restore authentication should return silently.
+5. Account → Sync now and Me → Parent → remote AI summary require active membership and server access. Local analysis stays free. Membership offers Manage subscriptions, renewal terms, privacy policy and the Apple Standard EULA. Deleting the Xingya account does not cancel its Apple subscription.
+6. Grade 7 → Home → More fluency practice → Mental arithmetic: multiplication and division of rational numbers → Fluency or Race. Use ± for negative answers; the sign key applies to the whole track.
+
+Actual Build 9 simulator results: iPhone 17 Pro / iOS 26.5 passed 105 Swift unit and 4 UI tests; iPad Air 11-inch (M4) / iOS 26.5 passed 105 unit and 3 UI tests. Both packages were verified as 1.0.0 (9). Chinese/English immediate feedback, explanation, wrong-answer double-tap protection and explicit retry passed on both. These are not physical-device or Sandbox results.
+
+Historical Build 8 TestFlight observations on iPhone 16 Pro Max / iOS 27.3: existing Apple sign-in remained visible, StoreKit showed US$2.99, existing learning counts were visible, a Grade 4 choice was accepted and the added Grade 7 three-minute race completed with four correct negative answers. This does not prove complete record migration or validate Build 9's new choice interaction.
+
+Historical development-signed Build 6 observations: real Apple sign-in, one Sandbox purchase and account binding, same-account restore, cold-start entitlement revalidation, silent cancellation and offline sign-in retention. None are repeated Build 9 passes.
+
+Build 9 physical sign-in, purchase, restore, offline cold launch and choice interaction remain unverified here. Fresh installation, physical iPad, successful first-time Apple consent, delayed/background authorization, device reboot and the full Sandbox renewal/final-expiry cycle are also unverified.
+
+Availability remains 174 countries or regions, excluding mainland China.

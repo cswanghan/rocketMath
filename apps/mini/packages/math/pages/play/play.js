@@ -10,6 +10,8 @@ const speech = require('../../../../utils/speech.js');
 const { createDefaultAdapter } = require('../../../../utils/storage.js');
 const { createGame } = require('../../../../utils/game.js');
 const { getTrack } = require('../../../../vendor/engine');
+const integerInput = require('../../../../utils/integerInput.js');
+const { createAutoAnswer } = require('../../../../utils/autoAnswer.js');
 
 const PHASE_LABEL = {
   take_off: '起飞 Take-Off',
@@ -24,6 +26,7 @@ Page({
     ready: false,
     trackName: '',
     input: '',
+    signed: false,
     muted: false,
     digits: DIGITS,
     // 引擎视图
@@ -46,6 +49,16 @@ Page({
   },
 
   onLoad(query) {
+    this.visible = true;
+    this.inputValue = '';
+    this.autoAnswer = createAutoAnswer({
+      isCurrent: answer => this.visible && !this.data.trialBlocked && this.game &&
+        this.game.view.mode === 'prompt' && this.game.promptSeq === answer.promptSeq,
+      submit: answer => {
+        this.clearTimer(); this.lastSpoken = '';
+        this.game.submit(answer.value, answer);
+      },
+    });
     const grade = Number(query.grade) || content.getGrade() || 3;
     const trackId = query.trackId;
     let c;
@@ -61,7 +74,7 @@ Page({
     this.levels = t.levels.map((l) => l.level);
     this.mastery = this.pack.engine_config.mastery;
     wx.setNavigationBarTitle({ title: t.name });
-    this.setData({ trackName: t.name, muted: speech.isMuted() });
+    this.setData({ trackName: t.name, muted: speech.isMuted(), signed: integerInput.allowsSign(t) });
 
     this.game = createGame({
       trackId: trackId,
@@ -76,14 +89,24 @@ Page({
   },
 
   onUnload() {
+    this.visible = false;
+    this.autoAnswer.cancel();
     this.clearTimer();
     speech.cancel();
     if (this.game) this.game.destroy();
   },
 
   onHide() {
-    // 切后台时停表, 免得回来就判超时
-    this.clearTimer();
+    this.visible = false;
+    this.autoAnswer.cancel(); this.clearTimer();
+    this.inputValue = ''; this.setData({ input: '' });
+  },
+
+  onShow() {
+    const returning = this.visible === false;
+    this.visible = true;
+    // A foreground restart gives the same fact a fresh input/timing token.
+    if (returning && this.game) this.game.restartPromptTiming();
   },
 
   seedOf(trackId) {
@@ -97,6 +120,9 @@ Page({
   // ---- 引擎回调 --------------------------------------------------------------
 
   onGameChange(g) {
+    this.autoAnswer.cancel();
+    this.inputValue = '';
+    this.clearTimer();
     const view = g.view;
     const s = g.state;
     const patch = {
@@ -139,7 +165,7 @@ Page({
     }
 
     this.setData(patch, () => {
-      if (view.mode === 'prompt') this.startCountdown(g.latencyGateMs);
+      if (view.mode === 'prompt' && this.visible && !this.data.trialBlocked) this.startCountdown(g.latencyGateMs, g.promptSeq, g.promptStartedAt + g.latencyGateMs);
       else this.clearTimer();
     });
 
@@ -152,16 +178,18 @@ Page({
   // ---- 倒计时 ----------------------------------------------------------------
   // 条子本身用 CSS transition 走; JS 只留一个 setTimeout 判超时, 两者同一个时长。
 
-  startCountdown(gateMs) {
+  startCountdown(gateMs, seq, deadline) {
     this.clearTimer();
     this.setData({ barReset: true }, () => {
       // 下一帧再放开 transition, 否则浏览器会把"重置到 100%"和"走到 0%"合并掉
-      this.rafTimer = setTimeout(() => this.setData({ barReset: false }), 30);
+      this.rafTimer = setTimeout(() => {
+        if (this.visible && this.game.promptSeq === seq) this.setData({ barReset: false });
+      }, 30);
     });
     this.timer = setTimeout(() => {
       this.timer = null;
-      if (this.game) this.game.timeout();
-    }, gateMs);
+      if (this.visible && this.game && this.game.promptSeq === seq && !this.autoAnswer.flush(deadline, seq)) this.game.timeout(seq);
+    }, Math.max(0, deadline - Date.now()));
   },
 
   clearTimer() {
@@ -177,22 +205,25 @@ Page({
 
   // ---- 数字键盘 --------------------------------------------------------------
 
-  onDigit(e) {
-    if (this.data.mode !== 'prompt') return;
-    const d = e.currentTarget.dataset.d;
-    this.setData({ input: (this.data.input + d).slice(0, 4) });
+  editInput(change) {
+    if (!this.visible || this.data.trialBlocked || !this.game || this.game.view.mode !== 'prompt') return;
+    const seq = this.game.promptSeq;
+    const deadline = this.game.promptStartedAt + this.game.latencyGateMs;
+    if (Date.now() > deadline) {
+      if (!this.autoAnswer.flush(deadline, seq)) this.game.timeout(seq);
+      return;
+    }
+    const next = change(this.inputValue);
+    if (next === this.inputValue) return;
+    this.inputValue = next;
+    this.setData({ input: this.inputValue });
+    this.autoAnswer.edit(this.inputValue, seq);
   },
 
-  onBackspace() {
-    this.setData({ input: this.data.input.slice(0, -1) });
-  },
-
-  onEnter() {
-    if (this.data.mode !== 'prompt' || this.data.input === '') return;
-    this.clearTimer();
-    this.lastSpoken = ''; // 允许下一次纠错重新朗读
-    this.game.submit(Number(this.data.input));
-  },
+  onDigit(e) { this.editInput(input => integerInput.appendDigit(input, e.currentTarget.dataset.d)); },
+  onToggleSign() { if (this.data.signed) this.editInput(integerInput.toggleSign); },
+  onBackspace() { this.editInput(input => input.slice(0, -1)); },
+  onEnter() { this.autoAnswer.flush(); },
 
   onNext() {
     this.game.next();
@@ -205,10 +236,12 @@ Page({
   },
 
   onExit() {
+    this.visible = false; this.autoAnswer.cancel(); this.clearTimer();
     wx.navigateBack({ fail: () => wx.switchTab({ url: '/pages/portal/portal' }) });
   },
 
   onLoginFromTrial() {
+    this.visible = false; this.autoAnswer.cancel(); this.clearTimer();
     wx.switchTab({ url: '/pages/mine/mine' });
   },
 

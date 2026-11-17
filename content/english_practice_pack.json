@@ -1,6 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "subject": "english",
+  "provenance": "原创分级练习；KET/PET 为学习路径标签，不是官方真题或预测题。",
   "sets": [
     {
       "id": "ket_grammar",
@@ -15,23 +16,23 @@
           "difficulty": "basic",
           "choices": [
             {
-              "id": "a",
-              "label": "is",
-              "correct": true
-            },
-            {
               "id": "b",
               "label": "are",
               "correct": false
             },
             {
-              "id": "c",
-              "label": "am",
-              "correct": false
+              "id": "a",
+              "label": "is",
+              "correct": true
             },
             {
               "id": "d",
               "label": "be",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "am",
               "correct": false
             }
           ],
@@ -41,7 +42,7 @@
         {
           "id": "keg_b1",
           "type": "mc",
-          "prompt": "I ___ to school every day.",
+          "prompt": "描述你现在的日常习惯：I ___ to school every day.",
           "difficulty": "basic",
           "choices": [
             {
@@ -65,8 +66,8 @@
               "correct": false
             }
           ],
-          "hint": "主语 I,一般现在时用原形",
-          "explanation": "I go to school every day."
+          "hint": "现在的日常习惯用一般现在时；主语 I 后用原形",
+          "explanation": "I go to school every day. went 是过去式，不符合题目要求的当前习惯。"
         },
         {
           "id": "keg_b2",
@@ -74,16 +75,6 @@
           "prompt": "There ___ two cats on the sofa.",
           "difficulty": "basic",
           "choices": [
-            {
-              "id": "a",
-              "label": "are",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "label": "is",
-              "correct": false
-            },
             {
               "id": "c",
               "label": "am",
@@ -93,6 +84,16 @@
               "id": "d",
               "label": "be",
               "correct": false
+            },
+            {
+              "id": "b",
+              "label": "is",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "are",
+              "correct": true
             }
           ],
           "hint": "two cats 是复数,用 are",
@@ -110,8 +111,8 @@
               "correct": true
             },
             {
-              "id": "b",
-              "label": "plays",
+              "id": "d",
+              "label": "playing",
               "correct": false
             },
             {
@@ -120,8 +121,8 @@
               "correct": false
             },
             {
-              "id": "d",
-              "label": "playing",
+              "id": "b",
+              "label": "plays",
               "correct": false
             }
           ],
@@ -135,28 +136,28 @@
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "an",
-              "correct": true
-            },
-            {
               "id": "b",
               "label": "a",
               "correct": false
             },
             {
-              "id": "c",
-              "label": "the",
-              "correct": false
+              "id": "a",
+              "label": "an",
+              "correct": true
             },
             {
               "id": "d",
               "label": "/",
               "correct": false
+            },
+            {
+              "id": "c",
+              "label": "some",
+              "correct": false
             }
           ],
-          "hint": "apple 以元音音素开头,用 an",
-          "explanation": "an apple"
+          "hint": "apple 是以元音音素开头的单数可数名词",
+          "explanation": "an apple：一个苹果。单数可数名词不能直接裸用；a 用在辅音音素前。"
         },
         {
           "id": "keg_c2",
@@ -164,16 +165,6 @@
           "prompt": "My sister is taller ___ me.",
           "difficulty": "consolidate",
           "choices": [
-            {
-              "id": "a",
-              "label": "than",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "label": "then",
-              "correct": false
-            },
             {
               "id": "c",
               "label": "as",
@@ -183,6 +174,16 @@
               "id": "d",
               "label": "to",
               "correct": false
+            },
+            {
+              "id": "a",
+              "label": "than",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "then",
+              "correct": false
             }
           ],
           "hint": "比较级后用 than",
@@ -191,7 +192,7 @@
         {
           "id": "keg_c3",
           "type": "mc",
-          "prompt": "Look! They ___ now.",
+          "prompt": "用现在进行时描述眼前的动作：Look! They ___ now.",
           "difficulty": "consolidate",
           "choices": [
             {
@@ -205,18 +206,18 @@
               "correct": false
             },
             {
-              "id": "c",
-              "label": "runs",
-              "correct": false
-            },
-            {
               "id": "d",
               "label": "ran",
               "correct": false
+            },
+            {
+              "id": "c",
+              "label": "runs",
+              "correct": false
             }
           ],
-          "hint": "now 表示正在进行",
-          "explanation": "are running"
+          "hint": "现在进行时需要 be + 动词 -ing",
+          "explanation": "They are running now. they 是复数，用 are running。"
         },
         {
           "id": "keg_x0",
@@ -260,23 +261,23 @@
               "correct": true
             },
             {
-              "id": "b",
-              "label": "stayed",
+              "id": "d",
+              "label": "staying",
               "correct": false
             },
             {
               "id": "c",
-              "label": "stay",
+              "label": "stays",
               "correct": false
             },
             {
-              "id": "d",
-              "label": "staying",
+              "id": "b",
+              "label": "stayed",
               "correct": false
             }
           ],
-          "hint": "条件句主句用将来时",
-          "explanation": "I will stay at home."
+          "hint": "说的是明天可能发生的事情，主句需要完整的谓语",
+          "explanation": "I will stay at home. 这里用 will + 动词原形表达将来的决定。"
         },
         {
           "id": "keg_x2",
@@ -307,12 +308,672 @@
           ],
           "hint": "since + 时间点",
           "explanation": "since 2010"
+        },
+        {
+          "id": "keg_b3",
+          "type": "mc",
+          "prompt": "We ___ two pencils in our bag.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "c",
+              "label": "having",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "has",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "have",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "is",
+              "correct": false
+            }
+          ],
+          "hint": "主语 we 是复数；句子需要一个完整的谓语。",
+          "explanation": "We have two pencils. 一般现在时中，we 后用 have。"
+        },
+        {
+          "id": "keg_b4",
+          "type": "mc",
+          "prompt": "These ___ are new.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "b",
+              "label": "shoe",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "a shoe",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "an shoe",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "shoes",
+              "correct": true
+            }
+          ],
+          "hint": "these 和 are 都提示复数。",
+          "explanation": "These shoes are new. shoe 的复数加 -s。"
+        },
+        {
+          "id": "keg_b5",
+          "type": "mc",
+          "prompt": "This is Mia. ___ brother is ten.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "Her",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "Hers",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "Herself",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "She",
+              "correct": false
+            }
+          ],
+          "hint": "空格后是名词 brother，需要表示所属关系。",
+          "explanation": "Her brother 表示她的哥哥或弟弟；hers 不能直接放在名词前。"
+        },
+        {
+          "id": "keg_b6",
+          "type": "mc",
+          "prompt": "The lesson starts ___ nine o'clock.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "b",
+              "label": "on",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "at",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "to",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "in",
+              "correct": false
+            }
+          ],
+          "hint": "说具体钟点时使用哪个介词？",
+          "explanation": "at nine o'clock：具体钟点前用 at。"
+        },
+        {
+          "id": "keg_b7",
+          "type": "mc",
+          "prompt": "Can you ___ a bike?",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "c",
+              "label": "riding",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "rode",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "ride",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "rides",
+              "correct": false
+            }
+          ],
+          "hint": "情态动词 can 后接动词原形。",
+          "explanation": "Can you ride a bike? can 后用 ride，不加 -s 或 -ing。"
+        },
+        {
+          "id": "keg_c4",
+          "type": "mc",
+          "prompt": "We don't have ___ milk in the fridge.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "a",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "any",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "many",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "an",
+              "correct": false
+            }
+          ],
+          "hint": "milk 不可数；这是一个否定句。",
+          "explanation": "don't have any milk 表示没有牛奶。many 修饰可数名词复数，a/an 不能直接修饰 milk。"
+        },
+        {
+          "id": "keg_c5",
+          "type": "mc",
+          "prompt": "How ___ apples do you need?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "c",
+              "label": "long",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "old",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "much",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "many",
+              "correct": true
+            }
+          ],
+          "hint": "apples 是可数名词复数，问题询问数量。",
+          "explanation": "How many apples? 可数名词复数的数量用 how many 询问。"
+        },
+        {
+          "id": "keg_c6",
+          "type": "mc",
+          "prompt": "My birthday is ___ Saturday this year.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "at",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "in",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "of",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "on",
+              "correct": true
+            }
+          ],
+          "hint": "星期几前用表示日期的介词。",
+          "explanation": "on Saturday：具体某一天或星期几前用 on。"
+        },
+        {
+          "id": "keg_c7",
+          "type": "mc",
+          "prompt": "Did you ___ the film last night?",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "c",
+              "label": "watching",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "watches",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "watch",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "watched",
+              "correct": false
+            }
+          ],
+          "hint": "did 已经表示过去时，后面的动词要恢复原形。",
+          "explanation": "Did you watch the film? did 后用 watch，不能再用 watched。"
+        },
+        {
+          "id": "keg_c8",
+          "type": "mc",
+          "prompt": "There isn't ___ water in this bottle.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "c",
+              "label": "a",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "many",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "an",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "much",
+              "correct": true
+            }
+          ],
+          "hint": "water 是不可数名词。",
+          "explanation": "There isn't much water. much 修饰不可数名词，表示水不多。"
+        },
+        {
+          "id": "keg_c9",
+          "type": "mc",
+          "prompt": "Please give the books to ___.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "I",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "me",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "my",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "mine",
+              "correct": false
+            }
+          ],
+          "hint": "介词 to 后需要人称代词宾格。",
+          "explanation": "give the books to me：把书给我。me 是 I 的宾格。"
+        },
+        {
+          "id": "keg_c10",
+          "type": "mc",
+          "prompt": "This bag is ___ than that one.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "d",
+              "label": "most small",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "small",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "smaller",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "smallest",
+              "correct": false
+            }
+          ],
+          "hint": "than 提示比较两个事物。",
+          "explanation": "smaller than：small 的比较级是 smaller。"
+        },
+        {
+          "id": "keg_c11",
+          "type": "mc",
+          "prompt": "Listen! Someone ___ at the door.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "is knocking",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "knocks yesterday",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "knock",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "are knocking",
+              "correct": false
+            }
+          ],
+          "hint": "Listen! 提示正在发生；someone 作单数。",
+          "explanation": "Someone is knocking. 现在进行时用 is + 动词 -ing。"
+        },
+        {
+          "id": "keg_x3",
+          "type": "mc",
+          "prompt": "选择表示结果的连词：I was tired, ___ I went to bed early.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "because",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "although",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "or",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "so",
+              "correct": true
+            }
+          ],
+          "hint": "前半句是原因，后半句是结果。",
+          "explanation": "I was tired, so I went to bed early. so 引出结果：所以早早睡觉。"
+        },
+        {
+          "id": "keg_x4",
+          "type": "mc",
+          "prompt": "Ben is going ___ his grandparents tomorrow.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "visited",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "visit",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "visits",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "to visit",
+              "correct": true
+            }
+          ],
+          "hint": "be going to 后接动词原形，表示计划。",
+          "explanation": "is going to visit：计划明天去看望祖父母。"
+        },
+        {
+          "id": "keg_x5",
+          "type": "mc",
+          "prompt": "You ___ run in the library. The sign says 'No running'.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "don't have to",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "needn't",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "must",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "mustn't",
+              "correct": true
+            }
+          ],
+          "hint": "标识表达禁止，不是没有必要。",
+          "explanation": "mustn't 表示禁止。needn't 和 don't have to 表示不必，不能表达这条规定。"
+        },
+        {
+          "id": "keg_x6",
+          "type": "mc",
+          "prompt": "This is the ___ building in our town.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "more tall",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "tallest",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "taller",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "tall",
+              "correct": false
+            }
+          ],
+          "hint": "the 和 in our town 提示在整个范围内比较。",
+          "explanation": "the tallest building：最高的建筑。短形容词 tall 的最高级加 -est。"
+        },
+        {
+          "id": "keg_x7",
+          "type": "mc",
+          "prompt": "I enjoy ___ stories before bed.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "read",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "reading",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "to reading",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "reads",
+              "correct": false
+            }
+          ],
+          "hint": "enjoy 后接名词或动名词。",
+          "explanation": "enjoy reading stories：喜欢读故事，使用 read 的 -ing 形式。"
+        },
+        {
+          "id": "keg_x8",
+          "type": "mc",
+          "prompt": "They have lived in this town ___ three years.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "on",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "at",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "for",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "since",
+              "correct": false
+            }
+          ],
+          "hint": "three years 是一段时间，不是时间点。",
+          "explanation": "for three years：持续三年。since 后接起点，例如 since 2023。"
+        },
+        {
+          "id": "keg_x9",
+          "type": "mc",
+          "prompt": "This jacket is too small. Have you got a bigger ___?",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "them",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "one",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "ones",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "it",
+              "correct": false
+            }
+          ],
+          "hint": "需要代替一个单数可数名词 jacket。",
+          "explanation": "a bigger one：一件更大的。one 代替前面提到的单数 jacket。"
+        },
+        {
+          "id": "keg_x10",
+          "type": "mc",
+          "prompt": "While I ___ dinner, the phone rang.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "were cooking",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "am cook",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "was cooking",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "cooks",
+              "correct": false
+            }
+          ],
+          "hint": "电话响起时，做饭这个动作正在过去某时进行。",
+          "explanation": "While I was cooking dinner... 过去进行时用 was/were + -ing；I 用 was。"
+        },
+        {
+          "id": "keg_x11",
+          "type": "mc",
+          "prompt": "We need ___ eggs to make the cake: just two will be enough.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "a little",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "much",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "a few",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "an",
+              "correct": false
+            }
+          ],
+          "hint": "eggs 是可数名词复数；后面明确只需要两个。",
+          "explanation": "a few eggs 表示几个鸡蛋。a little 和 much 修饰不可数名词。"
         }
       ]
     },
     {
       "id": "ket_reading",
-      "title": "KET 看图读标识",
+      "title": "KET 标识与短文阅读",
       "pedagogy": "concept",
       "maxTries": 2,
       "problems": [
@@ -323,23 +984,23 @@
           "difficulty": "basic",
           "choices": [
             {
-              "id": "a",
-              "label": "禁止吸烟",
-              "correct": true
-            },
-            {
               "id": "b",
               "label": "请吸烟",
               "correct": false
             },
             {
-              "id": "c",
-              "label": "小心地滑",
+              "id": "d",
+              "label": "保持安静",
               "correct": false
             },
             {
-              "id": "d",
-              "label": "保持安静",
+              "id": "a",
+              "label": "禁止吸烟",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "小心地滑",
               "correct": false
             }
           ],
@@ -353,9 +1014,9 @@
           "difficulty": "basic",
           "choices": [
             {
-              "id": "a",
-              "label": "推门",
-              "correct": true
+              "id": "c",
+              "label": "敲门",
+              "correct": false
             },
             {
               "id": "b",
@@ -363,14 +1024,14 @@
               "correct": false
             },
             {
-              "id": "c",
-              "label": "敲门",
-              "correct": false
-            },
-            {
               "id": "d",
               "label": "锁门",
               "correct": false
+            },
+            {
+              "id": "a",
+              "label": "推门",
+              "correct": true
             }
           ],
           "hint": "push 是推",
@@ -383,6 +1044,11 @@
           "difficulty": "basic",
           "choices": [
             {
+              "id": "c",
+              "label": "9 号开业",
+              "correct": false
+            },
+            {
               "id": "a",
               "label": "营业时间 9 点到 18 点",
               "correct": true
@@ -390,11 +1056,6 @@
             {
               "id": "b",
               "label": "9 折优惠",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "label": "9 号开业",
               "correct": false
             },
             {
@@ -413,23 +1074,23 @@
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "请勿践踏草坪",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "label": "保持草坪整洁",
-              "correct": false
-            },
-            {
               "id": "c",
               "label": "在草坪上玩",
               "correct": false
             },
             {
+              "id": "a",
+              "label": "请勿践踏草坪",
+              "correct": true
+            },
+            {
               "id": "d",
               "label": "草坪出售",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "保持草坪整洁",
               "correct": false
             }
           ],
@@ -443,9 +1104,9 @@
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "售罄",
-              "correct": true
+              "id": "d",
+              "label": "预售",
+              "correct": false
             },
             {
               "id": "b",
@@ -458,9 +1119,9 @@
               "correct": false
             },
             {
-              "id": "d",
-              "label": "预售",
-              "correct": false
+              "id": "a",
+              "label": "售罄",
+              "correct": true
             }
           ],
           "hint": "sold out = 卖光了",
@@ -473,11 +1134,6 @@
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "出口",
-              "correct": true
-            },
-            {
               "id": "b",
               "label": "入口",
               "correct": false
@@ -486,6 +1142,11 @@
               "id": "c",
               "label": "厕所",
               "correct": false
+            },
+            {
+              "id": "a",
+              "label": "出口",
+              "correct": true
             },
             {
               "id": "d",
@@ -503,9 +1164,9 @@
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "请保持安静",
-              "correct": true
+              "id": "d",
+              "label": "请登记",
+              "correct": false
             },
             {
               "id": "b",
@@ -518,9 +1179,9 @@
               "correct": false
             },
             {
-              "id": "d",
-              "label": "请登记",
-              "correct": false
+              "id": "a",
+              "label": "请保持安静",
+              "correct": true
             }
           ],
           "hint": "quiet = 安静",
@@ -533,14 +1194,14 @@
           "difficulty": "challenge",
           "choices": [
             {
-              "id": "a",
-              "label": "买一送一",
-              "correct": true
-            },
-            {
               "id": "b",
               "label": "第二件半价",
               "correct": false
+            },
+            {
+              "id": "a",
+              "label": "买一送一",
+              "correct": true
             },
             {
               "id": "c",
@@ -563,6 +1224,11 @@
           "difficulty": "challenge",
           "choices": [
             {
+              "id": "d",
+              "label": "请排队",
+              "correct": false
+            },
+            {
               "id": "a",
               "label": "故障,停止使用",
               "correct": true
@@ -575,11 +1241,6 @@
             {
               "id": "c",
               "label": "免费使用",
-              "correct": false
-            },
-            {
-              "id": "d",
-              "label": "请排队",
               "correct": false
             }
           ],
@@ -598,8 +1259,8 @@
               "correct": true
             },
             {
-              "id": "b",
-              "label": "车上可以补票",
+              "id": "d",
+              "label": "禁止带票",
               "correct": false
             },
             {
@@ -608,13 +1269,673 @@
               "correct": false
             },
             {
-              "id": "d",
-              "label": "禁止带票",
+              "id": "b",
+              "label": "车上可以补票",
               "correct": false
             }
           ],
           "hint": "must be bought before boarding",
           "explanation": "上车前必须买票"
+        },
+        {
+          "id": "ker_b3",
+          "type": "mc",
+          "prompt": "Library notice: Return books by Friday.\n问：最迟应在星期几还书？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "星期五",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "星期日",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "星期一",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "星期六",
+              "correct": false
+            }
+          ],
+          "hint": "by Friday 表示不晚于星期五。",
+          "explanation": "应在星期五或之前归还；by 在这里表示截止时间。"
+        },
+        {
+          "id": "ker_b4",
+          "type": "mc",
+          "prompt": "Door sign: STAFF ONLY.\n问：谁可以进入？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "c",
+              "label": "只有儿童",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "只有买票的人",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "所有游客",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "工作人员",
+              "correct": true
+            }
+          ],
+          "hint": "staff 指工作人员，only 表示仅限。",
+          "explanation": "Staff only 表示仅限工作人员，访客不能进入。"
+        },
+        {
+          "id": "ker_b5",
+          "type": "mc",
+          "prompt": "Message: Hi Lee, meet me outside the cinema at six. — Jo\n问：在哪里见面？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "d",
+              "label": "车站里面",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "电影院里面",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "电影院外面",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "学校门口",
+              "correct": false
+            }
+          ],
+          "hint": "注意地点前的 outside。",
+          "explanation": "outside the cinema 表示在电影院外面；at six 是见面时间。"
+        },
+        {
+          "id": "ker_b6",
+          "type": "mc",
+          "prompt": "Café menu: Tea £2. Juice £3. Sandwich £4.\n问：果汁多少钱？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "c",
+              "label": "4 英镑",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "3 英镑",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "2 英镑",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "9 英镑",
+              "correct": false
+            }
+          ],
+          "hint": "找到 Juice 对应的价格。",
+          "explanation": "菜单中 Juice 后面标注 £3，所以一份果汁是 3 英镑。"
+        },
+        {
+          "id": "ker_b7",
+          "type": "mc",
+          "prompt": "School notice: Please bring a pencil to the art lesson.\n问：上美术课需要带什么？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "铅笔",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "雨伞",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "午餐",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "足球",
+              "correct": false
+            }
+          ],
+          "hint": "bring a pencil 是老师提出的要求。",
+          "explanation": "通知要求带一支铅笔，没有要求带其他选项中的物品。"
+        },
+        {
+          "id": "ker_c4",
+          "type": "mc",
+          "prompt": "Swimming pool: Closed on Tuesday morning for cleaning. Open from 2 p.m.\n问：星期二下午什么时候开始开放？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "下午 2 点",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "上午 2 点",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "全天不开放",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "上午 9 点",
+              "correct": false
+            }
+          ],
+          "hint": "看 Open from 后的时间，p.m. 表示下午。",
+          "explanation": "周二上午清洁，下午 2 点起开放；并非全天关闭。"
+        },
+        {
+          "id": "ker_c5",
+          "type": "mc",
+          "prompt": "Hi Ana, our tennis game is at 4:30, not 4:00. The court was busy earlier. See you there! — Will\n问：Will 为什么发这条消息？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "取消网球活动",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "询问 Ana 的地址",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "借 Ana 的球拍",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "告诉 Ana 时间改了",
+              "correct": true
+            }
+          ],
+          "hint": "注意 at 4:30, not 4:00 的对比。",
+          "explanation": "Will 将比赛时间从 4 点改为 4 点半，活动没有取消。"
+        },
+        {
+          "id": "ker_c6",
+          "type": "mc",
+          "prompt": "Shop notice: Please keep your receipt. You need it to return an item.\n问：顾客为什么要保留小票？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "退货时需要",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "每天可以换礼品",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "买票时需要",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "进门时需要",
+              "correct": false
+            }
+          ],
+          "hint": "return an item 在商店里指退货。",
+          "explanation": "通知明确说退货需要小票，没有承诺每日赠礼。"
+        },
+        {
+          "id": "ker_c7",
+          "type": "mc",
+          "prompt": "Emma takes her lunch to school on Mondays and Wednesdays. On the other school days, she eats in the school café.\n问：星期三 Emma 在哪里获得午餐？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "从家里带到学校",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "不吃午餐",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "去学校咖啡厅买",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "去外面的餐馆买",
+              "correct": false
+            }
+          ],
+          "hint": "Wednesdays 和 takes her lunch 连在一起。",
+          "explanation": "Emma 每周一和周三自带午餐；其余上学日才在学校咖啡厅吃。"
+        },
+        {
+          "id": "ker_c8",
+          "type": "mc",
+          "prompt": "Bus stop notice: Route 8 does not stop here after 6 p.m. Please use the stop near the bank.\n问：晚上 7 点要乘 8 路车，应去哪里？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "c",
+              "label": "银行里面",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "继续在原站等待",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "银行附近的站点",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "任何路口都可以",
+              "correct": false
+            }
+          ],
+          "hint": "晚上 7 点在 after 6 p.m. 的范围内。",
+          "explanation": "6 点后该车不在原站停靠，通知要求改用银行附近的站点。"
+        },
+        {
+          "id": "ker_c9",
+          "type": "mc",
+          "prompt": "Lost: a blue school bag with a yellow key ring. If you find it, please take it to Room 12.\n问：找到这个书包后应怎么做？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "取下黄色钥匙圈",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "带回家保管",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "送到 12 号教室",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "送到商店",
+              "correct": false
+            }
+          ],
+          "hint": "If you find it 后面说明具体做法。",
+          "explanation": "失物通知要求将书包送到 Room 12，而不是只交钥匙圈。"
+        },
+        {
+          "id": "ker_c10",
+          "type": "mc",
+          "prompt": "The book club meets every Thursday. This week, bring a book about animals and be ready to tell us why you like it.\n问：本周参加者需要准备什么？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "一只动物和食物",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "一本动物书和喜欢它的理由",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "任意一本书的价格",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "一份电影清单",
+              "correct": false
+            }
+          ],
+          "hint": "通知里有 bring 和 tell us 两项要求。",
+          "explanation": "需要带一本有关动物的书，并准备解释为什么喜欢它。"
+        },
+        {
+          "id": "ker_c11",
+          "type": "mc",
+          "prompt": "Mum, the supermarket had no apples, so I bought pears instead. I also got the bread you wanted. — Nina\n问：Nina 买了什么？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "苹果和面包",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "梨和面包",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "只有梨",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "只有苹果",
+              "correct": false
+            }
+          ],
+          "hint": "instead 表示替代；also 表示另外还买了。",
+          "explanation": "没买到苹果，于是买了梨，另外也买了妈妈要的面包。"
+        },
+        {
+          "id": "ker_x3",
+          "type": "mc",
+          "prompt": "Bike hire: £5 per hour. Helmets are included. Please return bikes before the shop closes at 5 p.m.\n问：哪句话正确？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "头盔另收 5 英镑",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "下午 5 点以后才归还",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "租车费包含头盔",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "自行车可免费借一天",
+              "correct": false
+            }
+          ],
+          "hint": "included 表示费用已经包含。",
+          "explanation": "每小时 5 英镑，头盔包含在内；自行车须在 5 点关门前归还。"
+        },
+        {
+          "id": "ker_x4",
+          "type": "mc",
+          "prompt": "Class trip: Meet at school at 8:40. The coach leaves at 9:00. Bring lunch; we will eat in the park.\n问：学生应在什么时间到学校集合？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "c",
+              "label": "9:20",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "9:00",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "8:40",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "午饭时",
+              "correct": false
+            }
+          ],
+          "hint": "区分集合时间 meet 和发车时间 leaves。",
+          "explanation": "集合时间是 8:40；9:00 是大巴出发时间，不应等到发车才集合。"
+        },
+        {
+          "id": "ker_x5",
+          "type": "mc",
+          "prompt": "Leo wants to buy a second-hand guitar. He has £40. One advert offers a guitar for £35, but it needs new strings costing £8.\n问：Leo 现在的钱够买琴并换弦吗？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "不够，还差 3 英镑",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "够，还剩 5 英镑",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "不够，还差 8 英镑",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "够，正好花完",
+              "correct": false
+            }
+          ],
+          "hint": "先把吉他和新琴弦的费用相加。",
+          "explanation": "35 + 8 = 43 英镑，Leo 只有 40 英镑，因此还差 3 英镑。"
+        },
+        {
+          "id": "ker_x6",
+          "type": "mc",
+          "prompt": "Notice: The outdoor concert will move to the school hall if it rains. The starting time will stay at 3 p.m.\n问：如果下雨，活动会怎样？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "取消活动",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "在室外晚一小时举行",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "上午 3 点在礼堂举行",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "下午 3 点在学校礼堂举行",
+              "correct": true
+            }
+          ],
+          "hint": "地点 move，但时间 stay。",
+          "explanation": "下雨只改变地点；时间仍为下午 3 点，活动不会取消。"
+        },
+        {
+          "id": "ker_x7",
+          "type": "mc",
+          "prompt": "Hi Dan, I can't help with your project tonight because I'm visiting my aunt. I can come tomorrow after lunch. — Kim\n问：Kim 提出了什么建议？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "明天午饭后来帮忙",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "今晚一起去看阿姨",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "今晚在 Dan 家吃饭",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "明天上午取消项目",
+              "correct": false
+            }
+          ],
+          "hint": "找 I can come 后面给出的替代安排。",
+          "explanation": "Kim 今晚有事，提出明天午饭后来帮助 Dan。"
+        },
+        {
+          "id": "ker_x8",
+          "type": "mc",
+          "prompt": "Train tickets: Children under 5 travel free with an adult. Children aged 5–15 pay half the adult price of £10.\n问：一个 5 岁孩子的票价是多少？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "c",
+              "label": "10 英镑",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "免费",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "5 英镑",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "15 英镑",
+              "correct": false
+            }
+          ],
+          "hint": "under 5 不包括恰好 5 岁；half 表示一半。",
+          "explanation": "5 岁属于 5–15 岁组，票价为成人 10 英镑的一半，即 5 英镑。"
+        },
+        {
+          "id": "ker_x9",
+          "type": "mc",
+          "prompt": "Sara enjoys walking but dislikes crowded places. Her family suggests a busy shopping centre, a quiet forest path, a football match or a loud music show.\n问：哪项最符合 Sara 的喜好？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "c",
+              "label": "足球比赛现场",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "安静的森林小径",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "喧闹的音乐演出",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "繁忙的购物中心",
+              "correct": false
+            }
+          ],
+          "hint": "选项要同时满足喜欢走路、不喜欢拥挤。",
+          "explanation": "森林小径适合散步且安静，同时满足两个条件。"
+        },
+        {
+          "id": "ker_x10",
+          "type": "mc",
+          "prompt": "Please water the plants on the balcony, but not the small cactus. I watered that yesterday. The watering can is under the sink. — Dad\n问：哪件事不需要做？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "给阳台上的其他植物浇水",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "查看哪些植物要浇水",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "使用浇水壶",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "给小仙人掌浇水",
+              "correct": true
+            }
+          ],
+          "hint": "but not 引出这次任务的例外。",
+          "explanation": "爸爸昨天已给小仙人掌浇过水，这次明确要求不要再浇它。"
+        },
+        {
+          "id": "ker_x11",
+          "type": "mc",
+          "prompt": "I ordered a red notebook, but a green one arrived. I need the red colour for my school project. Can I exchange it? — Email to a shop\n问：写信人希望商店做什么？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "把红色笔记本换成绿色",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "取消学校项目",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "再寄一本绿色笔记本",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "把绿色笔记本换成红色",
+              "correct": true
+            }
+          ],
+          "hint": "比较订购的颜色、收到的颜色和 exchange 的请求。",
+          "explanation": "写信人订的是红色却收到了绿色，希望换成所需的红色。"
         }
       ]
     },
@@ -627,19 +1948,9 @@
         {
           "id": "peg_b0",
           "type": "mc",
-          "prompt": "I have ___ finished my homework.",
+          "prompt": "选择表示「已经」的词：I have ___ finished my homework.",
           "difficulty": "basic",
           "choices": [
-            {
-              "id": "a",
-              "label": "already",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "label": "yet",
-              "correct": false
-            },
             {
               "id": "c",
               "label": "still",
@@ -649,10 +1960,20 @@
               "id": "d",
               "label": "ever",
               "correct": false
+            },
+            {
+              "id": "b",
+              "label": "yet",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "already",
+              "correct": true
             }
           ],
           "hint": "肯定句中「已经」用 already",
-          "explanation": "have already finished"
+          "explanation": "have already finished 表示到现在已经完成。"
         },
         {
           "id": "peg_b1",
@@ -660,6 +1981,11 @@
           "prompt": "This book is ___ than that one.",
           "difficulty": "basic",
           "choices": [
+            {
+              "id": "d",
+              "label": "interesting",
+              "correct": false
+            },
             {
               "id": "a",
               "label": "more interesting",
@@ -673,11 +1999,6 @@
             {
               "id": "c",
               "label": "most interesting",
-              "correct": false
-            },
-            {
-              "id": "d",
-              "label": "interesting",
               "correct": false
             }
           ],
@@ -696,11 +2017,6 @@
               "correct": true
             },
             {
-              "id": "b",
-              "label": "which",
-              "correct": false
-            },
-            {
               "id": "c",
               "label": "whom",
               "correct": false
@@ -708,6 +2024,11 @@
             {
               "id": "d",
               "label": "what",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "which",
               "correct": false
             }
           ],
@@ -717,19 +2038,9 @@
         {
           "id": "peg_c0",
           "type": "mc",
-          "prompt": "If I ___ rich, I would travel the world.",
+          "prompt": "表达与现在事实相反的假设：If I ___ rich, I would travel the world.",
           "difficulty": "consolidate",
           "choices": [
-            {
-              "id": "a",
-              "label": "were",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "label": "am",
-              "correct": false
-            },
             {
               "id": "c",
               "label": "will be",
@@ -739,40 +2050,50 @@
               "id": "d",
               "label": "be",
               "correct": false
+            },
+            {
+              "id": "b",
+              "label": "am",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "were",
+              "correct": true
             }
           ],
           "hint": "与现在事实相反的虚拟,用 were",
-          "explanation": "If I were rich…"
+          "explanation": "If I were rich… 表示现在并不富有时的假设。"
         },
         {
           "id": "peg_c1",
           "type": "mc",
-          "prompt": "She asked me where I ___.",
+          "prompt": "She asked me where I ___ when I was a child.",
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "lived",
-              "correct": true
-            },
-            {
               "id": "b",
-              "label": "live",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "label": "do live",
+              "label": "lives",
               "correct": false
             },
             {
               "id": "d",
               "label": "living",
               "correct": false
+            },
+            {
+              "id": "a",
+              "label": "lived",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "did lived",
+              "correct": false
             }
           ],
-          "hint": "宾语从句用陈述语序 + 过去时呼应",
-          "explanation": "where I lived"
+          "hint": "when I was a child 指已经过去的童年；从句用陈述语序",
+          "explanation": "where I lived when I was a child：问我小时候住在哪里。用 lived；不能用 did lived 或单独的 living。"
         },
         {
           "id": "peg_c2",
@@ -780,11 +2101,6 @@
           "prompt": "The car ___ by my father every weekend.",
           "difficulty": "consolidate",
           "choices": [
-            {
-              "id": "a",
-              "label": "is washed",
-              "correct": true
-            },
             {
               "id": "b",
               "label": "washes",
@@ -799,6 +2115,11 @@
               "id": "d",
               "label": "washing",
               "correct": false
+            },
+            {
+              "id": "a",
+              "label": "is washed",
+              "correct": true
             }
           ],
           "hint": "被动语态 be + 过去分词",
@@ -811,6 +2132,11 @@
           "difficulty": "consolidate",
           "choices": [
             {
+              "id": "c",
+              "label": "saw",
+              "correct": false
+            },
+            {
               "id": "a",
               "label": "seeing",
               "correct": true
@@ -818,11 +2144,6 @@
             {
               "id": "b",
               "label": "see",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "label": "saw",
               "correct": false
             },
             {
@@ -841,9 +2162,9 @@
           "difficulty": "challenge",
           "choices": [
             {
-              "id": "a",
-              "label": "mustn't",
-              "correct": true
+              "id": "d",
+              "label": "can",
+              "correct": false
             },
             {
               "id": "b",
@@ -851,13 +2172,13 @@
               "correct": false
             },
             {
-              "id": "c",
-              "label": "don't have to",
-              "correct": false
+              "id": "a",
+              "label": "mustn't",
+              "correct": true
             },
             {
-              "id": "d",
-              "label": "can",
+              "id": "c",
+              "label": "don't have to",
               "correct": false
             }
           ],
@@ -867,9 +2188,14 @@
         {
           "id": "peg_x1",
           "type": "mc",
-          "prompt": "By the time we arrived, the film ___.",
+          "prompt": "The film began twenty minutes before we arrived. By the time we arrived, it ___.",
           "difficulty": "challenge",
           "choices": [
+            {
+              "id": "d",
+              "label": "has starting",
+              "correct": false
+            },
             {
               "id": "a",
               "label": "had started",
@@ -877,22 +2203,17 @@
             },
             {
               "id": "b",
-              "label": "started",
+              "label": "was start",
               "correct": false
             },
             {
               "id": "c",
               "label": "starts",
               "correct": false
-            },
-            {
-              "id": "d",
-              "label": "has started",
-              "correct": false
             }
           ],
-          "hint": "过去的过去用过去完成时",
-          "explanation": "the film had started"
+          "hint": "电影开始早于过去的到达时间",
+          "explanation": "the film had started：用 had + 过去分词表达发生在另一个过去动作之前的动作。"
         },
         {
           "id": "peg_x2",
@@ -900,6 +2221,11 @@
           "prompt": "I'd rather ___ at home tonight.",
           "difficulty": "challenge",
           "choices": [
+            {
+              "id": "c",
+              "label": "staying",
+              "correct": false
+            },
             {
               "id": "a",
               "label": "stay",
@@ -911,11 +2237,6 @@
               "correct": false
             },
             {
-              "id": "c",
-              "label": "staying",
-              "correct": false
-            },
-            {
               "id": "d",
               "label": "stayed",
               "correct": false
@@ -923,6 +2244,666 @@
           ],
           "hint": "would rather + 动词原形",
           "explanation": "I'd rather stay"
+        },
+        {
+          "id": "peg_b3",
+          "type": "mc",
+          "prompt": "I haven't seen Max ___ last summer.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "d",
+              "label": "at",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "for",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "during",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "since",
+              "correct": true
+            }
+          ],
+          "hint": "last summer 是过去的一个时间点。",
+          "explanation": "since last summer：从去年夏天起。for 后通常接持续时长。"
+        },
+        {
+          "id": "peg_b4",
+          "type": "mc",
+          "prompt": "The red suitcase is not as heavy ___ the black one.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "b",
+              "label": "than",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "so",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "as",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "then",
+              "correct": false
+            }
+          ],
+          "hint": "同级比较的固定结构是 not as ... as。",
+          "explanation": "not as heavy as 表示没有黑色的那个重。"
+        },
+        {
+          "id": "peg_b5",
+          "type": "mc",
+          "prompt": "There are ___ people here than yesterday.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "d",
+              "label": "much",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "less",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "fewer",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "little",
+              "correct": false
+            }
+          ],
+          "hint": "people 是可数复数；than 提示比较级。",
+          "explanation": "fewer people：更少的人。fewer 修饰可数名词复数。"
+        },
+        {
+          "id": "peg_b6",
+          "type": "mc",
+          "prompt": "The girl ___ bike was stolen called the police.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "b",
+              "label": "who",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "whose",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "whom",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "which",
+              "correct": false
+            }
+          ],
+          "hint": "空格要表示女孩与 bike 的所属关系。",
+          "explanation": "whose bike 指她的自行车；whose 在这里作定语。"
+        },
+        {
+          "id": "peg_b7",
+          "type": "mc",
+          "prompt": "Please speak ___ than before. I still can't hear you.",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "more loudly",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "loudlier",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "loudest",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "most loudly",
+              "correct": false
+            }
+          ],
+          "hint": "说话声音需要比现在更大一些。",
+          "explanation": "speak more loudly：更大声地说。多音节副词的比较级通常用 more。"
+        },
+        {
+          "id": "peg_c4",
+          "type": "mc",
+          "prompt": "When I was six, I ___ swim, but now I can.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "d",
+              "label": "haven't",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "couldn't",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "mustn't",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "can't",
+              "correct": false
+            }
+          ],
+          "hint": "when I was six 指过去的能力。",
+          "explanation": "couldn't swim 表示六岁时不会游泳；now I can 与过去形成对比。"
+        },
+        {
+          "id": "peg_c5",
+          "type": "mc",
+          "prompt": "The room ___ every morning by the hotel staff.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "is cleaned",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "is cleaning",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "has clean",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "cleans",
+              "correct": false
+            }
+          ],
+          "hint": "房间是清洁动作的承受者，every morning 表示经常发生。",
+          "explanation": "is cleaned：一般现在时的被动语态，结构为 is + 过去分词。"
+        },
+        {
+          "id": "peg_c6",
+          "type": "mc",
+          "prompt": "If I ___ more free time, I would join the club.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "have",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "having",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "had",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "will have",
+              "correct": false
+            }
+          ],
+          "hint": "would join 表示对现在情况的假设。",
+          "explanation": "If I had more free time... 用过去式 had 表达与当前情况不同的假设。"
+        },
+        {
+          "id": "peg_c7",
+          "type": "mc",
+          "prompt": "They decided ___ the earlier train.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "to take",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "take",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "taking",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "took",
+              "correct": false
+            }
+          ],
+          "hint": "decide 后接 to 不定式。",
+          "explanation": "decided to take the earlier train：决定乘较早的一班火车。"
+        },
+        {
+          "id": "peg_c8",
+          "type": "mc",
+          "prompt": "We stayed inside ___ the heavy rain.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "because",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "although",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "because of",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "so",
+              "correct": false
+            }
+          ],
+          "hint": "空格后是名词短语，不是完整句子。",
+          "explanation": "because of + 名词短语。because 后要接句子，如 because it was raining。"
+        },
+        {
+          "id": "peg_c9",
+          "type": "mc",
+          "prompt": "You don't have to pay. The tickets are ___.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "free",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "freely",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "freeing",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "freedom",
+              "correct": false
+            }
+          ],
+          "hint": "are 后需要说明票价状态的形容词。",
+          "explanation": "The tickets are free 表示票是免费的，与不必付钱一致。"
+        },
+        {
+          "id": "peg_c10",
+          "type": "mc",
+          "prompt": "I have never ___ such a beautiful garden before.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "saw",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "seen",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "seeing",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "see",
+              "correct": false
+            }
+          ],
+          "hint": "have 后需要过去分词。",
+          "explanation": "have never seen：现在完成时，see 的过去分词是 seen。"
+        },
+        {
+          "id": "peg_c11",
+          "type": "mc",
+          "prompt": "The box is ___ heavy for me to lift.",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "enough",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "many",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "such",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "too",
+              "correct": true
+            }
+          ],
+          "hint": "句子表示重得提不起来；注意后面的 to lift。",
+          "explanation": "too + 形容词 + to do 表示太……而不能……；这里是箱子太重。"
+        },
+        {
+          "id": "peg_x3",
+          "type": "mc",
+          "prompt": "Nora said, 'I am tired.' Reporting her words about yesterday: Nora said that she ___ tired then.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "has been",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "is being",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "will be",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "was",
+              "correct": true
+            }
+          ],
+          "hint": "转述的是昨天当时的状态。",
+          "explanation": "Nora said that she was tired then. 用 was 表示她昨天说话时的状态。"
+        },
+        {
+          "id": "peg_x4",
+          "type": "mc",
+          "prompt": "The match will be cancelled unless the weather ___.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "will improve",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "improving",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "improved",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "improves",
+              "correct": true
+            }
+          ],
+          "hint": "unless 引导未来条件时，从句通常用一般现在时。",
+          "explanation": "unless the weather improves 表示除非天气好转；主句用 will，但条件从句用 improves。"
+        },
+        {
+          "id": "peg_x5",
+          "type": "mc",
+          "prompt": "This is the café ___ we first met.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "where",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "which",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "whose",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "who",
+              "correct": false
+            }
+          ],
+          "hint": "后面的 we first met 已有主谓，需要补充地点关系。",
+          "explanation": "where 相当于 at which，表示我们第一次见面的地方。"
+        },
+        {
+          "id": "peg_x6",
+          "type": "mc",
+          "prompt": "The teacher made us ___ the instructions again.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "reads",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "to read",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "read",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "reading",
+              "correct": false
+            }
+          ],
+          "hint": "主动语态 make + 人 + 动词原形。",
+          "explanation": "made us read：让我们再读一遍。主动结构中不能加 to。"
+        },
+        {
+          "id": "peg_x7",
+          "type": "mc",
+          "prompt": "The bridge ___ next year. Work has not started yet.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "will be built",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "builds",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "was built",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "has built",
+              "correct": false
+            }
+          ],
+          "hint": "桥是被建造的，next year 指将来。",
+          "explanation": "will be built 是一般将来时的被动语态：这座桥将在明年修建。"
+        },
+        {
+          "id": "peg_x8",
+          "type": "mc",
+          "prompt": "___ it was cold, we enjoyed the walk.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "In spite of",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "Despite",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "Because of",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "Although",
+              "correct": true
+            }
+          ],
+          "hint": "空格后是完整句子 it was cold。",
+          "explanation": "Although 后可接句子。despite/in spite of 后应接名词或 -ing，不能直接接 it was cold。"
+        },
+        {
+          "id": "peg_x9",
+          "type": "mc",
+          "prompt": "The homework was easy enough for me ___ without help.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "to finish",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "finish",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "finishing",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "finished",
+              "correct": false
+            }
+          ],
+          "hint": "结构为形容词 + enough + for somebody + to do。",
+          "explanation": "easy enough for me to finish：简单到我可以独立完成。"
+        },
+        {
+          "id": "peg_x10",
+          "type": "mc",
+          "prompt": "I wish I ___ closer to school, but my home is ten kilometres away.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "living",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "live",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "lived",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "will live",
+              "correct": false
+            }
+          ],
+          "hint": "wish 后对现在情况表达不同于事实的愿望。",
+          "explanation": "I wish I lived closer 表示希望现在住得更近，用过去式 lived 表达这一愿望。"
+        },
+        {
+          "id": "peg_x11",
+          "type": "mc",
+          "prompt": "It's the first time I ___ this dish.",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "am tried",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "have tried",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "was try",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "try yesterday",
+              "correct": false
+            }
+          ],
+          "hint": "It's the first time... 通常配合现在完成时。",
+          "explanation": "It's the first time I have tried this dish. 表示到现在为止第一次品尝这道菜。"
         }
       ]
     },
@@ -939,6 +2920,11 @@
           "difficulty": "basic",
           "choices": [
             {
+              "id": "c",
+              "label": "骑自行车",
+              "correct": false
+            },
+            {
               "id": "a",
               "label": "坐公交车",
               "correct": true
@@ -946,11 +2932,6 @@
             {
               "id": "b",
               "label": "走路",
-              "correct": false
-            },
-            {
-              "id": "c",
-              "label": "骑自行车",
               "correct": false
             },
             {
@@ -969,9 +2950,9 @@
           "difficulty": "basic",
           "choices": [
             {
-              "id": "a",
-              "label": "周一",
-              "correct": true
+              "id": "d",
+              "label": "每天",
+              "correct": false
             },
             {
               "id": "b",
@@ -979,13 +2960,13 @@
               "correct": false
             },
             {
-              "id": "c",
-              "label": "周末",
-              "correct": false
+              "id": "a",
+              "label": "周一",
+              "correct": true
             },
             {
-              "id": "d",
-              "label": "每天",
+              "id": "c",
+              "label": "周末",
               "correct": false
             }
           ],
@@ -999,13 +2980,8 @@
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "太贵了",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "label": "颜色不喜欢",
+              "id": "d",
+              "label": "卖完了",
               "correct": false
             },
             {
@@ -1014,8 +2990,13 @@
               "correct": false
             },
             {
-              "id": "d",
-              "label": "卖完了",
+              "id": "a",
+              "label": "太贵了",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "颜色不喜欢",
               "correct": false
             }
           ],
@@ -1029,9 +3010,9 @@
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "8:05",
-              "correct": true
+              "id": "d",
+              "label": "8:00",
+              "correct": false
             },
             {
               "id": "b",
@@ -1044,9 +3025,9 @@
               "correct": false
             },
             {
-              "id": "d",
-              "label": "8:00",
-              "correct": false
+              "id": "a",
+              "label": "8:05",
+              "correct": true
             }
           ],
           "hint": "ten minutes early = 提前十分钟",
@@ -1059,16 +3040,6 @@
           "difficulty": "consolidate",
           "choices": [
             {
-              "id": "a",
-              "label": "画画",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "label": "游泳",
-              "correct": false
-            },
-            {
               "id": "c",
               "label": "阅读",
               "correct": false
@@ -1077,6 +3048,16 @@
               "id": "d",
               "label": "三个都是",
               "correct": false
+            },
+            {
+              "id": "b",
+              "label": "游泳",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "画画",
+              "correct": true
             }
           ],
           "hint": "favourite hobby is painting",
@@ -1089,9 +3070,9 @@
           "difficulty": "challenge",
           "choices": [
             {
-              "id": "a",
-              "label": "订单超过 20 英镑",
-              "correct": true
+              "id": "c",
+              "label": "会员专享",
+              "correct": false
             },
             {
               "id": "b",
@@ -1099,18 +3080,18 @@
               "correct": false
             },
             {
-              "id": "c",
-              "label": "会员专享",
-              "correct": false
-            },
-            {
               "id": "d",
               "label": "周末下单",
               "correct": false
+            },
+            {
+              "id": "a",
+              "label": "订单超过 20 英镑",
+              "correct": true
             }
           ],
-          "hint": "free delivery on orders over £20",
-          "explanation": "订单满 20 英镑"
+          "hint": "over 表示严格大于，不包括恰好 20",
+          "explanation": "订单金额必须超过 20 英镑；恰好 20 英镑不满足 over £20。"
         },
         {
           "id": "per_x1",
@@ -1118,16 +3099,6 @@
           "prompt": "Although it was raining, the children went outside to play.\n问:孩子们出去玩时天气如何?",
           "difficulty": "challenge",
           "choices": [
-            {
-              "id": "a",
-              "label": "在下雨",
-              "correct": true
-            },
-            {
-              "id": "b",
-              "label": "晴天",
-              "correct": false
-            },
             {
               "id": "c",
               "label": "下雪",
@@ -1137,6 +3108,16 @@
               "id": "d",
               "label": "刮风",
               "correct": false
+            },
+            {
+              "id": "b",
+              "label": "晴天",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "在下雨",
+              "correct": true
             }
           ],
           "hint": "Although it was raining = 尽管在下雨",
@@ -1171,6 +3152,726 @@
           ],
           "hint": "but not Sunday",
           "explanation": "周日不能来"
+        },
+        {
+          "id": "per_b2",
+          "type": "mc",
+          "prompt": "Our science club has moved from Room 4 to Room 9 because Room 4 is being painted. The meeting still starts at 3:30 on Wednesday.\n问：这次科学社团活动改变了什么？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "c",
+              "label": "开始时间",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "星期",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "活动主题",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "教室",
+              "correct": true
+            }
+          ],
+          "hint": "比较 moved 和 still 后面的内容。",
+          "explanation": "地点由 4 号教室改为 9 号教室；星期三 3:30 的时间没有改变。"
+        },
+        {
+          "id": "per_b3",
+          "type": "mc",
+          "prompt": "Amir works at the café on Saturdays. He starts at 9 a.m. and finishes at 1 p.m. On Sundays, he studies at home.\n问：Amir 星期六在咖啡厅工作多久？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "d",
+              "label": "8 小时",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "5 小时",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "4 小时",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "3 小时",
+              "correct": false
+            }
+          ],
+          "hint": "从上午 9 点计算到下午 1 点。",
+          "explanation": "下午 1 点是 13:00，13 − 9 = 4 小时。星期天的安排与计算无关。"
+        },
+        {
+          "id": "per_b4",
+          "type": "mc",
+          "prompt": "Holly has two pets. Her dog Max likes running in the park. Her cat Pip usually sleeps beside the window. Holly feeds both of them before school.\n问：Pip 通常在哪里睡觉？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "窗边",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "门外",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "学校里",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "公园里",
+              "correct": false
+            }
+          ],
+          "hint": "先确定 Pip 是哪只宠物，再找它的活动地点。",
+          "explanation": "Pip 是猫，原文明确说它通常在窗边睡觉。"
+        },
+        {
+          "id": "per_b5",
+          "type": "mc",
+          "prompt": "The sports shop closes at 6 p.m. on weekdays and at 4 p.m. on Saturdays. It does not open on Sundays.\n问：星期六这家店几点关门？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "b",
+              "label": "下午 6 点",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "星期六不营业",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "上午 4 点",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "下午 4 点",
+              "correct": true
+            }
+          ],
+          "hint": "Saturday 与 weekdays 的时间不同。",
+          "explanation": "周六 4 p.m. 关门；周日才是不营业。"
+        },
+        {
+          "id": "per_b6",
+          "type": "mc",
+          "prompt": "To enter the school drawing competition, give your picture to Ms Green before Friday. Write your name and class on the back. Each student may enter one picture.\n问：每位学生可以提交几幅画？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "d",
+              "label": "数量不限",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "一幅",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "两幅",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "三幅",
+              "correct": false
+            }
+          ],
+          "hint": "最后一句规定提交数量。",
+          "explanation": "Each student may enter one picture 表示每人只能提交一幅作品。"
+        },
+        {
+          "id": "per_b7",
+          "type": "mc",
+          "prompt": "When the class visited the farm, the morning was sunny. After lunch it started raining, so the children went inside to learn how cheese is made.\n问：孩子们为什么在午饭后进入室内？",
+          "difficulty": "basic",
+          "choices": [
+            {
+              "id": "a",
+              "label": "因为开始下雨了",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "因为忘记吃午饭",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "因为农场关门了",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "因为天黑了",
+              "correct": false
+            }
+          ],
+          "hint": "找 started raining 和 so 之间的因果关系。",
+          "explanation": "午饭后下雨，所以孩子们改到室内学习；不是因为早上天气不好。"
+        },
+        {
+          "id": "per_c3",
+          "type": "mc",
+          "prompt": "Jade wanted to learn guitar, but lessons near her home were too expensive. She found free videos online and practised for twenty minutes each evening. After three months, she could play two songs for her family. She still hopes to take lessons one day.\n问：Jade 为什么先跟视频学习？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "c",
+              "label": "家人要求她上网",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "附近的课程太贵",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "她不喜欢任何老师",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "附近没有卖吉他的商店",
+              "correct": false
+            }
+          ],
+          "hint": "第一句和第二句说明她选择视频的原因。",
+          "explanation": "她因课程费用太高而使用免费视频；仍希望将来上课，所以不能推断她排斥老师。"
+        },
+        {
+          "id": "per_c4",
+          "type": "mc",
+          "prompt": "A museum ticket costs £8 for adults and £5 for children. A family ticket covers two adults and two children and costs £22. Extra children need separate child tickets.\n问：两位成人和三位儿童买家庭票再补票，共需多少钱？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "27 英镑",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "26 英镑",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "22 英镑",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "31 英镑",
+              "correct": false
+            }
+          ],
+          "hint": "家庭票已经包含两名儿童，只需为多出的一名补票。",
+          "explanation": "22 + 5 = 27 英镑；家庭票没有覆盖第三个孩子。"
+        },
+        {
+          "id": "per_c5",
+          "type": "mc",
+          "prompt": "The council planned to cut down an old tree beside the library because its branches were damaged. Local people asked an expert to inspect it. The expert said that removing only the damaged branches would make the tree safe. The council agreed to do that instead.\n问：最终采取了什么办法？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "砍掉整棵树",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "只剪去损坏的树枝",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "完全不处理树枝",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "关闭图书馆",
+              "correct": false
+            }
+          ],
+          "hint": "注意 instead 表示改变了最初的计划。",
+          "explanation": "专家建议修剪损坏的树枝，委员会接受建议，保留整棵树。"
+        },
+        {
+          "id": "per_c6",
+          "type": "mc",
+          "prompt": "Ella usually cycles to school because it is quicker than walking. This week, her bicycle is being repaired. Her father offered to drive her, but she chose to walk with her friend, who lives nearby.\n问：这周 Ella 怎样上学？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "d",
+              "label": "坐公共汽车",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "自己骑车",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "和朋友步行",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "坐爸爸的车",
+              "correct": false
+            }
+          ],
+          "hint": "区分平时的做法、别人提供的选择和她最终的决定。",
+          "explanation": "虽然爸爸提出开车送她，但她最终选择和朋友步行。"
+        },
+        {
+          "id": "per_c7",
+          "type": "mc",
+          "prompt": "Book review: I expected this story to be exciting because the cover showed a rocket. The first chapters were slow, but the final journey was wonderful. I also liked the drawings. I wish the beginning had been shorter.\n问：评论者最希望改进哪一点？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "开头部分短一些",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "把结尾写得更长",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "删掉所有插图",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "取消太空旅行情节",
+              "correct": false
+            }
+          ],
+          "hint": "最后一句直接说明改进愿望。",
+          "explanation": "评论者喜欢结尾和插图，但觉得前几章进展慢，希望开头更简短。"
+        },
+        {
+          "id": "per_c8",
+          "type": "mc",
+          "prompt": "The school garden needs volunteers on Saturday. We will plant flowers from 10 to 12 and then have lunch together. Tools and gloves are provided, but please bring your own food and a bottle of water.\n问：志愿者需要自己带什么？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "b",
+              "label": "工具和手套",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "午餐桌和椅子",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "鲜花和花盆",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "食物和饮用水",
+              "correct": true
+            }
+          ],
+          "hint": "provided 表示已经提供；bring your own 表示需自备。",
+          "explanation": "学校提供工具与手套；食物和一瓶水需要志愿者自己带。"
+        },
+        {
+          "id": "per_c9",
+          "type": "mc",
+          "prompt": "Liam joined the photography club to improve his pictures of birds. At first, he thought an expensive camera was essential. The teacher showed him how patience and good light could improve photos taken with a simple camera. Liam decided to keep using his old one.\n问：Liam 的想法发生了什么变化？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "c",
+              "label": "决定停止拍照",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "不再认为好照片一定需要昂贵相机",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "认为只能在黑暗中拍鸟",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "觉得拍鸟完全不需要耐心",
+              "correct": false
+            }
+          ],
+          "hint": "对比 At first 和最后一句的决定。",
+          "explanation": "老师让他认识到耐心和光线也很重要，因此他继续使用旧相机。"
+        },
+        {
+          "id": "per_c10",
+          "type": "mc",
+          "prompt": "Two buses go to the sports centre. Bus A leaves the station at 9:10 and takes 25 minutes. Bus B leaves at 9:20 and takes 10 minutes. Both arrive before the swimming lesson begins at 9:40.\n问：哪班车到体育中心更早？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "c",
+              "label": "两车同时到达",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "B 车早 15 分钟",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "B 车早 5 分钟",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "A 车早 10 分钟",
+              "correct": false
+            }
+          ],
+          "hint": "不能只比较发车时间，要分别加上行程时间。",
+          "explanation": "A 车 9:35 到，B 车 9:30 到，所以 B 车早 5 分钟。"
+        },
+        {
+          "id": "per_c11",
+          "type": "mc",
+          "prompt": "Please tell us by Thursday if you want to join the cooking workshop. We need the number of participants so that we can buy enough ingredients on Friday. The workshop itself takes place on Saturday morning.\n问：为什么需要最迟在星期四回复？",
+          "difficulty": "consolidate",
+          "choices": [
+            {
+              "id": "a",
+              "label": "方便按人数采购食材",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "为了选择周五的餐厅",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "因为活动在星期四举行",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "因为周六不能做饭",
+              "correct": false
+            }
+          ],
+          "hint": "so that 后面解释了提前统计人数的目的。",
+          "explanation": "需要先知道人数，才能在周五购买足够食材；活动是周六上午。"
+        },
+        {
+          "id": "per_x3",
+          "type": "mc",
+          "prompt": "When our class started a recycling project, we put a large box in the corridor. In the first week, people dropped all kinds of rubbish into it, including food. We added clear pictures showing which items belonged there and placed a food bin nearby. By the next week, almost everything in the recycling box was suitable. We learned that giving people a place to recycle is only part of the job.\n问：作者认为这个项目还需要什么才能顺利进行？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "把回收箱藏起来",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "把所有垃圾都放进同一个箱子",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "清楚的分类指引和适当的垃圾桶",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "只让老师参与回收",
+              "correct": false
+            }
+          ],
+          "hint": "比较采取新措施前后的情况。",
+          "explanation": "图片帮助大家了解分类规则，附近的厨余桶也提供了正确去处；只放一个箱子还不够。"
+        },
+        {
+          "id": "per_x4",
+          "type": "mc",
+          "prompt": "At first, Tom avoided speaking during his French class because he worried about mistakes. His teacher asked everyone to practise in pairs before talking to the whole class. Tom found it easier to speak to one person. Over several weeks, he began answering questions in front of everyone. He still makes mistakes, but he no longer sees them as a reason to stay silent.\n问：Tom 最主要的变化是什么？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "c",
+              "label": "只愿意独自学习",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "更愿意开口，即使会犯错",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "已经不会犯任何错误",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "不再参加法语课",
+              "correct": false
+            }
+          ],
+          "hint": "最后一句说明错误仍存在，但态度改变了。",
+          "explanation": "Tom 逐渐建立了开口的信心；文章没有说他已完全掌握法语。"
+        },
+        {
+          "id": "per_x5",
+          "type": "mc",
+          "prompt": "A café owner noticed that customers threw away many paper cups. She introduced a discount for people who brought reusable cups. At first, only a few customers tried it. She then put a sign beside the till showing how many cups had been saved that week. More customers began bringing their own cups, and some said they liked seeing the effect of their choice.\n问：后来更多顾客自带杯子的一个原因是什么？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "他们能看到自己的选择带来的效果",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "纸杯突然变得免费",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "咖啡厅完全停止供应饮料",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "每个人都必须购买新杯子",
+              "correct": false
+            }
+          ],
+          "hint": "注意标牌展示的数字和顾客后来的反馈。",
+          "explanation": "标牌让节省纸杯的效果可见，顾客反馈说喜欢看到自己的选择产生作用。"
+        },
+        {
+          "id": "per_x6",
+          "type": "mc",
+          "prompt": "Maya planned a mountain walk with friends. The forecast said the morning would be clear but storms were likely after 2 p.m. Their route normally took five hours. They decided to start at 7 a.m. and turn back if dark clouds appeared earlier than expected. They also packed raincoats. 'We want to enjoy the walk, but reaching the top isn't the most important thing,' Maya said.\n问：哪句话最符合 Maya 的态度？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "无论天气怎样都要登顶",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "安全比一定到达山顶更重要",
+              "correct": true
+            },
+            {
+              "id": "c",
+              "label": "只要有雨衣就不必折返",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "天气预报肯定不会改变",
+              "correct": false
+            }
+          ],
+          "hint": "综合出发时间、提前折返计划和最后一句。",
+          "explanation": "他们提前出发并准备必要时折返，说明愿意为了安全放弃登顶。"
+        },
+        {
+          "id": "per_x7",
+          "type": "mc",
+          "prompt": "A website offers two delivery options. Standard delivery costs £3 and takes three to five working days. Express delivery costs £7 and takes one working day. Delivery time starts on the working day after processing. Orders received after midday are processed the next working day. Alex orders at 2 p.m. on Monday and selects express delivery. There are no public holidays that week.\n问：按这些规则，包裹预计哪天送达？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "星期一",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "星期三",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "星期五",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "星期二",
+              "correct": false
+            }
+          ],
+          "hint": "先确定订单处理日，再加一个工作日；下午 2 点晚于中午。",
+          "explanation": "周一中午后下单，周二处理；快递再需一个工作日，因此预计周三送达。"
+        },
+        {
+          "id": "per_x8",
+          "type": "mc",
+          "prompt": "For a history project, Rosa first read a short article online. It gave one date for the opening of a bridge. A museum page gave a different date. Instead of choosing the first answer, she checked a photograph of the opening ceremony in the town archive. The date written on it matched the museum page. In her report, Rosa explained which source she used and why.\n问：这个过程最能说明 Rosa 做了什么？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "看到第一个答案就直接采用",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "因为日期不同就放弃项目",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "比较证据后说明信息来源",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "认为所有网站都不可信",
+              "correct": false
+            }
+          ],
+          "hint": "注意她发现冲突后的行动，而不是只看第一步。",
+          "explanation": "她用档案照片核对冲突信息，并在报告中交代依据；没有一概否定所有网站。"
+        },
+        {
+          "id": "per_x9",
+          "type": "mc",
+          "prompt": "Our school replaced a weekly printed newsletter with an email. It saved paper, but some families said they rarely checked email and missed important notices. The school kept the email newsletter and added a short text message whenever it contained an urgent deadline. Printed copies were still available from the office on request. After this change, fewer families reported missing information.\n问：学校为什么增加短信提醒？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "d",
+              "label": "为了取消所有截止日期",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "为了不再发送邮件",
+              "correct": false
+            },
+            {
+              "id": "b",
+              "label": "为了恢复每周给所有人印纸质通知",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "让不常查看邮件的家庭注意紧急截止日期",
+              "correct": true
+            }
+          ],
+          "hint": "找出最初方案的问题和新增措施解决的问题。",
+          "explanation": "短信补充邮件，提醒紧急事项；学校仍保留邮件及按需提供的纸质副本。"
+        },
+        {
+          "id": "per_x10",
+          "type": "mc",
+          "prompt": "Noah thought working in a team would slow down his science project. He preferred doing everything himself. During the project, one teammate noticed a mistake in his measurements, while another suggested a clearer chart. The team finished later than Noah had originally planned, but their results were more accurate and easier to understand. In his diary, he wrote that speed was not the only way to judge success.\n问：Noah 从这次经历中学到了什么？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "a",
+              "label": "合作可能花更多时间，却能提高成果质量",
+              "correct": true
+            },
+            {
+              "id": "b",
+              "label": "最快完成永远最重要",
+              "correct": false
+            },
+            {
+              "id": "d",
+              "label": "科学项目不需要准确的数据",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "队友只会造成错误",
+              "correct": false
+            }
+          ],
+          "hint": "对比时间变化与结果质量，再结合日记中的总结。",
+          "explanation": "合作使进度稍慢，但纠正了测量错误并改善图表，说明质量也是成功标准。"
+        },
+        {
+          "id": "per_x11",
+          "type": "mc",
+          "prompt": "The town's new community garden has plots that residents can rent. People originally asked for larger individual plots. However, the organisers chose smaller ones so that more residents could join. They also created a shared area for fruit trees and a weekly meeting where beginners could ask experienced gardeners for advice. The garden's aim is to grow food and help neighbours learn from one another.\n问：为什么最后选择较小的个人种植区？",
+          "difficulty": "challenge",
+          "choices": [
+            {
+              "id": "b",
+              "label": "因为禁止居民种植食物",
+              "correct": false
+            },
+            {
+              "id": "c",
+              "label": "为了取消公共区域",
+              "correct": false
+            },
+            {
+              "id": "a",
+              "label": "让更多居民能够参加",
+              "correct": true
+            },
+            {
+              "id": "d",
+              "label": "因为没有人愿意参加",
+              "correct": false
+            }
+          ],
+          "hint": "so that 后面直接解释了尺寸选择的目的。",
+          "explanation": "较小的个人区域能容纳更多参与者，与共享果树区和交流活动一起实现社区学习目标。"
         }
       ]
     }

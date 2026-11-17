@@ -11,6 +11,7 @@ Generates three JSON files when run:
 Never hand-edit the JSON — edit this file and re-run.
 """
 import json
+from build_fluency_expansion import expand_tracks, fluency_only_cli
 import os
 import string
 
@@ -265,11 +266,11 @@ def build_fluency_pack():
     ]
 
     return {
-        "version": "1.0.0",
+        "version": "1.1.0",
         "grade": 5,
         "subject": "math_fluency",
         "engine_config": engine_config,
-        "tracks": tracks,
+        "tracks": expand_tracks(5, tracks),
         "non_drill_topics": non_drill_topics,
     }
 
@@ -2698,6 +2699,7 @@ def main():
 
 
 if __name__ == "__main__":
+    fluency_only_cli(5, build_fluency_pack)
     main()
     # 题目来源标注: 写完 practice+knowledge_map 后,从 km 自动推导 source
     from source_tags import tag_practice_file

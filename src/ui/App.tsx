@@ -323,7 +323,8 @@ export function App() {
       <>
         {userBar}
         {switcherEl}
-        <EnglishVocab onBack={() => setSubject(null)} banner={fromKetWelcome} />
+        <EnglishVocab onBack={() => setSubject(null)} banner={fromKetWelcome}
+          practice={{ adapter, studentId }} />
       </>
     );
   }

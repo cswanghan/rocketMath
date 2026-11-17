@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/cnchar/cnchar.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/cnchar-poly/cnchar.poly.min.js"></script>
 <script src="/track.js"></script>
+<script src="/chinese-reading-data.js"></script>
 <style>
 :root {
   --paper: #f4ead6;
@@ -337,6 +338,20 @@ header {
   .grade-btn { padding: 6px 10px; font-size: 13px; }
   .logo h1 { font-size: 26px; }
 }
+.reading-library { max-width: 760px; margin: 18px auto; }
+.reading-library h2, .reading-questions h2 { font-size: 18px; margin: 0 0 12px; }
+.library-list { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 10px; }
+.library-choice, .reading-choice { padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper-3); color: var(--ink); font: inherit; text-align: left; cursor: pointer; }
+.library-choice:hover, .reading-choice:hover:not(:disabled) { border-color: var(--gold); }
+.reading-questions { margin-top: 18px; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper-3); }
+.reading-question { margin: 20px 0; }
+.reading-question h3 { font-size: 16px; line-height: 1.6; }
+.reading-options { display: grid; gap: 8px; grid-template-columns: repeat(2,minmax(0,1fr)); }
+.reading-choice:disabled { cursor: default; opacity: 1; }
+.reading-choice.correct { border-color: var(--green); background: var(--green-wash); }
+.reading-choice.wrong { border-color: var(--red); background: var(--red-wash); }
+.reading-feedback { line-height: 1.7; color: var(--ink-soft); }
+@media(max-width:500px) { .reading-options { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -351,8 +366,8 @@ header {
 <!-- Grade selector -->
 <div class="grade-bar" id="gradeBar"></div>
 <div class="scope-bar">
-  <button class="scope-btn active" data-scope="current" onclick="setScope('current')">仅本年级生字</button>
-  <button class="scope-btn" data-scope="cumulative" onclick="setScope('cumulative')">含低年级生字</button>
+  <button class="scope-btn active" data-scope="current" onclick="setScope('current')">本年级参考字</button>
+  <button class="scope-btn" data-scope="cumulative" onclick="setScope('cumulative')">含低年级参考字</button>
 </div>
 
 <!-- Input view -->
@@ -364,7 +379,12 @@ header {
       <button class="start-btn" id="startBtn" disabled onclick="startReading()">开始阅读</button>
     </div>
   </div>
-  <p class="hint-text">支持粘贴任意中文文章、课文、故事、新闻等</p>
+  <p class="hint-text">支持粘贴文章；参考字表用于识字练习，不是指定教材的必会字清单。</p>
+  <section class="reading-library" aria-label="原创分级阅读">
+    <h2>也可以选一篇原创短文</h2>
+    <p class="hint-text">每篇附 3 道理解题和解析，年级为建议难度。</p>
+    <div class="library-list" id="readingLibrary"></div>
+  </section>
 </div>
 
 <!-- Reading view -->
@@ -378,6 +398,7 @@ header {
       <div class="article-panel">
         <div class="article-body" id="articleBody"></div>
       </div>
+      <section class="reading-questions" id="readingQuestions" aria-label="阅读理解" hidden></section>
       <div class="word-list-panel">
         <div class="word-list-title">📋 本文生字表 <span id="wordListCount"></span></div>
         <div class="word-chips" id="wordChips"></div>
@@ -399,7 +420,7 @@ header {
 </div>
 
 <script>
-// ========== Grade-level character data (人教版) ==========
+// ========== Legacy reference character lists; not a verified textbook syllabus ==========
 const GRADE_CHARS = {
   1: "一二三四五六七八九十百千万上下大小多少天地人口手足目耳日月水火山石田禾虫鸟鱼花草树木林森明星晴云雨雪风春夏秋冬东南西北前后左右来去出入开关坐站走跑飞跳看听说读写画唱男女老少父母爸妈爷奶儿子头发眼鼻嘴牙耳朵身体心手脚红黄蓝绿白黑色长短高有的是在了不我你他她它们这那里可好也要到很和就着过得对中学自己用几只个两半什么时候会回问们为因所以而又都同吧吗呢啊把被比被从都但更各还或就可每哪那能却如若虽所它为向要也已以应于与在则怎增只作做再没干干活才行让事情别双国王方青清气请生字正先写片全部件条张块支面本书包笔刀尺本纸作业功课桌椅窗门车路桥房间家园校城市村河湖海江水池塘井泉溪流波浪洋港湾岸岛洲土沙泥岩洞穴壁崖坡谷川原野坝塔台阶梯桩柱梁墙壁顶底边角落堆排列串束捆组群队形阵圈轮回圆方扁尖角弯直平斜横竖点撇捺折提钩挑转拐弯绕环抱围合拢散开展收放拿起落举抬搬移推拉扔丢甩投接拍打击敲碰压贴粘沾挂摆翻滚倒立卧躺靠蹲跪爬滑溜攀登降升浮沉落提升降飘吹刮扫荡冲洗涮擦抹刷刮削切割剪裁缝补钉扣系绑捆扎缠绕扭拧挤拉扯撕折叠卷摊铺盖掀揭包裹装填塞堵封堵锁盘碗杯壶瓶罐盒袋箱桶盆缸锅碟碗筷刀叉勺铲壶盖篮筐笼网绳索链带条线丝毛发皮革布帛纱绸缎衣服裤裙帽鞋袜巾被褥枕席毯帘幕幢件套副双只把条根支张片块颗粒滴首座间棵架辆趟遍阵幅份层",
   2: "帮助保护必须变化表示丛当感觉观察害怕互相欢乐环境活动伙伴技巧建设健康渐渐交流节约精神竞赛快乐劳动旅游美丽描绘认识容易商量设计食物事物思考探索讨论特别提高甜蜜温暖希望想象消息辛苦兴奋研究意见游戏愿望增加展示植物指导值日重要周围祝福转动准备紫棉袄笨补丁察差瞅串窗催村答戴叼碟都吨鹅罚忽唤幻荒鸡积极渐浆酱郊洁净井睛景镜竞究举据决绝筷捆懒铃领略迷谜宁弄逆怕盼旁瓢飘评泼朴期旗巧窍抢敲巧翘切请穷球取确燃嚷绕忍肉扫杀晒善扇稍哨蛇审绳湿拾拼贫墨默耐恼脑闹嫩碰篇朴趣染忍融容洒赛丧扫杀啥晒善扇稍哨射申伸深神审婶甚胜剩诗狮施式示适饰世势释室守受授瘦熟述竖术束刷甩帅霜撕宿孙损缩塌踏摊贪坛谭叹汤糖躺烫掏陶逃挑跳贴厅亭庭偷突途涂吐推退托挖弯危微围伟尾违味温蚊稳握污武雾夕溪惜洗喜虾峡狭吓掀鲜显险献乡箱详像项消削斜械信醒姓凶修秀叙绪须许续宣旋压鸭延严岩沿演掩眼雁央扬洋仰养谣遥咬爷液宜仪椅逸忆艺因阴引隐饮印赢影映硬拥佣涌永咏勇幽犹油游友幼鱼寓冤圆缘远院愿约跃越阅云允运杂灾载赞暂藏脏造则责择扎眨",
@@ -416,9 +437,14 @@ const CHAR_INFO = {};
 let currentGrade = 3;
 let scope = 'current'; // 'current' | 'cumulative'
 let articleText = '';
+let selectedPassage = null;
+let READING_LIBRARY = window.CHINESE_READING_LIBRARY || null;
+let readingLibraryLoading = false;
 let foundChars = [];   // [{char, pinyin, count}]
+let articleReadings = []; // per occurrence: the same character can have different readings
 let masteredSet = new Set();
 let currentDetailChar = null;
+let currentDetailIndex = null;
 let writerInstance = null;
 
 // ========== Init ==========
@@ -426,6 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderGradeBar();
   const input = document.getElementById('articleInput');
   input.addEventListener('input', () => {
+    selectedPassage = null;
     const len = input.value.replace(/\s/g, '').length;
     document.getElementById('charCount').textContent = len + ' 字';
     document.getElementById('startBtn').disabled = len === 0;
@@ -447,6 +474,105 @@ function renderGradeBar() {
     btn.onclick = () => { currentGrade = g; renderGradeBar(); };
     bar.appendChild(btn);
   }
+  renderReadingLibrary();
+}
+
+function renderReadingLibrary() {
+  const list = document.getElementById('readingLibrary');
+  list.replaceChildren();
+  if (!hasReadingLibrary(READING_LIBRARY)) {
+    const message = document.createElement('p');
+    message.className = 'hint-text'; message.setAttribute('role', 'status');
+    message.textContent = readingLibraryLoading
+      ? '正在重新加载短文题库…'
+      : '未能加载短文题库，请重试。你仍可粘贴文章进行识字练习。';
+    const retry = document.createElement('button');
+    retry.type = 'button'; retry.className = 'library-choice';
+    retry.disabled = readingLibraryLoading;
+    retry.textContent = readingLibraryLoading ? '正在加载…' : '重试加载短文';
+    retry.onclick = retryReadingLibrary;
+    list.append(message, retry);
+    return;
+  }
+  READING_LIBRARY.passages.filter(p => p.grade === currentGrade).forEach(p => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'library-choice';
+    b.textContent = p.title + ' · ' + p.questions.length + ' 道理解题';
+    b.onclick = () => chooseReadingPassage(p.id);
+    list.appendChild(b);
+  });
+}
+
+function hasReadingLibrary(data) {
+  return !!data && Array.isArray(data.passages) && data.passages.length > 0;
+}
+
+function retryReadingLibrary() {
+  if (readingLibraryLoading) return;
+  readingLibraryLoading = true;
+  renderReadingLibrary();
+  const script = document.createElement('script');
+  script.async = true;
+  // A new request also recovers from a cached failed response. The user-entered
+  // article and its reading state are deliberately independent of this asset.
+  script.src = '/chinese-reading-data.js?retry=' + Date.now();
+  let finished = false;
+  const timeout = setTimeout(() => finish(false), 10000);
+  function finish(loaded) {
+    if (finished) return;
+    finished = true;
+    clearTimeout(timeout);
+    script.onload = null; script.onerror = null; script.remove();
+    READING_LIBRARY = loaded && hasReadingLibrary(window.CHINESE_READING_LIBRARY)
+      ? window.CHINESE_READING_LIBRARY : null;
+    readingLibraryLoading = false;
+    renderReadingLibrary();
+  }
+  script.onload = () => finish(true);
+  script.onerror = () => finish(false);
+  document.head.appendChild(script);
+}
+
+function chooseReadingPassage(id) {
+  selectedPassage = hasReadingLibrary(READING_LIBRARY) ? READING_LIBRARY.passages.find(p => p.id === id) || null : null;
+  if (!selectedPassage) return;
+  const input = document.getElementById('articleInput');
+  input.value = selectedPassage.text;
+  document.getElementById('charCount').textContent = selectedPassage.text.replace(/\s/g, '').length + ' 字';
+  document.getElementById('startBtn').disabled = false;
+  startReading();
+}
+
+function renderReadingQuestions() {
+  const panel = document.getElementById('readingQuestions');
+  panel.replaceChildren(); panel.hidden = !selectedPassage;
+  if (!selectedPassage) return;
+  const title = document.createElement('h2');
+  title.textContent = selectedPassage.title + ' · 读后想一想'; panel.appendChild(title);
+  selectedPassage.questions.forEach((q, index) => {
+    const section = document.createElement('div'); section.className = 'reading-question';
+    section.dataset.questionId = q.id;
+    const prompt = document.createElement('h3'); prompt.textContent = (index + 1) + '. ' + q.prompt;
+    const options = document.createElement('div'); options.className = 'reading-options';
+    const feedback = document.createElement('p'); feedback.className = 'reading-feedback'; feedback.setAttribute('role', 'status');
+    let answered = false;
+    q.choices.forEach(choice => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'reading-choice';
+      b.dataset.choiceId = choice.id; b.textContent = choice.label;
+      b.onclick = () => {
+        if (answered) return; answered = true;
+        options.querySelectorAll('button').forEach(option => {
+          option.disabled = true;
+          if (option.dataset.choiceId === q.answer) option.classList.add('correct');
+          else if (option === b) option.classList.add('wrong');
+        });
+        const correct = q.choices.find(c => c.id === q.answer).label;
+        feedback.textContent = (choice.id === q.answer ? '答对了。' : '正确答案：' + correct + '。') + ' ' + q.explanation + ' 原文依据：“' + q.evidence + '”。';
+      };
+      options.appendChild(b);
+    });
+    section.append(prompt, options, feedback); panel.appendChild(section);
+  });
 }
 
 function setScope(s) {
@@ -471,8 +597,8 @@ function getTargetChars() {
 function getPinyin(ch) {
   try {
     if (window.cnchar) {
-      // Single most-common reading (NOT 'poly' — poly returns all readings of
-      // 多音字 like "cháng|zhǎng", which renders as a wrong/cluttered pinyin).
+      // Automatic fallback only. Reviewed original passages override this
+      // result at the exact occurrence, never by changing a global character.
       let py = cnchar.spell(ch, 'tone');
       if (Array.isArray(py)) py = py[0];
       py = (py == null ? '' : String(py));
@@ -483,23 +609,57 @@ function getPinyin(ch) {
   return '';
 }
 
+function getArticleReadings(text, passage) {
+  const occurrences = Array.from(text, (char, index) => ({char, index, pinyin: getPinyin(char), word: '', reviewed: false}));
+  if (passage && passage.text === text) {
+    for (const reading of passage.readings || []) {
+      const item = occurrences[reading.index];
+      if (item && item.char === reading.char && typeof reading.pinyin === 'string') {
+        item.pinyin = reading.pinyin;
+        item.word = reading.word;
+        item.reviewed = true;
+      }
+    }
+  }
+  return occurrences;
+}
+
+function collectReadingCharacters(occurrences, targetSet) {
+  const chars = new Map();
+  for (const item of occurrences) {
+    if (!targetSet.has(item.char)) continue;
+    if (!chars.has(item.char)) chars.set(item.char, {char: item.char, count: 0, readings: []});
+    const entry = chars.get(item.char);
+    entry.count++;
+    if (item.pinyin && !entry.readings.some(r => r.pinyin === item.pinyin && r.word === item.word)) {
+      entry.readings.push({pinyin: item.pinyin, word: item.word, reviewed: item.reviewed});
+    }
+  }
+  return Array.from(chars.values(), entry => ({...entry, pinyin: [...new Set(entry.readings.map(r => r.pinyin))].join(' / ')}))
+    .sort((a, b) => b.count - a.count);
+}
+
+function readingDetail(ch, index) {
+  const info = foundChars.find(f => f.char === ch);
+  if (!info) return null;
+  const occurrence = Number.isInteger(index) && articleReadings[index]?.char === ch ? articleReadings[index] : null;
+  const readings = occurrence ? [occurrence] : info.readings;
+  return {
+    pinyin: occurrence ? occurrence.pinyin : info.pinyin,
+    context: readings.map(r => r.word ? r.word + '：' + r.pinyin : r.pinyin + '（自动参考）').join('；'),
+  };
+}
+
 function startReading() {
   const input = document.getElementById('articleInput');
   articleText = input.value.trim();
   if (!articleText) return;
+  if (selectedPassage && articleText !== selectedPassage.text) selectedPassage = null;
+  renderReadingQuestions();
 
   const targetSet = getTargetChars();
-  const charMap = new Map(); // char -> count
-
-  for (const ch of articleText) {
-    if (targetSet.has(ch)) {
-      charMap.set(ch, (charMap.get(ch) || 0) + 1);
-    }
-  }
-
-  foundChars = Array.from(charMap.entries())
-    .map(([char, count]) => ({ char, pinyin: getPinyin(char), count }))
-    .sort((a, b) => b.count - a.count);
+  articleReadings = getArticleReadings(articleText, selectedPassage);
+  foundChars = collectReadingCharacters(articleReadings, targetSet);
 
   window.rmTrack && rmTrack('reading_generate', { grade: currentGrade, textLen: articleText.length, found: foundChars.length });
   renderReadingView();
@@ -516,13 +676,14 @@ function renderReadingView() {
   const totalChars = articleText.replace(/\s/g, '').length;
   const masteredCount = foundChars.filter(f => masteredSet.has(f.char)).length;
   document.getElementById('stats').innerHTML =
-    `全文 <b>${totalChars}</b> 字，含 <b>${foundChars.length}</b> 个${currentGrade}年级生字` +
+    `全文 <b>${totalChars}</b> 字，含 <b>${foundChars.length}</b> 个${currentGrade}年级参考字` +
     (masteredCount > 0 ? `，已掌握 <b>${masteredCount}</b> 个` : '');
 
   // Render article body with highlighted chars
   const body = document.getElementById('articleBody');
   body.innerHTML = '';
-  for (const ch of articleText) {
+  for (const occurrence of articleReadings) {
+    const {char: ch, index} = occurrence;
     if (ch === '\n') {
       body.appendChild(document.createElement('br'));
       continue;
@@ -532,11 +693,11 @@ function renderReadingView() {
       ruby.className = 'hw' + (masteredSet.has(ch) ? ' mastered' : '');
       ruby.textContent = ch;
       ruby.dataset.char = ch;
+      ruby.dataset.index = String(index);
       const rt = document.createElement('rt');
-      const info = foundChars.find(f => f.char === ch);
-      rt.textContent = info ? info.pinyin : '';
+      rt.textContent = occurrence.pinyin;
       ruby.appendChild(rt);
-      ruby.onclick = () => showDetail(ch);
+      ruby.onclick = () => showDetail(ch, index);
       body.appendChild(ruby);
     } else {
       body.appendChild(document.createTextNode(ch));
@@ -571,12 +732,15 @@ function showDetailEmpty() {
   document.getElementById('detailEmpty').style.display = '';
   document.getElementById('detailContent').style.display = 'none';
   currentDetailChar = null;
+  currentDetailIndex = null;
 }
 
-function showDetail(ch) {
+function showDetail(ch, index = null) {
   currentDetailChar = ch;
+  currentDetailIndex = index;
   const info = foundChars.find(f => f.char === ch);
   if (!info) return;
+  const detail = readingDetail(ch, index);
   window.rmTrack && rmTrack('char_view', { char: ch, source: 'reading' });
 
   // highlight active
@@ -587,7 +751,8 @@ function showDetail(ch) {
   const isMastered = masteredSet.has(ch);
   const detailHTML = `
     <div class="detail-char">${ch}</div>
-    <div class="detail-pinyin pinyin-font">${info.pinyin || '—'}</div>
+    <div class="detail-pinyin pinyin-font">${detail.pinyin || '—'}</div>
+    <div class="detail-section-body">${detail.context || '暂无注音'}</div>
     <div class="writer-box" id="__WRITER_ID__"></div>
     <div class="detail-actions">
       <button class="detail-btn" onclick="playAnimation()">▶ 笔顺</button>
@@ -685,9 +850,11 @@ function toggleMastered(ch) {
     localStorage.setItem('reading-mastered', JSON.stringify([...masteredSet]));
   } catch(e) {}
   // re-render
+  const reopen = currentDetailChar === ch;
+  const index = currentDetailIndex;
   renderReadingView();
-  if (currentDetailChar === ch) {
-    showDetail(ch);
+  if (reopen) {
+    showDetail(ch, index);
   }
 }
 

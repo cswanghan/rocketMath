@@ -5,6 +5,10 @@
   padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
 }
 
+.practice-menu { margin-bottom: 20rpx; }
+.practice-links { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 10rpx; }
+.practice-links .btn { margin: 0; }
+
 .gear {
   font-size: 40rpx;
   color: var(--muted);

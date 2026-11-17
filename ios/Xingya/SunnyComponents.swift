@@ -77,6 +77,7 @@ struct FeedbackBand: View {
     var detail: String
     var buttonTitle = "继续"
     var identifier = "session-continue"
+    var detailIdentifier = "feedback-detail"
     var action: () -> Void
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -87,7 +88,7 @@ struct FeedbackBand: View {
                     .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(L10n.text(title)).font(.title2.bold())
-                    if !detail.isEmpty { Text(L10n.text(detail)).font(.headline).fixedSize(horizontal: false, vertical: true) }
+                    if !detail.isEmpty { Text(L10n.text(detail)).font(.headline).fixedSize(horizontal: false, vertical: true).accessibilityIdentifier(detailIdentifier) }
                 }
                 Spacer(minLength: 0)
                 if correct { SunSprout().frame(width: 44, height: 44) }

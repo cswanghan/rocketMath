@@ -1,6 +1,23 @@
 {
   "sourceLanguage": "zh-Hans",
   "strings": {
+    "停止输入约 1 秒后自动检查": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Answers check automatically after a 1-second pause."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止输入约 1 秒后自动检查"
+          }
+        }
+      }
+    },
     "星芽": {
       "extractionState": "manual",
       "localizations": {
@@ -17938,6 +17955,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "购买已检查；请登录原购买账号后验证云端权益。"
+          }
+        }
+      }
+    },
+    "切换正负号": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toggle sign"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换正负号"
+          }
+        }
+      }
+    },
+    "更多口算": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More fluency practice"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更多口算"
           }
         }
       }

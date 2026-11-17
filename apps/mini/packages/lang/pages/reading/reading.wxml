@@ -4,7 +4,7 @@
   <!-- ==== 录入 ============================================================ -->
   <block wx:if="{{view === 'input'}}">
     <view class="page-title">阅读识字</view>
-    <view class="page-subtitle">粘一段课文，自动标出这个年级该会的字</view>
+    <view class="page-subtitle">原创短文与读后理解，也支持粘贴文章识字</view>
 
     <view class="pcard">
       <text class="section-label">年级</text>
@@ -15,8 +15,8 @@
 
       <text class="section-label">范围</text>
       <view class="tab-row">
-        <view class="tab {{scope === 'current' ? 'tab-on' : ''}}" data-scope="current" bindtap="onPickScope">只看本年级</view>
-        <view class="tab {{scope === 'cumulative' ? 'tab-on' : ''}}" data-scope="cumulative" bindtap="onPickScope">一到本年级</view>
+        <view class="tab {{scope === 'current' ? 'tab-on' : ''}}" data-scope="current" bindtap="onPickScope">本年级参考字</view>
+        <view class="tab {{scope === 'cumulative' ? 'tab-on' : ''}}" data-scope="cumulative" bindtap="onPickScope">含低年级参考字</view>
       </view>
 
       <text class="section-label">课文</text>
@@ -31,6 +31,12 @@
       <button class="btn btn-primary" disabled="{{!canStart}}" bindtap="onStart">开始识字</button>
     </view>
 
+    <view class="pcard">
+      <text class="section-label">选一篇原创短文</text>
+      <view class="empty-hint">年级为建议难度，不对应指定教材。每篇附理解题与解析。</view>
+      <button class="btn btn-ghost library-choice" wx:for="{{library}}" wx:key="id"
+              data-id="{{item.id}}" bindtap="onChoosePassage">{{item.title}} · {{item.count}} 道题</button>
+    </view>
     <view class="empty-hint">
       标亮的字点开可以看大字、听读音、标「已掌握」。掌握记录只存在这台手机上。
     </view>
@@ -45,17 +51,27 @@
               data-g="{{g.g}}" bindtap="onPickGrade">{{g.label}}</view>
       </view>
       <view class="tab-row tab-tight">
-        <view class="tab {{scope === 'current' ? 'tab-on' : ''}}" data-scope="current" bindtap="onPickScope">只看本年级</view>
-        <view class="tab {{scope === 'cumulative' ? 'tab-on' : ''}}" data-scope="cumulative" bindtap="onPickScope">一到本年级</view>
+        <view class="tab {{scope === 'current' ? 'tab-on' : ''}}" data-scope="current" bindtap="onPickScope">本年级参考字</view>
+        <view class="tab {{scope === 'cumulative' ? 'tab-on' : ''}}" data-scope="cumulative" bindtap="onPickScope">含低年级参考字</view>
       </view>
     </view>
 
     <view class="pcard article">
       <block wx:for="{{segments}}" wx:key="index" wx:for-item="s">
         <text wx:if="{{s.hit}}" class="hit {{s.mastered ? 'hit-done' : ''}}"
-              data-c="{{s.c}}" bindtap="onOpenChar">{{s.s}}</text>
+              data-c="{{s.c}}" data-index="{{s.index}}" bindtap="onOpenChar">{{s.s}}</text>
         <text wx:else class="plain">{{s.s}}</text>
       </block>
+    </view>
+
+    <view class="pcard" wx:if="{{readingQuestions.length}}">
+      <text class="section-label">{{passageTitle}} · 读后想一想</text>
+      <view class="reading-question" wx:for="{{readingQuestions}}" wx:key="id" wx:for-item="q" wx:for-index="qi">
+        <view class="reading-prompt">{{qi + 1}}. {{q.prompt}}</view>
+        <button class="btn btn-ghost reading-choice {{c.state}}" wx:for="{{q.choices}}" wx:key="id" wx:for-item="c"
+                disabled="{{q.answered}}" data-qid="{{q.id}}" data-choice="{{c.id}}" bindtap="onReadingAnswer">{{c.label}}</button>
+        <view class="reading-feedback" wx:if="{{q.answered}}">{{q.feedback}}</view>
+      </view>
     </view>
 
     <view class="row list-head">
@@ -79,6 +95,8 @@
         <view class="tzg-v"></view>
         <text class="tzg-char">{{detail.char}}</text>
       </view>
+      <view class="detail-count" wx:if="{{detail.pinyin}}">{{detail.pinyin}}</view>
+      <view class="reading-feedback" wx:if="{{detail.context}}">本文词语：{{detail.context}}</view>
       <view class="detail-count">本文出现 {{detail.count}} 次</view>
       <button class="btn btn-plain btn-sm" bindtap="onSpeakDetail" wx:if="{{speechOn}}">🔊 读一读</button>
       <view class="ctrl-row ctrl-gap">

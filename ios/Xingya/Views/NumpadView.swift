@@ -6,13 +6,20 @@ struct NumpadView: View {
     var onSubmit: () -> Void
     var submitDisabled = false
     var showSubmit = true
+    var onToggleSign: (() -> Void)? = nil
     @State private var taps = 0
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 9), count: 3)
     var body: some View {
         VStack(spacing: 14) {
             LazyVGrid(columns: columns, spacing: 9) {
                 ForEach(1...9, id: \.self) { digit in key(String(digit)) { onDigit(digit) } }
-                Color.clear.frame(height: 44).accessibilityHidden(true)
+                if let onToggleSign {
+                    key("±", action: onToggleSign)
+                        .accessibilityLabel(L10n.text("切换正负号"))
+                        .accessibilityIdentifier("key-sign")
+                } else {
+                    Color.clear.frame(height: 44).accessibilityHidden(true)
+                }
                 key("0") { onDigit(0) }
                 Button { taps += 1; onDelete() } label: {
                     Image(systemName: "delete.left").font(.title2).frame(maxWidth: .infinity, minHeight: 50)

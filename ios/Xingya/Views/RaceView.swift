@@ -45,6 +45,17 @@ struct RaceView: View {
         .navigationTitle("竞速")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar { ToolbarItem(placement: .cancellationAction) { Button("关闭") { dismiss() }.accessibilityIdentifier("session-close") } }
+        // This timer belongs to the entire race, not any individual question.
+        .task(id: model?.trackState?.race?.endsAt) {
+            guard let model else { return }
+            while !Task.isCancelled {
+                guard let endsAt = model.trackState?.race?.endsAt else { return }
+                remainingMs = max(0, endsAt - Int(Date().timeIntervalSince1970 * 1000))
+                if model.finishRaceIfNeeded() { return }
+                do { try await Task.sleep(for: .milliseconds(100)) }
+                catch { return }
+            }
+        }
     }
 
     // ----- 选速度 ------------------------------------------------------------
@@ -115,19 +126,6 @@ struct RaceView: View {
             RaceNumpad(model: model)
         }
         .padding()
-        // 全局倒计时：到点主动收尾，即便孩子停手
-        .task(id: model.promptSeq) {
-            while !Task.isCancelled {
-                guard let endsAt = model.trackState?.race?.endsAt else { return }
-                let left = endsAt - Int(Date().timeIntervalSince1970 * 1000)
-                remainingMs = max(0, left)
-                if left <= 0 {
-                    model.next() // 触发 finishRace
-                    return
-                }
-                try? await Task.sleep(for: .milliseconds(100))
-            }
-        }
     }
 
     private var timerBar: some View {
@@ -170,10 +168,11 @@ struct RaceView: View {
     }
 }
 
-/// 竞速专用键盘：答完立刻提交并出下一题（无「确定」步骤，追求手速）。
+/// 竞速专用键盘：停顿后自动判题并直接出下一题，不显示单题反馈。
 private struct RaceNumpad: View {
     let model: GameModel
     @State private var input = ""
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         VStack(spacing: 12) {
@@ -183,22 +182,29 @@ private struct RaceNumpad: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)
                 .background(Theme.card, in: .rect(cornerRadius: 12))
+                .accessibilityIdentifier("race-answer")
+
+            Text("停止输入约 1 秒后自动检查").font(.footnote).foregroundStyle(Theme.sub)
 
             NumpadView(
-                onDigit: { d in
-                    guard input.count < 4 else { return }
-                    input.append(String(d))
-                },
-                onDelete: { _ = input.popLast() },
-                onSubmit: submit,
-                submitDisabled: input.isEmpty
+                onDigit: { editInput(IntegerAnswerInput.appending($0, to: input)) },
+                onDelete: { editInput(String(input.dropLast())) },
+                onSubmit: {}, showSubmit: false,
+                onToggleSign: IntegerAnswerInput.supportsNegativeAnswers(in: model.track) ? {
+                    editInput(IntegerAnswerInput.togglingSign(in: input, allowed: true))
+                } : nil
             )
         }
+        .automaticallyChecksAnswers(for: model)
         .onChange(of: model.promptSeq) { input = "" }
+        .onChange(of: scenePhase) { _, phase in
+            if phase != .active { input = ""; model.cancelPendingAnswer() }
+        }
     }
 
-    private func submit() {
-        guard let value = Int(input) else { return }
-        model.submit(value)
+    private func editInput(_ value: String) {
+        guard value != input else { return }
+        input = value
+        model.queueAutomaticAnswer(value)
     }
 }

@@ -333,6 +333,12 @@ body {
   background: #f4ead6;
 }
 
+.english-practice-menu { flex: 0 0 auto; padding: 4px 16px 12px; border-bottom: 1px solid var(--line); }
+.english-practice-label { display: block; margin-bottom: 6px; font-size: .85rem; color: var(--muted); }
+.english-practice-links { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.english-practice-links .ghost { padding: 8px 12px; font-size: .85rem; }
+.numpad .key-sign { grid-column: 1 / -1; min-height: 44px; }
+
 @media (max-width: 820px) {
   .portal-grid {
     grid-template-columns: 1fr 1fr;

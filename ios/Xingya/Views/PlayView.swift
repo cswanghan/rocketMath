@@ -10,6 +10,7 @@ struct PlayView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
     private let pack: ContentPack
     private let storage: any StorageAdapter
     private let studentId: String
@@ -18,6 +19,7 @@ struct PlayView: View {
         _model = State(initialValue: model)
         self.pack = pack; self.storage = storage; self.studentId = studentId
     }
+    private var allowsNegativeAnswers: Bool { IntegerAnswerInput.supportsNegativeAnswers(in: model.track) }
     private var isPrompt: Bool { if case .prompt = model.viewState { return true }; return false }
     private var fact: Fact? {
         switch model.viewState {
@@ -61,18 +63,32 @@ struct PlayView: View {
         .foregroundStyle(Theme.ink).background(Theme.pageBg.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
         .overlay { if timeLock.isLocked { Theme.pageBg.ignoresSafeArea(); LockView() } }
-        .task(id: model.promptSeq) {
-            guard isPrompt else { return }
+        .task(id: "\(model.promptSeq)-\(scenePhase == .active)-\(timeLock.isLocked)") {
+            guard isPrompt, scenePhase == .active, !timeLock.isLocked else { return }
             input = ""; timedOut = false
             let start = Date()
             remaining = Int(ceil(Double(model.latencyGateMs) / 1000))
-            while !Task.isCancelled && isPrompt {
-                let elapsed = Date().timeIntervalSince(start)
-                remaining = max(0, Int(ceil(Double(model.latencyGateMs) / 1000 - elapsed)))
-                if remaining == 0 { timedOut = true; model.timeoutMiss(); break }
+            while !Task.isCancelled && isPrompt && scenePhase == .active && !timeLock.isLocked {
+                remaining = Int(ceil(Double(model.promptRemainingMs) / 1000))
+                if remaining == 0 {
+                    timedOut = model.pendingAnswer == nil
+                    model.timeoutMiss()
+                    break
+                }
                 try? await Task.sleep(for: .milliseconds(100))
             }
             timeLock.tick(deltaMs: min(model.latencyGateMs, Int(Date().timeIntervalSince(start) * 1000)))
+        }
+        .automaticallyChecksAnswers(for: model)
+        .onChange(of: timeLock.isLocked) { _, locked in
+            input = ""
+            if locked { model.cancelPendingAnswer() }
+            else { model.resumePromptTiming() }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            input = ""
+            if phase == .active { model.resumePromptTiming() }
+            else { model.cancelPendingAnswer() }
         }
         .sensoryFeedback(.success, trigger: isCorrect) { _, correct in correct }
         .onDisappear { speech.cancel() }
@@ -84,7 +100,7 @@ struct PlayView: View {
                 VStack(spacing: 20) { equation(fact); answer }
             }.environment(\.layoutDirection, .leftToRight)
             if isPrompt {
-                Text("慢慢算，不着急").font(.footnote.weight(.medium)).foregroundStyle(Theme.sub)
+                Text("停止输入约 1 秒后自动检查").font(.footnote.weight(.medium)).foregroundStyle(Theme.sub)
             }
         }
         .frame(maxWidth: .infinity).padding(.vertical, 40)
@@ -102,13 +118,20 @@ struct PlayView: View {
             .background(isCorrect ? Theme.leafSoft : Theme.card, in: .rect(cornerRadius: 22))
             .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(isCorrect ? Theme.brand : Theme.sky1, lineWidth: 2))
             .accessibilityLabel(L10n.format(isPrompt ? "你的答案 %@" : "正确答案 %@", isPrompt ? input : String(fact?.answer ?? 0)))
+            .accessibilityIdentifier("fluency-answer")
     }
     @ViewBuilder private var controls: some View {
         switch model.viewState {
         case .prompt(_, let retest):
             if retest { Text("再试一次").font(.footnote).foregroundStyle(Theme.warn) }
-            NumpadView(onDigit: { if input.count < 5 { input += String($0) } }, onDelete: { _ = input.popLast() },
-                       onSubmit: { if let value = Int(input) { model.submit(value) } }, submitDisabled: input.isEmpty)
+            NumpadView(
+                onDigit: { editInput(IntegerAnswerInput.appending($0, to: input)) },
+                onDelete: { editInput(String(input.dropLast())) },
+                onSubmit: {}, showSubmit: false,
+                onToggleSign: allowsNegativeAnswers ? {
+                    editInput(IntegerAnswerInput.togglingSign(in: input, allowed: allowsNegativeAnswers))
+                } : nil
+            )
         case .correct(let fact):
             FeedbackBand(correct: true, title: "对了！", detail: "\(fact.prompt) = \(fact.answer)", identifier: "fluency-continue") { model.next() }
                 .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
@@ -126,5 +149,11 @@ struct PlayView: View {
             ContentUnavailableView("出错了", systemImage: "exclamationmark.triangle", description: Text("请返回并重新打开练习"))
             BrandPrimaryButton("返回") { dismiss() }
         }
+    }
+
+    private func editInput(_ value: String) {
+        guard value != input else { return }
+        input = value
+        model.queueAutomaticAnswer(value)
     }
 }

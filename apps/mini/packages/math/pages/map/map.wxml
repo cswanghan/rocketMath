@@ -51,13 +51,16 @@
           <view class="chart" wx:if="{{item.cells.length}}">
             <text class="cell cell-{{cell.state}}" wx:for="{{item.cells}}" wx:key="level" wx:for-item="cell">{{cell.text}}</text>
           </view>
+          <text class="topic-meta" wx:if="{{item.fluencyMeta}}">{{item.fluencyMeta}}</text>
 
           <view class="topic-foot" wx:if="{{item.kind !== 'soon'}}">
             <text class="topic-meta">{{item.meta}}</text>
             <view class="spacer"></view>
+            <text class="race-btn" wx:if="{{item.kind === 'practice' && item.trackId}}"
+              data-trackid="{{item.trackId}}" catchtap="onFluency">口算练习</text>
             <text
               class="race-btn"
-              wx:if="{{item.kind === 'fluency'}}"
+              wx:if="{{item.trackId}}"
               data-trackid="{{item.trackId}}"
               catchtap="onRace"
             >🚀 竞速</text>
@@ -66,4 +69,25 @@
       </view>
     </view>
   </block>
+
+  <view class="term" wx:if="{{extraTracks.length}}">
+    <view class="term-title">更多口算</view>
+    <view class="topic topic-fluency" wx:for="{{extraTracks}}" wx:key="id"
+      data-trackid="{{item.trackId}}" bindtap="onFluency" hover-class="topic--pressed">
+      <view class="topic-head">
+        <text class="ped ped-fluency">口算</text>
+        <text class="topic-name">{{item.title}}</text>
+        <text class="done-tag" wx:if="{{item.doneTag}}">{{item.doneTag}}</text>
+      </view>
+      <view class="chart">
+        <text class="cell cell-{{cell.state}}" wx:for="{{item.cells}}" wx:key="level" wx:for-item="cell">{{cell.text}}</text>
+      </view>
+      <view class="topic-foot">
+        <text class="topic-meta">{{item.meta}}</text>
+        <view class="spacer"></view>
+        <text class="race-btn" data-trackid="{{item.trackId}}" catchtap="onFluency">口算练习</text>
+        <text class="race-btn" data-trackid="{{item.trackId}}" catchtap="onRace">🚀 竞速</text>
+      </view>
+    </view>
+  </view>
 </view>

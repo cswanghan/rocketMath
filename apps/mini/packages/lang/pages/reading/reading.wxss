@@ -134,3 +134,11 @@
 .ctrl-gap {
   margin-top: 24rpx;
 }
+
+.library-choice { margin-top: 16rpx; text-align: left; }
+.reading-question { margin: 28rpx 0; }
+.reading-prompt { line-height: 1.7; font-weight: 600; margin-bottom: 14rpx; }
+.reading-choice { margin: 10rpx 0; text-align: left; white-space: normal; height: auto; }
+.reading-choice.correct { background: #e2f0e5; border-color: #4a8c5c; color: #285a36; }
+.reading-choice.wrong { background: #f3d9cf; border-color: #bf3f2b; color: #8e301f; }
+.reading-feedback { margin-top: 16rpx; line-height: 1.8; color: #655d50; font-size: 26rpx; }

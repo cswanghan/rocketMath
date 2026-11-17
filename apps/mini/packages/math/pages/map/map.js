@@ -7,7 +7,6 @@ const family = require('../../../../utils/family.js');
 const mapUtil = require('../../../../utils/map.js');
 const track = require('../../../../utils/track.js');
 const { createDefaultAdapter } = require('../../../../utils/storage.js');
-const { getTrack } = require('../../../../vendor/engine');
 const { levelFromXp } = require('../../../../vendor/practice');
 
 const GRADE_LABELS = {
@@ -35,6 +34,7 @@ Page({
     level: null,
     percent: 0,
     terms: [],
+    extraTracks: [],
   },
 
   onLoad(query) {
@@ -74,7 +74,7 @@ Page({
     const studentId = family.currentStudentId();
 
     const readyTopics = km.topics.filter((t) => t.status === 'ready');
-    const trackIds = readyTopics.filter((t) => t.fluencyTrackId).map((t) => t.fluencyTrackId);
+    const trackIds = pack.tracks.filter((t) => t.enabled).map((t) => t.trackId);
     const setIds = readyTopics.filter((t) => t.problemSetId).map((t) => t.problemSetId);
 
     Promise.all([
@@ -115,6 +115,10 @@ Page({
             .map((t) => this.topicVM(t, pack, trackStates, pracStates)),
         })),
       }));
+      const mappedTrackIds = km.topics.map((topic) => topic.fluencyTrackId);
+      const extraTracks = pack.tracks
+        .filter((t) => t.enabled && mappedTrackIds.indexOf(t.trackId) < 0)
+        .map((t) => Object.assign({ id: t.trackId, title: t.name }, this.fluencyVM(t, trackStates)));
 
       this.setData({
         ready: true,
@@ -122,11 +126,12 @@ Page({
         level: lvl,
         percent: lvl.span ? Math.round((lvl.intoLevel / lvl.span) * 100) : 0,
         terms: terms,
+        extraTracks: extraTracks,
       });
     });
   },
 
-  /** 单个知识点 → 视图模型。三态: 练习 / 口算 / 未上线。 */
+  /** 单个知识点可以同时具有综合练习与口算。 */
   topicVM(topic, pack, trackStates, pracStates) {
     const base = {
       id: topic.id,
@@ -134,6 +139,8 @@ Page({
       pedagogy: topic.pedagogy,
       pedLabel: mapUtil.PEDAGOGY_LABEL[topic.pedagogy] || topic.pedagogy,
     };
+    const oral = topic.status === 'ready' && pack.tracks.find((t) => t.enabled && t.trackId === topic.fluencyTrackId);
+    const fluency = oral ? this.fluencyVM(oral, trackStates) : { trackId: '', cells: [], meta: '' };
 
     if (topic.status === 'ready' && topic.problemSetId) {
       const p = pracStates[topic.problemSetId] || { completed: false, bestFirstTry: 0, total: 0 };
@@ -142,29 +149,35 @@ Page({
         setId: topic.problemSetId,
         doneTag: p.completed ? '✓ 完成' : '',
         meta: p.completed ? `最好 ${p.bestFirstTry}/${p.total} 一次答对` : '开始练习 →',
-        cells: [],
+        trackId: fluency.trackId,
+        cells: fluency.cells,
+        fluencyMeta: oral ? '口算' + fluency.meta : '',
       });
     }
 
-    if (topic.status !== 'ready' || !topic.fluencyTrackId) {
+    if (!oral) {
       return Object.assign(base, { kind: 'soon', cells: [] });
     }
 
-    const trackId = topic.fluencyTrackId;
-    const levels = getTrack(pack, trackId).levels.map((l) => l.level);
+    return Object.assign(base, fluency);
+  },
+
+  fluencyVM(track, trackStates) {
+    const trackId = track.trackId;
+    const levels = track.levels.map((l) => l.level);
     const prog = trackStates[trackId] || { completed: [], current: 'A' };
     const cells = levels.map((lv) => ({
       level: lv,
       state: prog.completed.indexOf(lv) >= 0 ? 'done' : lv === prog.current ? 'current' : 'todo',
       text: prog.completed.indexOf(lv) >= 0 ? '★' : lv,
     }));
-    return Object.assign(base, {
+    return {
       kind: 'fluency',
       trackId: trackId,
       doneTag: prog.completed.length === levels.length ? '✓ 全通关' : '',
       meta: `已过 ${prog.completed.length}/${levels.length} 关`,
       cells: cells,
-    });
+    };
   },
 
   // ---- 跳转 -----------------------------------------------------------------
@@ -181,14 +194,24 @@ Page({
       });
       return;
     }
+    this.openFluency(d.trackid);
+  },
+
+  onFluency(e) {
+    this.openFluency(e.currentTarget.dataset.trackid);
+  },
+
+  openFluency(trackId) {
+    if (!this.content.pack.tracks.some((t) => t.enabled && t.trackId === trackId)) return;
     const page = this.hasGate ? 'play/play' : 'probe/probe';
     wx.navigateTo({
-      url: `/packages/math/pages/${page}?grade=${this.grade}&trackId=${d.trackid}`,
+      url: `/packages/math/pages/${page}?grade=${this.grade}&trackId=${encodeURIComponent(trackId)}`,
     });
   },
 
   onRace(e) {
     const trackId = e.currentTarget.dataset.trackid;
+    if (!this.content.pack.tracks.some((t) => t.enabled && t.trackId === trackId)) return;
     wx.navigateTo({
       url: `/packages/math/pages/race/race?grade=${this.grade}&trackId=${trackId}`,
     });

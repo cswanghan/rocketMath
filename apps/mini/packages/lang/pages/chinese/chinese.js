@@ -7,7 +7,7 @@
 // 相对 Web 端的取舍 (都是外部 CDN 库在小程序里不可用导致的):
 //   · 笔顺动画: Web 用 hanzi-writer(CDN)。小程序不能远程加载脚本, 这里退回
 //     田字格 + 大字静态展示 —— Web 端本来就有同款降级路径。
-//   · 任意字的拼音/部首自动拆解: Web 用 cnchar(CDN)。这里内置 63 字有完整信息,
+//   · 任意字的拼音/部首自动拆解: Web 用 cnchar(CDN)。这里内置常用字卡有完整信息,
 //     生字本里超出字库的字只存字形。P1 再考虑打一份常用字拼音表进分包。
 //   · 语音输入: 依赖识别插件, 未接入 → 纯打字。
 
@@ -200,7 +200,7 @@ Page({
     const detail = {
       char: c.c,
       pinyin: c.p || '',
-      mean: c.mean ? '含义：' + c.mean : '',
+      mean: c.mean ? '含义：' + c.mean + (c.word ? ' · 例词：' + c.word : '') : '',
       structTag: c.struct ? c.struct + '结构' : '',
       structIcon: STRUCT_ICON[c.struct] || '',
       structNote: STRUCT_NOTE[c.struct] ? '（' + STRUCT_NOTE[c.struct] + '）' : '',
@@ -305,7 +305,8 @@ Page({
         char: c.c,
         big: c.c,
         small: false,
-        prompt: '这个字读什么？',
+        prompt: c.word ? `「${c.word}」中的「${c.c}」读什么？` : '这个字读什么？',
+        explanation: (c.word ? `「${c.word}」中的` : '') + `「${c.c}」读 ${c.p}。`,
         opts: shuffle([c.p].concat(pick(PINYINS, 3, c.p))),
         correct: c.p,
         render: 'pinyin',
@@ -320,9 +321,10 @@ Page({
         char: c.c,
         big: c.c,
         small: false,
-        prompt: `「${c.c}」和下面哪个字是「一家人」（同一个偏旁）？`,
+        prompt: `「${c.c}」和下面哪个字属于同一偏旁家族？`,
         opts: shuffle([correct].concat(pick(others, 3, correct))),
         correct: correct,
+        explanation: '它们属于' + RAD[c.rad].name + '家族。',
         render: 'char',
       };
     }
@@ -341,6 +343,7 @@ Page({
       prompt: `「${c.c}」的偏旁是「${r.g}」，它常常和什么有关？`,
       opts: shuffle([themeWord].concat(pick(allThemes, 3, themeWord))),
       correct: themeWord,
+      explanation: r.story,
       render: 'text',
     };
   },
@@ -382,9 +385,9 @@ Page({
         state: o === q.correct ? 'correct' : o === val ? 'wrong' : '',
       })),
       qFeedbackOk: right,
-      qFeedback: right ? PRAISE[Math.floor(Math.random() * PRAISE.length)] : '没关系，正确答案已经标出来啦 💪',
+      qFeedback: (right ? PRAISE[Math.floor(Math.random() * PRAISE.length)] : '没关系，正确答案已经标出来啦 💪') + ' ' + (q.explanation || ''),
     });
-    if (q.char) speech.speak(q.char);
+    if (q.char) speech.speak((byChar[q.char] || {}).word || q.char);
     track.track('char_quiz_answer', { type: q.type, correct: right });
   },
 

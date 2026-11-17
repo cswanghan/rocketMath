@@ -20,6 +20,7 @@ struct PracticeView: View {
     private var correct: Bool { if case .correct = model.viewState { return true }; return false }
     var body: some View {
         GeometryReader { geometry in
+            ScrollViewReader { scroll in
             ScrollView {
                 VStack(spacing: 20) {
                     SessionHeader(progress: Double(max(0, model.state.index + 1)) / Double(max(1, model.state.order.count)),
@@ -43,16 +44,31 @@ struct PracticeView: View {
                                 .padding(22).background(correct ? Theme.leafSoft : Theme.sunlight, in: .rect(cornerRadius: 22))
                             Spacer(minLength: 24)
                             FeedbackBand(correct: correct, title: correct ? "对了！" : "看一下正确答案",
-                                         detail: L10n.text(problem.explanation ?? ""), identifier: "practice-continue") { model.next() }
+                                         detail: L10n.text(problem.explanation ?? ""), identifier: "practice-continue", detailIdentifier: "practice-explanation") { model.next() }
+                                .id("practice-feedback")
                         } else {
                             input(problem)
                             if case .wrong = model.viewState {
-                                BrandNotice(message: L10n.text(problem.hint ?? "差一点，再试一次。"), symbol: "arrow.counterclockwise", isError: true)
+                                if problem.type == .mc {
+                                    FeedbackBand(correct: false, title: "差一点，再试一次。",
+                                                 detail: [problem.hint, problem.explanation].compactMap { $0 }.map { L10n.text($0) }.joined(separator: "\n"),
+                                                 buttonTitle: "再试一次", identifier: "practice-retry", detailIdentifier: "practice-explanation") {
+                                        choiceId = nil
+                                        model.retryChoice()
+                                        withAnimation { scroll.scrollTo("practice-choices", anchor: .center) }
+                                    }
                                     .accessibilityIdentifier("practice-incorrect")
+                                    .id("practice-feedback")
+                                } else {
+                                    BrandNotice(message: L10n.text(problem.hint ?? "差一点，再试一次。"), symbol: "arrow.counterclockwise", isError: true)
+                                        .accessibilityIdentifier("practice-incorrect")
+                                }
                             } else { Text("慢慢算，不着急").font(.footnote).foregroundStyle(Theme.sub) }
-                            Spacer(minLength: 12)
-                            BrandPrimaryButton("检查答案") { submit(problem) }
-                                .disabled(!canSubmit(problem)).accessibilityIdentifier("practice-submit")
+                            if problem.type != .mc {
+                                Spacer(minLength: 12)
+                                BrandPrimaryButton("检查答案") { submit(problem) }
+                                    .disabled(!canSubmit(problem)).accessibilityIdentifier("practice-submit")
+                            }
                         }
                     } else if case .complete(let count, let total) = model.viewState {
                         Spacer()
@@ -65,6 +81,10 @@ struct PracticeView: View {
                 }
                 .padding(20).frame(maxWidth: 720).frame(minHeight: geometry.size.height).frame(maxWidth: .infinity)
             }
+            .onChange(of: model.choiceFeedbackPending) { _, pending in
+                if pending { withAnimation { scroll.scrollTo("practice-feedback", anchor: .bottom) } }
+            }
+            }
         }.foregroundStyle(Theme.ink).background(Theme.pageBg.ignoresSafeArea()).toolbar(.hidden, for: .navigationBar)
             .onChange(of: model.problemSeq) { choiceId = nil; fillText = ""; fieldValues = [:] }
             .sensoryFeedback(.success, trigger: correct).onDisappear { speech.cancel() }
@@ -74,17 +94,22 @@ struct PracticeView: View {
         case .mc:
             VStack(spacing: 10) {
                 ForEach(p.choices ?? []) { choice in
-                    Button { choiceId = choice.id } label: {
+                    Button {
+                        guard !model.choiceFeedbackPending else { return }
+                        choiceId = choice.id
+                        model.answerChoice(choice.id, for: p.id)
+                    } label: {
                         HStack {
-                            Image(systemName: choiceId == choice.id ? "checkmark.circle.fill" : "circle")
+                            Image(systemName: choiceId == choice.id ? (model.choiceFeedbackPending ? "xmark.circle.fill" : "checkmark.circle.fill") : "circle")
                             Text(L10n.text(choice.label)).font(.headline).multilineTextAlignment(.leading)
                             Spacer(minLength: 0)
-                        }.padding(16).frame(minHeight: 52).background(choiceId == choice.id ? Theme.leafSoft : Theme.card, in: .rect(cornerRadius: 18))
-                            .overlay(RoundedRectangle(cornerRadius: 18).strokeBorder(choiceId == choice.id ? Theme.brand : Theme.line))
-                    }.buttonStyle(.plain).accessibilityAddTraits(choiceId == choice.id ? .isSelected : [])
+                        }.padding(16).frame(minHeight: 52).background(choiceId == choice.id ? (model.choiceFeedbackPending ? Theme.sunlight : Theme.leafSoft) : Theme.card, in: .rect(cornerRadius: 18))
+                            .overlay(RoundedRectangle(cornerRadius: 18).strokeBorder(choiceId == choice.id ? (model.choiceFeedbackPending ? Theme.warn : Theme.brand) : Theme.line))
+                    }.buttonStyle(.plain).disabled(model.choiceFeedbackPending)
+                        .accessibilityAddTraits(choiceId == choice.id ? .isSelected : [])
                         .accessibilityIdentifier("practice-choice-\(choice.id)")
                 }
-            }
+            }.id("practice-choices")
         case .fill:
             TextField(L10n.text("答案"), text: $fillText).brandField().keyboardType(.numbersAndPunctuation)
                 .font(Theme.numberFont(34)).multilineTextAlignment(.center).accessibilityIdentifier("practice-answer")
@@ -102,7 +127,7 @@ struct PracticeView: View {
     private func binding(_ key: String) -> Binding<String> { Binding(get: { fieldValues[key] ?? "" }, set: { fieldValues[key] = $0 }) }
     private func canSubmit(_ p: Problem) -> Bool {
         switch p.type {
-        case .mc: choiceId != nil
+        case .mc: false // Choice taps submit directly; there is no separate check button.
         case .fill: !fillText.trimmingCharacters(in: .whitespaces).isEmpty
         case .steps: (p.fields ?? []).enumerated().allSatisfy { i, f in !(fieldValues[f.id.isEmpty ? "f\(i)" : f.id] ?? "").trimmingCharacters(in: .whitespaces).isEmpty }
         }
