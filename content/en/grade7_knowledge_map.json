@@ -1,0 +1,265 @@
+{
+  "textbook": "PEP edition",
+  "grade": 7,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "Rational numbers",
+      "topicIds": [
+        "rational_number_concept",
+        "number_line",
+        "absolute_value",
+        "rational_mixed_ops"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "Adding & subtracting polynomials",
+      "topicIds": [
+        "polynomial_concept",
+        "polynomial_add_sub"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "Linear equations in one variable",
+      "topicIds": [
+        "linear_equation_one",
+        "linear_equation_app"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "Introducing geometry",
+      "topicIds": [
+        "geometry_intro"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "Intersecting & parallel lines",
+      "topicIds": [
+        "parallel_lines"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "Real numbers",
+      "topicIds": [
+        "real_number_sqrt"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "Cartesian coordinates",
+      "topicIds": [
+        "coordinate_plane"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "Systems of two linear equations",
+      "topicIds": [
+        "equation_system"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "Inequalities & systems",
+      "topicIds": [
+        "inequality_group"
+      ]
+    },
+    {
+      "id": "l6",
+      "term": "lower",
+      "index": 6,
+      "title": "Collecting & presenting data",
+      "topicIds": [
+        "data_statistics"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "rational_number_concept",
+      "unitId": "u1",
+      "title": "Understanding rational numbers",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "rational_number_concept"
+    },
+    {
+      "id": "number_line",
+      "unitId": "u1",
+      "title": "Rational numbers on a number line",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "rational_number_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "number_line"
+    },
+    {
+      "id": "absolute_value",
+      "unitId": "u1",
+      "title": "Absolute value",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "number_line"
+      ],
+      "status": "ready",
+      "problemSetId": "absolute_value"
+    },
+    {
+      "id": "rational_mixed_ops",
+      "unitId": "u1",
+      "title": "Operations with rational numbers",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "absolute_value"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "rational_add_sub",
+      "problemSetId": "rational_mixed_ops"
+    },
+    {
+      "id": "polynomial_concept",
+      "unitId": "u2",
+      "title": "Monomials & polynomials",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "rational_mixed_ops"
+      ],
+      "status": "ready",
+      "problemSetId": "polynomial_concept"
+    },
+    {
+      "id": "polynomial_add_sub",
+      "unitId": "u2",
+      "title": "Polynomial addition & subtraction",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "polynomial_concept"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "monomial_eval",
+      "problemSetId": "polynomial_add_sub"
+    },
+    {
+      "id": "linear_equation_one",
+      "unitId": "u3",
+      "title": "Solving linear equations",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "polynomial_add_sub"
+      ],
+      "status": "ready",
+      "problemSetId": "linear_equation_one"
+    },
+    {
+      "id": "linear_equation_app",
+      "unitId": "u3",
+      "title": "Applying linear equations",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "linear_equation_one"
+      ],
+      "status": "ready",
+      "problemSetId": "linear_equation_app"
+    },
+    {
+      "id": "geometry_intro",
+      "unitId": "u4",
+      "title": "Lines, rays, segments & angles",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geometry_intro"
+    },
+    {
+      "id": "parallel_lines",
+      "unitId": "l1",
+      "title": "Intersecting & parallel lines",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "geometry_intro"
+      ],
+      "status": "ready",
+      "problemSetId": "parallel_lines"
+    },
+    {
+      "id": "real_number_sqrt",
+      "unitId": "l2",
+      "title": "Square & cube roots",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "rational_number_concept"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "rational_power",
+      "problemSetId": "real_number_sqrt"
+    },
+    {
+      "id": "coordinate_plane",
+      "unitId": "l3",
+      "title": "Cartesian coordinates",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "number_line"
+      ],
+      "status": "ready",
+      "problemSetId": "coordinate_plane"
+    },
+    {
+      "id": "equation_system",
+      "unitId": "l4",
+      "title": "Systems of two linear equations",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "linear_equation_one"
+      ],
+      "status": "ready",
+      "problemSetId": "equation_system"
+    },
+    {
+      "id": "inequality_group",
+      "unitId": "l5",
+      "title": "Inequalities & systems",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "linear_equation_one"
+      ],
+      "status": "ready",
+      "problemSetId": "inequality_group"
+    },
+    {
+      "id": "data_statistics",
+      "unitId": "l6",
+      "title": "Collecting & presenting data",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "data_statistics"
+    }
+  ]
+}

@@ -1,119 +1,83 @@
-// 设计系统 —— 「糖果乐园」方案（用户选定）。明亮撞色、厚白卡片、每个学科一个专属
-// 糖果色。所有屏从这里取值，不散落硬编码。符号名保持稳定，改值即可全局换肤。
-
+// Sunny v3 · 向阳生长. Semantic colors adapt to appearance and increased contrast.
 import SwiftUI
+import UIKit
 
 extension Color {
-    /// 从 0xRRGGBB 构造
     init(hex: UInt32) {
-        self.init(
-            .sRGB,
-            red: Double((hex >> 16) & 0xff) / 255,
-            green: Double((hex >> 8) & 0xff) / 255,
-            blue: Double(hex & 0xff) / 255,
-            opacity: 1
-        )
+        self.init(.sRGB, red: Double((hex >> 16) & 255) / 255,
+                  green: Double((hex >> 8) & 255) / 255, blue: Double(hex & 255) / 255, opacity: 1)
     }
 }
 
 enum Theme {
-    // 主色（糖果粉）
-    static let brand = Color(hex: 0xff6b9d)
-    static let brand2 = Color(hex: 0xff8fb1)
-    static let accent = Color(hex: 0x28d3a7)
-    static let warn = Color(hex: 0xff9f45)
-    static let danger = Color(hex: 0xff6b6b)
-    static let gold = Color(hex: 0xffb92e)      // 星级金黄
-    static let ink = Color(hex: 0x3a2b5c)        // 主文字（深紫）
-    static let sub = Color(hex: 0x9b8fb5)        // 次文字
-    static let line = Color(hex: 0xf0e6f5)       // 分隔线/进度底槽
-    static let card = Color.white
-    static let pageBg = Color(hex: 0xf2f6ff)
-    static let sky1 = Color(hex: 0xeaf1ff)
-    static let sky2 = Color(hex: 0xf6f2ff)
-    static let track = Color(hex: 0xf0e6f5)      // 进度条底槽
-    static let pillBg = Color(hex: 0xffe3ef)     // 年级 pill 底
-    static let pillInk = Color(hex: 0xff5c8a)    // 年级 pill 字
-    static let tabInactive = Color(hex: 0xb7a9c9)
-
-    // 圆角
-    static let rLg: CGFloat = 22
-    static let rMd: CGFloat = 18
-    static let rSm: CGFloat = 12
-    static let pad: CGFloat = 16
-
-    // 渐变
-    static let brandGradient = LinearGradient(
-        colors: [brand2, brand], startPoint: .topLeading, endPoint: .bottomTrailing
-    )
-    static let skyGradient = LinearGradient(
-        colors: [sky1, sky2], startPoint: .top, endPoint: .bottom
-    )
-    static let warnGradient = LinearGradient(
-        colors: [warn, danger], startPoint: .leading, endPoint: .trailing
-    )
-    /// 页面背景（糖果浅粉 → 浅蓝）
-    static let pageBackground = LinearGradient(
-        colors: [Color(hex: 0xfff7fb), Color(hex: 0xf4f2ff), pageBg],
-        startPoint: .top, endPoint: .bottom
-    )
-
-    static let shadowColor = Color(hex: 0x7850a0)  // 柔和紫阴影
-
-    // ----- 学科专属糖果色（糖果乐园精髓：每个 pedagogy 一个颜色）--------------
-
-    /// 每个学科的糖果色 (起点, 终点)
-    static func candyColors(for pedagogy: Pedagogy) -> (Color, Color) {
-        switch pedagogy {
-        case .fluency:   return (Color(hex: 0x8fd6ff), Color(hex: 0x5b8cff)) // 蓝
-        case .procedure: return (Color(hex: 0x8affc0), Color(hex: 0x28d3a7)) // 青绿
-        case .formula:   return (Color(hex: 0xffd36b), Color(hex: 0xff9f45)) // 橙黄
-        case .concept:   return (Color(hex: 0xc3a0ff), Color(hex: 0x8a7bff)) // 紫
-        case .logic:     return (Color(hex: 0xffa9c7), Color(hex: 0xff6b9d)) // 粉
-        case .data:      return (Color(hex: 0x8fe9ff), Color(hex: 0x3bc9db)) // 青
-        }
+    nonisolated static func adaptive(_ light: UInt32, _ dark: UInt32) -> Color {
+        Color(uiColor: UIColor { traits in
+            let hex = traits.userInterfaceStyle == .dark ? dark : light
+            return UIColor(red: CGFloat((hex >> 16) & 255) / 255,
+                           green: CGFloat((hex >> 8) & 255) / 255, blue: CGFloat(hex & 255) / 255, alpha: 1)
+        })
     }
-
-    static func candyGradient(for pedagogy: Pedagogy) -> LinearGradient {
-        let (a, b) = candyColors(for: pedagogy)
-        return LinearGradient(colors: [a, b], startPoint: .topLeading, endPoint: .bottomTrailing)
-    }
+    static let brand = adaptive(0x176B4A, 0x8AD7AD)
+    static let button = Color(hex: 0x176B4A)
+    static let buttonBase = Color(hex: 0x0F4D35)
+    static let brand2 = brand
+    static let accent = brand
+    static let warn = adaptive(0x8C5800, 0xFFD174)
+    static let danger = adaptive(0xB23A26, 0xFFA694)
+    static let gold = Color(hex: 0xFFC53D)
+    static let tangerine = Color(hex: 0xF26B2A)
+    static let ink = adaptive(0x17324D, 0xF5F3E8)
+    static let sub = adaptive(0x536A7A, 0xBBCED6)
+    static let line = adaptive(0xE4D8C3, 0x53636A)
+    static let card = adaptive(0xFFFDF7, 0x20333D)
+    static let pageBg = adaptive(0xFFF9EA, 0x14252E)
+    static let sky1 = adaptive(0xC9EDF8, 0x244852)
+    static let sky2 = adaptive(0xEAF8FC, 0x203D48)
+    static let sunlight = adaptive(0xFFF3D4, 0x423B26)
+    static let leafSoft = adaptive(0xE7F6EC, 0x223F35)
+    static let track = line
+    static let pillBg = sunlight
+    static let pillInk = warn
+    static let tabInactive = sub
+    static let rLg: CGFloat = 28
+    static let rMd: CGFloat = 24
+    static let rSm: CGFloat = 16
+    static let pad: CGFloat = 24
+    static let brandGradient = LinearGradient(colors: [button, button], startPoint: .top, endPoint: .bottom)
+    static let skyGradient = LinearGradient(colors: [sky2, sky1], startPoint: .topLeading, endPoint: .bottomTrailing)
+    static let warnGradient = LinearGradient(colors: [warn, warn], startPoint: .top, endPoint: .bottom)
+    static let pageBackground = LinearGradient(colors: [pageBg, pageBg], startPoint: .top, endPoint: .bottom)
+    static let shadowColor = buttonBase
+    // Compatibility for older subflows: one palette, no subject-specific candy colors.
+    static func candyColors(for pedagogy: Pedagogy) -> (Color, Color) { (sky1, sky1) }
+    static func candyGradient(for pedagogy: Pedagogy) -> LinearGradient { skyGradient }
 }
 
-// ----- 通用修饰符 ------------------------------------------------------------
-
-/// 糖果卡片：白底 + 大圆角 + 2px 白边 + 柔和紫阴影（厚实、浮起）。
 struct CardStyle: ViewModifier {
     var radius: CGFloat = Theme.rMd
-    var padding: CGFloat = 12
+    var padding: CGFloat = 16
+    @Environment(\.colorSchemeContrast) private var contrast
     func body(content: Content) -> some View {
-        content
-            .padding(padding)
+        content.padding(padding)
             .background(Theme.card, in: .rect(cornerRadius: radius))
-            .overlay(RoundedRectangle(cornerRadius: radius).strokeBorder(.white, lineWidth: 2))
-            .shadow(color: Theme.shadowColor.opacity(0.22), radius: 12, x: 0, y: 8)
+            .overlay(RoundedRectangle(cornerRadius: radius).strokeBorder(contrast == .increased ? Theme.sub : Theme.line, lineWidth: 1))
     }
 }
-
 extension View {
-    func cardStyle(radius: CGFloat = Theme.rMd, padding: CGFloat = 12) -> some View {
+    func cardStyle(radius: CGFloat = Theme.rMd, padding: CGFloat = 16) -> some View {
         modifier(CardStyle(radius: radius, padding: padding))
     }
 }
-
-/// 进度条：圆头底槽 + 渐变填充（默认品牌，可传学科色）。
 struct BrandProgress: View {
     var value: Double
-    var height: CGFloat = 8
+    var height: CGFloat = 6
     var fill: LinearGradient = Theme.brandGradient
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .leading) {
                 Capsule().fill(Theme.track)
-                Capsule().fill(fill)
-                    .frame(width: max(0, min(1, value)) * geo.size.width)
+                Capsule().fill(fill).frame(width: max(0, min(1, value)) * geo.size.width)
             }
-        }
-        .frame(height: height)
+        }.frame(height: height).accessibilityHidden(true)
     }
 }

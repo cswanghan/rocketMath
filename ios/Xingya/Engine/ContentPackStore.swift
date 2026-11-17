@@ -20,19 +20,8 @@ nonisolated enum ContentPackError: Error, CustomStringConvertible, Equatable {
 
 nonisolated enum ContentPackLoader {
     /// 从 App bundle 的 content/ 目录读取内容包（蓝色文件夹引用，与仓库 content/ 同源）。
-    static func load(_ fileName: String, bundle: Bundle = .main) throws -> ContentPack {
-        guard let url = bundle.url(forResource: fileName, withExtension: "json", subdirectory: "content")
-            ?? bundle.url(forResource: fileName, withExtension: "json")
-        else {
-            throw ContentPackError.notLoaded("bundle 里找不到 content/\(fileName).json")
-        }
-        let data: Data
-        do {
-            data = try Data(contentsOf: url)
-        } catch {
-            throw ContentPackError.notLoaded("读取 \(url.lastPathComponent) 失败: \(error)")
-        }
-        return try decode(data)
+    static func load(_ fileName: String, bundle: Bundle = .main, language: String = "zh-Hans") throws -> ContentPack {
+        try decode(LocalizedContent.data(fileName, language: language, bundle: bundle))
     }
 
     static func decode(_ data: Data) throws -> ContentPack {

@@ -34,6 +34,24 @@ struct PracticeRecord: Sendable, Equatable {
     var completedAt: Int
 }
 
+/// 错题本一条。对应 Web 端 MistakeRecord（家长复盘 + 一键总结）。
+nonisolated struct MistakeRecord: Sendable, Equatable, Identifiable {
+    var id: Int?
+    var studentId: String
+    var source: String          // "practice" | "fluency"
+    var topicId: String         // setId 或 trackId
+    var topicTitle: String
+    var problemId: String       // problem id 或 fact id
+    var prompt: String
+    var difficulty: String?     // practice 才有
+    var yourAnswer: String
+    var correctAnswer: String
+    var elapsedMs: Int?
+    var slow: Bool              // 答对但偏慢，家长也要关注
+    var ts: Int
+    var corrected: Bool
+}
+
 @MainActor
 protocol StorageAdapter: AnyObject {
     func student(id: String) -> StudentRecord?
@@ -49,6 +67,23 @@ protocol StorageAdapter: AnyObject {
     func practiceRecord(studentId: String, setId: String) -> PracticeRecord?
     /// 只在超过历史最佳时更新（一次答对越多越好）。
     func putPracticeRecord(_ record: PracticeRecord, studentId: String)
+    /// 云同步：强制写入（可覆盖更差记录，由调用方做合并策略）。
+    func forcePutPracticeRecord(_ record: PracticeRecord, studentId: String)
+
+    func appendMistake(_ mistake: MistakeRecord)
+    /// 带 clientKey 去重写入（云同步用）；已存在则可选更新 corrected。
+    func upsertMistake(_ mistake: MistakeRecord, clientKey: String)
+    func listMistakes(studentId: String) -> [MistakeRecord]
+    func markMistakeCorrected(studentId: String, id: Int)
+    /// 清关卡/练习进度 + 经验归零，错题本保留。
+    func resetProgress(studentId: String)
+    func clearMistakes(studentId: String)
+
+    /// 云同步导出：该学生全部 track 状态（含 updatedAt ms）。
+    func listTrackStates(studentId: String) -> [(trackId: String, state: TrackState, updatedAt: Int)]
+    func listPracticeRecords(studentId: String) -> [PracticeRecord]
+    /// 错题 + 稳定 clientKey（source|topicId|problemId|ts）
+    func listMistakesWithKeys(studentId: String) -> [(key: String, mistake: MistakeRecord)]
 }
 
 /// 答题结果分类。对应 Web 端 src/storage/outcome.ts：由「答前状态 + 结果 action」
@@ -79,6 +114,8 @@ final class InMemoryStorage: StorageAdapter {
     private var trackStates: [String: TrackState] = [:]
     private var eventLog: [AnswerEventRecord] = []
     private var practiceRecords: [String: PracticeRecord] = [:]
+    private var mistakes: [MistakeRecord] = []
+    private var mistakeSeq = 0
 
     private func key(_ studentId: String, _ trackId: String) -> String { "\(studentId)|\(trackId)" }
 
@@ -113,5 +150,82 @@ final class InMemoryStorage: StorageAdapter {
         let k = key(studentId, record.setId)
         if let existing = practiceRecords[k], existing.bestFirstTryCorrect >= record.bestFirstTryCorrect { return }
         practiceRecords[k] = record
+    }
+
+    func forcePutPracticeRecord(_ record: PracticeRecord, studentId: String) {
+        practiceRecords[key(studentId, record.setId)] = record
+    }
+
+    private var mistakeKeys: [Int: String] = [:] // local id → clientKey
+
+    func appendMistake(_ mistake: MistakeRecord) {
+        mistakeSeq += 1
+        var m = mistake
+        m.id = mistakeSeq
+        mistakes.append(m)
+        mistakeKeys[mistakeSeq] = Self.clientKey(for: m)
+    }
+
+    func upsertMistake(_ mistake: MistakeRecord, clientKey: String) {
+        if let i = mistakes.firstIndex(where: { mistakeKeys[$0.id ?? -1] == clientKey }) {
+            if mistake.corrected { mistakes[i].corrected = true }
+            return
+        }
+        mistakeSeq += 1
+        var m = mistake
+        m.id = mistakeSeq
+        mistakes.append(m)
+        mistakeKeys[mistakeSeq] = clientKey
+    }
+
+    func listMistakes(studentId: String) -> [MistakeRecord] {
+        mistakes.filter { $0.studentId == studentId }
+    }
+
+    func markMistakeCorrected(studentId: String, id: Int) {
+        guard let i = mistakes.firstIndex(where: { $0.studentId == studentId && $0.id == id }) else { return }
+        mistakes[i].corrected = true
+    }
+
+    func resetProgress(studentId: String) {
+        let prefix = "\(studentId)|"
+        trackStates = trackStates.filter { !$0.key.hasPrefix(prefix) }
+        practiceRecords = practiceRecords.filter { !$0.key.hasPrefix(prefix) }
+        if var s = students[studentId] {
+            s.xp = 0
+            students[studentId] = s
+        }
+    }
+
+    func clearMistakes(studentId: String) {
+        for m in mistakes where m.studentId == studentId {
+            if let id = m.id { mistakeKeys.removeValue(forKey: id) }
+        }
+        mistakes.removeAll { $0.studentId == studentId }
+    }
+
+    func listTrackStates(studentId: String) -> [(trackId: String, state: TrackState, updatedAt: Int)] {
+        let prefix = "\(studentId)|"
+        let now = Int(Date().timeIntervalSince1970 * 1000)
+        return trackStates.compactMap { k, state in
+            guard k.hasPrefix(prefix) else { return nil }
+            return (state.trackId, state, now)
+        }
+    }
+
+    func listPracticeRecords(studentId: String) -> [PracticeRecord] {
+        let prefix = "\(studentId)|"
+        return practiceRecords.compactMap { k, v in k.hasPrefix(prefix) ? v : nil }
+    }
+
+    func listMistakesWithKeys(studentId: String) -> [(key: String, mistake: MistakeRecord)] {
+        mistakes.filter { $0.studentId == studentId }.map { m in
+            let k = m.id.flatMap { mistakeKeys[$0] } ?? Self.clientKey(for: m)
+            return (k, m)
+        }
+    }
+
+    static func clientKey(for m: MistakeRecord) -> String {
+        "\(m.source)|\(m.topicId)|\(m.problemId)|\(m.ts)"
     }
 }

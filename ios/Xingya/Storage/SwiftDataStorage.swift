@@ -83,10 +83,54 @@ final class PracticeRecordModel {
     }
 }
 
+@Model
+final class MistakeModel {
+    /// 显式自增 id（对齐 Web IndexedDB autoIncrement），不用 PersistentIdentifier.hashValue。
+    var localId: Int = 0
+    /// 云同步去重键：source|topicId|problemId|ts
+    var clientKey: String = ""
+    var studentId: String = ""
+    var source: String = ""
+    var topicId: String = ""
+    var topicTitle: String = ""
+    var problemId: String = ""
+    var prompt: String = ""
+    var difficulty: String?
+    var yourAnswer: String = ""
+    var correctAnswer: String = ""
+    var elapsedMs: Int?
+    var slow: Bool = false
+    var ts: Int = 0
+    var corrected: Bool = false
+
+    init(
+        localId: Int, clientKey: String, studentId: String, source: String, topicId: String, topicTitle: String,
+        problemId: String, prompt: String, difficulty: String?, yourAnswer: String,
+        correctAnswer: String, elapsedMs: Int?, slow: Bool, ts: Int, corrected: Bool
+    ) {
+        self.localId = localId
+        self.clientKey = clientKey
+        self.studentId = studentId
+        self.source = source
+        self.topicId = topicId
+        self.topicTitle = topicTitle
+        self.problemId = problemId
+        self.prompt = prompt
+        self.difficulty = difficulty
+        self.yourAnswer = yourAnswer
+        self.correctAnswer = correctAnswer
+        self.elapsedMs = elapsedMs
+        self.slow = slow
+        self.ts = ts
+        self.corrected = corrected
+    }
+}
+
 @MainActor
 final class SwiftDataStorage: StorageAdapter {
     static let schema: [any PersistentModel.Type] = [
-        StudentModel.self, TrackStateModel.self, AnswerEventModel.self, PracticeRecordModel.self,
+        StudentModel.self, TrackStateModel.self, AnswerEventModel.self,
+        PracticeRecordModel.self, MistakeModel.self,
     ]
 
     private let context: ModelContext
@@ -216,6 +260,152 @@ final class SwiftDataStorage: StorageAdapter {
                 bestFirstTryCorrect: record.bestFirstTryCorrect, total: record.total, completedAt: record.completedAt
             ))
         }
+        save()
+    }
+
+    func forcePutPracticeRecord(_ record: PracticeRecord, studentId: String) {
+        if let m = fetchPractice(studentId, record.setId) {
+            m.bestFirstTryCorrect = record.bestFirstTryCorrect
+            m.total = record.total
+            m.completedAt = record.completedAt
+        } else {
+            context.insert(PracticeRecordModel(
+                studentId: studentId, setId: record.setId,
+                bestFirstTryCorrect: record.bestFirstTryCorrect, total: record.total, completedAt: record.completedAt
+            ))
+        }
+        save()
+    }
+
+    // ----- 错题本 --------------------------------------------------------------
+
+    private func nextMistakeId() -> Int {
+        var descriptor = FetchDescriptor<MistakeModel>(sortBy: [SortDescriptor(\.localId, order: .reverse)])
+        descriptor.fetchLimit = 1
+        let maxId = (try? context.fetch(descriptor).first?.localId) ?? 0
+        return maxId + 1
+    }
+
+    static func clientKey(for m: MistakeRecord) -> String {
+        "\(m.source)|\(m.topicId)|\(m.problemId)|\(m.ts)"
+    }
+
+    func appendMistake(_ mistake: MistakeRecord) {
+        let key = Self.clientKey(for: mistake)
+        upsertMistake(mistake, clientKey: key)
+    }
+
+    func upsertMistake(_ mistake: MistakeRecord, clientKey: String) {
+        let sid = mistake.studentId
+        let descriptor = FetchDescriptor<MistakeModel>(
+            predicate: #Predicate { $0.studentId == sid && $0.clientKey == clientKey }
+        )
+        if let existing = try? context.fetch(descriptor).first {
+            if mistake.corrected { existing.corrected = true }
+            save()
+            return
+        }
+        context.insert(MistakeModel(
+            localId: nextMistakeId(),
+            clientKey: clientKey,
+            studentId: mistake.studentId,
+            source: mistake.source,
+            topicId: mistake.topicId,
+            topicTitle: mistake.topicTitle,
+            problemId: mistake.problemId,
+            prompt: mistake.prompt,
+            difficulty: mistake.difficulty,
+            yourAnswer: mistake.yourAnswer,
+            correctAnswer: mistake.correctAnswer,
+            elapsedMs: mistake.elapsedMs,
+            slow: mistake.slow,
+            ts: mistake.ts,
+            corrected: mistake.corrected
+        ))
+        save()
+    }
+
+    func listMistakes(studentId: String) -> [MistakeRecord] {
+        listMistakesWithKeys(studentId: studentId).map(\.mistake)
+    }
+
+    func listMistakesWithKeys(studentId: String) -> [(key: String, mistake: MistakeRecord)] {
+        let descriptor = FetchDescriptor<MistakeModel>(
+            predicate: #Predicate { $0.studentId == studentId },
+            sortBy: [SortDescriptor(\.ts, order: .reverse)]
+        )
+        let rows = (try? context.fetch(descriptor)) ?? []
+        return rows.map { m in
+            let key = m.clientKey.isEmpty
+                ? "\(m.source)|\(m.topicId)|\(m.problemId)|\(m.ts)"
+                : m.clientKey
+            let rec = MistakeRecord(
+                id: m.localId,
+                studentId: m.studentId,
+                source: m.source,
+                topicId: m.topicId,
+                topicTitle: m.topicTitle,
+                problemId: m.problemId,
+                prompt: m.prompt,
+                difficulty: m.difficulty,
+                yourAnswer: m.yourAnswer,
+                correctAnswer: m.correctAnswer,
+                elapsedMs: m.elapsedMs,
+                slow: m.slow,
+                ts: m.ts,
+                corrected: m.corrected
+            )
+            return (key, rec)
+        }
+    }
+
+    func listTrackStates(studentId: String) -> [(trackId: String, state: TrackState, updatedAt: Int)] {
+        let descriptor = FetchDescriptor<TrackStateModel>(
+            predicate: #Predicate { $0.studentId == studentId }
+        )
+        let rows = (try? context.fetch(descriptor)) ?? []
+        return rows.compactMap { m in
+            guard let state = try? decoder.decode(TrackState.self, from: m.payload) else { return nil }
+            return (m.trackId, state, m.updatedAt)
+        }
+    }
+
+    func listPracticeRecords(studentId: String) -> [PracticeRecord] {
+        let descriptor = FetchDescriptor<PracticeRecordModel>(
+            predicate: #Predicate { $0.studentId == studentId }
+        )
+        let rows = (try? context.fetch(descriptor)) ?? []
+        return rows.map {
+            PracticeRecord(
+                setId: $0.setId,
+                bestFirstTryCorrect: $0.bestFirstTryCorrect,
+                total: $0.total,
+                completedAt: $0.completedAt
+            )
+        }
+    }
+
+    func markMistakeCorrected(studentId: String, id: Int) {
+        let descriptor = FetchDescriptor<MistakeModel>(
+            predicate: #Predicate { $0.studentId == studentId && $0.localId == id }
+        )
+        guard let m = try? context.fetch(descriptor).first else { return }
+        m.corrected = true
+        save()
+    }
+
+    func resetProgress(studentId: String) {
+        let tracks = FetchDescriptor<TrackStateModel>(predicate: #Predicate { $0.studentId == studentId })
+        let practices = FetchDescriptor<PracticeRecordModel>(predicate: #Predicate { $0.studentId == studentId })
+        for m in (try? context.fetch(tracks)) ?? [] { context.delete(m) }
+        for m in (try? context.fetch(practices)) ?? [] { context.delete(m) }
+        if let s = fetchStudent(studentId) { s.xp = 0 }
+        save()
+    }
+
+    func clearMistakes(studentId: String) {
+        let descriptor = FetchDescriptor<MistakeModel>(predicate: #Predicate { $0.studentId == studentId })
+        for m in (try? context.fetch(descriptor)) ?? [] { context.delete(m) }
         save()
     }
 

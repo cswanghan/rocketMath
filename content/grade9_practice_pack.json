@@ -8645,8 +8645,8 @@
               "correct": false
             }
           ],
-          "hint": "tanA=1→等腰直角三角形,sinA=√2/2",
-          "explanation": "sinA=√2/2",
+          "hint": "A为锐角,tanA=1→A=45°,所以sinA=√2/2",
+          "explanation": "由A为锐角且tanA=1可知A=45°,因此sinA=sin45°=√2/2；不能据此判断整个三角形为直角三角形。",
           "source": {
             "edition": "人教版",
             "grade": 9,

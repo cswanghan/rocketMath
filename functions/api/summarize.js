@@ -1,3 +1,5 @@
+import { getRequestUser } from '../../src/request-auth';
+
 // Cloudflare Pages Function: POST /api/summarize
 // Generates a parent-facing summary of a child's math mistakes via DeepSeek.
 // The API key lives ONLY in the server-side env secret DEEPSEEK_API_KEY — it is
@@ -8,6 +10,16 @@ export async function onRequestPost(context) {
   const { request, env } = context;
   const json = (obj, status = 200) =>
     new Response(JSON.stringify(obj), { status, headers: { 'content-type': 'application/json' } });
+
+  // Preserve the existing anonymous Web path; a supplied native session must
+  // still be active. Never process a revoked token as an anonymous request.
+  if (request.headers.has('Authorization')) {
+    try {
+      if (!await getRequestUser(request, env)) return json({ error: '账号不可用' }, 401);
+    } catch {
+      return json({ error: '账号验证暂不可用' }, 503);
+    }
+  }
 
   const key = env.DEEPSEEK_API_KEY;
   if (!key) return json({ error: 'DEEPSEEK_API_KEY not configured' }, 501);

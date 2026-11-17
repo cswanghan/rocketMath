@@ -1,89 +1,38 @@
-// 数字键盘（糖果乐园）。白卡按键 + 深紫数字，确定键糖果粉。够大、按下有触感反馈。
-
 import SwiftUI
 
 struct NumpadView: View {
     var onDigit: (Int) -> Void
     var onDelete: () -> Void
     var onSubmit: () -> Void
-    var submitDisabled: Bool = false
-
-    private let columns = Array(repeating: GridItem(.flexible(), spacing: 11), count: 3)
-
+    var submitDisabled = false
+    var showSubmit = true
+    @State private var taps = 0
+    private let columns = Array(repeating: GridItem(.flexible(), spacing: 9), count: 3)
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 11) {
-            ForEach(1...9, id: \.self) { digit in
-                key(String(digit)) { onDigit(digit) }
+        VStack(spacing: 14) {
+            LazyVGrid(columns: columns, spacing: 9) {
+                ForEach(1...9, id: \.self) { digit in key(String(digit)) { onDigit(digit) } }
+                Color.clear.frame(height: 44).accessibilityHidden(true)
+                key("0") { onDigit(0) }
+                Button { taps += 1; onDelete() } label: {
+                    Image(systemName: "delete.left").font(.title2).frame(maxWidth: .infinity, minHeight: 50)
+                        .background(Theme.sky2, in: .rect(cornerRadius: 16))
+                }.buttonStyle(BrandPressStyle()).accessibilityLabel(L10n.text("删除")).accessibilityIdentifier("key-delete")
+            }.environment(\.layoutDirection, .leftToRight)
+            if showSubmit {
+                BrandPrimaryButton("检查答案", action: onSubmit).disabled(submitDisabled).accessibilityIdentifier("answer-submit")
             }
-            key("⌫", role: .secondary, accessibilityLabel: "删除") { onDelete() }
-            key("0") { onDigit(0) }
-            // 不用 .disabled()：disabled 的 .plain 自定义按钮会被 XCUITest 排除，
-            // 改为按钮常在、在动作里拦截（视觉仍按 submitDisabled 变灰）。
-            key("确定", role: .primary, accessibilityLabel: "确定") {
-                if !submitDisabled { onSubmit() }
-            }
-        }
+        }.sensoryFeedback(.selection, trigger: taps)
     }
-
-    private enum KeyRole { case digit, secondary, primary }
-
-    @ViewBuilder
-    private func key(
-        _ label: String,
-        role: KeyRole = .digit,
-        accessibilityLabel: String? = nil,
-        action: @escaping () -> Void
-    ) -> some View {
-        Button(action: action) {
-            Text(label)
-                .font(.system(size: role == .primary ? 22 : 30, weight: .heavy, design: .rounded))
-                .foregroundStyle(foreground(role))
-                .frame(maxWidth: .infinity)
-                .frame(height: 66)
-                .background(background(role))
-                .clipShape(.rect(cornerRadius: 18))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 18)
-                        .strokeBorder(role == .digit ? .white : .clear, lineWidth: 2)
-                )
-                .shadow(color: shadow(role), radius: 7, y: 4)
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel(accessibilityLabel ?? label)
-        .accessibilityIdentifier(accessibilityLabel ?? label)
-        .accessibilityAddTraits(.isButton)
-        .sensoryFeedback(.impact(weight: .light), trigger: label.isEmpty)
+    private func key(_ title: String, action: @escaping () -> Void) -> some View {
+        Button { taps += 1; action() } label: {
+            Text(title).font(.title2.bold()).monospacedDigit().foregroundStyle(Theme.ink)
+                .frame(maxWidth: .infinity, minHeight: 50)
+                .background {
+                    RoundedRectangle(cornerRadius: 16).fill(Theme.card)
+                        .shadow(color: Theme.line, radius: 0, y: 2)
+                }
+                .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Theme.line))
+        }.buttonStyle(BrandPressStyle()).accessibilityIdentifier(title)
     }
-
-    private func foreground(_ role: KeyRole) -> Color {
-        switch role {
-        case .digit: Theme.ink
-        case .secondary: Theme.sub
-        case .primary: .white
-        }
-    }
-
-    @ViewBuilder
-    private func background(_ role: KeyRole) -> some View {
-        switch role {
-        case .digit: Theme.card
-        case .secondary: Theme.track
-        case .primary:
-            if submitDisabled { Theme.track } else { Theme.brandGradient }
-        }
-    }
-
-    private func shadow(_ role: KeyRole) -> Color {
-        switch role {
-        case .primary: submitDisabled ? .clear : Theme.brand.opacity(0.4)
-        case .digit: Theme.shadowColor.opacity(0.12)
-        case .secondary: .clear
-        }
-    }
-}
-
-#Preview {
-    NumpadView(onDigit: { _ in }, onDelete: {}, onSubmit: {})
-        .padding()
-        .background(Theme.pageBackground)
 }

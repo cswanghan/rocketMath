@@ -1,273 +1,130 @@
-// 答题主界面：倒计时环 + 题干 + 数字键盘，纠错/过关用浮层。
-// 交互契约照搬 Web 端 Play.tsx（倒计时归零算超时失误、纠错朗读答案、
-// 纠错与过关都要孩子主动点「继续」），视觉走 iOS 原生。
-
 import SwiftUI
 
 struct PlayView: View {
     @State private var model: GameModel
     @State private var input = ""
-    @State private var ringProgress: Double = 1
-    @State private var lastPromptAt = Date()
+    @State private var remaining = 0
+    @State private var timedOut = false
     @Environment(SpeechService.self) private var speech
     @Environment(TimeLockService.self) private var timeLock
+    @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.dismiss) private var dismiss
-
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     private let pack: ContentPack
     private let storage: any StorageAdapter
     private let studentId: String
 
     init(model: GameModel, pack: ContentPack, storage: any StorageAdapter, studentId: String) {
         _model = State(initialValue: model)
-        self.pack = pack
-        self.storage = storage
-        self.studentId = studentId
+        self.pack = pack; self.storage = storage; self.studentId = studentId
     }
-
-    private var gateSeconds: Double { Double(model.latencyGateMs) / 1000 }
-
+    private var isPrompt: Bool { if case .prompt = model.viewState { return true }; return false }
+    private var fact: Fact? {
+        switch model.viewState {
+        case .prompt(let fact, _), .correct(let fact), .correction(let fact): fact
+        default: nil
+        }
+    }
+    private var isCorrect: Bool { if case .correct = model.viewState { return true }; return false }
+    private var progress: Double {
+        guard let state = model.trackState else { return 0 }
+        return min(1, Double(state.streak) / Double(max(1, model.mastery.takeOff.consecutiveCorrectWithinGate)))
+    }
     var body: some View {
-        VStack(spacing: 16) {
-            header
-            RocketChartView(
-                levels: model.track.levels.map(\.level),
-                completed: model.trackState?.completedLevels ?? [],
-                current: model.trackState?.currentLevel ?? "A",
-                compact: true
-            )
-            LevelBar(info: model.levelInfo)
-            Spacer(minLength: 0)
-            stage
-            Spacer(minLength: 0)
-        }
-        .padding()
-        .background(Theme.pageBackground.ignoresSafeArea())
-        .navigationTitle(model.track.name)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink {
-                    RaceView(trackId: model.track.trackId, pack: pack, storage: storage, studentId: studentId)
-                } label: {
-                    Image(systemName: "flag.checkered")
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 20) {
+                    SessionHeader(progress: progress, title: L10n.format("第 %@ 题", L10n.number(max(1, model.promptSeq))),
+                                  seconds: remaining, paused: !isPrompt, close: { dismiss() })
+                    HStack(alignment: .center) {
+                        Text("口算").font(.subheadline.bold()).padding(9).background(Theme.leafSoft, in: .rect(cornerRadius: 10))
+                        Text(L10n.text(model.track.name)).font(.subheadline).foregroundStyle(Theme.sub)
+                        Spacer(minLength: 0)
+                        Button { if let fact { speech.speak(L10n.text(fact.prompt)) } } label: {
+                            Image(systemName: "speaker.wave.2").frame(width: 44, height: 44)
+                        }.buttonStyle(.plain).foregroundStyle(Theme.ink)
+                            .background(Theme.card, in: .rect(cornerRadius: 14))
+                            .overlay(RoundedRectangle(cornerRadius: 14).strokeBorder(Theme.sky1))
+                            .accessibilityLabel(L10n.text("听一听"))
+                    }
+                    if let fact {
+                        Spacer(minLength: 0)
+                        mathStage(fact).frame(minHeight: isPrompt ? 210 : 330)
+                        Spacer(minLength: 0)
+                    }
+                    controls
                 }
-                .accessibilityLabel("竞速")
-            }
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    speech.isMuted.toggle()
-                } label: {
-                    Image(systemName: speech.isMuted ? "speaker.slash.fill" : "speaker.wave.2.fill")
-                }
-                .accessibilityLabel(speech.isMuted ? "开启语音" : "关闭语音")
+                .padding(20).frame(maxWidth: 720)
+                .frame(minHeight: geometry.size.height).frame(maxWidth: .infinity)
             }
         }
-        .overlay { overlay }
-        .overlay { if timeLock.isLocked { lockCover } }
-        // 每出一道新题：累计活跃时间到时间锁、清空输入、重置倒计时环、到点判超时
+        .foregroundStyle(Theme.ink).background(Theme.pageBg.ignoresSafeArea())
+        .toolbar(.hidden, for: .navigationBar)
+        .overlay { if timeLock.isLocked { Theme.pageBg.ignoresSafeArea(); LockView() } }
         .task(id: model.promptSeq) {
-            let now = Date()
-            timeLock.tick(deltaMs: Int(now.timeIntervalSince(lastPromptAt) * 1000))
-            lastPromptAt = now
-
-            input = ""
-            guard case .prompt = model.viewState else { return }
-            ringProgress = 1
-            withAnimation(.linear(duration: gateSeconds)) { ringProgress = 0 }
-            try? await Task.sleep(for: .milliseconds(model.latencyGateMs))
-            guard !Task.isCancelled else { return }
-            model.timeoutMiss()
+            guard isPrompt else { return }
+            input = ""; timedOut = false
+            let start = Date()
+            remaining = Int(ceil(Double(model.latencyGateMs) / 1000))
+            while !Task.isCancelled && isPrompt {
+                let elapsed = Date().timeIntervalSince(start)
+                remaining = max(0, Int(ceil(Double(model.latencyGateMs) / 1000 - elapsed)))
+                if remaining == 0 { timedOut = true; model.timeoutMiss(); break }
+                try? await Task.sleep(for: .milliseconds(100))
+            }
+            timeLock.tick(deltaMs: min(model.latencyGateMs, Int(Date().timeIntervalSince(start) * 1000)))
         }
+        .sensoryFeedback(.success, trigger: isCorrect) { _, correct in correct }
+        .onDisappear { speech.cancel() }
     }
-
-    private var lockCover: some View {
-        ZStack {
-            Rectangle().fill(.regularMaterial).ignoresSafeArea()
-            LockView()
-        }
-    }
-
-    // ----- 顶部进度 ----------------------------------------------------------
-
-    private var header: some View {
-        HStack {
-            if let state = model.trackState {
-                Label(phaseLabel(state.phase), systemImage: phaseIcon(state.phase))
-                    .font(.subheadline.weight(.medium))
-                    .labelStyle(.titleAndIcon)
-                Spacer()
-                Text(progressText(state))
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-                    .monospacedDigit()
+    private func mathStage(_ fact: Fact) -> some View {
+        VStack(spacing: 16) {
+            ViewThatFits(in: .horizontal) {
+                HStack(spacing: 12) { equation(fact); answer }
+                VStack(spacing: 20) { equation(fact); answer }
+            }.environment(\.layoutDirection, .leftToRight)
+            if isPrompt {
+                Text("慢慢算，不着急").font(.footnote.weight(.medium)).foregroundStyle(Theme.sub)
             }
         }
+        .frame(maxWidth: .infinity).padding(.vertical, 40)
+        .background { Circle().stroke(Theme.sky1.opacity(0.55), style: StrokeStyle(lineWidth: 1.5, dash: [3, 3])).frame(width: 270, height: 270) }
     }
-
-    private func progressText(_ state: TrackState) -> String {
-        if state.phase == .takeOff {
-            return "连对 \(state.streak)/\(model.mastery.takeOff.consecutiveCorrectWithinGate)"
-        }
-        let window = state.phase == .orbit ? model.mastery.orbit : model.mastery.universe
-        return "\(state.attempts)/\(window.windowAttempts) 题 · 错 \(state.errors)/\(window.maxErrors)"
+    private func equation(_ fact: Fact) -> some View {
+        Text("\(fact.prompt) =")
+            .font(typeSize.isAccessibilitySize ? .largeTitle.bold() : Theme.numberFont(48)).fixedSize(horizontal: false, vertical: true).monospacedDigit()
+            .accessibilityLabel(L10n.format("题目 %@", fact.prompt)).accessibilityIdentifier("fluency-question")
     }
-
-    private func phaseLabel(_ phase: Phase) -> String {
-        switch phase {
-        case .takeOff: "起飞 Take-Off"
-        case .orbit: "环绕 Orbit"
-        case .universe: "宇宙 Universe"
-        }
+    private var answer: some View {
+        Text(isPrompt ? (input.isEmpty ? "?" : input) : String(fact?.answer ?? 0))
+            .font(Theme.numberFont(48)).padding(.horizontal, 16).padding(.vertical, 14)
+            .frame(minWidth: 92)
+            .background(isCorrect ? Theme.leafSoft : Theme.card, in: .rect(cornerRadius: 22))
+            .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(isCorrect ? Theme.brand : Theme.sky1, lineWidth: 2))
+            .accessibilityLabel(L10n.format(isPrompt ? "你的答案 %@" : "正确答案 %@", isPrompt ? input : String(fact?.answer ?? 0)))
     }
-
-    private func phaseIcon(_ phase: Phase) -> String {
-        switch phase {
-        case .takeOff: "airplane.departure"
-        case .orbit: "circle.dashed"
-        case .universe: "sparkles"
-        }
-    }
-
-    // ----- 答题区 ------------------------------------------------------------
-
-    @ViewBuilder
-    private var stage: some View {
+    @ViewBuilder private var controls: some View {
         switch model.viewState {
-        case .prompt(let fact, let isRetest):
-            VStack(spacing: 20) {
-                ZStack {
-                    Circle()
-                        .fill(Theme.card)
-                        .shadow(color: Theme.shadowColor.opacity(0.18), radius: 14, y: 8)
-                    Circle()
-                        .stroke(Theme.track, lineWidth: 14)
-                    Circle()
-                        .trim(from: 0, to: ringProgress)
-                        .stroke(
-                            AngularGradient(colors: [Theme.brand2, Theme.brand], center: .center),
-                            style: StrokeStyle(lineWidth: 14, lineCap: .round)
-                        )
-                        .rotationEffect(.degrees(-90))
-                    Text(fact.prompt)
-                        .font(.system(size: 60, weight: .heavy, design: .rounded))
-                        .foregroundStyle(Theme.ink)
-                        .monospacedDigit()
-                        .minimumScaleFactor(0.5)
-                        .padding(.horizontal, 24)
-                }
-                .frame(width: 220, height: 220)
-                .accessibilityElement(children: .combine)
-                .accessibilityLabel("题目 \(fact.prompt)")
-
-                if isRetest {
-                    Label("再试一次", systemImage: "arrow.clockwise")
-                        .font(.subheadline.weight(.medium))
-                        .foregroundStyle(.orange)
-                }
-
-                Text(input.isEmpty ? " " : input)
-                    .font(.system(size: 44, weight: .heavy, design: .rounded))
-                    .foregroundStyle(Theme.ink)
-                    .monospacedDigit()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 64)
-                    .background(Theme.card, in: .rect(cornerRadius: 16))
-                    .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(.white, lineWidth: 2))
-                    .shadow(color: Theme.shadowColor.opacity(0.12), radius: 8, y: 4)
-                    .accessibilityLabel(input.isEmpty ? "还没输入答案" : "你的答案 \(input)")
-
-                NumpadView(
-                    onDigit: { digit in
-                        guard input.count < 4 else { return }
-                        input.append(String(digit))
-                    },
-                    onDelete: { _ = input.popLast() },
-                    onSubmit: submit,
-                    submitDisabled: input.isEmpty
-                )
-            }
-
-        case .loading:
-            ProgressView("载入中…")
-
-        case .failed(let message):
-            ContentUnavailableView("出错了", systemImage: "exclamationmark.triangle", description: Text(message))
-
-        default:
-            // 纠错 / 过关等都由 overlay 承载，底层保持题面骨架不跳动
-            Color.clear.frame(height: 1)
-        }
-    }
-
-    private func submit() {
-        guard let value = Int(input) else { return }
-        model.submit(value)
-    }
-
-    // ----- 浮层 --------------------------------------------------------------
-
-    @ViewBuilder
-    private var overlay: some View {
-        switch model.viewState {
+        case .prompt(_, let retest):
+            if retest { Text("再试一次").font(.footnote).foregroundStyle(Theme.warn) }
+            NumpadView(onDigit: { if input.count < 5 { input += String($0) } }, onDelete: { _ = input.popLast() },
+                       onSubmit: { if let value = Int(input) { model.submit(value) } }, submitDisabled: input.isEmpty)
+        case .correct(let fact):
+            FeedbackBand(correct: true, title: "对了！", detail: "\(fact.prompt) = \(fact.answer)", identifier: "fluency-continue") { model.next() }
+                .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))
         case .correction(let fact):
-            card {
-                Text("再看一遍 👀").font(.headline)
-                Text("\(fact.prompt) = \(fact.answer)")
-                    .font(.system(size: 40, weight: .bold, design: .rounded))
-                    .monospacedDigit()
-                if fact.learningType == .pattern {
-                    Text("先想口诀，再添 0").font(.subheadline).foregroundStyle(.secondary)
-                }
-                Button("我记住了，再来一次") { model.next() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
-            .task(id: fact.id) {
-                speech.speak(SpeechService.sayFact(prompt: fact.prompt, answer: fact.answer))
-            }
-
-        case .phaseDone(let phase):
-            card {
-                Text("🎉 \(phaseLabel(phase)) 通过！").font(.title3.weight(.semibold))
-                Button("继续") { model.next() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
-
-        case .levelDone(let level):
-            card {
-                Text("🚀 第 \(level) 关全部通过！").font(.title3.weight(.semibold))
-                Button("下一关") { model.next() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
-
-        case .raceResult(let cpm):
-            card {
-                Text("竞速结束").font(.headline)
-                Text("每分钟 \(Int(cpm.rounded())) 题")
-                    .font(.system(size: 36, weight: .bold, design: .rounded))
-                Button("继续") { model.next() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
-
-        default:
-            EmptyView()
+            FeedbackBand(correct: false, title: timedOut ? "时间到了，再试一次" : "差一点，再看一遍", detail: "\(fact.prompt) = \(fact.answer)",
+                         buttonTitle: "继续", identifier: "fluency-retry") { model.next() }
+        case .phaseDone:
+            FeedbackBand(correct: true, title: "这一阶段完成了", detail: "", identifier: "fluency-continue") { model.next() }
+        case .levelDone:
+            FeedbackBand(correct: true, title: "这一关完成了", detail: "", identifier: "fluency-next-level") { model.next() }
+        case .raceResult:
+            BrandPrimaryButton("继续") { model.next() }
+        case .loading: ProgressView("载入中…")
+        case .failed:
+            ContentUnavailableView("出错了", systemImage: "exclamationmark.triangle", description: Text("请返回并重新打开练习"))
+            BrandPrimaryButton("返回") { dismiss() }
         }
-    }
-
-    @ViewBuilder
-    private func card<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
-        ZStack {
-            Rectangle().fill(.ultraThinMaterial).ignoresSafeArea()
-            VStack(spacing: 20, content: content)
-                .padding(28)
-                .background(Theme.card, in: .rect(cornerRadius: 26))
-                .overlay(RoundedRectangle(cornerRadius: 26).strokeBorder(.white, lineWidth: 2))
-                .shadow(color: Theme.shadowColor.opacity(0.3), radius: 24, y: 10)
-                .padding(32)
-        }
-        .transition(.opacity)
     }
 }

@@ -94,11 +94,7 @@ nonisolated struct KnowledgeMap: Codable, Sendable {
 }
 
 nonisolated enum KnowledgeMapLoader {
-    static func load(_ fileName: String, bundle: Bundle = .main) throws -> KnowledgeMap {
-        guard let url = bundle.url(forResource: fileName, withExtension: "json", subdirectory: "content")
-            ?? bundle.url(forResource: fileName, withExtension: "json") else {
-            throw ContentPackError.notLoaded("bundle 里找不到 content/\(fileName).json")
-        }
-        return try JSONDecoder().decode(KnowledgeMap.self, from: Data(contentsOf: url))
+    static func load(_ fileName: String, bundle: Bundle = .main, language: String = "zh-Hans") throws -> KnowledgeMap {
+        try JSONDecoder().decode(KnowledgeMap.self, from: LocalizedContent.data(fileName, language: language, bundle: bundle))
     }
 }

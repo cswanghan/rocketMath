@@ -8,13 +8,16 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy:cf": "vite build && wrangler pages deploy dist --project-name=rocket-learning",
+    "deploy:cf": "vite build && wrangler pages deploy dist --project-name=rocket-math --branch=main --commit-dirty=true",
+    "deploy:cf:learning": "vite build && wrangler pages deploy dist --project-name=rocket-learning --branch=main --commit-dirty=true",
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
     "content": "python3 content/build_content_pack.py",
     "golden": "npx tsx tools/export-engine-golden.ts",
-    "golden:practice": "npx tsx tools/export-practice-golden.ts"
+    "golden:practice": "npx tsx tools/export-practice-golden.ts",
+    "content:english": "python3 content/localization/build_english.py",
+    "test:localization": "python3 -m unittest discover -s content/localization -p \"test_*.py\" && python3 content/localization/build_english.py --check && python3 content/localization/verify_english.py --report"
   },
   "dependencies": {
     "react": "^18.3.1",

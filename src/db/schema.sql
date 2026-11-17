@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS users (
     role       TEXT    NOT NULL DEFAULT 'user',
     status     TEXT    NOT NULL DEFAULT 'approved',
     google_sub TEXT    UNIQUE,
+    apple_sub  TEXT    UNIQUE,
+    apple_name TEXT,
     email_optout INTEGER NOT NULL DEFAULT 0,  -- 推广邮件退订标记
     created_at TEXT    NOT NULL DEFAULT (datetime('now')),
     updated_at TEXT    NOT NULL DEFAULT (datetime('now'))
@@ -15,6 +17,28 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
 CREATE INDEX IF NOT EXISTS idx_users_email ON users(email);
 CREATE INDEX IF NOT EXISTS idx_users_google_sub ON users(google_sub);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_users_apple_sub ON users(apple_sub);
+
+CREATE TABLE IF NOT EXISTS apple_sign_in_challenges (
+    id TEXT PRIMARY KEY,
+    nonce_hash TEXT NOT NULL UNIQUE,
+    created_at INTEGER NOT NULL,
+    expires_at INTEGER NOT NULL,
+    consumed_at INTEGER
+);
+CREATE INDEX IF NOT EXISTS idx_apple_challenge_expiry ON apple_sign_in_challenges(expires_at);
+CREATE TABLE IF NOT EXISTS apple_sign_in_tokens (
+    id TEXT PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    encrypted_token TEXT NOT NULL,
+    created_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_apple_tokens_user ON apple_sign_in_tokens(user_id);
+CREATE TABLE IF NOT EXISTS apple_sign_in_locks (
+    apple_sub TEXT PRIMARY KEY,
+    owner TEXT NOT NULL,
+    expires_at INTEGER NOT NULL
+);
 
 -- user behavior analytics (埋点) ------------------------------------------------
 CREATE TABLE IF NOT EXISTS events (
@@ -78,3 +102,62 @@ CREATE TABLE IF NOT EXISTS email_log (
 );
 
 CREATE INDEX IF NOT EXISTS idx_email_log_campaign ON email_log(campaign_id);
+
+-- 数学学习进度云同步（详见 migrations/math_progress.sql）----------------------
+CREATE TABLE IF NOT EXISTS math_student (
+    user_id          INTEGER NOT NULL,
+    student_id       TEXT    NOT NULL DEFAULT 'local',
+    xp               INTEGER NOT NULL DEFAULT 0,
+    latency_gate_ms  INTEGER,
+    updated_at       INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (user_id, student_id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS math_track_state (
+    user_id     INTEGER NOT NULL,
+    student_id  TEXT    NOT NULL DEFAULT 'local',
+    track_id    TEXT    NOT NULL,
+    payload     TEXT    NOT NULL,
+    updated_at  INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (user_id, student_id, track_id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_math_track_user ON math_track_state(user_id, student_id);
+
+CREATE TABLE IF NOT EXISTS math_practice (
+    user_id              INTEGER NOT NULL,
+    student_id           TEXT    NOT NULL DEFAULT 'local',
+    set_id               TEXT    NOT NULL,
+    best_first_try       INTEGER NOT NULL DEFAULT 0,
+    total                INTEGER NOT NULL DEFAULT 0,
+    completed_at         INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (user_id, student_id, set_id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_math_practice_user ON math_practice(user_id, student_id);
+
+CREATE TABLE IF NOT EXISTS math_mistake (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id         INTEGER NOT NULL,
+    student_id      TEXT    NOT NULL DEFAULT 'local',
+    client_key      TEXT    NOT NULL,
+    source          TEXT    NOT NULL,
+    topic_id        TEXT    NOT NULL,
+    topic_title     TEXT    NOT NULL,
+    problem_id      TEXT    NOT NULL,
+    prompt          TEXT    NOT NULL,
+    difficulty      TEXT,
+    your_answer     TEXT    NOT NULL,
+    correct_answer  TEXT    NOT NULL,
+    elapsed_ms      INTEGER,
+    slow            INTEGER NOT NULL DEFAULT 0,
+    ts              INTEGER NOT NULL,
+    corrected       INTEGER NOT NULL DEFAULT 0,
+    UNIQUE (user_id, student_id, client_key),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_math_mistake_user ON math_mistake(user_id, student_id);

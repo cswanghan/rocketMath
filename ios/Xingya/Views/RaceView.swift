@@ -22,7 +22,7 @@ struct RaceView: View {
     }
 
     var body: some View {
-        Group {
+        ScrollView { Group {
             if let error = startError {
                 ContentUnavailableView("开始不了", systemImage: "flag.slash", description: Text(error))
             } else if let model {
@@ -38,9 +38,13 @@ struct RaceView: View {
                 chooseScreen
             }
         }
+        .padding().frame(maxWidth: 720).frame(maxWidth: .infinity)
+        }
+        .foregroundStyle(Theme.ink)
         .background(Theme.pageBackground.ignoresSafeArea())
         .navigationTitle("竞速")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar { ToolbarItem(placement: .cancellationAction) { Button("关闭") { dismiss() }.accessibilityIdentifier("session-close") } }
     }
 
     // ----- 选速度 ------------------------------------------------------------
@@ -58,18 +62,19 @@ struct RaceView: View {
                     start(durationSeconds: speed.seconds)
                 } label: {
                     HStack {
-                        Text(speed.emoji).font(.title)
+                        Image(systemName: "timer").font(.title).foregroundStyle(Theme.brand)
                         VStack(alignment: .leading) {
-                            Text(speed.label).font(.headline)
-                            Text("\(speed.seconds) 秒").font(.caption).foregroundStyle(.secondary)
+                            Text(L10n.text(speed.label)).font(.headline)
+                            Text(L10n.duration(Double(speed.seconds))).font(.caption).foregroundStyle(.secondary)
                         }
                         Spacer()
                         Image(systemName: "chevron.right").foregroundStyle(.tertiary)
                     }
                     .padding()
-                    .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 16))
+                    .background(Theme.card, in: .rect(cornerRadius: 16))
                 }
                 .buttonStyle(.plain)
+                .accessibilityIdentifier("race-speed-\(speed.id)")
                 .padding(.horizontal)
             }
             Spacer()
@@ -97,9 +102,11 @@ struct RaceView: View {
             Text(fact.prompt)
                 .font(.system(size: 52, weight: .bold, design: .rounded))
                 .monospacedDigit()
-                .accessibilityLabel("题目 \(fact.prompt)")
+                .accessibilityLabel(L10n.format("题目 %@", fact.prompt))
+                .accessibilityIdentifier("race-question")
             if let race = model.trackState?.race {
-                Text("已答对 \(race.correct) 题")
+                Text(L10n.format("答对 %@ 题", L10n.number(race.correct)))
+                    .accessibilityIdentifier("race-correct-count")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .monospacedDigit()
@@ -127,7 +134,7 @@ struct RaceView: View {
         let total = Double((model?.trackState?.race?.durationMs ?? 1))
         let frac = total > 0 ? Double(remainingMs) / total : 0
         return VStack(spacing: 6) {
-            Text("\(Int(ceil(Double(remainingMs) / 1000))) 秒")
+            Text(L10n.duration(ceil(Double(remainingMs) / 1000)))
                 .font(.title3.weight(.semibold))
                 .monospacedDigit()
                 .foregroundStyle(remainingMs <= 10000 ? .orange : .primary)
@@ -142,19 +149,19 @@ struct RaceView: View {
         VStack(spacing: 20) {
             Spacer()
             Text("🏁").font(.system(size: 64))
-            Text("每分钟 \(Int(cpm.rounded())) 题")
+            Text(L10n.format("每分钟 %@ 题", L10n.number(Int(cpm.rounded()))))
                 .font(.system(size: 40, weight: .bold, design: .rounded))
             if let race = model?.trackState?.race {
-                Text("共答对 \(race.correct) / \(race.answered) 题")
+                Text(L10n.format("共答对 %@ / %@ 题", L10n.number(race.correct), L10n.number(race.answered)))
                     .foregroundStyle(.secondary)
             }
             Spacer()
             VStack(spacing: 12) {
                 Button("再来一次") { model = nil }
-                    .buttonStyle(.borderedProminent)
+                    .buttonStyle(BrandPrimaryStyle())
                     .controlSize(.large)
                 Button("返回") { dismiss() }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(BrandSecondaryStyle())
                     .controlSize(.large)
             }
             .padding(.horizontal)
@@ -175,7 +182,7 @@ private struct RaceNumpad: View {
                 .monospacedDigit()
                 .frame(maxWidth: .infinity)
                 .frame(height: 48)
-                .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 12))
+                .background(Theme.card, in: .rect(cornerRadius: 12))
 
             NumpadView(
                 onDigit: { d in

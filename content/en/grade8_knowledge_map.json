@@ -1,0 +1,309 @@
+{
+  "textbook": "PEP edition",
+  "grade": 8,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "Triangles",
+      "topicIds": [
+        "triangle_angle_sum",
+        "isosceles_triangle"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "Congruent triangles",
+      "topicIds": [
+        "congruent_triangle_concept",
+        "congruent_triangle_proof"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "Reflection symmetry",
+      "topicIds": [
+        "axial_symmetry"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "Polynomial products & factoring",
+      "topicIds": [
+        "power_rules_practice",
+        "factorization_common",
+        "factorization_formula"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "Algebraic fractions",
+      "topicIds": [
+        "fraction_algebra_concept",
+        "fraction_equation"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "Square-root expressions",
+      "topicIds": [
+        "quadratic_radical",
+        "quadratic_radical_simplify"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "Pythagorean theorem",
+      "topicIds": [
+        "pythagorean_theorem"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "Parallelograms",
+      "topicIds": [
+        "parallelogram_properties",
+        "rectangle_rhombus_square"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "Linear functions",
+      "topicIds": [
+        "linear_function_concept",
+        "linear_function_graph"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "Data analysis",
+      "topicIds": [
+        "data_analysis",
+        "data_variance"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "triangle_angle_sum",
+      "unitId": "u1",
+      "title": "Interior & exterior triangle angles",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "triangle_angles",
+      "problemSetId": "triangle_angle_sum"
+    },
+    {
+      "id": "isosceles_triangle",
+      "unitId": "u1",
+      "title": "Isosceles triangles",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "triangle_angle_sum"
+      ],
+      "status": "ready",
+      "problemSetId": "isosceles_triangle"
+    },
+    {
+      "id": "congruent_triangle_concept",
+      "unitId": "u2",
+      "title": "Triangle congruence tests",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "isosceles_triangle"
+      ],
+      "status": "ready",
+      "problemSetId": "congruent_triangle_concept"
+    },
+    {
+      "id": "congruent_triangle_proof",
+      "unitId": "u2",
+      "title": "Proving triangle congruence",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "congruent_triangle_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "congruent_triangle_proof"
+    },
+    {
+      "id": "axial_symmetry",
+      "unitId": "u3",
+      "title": "Reflection symmetry",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "congruent_triangle_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "axial_symmetry"
+    },
+    {
+      "id": "power_rules_practice",
+      "unitId": "u4",
+      "title": "Operations with powers",
+      "pedagogy": "procedure",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "power_rules",
+      "problemSetId": "power_rules_practice"
+    },
+    {
+      "id": "factorization_common",
+      "unitId": "u4",
+      "title": "Factoring out common factors",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "power_rules_practice"
+      ],
+      "status": "ready",
+      "problemSetId": "factorization_common"
+    },
+    {
+      "id": "factorization_formula",
+      "unitId": "u4",
+      "title": "Factoring with identities",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "factorization_common"
+      ],
+      "status": "ready",
+      "problemSetId": "factorization_formula"
+    },
+    {
+      "id": "fraction_algebra_concept",
+      "unitId": "u5",
+      "title": "Understanding algebraic fractions",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "factorization_formula"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_algebra_concept"
+    },
+    {
+      "id": "fraction_equation",
+      "unitId": "u5",
+      "title": "Rational equations",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "fraction_algebra_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_equation"
+    },
+    {
+      "id": "quadratic_radical",
+      "unitId": "l1",
+      "title": "Square-root expressions",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "quadratic_radical"
+    },
+    {
+      "id": "quadratic_radical_simplify",
+      "unitId": "l1",
+      "title": "Simplifying & calculating radicals",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "quadratic_radical"
+      ],
+      "status": "ready",
+      "problemSetId": "quadratic_radical_simplify"
+    },
+    {
+      "id": "pythagorean_theorem",
+      "unitId": "l2",
+      "title": "Pythagorean theorem",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "quadratic_radical"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "pythagorean_triple",
+      "problemSetId": "pythagorean_theorem"
+    },
+    {
+      "id": "parallelogram_properties",
+      "unitId": "l3",
+      "title": "Properties of parallelograms",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "parallelogram_properties"
+    },
+    {
+      "id": "rectangle_rhombus_square",
+      "unitId": "l3",
+      "title": "Rectangles, rhombuses & squares",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "parallelogram_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "rectangle_rhombus_square"
+    },
+    {
+      "id": "linear_function_concept",
+      "unitId": "l4",
+      "title": "Understanding linear functions",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "linear_func_val",
+      "problemSetId": "linear_function_concept"
+    },
+    {
+      "id": "linear_function_graph",
+      "unitId": "l4",
+      "title": "Linear graphs & properties",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "linear_function_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "linear_function_graph"
+    },
+    {
+      "id": "data_analysis",
+      "unitId": "l5",
+      "title": "Data analysis",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "mean_median",
+      "problemSetId": "data_analysis"
+    },
+    {
+      "id": "data_variance",
+      "unitId": "l5",
+      "title": "Calculating variance",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "data_analysis"
+      ],
+      "status": "ready",
+      "problemSetId": "data_variance"
+    }
+  ]
+}

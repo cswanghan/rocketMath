@@ -3,25 +3,68 @@ import SwiftUI
 
 @main
 struct XingyaApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("appLanguage") private var language = L10n.language
+    @AppStorage("appAppearance") private var appearance = "system"
     @State private var speech = SpeechService()
+    @State private var auth = AuthSession.forLaunch()
+    @State private var store = StoreKitService()
 
-    private let container: ModelContainer = {
-        // UI 测试传 UITEST_MEMORY 时用内存库，保证每次从干净状态跑（探针会重做、
-        // 进度从 A 关起飞），断言才可复现。UserDefaults 里的时间锁另行在测试中清。
+    @State private var container: ModelContainer?
+    @State private var openingFailed = false
+
+    private func openStore() {
         let inMemory = ProcessInfo.processInfo.arguments.contains("UITEST_MEMORY")
-        do {
-            let config = ModelConfiguration(isStoredInMemoryOnly: inMemory)
-            return try ModelContainer(for: Schema(SwiftDataStorage.schema), configurations: config)
-        } catch {
-            fatalError("SwiftData 容器创建失败：\(error)")
+        let schema = Schema(SwiftDataStorage.schema)
+        let result = StoreOpening.attempt {
+            if inMemory {
+                return try ModelContainer(
+                    for: schema,
+                    configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+                )
+            }
+            return try ModelContainer(for: schema)
         }
-    }()
+        switch result {
+        case .success(let opened):
+            container = opened
+            openingFailed = false
+        case .failure:
+            openingFailed = true
+        }
+    }
 
     var body: some Scene {
         WindowGroup {
-            RootView()
-                .environment(speech)
+            Group {
+                if let container {
+                    RootView().id(language)
+                        .environment(speech)
+                        .environment(auth)
+                        .environment(store)
+                        .modelContainer(container)
+                } else if openingFailed {
+                    ContentUnavailableView {
+                        Label("学习数据暂时无法打开", systemImage: "externaldrive.badge.exclamationmark")
+                    } description: {
+                        Text(L10n.text(StoreOpening.recoveryMessage))
+                    } actions: {
+                        Button("重试", action: openStore)
+                            .accessibilityIdentifier("storage-retry")
+                    }
+                } else {
+                    ProgressView("正在打开学习数据…")
+                }
+            }
+            .environment(\.locale, Locale(identifier: language))
+            .fontDesign(.rounded)
+            .tint(Theme.brand)
+            .preferredColorScheme(appearance == "dark" ? .dark : appearance == "light" ? .light : nil)
+            .task { if container == nil && !openingFailed { openStore() } }
+            .task(id: auth.token) { await store.connect(auth) }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active { Task { await store.refresh() } }
+            }
         }
-        .modelContainer(container)
     }
 }

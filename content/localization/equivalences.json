@@ -1,0 +1,166 @@
+{
+  "一个数四舍五入到万位是 50 万,这个数最大可能是多少?": {
+    "en": "A number rounded to the nearest ten thousand is 500,000. What is the largest possible value of this number?",
+    "reason": "50 ten-thousands = 500000. English thousands separators do not change the quantity; rounding to ten-thousands and the maximum condition are retained."
+  },
+  "精确到万位50万,原数<505000,最大整数为504999": {
+    "en": "Rounded to the nearest ten thousand gives 500,000, so the original number < 505000; the largest integer is 504999",
+    "reason": "50 ten-thousands = 500000. The strict upper bound 505000 and largest integer 504999 are unchanged."
+  },
+  "我国土地面积约 960 万平方千米,等于多少亿公顷?": {
+    "en": "China has a land area of about 9.6 million square kilometers. What is that in hundreds of millions of hectares?",
+    "reason": "960 × 10000 = 9.6 × 1000000 square kilometers. The requested output unit is still 100000000 hectares. China is the referent of 我国 in this Chinese textbook."
+  },
+  "9.6亿": {
+    "en": "960 million",
+    "reason": "9.6 × 100000000 = 960 × 1000000. This choice is the same quantity in English large-number notation."
+  },
+  "960万×100=96000万=9.6亿公顷": {
+    "en": "9.6 million × 100 = 960 million = 960 million hectares",
+    "reason": "960×10000 km² ×100 ha/km² =96000×10000 ha =9.6×100000000 ha =960 million ha. All equality steps preserve the same quantities."
+  },
+  "末尾添0不改变大小": {
+    "en": "Adding zeros at the end does not change the value",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "0.5 = 0.50,小数末尾添0大小不变": {
+    "en": "0.5 = 0.50, adding zeros at the end of a decimal does not change its value",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "去掉末尾0大小不变": {
+    "en": "Removing trailing zeros does not change the value",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "整数末尾的0不能随意去掉;小数末尾的0可以": {
+    "en": "Trailing zeros in whole numbers cannot be removed at will; trailing zeros in decimals can",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "去掉末尾0,中间0不能去": {
+    "en": "Remove trailing zeros, but not the zero in the middle",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "5.060 → 5.06(末尾0去掉,中间0保留)": {
+    "en": "5.060 → 5.06 (trailing zero removed, middle zero kept)",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "末尾添0": {
+    "en": "Add zeros at the end",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "小数末尾的0能去掉吗?": {
+    "en": "Can trailing zeros in a decimal be removed?",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "小数末尾添0或去0不改变大小": {
+    "en": "Adding or removing zeros at the end of a decimal does not change its value",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "小数末尾的0可以去掉,不改变数的大小": {
+    "en": "Trailing zeros in a decimal can be removed without changing the value",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "小数中间的0能去掉吗?": {
+    "en": "Can the zero in the middle of a decimal be removed?",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "能,0是多余的": {
+    "en": "Yes, the zero is extra",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "中间0不能去掉": {
+    "en": "The middle zero cannot be removed",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "中间的0不能去掉,否则改变数值(如3.05≠3.5)": {
+    "en": "The middle zero cannot be removed, otherwise the value changes (e.g., 3.05≠3.5)",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "末尾添0大小不变": {
+    "en": "Adding zeros at the end does not change the value",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "去掉末尾三个0": {
+    "en": "Remove the three trailing zeros",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "0.06000去掉末尾三个0得0.06": {
+    "en": "Removing the three trailing zeros from 0.06000 gives 0.06",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "整数末尾的0可以随意去掉": {
+    "en": "Trailing zeros in a whole number can be removed at will",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "小数末尾的0可以去掉": {
+    "en": "Trailing zeros in a decimal can be removed",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "整数末尾0不能随意去掉(改变数值)": {
+    "en": "Trailing zeros in a whole number cannot be removed at will (it changes the value)",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "整数末尾的0不能随意去掉,如10≠1": {
+    "en": "Trailing zeros in a whole number cannot be removed at will, e.g., 10 ≠ 1",
+    "reason": "Reviewed decimal-place-value statement: English zero/zeros names the digit 0. Adding/removing trailing zeros versus internal zeros and the truth value of this option are preserved; numeric examples are unchanged."
+  },
+  "中间的0不能去掉": {
+    "en": "Zeros in the middle cannot be removed",
+    "reason": "English zeros names the digit 0; the prohibition on removing internal zeros is unchanged."
+  },
+  "末尾0不改变大小": {
+    "en": "Trailing zero does not change the value",
+    "reason": "English zero names the digit 0; the decimal trailing-zero property is unchanged."
+  },
+  "长方形:水平和竖直方向各1条": {
+    "en": "Rectangle: 1 in the horizontal direction and 1 in the vertical direction",
+    "reason": "各1 means one in each direction. The English text explicitly repeats 1 for horizontal and vertical; it does not add a new axis."
+  },
+  "每次锅里放2张:先放饼A正、饼B正→1分钟;换饼B反和饼C正→1分钟;再烙饼A反和饼C反→1分钟;但这样需3+1=4?→最优:A正B正1min,A反C正1min,B反C反1min=3min → 答案是3? Let re-think. 正确:3张饼,每张正反各1min。锅最多放2张。总锅时=3次=3min": {
+    "en": "The pan holds at most 2 pancakes. Each of the 3 pancakes needs 1 min on each side. Use this schedule: A front and B front for 1 min; A back and C front for 1 min; B back and C back for 1 min. Total pan time = 3 rounds = 3 min. Adding an unnecessary extra minute gives 3+1=4; the optimal schedule takes only 3 min.",
+    "reason": "Editorial rewrite of the source's explicit self-correction (including \"Let re-think\"). Keeps capacity 2, 3 pancakes, 1 min per side, all three cooking rounds, the rejected 3+1=4 calculation, and the final 3-round/3-minute answer. Repetitions and the abandoned narration are consolidated; no problem or answer is removed."
+  },
+  "边-角-边(夹角在两边之间)": {
+    "en": "Side-Angle-Side (the angle is between the two sides)",
+    "reason": "The hyphens join the Side-Angle-Side congruence criterion in both languages; they are not subtraction operators. The included-angle condition is retained."
+  },
+  "5 + 2√15 + 3 = 8 + 2√15 | 步骤: 展开公式=(a+b)^2=a^2+2ab+b^2; 计算结果=5+2√15+3=8+2√15": {
+    "en": "5 + 2√15 + 3 = 8 + 2√15 | Steps: Expand using the formula (a+b)^2=a^2+2ab+b^2; Result = 5+2√15+3=8+2√15",
+    "reason": "An equals sign after the Chinese step-description label is a separator. English uses a colon/phrase there; every mathematical expression, power, operand, computed value and equality within the expression is unchanged."
+  },
+  "d = √(64+36) = √100 = 10 cm | 步骤: 利用勾股定理=d=√(8²+6²); 计算结果=10": {
+    "en": "d = √(64+36) = √100 = 10 cm | Steps: Apply the Pythagorean theorem d=√(8²+6²); Result = 10",
+    "reason": "An equals sign after the Chinese step-description label is a separator. English uses a colon/phrase there; every mathematical expression, power, operand, computed value and equality within the expression is unchanged."
+  },
+  "点 (0,-1) 和 (1,1) 确定直线 y=2x-1 | 步骤: x=0时=y=−1,点(0,−1); x=1时=y=1,点(1,1)": {
+    "en": "Points (0,-1) and (1,1) determine the line y=2x-1 | Steps: when x=0, y=−1, point (0,−1); when x=1, y=1, point (1,1)",
+    "reason": "The two equals signs after the descriptive WHEN labels introduce the result of each step, not additional equations. English uses a comma after each condition. All coordinates and equations are unchanged."
+  },
+  "PO=√(9+16)=5 | 步骤: OA⊥PA=OA=3,PA=4; PO=PO=√(3²+4²)=5": {
+    "en": "PO = √(9+16) = 5 | Steps: OA ⊥ PA, OA = 3, PA = 4; PO = √(3²+4²) = 5",
+    "reason": "Two step-label separators are expressed as punctuation rather than equality: OA⊥PA labels the right-angle step and PO labels the length step. The repeated PO label is removed; OA⊥PA, OA=3, PA=4, both square-root expressions, and their result 5 are unchanged."
+  },
+  "P=6/36=1/6 | 步骤: 总结果=6×6=36种; 和=7的结果=(1,6)(2,5)(3,4)(4,3)(5,2)(6,1)共6种; P=P=6/36=1/6": {
+    "en": "P=6/36=1/6 | Steps: Total outcomes = 6×6 = 36; Outcomes with sum = 7: (1,6)(2,5)(3,4)(4,3)(5,2)(6,1), totaling 6; P=P=6/36=1/6",
+    "reason": "The equals sign after the descriptive label “outcomes with sum=7” is a colon in English. All six ordered die outcomes, counts, the sum condition, and the probability 6/36=1/6 are retained."
+  },
+  "0.96亿": {
+    "en": "96 million",
+    "reason": "0.96 × 100000000 = 96 × 1000000. This distractor preserves its original quantity and remains incorrect."
+  },
+  "96亿": {
+    "en": "9.6 billion",
+    "reason": "96 × 100000000 = 9.6 × 1000000000. This distractor preserves its original quantity and remains incorrect."
+  },
+  "d=20/tan30°=20÷(√3/3)=20√3≈34.6m | 步骤: 设距离为d=tan30°=20/d; d=d=20/tan30°=20√3": {
+    "en": "d = 20/tan 30° = 20 ÷ (√3/3) = 20√3 ≈ 34.6 m | Steps: Let the distance be d. tan 30° = 20/d; d = 20/tan 30° = 20√3",
+    "reason": "Equals signs separating step labels from their equations become punctuation in English. Repeated d labels are removed. The tangent ratio, distance equations, radicals and approximations are unchanged."
+  },
+  "h=50√3(√3+1)≈236.6m | 步骤: 设山高h,初始水平距离x=tan45°=h/x → x=h; 走近后=tan60°=h/(x−100) → √3=h/(h−100); 解h=√3h−100√3=h → h(√3−1)=100√3 → h=50(√3+1)√3≈236m": {
+    "en": "h=50√3(√3+1)≈236.6m | Steps: Let mountain height be h and initial horizontal distance be x: tan45°=h/x → x=h; After walking closer: tan60°=h/(x−100) → √3=h/(h−100); Solve for h: √3h−100√3=h → h(√3−1)=100√3 → h=50(√3+1)√3≈236m",
+    "reason": "Equals signs separating step labels from their equations become punctuation in English. Repeated variable labels are removed. Every trigonometric equation, angle, length, approximation and resulting answer is preserved; the mountain-height source itself gives both 236.6m and 236m, which are retained."
+  },
+  "d=15÷(√3/3)=15√3≈25.98m | 步骤: tan30°=15/d=d=15/tan30°; d=d=15/(√3/3)=15√3=5√3×3=15√3≈26m": {
+    "en": "d = 15 ÷ (√3/3) = 15√3 ≈ 25.98 m | Steps: tan 30° = 15/d; d = 15/tan 30°; d = 15/(√3/3) = 15√3 = 5√3 × 3 = 15√3 ≈ 26 m",
+    "reason": "Equals signs separating step labels from their equations become punctuation in English. Repeated d labels are removed. The tangent ratio, distance equations, radicals and approximations are unchanged."
+  }
+}

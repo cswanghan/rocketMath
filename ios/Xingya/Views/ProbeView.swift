@@ -18,7 +18,7 @@ struct ProbeView: View {
     private var target: Int { ((trial * 7 + 3) % 9) + 1 }
 
     var body: some View {
-        VStack(spacing: 24) {
+        ScrollView { VStack(spacing: 24) {
             VStack(spacing: 8) {
                 Text("热身 🖐️").font(.title2.weight(.semibold))
                 Text("按下你看到的数字，越快越好")
@@ -36,17 +36,19 @@ struct ProbeView: View {
                 .font(.system(size: 96, weight: .bold, design: .rounded))
                 .monospacedDigit()
                 .contentTransition(.numericText())
-                .accessibilityLabel("请按 \(target)")
+                .accessibilityLabel(L10n.format("请按 %@", L10n.number(target)))
 
             NumpadView(
                 onDigit: tap,
                 onDelete: {},
                 onSubmit: {},
-                submitDisabled: true
+                submitDisabled: true, showSubmit: false
             )
             .padding(.horizontal)
         }
         .padding()
+        .frame(maxWidth: 650).frame(maxWidth: .infinity)
+        }.background(Theme.pageBg.ignoresSafeArea()).foregroundStyle(Theme.ink)
         .onAppear { startedAt = Date() }
     }
 
@@ -62,7 +64,7 @@ struct ProbeView: View {
             storage.putStudent(student)
             onDone(gate)
         } else {
-            withAnimation { trial += 1 }
+            trial += 1
             startedAt = Date()
         }
     }

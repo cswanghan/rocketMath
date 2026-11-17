@@ -188,9 +188,10 @@
 |---|---|---|
 | P0 工程骨架 + 引擎移植 + 黄金对拍 | ✅ 完成 | 4 测试全绿（3813 步对拍 + RNG 逐位 + pack 加载 + prompt 反推），变异测试验证过安全网有效 |
 | P1 流畅度全套 UI + SwiftData 持久化 | ✅ 完成 | 模拟器端到端可玩（UI 测试真读题真按键）；竞速/经验/时间锁未接 UI，留 P1.5 |
-| P2 Practice 引擎 + 知识地图 + Practice UI | ✅ 三年级完成 | 引擎黄金对拍(洗牌逐位) + 知识地图首页 + mc/fill/steps 练习界面, 端到端可玩。错题本/家长面板留 P2.5 |
-| P3 账号登录 + 云同步 + StoreKit 2 内购 | ⏳ | 复用现有 Cloudflare Functions + D1 |
-| P4 上架材料与审核 | ⏳ | 儿童类目合规、隐私清单、年龄分级、截图 |
+| P2 Practice 引擎 + 知识地图 + Practice UI | ✅ 三年级完成 | 引擎黄金对拍(洗牌逐位) + 知识地图首页 + mc/fill/steps 练习界面, 端到端可玩 |
+| P2.5 错题本 + 家长区 + 多年级 | ✅ 完成 | 错题本(practice/fluency) + PIN 门 + 家长面板 + 本地总结 + 3–9 年级切换 |
+| P3 账号登录 + 云同步 + StoreKit 2 内购 | ✅ 完成 | 登录/注册 + 进度 sync 线上可用 + StoreKit 2 + AI 总结 |
+| P4 上架材料与审核 | ✅ 材料齐 | 文案/隐私/支持页/截图/审核账号；Archive 与 ASC 点提交需本机 |
 
 ### P0 已完成
 - **工程**：`ios/Xingya.xcodeproj`（手写 pbxproj，objectVersion 77）。两个 target：`Xingya`(App) + `XingyaTests`(Swift Testing)。用 **synchronized folder** 挂载源码目录 —— 新增 Swift 文件不用改工程文件。iOS 17.0+ / iPhone+iPad / Swift 6 严格并发 + `SWIFT_DEFAULT_ACTOR_ISOLATION=MainActor` / bundle id `com.xingya.app`。
@@ -243,7 +244,73 @@
 26. **UI 测试内存模式禁用时间锁**：测试墙钟慢，跑满 15 分钟会触发休息屏挡住操作——曾导致一次跑了 2120 秒后卡死。`UITEST_MEMORY` 时 `TimeLockService(config: nil)`。
 27. **知识地图 List 懒加载**：屏幕外 topic 不在无障碍树里，UI 测试要 `swipeUp` 滚动到目标可点为止。
 
-### P2 尚未接入（留 P2.5）
-- 错题本（`MistakeRecord`：记录答错题供家长复盘）
-- 家长入口（PIN 门 + 家长面板 + DeepSeek 一键总结，复用现有 Cloudflare Function）
-- 多年级切换（`AppContent.load(grade:)` 已参数化，只差 GradePicker UI；4–9 年级 pack 已在 bundle）
+### P2.5 已完成（2026-07-21）
+- **错题本存储**：`MistakeRecord` + `StorageAdapter` 五方法（append/list/mark/reset/clear）+ SwiftData `MistakeModel`（显式 `localId` 自增）。`resetProgress` 清关卡/练习/经验、**保留**错题本。
+- **答题记错题**：`PracticeModel` 首次答错/揭示写入；一次答对但 >20s 记「偏慢」。`GameModel` 流畅度 miss/retest_fail 写入（会话内每 fact 一次）。
+- **家长区**：`ParentPin`（UserDefaults 4 位，防小孩非真安全）→ `ParentGateView` → `ParentDashboardView`（按知识点分组、标订正、本地一键总结、重置/清空）。AI 云总结留 P3。
+- **多年级**：`GradePickerView` 3–9 年级，选择持久到 UserDefaults；知识地图菜单可「切换年级」；标题用「三年级/初一」等中文标签。
+- **首页菜单**：知识地图右上角 `…` → 家长 / 切换年级。
+- 单元测试 16 绿（新增错题存储/总结/PIN）；UI 测试覆盖 PIN 设置 + 家长面板往返，66 秒全绿。
+
+### P2.5 决策/踩坑
+28. **`MistakeModel.localId` 显式自增**，不用 `PersistentIdentifier.hashValue`（不稳定、跨进程不可靠）。
+29. **家长面板用本地总结**，不在未登录时打 Cloudflare `/api/summarize`（无鉴权 + 审核风险）；P3 有账号后再接 AI。
+30. **UI 测试 `UITEST_MEMORY` 默认三年级**，跳过 GradePicker，保证可复现；生产路径读 `Grades.saved`。
+
+### 平台覆盖
+- **iPhone + iPad**：`TARGETED_DEVICE_FAMILY = 1,2`，iOS 17+。
+- **Mac**：Apple Silicon 上以「Designed for iPad」运行（非原生 AppKit/Catalyst 多平台 target）。原生 macOS 适配可后续加。
+
+### P3 已完成（2026-07-21）
+- **后端**
+  - D1 迁移 `src/db/migrations/math_progress.sql`（`math_student` / `math_track_state` / `math_practice` / `math_mistake`），已 remote 执行。
+  - `GET|POST /api/progress/sync`：JWT 鉴权；推送后 LWW 合并再回写全量。practice 取更优 first-try；mistake 按 `client_key` 去重。
+- **iOS 网络层** `Network/`
+  - `APIClient`：默认 `https://rocket-math-4kg.pages.dev`，UserDefaults 可覆盖。
+  - `AuthSession`：login / register / me / logout；token Keychain + UserDefaults 双写。
+  - `ProgressSync`：export 本地 → POST → apply 合并。
+  - `SummarizeClient`：登录后 POST `/api/summarize`，失败回落本地文案。
+- **StoreKit 2** `Store/StoreKitService` + `Configuration.storekit`（本地调试月订 `com.hanwang.xingya.premium.monthly`）。ASC 未配置时 UI 显示「即将上线」。
+- **UI**：`AuthView` / `AccountView`（同步 + 订阅）；知识地图菜单「账号」；家长面板「AI 一键总结」（未登录走本地）。
+- **隐私清单** 更新为声明邮箱/用户 ID/学习进度/购买（均 App 功能、不追踪）。
+- 单元测试 **19** 绿（+export/apply/API 错误）；UI 端到端 **66s** 全绿。
+
+### P3 决策/踩坑
+31. **本地优先不变**：未登录完整可玩；登录只加云同步与 AI 总结，不 gate 内容。
+32. **进度 API 新建而非复用 vocab_progress**：数学是 track blob + practice + mistakes，结构不同，硬塞词表表会炸。
+33. **SwiftData schema 变更开发期删库重建**：`clientKey` 字段加入 MistakeModel；上架后应写正式迁移。
+34. **StoreKit 产品 ID 先写死一处** `StoreProductID.premiumMonthly`，ASC 创建后只改常量；scheme 挂本地 storekit 配置方便模拟器调试。
+
+### P3 运维（已完成 2026-07-21）
+- Pages 已部署：`rocket-math`（生产 `rocket-math-4kg.pages.dev`）与 `rocket-learning`。
+- D1 `math_progress` 已建表；`POST/GET /api/progress/sync` 鉴权 + 读写实测通过。
+- 审核演示账号：`appstore_review` / `[stored only in App Store Connect]`。
+
+### P4 已完成（2026-07-21）
+- **隐私政策** https://rocket-math-4kg.pages.dev/privacy.html
+- **App 支持** https://rocket-math-4kg.pages.dev/app-support.html
+- **上架文案** `ios/APP_STORE.md`（名称/副标题/描述/关键词/审核备注/分级问卷建议）
+- **截图成片**（可直传 ASC）  
+  - iPhone 6.7"：`ios/store/screenshots/final-iphone-6.7/`（5 张，1290×2796）  
+  - iPhone 6.9"：`ios/store/screenshots/final-iphone-6.9/`（5 张，1320×2868）  
+  - iPad 13"：`ios/store/screenshots/final-ipad-13/`（5 张，2048×2732）  
+- **脚本** `ios/tools/make-store-screenshots.sh` / `compose_store_frames.py`
+
+### ASC 提交准备（2026-07-22）
+- 版本 **1.0.0 (1)**；手册 **`ios/ASC_SUBMIT.md`**
+- 账号删除：`POST /api/auth/delete-account` + App 内入口（5.1.1v）
+- Release Archive 已成功：`ios/build/Xingya.xcarchive`
+- 上传需本机 Xcode 登录 Apple ID（CLI export 报 Failed to Use Accounts 属预期）
+
+### P4 已完成（2026-07-21）
+- **隐私政策** https://rocket-math-4kg.pages.dev/privacy.html  
+- **App 支持** https://rocket-math-4kg.pages.dev/app-support.html  
+- **上架文案** `ios/APP_STORE.md`（名称/副标题/描述/关键词/审核备注/分级）  
+- **截图** `ios/store/screenshots/asc-iphone-6.7/`（9 张，1290×2796）  
+- **导出脚本** `ios/tools/export-uitest-screenshots.sh`
+
+### P4 仍需本机人工
+1. App Store Connect 创建 App + 订阅产品 `com.hanwang.xingya.premium.monthly`  
+2. 上传截图与元数据（复制 `APP_STORE.md`）  
+3. Xcode → Archive → Distribute（Team `QY29J9ZMPU`）  
+4. 建议补 1–3 张 iPad 截图  

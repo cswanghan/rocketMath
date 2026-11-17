@@ -1,10 +1,11 @@
 import { verifyPassword, signJWT } from '../../../src/auth';
 import { getJwtSecret } from '../../../src/env';
+import type { Database, PagesHandler } from '../../../src/server-types';
 
-interface Env { DB: D1Database; JWT_SECRET: string; }
+interface Env { DB: Database; JWT_SECRET: string; }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const { username, password } = await context.request.json<{ username: string; password: string }>();
+export const onRequestPost: PagesHandler<Env> = async (context) => {
+  const { username, password } = await context.request.json() as { username: string; password: string };
 
   if (!username || !password) {
     return json({ error: '请输入用户名和密码' }, 400);

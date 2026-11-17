@@ -1,11 +1,10 @@
+import type { Database, PagesHandler } from '../../src/server-types';
 // 用户行为埋点上报。匿名可用；登录用户通过 Authorization 头或 body.token 归因。
 // 设计为"尽量成功、永不报错阻塞前端"：任何异常都返回 200。
-import { verifyJWT } from '../../src/auth';
-import { getJwtSecret } from '../../src/env';
 import { getRequestUser } from '../../src/request-auth';
 
 interface Env {
-  DB: D1Database;
+  DB: Database;
   JWT_SECRET?: string;
 }
 
@@ -21,7 +20,7 @@ function clip(v: unknown, n: number): string {
   return s.length > n ? s.slice(0, n) : s;
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
+export const onRequestPost: PagesHandler<Env> = async (context) => {
   const { request, env } = context;
   try {
     const body: any = await request.json().catch(() => ({}));
@@ -30,16 +29,16 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     // resolve user: prefer Authorization header (fetch path), fall back to body.token (sendBeacon path)
     let userId: number | null = null;
-    try {
-      const fromHeader = await getRequestUser(request, env);
-      if (fromHeader?.userId) {
-        userId = Number(fromHeader.userId) || null;
-      } else if (body?.token) {
-        const payload = await verifyJWT(String(body.token), getJwtSecret(env));
-        if (payload?.userId) userId = Number(payload.userId) || null;
-      }
-    } catch {
-      /* anonymous */
+    const hasCredential = request.headers.has('Authorization') || !!body?.token;
+    if (hasCredential) {
+      const authRequest = request.headers.has('Authorization') ? request : new Request(request.url, {
+        headers: { Authorization: `Bearer ${String(body.token)}` },
+      });
+      const user = await getRequestUser(authRequest, env);
+      if (!user) return new Response(JSON.stringify({ ok: false, error: '账号不可用' }), {
+        status: 401, headers: JSON_HEADERS,
+      });
+      userId = user.userId;
     }
 
     const anon = clip(body?.anonId, 64);
@@ -48,7 +47,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
     const stmts = events.map((e) =>
       env.DB.prepare(
-        'INSERT INTO events (user_id, anon_id, child_id, event, props, path, ua) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        `INSERT INTO events (user_id, anon_id, child_id, event, props, path, ua)
+         SELECT ?, ?, ?, ?, ?, ?, ? WHERE ? IS NULL OR EXISTS
+         (SELECT 1 FROM users WHERE id = ? AND status = 'approved')`,
       ).bind(
         userId,
         anon,
@@ -57,6 +58,8 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
         clip(typeof e?.props === 'string' ? e.props : JSON.stringify(e?.props ?? {}), 2000),
         clip(e?.path, 256),
         ua,
+        userId,
+        userId,
       ),
     );
 

@@ -1,12 +1,24 @@
+### P4 / ASC 提交（2026-07-22）— 材料齐，Archive 已出
 
-### P4 上架工程配置（2026-07-21）
-- **隐私清单** `PrivacyInfo.xcprivacy`：Apple 2024 起强制。当前全本地运行 → 不追踪、不收集离设备数据；仅声明 UserDefaults(CA92.1，存静音/时间锁)。P3 接账号后需更新。
-- **加密合规声明**：`INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO`，免去每次上传的出口合规弹窗。
-- **类目**：`LSApplicationCategoryType = public.app-category.education`（教育）。
-- **App 图标**：`tools/render-icon.swift`（CoreGraphics 渲染 1024×1024，蓝紫渐变 + 火箭 + 星 + 火焰），无 alpha 无圆角，符合 App Store 要求。已编译进 Assets.car。
-- 真机架构（generic/platform=iOS，arm64）不签名编译通过。
-- **签名 + archive + 上传需 Apple ID 在本机 Xcode 登录**（无法代劳）：见下方操作清单。
+| 项 | 状态 | 位置 |
+|----|------|------|
+| **提交手册** | ✅ | **`ios/ASC_SUBMIT.md`**（按序操作） |
+| 版本 | ✅ | **1.0.0 (1)** |
+| 隐私 / 支持 | ✅ 线上 | privacy.html · app-support.html |
+| 截图成片 | ✅ | `final-iphone-6.7/` · `final-ipad-13/` |
+| 审核账号 | ✅ | `appstore_review` / `[stored only in App Store Connect]` |
+| 账号删除 API+UI | ✅ | POST `/api/auth/delete-account` · 账号页 |
+| Release Archive | ✅ 本机已打出 | `ios/build/Xingya.xcarchive` |
+| 上传 ASC | ⏳ | 需 Xcode 登录 Apple ID → Organizer → Distribute |
 
-### P4 待用户操作（签名相关，本机 Xcode）
-- bundle id `com.xingya.app` 需在 App Store Connect 注册，或改成用户可注册的唯一 id。
-- 年龄分级建议 4+，**暂不进 Kids 类目**（Kids 类目要隐私政策 URL + COPPA，等 P3 有账号再评估）。
+### 你现在要做的（约 20 分钟）
+1. 打开 **`ios/ASC_SUBMIT.md`** 按第 1–6 节在 ASC 填元数据 + 截图  
+2. Xcode → **Settings → Accounts** 登录有 Team `QY29J9ZMPU` 的 Apple ID  
+3. **Window → Organizer** → 选 `Xingya 1.0.0` Archive → **Distribute App**  
+   - 若 Organizer 没有：再跑一次 `./ios/tools/archive-for-asc.sh` 或 Product → Archive  
+4. ASC 选中构建 → **提交审核**
+
+### P3 线上验证
+- 注册/登录 OK
+- 进度同步 push/pull OK（D1 `math_*` 表）
+- 部署命令：`npm run deploy:cf`（项目 rocket-math / branch main）

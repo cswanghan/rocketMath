@@ -1,0 +1,762 @@
+{
+  "version": "1.0.0",
+  "grade": 8,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "Relaxed",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "Standard",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "Challenge",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "power_rules",
+      "name": "Mental math: exponent rules",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "pow_mul_a2p3",
+              "prompt": "a^2 · a^3 = a^?  (fill in the exponent)",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_mul_x1p4",
+              "prompt": "x^1 · x^4 = x^?  (fill in the exponent)",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_mul_b3p3",
+              "prompt": "b^3 · b^3 = b^?  (fill in the exponent)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_mul_y2p2",
+              "prompt": "y^2 · y^2 = y^?  (fill in the exponent)",
+              "answer": 4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "pow_mul_a3p4",
+              "prompt": "a^3 · a^4 = a^?  (fill in the exponent)",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_mul_x5p2",
+              "prompt": "x^5 · x^2 = x^?  (fill in the exponent)",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_mul_m4p4",
+              "prompt": "m^4 · m^4 = m^?  (fill in the exponent)",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_mul_n6p3",
+              "prompt": "n^6 · n^3 = n^?  (fill in the exponent)",
+              "answer": 9,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "pow_pow_a2q3",
+              "prompt": "(a^2)^3 = a^?  (fill in the exponent)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_pow_x3q2",
+              "prompt": "(x^3)^2 = x^?  (fill in the exponent)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_pow_b4q2",
+              "prompt": "(b^4)^2 = b^?  (fill in the exponent)",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_pow_y2q5",
+              "prompt": "(y^2)^5 = y^?  (fill in the exponent)",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "pow_val_2e3",
+              "prompt": "2^3 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pow_val_2e4",
+              "prompt": "2^4 = ?",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pow_val_3e2",
+              "prompt": "3^2 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pow_val_5e2",
+              "prompt": "5^2 = ?",
+              "answer": 25,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "pow_div_a7m3",
+              "prompt": "a^7 ÷ a^3 = a^?  (fill in the exponent)",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_div_x9m4",
+              "prompt": "x^9 ÷ x^4 = x^?  (fill in the exponent)",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_div_b8m5",
+              "prompt": "b^8 ÷ b^5 = b^?  (fill in the exponent)",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_div_m6m2",
+              "prompt": "m^6 ÷ m^2 = m^?  (fill in the exponent)",
+              "answer": 4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "pow_pow_x3q4",
+              "prompt": "(x^3)^4 = x^?  (fill in the exponent)",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_pow_a5q3",
+              "prompt": "(a^5)^3 = a^?  (fill in the exponent)",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_pow_b2q6",
+              "prompt": "(b^2)^6 = b^?  (fill in the exponent)",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pow_pow_y4q3",
+              "prompt": "(y^4)^3 = y^?  (fill in the exponent)",
+              "answer": 12,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "pythagorean_triple",
+      "name": "Mental math: Pythagorean theorem with integer sides",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "pyth_3_4_c",
+              "prompt": "A right triangle has legs 3 and 4. Hypotenuse = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_6_8_c",
+              "prompt": "A right triangle has legs 6 and 8. Hypotenuse = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_5_12_c",
+              "prompt": "A right triangle has legs 5 and 12. Hypotenuse = ?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_8_15_c",
+              "prompt": "A right triangle has legs 8 and 15. Hypotenuse = ?",
+              "answer": 17,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "pyth_9_12_c",
+              "prompt": "A right triangle has legs 9 and 12. Hypotenuse = ?",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_4_5_a",
+              "prompt": "A right triangle has hypotenuse 5 and one leg 4. Other leg = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_12_13_a",
+              "prompt": "A right triangle has hypotenuse 13 and one leg 12. Other leg = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_8_10_a",
+              "prompt": "A right triangle has hypotenuse 10 and one leg 8. Other leg = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "pyth_20_21_c",
+              "prompt": "A right triangle has legs 20 and 21. Hypotenuse = ?",
+              "answer": 29,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_7_24_c",
+              "prompt": "A right triangle has legs 7 and 24. Hypotenuse = ?",
+              "answer": 25,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_9_40_c",
+              "prompt": "A right triangle has legs 9 and 40. Hypotenuse = ?",
+              "answer": 41,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_10_24_c",
+              "prompt": "A right triangle has legs 10 and 24. Hypotenuse = ?",
+              "answer": 26,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "pyth_15_17_a",
+              "prompt": "A right triangle has hypotenuse 17 and one leg 15. Other leg = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_24_25_a",
+              "prompt": "A right triangle has hypotenuse 25 and one leg 24. Other leg = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_21_29_a",
+              "prompt": "A right triangle has hypotenuse 29 and one leg 21. Other leg = ?",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "pyth_24_26_a",
+              "prompt": "A right triangle has hypotenuse 26 and one leg 24. Other leg = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "linear_func_val",
+      "name": "Mental math: evaluating linear functions",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "lf_k2_b1_x3",
+              "prompt": "y = 2x + 1. When x = 3, y = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k3_b0_x4",
+              "prompt": "y = 3x. When x = 4, y = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k1_b5_x6",
+              "prompt": "y = 1x + 5. When x = 6, y = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k4_b2_x2",
+              "prompt": "y = 4x + 2. When x = 2, y = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "lf_k2_bn1_x5",
+              "prompt": "y = 2x - 1, when x = 5, y = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k3_b4_x3",
+              "prompt": "y = 3x + 4. When x = 3, y = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_kn1_b6_x4",
+              "prompt": "y = -1x + 6, when x = 4, y = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k5_bn3_x2",
+              "prompt": "y = 5x - 3, when x = 2, y = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "lf_kn2_b10_x3",
+              "prompt": "y = -2x + 10, when x = 3, y = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k3_bn5_x4",
+              "prompt": "y = 3x - 5, when x = 4, y = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k4_bn6_x3",
+              "prompt": "y = 4x - 6, when x = 3, y = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_kn3_b15_x4",
+              "prompt": "y = -3x + 15, when x = 4, y = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "lf_k2_b3_xn4",
+              "prompt": "y = 2x + 3, when x = -4, y = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k5_bn10_x3",
+              "prompt": "y = 5x - 10, when x = 3, y = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_kn4_b12_x2",
+              "prompt": "y = -4x + 12, when x = 2, y = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lf_k6_bn6_x2",
+              "prompt": "y = 6x - 6, when x = 2, y = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "triangle_angles",
+      "name": "Mental math: sum of interior angles and exterior angles of a triangle",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "tri_int_60_60",
+              "prompt": "Two interior angles of a triangle are 60° and 60°. The third interior angle = ?°",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_int_90_45",
+              "prompt": "Two interior angles of a triangle are 90° and 45°. The third interior angle = ?°",
+              "answer": 45,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_int_30_60",
+              "prompt": "Two interior angles of a triangle are 30° and 60°. The third interior angle = ?°",
+              "answer": 90,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_int_40_70",
+              "prompt": "Two interior angles of a triangle are 40° and 70°. The third interior angle = ?°",
+              "answer": 70,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "tri_int_35_75",
+              "prompt": "Two interior angles of a triangle are 35° and 75°. The third interior angle = ?°",
+              "answer": 70,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_int_50_80",
+              "prompt": "Two interior angles of a triangle are 50° and 80°. The third interior angle = ?°",
+              "answer": 50,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_int_25_130",
+              "prompt": "Two interior angles of a triangle are 25° and 130°. The third interior angle = ?°",
+              "answer": 25,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_int_90_55",
+              "prompt": "Two interior angles of a triangle are 90° and 55°. The third interior angle = ?°",
+              "answer": 35,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "tri_ext_40_60",
+              "prompt": "The two non-adjacent interior angles of an exterior angle of a triangle are 40° and 60°. The exterior angle = ?°",
+              "answer": 100,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_ext_35_75",
+              "prompt": "The two non-adjacent interior angles of an exterior angle of a triangle are 35° and 75°. The exterior angle = ?°",
+              "answer": 110,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_ext_30_80",
+              "prompt": "The two non-adjacent interior angles of an exterior angle of a triangle are 30° and 80°. The exterior angle = ?°",
+              "answer": 110,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_ext_45_55",
+              "prompt": "The two non-adjacent interior angles of an exterior angle of a triangle are 45° and 55°. The exterior angle = ?°",
+              "answer": 100,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "tri_ext_50_70",
+              "prompt": "The two non-adjacent interior angles of an exterior angle of a triangle are 50° and 70°. The exterior angle = ?°",
+              "answer": 120,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_ext_25_65",
+              "prompt": "The two non-adjacent interior angles of an exterior angle of a triangle are 25° and 65°. The exterior angle = ?°",
+              "answer": 90,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_ext_40_75",
+              "prompt": "The two non-adjacent interior angles of an exterior angle of a triangle are 40° and 75°. The exterior angle = ?°",
+              "answer": 115,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "tri_ext_30_55",
+              "prompt": "The two non-adjacent interior angles of an exterior angle of a triangle are 30° and 55°. The exterior angle = ?°",
+              "answer": 85,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "mean_median",
+      "name": "Mental math: mean and median",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "stat_mean_l0_2_4_6_8",
+              "prompt": "Data [2, 4, 6, 8], mean = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_med_l0_1_3_5_7_9",
+              "prompt": "Data [1, 3, 5, 7, 9], median = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_mean_l0_10_20_30",
+              "prompt": "Data [10, 20, 30], mean = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_med_l0_3_5_7",
+              "prompt": "Data [3, 5, 7], median = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "stat_mean_l1_4_6_8_10_12",
+              "prompt": "Data [4, 6, 8, 10, 12], mean = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_med_l1_1_2_3_4_5",
+              "prompt": "Data [1, 2, 3, 4, 5], median = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_mean_l1_4_8_12_16",
+              "prompt": "Data [4, 8, 12, 16], mean = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_med_l1_6_8_10_12_14",
+              "prompt": "Data [6, 8, 10, 12, 14], median = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "stat_mean_l2_12_14_16_18_20",
+              "prompt": "Data [12, 14, 16, 18, 20], mean = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_med_l2_3_5_7_9_11",
+              "prompt": "Data [3, 5, 7, 9, 11], median = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_mean_l2_10_20_30_40",
+              "prompt": "Data [10, 20, 30, 40], mean = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_med_l2_2_4_6_8_10",
+              "prompt": "Data [2, 4, 6, 8, 10], median = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "stat_mean_l3_6_7_8_9_10",
+              "prompt": "Data [6, 7, 8, 9, 10], mean = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_med_l3_1_3_5_7_9_11",
+              "prompt": "Data [1, 3, 5, 7, 9, 11], median = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_mean_l3_4_8_12_16",
+              "prompt": "Data [4, 8, 12, 16], mean = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "stat_med_l3_2_4_6_8_10_12",
+              "prompt": "Data [2, 4, 6, 8, 10, 12], median = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "congruent_triangle_proof",
+    "factorization_common",
+    "factorization_formula",
+    "fraction_equation",
+    "quadratic_radical_simplify",
+    "parallelogram_properties",
+    "linear_func_graph",
+    "data_variance",
+    "axial_symmetry",
+    "isosceles_triangle"
+  ]
+}

@@ -59,3 +59,39 @@ playground.xcworkspace
 # 私密资产：付费 PDF 生成器 + 内部营销/定价 SOP（勿推公开仓库）
 printable/
 promo-out/
+
+# UI 测试中间产物（保留 named/ 与 asc-* 成品截图）
+ios/store/screenshots/*.xcresult/
+ios/store/screenshots/exported/
+ios/store/screenshots/Playthrough.xcresult/
+
+# screenshot tooling
+.venv-screens/
+ios/store/screenshots/exported*/
+ios/store/screenshots/Playthrough*.xcresult/
+ios/build/
+
+# Superdesign temporary component HTML (never commit)
+.superdesign/tmp/
+
+# Dependencies, build outputs, local cloud credentials and test runs
+node_modules/
+dist/
+.wrangler/
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.p8
+*.p12
+*.mobileprovision
+*.xcarchive/
+*.xcresult/
+__pycache__/
+ios/sim-shots-sunny/
+ios/install*.txt
+ios/tr.txt
+ios/.probe-test.txt
+ios/design-ref*
+.superdesign/resume.json

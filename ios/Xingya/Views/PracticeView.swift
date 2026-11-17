@@ -1,6 +1,3 @@
-// Practice 答题界面：非限时，支持选择题(mc)/填空(fill)/多格(steps)。答错给提示可重试，
-// 超 maxTries 揭示答案。顶部关卡进度条按 basic→consolidate→challenge 三档。视觉走原生 HIG。
-
 import SwiftUI
 
 struct PracticeView: View {
@@ -9,265 +6,113 @@ struct PracticeView: View {
     @State private var fillText = ""
     @State private var fieldValues: [String: String] = [:]
     @Environment(\.dismiss) private var dismiss
-
-    init(model: PracticeModel) {
-        _model = State(initialValue: model)
-    }
-
-    var body: some View {
-        VStack(spacing: 16) {
-            TierBar(current: model.currentTier)
-            ScrollView {
-                content.padding(.vertical, 8)
-            }
-        }
-        .padding()
-        .background(Theme.pageBackground.ignoresSafeArea())
-        .navigationTitle(model.set.title)
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Text("⭐ \(model.sessionXP)")
-                    .font(.subheadline.weight(.medium))
-                    .monospacedDigit()
-                    .foregroundStyle(.secondary)
-            }
-        }
-        .onChange(of: model.problemSeq) {
-            choiceId = nil
-            fillText = ""
-            fieldValues = [:]
-        }
-    }
-
-    @ViewBuilder
-    private var content: some View {
+    @Environment(SpeechService.self) private var speech
+    init(model: PracticeModel) { _model = State(initialValue: model) }
+    private var problem: Problem? {
         switch model.viewState {
-        case .loading:
-            ProgressView()
-
-        case .present(let problem), .wrong(let problem, _):
-            problemBody(problem, locked: false)
-
-        case .correct(let problem, let firstTry):
-            VStack(spacing: 16) {
-                promptText(problem)
-                Label(firstTry ? "答对了！一次就对 🎉" : "答对了 👍", systemImage: "checkmark.circle.fill")
-                    .font(.headline)
-                    .foregroundStyle(.green)
-                if model.lastGainXP > 0 {
-                    Text("+\(model.lastGainXP) 经验").font(.subheadline).foregroundStyle(.orange)
-                }
-                if let explanation = problem.explanation {
-                    calloutText(explanation)
-                }
-                Button("下一题") { model.next() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
-
-        case .reveal(let problem):
-            VStack(spacing: 16) {
-                promptText(problem)
-                Label("看一下正确答案", systemImage: "eye.fill")
-                    .font(.headline)
-                    .foregroundStyle(.orange)
-                Text(correctText(problem))
-                    .font(.title3.weight(.semibold))
-                    .multilineTextAlignment(.center)
-                if let explanation = problem.explanation {
-                    calloutText(explanation)
-                }
-                Button("下一题") { model.next() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
-
-        case .complete(let ftc, let total):
-            VStack(spacing: 16) {
-                Text("🎓").font(.system(size: 64))
-                Text("这一套练完啦").font(.title2.weight(.semibold))
-                Text("一次答对 \(ftc) / \(total) 题")
-                    .font(.headline)
-                    .foregroundStyle(.secondary)
-                    .monospacedDigit()
-                Button("返回") { dismiss() }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
-            }
-            .padding(.top, 40)
+        case .present(let p), .wrong(let p, _), .correct(let p, _), .reveal(let p): p
+        default: nil
         }
     }
-
-    // ----- 题目主体 ----------------------------------------------------------
-
-    @ViewBuilder
-    private func problemBody(_ problem: Problem, locked: Bool) -> some View {
-        VStack(spacing: 20) {
-            promptText(problem)
-
-            if case .wrong(_, let tries) = model.viewState {
-                Label(problem.hint ?? "再想想", systemImage: "lightbulb")
-                    .font(.subheadline)
-                    .foregroundStyle(.orange)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(10)
-                    .background(Color.orange.opacity(0.12), in: .rect(cornerRadius: 12))
-                Text("第 \(tries) 次尝试")
-                    .font(.caption).foregroundStyle(.secondary)
-            }
-
-            switch problem.type {
-            case .mc: choicesInput(problem)
-            case .fill: fillInput(problem)
-            case .steps: stepsInput(problem)
-            }
-
-            Button("确定") { submit(problem) }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                .disabled(!canSubmit(problem))
-        }
+    private var feedback: Bool {
+        switch model.viewState { case .correct, .reveal: true; default: false }
     }
-
-    private func promptText(_ problem: Problem) -> some View {
-        Text(problem.prompt)
-            .font(.system(size: 40, weight: .bold, design: .monospaced))
-            .foregroundStyle(Theme.ink)
-            .multilineTextAlignment(.leading)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .textSelection(.enabled)
-            .padding(24)
-            .background(Theme.card, in: .rect(cornerRadius: 20))
-            .overlay(RoundedRectangle(cornerRadius: 20).strokeBorder(.white, lineWidth: 2))
-            .shadow(color: Theme.shadowColor.opacity(0.14), radius: 10, y: 6)
-            .accessibilityLabel("题目 \(problem.prompt)")
-    }
-
-    private func calloutText(_ text: String) -> some View {
-        Text(text)
-            .font(.subheadline)
-            .foregroundStyle(.secondary)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(12)
-            .background(Color(.tertiarySystemFill), in: .rect(cornerRadius: 12))
-    }
-
-    // ----- 三种输入 ----------------------------------------------------------
-
-    private func choicesInput(_ problem: Problem) -> some View {
-        VStack(spacing: 12) {
-            ForEach(problem.choices ?? []) { choice in
-                Button {
-                    choiceId = choice.id
-                } label: {
-                    HStack(spacing: 14) {
-                        Image(systemName: choiceId == choice.id ? "largecircle.fill.circle" : "circle")
-                            .font(.title2)
-                            .foregroundStyle(choiceId == choice.id ? Color.accentColor : .secondary)
-                        Text(choice.label)
-                            .font(.title3)
-                            .multilineTextAlignment(.leading)
-                        Spacer()
-                    }
-                    .padding(18)
-                    .background(
-                        (choiceId == choice.id ? Color.accentColor.opacity(0.12) : Color(.secondarySystemBackground)),
-                        in: .rect(cornerRadius: 14)
-                    )
-                }
-                .buttonStyle(.plain)
-                .accessibilityAddTraits(choiceId == choice.id ? [.isSelected] : [])
-            }
-        }
-    }
-
-    private func fillInput(_ problem: Problem) -> some View {
-        TextField("答案", text: $fillText)
-            .keyboardType(.numbersAndPunctuation)
-            .font(.system(size: 34, weight: .heavy, design: .rounded))
-            .foregroundStyle(Theme.ink)
-            .multilineTextAlignment(.center)
-            .padding(.vertical, 18)
-            .background(Theme.card, in: .rect(cornerRadius: 16))
-            .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(Theme.brand.opacity(0.5), lineWidth: 2))
-            .shadow(color: Theme.shadowColor.opacity(0.1), radius: 8, y: 4)
-            .submitLabel(.done)
-            .onSubmit { submit(problem) }
-    }
-
-    private func stepsInput(_ problem: Problem) -> some View {
-        VStack(spacing: 14) {
-            ForEach(Array((problem.fields ?? []).enumerated()), id: \.element.id) { i, field in
-                HStack(spacing: 14) {
-                    Text(field.label).font(.title3.weight(.medium))
-                    TextField("", text: binding(for: field.id.isEmpty ? "f\(i)" : field.id))
-                        .keyboardType(.numbersAndPunctuation)
-                        .font(.system(size: 30, weight: .semibold, design: .rounded))
-                        .multilineTextAlignment(.center)
-                        .padding(.vertical, 14)
-                        .background(Color(.secondarySystemBackground), in: .rect(cornerRadius: 14))
-                }
-            }
-        }
-    }
-
-    private func binding(for key: String) -> Binding<String> {
-        Binding(
-            get: { fieldValues[key] ?? "" },
-            set: { fieldValues[key] = $0 }
-        )
-    }
-
-    // ----- 提交 --------------------------------------------------------------
-
-    private func canSubmit(_ problem: Problem) -> Bool {
-        switch problem.type {
-        case .mc: return choiceId != nil
-        case .fill: return !fillText.trimmingCharacters(in: .whitespaces).isEmpty
-        case .steps:
-            let fields = problem.fields ?? []
-            return fields.enumerated().allSatisfy { i, f in
-                !(fieldValues[f.id.isEmpty ? "f\(i)" : f.id] ?? "").trimmingCharacters(in: .whitespaces).isEmpty
-            }
-        }
-    }
-
-    private func submit(_ problem: Problem) {
-        guard canSubmit(problem) else { return }
-        switch problem.type {
-        case .mc:
-            if let choiceId { model.answer(.choice(choiceId)) }
-        case .fill:
-            model.answer(.value(fillText))
-        case .steps:
-            model.answer(.fields(fieldValues))
-        }
-    }
-}
-
-/// 关卡进度条：基础 → 夯实 → 拔高，点亮当前所在档。
-private struct TierBar: View {
-    let current: Difficulty?
-
-    private let tiers: [(Difficulty, String)] = [
-        (.basic, "基础"), (.consolidate, "夯实"), (.challenge, "拔高"),
-    ]
-
+    private var correct: Bool { if case .correct = model.viewState { return true }; return false }
     var body: some View {
-        HStack(spacing: 6) {
-            ForEach(tiers, id: \.0) { tier, label in
-                Text(label)
-                    .font(.caption.weight(.medium))
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 6)
-                    .background(background(for: tier), in: .capsule)
-                    .foregroundStyle(current == tier ? .white : .secondary)
+        GeometryReader { geometry in
+            ScrollView {
+                VStack(spacing: 20) {
+                    SessionHeader(progress: Double(max(0, model.state.index + 1)) / Double(max(1, model.state.order.count)),
+                                  title: L10n.format("第 %@ 题 / 共 %@ 题", L10n.number(max(1, model.state.index + 1)), L10n.number(model.state.order.count)), close: { dismiss() })
+                    HStack {
+                        Text(L10n.text(model.currentTier?.rawValue ?? "练习")).font(.subheadline.bold()).padding(9)
+                            .background(Theme.leafSoft, in: .rect(cornerRadius: 10))
+                        Text(L10n.text(model.set.title)).font(.subheadline).foregroundStyle(Theme.sub)
+                        Spacer(minLength: 0)
+                        Button { if let problem { speech.speak(L10n.text(problem.prompt)) } } label: {
+                            Image(systemName: "speaker.wave.2").frame(width: 44, height: 44)
+                        }.accessibilityLabel(L10n.text("听一听"))
+                    }
+                    if let problem {
+                        Spacer(minLength: 0)
+                        Text(L10n.text(problem.prompt)).font(Theme.titleFont(34, weight: .bold))
+                            .multilineTextAlignment(.center).frame(maxWidth: .infinity, minHeight: 130)
+                            .accessibilityLabel(L10n.format("题目 %@", L10n.text(problem.prompt))).accessibilityIdentifier("practice-question")
+                        if feedback {
+                            Text(L10n.text(correctText(problem))).font(Theme.numberFont(44))
+                                .padding(22).background(correct ? Theme.leafSoft : Theme.sunlight, in: .rect(cornerRadius: 22))
+                            Spacer(minLength: 24)
+                            FeedbackBand(correct: correct, title: correct ? "对了！" : "看一下正确答案",
+                                         detail: L10n.text(problem.explanation ?? ""), identifier: "practice-continue") { model.next() }
+                        } else {
+                            input(problem)
+                            if case .wrong = model.viewState {
+                                BrandNotice(message: L10n.text(problem.hint ?? "差一点，再试一次。"), symbol: "arrow.counterclockwise", isError: true)
+                                    .accessibilityIdentifier("practice-incorrect")
+                            } else { Text("慢慢算，不着急").font(.footnote).foregroundStyle(Theme.sub) }
+                            Spacer(minLength: 12)
+                            BrandPrimaryButton("检查答案") { submit(problem) }
+                                .disabled(!canSubmit(problem)).accessibilityIdentifier("practice-submit")
+                        }
+                    } else if case .complete(let count, let total) = model.viewState {
+                        Spacer()
+                        SunSprout().frame(width: 100, height: 100)
+                        Text("这一套练完啦").font(.title.bold())
+                        Text(L10n.format("一次答对 %@ / %@ 题", L10n.number(count), L10n.number(total))).font(.headline)
+                        Spacer()
+                        BrandPrimaryButton("返回") { dismiss() }
+                    } else { ProgressView("载入中…") }
+                }
+                .padding(20).frame(maxWidth: 720).frame(minHeight: geometry.size.height).frame(maxWidth: .infinity)
+            }
+        }.foregroundStyle(Theme.ink).background(Theme.pageBg.ignoresSafeArea()).toolbar(.hidden, for: .navigationBar)
+            .onChange(of: model.problemSeq) { choiceId = nil; fillText = ""; fieldValues = [:] }
+            .sensoryFeedback(.success, trigger: correct).onDisappear { speech.cancel() }
+    }
+    @ViewBuilder private func input(_ p: Problem) -> some View {
+        switch p.type {
+        case .mc:
+            VStack(spacing: 10) {
+                ForEach(p.choices ?? []) { choice in
+                    Button { choiceId = choice.id } label: {
+                        HStack {
+                            Image(systemName: choiceId == choice.id ? "checkmark.circle.fill" : "circle")
+                            Text(L10n.text(choice.label)).font(.headline).multilineTextAlignment(.leading)
+                            Spacer(minLength: 0)
+                        }.padding(16).frame(minHeight: 52).background(choiceId == choice.id ? Theme.leafSoft : Theme.card, in: .rect(cornerRadius: 18))
+                            .overlay(RoundedRectangle(cornerRadius: 18).strokeBorder(choiceId == choice.id ? Theme.brand : Theme.line))
+                    }.buttonStyle(.plain).accessibilityAddTraits(choiceId == choice.id ? .isSelected : [])
+                        .accessibilityIdentifier("practice-choice-\(choice.id)")
+                }
+            }
+        case .fill:
+            TextField(L10n.text("答案"), text: $fillText).brandField().keyboardType(.numbersAndPunctuation)
+                .font(Theme.numberFont(34)).multilineTextAlignment(.center).accessibilityIdentifier("practice-answer")
+                .submitLabel(.done).onSubmit { if canSubmit(p) { submit(p) } }
+        case .steps:
+            ForEach(Array((p.fields ?? []).enumerated()), id: \.element.id) { index, field in
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(L10n.text(field.label)).font(.headline)
+                    TextField(L10n.text("答案"), text: binding(field.id.isEmpty ? "f\(index)" : field.id))
+                        .brandField().keyboardType(.numbersAndPunctuation).accessibilityLabel(L10n.text(field.label))
+                }
             }
         }
     }
-
-    private func background(for tier: Difficulty) -> some ShapeStyle {
-        current == tier ? AnyShapeStyle(Color.accentColor) : AnyShapeStyle(Color(.secondarySystemFill))
+    private func binding(_ key: String) -> Binding<String> { Binding(get: { fieldValues[key] ?? "" }, set: { fieldValues[key] = $0 }) }
+    private func canSubmit(_ p: Problem) -> Bool {
+        switch p.type {
+        case .mc: choiceId != nil
+        case .fill: !fillText.trimmingCharacters(in: .whitespaces).isEmpty
+        case .steps: (p.fields ?? []).enumerated().allSatisfy { i, f in !(fieldValues[f.id.isEmpty ? "f\(i)" : f.id] ?? "").trimmingCharacters(in: .whitespaces).isEmpty }
+        }
+    }
+    private func submit(_ p: Problem) {
+        guard canSubmit(p) else { return }
+        switch p.type {
+        case .mc: if let choiceId { model.answer(.choice(choiceId)) }
+        case .fill: model.answer(.value(fillText))
+        case .steps: model.answer(.fields(fieldValues))
+        }
     }
 }

@@ -9,19 +9,12 @@ struct AppContent {
     let practicePack: PracticePack
 
     /// 加载某年级的三份数据。文件命名约定：gradeN_knowledge_map / gradeN_math_fluency_pack / gradeN_practice_pack。
-    static func load(grade: Int) throws -> AppContent {
-        let map = try KnowledgeMapLoader.load("grade\(grade)_knowledge_map")
-        let fluency = try ContentPackLoader.load("grade\(grade)_math_fluency_pack")
-        let practice = try loadPracticePack("grade\(grade)_practice_pack")
+    static func load(grade: Int, language: String = L10n.language, bundle: Bundle = .main) throws -> AppContent {
+        let map = try KnowledgeMapLoader.load("grade\(grade)_knowledge_map", bundle: bundle, language: language)
+        let fluency = try ContentPackLoader.load("grade\(grade)_math_fluency_pack", bundle: bundle, language: language)
+        let practice = try JSONDecoder().decode(PracticePack.self, from:
+            LocalizedContent.data("grade\(grade)_practice_pack", language: language, bundle: bundle))
         return AppContent(map: map, fluencyPack: fluency, practicePack: practice)
-    }
-
-    private static func loadPracticePack(_ fileName: String, bundle: Bundle = .main) throws -> PracticePack {
-        guard let url = bundle.url(forResource: fileName, withExtension: "json", subdirectory: "content")
-            ?? bundle.url(forResource: fileName, withExtension: "json") else {
-            throw ContentPackError.notLoaded("bundle 里找不到 content/\(fileName).json")
-        }
-        return try JSONDecoder().decode(PracticePack.self, from: Data(contentsOf: url))
     }
 
     // ----- topic → 可玩性判定 -------------------------------------------------

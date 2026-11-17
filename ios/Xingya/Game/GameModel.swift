@@ -15,6 +15,7 @@ final class GameModel {
         case loading
         case prompt(fact: Fact, isRetest: Bool)
         case correction(Fact)
+        case correct(Fact)
         case phaseDone(Phase)
         case levelDone(String)
         case raceResult(correctPerMin: Double)
@@ -43,6 +44,9 @@ final class GameModel {
     private let studentId: String
     private let context: EngineContext
     private var promptStartedAt = Date()
+    private var pendingAction: Action?
+    /// 本会话已记入错题本的 fact（每个 fact 只记一次）
+    private var missedFacts: Set<String> = []
 
     init(
         trackId: String,
@@ -88,6 +92,15 @@ final class GameModel {
     }
 
     func next() {
+        if let action = pendingAction {
+            pendingAction = nil
+            viewState = Self.viewState(for: action, pendingRetest: trackState?.pendingRetest)
+            if case .prompt = action {
+                promptStartedAt = Date()
+                promptSeq += 1
+            }
+            return
+        }
         dispatch(.next)
     }
 
@@ -105,7 +118,18 @@ final class GameModel {
         guard let previous = trackState else { return }
         do {
             let result = try Engine.step(previous, event, context)
-            apply(result, previous: previous, event: event)
+            // Persist the real answer once, but hold the next engine action until Continue.
+            // Race retains its existing uninterrupted timed flow.
+            if case .answer(let id, let value, _) = event, previous.race == nil,
+               let fact = track.fact(id: id), value == fact.answer,
+               { if case .correction = result.action { return false }; return true }() {
+                trackState = result.state
+                persist(result: result, previous: previous, event: event)
+                pendingAction = result.action
+                viewState = .correct(fact)
+            } else {
+                apply(result, previous: previous, event: event)
+            }
         } catch {
             viewState = .failed("\(error)")
         }
@@ -147,6 +171,28 @@ final class GameModel {
             totalXP += fluencyXP
             lastGainXP = fluencyXP
             storage.addXp(studentId, fluencyXP)
+        }
+        // 流畅度失误记入错题本（本会话每个 fact 一次）
+        if (outcome == .miss || outcome == .retestFail), !missedFacts.contains(factId) {
+            missedFacts.insert(factId)
+            if let fact = track.fact(id: factId) {
+                storage.appendMistake(MistakeRecord(
+                    id: nil,
+                    studentId: studentId,
+                    source: "fluency",
+                    topicId: track.trackId,
+                    topicTitle: track.name,
+                    problemId: fact.id,
+                    prompt: fact.prompt,
+                    difficulty: nil,
+                    yourAnswer: value == Int.min ? "超时未答" : String(value),
+                    correctAnswer: String(fact.answer),
+                    elapsedMs: elapsedMs,
+                    slow: false,
+                    ts: context.now(),
+                    corrected: false
+                ))
+            }
         }
         storage.appendEvent(AnswerEventRecord(
             studentId: studentId,

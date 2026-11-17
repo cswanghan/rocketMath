@@ -15,6 +15,9 @@ export async function hashPassword(password: string): Promise<string> {
 }
 
 export async function verifyPassword(password: string, stored: string): Promise<boolean> {
+  // Disabled OAuth/deleted-account passwords are deliberately not PBKDF2 hashes.
+  // In particular, the literal placeholder itself can never authenticate.
+  if (typeof stored !== 'string' || !/^[A-Za-z0-9+/]{22}==:[A-Za-z0-9+/]{43}=$/.test(stored)) return false;
   const [saltB64, hashB64] = stored.split(':');
   const salt = Uint8Array.from(atob(saltB64), c => c.charCodeAt(0));
   const key = await crypto.subtle.importKey(
@@ -83,7 +86,7 @@ export async function verifyJWT(
     );
     const data = `${header}.${body}`;
     const sig = b64urlToBytes(signature);
-    const valid = await crypto.subtle.verify('HMAC', key, sig, encoder.encode(data));
+    const valid = await crypto.subtle.verify('HMAC', key, new Uint8Array(sig), encoder.encode(data));
     if (!valid) return null;
 
     const payload = JSON.parse(new TextDecoder().decode(b64urlToBytes(body)));
