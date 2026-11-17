@@ -71,6 +71,11 @@ struct PracticeAnswerField: UIViewRepresentable {
 
         func configureKeyboard(_ field: UITextField) {
             field.keyboardType = parent.mode == .numeric ? .decimalPad : .default
+            // iPadOS 26 can place its system number-pad popover above a custom
+            // inputView. It blocks our keys/fields and consumes the first tap.
+            // This field already supplies its full numeric keyboard; text fields
+            // retain UIKit's normal behavior, and no app-wide setting is changed.
+            if #available(iOS 26.0, *) { field.allowsNumberPadPopover = parent.mode != .numeric }
             field.returnKeyType = parent.hasNext ? .next : .done
             field.inputAssistantItem.leadingBarButtonGroups = []
             field.inputAssistantItem.trailingBarButtonGroups = []

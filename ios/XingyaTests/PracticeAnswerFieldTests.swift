@@ -160,6 +160,7 @@ struct PracticeAnswerFieldTests {
         expected.formUnion(["practice-key-sign", "practice-key-decimal", "practice-key-delete"])
         #expect(buttonIdentifiers(in: keyboard) == expected)
         #expect(f.field.keyboardType == .decimalPad)
+        if #available(iOS 26.0, *) { #expect(!f.field.allowsNumberPadPopover) }
         #expect(f.field.inputAssistantItem.leadingBarButtonGroups.isEmpty)
         #expect(f.field.inputAssistantItem.trailingBarButtonGroups.isEmpty)
 
@@ -167,6 +168,7 @@ struct PracticeAnswerFieldTests {
         f.coordinator.configureKeyboard(f.field)
         #expect(f.field.inputView == nil)
         #expect(f.field.keyboardType == .default)
+        if #available(iOS 26.0, *) { #expect(f.field.allowsNumberPadPopover) }
         #expect(f.field.inputAccessoryView is UIToolbar)
         #expect(f.coordinator.textField(f.field, shouldChangeCharactersIn: NSRange(location: 0, length: 0),
                                         replacementString: "1 分 30 秒"))

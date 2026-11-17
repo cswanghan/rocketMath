@@ -3,6 +3,17 @@ import XCTest
 @MainActor
 final class PracticeKeyboardUITests: XCTestCase {
     override func setUp() { continueAfterFailure = false }
+    override func tearDownWithError() throws {
+        if (testRun?.failureCount ?? 0) > 0 {
+            let app = XCUIApplication()
+            let screenshot = XCTAttachment(screenshot: app.screenshot())
+            screenshot.name = "keyboard-failure-screen"
+            screenshot.lifetime = .keepAlways; add(screenshot)
+            let hierarchy = XCTAttachment(string: app.debugDescription)
+            hierarchy.name = "keyboard-failure-accessibility-tree"
+            hierarchy.lifetime = .keepAlways; add(hierarchy)
+        }
+    }
 
     private func open(_ fixture: String, language: String = "zh-Hans") -> XCUIApplication {
         let app = XCUIApplication(), english = language == "en"
@@ -38,6 +49,11 @@ final class PracticeKeyboardUITests: XCTestCase {
         XCTAssertTrue(app.buttons["practice-key-sign"].exists)
         XCTAssertFalse(app.keyboards.keys["q"].exists)
         XCTAssertFalse(app.keyboards.keys["Q"].exists)
+        for key in (0...9).map(String.init) + ["decimal", "sign", "delete"] {
+            XCTAssertTrue(app.buttons["practice-key-\(key)"].isHittable,
+                          "A system keyboard popover must not block any fixed-pad key")
+        }
+        capture(app, "fixed-keyboard-ready-before-first-key")
     }
     private func check(_ app: XCUIApplication) {
         if app.buttons["practice-keyboard-done"].exists { app.buttons["practice-keyboard-done"].tap() }
