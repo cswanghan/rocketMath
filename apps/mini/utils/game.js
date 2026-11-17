@@ -66,9 +66,11 @@ function createGame(opts) {
     view: { mode: 'loading' },
     latencyGateMs: pack.engine_config.latency_gate_seconds * 1000,
     promptSeq: 0,
+    promptStartedAt: 0,
     sessionXp: 0,
     submit: submit,
     timeout: timeoutMiss,
+    restartPromptTiming: restartPromptTiming,
     next: next,
     startRace: startRace,
     destroy: () => {
@@ -83,6 +85,7 @@ function createGame(opts) {
     api.view = game ? viewOf(game.action, game.state.pendingRetest) : { mode: 'loading' };
     api.latencyGateMs = ctx ? ctx.latencyGateMs : api.latencyGateMs;
     api.promptSeq = promptSeq;
+    api.promptStartedAt = startAt;
     api.sessionXp = sessionXp;
     onChange(api);
   }
@@ -105,10 +108,12 @@ function createGame(opts) {
   );
 
   // ---- 派发 ------------------------------------------------------------------
-  function dispatch(event) {
+  function dispatch(event, answeredAt) {
     if (!ctx || !game || destroyed) return;
+    if (event.type === 'ANSWER' && (game.action.kind !== 'PROMPT' || game.action.fact.id !== event.factId)) return;
     const prev = game.state;
-    const res = step(prev, event, ctx);
+    const answerContext = answeredAt === undefined ? ctx : Object.assign({}, ctx, { now: () => answeredAt });
+    const res = step(prev, event, answerContext);
     game = res;
     if (res.action.kind === 'PROMPT') {
       startAt = ctx.now();
@@ -195,16 +200,19 @@ function createGame(opts) {
     publish();
   }
 
-  function submit(value) {
-    if (!game) return;
+  function submit(value, input) {
+    if (!game || destroyed) return;
     const action = game.action;
-    const factId = action.kind === 'PROMPT' || action.kind === 'CORRECTION' ? action.fact.id : '';
-    dispatch({ type: 'ANSWER', factId: factId, value: value, elapsedMs: ctx.now() - startAt });
+    if (action.kind !== 'PROMPT' || (input && input.promptSeq !== promptSeq)) return;
+    const answeredAt = input ? input.answeredAt : ctx.now();
+    if (answeredAt < startAt || answeredAt > ctx.now()) return;
+    dispatch({ type: 'ANSWER', factId: action.fact.id, value: value, elapsedMs: answeredAt - startAt }, answeredAt);
+    if (game.state.race && ctx.now() >= game.state.race.endsAt) dispatch({ type: 'NEXT' });
   }
 
   /** 倒计时环走完 —— 记为一次超时未答。 */
-  function timeoutMiss() {
-    if (!game || game.action.kind !== 'PROMPT') return;
+  function timeoutMiss(expectedSeq) {
+    if (!game || game.action.kind !== 'PROMPT' || (expectedSeq !== undefined && expectedSeq !== promptSeq)) return;
     dispatch({
       type: 'ANSWER',
       factId: game.action.fact.id,
@@ -213,8 +221,15 @@ function createGame(opts) {
     });
   }
 
+  function restartPromptTiming() {
+    if (!game || destroyed || game.action.kind !== 'PROMPT') return;
+    startAt = ctx.now();
+    promptSeq += 1;
+    publish();
+  }
+
   function next() {
-    dispatch({ type: 'NEXT' });
+    if (game && game.action.kind !== 'RACE_RESULT') dispatch({ type: 'NEXT' });
   }
 
   function startRace(durationMs) {

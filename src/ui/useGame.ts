@@ -40,9 +40,11 @@ export interface GameApi {
   view: View;
   latencyGateMs: number;
   promptSeq: number;
+  promptStartedAt: number;
   sessionXp: number;
-  submit: (value: number) => void;
-  timeout: () => void;
+  submit: (value: number, input?: { answeredAt: number; promptSeq: number }) => void;
+  timeout: (promptSeq?: number) => void;
+  restartPromptTiming: () => void;
   next: () => void;
   startRace: (durationMs: number) => void;
 }
@@ -105,16 +107,21 @@ export function useGame(
     })();
     return () => {
       cancelled = true;
+      ctxRef.current = null;
+      gameRef.current = null;
     };
   }, [trackId, adapter, studentId, seed, gateMsOverride]);
 
   const dispatch = useCallback(
-    (event: Event) => {
+    (event: Event, answeredAt?: number) => {
       const ctx = ctxRef.current;
       const game = gameRef.current;
       if (!ctx || !game) return;
+      if (event.type === 'ANSWER' && (game.action.kind !== 'PROMPT' || game.action.fact.id !== event.factId)) return;
       const prev = game.state;
-      const res = step(prev, event, ctx);
+      // The input was complete before the debounce/deadline callback ran. Only
+      // this answer uses that instant; the next prompt always starts in real time.
+      const res = step(prev, event, answeredAt === undefined ? ctx : { ...ctx, now: () => answeredAt });
       gameRef.current = res;
       if (res.action.kind === 'PROMPT') {
         startRef.current = ctx.now();
@@ -195,19 +202,24 @@ export function useGame(
   );
 
   const submit = useCallback(
-    (value: number) => {
+    (value: number, input?: { answeredAt: number; promptSeq: number }) => {
       const action = gameRef.current?.action;
-      if (!action) return;
-      const factId = action.kind === 'PROMPT' || action.kind === 'CORRECTION' ? action.fact.id : '';
-      const elapsedMs = ctxRef.current!.now() - startRef.current;
-      dispatch({ type: 'ANSWER', factId, value, elapsedMs });
+      if (action?.kind !== 'PROMPT' || (input && input.promptSeq !== promptSeqRef.current)) return;
+      const answeredAt = input?.answeredAt ?? ctxRef.current!.now();
+      if (answeredAt < startRef.current || answeredAt > ctxRef.current!.now()) return;
+      const elapsedMs = answeredAt - startRef.current;
+      dispatch({ type: 'ANSWER', factId: action.fact.id, value, elapsedMs }, answeredAt);
+      // A throttled debounce may run before the race clock's next tick. Count
+      // the pre-deadline input, then settle immediately using actual time.
+      const race = gameRef.current?.state.race;
+      if (race && ctxRef.current!.now() >= race.endsAt) dispatch({ type: 'NEXT' });
     },
     [dispatch],
   );
 
-  const timeout = useCallback(() => {
+  const timeout = useCallback((promptSeq?: number) => {
     const action = gameRef.current?.action;
-    if (action?.kind !== 'PROMPT') return;
+    if (action?.kind !== 'PROMPT' || (promptSeq !== undefined && promptSeq !== promptSeqRef.current)) return;
     dispatch({
       type: 'ANSWER',
       factId: action.fact.id,
@@ -216,7 +228,16 @@ export function useGame(
     });
   }, [dispatch]);
 
-  const next = useCallback(() => dispatch({ type: 'NEXT' }), [dispatch]);
+  const restartPromptTiming = useCallback(() => {
+    if (gameRef.current?.action.kind !== 'PROMPT') return;
+    startRef.current = ctxRef.current!.now();
+    promptSeqRef.current += 1;
+    force();
+  }, []);
+
+  const next = useCallback(() => {
+    if (gameRef.current?.action.kind !== 'RACE_RESULT') dispatch({ type: 'NEXT' });
+  }, [dispatch]);
   const startRace = useCallback((durationMs: number) => dispatch({ type: 'START_RACE', durationMs }), [dispatch]);
 
   const game = gameRef.current;
@@ -226,9 +247,11 @@ export function useGame(
     view: game ? viewOf(game.action, game.state.pendingRetest) : { mode: 'loading' },
     latencyGateMs: ctxRef.current?.latencyGateMs ?? pack.engine_config.latency_gate_seconds * 1000,
     promptSeq: promptSeqRef.current,
+    promptStartedAt: startRef.current,
     sessionXp: sessionXpRef.current,
     submit,
     timeout,
+    restartPromptTiming,
     next,
     startRace,
   };

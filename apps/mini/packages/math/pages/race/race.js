@@ -6,6 +6,7 @@ const { createDefaultAdapter } = require('../../../../utils/storage.js');
 const { createGame } = require('../../../../utils/game.js');
 const { getTrack } = require('../../../../vendor/engine');
 const integerInput = require('../../../../utils/integerInput.js');
+const { createAutoAnswer } = require('../../../../utils/autoAnswer.js');
 
 const DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -29,6 +30,13 @@ Page({
   },
 
   onLoad(query) {
+    this.visible = true;
+    this.inputValue = '';
+    this.autoAnswer = createAutoAnswer({
+      isCurrent: answer => this.visible && this.started && this.game &&
+        this.game.view.mode === 'prompt' && this.game.promptSeq === answer.promptSeq,
+      submit: answer => this.game.submit(answer.value, answer),
+    });
     const grade = Number(query.grade) || content.getGrade() || 3;
     const trackId = query.trackId;
     let c;
@@ -58,22 +66,27 @@ Page({
   },
 
   onUnload() {
+    this.visible = false; this.autoAnswer.cancel();
     this.stopClock();
     if (this.game) this.game.destroy();
   },
 
   onHide() {
-    // 切后台不暂停比赛是不公平的, 但暂停又会让"题/分钟"失真 ——
-    // 折中: 停表并直接结算, 回来看到成绩即可。
-    if (this.started && this.data.mode !== 'race_result') {
-      this.stopClock();
-      this.game.next();
-    }
+    this.visible = false;
+    this.autoAnswer.cancel(); this.stopClock();
+    this.inputValue = ''; this.setData({ input: '' });
+  },
+
+  onShow() {
+    this.visible = true;
+    // The race continues against its absolute deadline while hidden.
+    if (this.started && this.game && this.game.view.mode !== 'race_result') this.startClock();
   },
 
   onGameChange(g) {
+    this.autoAnswer.cancel(); this.inputValue = '';
     const view = g.view;
-    const patch = { ready: g.ready, mode: view.mode };
+    const patch = { ready: g.ready, mode: view.mode, input: '' };
     if (view.mode === 'prompt') {
       patch.prompt = view.fact.prompt;
     } else if (view.mode === 'race_result') {
@@ -86,36 +99,46 @@ Page({
     if (g.ready && this.chosenMs && !this.started) {
       this.started = true;
       this.game.startRace(this.chosenMs);
-      this.startClock(this.chosenMs);
+      this.startClock();
     }
   },
 
   onPickSpeed(e) {
+    if (this.started) return;
     const ms = Number(e.currentTarget.dataset.seconds) * 1000;
     this.chosenMs = ms;
     this.setData({ picked: true, timeLabel: this.fmtClock(ms) });
     if (this.data.ready && !this.started) {
       this.started = true;
       this.game.startRace(ms);
-      this.startClock(ms);
+      this.startClock();
     }
   },
 
   // ---- 总倒计时 --------------------------------------------------------------
 
-  startClock(ms) {
-    const end = Date.now() + ms;
-    this.clock = setInterval(() => {
+  startClock() {
+    this.stopClock();
+    const race = this.game && this.game.state && this.game.state.race;
+    if (!race || !this.visible || this.game.view.mode === 'race_result') return;
+    const end = race.endsAt;
+    const tick = () => {
+      if (!this.visible || this.game.view.mode === 'race_result') return;
       const left = end - Date.now();
-      if (left <= 0) {
-        this.stopClock();
-        this.setData({ timeLabel: '0s', low: true });
-        this.game.next(); // now() >= endsAt → 引擎给出 RACE_RESULT
-        return;
-      }
-      const secs = Math.ceil(left / 1000);
-      this.setData({ timeLabel: this.fmtClock(left), low: secs <= 10 });
-    }, 200);
+      if (left <= 0) { this.finishRace(end); return; }
+      this.setData({ timeLabel: this.fmtClock(left), low: Math.ceil(left / 1000) <= 10 });
+    };
+    tick();
+    if (this.game.view.mode !== 'race_result') this.clock = setInterval(tick, 200);
+  },
+
+  finishRace(end) {
+    if (this.settling || !this.game || this.game.view.mode === 'race_result') return;
+    this.settling = true;
+    this.stopClock();
+    this.autoAnswer.flush(end - 1);
+    this.setData({ timeLabel: '0s', low: true });
+    this.game.next();
   },
 
   stopClock() {
@@ -135,29 +158,25 @@ Page({
 
   // ---- 键盘 ------------------------------------------------------------------
 
-  onDigit(e) {
-    if (this.data.mode !== 'prompt') return;
-    this.setData({ input: integerInput.appendDigit(this.data.input, e.currentTarget.dataset.d) });
+  editInput(change) {
+    if (!this.visible || !this.started || !this.game || this.game.view.mode !== 'prompt') return;
+    const end = this.game.state.race && this.game.state.race.endsAt;
+    if (end === undefined) return;
+    if (Date.now() >= end) { this.finishRace(end); return; }
+    const next = change(this.inputValue);
+    if (next === this.inputValue) return;
+    this.inputValue = next;
+    this.setData({ input: this.inputValue });
+    this.autoAnswer.edit(this.inputValue, this.game.promptSeq);
   },
 
-  onToggleSign() {
-    if (this.data.mode !== 'prompt' || !this.data.signed) return;
-    this.setData({ input: integerInput.toggleSign(this.data.input) });
-  },
-
-  onBackspace() {
-    this.setData({ input: this.data.input.slice(0, -1) });
-  },
-
-  onEnter() {
-    if (this.data.mode !== 'prompt') return;
-    const value = integerInput.parse(this.data.input);
-    if (value === null) return;
-    this.game.submit(value);
-    this.setData({ input: '' });
-  },
+  onDigit(e) { this.editInput(input => integerInput.appendDigit(input, e.currentTarget.dataset.d)); },
+  onToggleSign() { if (this.data.signed) this.editInput(integerInput.toggleSign); },
+  onBackspace() { this.editInput(input => input.slice(0, -1)); },
+  onEnter() { this.autoAnswer.flush(); },
 
   onExit() {
+    this.visible = false; this.autoAnswer.cancel(); this.stopClock();
     wx.navigateBack({ fail: () => wx.switchTab({ url: '/pages/portal/portal' }) });
   },
 });

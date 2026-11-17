@@ -2,7 +2,7 @@
 interface Props {
   onDigit: (d: string) => void;
   onClear: () => void;
-  onEnter: () => void;
+  onEnter?: () => void;
   disabled?: boolean;
   onToggleSign?: () => void;
 }
@@ -23,9 +23,9 @@ export function Numpad({ onDigit, onClear, onEnter, disabled, onToggleSign }: Pr
       <button className="key" disabled={disabled} onClick={() => onDigit('0')}>
         0
       </button>
-      <button className="key key-enter" disabled={disabled} onClick={onEnter}>
+      {onEnter && <button className="key key-enter" disabled={disabled} onClick={onEnter}>
         ✓
-      </button>
+      </button>}
       {onToggleSign && <button className="key key-sign" disabled={disabled}
         onClick={onToggleSign} aria-label="切换正负号">+/−</button>}
     </div>

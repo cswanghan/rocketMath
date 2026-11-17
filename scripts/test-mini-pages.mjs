@@ -269,7 +269,13 @@ for (const name of ['play', 'race']) {
   await check(`${name}: 负数可输入、孤立负号不提交、正数题池不泄露符号`, () => {
     const page = makePage(`./packages/math/pages/${name}/${name}.js`);
     const submitted = [];
-    page.game = { submit: (value) => submitted.push(value) };
+    page.visible = true; page.started = true; page.inputValue = '';
+    page.game = { submit: (value) => submitted.push(value), view: { mode: 'prompt' },
+      promptSeq: 1, promptStartedAt: Date.now(), latencyGateMs: 6000,
+      state: { race: { endsAt: Date.now() + 6000 } } };
+    page.autoAnswer = req('./utils/autoAnswer.js').createAutoAnswer({
+      isCurrent: () => true, submit: answer => page.game.submit(answer.value),
+    });
     page.setData({ mode: 'prompt', signed: true, input: '' });
     page.onToggleSign();
     page.onEnter();
@@ -277,14 +283,17 @@ for (const name of ['play', 'race']) {
     for (const d of '4096') page.onDigit(tap({ d }));
     page.onEnter();
     assert(submitted[0] === -4096, '负数录入或转换错误');
+    page.inputValue = '-';
     page.setData({ input: '-', mode: 'prompt' });
     for (const d of '123456') page.onDigit(tap({ d }));
     assert(page.data.input === '-12345', '负号挤占了数字容量');
     page.onToggleSign();
     assert(page.data.input === '12345', '不能改回正数');
+    page.inputValue = '12';
     page.setData({ signed: false, input: '12' });
     page.onToggleSign();
     assert(page.data.input === '12', '正数题池被改成负数');
+    page.autoAnswer.cancel();
   });
 }
 

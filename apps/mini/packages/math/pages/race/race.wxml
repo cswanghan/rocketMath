@@ -36,6 +36,7 @@
   <view class="stage" wx:if="{{mode === 'prompt'}}">
     <view class="prompt">{{prompt}}</view>
     <view class="answer-box">{{input}}</view>
+    <view class="hint">停止输入约 1 秒后自动判断</view>
     <view class="numpad">
       <view
         class="key"
@@ -47,7 +48,6 @@
       >{{item}}</view>
       <view class="key key-fn" bindtap="onBackspace" hover-class="key--pressed">⌫</view>
       <view class="key" data-d="0" bindtap="onDigit" hover-class="key--pressed">0</view>
-      <view class="key key-enter" bindtap="onEnter" hover-class="key--pressed">✓</view>
       <view wx:if="{{signed}}" class="key" style="width:100%" bindtap="onToggleSign" aria-label="切换正负号" hover-class="key--pressed">+/−</view>
     </view>
   </view>

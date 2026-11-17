@@ -1,12 +1,13 @@
 // Milestone race: pool = all learned facts, score = correct/min. NO voice
 // (App Store lesson §7), no correction loop. The player first picks a speed
 // (less time = faster pace = harder); the engine tallies until time runs out.
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { getTrack, type ContentPack } from '../engine';
 import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
 import { useGame } from './useGame';
-import { appendIntegerDigit, parseIntegerInput, toggleIntegerSign } from './integerInput';
+import { useAutoAnswer } from './useAutoAnswer';
+import { appendIntegerDigit, toggleIntegerSign } from './integerInput';
 
 function fmtSeconds(s: number): string {
   return s % 60 === 0 ? `${s / 60} 分钟` : `${s} 秒`;
@@ -26,12 +27,10 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
   const SPEEDS = useMemo(() => pack.engine_config.milestone_races.speeds ?? [
     { id: 'standard', label: '标准', emoji: '🚀', seconds: pack.engine_config.milestone_races.duration_seconds },
   ], [pack]);
-  const [input, setInput] = useState('');
-  const inputRef = useRef('');
-  inputRef.current = input;
   const startedRef = useRef(false);
   const [chosenMs, setChosenMs] = useState<number | null>(null);
   const [remaining, setRemaining] = useState(0);
+  const auto = useAutoAnswer(game, chosenMs !== null);
 
   const { view } = game;
   const signed = getTrack(pack, trackId).levels.some(l => l.new_facts.some(f => f.answer < 0));
@@ -44,50 +43,55 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
     }
   }, [game, chosenMs]);
 
-  // global countdown; when it hits 0, flush the engine to a RACE_RESULT
+  // Race time remains absolute, including time in the background. At the
+  // deadline, a completed input from before endsAt is counted before settling.
+  const endsAt = game.state?.race?.endsAt;
   useEffect(() => {
-    if (!startedRef.current || view.mode === 'race_result') return;
-    const end = Date.now() + remaining;
-    const iv = window.setInterval(() => {
-      const left = end - Date.now();
+    if (endsAt === undefined || view.mode === 'race_result') return;
+    let finished = false;
+    const tick = () => {
+      if (finished) return;
+      const left = endsAt - Date.now();
+      setRemaining(Math.max(0, left));
       if (left <= 0) {
-        window.clearInterval(iv);
-        setRemaining(0);
-        game.next(); // now() >= endsAt -> RACE_RESULT
-      } else {
-        setRemaining(left);
+        finished = true;
+        auto.flush(endsAt - 1);
+        game.next();
       }
-    }, 200);
-    return () => window.clearInterval(iv);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [view.mode]);
+    };
+    tick();
+    const iv = window.setInterval(tick, 200);
+    return () => { finished = true; window.clearInterval(iv); };
+  }, [endsAt, view.mode]);
 
-  const doSubmit = useCallback(() => {
-    if (view.mode !== 'prompt') return;
-    const value = parseIntegerInput(inputRef.current);
-    if (value === null) return;
-    game.submit(value);
-    setInput('');
-  }, [game, view.mode]);
+  const edit = (change: (input: string) => string) => {
+    if (endsAt === undefined || view.mode !== 'prompt') return;
+    if (Date.now() >= endsAt) {
+      auto.flush(endsAt - 1);
+      game.next();
+      return;
+    }
+    auto.edit(change);
+  };
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (view.mode !== 'prompt') return;
-      if (/^[0-9]$/.test(e.key)) setInput((s) => appendIntegerDigit(s, e.key));
-      else if (e.key === '-' && signed) setInput(toggleIntegerSign);
-      else if (e.key === 'Backspace') setInput((s) => s.slice(0, -1));
-      else if (e.key === 'Enter') doSubmit();
+      if (/^[0-9]$/.test(e.key)) edit((s) => appendIntegerDigit(s, e.key));
+      else if (e.key === '-' && signed) edit(toggleIntegerSign);
+      else if (e.key === 'Backspace') edit((s) => s.slice(0, -1));
+      else if (e.key === 'Enter') auto.flush();
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [view.mode, doSubmit, signed]);
+  }, [view.mode, game, signed, endsAt]);
 
   // ---- speed picker (before the race starts) ----
   if (chosenMs === null) {
     return (
       <div className="play">
         <header className="play-head">
-          <button className="ghost" onClick={onExit}>
+          <button className="ghost" onClick={() => { auto.cancel(); onExit(); }}>
             ← 返回
           </button>
           <span className="phase-badge">🚀 竞速</span>
@@ -120,7 +124,7 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
   return (
     <div className="play">
       <header className="play-head">
-        <button className="ghost" onClick={onExit}>
+        <button className="ghost" onClick={() => { auto.cancel(); onExit(); }}>
           ← 返回
         </button>
         <div className="status">
@@ -132,12 +136,12 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
       {view.mode === 'prompt' && (
         <div className="stage">
           <div className="prompt">{view.fact.prompt}</div>
-          <div className="answer-box">{input || ' '}</div>
+          <div className="answer-box">{auto.input || ' '}</div>
+          <div className="hint">停止输入约 1 秒后自动判断</div>
           <Numpad
-            onDigit={(d) => setInput((s) => appendIntegerDigit(s, d))}
-            onToggleSign={signed ? () => setInput(toggleIntegerSign) : undefined}
-            onClear={() => setInput((s) => s.slice(0, -1))}
-            onEnter={doSubmit}
+            onDigit={(d) => edit((s) => appendIntegerDigit(s, d))}
+            onToggleSign={signed ? () => edit(toggleIntegerSign) : undefined}
+            onClear={() => edit((s) => s.slice(0, -1))}
           />
         </div>
       )}
@@ -149,7 +153,7 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
             <div className="big-fact">
               <b>{Math.round(view.correctPerMin)}</b> 题 / 分钟
             </div>
-            <button className="primary" onClick={onExit}>
+            <button className="primary" onClick={() => { auto.cancel(); onExit(); }}>
               回首页
             </button>
           </div>
