@@ -60,6 +60,7 @@
 - 家长中心同时展示“AI 错题与知识点分析”和“本地免费分析”。AI仍需有效会员、登录及本机数据归属验证；本地分析始终免费且不会冒充远程AI。实际远程结果和失败回退继续区分来源。
 - AI请求增加当前选中年级及界面语言；服务端不再硬编码三年级，明确历史错题可能跨年级。按示例答案分析可能错因、知识点、辅导步骤及同类巩固题，要求区分证据和推测，不凭耗时断言掌握程度。服务端只转发有上限的学习字段，移除未知字段；空白、HTML、错误类型及上游失败返回通用错误，不透出上游正文或异常秘密。旧Web请求缺少年级时明确为未提供。
 - iOS构建号为1.0.0（12）。分支 `codex/testflight-audio-analysis` 基于 Build 11 的 `codex/testflight-numeric-input`，作为 PR #5 的后续变更；保留其完整源代码。
+- 修复及回归提交：`d97b1bee420f99c45d07e4daaa03a2da38ddb436`，已推送 origin；后续PR：[PR #6](https://github.com/cswanghan/rocketMath/pull/6)，目标为 `codex/testflight-numeric-input`，未合并。
 
 ### 实际验证
 
