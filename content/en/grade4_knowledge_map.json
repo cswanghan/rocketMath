@@ -1,0 +1,589 @@
+{
+  "textbook": "PEP edition",
+  "grade": 4,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "Understanding large numbers",
+      "topicIds": [
+        "large_num_read",
+        "large_num_compare",
+        "large_num_round",
+        "large_num_oral"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "Hectares & square kilometers",
+      "topicIds": [
+        "hectare_sqkm"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "Measuring angles",
+      "topicIds": [
+        "angle_types",
+        "angle_measure"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "3 digits × 2 digits",
+      "topicIds": [
+        "mul_extended_oral",
+        "mul3x2_column"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "Parallelograms & trapezoids",
+      "topicIds": [
+        "parallelogram_props",
+        "trapezoid_props"
+      ]
+    },
+    {
+      "id": "u6",
+      "term": "upper",
+      "index": 6,
+      "title": "Division by 2 digits",
+      "topicIds": [
+        "div_tens_oral",
+        "div_2digit_column",
+        "div_2digit_remainder"
+      ]
+    },
+    {
+      "id": "u7",
+      "term": "upper",
+      "index": 7,
+      "title": "Bar charts",
+      "topicIds": [
+        "bar_chart_read"
+      ]
+    },
+    {
+      "id": "u8",
+      "term": "upper",
+      "index": 8,
+      "title": "Exploring optimization",
+      "topicIds": [
+        "optimization"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "The four operations",
+      "topicIds": [
+        "four_ops_order",
+        "mixed_2step"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "Viewing objects · 2",
+      "topicIds": [
+        "observation_3d"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "Laws of arithmetic",
+      "topicIds": [
+        "commutative_law",
+        "associative_law",
+        "distributive_law",
+        "smart_calc"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "Decimals & their properties",
+      "topicIds": [
+        "decimal_meaning4",
+        "decimal_properties",
+        "decimal_compare4"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "Triangles",
+      "topicIds": [
+        "triangle_classify",
+        "triangle_angles"
+      ]
+    },
+    {
+      "id": "l6",
+      "term": "lower",
+      "index": 6,
+      "title": "Decimal addition & subtraction",
+      "topicIds": [
+        "decimal_add_column",
+        "decimal_sub_column",
+        "decimal_add_formula"
+      ]
+    },
+    {
+      "id": "l7",
+      "term": "lower",
+      "index": 7,
+      "title": "Transformations · 2",
+      "topicIds": [
+        "axis_symmetry"
+      ]
+    },
+    {
+      "id": "l8",
+      "term": "lower",
+      "index": 8,
+      "title": "Averages & bar charts",
+      "topicIds": [
+        "avg_concept",
+        "avg_calculate"
+      ]
+    },
+    {
+      "id": "l9",
+      "term": "lower",
+      "index": 9,
+      "title": "Exploring heads & legs puzzles",
+      "topicIds": [
+        "chicken_rabbit"
+      ]
+    },
+    {
+      "id": "compkg",
+      "term": "lower",
+      "index": 99,
+      "title": "Challenge · creative reasoning",
+      "topicIds": [
+        "kg_smart4",
+        "kg_logic4"
+      ]
+    },
+    {
+      "id": "compgeo",
+      "term": "lower",
+      "index": 100,
+      "title": "Challenge · geometry",
+      "topicIds": [
+        "geo_angle4",
+        "geo_figure4"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "large_num_read",
+      "unitId": "u1",
+      "title": "Reading & writing large numbers",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "large_num_read"
+    },
+    {
+      "id": "large_num_compare",
+      "unitId": "u1",
+      "title": "Comparing large numbers",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "large_num_read"
+      ],
+      "status": "ready",
+      "problemSetId": "large_num_compare"
+    },
+    {
+      "id": "large_num_round",
+      "unitId": "u1",
+      "title": "Rounding large numbers",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "large_num_read"
+      ],
+      "status": "ready",
+      "problemSetId": "large_num_round"
+    },
+    {
+      "id": "large_num_oral",
+      "unitId": "u1",
+      "title": "Mental math with ten-thousands",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "large_num_read"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "large_num_oral"
+    },
+    {
+      "id": "hectare_sqkm",
+      "unitId": "u2",
+      "title": "Hectares & square kilometers",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "hectare_sqkm"
+    },
+    {
+      "id": "angle_types",
+      "unitId": "u3",
+      "title": "Types of angles",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "angle_types"
+    },
+    {
+      "id": "angle_measure",
+      "unitId": "u3",
+      "title": "Measuring angles",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "angle_types"
+      ],
+      "status": "ready",
+      "problemSetId": "angle_measure"
+    },
+    {
+      "id": "mul_extended_oral",
+      "unitId": "u4",
+      "title": "Multiplying tens & hundreds",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "mul_extended_oral"
+    },
+    {
+      "id": "mul3x2_column",
+      "unitId": "u4",
+      "title": "3-digit × 2-digit column multiplication",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "mul_extended_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "mul3x2_column"
+    },
+    {
+      "id": "parallelogram_props",
+      "unitId": "u5",
+      "title": "Properties of parallelograms",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "parallelogram_props"
+    },
+    {
+      "id": "trapezoid_props",
+      "unitId": "u5",
+      "title": "Properties of trapezoids",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "parallelogram_props"
+      ],
+      "status": "ready",
+      "problemSetId": "trapezoid_props"
+    },
+    {
+      "id": "div_tens_oral",
+      "unitId": "u6",
+      "title": "Dividing by multiples of ten",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "div_tens_oral"
+    },
+    {
+      "id": "div_2digit_column",
+      "unitId": "u6",
+      "title": "Long division by 2 digits",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "div_tens_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "div_2digit_column"
+    },
+    {
+      "id": "div_2digit_remainder",
+      "unitId": "u6",
+      "title": "2-digit division with remainders",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "div_2digit_column"
+      ],
+      "status": "ready",
+      "problemSetId": "div_2digit_remainder"
+    },
+    {
+      "id": "bar_chart_read",
+      "unitId": "u7",
+      "title": "Bar charts",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "bar_chart_read"
+    },
+    {
+      "id": "optimization",
+      "unitId": "u8",
+      "title": "Optimization problems",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "optimization"
+    },
+    {
+      "id": "four_ops_order",
+      "unitId": "l1",
+      "title": "Order of operations",
+      "pedagogy": "formula",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "four_ops_order"
+    },
+    {
+      "id": "mixed_2step",
+      "unitId": "l1",
+      "title": "Two-step mental calculations",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "four_ops_order"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "mixed_2step"
+    },
+    {
+      "id": "observation_3d",
+      "unitId": "l2",
+      "title": "Viewing objects",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "observation_3d"
+    },
+    {
+      "id": "commutative_law",
+      "unitId": "l3",
+      "title": "Commutative law",
+      "pedagogy": "formula",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "commutative_law"
+    },
+    {
+      "id": "associative_law",
+      "unitId": "l3",
+      "title": "Associative law",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "commutative_law"
+      ],
+      "status": "ready",
+      "problemSetId": "associative_law"
+    },
+    {
+      "id": "distributive_law",
+      "unitId": "l3",
+      "title": "Distributive law",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "commutative_law"
+      ],
+      "status": "ready",
+      "problemSetId": "distributive_law"
+    },
+    {
+      "id": "smart_calc",
+      "unitId": "l3",
+      "title": "Efficient calculation",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "distributive_law",
+        "associative_law"
+      ],
+      "status": "ready",
+      "problemSetId": "smart_calc"
+    },
+    {
+      "id": "decimal_meaning4",
+      "unitId": "l4",
+      "title": "Understanding decimals",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "decimal_meaning4"
+    },
+    {
+      "id": "decimal_properties",
+      "unitId": "l4",
+      "title": "Properties of decimals",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_meaning4"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_properties"
+    },
+    {
+      "id": "decimal_compare4",
+      "unitId": "l4",
+      "title": "Comparing decimals",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_compare4"
+    },
+    {
+      "id": "triangle_classify",
+      "unitId": "l5",
+      "title": "Types of triangles",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "triangle_classify"
+    },
+    {
+      "id": "triangle_angles",
+      "unitId": "l5",
+      "title": "Triangle angle sum",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "triangle_classify"
+      ],
+      "status": "ready",
+      "problemSetId": "triangle_angles"
+    },
+    {
+      "id": "decimal_add_column",
+      "unitId": "l6",
+      "title": "Column addition with decimals",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "decimal_meaning4"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_add_column"
+    },
+    {
+      "id": "decimal_sub_column",
+      "unitId": "l6",
+      "title": "Column subtraction with decimals",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "decimal_add_column"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_sub_column"
+    },
+    {
+      "id": "decimal_add_formula",
+      "unitId": "l6",
+      "title": "Decimal word problems",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "decimal_sub_column"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_add_formula"
+    },
+    {
+      "id": "axis_symmetry",
+      "unitId": "l7",
+      "title": "Reflection symmetry",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "axis_symmetry"
+    },
+    {
+      "id": "avg_concept",
+      "unitId": "l8",
+      "title": "Understanding averages",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "avg_concept"
+    },
+    {
+      "id": "avg_calculate",
+      "unitId": "l8",
+      "title": "Finding the average",
+      "pedagogy": "data",
+      "dependsOn": [
+        "avg_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "avg_calculate"
+    },
+    {
+      "id": "chicken_rabbit",
+      "unitId": "l9",
+      "title": "Heads & legs puzzles",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "chicken_rabbit"
+    },
+    {
+      "id": "kg_smart4",
+      "unitId": "compkg",
+      "title": "Clever calculation",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_smart4"
+    },
+    {
+      "id": "kg_logic4",
+      "unitId": "compkg",
+      "title": "Logical reasoning",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_logic4"
+    },
+    {
+      "id": "geo_angle4",
+      "unitId": "compgeo",
+      "title": "Angle calculation & reasoning",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geo_angle4"
+    },
+    {
+      "id": "geo_figure4",
+      "unitId": "compgeo",
+      "title": "Counting & combining shapes",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geo_figure4"
+    }
+  ]
+}

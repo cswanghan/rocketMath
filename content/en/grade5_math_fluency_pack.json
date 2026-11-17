@@ -1,0 +1,641 @@
+{
+  "version": "1.0.0",
+  "grade": 5,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "Relaxed",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "Standard",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "Challenge",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "equation_oral",
+      "name": "Solving simple equations mentally",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "eq_a0",
+              "prompt": "x + 8 = 15",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_a1",
+              "prompt": "x + 12 = 20",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_a2",
+              "prompt": "x + 25 = 40",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_a3",
+              "prompt": "x + 6 = 31",
+              "answer": 25,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "eq_b0",
+              "prompt": "x - 5 = 12",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_b1",
+              "prompt": "x - 8 = 20",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_b2",
+              "prompt": "x - 15 = 30",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_b3",
+              "prompt": "x - 3 = 47",
+              "answer": 50,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "eq_c0",
+              "prompt": "3x = 12",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_c1",
+              "prompt": "5x = 35",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_c2",
+              "prompt": "4x = 28",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_c3",
+              "prompt": "6x = 42",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "eq_d0",
+              "prompt": "x ÷ 4 = 5",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_d1",
+              "prompt": "x ÷ 3 = 8",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_d2",
+              "prompt": "x ÷ 6 = 7",
+              "answer": 42,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_d3",
+              "prompt": "x ÷ 5 = 9",
+              "answer": 45,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "eq_e0",
+              "prompt": "2x + 3 = 15",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_e1",
+              "prompt": "3x - 5 = 19",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_e2",
+              "prompt": "4x + 2 = 18",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_e3",
+              "prompt": "5x - 10 = 25",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "eq_f0",
+              "prompt": "50 - 3x = 20",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_f1",
+              "prompt": "40 ÷ x = 8",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_f2",
+              "prompt": "100 - 5x = 50",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "eq_f3",
+              "prompt": "60 ÷ x = 4",
+              "answer": 15,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "polygon_area_oral",
+      "name": "Polygon areas mentally",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "pa_a0",
+              "prompt": "Parallelogram, base 6, height 4, area = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_a1",
+              "prompt": "Parallelogram, base 8, height 5, area = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_a2",
+              "prompt": "Parallelogram, base 10, height 3, area = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_a3",
+              "prompt": "Parallelogram, base 12, height 4, area = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "pa_b0",
+              "prompt": "Triangle, base 6, height 4, area = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_b1",
+              "prompt": "Triangle, base 8, height 5, area = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_b2",
+              "prompt": "Triangle, base 10, height 6, area = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_b3",
+              "prompt": "Triangle, base 12, height 8, area = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "pa_c0",
+              "prompt": "Trapezoid, top base 3, bottom base 5, height 4, area = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_c1",
+              "prompt": "Trapezoid, top base 4, bottom base 6, height 5, area = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_c2",
+              "prompt": "Trapezoid, top base 2, bottom base 8, height 3, area = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_c3",
+              "prompt": "Trapezoid, top base 5, bottom base 7, height 4, area = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "pa_d0",
+              "prompt": "Parallelogram, base 15, height 4, area = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_d1",
+              "prompt": "Triangle, base 14, height 6, area = ?",
+              "answer": 42,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_d2",
+              "prompt": "Trapezoid, top base 3, bottom base 9, height 5, area = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "pa_d3",
+              "prompt": "Parallelogram, base 20, height 5, area = ?",
+              "answer": 100,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "factor_multiple_oral",
+      "name": "Factors & multiples mentally",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "fm_a0",
+              "prompt": "12 ÷ 3 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_a1",
+              "prompt": "24 ÷ 6 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_a2",
+              "prompt": "15 ÷ 5 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_a3",
+              "prompt": "36 ÷ 9 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "fm_b0",
+              "prompt": "14 ÷ 7 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_b1",
+              "prompt": "27 ÷ 9 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_b2",
+              "prompt": "32 ÷ 8 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "fm_b3",
+              "prompt": "45 ÷ 9 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "fm_c0",
+              "prompt": "The greatest common divisor of 12 and 8 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_c1",
+              "prompt": "The greatest common divisor of 15 and 10 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_c2",
+              "prompt": "The greatest common divisor of 18 and 12 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_c3",
+              "prompt": "The greatest common divisor of 20 and 15 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "fm_d0",
+              "prompt": "The least common multiple of 3 and 4 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_d1",
+              "prompt": "The least common multiple of 4 and 6 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_d2",
+              "prompt": "The least common multiple of 5 and 3 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "fm_d3",
+              "prompt": "The least common multiple of 6 and 8 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "cuboid_calc",
+      "name": "Cuboids & cubes mentally",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "cb_a0",
+              "prompt": "Cube, edge length 2, volume = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_a1",
+              "prompt": "Cube, edge length 3, volume = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_a2",
+              "prompt": "Cube, edge length 4, volume = ?",
+              "answer": 64,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_a3",
+              "prompt": "Cube, edge length 5, volume = ?",
+              "answer": 125,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "cb_b0",
+              "prompt": "Rectangular prism, length 4, width 3, height 2, volume = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_b1",
+              "prompt": "Rectangular prism, length 5, width 4, height 3, volume = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_b2",
+              "prompt": "Rectangular prism, length 6, width 5, height 2, volume = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_b3",
+              "prompt": "Rectangular prism, length 8, width 3, height 2, volume = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "cb_c0",
+              "prompt": "Cube, edge length 2, surface area = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_c1",
+              "prompt": "Cube, edge length 3, surface area = ?",
+              "answer": 54,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_c2",
+              "prompt": "Cube, edge length 4, surface area = ?",
+              "answer": 96,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_c3",
+              "prompt": "Cube, edge length 5, surface area = ?",
+              "answer": 150,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "cb_d0",
+              "prompt": "Rectangular prism, length 4, width 3, height 2, surface area = ?",
+              "answer": 52,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_d1",
+              "prompt": "Rectangular prism, length 5, width 4, height 3, surface area = ?",
+              "answer": 94,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_d2",
+              "prompt": "Rectangular prism, length 6, width 2, height 3, surface area = ?",
+              "answer": 72,
+              "learningType": "pattern"
+            },
+            {
+              "id": "cb_d3",
+              "prompt": "Rectangular prism, length 5, width 5, height 2, surface area = ?",
+              "answer": 90,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "decimal_mul_column",
+    "decimal_div_column",
+    "fraction_add_diff",
+    "fraction_mixed_calc",
+    "position_grid",
+    "combined_area",
+    "observation_3d_5",
+    "tree_planting",
+    "find_defective",
+    "line_graph",
+    "rotation_concept",
+    "cuboid_surface_area"
+  ]
+}

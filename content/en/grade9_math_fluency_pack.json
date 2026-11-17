@@ -1,0 +1,764 @@
+{
+  "version": "1.0.0",
+  "grade": 9,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "Relaxed",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "Standard",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "Challenge",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "quadratic_roots",
+      "name": "Mental math for integer roots of a quadratic equation",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "qr_s_-5_6",
+              "prompt": "x² - 5x + 6 = 0, sum of the two roots = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_-7_12",
+              "prompt": "x² - 7x + 12 = 0, sum of the two roots = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_-6_8",
+              "prompt": "x² - 6x + 8 = 0, sum of the two roots = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_-9_20",
+              "prompt": "x² - 9x + 20 = 0, sum of the two roots = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "qr_p_-5_6",
+              "prompt": "x² - 5x + 6 = 0, product of the two roots = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_-7_12",
+              "prompt": "x² - 7x + 12 = 0, product of the two roots = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_-8_15",
+              "prompt": "x² - 8x + 15 = 0, product of the two roots = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_-9_18",
+              "prompt": "x² - 9x + 18 = 0, product of the two roots = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "qr_min_-5_6",
+              "prompt": "x² - 5x + 6 = 0, smaller root = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_min_-7_12",
+              "prompt": "x² - 7x + 12 = 0, smaller root = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_min_-8_15",
+              "prompt": "x² - 8x + 15 = 0, smaller root = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_min_-6_9",
+              "prompt": "x² - 6x + 9 = 0, smaller root = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "qr_s_1_-6",
+              "prompt": "x² + 1x - 6 = 0, sum of the two roots = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_2_-8",
+              "prompt": "x² + 2x - 8 = 0, sum of the two roots = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_3_-10",
+              "prompt": "x² + 3x - 10 = 0, sum of the two roots = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_s_4_-12",
+              "prompt": "x² + 4x - 12 = 0, sum of the two roots = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "E",
+          "new_facts": [
+            {
+              "id": "qr_p_1_-6",
+              "prompt": "x² + 1x - 6 = 0, product of the two roots = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_2_-8",
+              "prompt": "x² + 2x - 8 = 0, product of the two roots = ?",
+              "answer": -8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_3_-10",
+              "prompt": "x² + 3x - 10 = 0, product of the two roots = ?",
+              "answer": -10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_p_4_-12",
+              "prompt": "x² + 4x - 12 = 0, product of the two roots = ?",
+              "answer": -12,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "F",
+          "new_facts": [
+            {
+              "id": "qr_max_1_-6",
+              "prompt": "x² + 1x - 6 = 0, larger root = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_max_2_-8",
+              "prompt": "x² + 2x - 8 = 0, larger root = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_max_3_-10",
+              "prompt": "x² + 3x - 10 = 0, larger root = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qr_max_5_-14",
+              "prompt": "x² + 5x - 14 = 0, larger root = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "quadratic_fn_vertex",
+      "name": "Mental math for vertex and axis of symmetry of a quadratic function",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "qfv_axis_0_2",
+              "prompt": "y = (x - 2)² + 3, axis of symmetry x = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_0_3",
+              "prompt": "y = (x - 3)² + 1, axis of symmetry x = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_0_-1",
+              "prompt": "y = (x + 1)² + 4, axis of symmetry x = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_0_-4",
+              "prompt": "y = (x + 4)², axis of symmetry x = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "qfv_vy_1_3",
+              "prompt": "y = (x - 2)² + 3, y-coordinate of the vertex = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_1_1",
+              "prompt": "y = (x - 3)² + 1, y-coordinate of the vertex = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_1_-5",
+              "prompt": "y = 2(x)² - 5, y-coordinate of the vertex = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_1_7",
+              "prompt": "y = (x + 4)² + 7, y-coordinate of the vertex = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "qfv_axis_std_2_-4",
+              "prompt": "y=x²-4x+3  Axis of symmetry x = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_std_2_6",
+              "prompt": "y=x²+6x+5  Axis of symmetry x = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_std_2_-2",
+              "prompt": "y=x²-2x-3  Axis of symmetry x = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_axis_std_2_-8",
+              "prompt": "y=2x²-8x+10  Axis of symmetry x = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "qfv_vy_std_3_-4",
+              "prompt": "y=x²-4x+3  y-coordinate of vertex = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_std_3_6",
+              "prompt": "y=x²+6x+5  y-coordinate of vertex = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_std_3_-2",
+              "prompt": "y=x²-2x-3  y-coordinate of vertex = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "qfv_vy_std_3_-8",
+              "prompt": "y=2x²-8x+10  y-coordinate of vertex = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "special_angle_trig",
+      "name": "Mental math: trigonometric functions of special angles",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "sat_0_0",
+              "prompt": "sin___°= 1/2. What is this acute angle in degrees?",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_0_1",
+              "prompt": "cos___°= 1/2. What is this acute angle in degrees?",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_0_2",
+              "prompt": "tan___°= 1. What is this acute angle in degrees?",
+              "answer": 45,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_0_3",
+              "prompt": "sin___°= 1. What is this angle in degrees?",
+              "answer": 90,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "sat_1_0",
+              "prompt": "cos___°= √3/2. What is this acute angle in degrees?",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_1_1",
+              "prompt": "sin___°= √3/2. What is this acute angle in degrees?",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_1_2",
+              "prompt": "tan___°= √3. What is this acute angle in degrees?",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_1_3",
+              "prompt": "cos___°= 0. What is this angle in degrees?",
+              "answer": 90,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "sat_2_0",
+              "prompt": "Right triangle: hypotenuse=10, ∠A=30°. Side opposite A = 10×sin30° = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_2_1",
+              "prompt": "Right triangle: hypotenuse=10, ∠A=60°. Side adjacent to A = 10×cos60° = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_2_2",
+              "prompt": "Right triangle: hypotenuse=20, ∠A=30°. Side opposite A = 20×sin30° = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_2_3",
+              "prompt": "Right triangle: hypotenuse=20, ∠A=60°. Side adjacent to A = 20×cos60° = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "sat_3_0",
+              "prompt": "Right triangle: adjacent side=3, ∠A=45°. Opposite side = 3×tan45° = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_3_1",
+              "prompt": "Right triangle: adjacent side=5, ∠A=45°. Opposite side = 5×tan45° = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_3_2",
+              "prompt": "Right triangle: hypotenuse=6, ∠A=30°. Side opposite A = 6×sin30° = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "sat_3_3",
+              "prompt": "Right triangle: hypotenuse=8, ∠A=30°. Side opposite A = 8×sin30° = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "probability_count",
+      "name": "Mental math: classical probability counting",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "prob_0_0",
+              "prompt": "Rolling one die, how many equally likely outcomes show an even number?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_0_1",
+              "prompt": "Rolling one die, how many equally likely outcomes show a multiple of 3?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_0_2",
+              "prompt": "Rolling one die, how many equally likely outcomes are there in total?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_0_3",
+              "prompt": "Rolling one die, how many equally likely outcomes show an odd number?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "prob_1_0",
+              "prompt": "A bag contains 3 red balls and 2 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_1_1",
+              "prompt": "A bag contains 4 black balls and 3 white balls. Draw one at random.\nHow many equally likely outcomes are there in total?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_1_2",
+              "prompt": "Pick one number at random from 1, 2, 3, 4, 5.\nHow many equally likely outcomes result in an odd number?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_1_3",
+              "prompt": "Pick one number at random from 1, 2, 3, 4, 5.\nHow many equally likely outcomes result in a number greater than 3?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "prob_2_0",
+              "prompt": "Pick one number at random from 1 to 10.\nHow many equally likely outcomes are there in total?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_2_1",
+              "prompt": "Pick one number at random from 1 to 10.\nHow many favorable outcomes result in a prime number?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_2_2",
+              "prompt": "Pick one number at random from 1 to 10.\nHow many favorable outcomes result in an even number?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_2_3",
+              "prompt": "Pick a number at random from 1 to 10.\nHow many favorable outcomes are there for picking a factor of 4?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "prob_3_0",
+              "prompt": "Toss two coins, each with a head and a tail, all equally likely. How many total equally likely outcomes are there?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_3_1",
+              "prompt": "Toss two coins. How many favorable outcomes are there for getting exactly one head and one tail?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_3_2",
+              "prompt": "Toss two coins. How many favorable outcomes are there for getting at least one head?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "prob_3_3",
+              "prompt": "Toss two coins. How many favorable outcomes are there for getting two heads?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "similar_ratio",
+      "name": "Mental math on side lengths of similar triangles",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "simr_0_0",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 6.\nThe smaller corresponding side = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_0_1",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The larger corresponding side = 9.\nThe smaller corresponding side = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_0_2",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 8.\nThe smaller corresponding side = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_0_3",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The larger corresponding side = 12.\nThe smaller corresponding side = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "simr_1_0",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The smaller corresponding side = 4.\nThe larger corresponding side = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_1_1",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The smaller corresponding side = 5.\nThe larger corresponding side = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_1_2",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The smaller corresponding side = 7.\nThe larger corresponding side = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_1_3",
+              "prompt": "Two similar triangles have a similarity ratio of 4:1. The smaller corresponding side = 3.\nThe larger corresponding side = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "simr_2_0",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The larger corresponding side = 6.\nThe smaller corresponding side = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_2_1",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The larger corresponding side = 9.\nThe smaller corresponding side = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_2_2",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The larger corresponding side = 12.\nThe smaller corresponding side = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_2_3",
+              "prompt": "Two similar triangles have a similarity ratio of 5:2. The larger corresponding side = 10.\nThe smaller corresponding side = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "simr_3_0",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The smaller corresponding side = 4.\nThe larger corresponding side = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_3_1",
+              "prompt": "Two similar triangles have a similarity ratio of 5:3. The smaller corresponding side = 6.\nThe larger corresponding side = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_3_2",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The smaller corresponding side = 9.\nThe larger corresponding side = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "simr_3_3",
+              "prompt": "Two similar triangles have a similarity ratio of 5:2. The smaller corresponding side = 4.\nThe larger corresponding side = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "quadratic_eq_procedure",
+    "quadratic_fn_graph",
+    "quadratic_fn_application",
+    "circle_properties",
+    "circle_tangent",
+    "circle_inscribed_angle",
+    "rotation_properties",
+    "probability_tree",
+    "inverse_proportion_fn",
+    "similar_triangle_proof",
+    "trig_application",
+    "projection_view"
+  ]
+}

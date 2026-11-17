@@ -84,7 +84,7 @@ export async function verifyGoogleIdToken(
   const key = await importRsaPublicKey(cert.n, cert.e);
   const data = encoder.encode(`${headerB64}.${payloadB64}`);
   const sig = base64urlToUint8(sigB64);
-  const ok = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, sig, data);
+  const ok = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, new Uint8Array(sig), data);
   if (!ok) throw new Error('Invalid signature');
 
   const payload = JSON.parse(base64urlDecodeString(payloadB64)) as GoogleIdTokenPayload;

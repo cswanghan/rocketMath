@@ -10,7 +10,11 @@ All math is verified at build time (answers computed, not typed).
 Edit this file + re-run; never hand-edit the JSON output.
 
     python3 content/build_grade4.py
+    python3 content/build_grade4.py --fluency-only  # preserve expanded practice packs
 """
+import argparse
+import ast
+from collections import Counter
 import json
 import os
 import string
@@ -165,9 +169,113 @@ LARGE_NUM_ORAL = [
 ]
 
 
+def _oral_answer(prompt):
+    """Evaluate the grade-4 arithmetic subset exactly, including 万 coefficients."""
+    expression = prompt.split(" = ")[0].replace("万", "").replace("×", "*").replace("÷", "/")
+
+    def evaluate(node):
+        if isinstance(node, ast.Constant) and type(node.value) is int:
+            return node.value
+        if not isinstance(node, ast.BinOp):
+            raise ValueError(f"Unsupported oral expression: {prompt}")
+        a, b = evaluate(node.left), evaluate(node.right)
+        if isinstance(node.op, ast.Add):
+            return a + b
+        if isinstance(node.op, ast.Sub):
+            return a - b
+        if isinstance(node.op, ast.Mult):
+            return a * b
+        if isinstance(node.op, ast.Div) and b and a % b == 0:
+            return a // b
+        raise ValueError(f"Non-integer or unsupported oral operation: {prompt}")
+
+    answer = evaluate(ast.parse(expression, mode="eval").body)
+    if answer <= 0:
+        raise ValueError(f"Non-positive oral answer: {prompt}")
+    return answer
+
+
+def _extend_oral_levels(levels, prefix, additions):
+    # Keep every original fact/level in place: saved factStats and pendingRetest
+    # refer to these IDs. New prompts are arithmetic variants, not shuffled IDs.
+    for facts, prompts in zip(levels, additions, strict=True):
+        for expression in prompts:
+            fid = prefix + expression.translate(str.maketrans({
+                "×": "x", "÷": "d", "+": "p", "-": "m", "万": "w",
+                " ": "", "(": "", ")": "",
+            }))
+            prompt = expression + " = ( )万" if "万" in expression else expression
+            facts.append(oral_fact_custom(fid, prompt, _oral_answer(prompt)))
+
+
+# Each level now has 16 facts. Keep the original teaching progression while
+# varying operands and results; especially avoid teaching that division = 4/6.
+_extend_oral_levels(MUL_EXTENDED_ORAL, "meo_", [
+    ["200 × 2", "200 × 4", "200 × 7", "300 × 3", "300 × 4", "300 × 6",
+     "400 × 4", "400 × 7", "500 × 5", "600 × 3", "700 × 4", "900 × 5"],
+    ["20 × 20", "20 × 40", "20 × 70", "30 × 30", "30 × 60", "30 × 80",
+     "40 × 40", "40 × 70", "50 × 50", "50 × 60", "60 × 70", "80 × 90"],
+    ["110 × 3", "130 × 4", "140 × 3", "160 × 5", "210 × 3", "220 × 4",
+     "240 × 2", "320 × 3", "330 × 2", "410 × 2", "420 × 2", "250 × 4"],
+    ["12 × 30", "14 × 20", "16 × 30", "18 × 20", "24 × 20", "25 × 40",
+     "35 × 40", "45 × 40", "55 × 20", "65 × 20", "75 × 20", "85 × 20"],
+])
+
+_extend_oral_levels(DIV_TENS_ORAL, "dto_", [
+    # A starts with smaller dividends and includes dividing by 10.
+    ["40 ÷ 20", "20 ÷ 10", "60 ÷ 20", "30 ÷ 10", "100 ÷ 20", "50 ÷ 10",
+     "60 ÷ 10", "140 ÷ 20", "70 ÷ 10", "160 ÷ 20", "80 ÷ 10", "180 ÷ 20"],
+    ["60 ÷ 30", "100 ÷ 50", "90 ÷ 30", "120 ÷ 40", "150 ÷ 30", "250 ÷ 50",
+     "210 ÷ 30", "280 ÷ 40", "240 ÷ 30", "400 ÷ 50", "360 ÷ 40", "450 ÷ 50"],
+    ["80 ÷ 40", "140 ÷ 70", "150 ÷ 50", "210 ÷ 70", "280 ÷ 70", "360 ÷ 90",
+     "200 ÷ 40", "400 ÷ 80", "300 ÷ 50", "120 ÷ 20", "420 ÷ 60", "630 ÷ 70"],
+    # D keeps divisors >= 60, but no longer concentrates three quarters on 9.
+    ["120 ÷ 60", "160 ÷ 80", "180 ÷ 60", "270 ÷ 90", "240 ÷ 60", "320 ÷ 80",
+     "300 ÷ 60", "450 ÷ 90", "480 ÷ 80", "540 ÷ 90", "490 ÷ 70", "640 ÷ 80"],
+])
+
+_extend_oral_levels(MIXED_2STEP, "m2s_", [
+    ["6 × 7 + 15", "9 × 4 + 12", "7 × 8 - 20", "80 - 7 × 6",
+     "90 - 8 × 7", "40 + 6 × 9", "48 ÷ 6 + 17", "63 ÷ 7 + 24",
+     "81 ÷ 9 - 5", "60 - 35 ÷ 5", "45 + 56 ÷ 8", "72 ÷ 9 × 5"],
+    ["12 × 5 + 30", "18 × 4 - 20", "24 × 3 + 16", "150 - 16 × 5",
+     "180 - 14 × 6", "320 - 25 × 8", "96 ÷ 8 + 45", "144 ÷ 12 - 5",
+     "180 ÷ 9 + 34", "240 ÷ 6 - 15", "360 ÷ 9 × 2", "420 ÷ 7 - 18"],
+    ["(20 + 40) × 3", "(90 - 35) × 2", "(45 + 15) ÷ 5", "(84 - 28) ÷ 7",
+     "210 ÷ (3 × 5)", "360 ÷ (4 × 5)", "6 × (25 - 13)", "4 × (18 + 12)",
+     "(36 + 24) ÷ 3", "(150 - 60) ÷ 3", "(15 + 35) × 4", "(96 - 42) ÷ 6"],
+    ["400 - 240 ÷ 6", "125 + 15 × 8", "72 ÷ (18 - 9)", "132 ÷ (8 + 4)",
+     "(75 + 45) ÷ 6", "(180 - 60) ÷ 8", "9 × (24 - 16)", "6 × (35 + 15)",
+     "252 ÷ (14 + 7)", "(250 - 100) ÷ 5", "180 + 360 ÷ 9", "25 × 8 - 45"],
+])
+
+_extend_oral_levels(LARGE_NUM_ORAL, "lno_", [
+    ["2万 + 7万", "4万 + 8万", "5万 + 9万", "7万 + 9万", "8万 + 10万", "9万 + 11万",
+     "11万 - 5万", "14万 - 4万", "16万 - 5万", "18万 - 3万", "20万 - 3万", "25万 - 6万"],
+    ["3万 × 4", "5万 × 3", "6万 × 4", "7万 × 3", "8万 × 4", "9万 × 5",
+     "18万 ÷ 2", "21万 ÷ 3", "32万 ÷ 4", "48万 ÷ 4", "66万 ÷ 6", "90万 ÷ 5"],
+    ["20万 + 40万", "40万 + 50万", "60万 + 80万", "90万 + 80万", "300万 - 70万", "500万 - 90万",
+     "20万 × 4", "40万 × 6", "70万 × 5", "450万 ÷ 3", "540万 ÷ 3", "810万 ÷ 3"],
+    ["120万 + 180万", "350万 + 270万", "800万 - 350万", "900万 - 260万",
+     "120万 × 3", "140万 × 4", "160万 × 5", "180万 × 6",
+     "360万 ÷ 3", "480万 ÷ 3", "630万 ÷ 7", "840万 ÷ 6"],
+])
+
+
 def _build_track(track_id, name, level_data):
     levels = []
+    seen_ids, seen_prompts = set(), set()
     for i, facts in enumerate(level_data):
+        counts = Counter(fact["answer"] for fact in facts)
+        if len(facts) < 16 or len(counts) < 6 or max(counts.values()) * 4 > len(facts):
+            raise ValueError(f"Insufficient oral variety: {track_id} {LEVEL_LETTERS[i]}")
+        for fact in facts:
+            if fact["id"] in seen_ids or fact["prompt"] in seen_prompts:
+                raise ValueError(f"Duplicate oral fact: {fact['id']}")
+            if _oral_answer(fact["prompt"]) != fact["answer"]:
+                raise ValueError(f"Incorrect oral answer: {fact['id']}")
+            seen_ids.add(fact["id"])
+            seen_prompts.add(fact["prompt"])
         levels.append({"level": LEVEL_LETTERS[i], "new_facts": facts})
     return {"trackId": track_id, "name": name, "enabled": True, "levels": levels}
 
@@ -2661,7 +2769,7 @@ def build_knowledge_map(practice_ids, fluency_track_ids):
 # MAIN
 # ═══════════════════════════════════════════════════════════════════════════════
 
-def main():
+def main(fluency_only=False):
     # 1. Fluency pack
     fluency = build_fluency_pack()
     fluency_path = _out("grade4_math_fluency_pack.json")
@@ -2675,6 +2783,9 @@ def main():
     print(f"  tracks={len(fluency['tracks'])}  facts={n_facts}")
     for t in fluency["tracks"]:
         print(f"  - {t['trackId']:25s} enabled={t['enabled']!s:5s} levels={len(t['levels'])}")
+
+    if fluency_only:
+        return
 
     # 2. Practice pack
     practice = build_practice_pack()
@@ -2747,8 +2858,12 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--fluency-only", action="store_true", help="Only regenerate oral-math facts; preserve practice/map expansions")
+    args = parser.parse_args()
+    main(fluency_only=args.fluency_only)
     # 题目来源标注: 写完 practice+knowledge_map 后,从 km 自动推导 source
-    from source_tags import tag_practice_file
-    _n, _u = tag_practice_file(4)
-    print(f"source-tagged {_n} problems (grade 4)" + (f"  UNMAPPED {_u}" if _u else ""))
+    if not args.fluency_only:
+        from source_tags import tag_practice_file
+        _n, _u = tag_practice_file(4)
+        print(f"source-tagged {_n} problems (grade 4)" + (f"  UNMAPPED {_u}" if _u else ""))

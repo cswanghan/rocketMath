@@ -1,0 +1,561 @@
+{
+  "textbook": "PEP edition",
+  "grade": 6,
+  "units": [
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "Multiplying fractions",
+      "topicIds": [
+        "fraction_mul_meaning",
+        "fraction_mul_procedure"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "Position & direction · 2",
+      "topicIds": [
+        "direction_distance"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "Dividing fractions",
+      "topicIds": [
+        "fraction_div_meaning",
+        "fraction_div_procedure"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "Ratios",
+      "topicIds": [
+        "ratio_meaning",
+        "ratio_properties",
+        "ratio_simplify_practice"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "Circles",
+      "topicIds": [
+        "circle_parts",
+        "circle_pi",
+        "circle_circumference",
+        "circle_area"
+      ]
+    },
+    {
+      "id": "u6",
+      "term": "upper",
+      "index": 6,
+      "title": "Percentages · 1",
+      "topicIds": [
+        "percent_meaning",
+        "percent_fraction_decimal",
+        "percent_calc",
+        "percent_word_basic"
+      ]
+    },
+    {
+      "id": "u7",
+      "term": "upper",
+      "index": 7,
+      "title": "Pie charts",
+      "topicIds": [
+        "pie_chart_read"
+      ]
+    },
+    {
+      "id": "u8",
+      "term": "upper",
+      "index": 8,
+      "title": "Numbers & shapes",
+      "topicIds": [
+        "number_shape"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "Negative numbers",
+      "topicIds": [
+        "negative_number",
+        "negative_compare"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "Percentages · 2",
+      "topicIds": [
+        "discount_tax",
+        "interest_calc"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "Cylinders & cones",
+      "topicIds": [
+        "cylinder_properties",
+        "cone_properties",
+        "cylinder_surface_area",
+        "cylinder_volume",
+        "cone_volume"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "Proportion",
+      "topicIds": [
+        "proportion_meaning",
+        "proportion_solve",
+        "scale_drawing",
+        "proportion_application"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "Pigeonhole principle",
+      "topicIds": [
+        "pigeonhole"
+      ]
+    },
+    {
+      "id": "compkg",
+      "term": "lower",
+      "index": 99,
+      "title": "Challenge · creative reasoning",
+      "topicIds": [
+        "kg_comb6",
+        "kg_reason6"
+      ]
+    },
+    {
+      "id": "compnt",
+      "term": "lower",
+      "index": 100,
+      "title": "Challenge · numbers & combinations",
+      "topicIds": [
+        "nt_remainder6",
+        "comb_casework6"
+      ]
+    },
+    {
+      "id": "compgeo",
+      "term": "lower",
+      "index": 101,
+      "title": "Challenge · geometry",
+      "topicIds": [
+        "geo_circle6"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "fraction_mul_meaning",
+      "unitId": "u1",
+      "title": "Understanding fraction multiplication",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "fraction_mul_meaning"
+    },
+    {
+      "id": "fraction_mul_procedure",
+      "unitId": "u1",
+      "title": "Calculating fraction products",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "fraction_mul_meaning"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "fraction_of_int",
+      "problemSetId": "fraction_mul_procedure"
+    },
+    {
+      "id": "direction_distance",
+      "unitId": "u2",
+      "title": "Position & direction",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "direction_distance"
+    },
+    {
+      "id": "fraction_div_meaning",
+      "unitId": "u3",
+      "title": "Understanding fraction division",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_mul_procedure"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_div_meaning"
+    },
+    {
+      "id": "fraction_div_procedure",
+      "unitId": "u3",
+      "title": "Calculating fraction quotients",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "fraction_div_meaning"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "fraction_div_int",
+      "problemSetId": "fraction_div_procedure"
+    },
+    {
+      "id": "ratio_meaning",
+      "unitId": "u4",
+      "title": "Understanding ratios",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_div_procedure"
+      ],
+      "status": "ready",
+      "problemSetId": "ratio_meaning"
+    },
+    {
+      "id": "ratio_properties",
+      "unitId": "u4",
+      "title": "Properties of ratios",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "ratio_meaning"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "ratio_oral",
+      "problemSetId": "ratio_properties"
+    },
+    {
+      "id": "ratio_simplify_practice",
+      "unitId": "u4",
+      "title": "Simplifying ratios",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "ratio_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "ratio_simplify_practice"
+    },
+    {
+      "id": "circle_parts",
+      "unitId": "u5",
+      "title": "Circles, radius & diameter",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "circle_parts"
+    },
+    {
+      "id": "circle_pi",
+      "unitId": "u5",
+      "title": "Understanding π",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "circle_parts"
+      ],
+      "status": "ready",
+      "problemSetId": "circle_pi"
+    },
+    {
+      "id": "circle_circumference",
+      "unitId": "u5",
+      "title": "Circumference",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "circle_pi"
+      ],
+      "status": "ready",
+      "problemSetId": "circle_circumference"
+    },
+    {
+      "id": "circle_area",
+      "unitId": "u5",
+      "title": "Area of a circle",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "circle_circumference"
+      ],
+      "status": "ready",
+      "problemSetId": "circle_area"
+    },
+    {
+      "id": "percent_meaning",
+      "unitId": "u6",
+      "title": "Understanding percentages",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "percent_meaning"
+    },
+    {
+      "id": "percent_fraction_decimal",
+      "unitId": "u6",
+      "title": "Percentages, fractions & decimals",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "percent_meaning"
+      ],
+      "status": "ready",
+      "problemSetId": "percent_fraction_decimal"
+    },
+    {
+      "id": "percent_calc",
+      "unitId": "u6",
+      "title": "Applying percentages",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "percent_fraction_decimal"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "percent_convert",
+      "problemSetId": "percent_calc"
+    },
+    {
+      "id": "percent_word_basic",
+      "unitId": "u6",
+      "title": "Percentage word problems",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "percent_calc"
+      ],
+      "status": "ready",
+      "problemSetId": "percent_word_basic"
+    },
+    {
+      "id": "pie_chart_read",
+      "unitId": "u7",
+      "title": "Pie charts",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "percent_fraction_decimal"
+      ],
+      "status": "ready",
+      "problemSetId": "pie_chart_read"
+    },
+    {
+      "id": "number_shape",
+      "unitId": "u8",
+      "title": "Numbers & shapes",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "number_shape"
+    },
+    {
+      "id": "negative_number",
+      "unitId": "l1",
+      "title": "Understanding negative numbers",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "negative_number"
+    },
+    {
+      "id": "negative_compare",
+      "unitId": "l1",
+      "title": "Comparing negative numbers",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "negative_number"
+      ],
+      "status": "ready",
+      "problemSetId": "negative_compare"
+    },
+    {
+      "id": "discount_tax",
+      "unitId": "l2",
+      "title": "Discounts & tax rates",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "percent_word_basic"
+      ],
+      "status": "ready",
+      "problemSetId": "discount_tax"
+    },
+    {
+      "id": "interest_calc",
+      "unitId": "l2",
+      "title": "Calculating interest",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "discount_tax"
+      ],
+      "status": "ready",
+      "problemSetId": "interest_calc"
+    },
+    {
+      "id": "cylinder_properties",
+      "unitId": "l3",
+      "title": "Understanding cylinders",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "circle_area"
+      ],
+      "status": "ready",
+      "problemSetId": "cylinder_properties"
+    },
+    {
+      "id": "cone_properties",
+      "unitId": "l3",
+      "title": "Understanding cones",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "cylinder_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "cone_properties"
+    },
+    {
+      "id": "cylinder_surface_area",
+      "unitId": "l3",
+      "title": "Surface area of a cylinder",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "cylinder_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "cylinder_surface_area"
+    },
+    {
+      "id": "cylinder_volume",
+      "unitId": "l3",
+      "title": "Volume of a cylinder",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "cylinder_surface_area"
+      ],
+      "status": "ready",
+      "problemSetId": "cylinder_volume"
+    },
+    {
+      "id": "cone_volume",
+      "unitId": "l3",
+      "title": "Volume of a cone",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "cone_properties",
+        "cylinder_volume"
+      ],
+      "status": "ready",
+      "problemSetId": "cone_volume"
+    },
+    {
+      "id": "proportion_meaning",
+      "unitId": "l4",
+      "title": "Understanding proportion",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "ratio_properties"
+      ],
+      "status": "ready",
+      "problemSetId": "proportion_meaning"
+    },
+    {
+      "id": "proportion_solve",
+      "unitId": "l4",
+      "title": "Solving proportions",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "proportion_meaning"
+      ],
+      "status": "ready",
+      "problemSetId": "proportion_solve"
+    },
+    {
+      "id": "scale_drawing",
+      "unitId": "l4",
+      "title": "Scale",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "proportion_solve"
+      ],
+      "status": "ready",
+      "problemSetId": "scale_drawing"
+    },
+    {
+      "id": "proportion_application",
+      "unitId": "l4",
+      "title": "Applying proportion",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "proportion_solve"
+      ],
+      "status": "ready",
+      "problemSetId": "proportion_application"
+    },
+    {
+      "id": "pigeonhole",
+      "unitId": "l5",
+      "title": "Pigeonhole principle",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "pigeonhole"
+    },
+    {
+      "id": "kg_comb6",
+      "unitId": "compkg",
+      "title": "Introducing combinatorial counting",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_comb6"
+    },
+    {
+      "id": "kg_reason6",
+      "unitId": "compkg",
+      "title": "Reasoning about maxima & minima",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_reason6"
+    },
+    {
+      "id": "nt_remainder6",
+      "unitId": "compnt",
+      "title": "Remainders & cycles",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "nt_remainder6"
+    },
+    {
+      "id": "comb_casework6",
+      "unitId": "compnt",
+      "title": "Counting by cases",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "comb_casework6"
+    },
+    {
+      "id": "geo_circle6",
+      "unitId": "compgeo",
+      "title": "Circles & shaded areas",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "geo_circle6"
+    }
+  ]
+}

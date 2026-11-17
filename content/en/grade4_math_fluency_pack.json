@@ -1,0 +1,1731 @@
+{
+  "version": "1.0.0",
+  "grade": 4,
+  "subject": "math_fluency",
+  "engine_config": {
+    "latency_gate_seconds": 3,
+    "mastery": {
+      "take_off": {
+        "consecutive_correct_within_gate": 12
+      },
+      "orbit": {
+        "window_attempts": 30,
+        "max_errors": 2
+      },
+      "universe": {
+        "window_attempts": 30,
+        "max_errors": 2
+      }
+    },
+    "correction_loop": {
+      "trigger_on": [
+        "wrong_answer",
+        "timeout"
+      ],
+      "immediate_reteach": true,
+      "immediate_retest": true
+    },
+    "interleave_rules": {
+      "take_off_pool": "current_level.new_facts",
+      "orbit_pool": "current_level.new_facts ∪ previous_level.new_facts",
+      "universe_pool": "union(A..current_level).new_facts",
+      "recent_miss_weight": 3
+    },
+    "milestone_races": {
+      "duration_seconds": 120,
+      "speeds": [
+        {
+          "id": "relaxed",
+          "label": "Relaxed",
+          "emoji": "🐢",
+          "seconds": 180
+        },
+        {
+          "id": "standard",
+          "label": "Standard",
+          "emoji": "🚀",
+          "seconds": 120
+        },
+        {
+          "id": "challenge",
+          "label": "Challenge",
+          "emoji": "⚡",
+          "seconds": 60
+        }
+      ],
+      "positions_percent": [
+        25,
+        50,
+        75,
+        100
+      ]
+    },
+    "individualized_goal": {
+      "probe_problem_count": 10,
+      "latency_multiplier": 2.5,
+      "min_gate_seconds": 2.0,
+      "max_gate_seconds": 6.0
+    },
+    "time_lock": {
+      "enabled": true,
+      "play_minutes": 15,
+      "break_minutes": 20
+    }
+  },
+  "tracks": [
+    {
+      "trackId": "mul_extended_oral",
+      "name": "Multiplying tens & hundreds",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "meo_200x3",
+              "prompt": "200 × 3",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_300x2",
+              "prompt": "300 × 2",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_400x2",
+              "prompt": "400 × 2",
+              "answer": 800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_500x3",
+              "prompt": "500 × 3",
+              "answer": 1500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_200x2",
+              "prompt": "200 × 2",
+              "answer": 400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_200x4",
+              "prompt": "200 × 4",
+              "answer": 800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_200x7",
+              "prompt": "200 × 7",
+              "answer": 1400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_300x3",
+              "prompt": "300 × 3",
+              "answer": 900,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_300x4",
+              "prompt": "300 × 4",
+              "answer": 1200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_300x6",
+              "prompt": "300 × 6",
+              "answer": 1800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_400x4",
+              "prompt": "400 × 4",
+              "answer": 1600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_400x7",
+              "prompt": "400 × 7",
+              "answer": 2800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_500x5",
+              "prompt": "500 × 5",
+              "answer": 2500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_600x3",
+              "prompt": "600 × 3",
+              "answer": 1800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_700x4",
+              "prompt": "700 × 4",
+              "answer": 2800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_900x5",
+              "prompt": "900 × 5",
+              "answer": 4500,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "meo_30x20",
+              "prompt": "30 × 20",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_40x30",
+              "prompt": "40 × 30",
+              "answer": 1200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_50x40",
+              "prompt": "50 × 40",
+              "answer": 2000,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_60x20",
+              "prompt": "60 × 20",
+              "answer": 1200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_20x20",
+              "prompt": "20 × 20",
+              "answer": 400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_20x40",
+              "prompt": "20 × 40",
+              "answer": 800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_20x70",
+              "prompt": "20 × 70",
+              "answer": 1400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_30x30",
+              "prompt": "30 × 30",
+              "answer": 900,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_30x60",
+              "prompt": "30 × 60",
+              "answer": 1800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_30x80",
+              "prompt": "30 × 80",
+              "answer": 2400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_40x40",
+              "prompt": "40 × 40",
+              "answer": 1600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_40x70",
+              "prompt": "40 × 70",
+              "answer": 2800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_50x50",
+              "prompt": "50 × 50",
+              "answer": 2500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_50x60",
+              "prompt": "50 × 60",
+              "answer": 3000,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_60x70",
+              "prompt": "60 × 70",
+              "answer": 4200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_80x90",
+              "prompt": "80 × 90",
+              "answer": 7200,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "meo_120x4",
+              "prompt": "120 × 4",
+              "answer": 480,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_230x3",
+              "prompt": "230 × 3",
+              "answer": 690,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_310x2",
+              "prompt": "310 × 2",
+              "answer": 620,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_150x4",
+              "prompt": "150 × 4",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_110x3",
+              "prompt": "110 × 3",
+              "answer": 330,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_130x4",
+              "prompt": "130 × 4",
+              "answer": 520,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_140x3",
+              "prompt": "140 × 3",
+              "answer": 420,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_160x5",
+              "prompt": "160 × 5",
+              "answer": 800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_210x3",
+              "prompt": "210 × 3",
+              "answer": 630,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_220x4",
+              "prompt": "220 × 4",
+              "answer": 880,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_240x2",
+              "prompt": "240 × 2",
+              "answer": 480,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_320x3",
+              "prompt": "320 × 3",
+              "answer": 960,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_330x2",
+              "prompt": "330 × 2",
+              "answer": 660,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_410x2",
+              "prompt": "410 × 2",
+              "answer": 820,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_420x2",
+              "prompt": "420 × 2",
+              "answer": 840,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_250x4",
+              "prompt": "250 × 4",
+              "answer": 1000,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "meo_25x20",
+              "prompt": "25 × 20",
+              "answer": 500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_15x40",
+              "prompt": "15 × 40",
+              "answer": 600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_35x20",
+              "prompt": "35 × 20",
+              "answer": 700,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_45x20",
+              "prompt": "45 × 20",
+              "answer": 900,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_12x30",
+              "prompt": "12 × 30",
+              "answer": 360,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_14x20",
+              "prompt": "14 × 20",
+              "answer": 280,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_16x30",
+              "prompt": "16 × 30",
+              "answer": 480,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_18x20",
+              "prompt": "18 × 20",
+              "answer": 360,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_24x20",
+              "prompt": "24 × 20",
+              "answer": 480,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_25x40",
+              "prompt": "25 × 40",
+              "answer": 1000,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_35x40",
+              "prompt": "35 × 40",
+              "answer": 1400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_45x40",
+              "prompt": "45 × 40",
+              "answer": 1800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_55x20",
+              "prompt": "55 × 20",
+              "answer": 1100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_65x20",
+              "prompt": "65 × 20",
+              "answer": 1300,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_75x20",
+              "prompt": "75 × 20",
+              "answer": 1500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "meo_85x20",
+              "prompt": "85 × 20",
+              "answer": 1700,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "div_tens_oral",
+      "name": "Dividing by multiples of ten",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "dto_80d20",
+              "prompt": "80 ÷ 20",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_120d30",
+              "prompt": "120 ÷ 30",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_160d40",
+              "prompt": "160 ÷ 40",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_200d50",
+              "prompt": "200 ÷ 50",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_40d20",
+              "prompt": "40 ÷ 20",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_20d10",
+              "prompt": "20 ÷ 10",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_60d20",
+              "prompt": "60 ÷ 20",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_30d10",
+              "prompt": "30 ÷ 10",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_100d20",
+              "prompt": "100 ÷ 20",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_50d10",
+              "prompt": "50 ÷ 10",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_60d10",
+              "prompt": "60 ÷ 10",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_140d20",
+              "prompt": "140 ÷ 20",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_70d10",
+              "prompt": "70 ÷ 10",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_160d20",
+              "prompt": "160 ÷ 20",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_80d10",
+              "prompt": "80 ÷ 10",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_180d20",
+              "prompt": "180 ÷ 20",
+              "answer": 9,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "dto_180d30",
+              "prompt": "180 ÷ 30",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_240d40",
+              "prompt": "240 ÷ 40",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_360d60",
+              "prompt": "360 ÷ 60",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_420d70",
+              "prompt": "420 ÷ 70",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_60d30",
+              "prompt": "60 ÷ 30",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_100d50",
+              "prompt": "100 ÷ 50",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_90d30",
+              "prompt": "90 ÷ 30",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_120d40",
+              "prompt": "120 ÷ 40",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_150d30",
+              "prompt": "150 ÷ 30",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_250d50",
+              "prompt": "250 ÷ 50",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_210d30",
+              "prompt": "210 ÷ 30",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_280d40",
+              "prompt": "280 ÷ 40",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_240d30",
+              "prompt": "240 ÷ 30",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_400d50",
+              "prompt": "400 ÷ 50",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_360d40",
+              "prompt": "360 ÷ 40",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_450d50",
+              "prompt": "450 ÷ 50",
+              "answer": 9,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "dto_270d30",
+              "prompt": "270 ÷ 30",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_350d50",
+              "prompt": "350 ÷ 50",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_480d60",
+              "prompt": "480 ÷ 60",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_560d70",
+              "prompt": "560 ÷ 70",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_80d40",
+              "prompt": "80 ÷ 40",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_140d70",
+              "prompt": "140 ÷ 70",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_150d50",
+              "prompt": "150 ÷ 50",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_210d70",
+              "prompt": "210 ÷ 70",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_280d70",
+              "prompt": "280 ÷ 70",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_360d90",
+              "prompt": "360 ÷ 90",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_200d40",
+              "prompt": "200 ÷ 40",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_400d80",
+              "prompt": "400 ÷ 80",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_300d50",
+              "prompt": "300 ÷ 50",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_120d20",
+              "prompt": "120 ÷ 20",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_420d60",
+              "prompt": "420 ÷ 60",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_630d70",
+              "prompt": "630 ÷ 70",
+              "answer": 9,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "dto_630d90",
+              "prompt": "630 ÷ 90",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_720d80",
+              "prompt": "720 ÷ 80",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_540d60",
+              "prompt": "540 ÷ 60",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_810d90",
+              "prompt": "810 ÷ 90",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_120d60",
+              "prompt": "120 ÷ 60",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_160d80",
+              "prompt": "160 ÷ 80",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_180d60",
+              "prompt": "180 ÷ 60",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_270d90",
+              "prompt": "270 ÷ 90",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_240d60",
+              "prompt": "240 ÷ 60",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_320d80",
+              "prompt": "320 ÷ 80",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_300d60",
+              "prompt": "300 ÷ 60",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_450d90",
+              "prompt": "450 ÷ 90",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_480d80",
+              "prompt": "480 ÷ 80",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_540d90",
+              "prompt": "540 ÷ 90",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_490d70",
+              "prompt": "490 ÷ 70",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "dto_640d80",
+              "prompt": "640 ÷ 80",
+              "answer": 8,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "mixed_2step",
+      "name": "Two-step mixed operations.",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "m2s_8x5p20",
+              "prompt": "8 × 5 + 20",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_100m6x9",
+              "prompt": "100 - 6 × 9",
+              "answer": 46,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_72d8p15",
+              "prompt": "72 ÷ 8 + 15",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_50m24d6",
+              "prompt": "50 - 24 ÷ 6",
+              "answer": 46,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_6x7p15",
+              "prompt": "6 × 7 + 15",
+              "answer": 57,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_9x4p12",
+              "prompt": "9 × 4 + 12",
+              "answer": 48,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_7x8m20",
+              "prompt": "7 × 8 - 20",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_80m7x6",
+              "prompt": "80 - 7 × 6",
+              "answer": 38,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_90m8x7",
+              "prompt": "90 - 8 × 7",
+              "answer": 34,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_40p6x9",
+              "prompt": "40 + 6 × 9",
+              "answer": 94,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_48d6p17",
+              "prompt": "48 ÷ 6 + 17",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_63d7p24",
+              "prompt": "63 ÷ 7 + 24",
+              "answer": 33,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_81d9m5",
+              "prompt": "81 ÷ 9 - 5",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_60m35d5",
+              "prompt": "60 - 35 ÷ 5",
+              "answer": 53,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_45p56d8",
+              "prompt": "45 + 56 ÷ 8",
+              "answer": 52,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_72d9x5",
+              "prompt": "72 ÷ 9 × 5",
+              "answer": 40,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "m2s_15x4m30",
+              "prompt": "15 × 4 - 30",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_200m25x4",
+              "prompt": "200 - 25 × 4",
+              "answer": 100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_64d8x7",
+              "prompt": "64 ÷ 8 × 7",
+              "answer": 56,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_90d9p35",
+              "prompt": "90 ÷ 9 + 35",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_12x5p30",
+              "prompt": "12 × 5 + 30",
+              "answer": 90,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_18x4m20",
+              "prompt": "18 × 4 - 20",
+              "answer": 52,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_24x3p16",
+              "prompt": "24 × 3 + 16",
+              "answer": 88,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_150m16x5",
+              "prompt": "150 - 16 × 5",
+              "answer": 70,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_180m14x6",
+              "prompt": "180 - 14 × 6",
+              "answer": 96,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_320m25x8",
+              "prompt": "320 - 25 × 8",
+              "answer": 120,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_96d8p45",
+              "prompt": "96 ÷ 8 + 45",
+              "answer": 57,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_144d12m5",
+              "prompt": "144 ÷ 12 - 5",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_180d9p34",
+              "prompt": "180 ÷ 9 + 34",
+              "answer": 54,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_240d6m15",
+              "prompt": "240 ÷ 6 - 15",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_360d9x2",
+              "prompt": "360 ÷ 9 × 2",
+              "answer": 80,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_420d7m18",
+              "prompt": "420 ÷ 7 - 18",
+              "answer": 42,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "m2s_30p50x2",
+              "prompt": "(30 + 50) × 2",
+              "answer": 160,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_120d4x3",
+              "prompt": "120 ÷ (4 × 3)",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_200m80d4",
+              "prompt": "(200 - 80) ÷ 4",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_7x60m48",
+              "prompt": "7 × (60 - 48)",
+              "answer": 84,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_20p40x3",
+              "prompt": "(20 + 40) × 3",
+              "answer": 180,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_90m35x2",
+              "prompt": "(90 - 35) × 2",
+              "answer": 110,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_45p15d5",
+              "prompt": "(45 + 15) ÷ 5",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_84m28d7",
+              "prompt": "(84 - 28) ÷ 7",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_210d3x5",
+              "prompt": "210 ÷ (3 × 5)",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_360d4x5",
+              "prompt": "360 ÷ (4 × 5)",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_6x25m13",
+              "prompt": "6 × (25 - 13)",
+              "answer": 72,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_4x18p12",
+              "prompt": "4 × (18 + 12)",
+              "answer": 120,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_36p24d3",
+              "prompt": "(36 + 24) ÷ 3",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_150m60d3",
+              "prompt": "(150 - 60) ÷ 3",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_15p35x4",
+              "prompt": "(15 + 35) × 4",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_96m42d6",
+              "prompt": "(96 - 42) ÷ 6",
+              "answer": 9,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "m2s_300m150d5",
+              "prompt": "300 - 150 ÷ 5",
+              "answer": 270,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_48d16m8",
+              "prompt": "48 ÷ (16 - 8)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_45p55d10",
+              "prompt": "(45 + 55) ÷ 10",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_8x25m17",
+              "prompt": "8 × (25 - 17)",
+              "answer": 64,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_400m240d6",
+              "prompt": "400 - 240 ÷ 6",
+              "answer": 360,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_125p15x8",
+              "prompt": "125 + 15 × 8",
+              "answer": 245,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_72d18m9",
+              "prompt": "72 ÷ (18 - 9)",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_132d8p4",
+              "prompt": "132 ÷ (8 + 4)",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_75p45d6",
+              "prompt": "(75 + 45) ÷ 6",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_180m60d8",
+              "prompt": "(180 - 60) ÷ 8",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_9x24m16",
+              "prompt": "9 × (24 - 16)",
+              "answer": 72,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_6x35p15",
+              "prompt": "6 × (35 + 15)",
+              "answer": 300,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_252d14p7",
+              "prompt": "252 ÷ (14 + 7)",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_250m100d5",
+              "prompt": "(250 - 100) ÷ 5",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_180p360d9",
+              "prompt": "180 + 360 ÷ 9",
+              "answer": 220,
+              "learningType": "pattern"
+            },
+            {
+              "id": "m2s_25x8m45",
+              "prompt": "25 × 8 - 45",
+              "answer": 155,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "trackId": "large_num_oral",
+      "name": "Large number operations · ten thousand.",
+      "enabled": true,
+      "levels": [
+        {
+          "level": "A",
+          "new_facts": [
+            {
+              "id": "lno_3wp5w",
+              "prompt": "3 ten thousand + 5 ten thousand = ( ) ten thousand",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_9wm4w",
+              "prompt": "9 ten thousand - 4 ten thousand = ( ) ten thousand",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_6wp7w",
+              "prompt": "6 ten thousand + 7 ten thousand = ( ) ten thousand",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_12wm5w",
+              "prompt": "12 ten thousand - 5 ten thousand = ( ) ten thousand",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_2wp7w",
+              "prompt": "2 ten-thousands + 7 ten-thousands = ( ) ten-thousands",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_4wp8w",
+              "prompt": "4 ten-thousands + 8 ten-thousands = ( ) ten-thousands",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_5wp9w",
+              "prompt": "5 ten-thousands + 9 ten-thousands = ( ) ten-thousands",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_7wp9w",
+              "prompt": "7 ten-thousands + 9 ten-thousands = ( ) ten-thousands",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_8wp10w",
+              "prompt": "8 ten-thousands + 10 ten-thousands = ( ) ten-thousands",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_9wp11w",
+              "prompt": "9 ten-thousands + 11 ten-thousands = ( ) ten-thousands",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_11wm5w",
+              "prompt": "11 ten-thousands - 5 ten-thousands = ( ) ten-thousands",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_14wm4w",
+              "prompt": "14 ten-thousands - 4 ten-thousands = ( ) ten-thousands",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_16wm5w",
+              "prompt": "16 ten-thousands - 5 ten-thousands = ( ) ten-thousands",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_18wm3w",
+              "prompt": "18 ten-thousands - 3 ten-thousands = ( ) ten-thousands",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_20wm3w",
+              "prompt": "20 ten-thousands - 3 ten-thousands = ( ) ten-thousands",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_25wm6w",
+              "prompt": "25 ten-thousands - 6 ten-thousands = ( ) ten-thousands",
+              "answer": 19,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "B",
+          "new_facts": [
+            {
+              "id": "lno_2wx3",
+              "prompt": "2 ten thousand × 3 = ( ) ten thousand",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_4wx5",
+              "prompt": "4 ten thousand × 5 = ( ) ten thousand",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_15wd3",
+              "prompt": "15 ten thousand ÷ 3 = ( ) ten thousand",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_24wd6",
+              "prompt": "24 ten thousand ÷ 6 = ( ) ten thousand",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_3wx4",
+              "prompt": "3 ten-thousands × 4 = ( ) ten-thousands",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_5wx3",
+              "prompt": "5 ten-thousands × 3 = ( ) ten-thousands",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_6wx4",
+              "prompt": "6 ten-thousands × 4 = ( ) ten-thousands",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_7wx3",
+              "prompt": "7 ten-thousands × 3 = ( ) ten-thousands",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_8wx4",
+              "prompt": "8 ten-thousands × 4 = ( ) ten-thousands",
+              "answer": 32,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_9wx5",
+              "prompt": "9 ten-thousands × 5 = ( ) ten-thousands",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_18wd2",
+              "prompt": "18 ten-thousands ÷ 2 = ( ) ten-thousands",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_21wd3",
+              "prompt": "21 ten-thousands ÷ 3 = ( ) ten-thousands",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_32wd4",
+              "prompt": "32 ten-thousands ÷ 4 = ( ) ten-thousands",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_48wd4",
+              "prompt": "48 ten-thousands ÷ 4 = ( ) ten-thousands",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_66wd6",
+              "prompt": "66 ten-thousands ÷ 6 = ( ) ten-thousands",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_90wd5",
+              "prompt": "90 ten-thousands ÷ 5 = ( ) ten-thousands",
+              "answer": 18,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "C",
+          "new_facts": [
+            {
+              "id": "lno_30wp70w",
+              "prompt": "30 ten thousand + 70 ten thousand = ( ) ten thousand",
+              "answer": 100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_200wm80w",
+              "prompt": "200 ten thousand - 80 ten thousand = ( ) ten thousand",
+              "answer": 120,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_50wx4",
+              "prompt": "50 ten thousand × 4 = ( ) ten thousand",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_600wd3",
+              "prompt": "600 ten thousand ÷ 3 = ( ) ten thousand",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_20wp40w",
+              "prompt": "20 ten-thousands + 40 ten-thousands = ( ) ten-thousands",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_40wp50w",
+              "prompt": "40 ten-thousands + 50 ten-thousands = ( ) ten-thousands",
+              "answer": 90,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_60wp80w",
+              "prompt": "60 ten-thousands + 80 ten-thousands = ( ) ten-thousands",
+              "answer": 140,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_90wp80w",
+              "prompt": "90 ten-thousands + 80 ten-thousands = ( ) ten-thousands",
+              "answer": 170,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_300wm70w",
+              "prompt": "300 ten-thousands - 70 ten-thousands = ( ) ten-thousands",
+              "answer": 230,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_500wm90w",
+              "prompt": "500 ten-thousands - 90 ten-thousands = ( ) ten-thousands",
+              "answer": 410,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_20wx4",
+              "prompt": "20 ten-thousands × 4 = ( ) ten-thousands",
+              "answer": 80,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_40wx6",
+              "prompt": "40 ten-thousands × 6 = ( ) ten-thousands",
+              "answer": 240,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_70wx5",
+              "prompt": "70 ten-thousands × 5 = ( ) ten-thousands",
+              "answer": 350,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_450wd3",
+              "prompt": "450 ten-thousands ÷ 3 = ( ) ten-thousands",
+              "answer": 150,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_540wd3",
+              "prompt": "540 ten-thousands ÷ 3 = ( ) ten-thousands",
+              "answer": 180,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_810wd3",
+              "prompt": "810 ten-thousands ÷ 3 = ( ) ten-thousands",
+              "answer": 270,
+              "learningType": "pattern"
+            }
+          ]
+        },
+        {
+          "level": "D",
+          "new_facts": [
+            {
+              "id": "lno_40wx5",
+              "prompt": "40 ten thousand × 5 = ( ) ten thousand",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_150wd5",
+              "prompt": "150 ten thousand ÷ 5 = ( ) ten thousand",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_80wd4",
+              "prompt": "80 ten thousand ÷ 4 = ( ) ten thousand",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_250wd5",
+              "prompt": "250 ten thousand ÷ 5 = ( ) ten thousand",
+              "answer": 50,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_120wp180w",
+              "prompt": "120 ten-thousands + 180 ten-thousands = ( ) ten-thousands",
+              "answer": 300,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_350wp270w",
+              "prompt": "350 ten-thousands + 270 ten-thousands = ( ) ten-thousands",
+              "answer": 620,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_800wm350w",
+              "prompt": "800 ten-thousands - 350 ten-thousands = ( ) ten-thousands",
+              "answer": 450,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_900wm260w",
+              "prompt": "900 ten-thousands - 260 ten-thousands = ( ) ten-thousands",
+              "answer": 640,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_120wx3",
+              "prompt": "120 ten-thousands × 3 = ( ) ten-thousands",
+              "answer": 360,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_140wx4",
+              "prompt": "140 ten-thousands × 4 = ( ) ten-thousands",
+              "answer": 560,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_160wx5",
+              "prompt": "160 ten-thousands × 5 = ( ) ten-thousands",
+              "answer": 800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_180wx6",
+              "prompt": "180 ten-thousands × 6 = ( ) ten-thousands",
+              "answer": 1080,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_360wd3",
+              "prompt": "360 ten-thousands ÷ 3 = ( ) ten-thousands",
+              "answer": 120,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_480wd3",
+              "prompt": "480 ten-thousands ÷ 3 = ( ) ten-thousands",
+              "answer": 160,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_630wd7",
+              "prompt": "630 ten-thousands ÷ 7 = ( ) ten-thousands",
+              "answer": 90,
+              "learningType": "pattern"
+            },
+            {
+              "id": "lno_840wd6",
+              "prompt": "840 ten-thousands ÷ 6 = ( ) ten-thousands",
+              "answer": 140,
+              "learningType": "pattern"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "non_drill_topics": [
+    "mul3x2_column",
+    "div_2digit_column",
+    "decimal_add_column",
+    "decimal_sub_column",
+    "angle_measure",
+    "large_number_reading",
+    "bar_chart",
+    "average_calculation"
+  ]
+}

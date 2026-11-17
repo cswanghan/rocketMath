@@ -1,0 +1,710 @@
+{
+  "textbook": "PEP edition",
+  "grade": 3,
+  "units": [
+    {
+      "id": "found",
+      "term": "upper",
+      "index": 0,
+      "title": "Mental math foundations",
+      "topicIds": [
+        "mult_facts",
+        "div_facts"
+      ]
+    },
+    {
+      "id": "u1",
+      "term": "upper",
+      "index": 1,
+      "title": "Hours, minutes & seconds",
+      "topicIds": [
+        "read_clock",
+        "time_conversion",
+        "time_elapsed"
+      ]
+    },
+    {
+      "id": "u2",
+      "term": "upper",
+      "index": 2,
+      "title": "Addition & subtraction to 10,000 · 1",
+      "topicIds": [
+        "add_sub_oral",
+        "add_sub_estimate"
+      ]
+    },
+    {
+      "id": "u3",
+      "term": "upper",
+      "index": 3,
+      "title": "Measurement",
+      "topicIds": [
+        "length_units",
+        "length_conversion",
+        "mass_units",
+        "mass_conversion"
+      ]
+    },
+    {
+      "id": "u4",
+      "term": "upper",
+      "index": 4,
+      "title": "Addition & subtraction to 10,000 · 2",
+      "topicIds": [
+        "add_column",
+        "sub_column",
+        "add_sub_check"
+      ]
+    },
+    {
+      "id": "u5",
+      "term": "upper",
+      "index": 5,
+      "title": "Understanding multiples",
+      "topicIds": [
+        "times_concept",
+        "times_word"
+      ]
+    },
+    {
+      "id": "u6",
+      "term": "upper",
+      "index": 6,
+      "title": "Multi-digit × 1 digit",
+      "topicIds": [
+        "round_number_oral",
+        "mul1_nocarry",
+        "mul1_carry",
+        "mul1_zero"
+      ]
+    },
+    {
+      "id": "u7",
+      "term": "upper",
+      "index": 7,
+      "title": "Rectangles & squares",
+      "topicIds": [
+        "quad_props",
+        "perimeter_concept",
+        "perimeter_formula"
+      ]
+    },
+    {
+      "id": "u8",
+      "term": "upper",
+      "index": 8,
+      "title": "Introducing fractions",
+      "topicIds": [
+        "fraction_meaning",
+        "fraction_compare",
+        "fraction_add_sub"
+      ]
+    },
+    {
+      "id": "u9",
+      "term": "upper",
+      "index": 9,
+      "title": "Exploring sets",
+      "topicIds": [
+        "sets"
+      ]
+    },
+    {
+      "id": "l1",
+      "term": "lower",
+      "index": 1,
+      "title": "Position & direction · 1",
+      "topicIds": [
+        "directions",
+        "route_map"
+      ]
+    },
+    {
+      "id": "l2",
+      "term": "lower",
+      "index": 2,
+      "title": "Division by 1 digit",
+      "topicIds": [
+        "div_oral",
+        "div_estimate",
+        "div_column",
+        "div_remainder"
+      ]
+    },
+    {
+      "id": "l3",
+      "term": "lower",
+      "index": 3,
+      "title": "Two-way tables",
+      "topicIds": [
+        "read_table"
+      ]
+    },
+    {
+      "id": "l4",
+      "term": "lower",
+      "index": 4,
+      "title": "2 digits × 2 digits",
+      "topicIds": [
+        "mul2_oral",
+        "mul2_column"
+      ]
+    },
+    {
+      "id": "l5",
+      "term": "lower",
+      "index": 5,
+      "title": "Area",
+      "topicIds": [
+        "area_concept",
+        "area_units",
+        "area_conversion",
+        "area_formula"
+      ]
+    },
+    {
+      "id": "l6",
+      "term": "lower",
+      "index": 6,
+      "title": "Years, months & days",
+      "topicIds": [
+        "month_days",
+        "date_calc",
+        "hour24"
+      ]
+    },
+    {
+      "id": "l7",
+      "term": "lower",
+      "index": 7,
+      "title": "Introducing decimals",
+      "topicIds": [
+        "decimal_meaning",
+        "decimal_compare",
+        "decimal_add_sub"
+      ]
+    },
+    {
+      "id": "l8",
+      "term": "lower",
+      "index": 8,
+      "title": "Exploring combinations",
+      "topicIds": [
+        "combination"
+      ]
+    },
+    {
+      "id": "compkg",
+      "term": "lower",
+      "index": 9,
+      "title": "Challenge · creative reasoning",
+      "topicIds": [
+        "kg_pattern3",
+        "kg_count3"
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "id": "mult_facts",
+      "unitId": "found",
+      "title": "Times tables",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "mult_facts"
+    },
+    {
+      "id": "div_facts",
+      "unitId": "found",
+      "title": "Division facts",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "mult_facts"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "div_facts"
+    },
+    {
+      "id": "read_clock",
+      "unitId": "u1",
+      "title": "Telling time",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "read_clock"
+    },
+    {
+      "id": "time_conversion",
+      "unitId": "u1",
+      "title": "Converting time units",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "time_conversion"
+    },
+    {
+      "id": "time_elapsed",
+      "unitId": "u1",
+      "title": "Elapsed time",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "time_conversion"
+      ],
+      "status": "ready",
+      "problemSetId": "time_elapsed"
+    },
+    {
+      "id": "add_sub_oral",
+      "unitId": "u2",
+      "title": "Adding & subtracting hundreds and tens",
+      "pedagogy": "fluency",
+      "dependsOn": [],
+      "status": "ready",
+      "fluencyTrackId": "add_sub_oral"
+    },
+    {
+      "id": "add_sub_estimate",
+      "unitId": "u2",
+      "title": "Estimating sums & differences",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "add_sub_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "add_sub_estimate"
+    },
+    {
+      "id": "length_units",
+      "unitId": "u3",
+      "title": "Length units: mm, dm & km",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "length_units"
+    },
+    {
+      "id": "length_conversion",
+      "unitId": "u3",
+      "title": "Converting length units",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "length_units"
+      ],
+      "status": "ready",
+      "problemSetId": "length_conversion"
+    },
+    {
+      "id": "mass_units",
+      "unitId": "u3",
+      "title": "Mass units: t, kg & g",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "mass_units"
+    },
+    {
+      "id": "mass_conversion",
+      "unitId": "u3",
+      "title": "Converting mass units",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "mass_units"
+      ],
+      "status": "ready",
+      "problemSetId": "mass_conversion"
+    },
+    {
+      "id": "add_column",
+      "unitId": "u4",
+      "title": "3-digit column addition",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "add_sub_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "add_column"
+    },
+    {
+      "id": "sub_column",
+      "unitId": "u4",
+      "title": "3-digit column subtraction",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "add_column"
+      ],
+      "status": "ready",
+      "problemSetId": "sub_column"
+    },
+    {
+      "id": "add_sub_check",
+      "unitId": "u4",
+      "title": "Checking addition & subtraction",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "sub_column"
+      ],
+      "status": "ready",
+      "problemSetId": "add_sub_check"
+    },
+    {
+      "id": "times_concept",
+      "unitId": "u5",
+      "title": "Understanding multiples",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "mult_facts"
+      ],
+      "status": "ready",
+      "problemSetId": "times_concept"
+    },
+    {
+      "id": "times_word",
+      "unitId": "u5",
+      "title": "Word problems with multiples",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "times_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "times_word"
+    },
+    {
+      "id": "round_number_oral",
+      "unitId": "u6",
+      "title": "Tens & hundreds × 1 digit",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "mult_facts"
+      ],
+      "status": "ready",
+      "fluencyTrackId": "round_number_oral"
+    },
+    {
+      "id": "mul1_nocarry",
+      "unitId": "u6",
+      "title": "Column form · no regrouping",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "round_number_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "mul1_nocarry"
+    },
+    {
+      "id": "mul1_carry",
+      "unitId": "u6",
+      "title": "Column form · regrouping",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "mul1_nocarry"
+      ],
+      "status": "ready",
+      "problemSetId": "mul1_carry"
+    },
+    {
+      "id": "mul1_zero",
+      "unitId": "u6",
+      "title": "Multiplying numbers with zeros",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "mul1_carry"
+      ],
+      "status": "ready",
+      "problemSetId": "mul1_zero"
+    },
+    {
+      "id": "quad_props",
+      "unitId": "u7",
+      "title": "Quadrilaterals",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "quad_props"
+    },
+    {
+      "id": "perimeter_concept",
+      "unitId": "u7",
+      "title": "Understanding perimeter",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "perimeter_concept"
+    },
+    {
+      "id": "perimeter_formula",
+      "unitId": "u7",
+      "title": "Rectangle & square perimeter",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "perimeter_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "perimeter_formula"
+    },
+    {
+      "id": "fraction_meaning",
+      "unitId": "u8",
+      "title": "Parts of a whole",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "fraction_meaning"
+    },
+    {
+      "id": "fraction_compare",
+      "unitId": "u8",
+      "title": "Comparing fractions",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_meaning"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_compare"
+    },
+    {
+      "id": "fraction_add_sub",
+      "unitId": "u8",
+      "title": "Fractions with like denominators",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "fraction_compare"
+      ],
+      "status": "ready",
+      "problemSetId": "fraction_add_sub"
+    },
+    {
+      "id": "sets",
+      "unitId": "u9",
+      "title": "Sets & overlap",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "sets"
+    },
+    {
+      "id": "directions",
+      "unitId": "l1",
+      "title": "North, south, east & west",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "directions"
+    },
+    {
+      "id": "route_map",
+      "unitId": "l1",
+      "title": "Reading route maps",
+      "pedagogy": "logic",
+      "dependsOn": [
+        "directions"
+      ],
+      "status": "ready",
+      "problemSetId": "route_map"
+    },
+    {
+      "id": "div_oral",
+      "unitId": "l2",
+      "title": "Mental division",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "div_facts"
+      ],
+      "status": "ready",
+      "problemSetId": "div_oral"
+    },
+    {
+      "id": "div_estimate",
+      "unitId": "l2",
+      "title": "Estimating quotients",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "div_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "div_estimate"
+    },
+    {
+      "id": "div_column",
+      "unitId": "l2",
+      "title": "Long division by 1 digit",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "div_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "div_column"
+    },
+    {
+      "id": "div_remainder",
+      "unitId": "l2",
+      "title": "Division with remainders",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "div_column"
+      ],
+      "status": "ready",
+      "problemSetId": "div_remainder"
+    },
+    {
+      "id": "read_table",
+      "unitId": "l3",
+      "title": "Reading two-way tables",
+      "pedagogy": "data",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "read_table"
+    },
+    {
+      "id": "mul2_oral",
+      "unitId": "l4",
+      "title": "2 digits × multiples of ten",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "mult_facts"
+      ],
+      "status": "ready",
+      "problemSetId": "mul2_oral"
+    },
+    {
+      "id": "mul2_column",
+      "unitId": "l4",
+      "title": "2-digit column multiplication",
+      "pedagogy": "procedure",
+      "dependsOn": [
+        "mul2_oral"
+      ],
+      "status": "ready",
+      "problemSetId": "mul2_column"
+    },
+    {
+      "id": "area_concept",
+      "unitId": "l5",
+      "title": "Understanding area",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "area_concept"
+    },
+    {
+      "id": "area_units",
+      "unitId": "l5",
+      "title": "Area units: cm² & m²",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "area_concept"
+      ],
+      "status": "ready",
+      "problemSetId": "area_units"
+    },
+    {
+      "id": "area_conversion",
+      "unitId": "l5",
+      "title": "Converting area units",
+      "pedagogy": "fluency",
+      "dependsOn": [
+        "area_units"
+      ],
+      "status": "ready",
+      "problemSetId": "area_conversion"
+    },
+    {
+      "id": "area_formula",
+      "unitId": "l5",
+      "title": "Rectangle & square area",
+      "pedagogy": "formula",
+      "dependsOn": [
+        "area_units"
+      ],
+      "status": "ready",
+      "problemSetId": "area_formula"
+    },
+    {
+      "id": "month_days",
+      "unitId": "l6",
+      "title": "Month lengths & leap years",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "month_days"
+    },
+    {
+      "id": "date_calc",
+      "unitId": "l6",
+      "title": "Calendar calculations",
+      "pedagogy": "logic",
+      "dependsOn": [
+        "month_days"
+      ],
+      "status": "ready",
+      "problemSetId": "date_calc"
+    },
+    {
+      "id": "hour24",
+      "unitId": "l6",
+      "title": "24-hour time",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "hour24"
+    },
+    {
+      "id": "decimal_meaning",
+      "unitId": "l7",
+      "title": "Understanding decimals",
+      "pedagogy": "concept",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "decimal_meaning"
+    },
+    {
+      "id": "decimal_compare",
+      "unitId": "l7",
+      "title": "Comparing decimals",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_meaning"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_compare"
+    },
+    {
+      "id": "decimal_add_sub",
+      "unitId": "l7",
+      "title": "Adding & subtracting decimals",
+      "pedagogy": "concept",
+      "dependsOn": [
+        "decimal_compare"
+      ],
+      "status": "ready",
+      "problemSetId": "decimal_add_sub"
+    },
+    {
+      "id": "combination",
+      "unitId": "l8",
+      "title": "Combinations",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "combination"
+    },
+    {
+      "id": "kg_pattern3",
+      "unitId": "compkg",
+      "title": "Finding patterns",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_pattern3"
+    },
+    {
+      "id": "kg_count3",
+      "unitId": "compkg",
+      "title": "Fun with counting",
+      "pedagogy": "logic",
+      "dependsOn": [],
+      "status": "ready",
+      "problemSetId": "kg_count3"
+    }
+  ]
+}

@@ -2,6 +2,7 @@
 // popup 模式 (google.ts) 和 redirect 模式 (google-callback.ts) 都用它, 单一来源。
 import { signJWT } from '../../../src/auth';
 import { randomUsernameSuffix } from '../../../src/google';
+import type { Database } from '../../../src/server-types';
 
 const GOOGLE_PASSWORD_PLACEHOLDER = '!google-oauth!';
 
@@ -16,7 +17,7 @@ export type GoogleLoginResult =
   | { ok: false; error: string; status: number };
 
 export async function resolveGoogleLogin(
-  db: D1Database,
+  db: Database,
   payload: GooglePayload,
   jwtSecret: string,
 ): Promise<GoogleLoginResult> {
@@ -28,11 +29,14 @@ export async function resolveGoogleLogin(
 
   if (!user) {
     user = await db
-      .prepare('SELECT id, username, role, status, email, google_sub FROM users WHERE email = ?')
+      .prepare('SELECT id, username, role, status, email, google_sub, apple_sub FROM users WHERE email = ?')
       .bind(payload.email)
       .first<any>();
 
     if (user) {
+      // An Apple-created account must not be taken over through the legacy
+      // Google email-link path. Explicit account linking is not implemented.
+      if (user.apple_sub) return { ok: false, error: '此邮箱已用于 Apple 登录，请使用 Apple 登录。', status: 409 };
       await db.prepare('UPDATE users SET google_sub = ? WHERE id = ?').bind(payload.sub, user.id).run();
     } else {
       let tempUsername = `google_${randomUsernameSuffix()}`;

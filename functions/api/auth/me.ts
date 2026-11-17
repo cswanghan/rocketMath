@@ -1,9 +1,10 @@
-import { getRequestUser } from '../../../src/request-auth';
+import { getRequestIdentity } from '../../../src/request-auth';
+import type { Database, PagesHandler } from '../../../src/server-types';
 
-interface Env { DB: D1Database; JWT_SECRET: string; }
+interface Env { DB: Database; JWT_SECRET: string; }
 
-export const onRequestGet: PagesFunction<Env> = async (context) => {
-  const jwtUser = await getRequestUser(context.request, context.env);
+export const onRequestGet: PagesHandler<Env> = async (context) => {
+  const jwtUser = await getRequestIdentity(context.request, context.env);
 
   if (!jwtUser?.userId) {
     return json({ error: '未登录' }, 401);
@@ -13,6 +14,11 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     'SELECT id, username, role, status FROM users WHERE id = ?'
   ).bind(jwtUser.userId).first<any>();
 
+  if (dbUser?.status === 'deleting') {
+    // Preserve the device's deletion credential across relaunch/network retries.
+    // Every data/membership API still rejects this non-approved account.
+    return json({ error: '账号删除尚未完成，请在账号页面重试删除。', code: 'account_deletion_pending' }, 409);
+  }
   if (!dbUser || dbUser.status !== 'approved') {
     return json({ error: '账号不可用' }, 401);
   }
