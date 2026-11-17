@@ -38,7 +38,7 @@ final class Grade4FluencyUITests: XCTestCase {
             let dividend = try XCTUnwrap(operands.first), divisor = try XCTUnwrap(operands.last)
             XCTAssertEqual(dividend % divisor, 0)
             for digit in String(dividend / divisor) { app.buttons[String(digit)].tap() }
-            app.buttons["answer-submit"].tap()
+            XCTAssertFalse(app.buttons["answer-submit"].exists)
             XCTAssertTrue(app.buttons["fluency-continue"].waitForExistence(timeout: 5))
             XCTAssertTrue(app.staticTexts[english ? "That's it!" : "对了！"].exists)
             if index < 5 { app.buttons["fluency-continue"].tap() }

@@ -46,7 +46,7 @@ final class AdditionalFluencyUITests: XCTestCase {
             let answer = try XCTUnwrap(values.first) * XCTUnwrap(values.last)
             if answer < 0 { sign.tap() }
             for digit in String(abs(answer)) { app.buttons[String(digit)].tap() }
-            app.buttons["answer-submit"].tap()
+            XCTAssertFalse(app.buttons["answer-submit"].exists)
             XCTAssertTrue(app.buttons["fluency-continue"].waitForExistence(timeout: 5))
             XCTAssertTrue(app.staticTexts[english ? "That's it!" : "对了！"].exists)
             if answer < 0 { negativeAnswered = true; break }

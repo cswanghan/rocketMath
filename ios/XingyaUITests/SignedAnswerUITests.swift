@@ -26,10 +26,11 @@ final class SignedAnswerUITests: XCTestCase {
         let start = app.buttons[english ? "Fluency" : "口算"]
         XCTAssertTrue(start.waitForExistence(timeout: 5)); start.tap()
         let sign = app.buttons["key-sign"]
-        let submit = app.buttons["answer-submit"]
         XCTAssertTrue(sign.waitForExistence(timeout: 5))
         sign.tap()
-        XCTAssertFalse(submit.isEnabled, "A sign without digits is not an answer")
+        XCTAssertFalse(app.buttons["answer-submit"].exists)
+        Thread.sleep(forTimeInterval: 1.2) // An isolated sign never auto-submits.
+        XCTAssertFalse(app.buttons["fluency-retry"].exists)
         XCTAssertTrue(app.staticTexts["fluency-answer"].label.hasSuffix("-"))
         sign.tap()
         // Use the real selected question and an independent signed-addition
@@ -48,7 +49,7 @@ final class SignedAnswerUITests: XCTestCase {
             let answer = try XCTUnwrap(values.first) + XCTUnwrap(values.last)
             if answer < 0 { sign.tap() }
             for digit in String(abs(answer)) { app.buttons[String(digit)].tap() }
-            XCTAssertTrue(submit.isEnabled); submit.tap()
+            XCTAssertFalse(app.buttons["answer-submit"].exists)
             XCTAssertTrue(app.buttons["fluency-continue"].waitForExistence(timeout: 5))
             XCTAssertTrue(app.staticTexts[english ? "That's it!" : "对了！"].exists)
             if index < 3 { app.buttons["fluency-continue"].tap() }

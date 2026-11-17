@@ -1,6 +1,23 @@
 {
   "sourceLanguage": "zh-Hans",
   "strings": {
+    "停止输入约 1 秒后自动检查": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Answers check automatically after a 1-second pause."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止输入约 1 秒后自动检查"
+          }
+        }
+      }
+    },
     "星芽": {
       "extractionState": "manual",
       "localizations": {

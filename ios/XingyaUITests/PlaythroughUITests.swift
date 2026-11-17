@@ -60,7 +60,7 @@ final class PlaythroughUITests: XCTestCase {
         let a = try XCTUnwrap(digits.first), b = try XCTUnwrap(digits.last)
         let answer = question.label.contains("×") ? a * b : a / b
         for d in String(answer) { app.buttons[String(d)].tap() }
-        app.buttons["answer-submit"].tap()
+        XCTAssertFalse(app.buttons["answer-submit"].exists)
     }
     private func attach(_ app: XCUIApplication, _ name: String) {
         let image = XCTAttachment(screenshot: app.screenshot())

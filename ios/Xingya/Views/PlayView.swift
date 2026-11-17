@@ -10,6 +10,7 @@ struct PlayView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     @Environment(\.dismiss) private var dismiss
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.scenePhase) private var scenePhase
     private let pack: ContentPack
     private let storage: any StorageAdapter
     private let studentId: String
@@ -62,18 +63,32 @@ struct PlayView: View {
         .foregroundStyle(Theme.ink).background(Theme.pageBg.ignoresSafeArea())
         .toolbar(.hidden, for: .navigationBar)
         .overlay { if timeLock.isLocked { Theme.pageBg.ignoresSafeArea(); LockView() } }
-        .task(id: model.promptSeq) {
-            guard isPrompt else { return }
+        .task(id: "\(model.promptSeq)-\(scenePhase == .active)-\(timeLock.isLocked)") {
+            guard isPrompt, scenePhase == .active, !timeLock.isLocked else { return }
             input = ""; timedOut = false
             let start = Date()
             remaining = Int(ceil(Double(model.latencyGateMs) / 1000))
-            while !Task.isCancelled && isPrompt {
-                let elapsed = Date().timeIntervalSince(start)
-                remaining = max(0, Int(ceil(Double(model.latencyGateMs) / 1000 - elapsed)))
-                if remaining == 0 { timedOut = true; model.timeoutMiss(); break }
+            while !Task.isCancelled && isPrompt && scenePhase == .active && !timeLock.isLocked {
+                remaining = Int(ceil(Double(model.promptRemainingMs) / 1000))
+                if remaining == 0 {
+                    timedOut = model.pendingAnswer == nil
+                    model.timeoutMiss()
+                    break
+                }
                 try? await Task.sleep(for: .milliseconds(100))
             }
             timeLock.tick(deltaMs: min(model.latencyGateMs, Int(Date().timeIntervalSince(start) * 1000)))
+        }
+        .automaticallyChecksAnswers(for: model)
+        .onChange(of: timeLock.isLocked) { _, locked in
+            input = ""
+            if locked { model.cancelPendingAnswer() }
+            else { model.resumePromptTiming() }
+        }
+        .onChange(of: scenePhase) { _, phase in
+            input = ""
+            if phase == .active { model.resumePromptTiming() }
+            else { model.cancelPendingAnswer() }
         }
         .sensoryFeedback(.success, trigger: isCorrect) { _, correct in correct }
         .onDisappear { speech.cancel() }
@@ -85,7 +100,7 @@ struct PlayView: View {
                 VStack(spacing: 20) { equation(fact); answer }
             }.environment(\.layoutDirection, .leftToRight)
             if isPrompt {
-                Text("慢慢算，不着急").font(.footnote.weight(.medium)).foregroundStyle(Theme.sub)
+                Text("停止输入约 1 秒后自动检查").font(.footnote.weight(.medium)).foregroundStyle(Theme.sub)
             }
         }
         .frame(maxWidth: .infinity).padding(.vertical, 40)
@@ -110,12 +125,11 @@ struct PlayView: View {
         case .prompt(_, let retest):
             if retest { Text("再试一次").font(.footnote).foregroundStyle(Theme.warn) }
             NumpadView(
-                onDigit: { input = IntegerAnswerInput.appending($0, to: input) },
-                onDelete: { _ = input.popLast() },
-                onSubmit: { if let value = IntegerAnswerInput.value(of: input) { model.submit(value) } },
-                submitDisabled: IntegerAnswerInput.value(of: input) == nil,
+                onDigit: { editInput(IntegerAnswerInput.appending($0, to: input)) },
+                onDelete: { editInput(String(input.dropLast())) },
+                onSubmit: {}, showSubmit: false,
                 onToggleSign: allowsNegativeAnswers ? {
-                    input = IntegerAnswerInput.togglingSign(in: input, allowed: allowsNegativeAnswers)
+                    editInput(IntegerAnswerInput.togglingSign(in: input, allowed: allowsNegativeAnswers))
                 } : nil
             )
         case .correct(let fact):
@@ -135,5 +149,11 @@ struct PlayView: View {
             ContentUnavailableView("出错了", systemImage: "exclamationmark.triangle", description: Text("请返回并重新打开练习"))
             BrandPrimaryButton("返回") { dismiss() }
         }
+    }
+
+    private func editInput(_ value: String) {
+        guard value != input else { return }
+        input = value
+        model.queueAutomaticAnswer(value)
     }
 }
