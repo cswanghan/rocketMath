@@ -20,17 +20,27 @@ final class PracticeKeyboardUITests: XCTestCase {
         app.launchArguments = ["UITEST_MEMORY", "SUNNY_UI_TEST", "PRACTICE_KEYBOARD_FIXTURE", fixture,
                                "-AppleLanguages", "(\(language))", "-appLanguage", language, "-selectedTerm", "upper"]
         app.launch()
-        XCTAssertTrue(app.buttons["home-start"].waitForExistence(timeout: 15))
-        app.buttons["grade-term-picker"].tap()
-        app.buttons[english ? "Change grade" : "切换年级"].tap()
+        waitUntilHittable(app.buttons["home-start"], timeout: 15)
+        let picker = app.buttons["grade-term-picker"]
+        waitUntilHittable(picker); picker.tap()
+        let changeGrade = app.buttons[english ? "Change grade" : "切换年级"]
+        waitUntilHittable(changeGrade); changeGrade.tap()
         let grade = app.buttons["grade-4"]
-        XCTAssertTrue(grade.waitForExistence(timeout: 5)); grade.tap()
+        waitUntilHittable(grade); grade.tap()
+        waitUntilHittable(app.buttons["home-start"], timeout: 15)
         let topic = app.buttons["topic-large_num_read"]
-        reveal(topic, app: app); topic.tap()
+        reveal(topic, app: app); waitUntilHittable(topic); topic.tap()
         let practice = app.buttons[english ? "Practice" : "练习"]
-        XCTAssertTrue(practice.waitForExistence(timeout: 5)); practice.tap()
+        waitUntilHittable(practice); practice.tap()
         XCTAssertTrue(app.staticTexts["practice-question"].waitForExistence(timeout: 5))
         return app
+    }
+
+    private func waitUntilHittable(_ element: XCUIElement, timeout: TimeInterval = 10,
+                                  file: StaticString = #filePath, line: UInt = #line) {
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: element)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: timeout), .completed,
+                       "Navigation target must be hittable before tapping: \(element.identifier)", file: file, line: line)
     }
 
     private func reveal(_ item: XCUIElement, app: XCUIApplication) {
