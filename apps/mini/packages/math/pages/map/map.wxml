@@ -1,0 +1,69 @@
+<view class="page">
+  <view class="row">
+    <button class="back-btn" bindtap="onBack">← 返回</button>
+    <view class="spacer"></view>
+    <button class="back-btn" bindtap="onChangeGrade">换年级</button>
+  </view>
+
+  <view class="page-title map-title">{{title}}</view>
+  <view class="page-subtitle">{{subtitle}}</view>
+
+  <!-- 等级条 -->
+  <view class="level-panel" wx:if="{{level}}">
+    <view class="row">
+      <text class="lv-badge">Lv.{{level.level}}</text>
+      <text class="xp-text">⭐ {{xp}} 经验</text>
+      <view class="spacer"></view>
+      <text class="xp-next">距下一级还差 {{level.toNext}}</text>
+    </view>
+    <view class="xp-bar">
+      <view class="xp-fill" style="width:{{percent}}%"></view>
+    </view>
+  </view>
+
+  <view class="loading-hint" wx:if="{{!ready}}">加载中…</view>
+
+  <block wx:for="{{terms}}" wx:key="key" wx:for-item="term">
+    <view class="term" wx:if="{{term.units.length}}">
+      <view class="term-title">{{term.label}}</view>
+
+      <view class="unit" wx:for="{{term.units}}" wx:key="id" wx:for-item="unit">
+        <view class="unit-title">{{unit.title}}</view>
+
+        <view
+          class="topic topic-{{item.kind}}"
+          wx:for="{{unit.topics}}"
+          wx:key="id"
+          wx:for-item="item"
+          data-kind="{{item.kind}}"
+          data-trackid="{{item.trackId}}"
+          data-setid="{{item.setId}}"
+          bindtap="onTopic"
+          hover-class="{{item.kind === 'soon' ? '' : 'topic--pressed'}}"
+        >
+          <view class="topic-head">
+            <text class="ped ped-{{item.pedagogy}}">{{item.pedLabel}}</text>
+            <text class="topic-name">{{item.title}}</text>
+            <text class="done-tag" wx:if="{{item.doneTag}}">{{item.doneTag}}</text>
+            <text class="soon-tag" wx:if="{{item.kind === 'soon'}}">🔒 即将上线</text>
+          </view>
+
+          <view class="chart" wx:if="{{item.cells.length}}">
+            <text class="cell cell-{{cell.state}}" wx:for="{{item.cells}}" wx:key="level" wx:for-item="cell">{{cell.text}}</text>
+          </view>
+
+          <view class="topic-foot" wx:if="{{item.kind !== 'soon'}}">
+            <text class="topic-meta">{{item.meta}}</text>
+            <view class="spacer"></view>
+            <text
+              class="race-btn"
+              wx:if="{{item.kind === 'fluency'}}"
+              data-trackid="{{item.trackId}}"
+              catchtap="onRace"
+            >🚀 竞速</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,202 @@
+<view class="page vocab" wx:if="{{ready}}">
+  <view class="row">
+    <text class="back-btn" bindtap="onExit">← 返回</text>
+    <view class="spacer"></view>
+    <text class="gear" bindtap="onToggleSettings">⚙︎</text>
+  </view>
+
+  <!-- 进度条 -->
+  <view class="pcard head-card">
+    <view class="row">
+      <text class="head-num">{{masteredCount}}<text class="head-den"> / {{poolCount}}</text></text>
+      <view class="spacer"></view>
+      <text class="pill pill-mint">已掌握 {{pct}}%</text>
+    </view>
+    <view class="bar"><view class="bar-fill" style="width:{{pct}}%"></view></view>
+    <text class="sync-text" wx:if="{{syncText}}">☁️ {{syncText}}</text>
+  </view>
+
+  <!-- 筛选 -->
+  <view class="filters">
+    <view class="tab-row">
+      <view
+        class="tab {{item.active ? 'tab-on' : ''}}"
+        wx:for="{{levelTabs}}"
+        wx:key="key"
+        data-key="{{item.key}}"
+        bindtap="onPickLevel"
+      >{{item.label}}</view>
+    </view>
+    <picker mode="selector" range="{{topicNames}}" value="{{topicIndex}}" bindchange="onPickTopic">
+      <view class="topic-picker">{{topicLabel}} ▾</view>
+    </picker>
+    <view class="tab-row">
+      <view
+        class="tab {{item.active ? 'tab-on' : ''}}"
+        wx:for="{{focusTabs}}"
+        wx:key="key"
+        data-key="{{item.key}}"
+        bindtap="onPickFocus"
+      >{{item.label}}</view>
+    </view>
+  </view>
+
+  <!-- 模式 -->
+  <view class="tab-row mode-row">
+    <view
+      class="tab tab-lg {{item.active ? 'tab-on' : ''}}"
+      wx:for="{{modeTabs}}"
+      wx:key="key"
+      data-key="{{item.key}}"
+      bindtap="onPickMode"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 舞台: 空 -->
+  <view class="pcard empty-hint" wx:if="{{stageState === 'empty'}}">
+    这个筛选下没有单词，换个级别或主题试试。
+  </view>
+
+  <!-- 舞台: 本轮结束 -->
+  <view class="pcard done-card" wx:elif="{{stageState === 'done'}}">
+    <view class="overlay-emoji">🎉</view>
+    <view class="done-title">这一轮背完啦！</view>
+    <view class="done-body">歇一下，或者再来一轮巩固记忆。</view>
+    <button class="btn btn-primary" bindtap="onRestart">再来一轮</button>
+  </view>
+
+  <!-- 舞台: 单词卡 -->
+  <block wx:else>
+    <view class="pcard word-card">
+      <view class="card-top">
+        <text class="pill pill-blue">{{card.topicLabel}}</text>
+        <view class="spacer"></view>
+        <text class="status-text">{{card.statusLabel}} · 连对 {{card.streak}}</text>
+        <text class="fav {{card.favorite ? 'fav-on' : ''}}" bindtap="onToggleFavorite">{{card.favorite ? '★' : '☆'}}</text>
+      </view>
+
+      <text class="prompt-label">{{card.promptLabel}} · 第 {{position}}/{{total}} 个</text>
+      <view class="headline">{{card.headline}}</view>
+      <view class="subline">{{card.subline}}</view>
+
+      <view class="tool-row" wx:if="{{speechOn}}">
+        <button class="btn btn-plain btn-sm" bindtap="onSpeakWord">🔊 单词</button>
+        <button class="btn btn-plain btn-sm" bindtap="onSpeakSentence">🔊 例句</button>
+      </view>
+
+      <!-- 卡片模式: 释义可遮可露 -->
+      <view class="mini-card meaning-card" wx:if="{{card.showMeaningCard}}" bindtap="onToggleReveal">
+        <text class="section-label">释义</text>
+        <view class="meaning-text" wx:if="{{reveal}}">{{card.meaning}}</view>
+        <view class="meaning-mask" wx:else>点一下看释义</view>
+      </view>
+
+      <view class="mini-card" wx:if="{{card.showExampleCard}}">
+        <text class="section-label">例句</text>
+        <view class="example-text">{{card.exampleText}}</view>
+      </view>
+
+      <!-- 听写: 答案在揭晓后才出现 -->
+      <view class="mini-card" wx:if="{{card.answerCard && reveal}}">
+        <text class="section-label">答案</text>
+        <view class="meaning-text">{{card.answerCard}} · {{card.meaning}}</view>
+      </view>
+
+      <view class="input-card" wx:if="{{card.showInput}}">
+        <input
+          class="answer-input"
+          type="text"
+          value="{{answer}}"
+          placeholder="{{card.inputPlaceholder}}"
+          confirm-type="done"
+          bindinput="onAnswerInput"
+          bindconfirm="onSubmit"
+        />
+      </view>
+    </view>
+
+    <!-- 反馈 -->
+    <view class="feedback {{feedback.correct ? 'fb-correct' : 'fb-wrong'}}" wx:if="{{feedback}}">
+      <view class="fb-title">{{feedback.correct ? '✅ 答对了' : '📌 记一下'}}</view>
+      <view class="fb-msg">{{feedback.message}}</view>
+    </view>
+
+    <!-- 操作区 -->
+    <view class="controls">
+      <block wx:if="{{feedback}}">
+        <button class="btn btn-primary" bindtap="onContinue">继续</button>
+      </block>
+      <block wx:elif="{{card.showInput}}">
+        <view class="ctrl-row">
+          <button class="btn btn-plain ctrl-half" bindtap="onReveal">看答案</button>
+          <button class="btn btn-primary ctrl-half" bindtap="onSubmit">提交</button>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="ctrl-row">
+          <button class="btn btn-plain ctrl-half" bindtap="onAgain">还不熟</button>
+          <button class="btn btn-primary ctrl-half" bindtap="onKnown">认识 ✓</button>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>
+
+<view class="loading-hint" wx:else>载入中…</view>
+
+<!-- 设置 -->
+<view class="overlay" wx:if="{{showSettings}}" bindtap="onToggleSettings">
+  <view class="overlay-card settings-card" catchtap="noop">
+    <view class="overlay-title">背词设置</view>
+
+    <view class="set-row">
+      <text class="set-label">释义语言</text>
+      <view class="tab-row">
+        <view
+          class="tab {{item.active ? 'tab-on' : ''}}"
+          wx:for="{{defLangTabs}}"
+          wx:key="key"
+          data-key="{{item.key}}"
+          bindtap="onPickDefLang"
+        >{{item.label}}</view>
+      </view>
+    </view>
+
+    <view class="set-row">
+      <text class="set-label">每日目标</text>
+      <view class="tab-row">
+        <view
+          class="tab {{item === dailyTarget ? 'tab-on' : ''}}"
+          wx:for="{{targetOptions}}"
+          wx:key="*this"
+          data-n="{{item}}"
+          bindtap="onPickTarget"
+        >{{item}}</view>
+      </view>
+    </view>
+
+    <view class="set-line" bindtap="onToggleUnmastered">
+      <text class="set-label">只背没掌握的</text>
+      <view class="spacer"></view>
+      <text class="switch {{onlyUnmastered ? 'switch-on' : ''}}">{{onlyUnmastered ? '开' : '关'}}</text>
+    </view>
+
+    <view class="set-line" bindtap="onToggleRandom">
+      <text class="set-label">随机顺序</text>
+      <view class="spacer"></view>
+      <text class="switch {{randomOrder ? 'switch-on' : ''}}">{{randomOrder ? '开' : '关'}}</text>
+    </view>
+
+    <button class="btn btn-primary" style="margin-top:28rpx" bindtap="onToggleSettings">完成</button>
+  </view>
+</view>
+
+<!-- 免费体验用尽 -->
+<view class="overlay" wx:if="{{trialBlocked}}">
+  <view class="overlay-card">
+    <view class="overlay-emoji">🌱</view>
+    <view class="overlay-title">免费体验结束啦</view>
+    <view class="overlay-body">登录后无限畅学，背词进度会同步到云端。</view>
+    <button class="btn btn-primary" bindtap="onLoginFromTrial">去登录</button>
+  </view>
+</view>

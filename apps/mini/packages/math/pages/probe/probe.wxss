@@ -1,0 +1,16 @@
+/* 热身探针。复用答题界面的键盘与舞台。 */
+@import '../../styles/drill.wxss';
+
+.probe-head {
+  margin-bottom: 12rpx;
+}
+
+.probe-target {
+  font-size: 180rpx;
+  color: var(--title-ink);
+}
+
+/* 热身只按数字, 退格/确认留着占位保持键盘手感一致, 但不可点 */
+.key-disabled {
+  opacity: 0.35;
+}

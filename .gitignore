@@ -56,6 +56,9 @@ playground.xcworkspace
 *.swiftdoc
 *.swiftsourceinfo
 
+# 小程序静态预览产物 (npm run mini:preview)
+preview-out/
+
 # 私密资产：付费 PDF 生成器 + 内部营销/定价 SOP（勿推公开仓库）
 printable/
 promo-out/

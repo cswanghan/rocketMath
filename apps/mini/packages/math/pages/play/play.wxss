@@ -1,0 +1,33 @@
+/* 口算答题。整屏一件事: 上面是题, 下面是键盘, 中间不放会分神的东西。 */
+@import '../../styles/drill.wxss';
+
+/* 倒计时条: 条走完 = 超时。用 CSS transition 而不是 JS 逐帧, 不掉帧也省电。 */
+.timer-bar {
+  height: 12rpx;
+  border-radius: 999rpx;
+  background: var(--inset);
+  overflow: hidden;
+  margin-bottom: 32rpx;
+}
+
+.timer-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 999rpx;
+  background: linear-gradient(90deg, #f3960a, #f0564a);
+  transition-property: width;
+  transition-timing-function: linear;
+}
+
+/* 出新题的那一帧: 瞬间拉回满格, 下一帧再放开 transition 走向 0 */
+.timer-fill.reset {
+  width: 100%;
+  transition-duration: 0ms !important;
+}
+
+.retest-hint {
+  text-align: center;
+  color: var(--accent2);
+  font-size: 26rpx;
+  font-weight: 700;
+}

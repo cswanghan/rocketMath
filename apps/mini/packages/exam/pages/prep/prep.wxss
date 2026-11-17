@@ -1,0 +1,57 @@
+/* 备考清单。进度条 / 分段标题在 app.wxss 的通用组件里, 这里只写清单行。 */
+
+.prep {
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.prep-row {
+  padding: 24rpx 28rpx;
+  margin-bottom: 16rpx;
+}
+
+/* 左侧状态符号 —— 定宽, 让下面的名称对齐成一列 */
+.prep-mark {
+  width: 56rpx;
+  flex: none;
+  font-size: 34rpx;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--muted);
+}
+
+.state-mastered .prep-mark { color: var(--good); }
+.state-in_progress .prep-mark { color: var(--accent); }
+.state-vocab .prep-mark { color: var(--p-peach-ink); }
+
+.prep-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.prep-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.prep-meta {
+  display: block;
+  font-size: 24rpx;
+  color: var(--muted);
+  margin-top: 4rpx;
+}
+
+/* 内容建设中的知识点 —— 看得见但点不动 */
+.is-locked {
+  opacity: 0.55;
+}
+
+.state-mastered {
+  background: var(--p-mint);
+  border-color: var(--p-mint-pill);
+}
+
+.state-mastered .prep-name {
+  color: var(--p-mint-ink);
+}

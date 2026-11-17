@@ -1,0 +1,140 @@
+/* 首页。通用样式 (.pcard/.pill/.btn/.overlay) 在 app.wxss, 这里只写首页独有的。 */
+
+/* ---- 打卡卡片 ------------------------------------------------------------ */
+
+.streak-card {
+  background: linear-gradient(135deg, #fff6e8 0%, #ffeed6 100%);
+  border: 2rpx solid var(--p-peach-pill);
+  border-radius: var(--radius);
+  padding: 28rpx 32rpx;
+  margin-bottom: 32rpx;
+  box-shadow: var(--shadow-soft);
+}
+
+.streak-card.done {
+  background: linear-gradient(135deg, #eafaef 0%, #d6f2df 100%);
+  border-color: var(--p-mint-pill);
+}
+
+.streak-celebrate {
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: var(--radius-sm);
+  padding: 14rpx 20rpx;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--p-peach-ink);
+  text-align: center;
+}
+
+.streak-main {
+  display: flex;
+  align-items: center;
+}
+
+.streak-flame {
+  font-size: 56rpx;
+  margin-right: 20rpx;
+  line-height: 1;
+}
+
+.streak-text {
+  flex: 1;
+}
+
+.streak-count {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.streak-num {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: var(--title-ink);
+  padding: 0 6rpx;
+}
+
+.streak-sub {
+  font-size: 24rpx;
+  color: var(--text-soft);
+  margin-top: 2rpx;
+}
+
+/* 本周七个点 */
+.streak-week {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24rpx;
+}
+
+.streak-day {
+  flex: 1;
+  text-align: center;
+}
+
+.streak-dot {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  margin: 0 auto 8rpx;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2rpx solid var(--line-strong);
+  box-sizing: border-box;
+}
+
+.streak-day.on .streak-dot {
+  background: var(--good);
+  border-color: var(--good);
+}
+
+.streak-day-label {
+  font-size: 22rpx;
+  color: var(--muted);
+}
+
+.streak-day.on .streak-day-label {
+  color: var(--good-ink);
+  font-weight: 700;
+}
+
+.streak-badges {
+  margin-top: 20rpx;
+}
+
+.streak-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 999rpx;
+  padding: 4rpx 18rpx;
+  margin-right: 12rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+  color: var(--p-peach-ink);
+}
+
+/* ---- 学科卡 -------------------------------------------------------------- */
+
+.subject-card {
+  padding-right: 160rpx; /* 给右侧 emoji 留位 */
+}
+
+.subject-math { background: linear-gradient(135deg, #ffffff 0%, var(--p-blue) 260%); }
+.subject-chinese { background: linear-gradient(135deg, #ffffff 0%, var(--p-peach) 260%); }
+.subject-english { background: linear-gradient(135deg, #ffffff 0%, var(--p-lavender) 260%); }
+
+.subject-emoji {
+  position: absolute;
+  right: 32rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 76rpx;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+/* ---- 横幅卡 -------------------------------------------------------------- */
+
+.banner-card {
+  background: linear-gradient(135deg, #ffffff 0%, var(--p-teal) 300%);
+}

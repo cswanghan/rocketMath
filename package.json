@@ -17,7 +17,12 @@
     "golden": "npx tsx tools/export-engine-golden.ts",
     "golden:practice": "npx tsx tools/export-practice-golden.ts",
     "content:english": "python3 content/localization/build_english.py",
-    "test:localization": "python3 -m unittest discover -s content/localization -p \"test_*.py\" && python3 content/localization/build_english.py --check && python3 content/localization/verify_english.py --report"
+    "test:localization": "python3 -m unittest discover -s content/localization -p \"test_*.py\" && python3 content/localization/build_english.py --check && python3 content/localization/verify_english.py --report",
+    "mini": "npm run mini:engine && npm run mini:content",
+    "mini:engine": "node scripts/build-mini-engine.mjs",
+    "mini:content": "node scripts/build-mini-content.mjs",
+    "mini:test": "node scripts/test-mini-pages.mjs",
+    "mini:preview": "node scripts/preview-mini.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

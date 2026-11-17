@@ -1,0 +1,41 @@
+{
+  // 把 Web 端的纯引擎 (src/engine + src/practice) 编译成小程序能 require 的
+  // CommonJS。引擎零 React / 零 DOM / 零网络, 所以整段可以原样搬。
+  // 产物在 apps/mini/vendor/, 由 `npm run mini:engine` 生成, 禁止手改。
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    // 带 DOM 只是为了让 barrel 顺带拉进来的浏览器文件 (storage/indexedDb.ts)
+    // 不报错刷屏 —— 它们随后会被 build-mini-engine.mjs 删掉。真正防止浏览器
+    // API 泄漏进小程序的是那个脚本第 3 步的产物扫描, 比 lib 限制更直接。
+    "lib": ["ES2017", "DOM"],
+    "rootDir": "../../src",
+    "outDir": "./vendor",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "sourceMap": false,
+    "removeComments": false,
+    "types": []
+  },
+  // 凡是零浏览器依赖的模块都编译进来, 小程序不再手写一份 —— 这是这次移植最大的
+  // 杠杆点: Web 端改逻辑, 跑一次 `npm run mini:engine` 小程序就跟上, 不会分叉。
+  //
+  // 不在 include 内的两类:
+  //   · storage/{indexedDb,memory}  浏览器专用, 小程序侧见 utils/storage.js
+  //   · ui/{prep,pin,streak,speech} 依赖 localStorage / SpeechSynthesis,
+  //                                 小程序侧见 utils/ 下的同名文件
+  "include": [
+    "../../src/engine/**/*.ts",
+    "../../src/practice/**/*.ts",
+    "../../src/map/types.ts",
+    "../../src/storage/types.ts",
+    "../../src/storage/outcome.ts",
+    "../../src/ui/prepMastery.ts",
+    "../../src/ui/summary.ts",
+    "../../src/ui/timelock.ts"
+  ],
+  "exclude": ["../../src/**/*.test.ts", "../../src/engine/__fixtures__/**"]
+}

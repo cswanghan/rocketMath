@@ -1,0 +1,23 @@
+<view class="page">
+  <button class="back-btn" bindtap="onBack">← 返回</button>
+
+  <view class="page-title">你在几年级？</view>
+  <view class="page-subtitle">选择你正在学习的年级</view>
+
+  <view class="grade-grid">
+    <view
+      class="pcard grade-card pc-{{item.color}} {{current === item.grade ? 'is-current' : ''}}"
+      wx:for="{{grades}}"
+      wx:key="grade"
+      data-grade="{{item.grade}}"
+      bindtap="onPick"
+      hover-class="pcard--pressed"
+    >
+      <text class="pill pill-{{item.color}}">{{item.tag}}</text>
+      <text class="grade-num">{{item.grade}}</text>
+      <text class="grade-label">{{item.label}}</text>
+      <text class="grade-desc">{{item.desc}}</text>
+      <text class="grade-current-tag" wx:if="{{current === item.grade}}">当前</text>
+    </view>
+  </view>
+</view>

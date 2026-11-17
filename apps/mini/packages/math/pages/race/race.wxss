@@ -1,0 +1,47 @@
+/* 竞速。答题区与 play 共用, 这里只是选速度卡 + 总倒计时。 */
+@import '../../styles/drill.wxss';
+
+.speed-card {
+  display: flex;
+  align-items: center;
+  background: var(--panel);
+  border: 2rpx solid var(--line);
+  border-radius: var(--radius);
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+  box-shadow: var(--shadow-card);
+}
+
+.speed-card--pressed {
+  background: var(--active);
+  transform: scale(0.98);
+}
+
+.speed-emoji {
+  font-size: 56rpx;
+  margin-right: 24rpx;
+  line-height: 1;
+}
+
+.speed-label {
+  font-size: 36rpx;
+  font-weight: 800;
+}
+
+.speed-time {
+  font-size: 28rpx;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.timer {
+  font-size: 30rpx;
+  font-weight: 800;
+  color: var(--text-soft);
+  margin-left: 12rpx;
+}
+
+/* 最后 10 秒变红 —— 不加动画, 免得孩子更慌 */
+.timer-low {
+  color: var(--bad);
+}

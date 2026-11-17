@@ -1,0 +1,262 @@
+/* 我的。账号 / 学习者档案 / 等级 / 设置。 */
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 800;
+  margin-bottom: 20rpx;
+}
+
+/* ---- 账号 ---------------------------------------------------------------- */
+
+.account-card {
+  background: linear-gradient(135deg, #ffffff 0%, var(--p-mint) 320%);
+}
+
+.account-av {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  background: var(--btn-grad);
+  color: #fff;
+  font-size: 40rpx;
+  font-weight: 800;
+  text-align: center;
+  line-height: 88rpx;
+  margin-right: 24rpx;
+  flex: none;
+}
+
+.account-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.account-name {
+  font-size: 34rpx;
+  font-weight: 800;
+}
+
+.account-sub {
+  color: var(--muted);
+  font-size: 24rpx;
+  margin-top: 4rpx;
+}
+
+/* ---- 孩子档案 ------------------------------------------------------------ */
+
+.child-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8rpx;
+}
+
+.child-tile {
+  position: relative;
+  width: 148rpx;
+  padding: 20rpx 8rpx;
+  margin: 0 16rpx 16rpx 0;
+  border: 2rpx solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--inset);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.child-tile--pressed {
+  background: var(--active);
+}
+
+.child-tile.sel {
+  background: var(--p-mint);
+  border-color: var(--good);
+}
+
+.child-av {
+  display: block;
+  font-size: 48rpx;
+  line-height: 1.2;
+}
+
+.child-nm {
+  display: block;
+  font-size: 24rpx;
+  font-weight: 700;
+  margin-top: 4rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 删除按钮做小, 让它是"找得到但不容易误触"的 */
+.child-del {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: var(--line-strong);
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  text-align: center;
+}
+
+.child-add {
+  margin-top: 12rpx;
+}
+
+.av-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16rpx;
+}
+
+.av-pick {
+  width: 76rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  text-align: center;
+  font-size: 40rpx;
+  border-radius: var(--radius-sm);
+  border: 2rpx solid transparent;
+  margin: 0 10rpx 10rpx 0;
+  background: var(--inset);
+}
+
+.av-pick.sel {
+  border-color: var(--good);
+  background: var(--p-mint);
+}
+
+.fill-input {
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--inset);
+  border: 2rpx solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 20rpx 24rpx;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 24rpx;
+}
+
+/* ---- 等级 ---------------------------------------------------------------- */
+
+.level-row {
+  margin-bottom: 18rpx;
+}
+
+.level-badge {
+  background: var(--p-blue-pill);
+  color: var(--p-blue-ink);
+  font-size: 32rpx;
+  font-weight: 800;
+  padding: 8rpx 24rpx;
+  border-radius: 999rpx;
+  margin-right: 24rpx;
+  flex: none;
+}
+
+.level-text {
+  flex: 1;
+}
+
+.level-xp {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.level-next {
+  color: var(--muted);
+  font-size: 24rpx;
+}
+
+.level-bar {
+  height: 16rpx;
+  border-radius: 999rpx;
+  background: var(--inset);
+  overflow: hidden;
+}
+
+.level-bar-fill {
+  height: 100%;
+  background: var(--btn-grad);
+  border-radius: 999rpx;
+}
+
+.stat-row {
+  display: flex;
+  margin-top: 28rpx;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-num {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: var(--title-ink);
+}
+
+.stat-label {
+  display: block;
+  font-size: 22rpx;
+  color: var(--muted);
+}
+
+/* ---- 设置 ---------------------------------------------------------------- */
+
+.settings-card {
+  padding: 8rpx 32rpx;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 2rpx solid var(--line);
+}
+
+.setting-row:last-child {
+  border-bottom: none;
+}
+
+.setting-row--pressed {
+  background: var(--active);
+}
+
+.setting-label {
+  font-size: 30rpx;
+  font-weight: 700;
+  flex: 1;
+}
+
+.setting-value {
+  color: var(--muted);
+  font-size: 26rpx;
+  margin-right: 12rpx;
+}
+
+.setting-arrow {
+  color: var(--line-strong);
+  font-size: 34rpx;
+}
+
+.setting-row.danger .setting-label {
+  color: var(--bad);
+}
+
+.footer-hint {
+  text-align: center;
+  color: var(--muted);
+  font-size: 22rpx;
+  padding: 20rpx 0 8rpx;
+}

@@ -1,0 +1,63 @@
+/* lang 分包共用样式 —— 语文识字 / 阅读识字 两页的公共骨架。
+ *
+ * 通用组件 (pill 行、进度条、反馈条、结算卡) 已经提到 app.wxss, 全局可用;
+ * 这里只留跟"汉字"强绑定的部分。
+ * 用法: 页面 wxss 顶部 @import '../../styles/lang.wxss';
+ */
+
+/* ---- 田字格 ---------------------------------------------------------------- */
+
+/* Web 端这里是 hanzi-writer 笔顺动画, 小程序加载不了远程脚本。退而求其次:
+ * 静态大字 + 田字格, 至少保留书写时的比例参照。识字/阅读两页共用。 */
+
+.tianzige {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  flex: none;
+  margin: 0 auto;
+  border: 3rpx solid var(--p-peach-pill);
+  border-radius: 12rpx;
+  background: #fffdf9;
+}
+
+.tzg-h,
+.tzg-v {
+  position: absolute;
+  background-image: linear-gradient(to right, var(--p-peach-pill) 50%, transparent 50%);
+  background-size: 16rpx 2rpx;
+}
+
+.tzg-h {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2rpx;
+}
+
+.tzg-v {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2rpx;
+  background-image: linear-gradient(to bottom, var(--p-peach-pill) 50%, transparent 50%);
+  background-size: 2rpx 16rpx;
+}
+
+.tzg-char {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 150rpx;
+  line-height: 1;
+  font-weight: 500;
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}
+
+/* 楷体 —— 小学生认的字形。系统没有时回落到默认字体, 不影响可读性 */
+.kai {
+  font-family: 'Kaiti SC', 'STKaiti', serif;
+}

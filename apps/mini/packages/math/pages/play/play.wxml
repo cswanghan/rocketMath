@@ -1,0 +1,84 @@
+<view class="play" wx:if="{{ready}}">
+  <!-- 顶部状态 -->
+  <view class="play-head">
+    <text class="head-btn" bindtap="onExit">← 返回</text>
+    <view class="spacer"></view>
+    <text class="head-btn" bindtap="onToggleMute">{{muted ? '🔇' : '🔊'}}</text>
+    <text class="head-xp">⭐ {{sessionXp}}</text>
+  </view>
+
+  <view class="play-status">
+    <text class="phase-badge">{{phaseLabel}}</text>
+    <text class="prog">{{progText}}</text>
+  </view>
+
+  <view class="chart">
+    <text class="cell cell-{{item.state}}" wx:for="{{cells}}" wx:key="level">{{item.text}}</text>
+  </view>
+
+  <!-- 出题 -->
+  <view class="stage" wx:if="{{mode === 'prompt'}}">
+    <view class="timer-bar">
+      <view
+        class="timer-fill {{barReset ? 'reset' : ''}}"
+        style="transition-duration:{{gateMs}}ms"
+      ></view>
+    </view>
+
+    <view class="prompt">{{prompt}}</view>
+    <view class="retest-hint" wx:if="{{isRetest}}">再试一次 💪</view>
+    <view class="answer-box">{{input}}</view>
+
+    <view class="numpad">
+      <view
+        class="key"
+        wx:for="{{digits}}"
+        wx:key="*this"
+        data-d="{{item}}"
+        bindtap="onDigit"
+        hover-class="key--pressed"
+      >{{item}}</view>
+      <view class="key key-fn" bindtap="onBackspace" hover-class="key--pressed">⌫</view>
+      <view class="key" data-d="0" bindtap="onDigit" hover-class="key--pressed">0</view>
+      <view class="key key-enter" bindtap="onEnter" hover-class="key--pressed">✓</view>
+    </view>
+  </view>
+</view>
+
+<view class="loading-hint" wx:else>载入中…</view>
+
+<!-- 纠错 -->
+<view class="overlay" wx:if="{{mode === 'correction'}}">
+  <view class="overlay-card">
+    <view class="overlay-title">再看一遍 👀</view>
+    <view class="big-fact">{{prompt}} = <text class="big-answer">{{answer}}</text></view>
+    <view class="hint" wx:if="{{isPattern}}">先想口诀，再添 0 🔢</view>
+    <button class="btn btn-primary" style="margin-top:32rpx" bindtap="onNext">我记住了，再来一次</button>
+  </view>
+</view>
+
+<!-- 阶段通过 -->
+<view class="overlay" wx:if="{{mode === 'phase_done'}}">
+  <view class="overlay-card celebrate">
+    <view class="overlay-title">🎉 {{phaseDoneLabel}} 通过！</view>
+    <button class="btn btn-primary" bindtap="onNext">继续</button>
+  </view>
+</view>
+
+<!-- 关卡通过 -->
+<view class="overlay" wx:if="{{mode === 'level_done'}}">
+  <view class="overlay-card celebrate">
+    <view class="overlay-title">🚀 Level {{levelDone}} 全部通过！</view>
+    <button class="btn btn-primary" bindtap="onNext">下一关</button>
+  </view>
+</view>
+
+<!-- 免费体验用尽 -->
+<view class="overlay" wx:if="{{trialBlocked}}">
+  <view class="overlay-card">
+    <view class="overlay-emoji">🌱</view>
+    <view class="overlay-title">免费体验结束啦</view>
+    <view class="overlay-body">登录后无限畅学，进度、经验值和错题本都会保存。</view>
+    <button class="btn btn-primary" bindtap="onLoginFromTrial">去登录</button>
+  </view>
+</view>

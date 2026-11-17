@@ -1,0 +1,411 @@
+/* 星芽小程序全局样式。
+ *
+ * 设计 token 与 Web 端 src/ui/styles.css 对齐 —— 同一套暖白底 + 马卡龙色卡 +
+ * 品牌绿主按钮, 保证两端看起来是同一个产品。尺寸单位换成 rpx (750rpx = 屏宽)。
+ */
+
+page {
+  --bg: #fcfbf9;
+  --panel: #ffffff;
+  --inset: #f2f1ee;
+  --active: #efeee9;
+  --line: #ebe9e3;
+  --line-strong: #e0ddd5;
+
+  --text: #1d1b18;
+  --text-soft: #4b4843;
+  --muted: #94908a;
+
+  --accent: #2f9be0;
+  --accent-ink: #11486f;
+  --accent2: #f3960a;
+  --good: #2bb24c;
+  --good-ink: #15622a;
+  --bad: #f0564a;
+  --title-ink: #c2632e;
+
+  --p-blue: #d4ebf9;
+  --p-blue-pill: #b6dcf4;
+  --p-blue-ink: #1c5e8c;
+  --p-peach: #fbe4cf;
+  --p-peach-pill: #f6cda6;
+  --p-peach-ink: #9a5a16;
+  --p-mint: #d4f0dd;
+  --p-mint-pill: #b3e6c4;
+  --p-mint-ink: #1f7a40;
+  --p-lavender: #e9e0f8;
+  --p-lavender-pill: #d6c8f1;
+  --p-lavender-ink: #6a47b0;
+  --p-pink: #fbdce6;
+  --p-pink-ink: #b03e68;
+  --p-teal: #cdeee6;
+  --p-teal-ink: #19796a;
+
+  --shadow-card: 0 14rpx 36rpx rgba(40, 38, 60, 0.1), 0 3rpx 8rpx rgba(40, 38, 60, 0.05);
+  --shadow-soft: 0 6rpx 18rpx rgba(40, 38, 60, 0.07);
+  --btn-grad: linear-gradient(135deg, #3ccb63 0%, #28a847 100%);
+  --btn-shadow: 0 8rpx 22rpx rgba(43, 178, 76, 0.3);
+
+  --radius: 32rpx;
+  --radius-sm: 20rpx;
+
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 30rpx;
+  line-height: 1.6;
+}
+
+/* ---- 布局 ---------------------------------------------------------------- */
+
+.page {
+  min-height: 100vh;
+  padding: 32rpx 28rpx calc(40rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.page-title {
+  font-size: 56rpx;
+  font-weight: 800;
+  color: var(--title-ink);
+  letter-spacing: 2rpx;
+  margin: 12rpx 0 8rpx;
+}
+
+.page-subtitle {
+  color: var(--muted);
+  font-size: 28rpx;
+  margin-bottom: 32rpx;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* ---- 卡片 ---------------------------------------------------------------- */
+
+.pcard {
+  position: relative;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--panel);
+  border: 2rpx solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  text-align: left;
+  overflow: hidden;
+}
+
+.pcard--pressed {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-soft);
+}
+
+.card-label {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 800;
+  margin-top: 12rpx;
+}
+
+.card-desc {
+  display: block;
+  color: var(--muted);
+  font-size: 26rpx;
+  margin-top: 6rpx;
+}
+
+/* ---- 标签 ---------------------------------------------------------------- */
+
+.pill {
+  display: inline-block;
+  padding: 4rpx 20rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  font-weight: 700;
+}
+
+.pill-blue { background: var(--p-blue-pill); color: var(--p-blue-ink); }
+.pill-peach { background: var(--p-peach-pill); color: var(--p-peach-ink); }
+.pill-mint { background: var(--p-mint-pill); color: var(--p-mint-ink); }
+.pill-lavender { background: var(--p-lavender-pill); color: var(--p-lavender-ink); }
+.pill-teal { background: var(--p-teal); color: var(--p-teal-ink); }
+.pill-gray { background: var(--inset); color: var(--muted); }
+
+/* ---- 按钮 ---------------------------------------------------------------- */
+
+.btn {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 999rpx;
+  padding: 26rpx 32rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.btn::after { border: none; }
+
+.btn-primary {
+  background: var(--btn-grad);
+  color: #fff;
+  box-shadow: var(--btn-shadow);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-soft);
+  border: 2rpx solid var(--line-strong);
+}
+
+.btn-plain {
+  background: var(--inset);
+  color: var(--text-soft);
+}
+
+.btn-sm {
+  display: inline-block;
+  width: auto;
+  padding: 12rpx 28rpx;
+  font-size: 26rpx;
+}
+
+/* 返回按钮 —— 各页左上角统一样式 */
+.back-btn {
+  display: inline-block;
+  width: auto;
+  background: transparent;
+  color: var(--muted);
+  font-size: 28rpx;
+  padding: 8rpx 0;
+  margin-bottom: 8rpx;
+  line-height: 1.4;
+}
+
+.back-btn::after { border: none; }
+
+/* ---- 浮层 ---------------------------------------------------------------- */
+
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(29, 27, 24, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48rpx;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+.overlay-card {
+  width: 100%;
+  max-width: 600rpx;
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 48rpx 40rpx;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+
+.overlay-emoji {
+  font-size: 72rpx;
+  line-height: 1;
+  margin-bottom: 16rpx;
+}
+
+.overlay-title {
+  font-size: 40rpx;
+  font-weight: 800;
+  margin-bottom: 20rpx;
+}
+
+.overlay-body {
+  color: var(--text-soft);
+  font-size: 28rpx;
+  margin-bottom: 36rpx;
+}
+
+/* ---- 通用状态 ------------------------------------------------------------ */
+
+.loading-hint {
+  text-align: center;
+  color: var(--muted);
+  padding: 80rpx 0;
+}
+
+.empty-hint {
+  text-align: center;
+  color: var(--muted);
+  padding: 60rpx 20rpx;
+  font-size: 28rpx;
+}
+
+/* ---- 通用组件 ------------------------------------------------------------ */
+/* 下面这些原本长在 lang 分包里, 但 exam/parent 一样要用 —— 提到全局。 */
+
+/* ---- 筛选 / 模式 pill ------------------------------------------------------ */
+
+.tab-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.tab {
+  padding: 10rpx 26rpx;
+  border-radius: 999rpx;
+  background: var(--panel);
+  border: 2rpx solid var(--line-strong);
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.tab-on {
+  background: var(--p-blue-pill);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* 主模式切换用的大号 tab —— 平分一行 */
+.tab-lg {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  font-size: 28rpx;
+}
+
+/* ---- 顶部进度 -------------------------------------------------------------- */
+
+.head-card {
+  padding: 28rpx 32rpx;
+}
+
+.head-num {
+  font-size: 48rpx;
+  font-weight: 800;
+  color: var(--good-ink);
+}
+
+.head-den {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.bar {
+  height: 14rpx;
+  border-radius: 999rpx;
+  background: var(--inset);
+  overflow: hidden;
+  margin-top: 18rpx;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999rpx;
+  background: var(--btn-grad);
+  transition: width 240ms ease;
+}
+
+.sync-text {
+  display: block;
+  font-size: 22rpx;
+  color: var(--muted);
+  margin-top: 12rpx;
+}
+
+/* ---- 小标题 ---------------------------------------------------------------- */
+
+.section-label {
+  display: block;
+  font-size: 20rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  color: var(--muted);
+  margin-bottom: 6rpx;
+}
+
+/* 列表分段标题 (「本月考试」这种) */
+.section-title {
+  font-size: 30rpx;
+  font-weight: 800;
+  color: var(--text-soft);
+  margin: 28rpx 4rpx 16rpx;
+}
+
+/* ---- 对错反馈 -------------------------------------------------------------- */
+
+.feedback {
+  border-radius: var(--radius-sm);
+  padding: 22rpx 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.fb-correct { background: var(--p-mint); }
+.fb-wrong { background: var(--p-peach); }
+
+.fb-title {
+  font-size: 30rpx;
+  font-weight: 800;
+  margin-bottom: 4rpx;
+}
+
+.fb-correct .fb-title { color: var(--p-mint-ink); }
+.fb-wrong .fb-title { color: var(--p-peach-ink); }
+
+.fb-msg {
+  font-size: 26rpx;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+/* ---- 双按钮底栏 ------------------------------------------------------------ */
+
+.ctrl-row {
+  display: flex;
+  gap: 20rpx;
+}
+
+.ctrl-half {
+  flex: 1;
+}
+
+/* 同一列里第二个按钮 —— 和上一个拉开距离 */
+.btn-gap {
+  margin-top: 16rpx;
+}
+
+/* ---- 结算卡 ---------------------------------------------------------------- */
+
+.done-card {
+  text-align: center;
+  padding: 56rpx 40rpx;
+}
+
+.done-title {
+  font-size: 38rpx;
+  font-weight: 800;
+  margin-bottom: 12rpx;
+}
+
+.done-body {
+  font-size: 26rpx;
+  color: var(--muted);
+  margin-bottom: 32rpx;
+}

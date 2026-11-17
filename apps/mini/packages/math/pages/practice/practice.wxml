@@ -1,0 +1,96 @@
+<view class="play practice" wx:if="{{ready}}">
+  <view class="play-head">
+    <text class="head-btn" bindtap="onExit">← 返回</text>
+    <view class="spacer"></view>
+    <text class="head-xp">⭐ {{sessionXp}}</text>
+  </view>
+
+  <view class="play-status">
+    <text class="phase-badge">{{title}}</text>
+    <text class="prog" wx:if="{{mode !== 'complete'}}">第 {{position}}/{{total}} 题</text>
+  </view>
+
+  <!-- 三关进度: 基础 → 夯实 → 拔高 -->
+  <view class="stage-bar" wx:if="{{mode !== 'complete'}}">
+    <view class="stage-seg stage-{{item.state}}" wx:for="{{stages}}" wx:key="key">{{item.label}}</view>
+  </view>
+
+  <view class="stage">
+    <!-- 题干 -->
+    <block wx:if="{{mode !== 'complete'}}">
+      <view class="problem-prompt" wx:if="{{isVertical}}">{{promptText}}</view>
+      <view class="problem-text" wx:else>{{promptText}}</view>
+      <view class="problem-source" wx:if="{{sourceLabel}}">📖 {{sourceLabel}}</view>
+    </block>
+
+    <!-- 作答区 -->
+    <block wx:if="{{mode === 'present' || mode === 'wrong'}}">
+      <view class="wrong-hint" wx:if="{{showHint && hint}}">💡 {{hint}}</view>
+
+      <block wx:if="{{type === 'fill'}}">
+        <input
+          class="fill-input"
+          type="text"
+          placeholder="?"
+          value="{{val}}"
+          bindinput="onValInput"
+          confirm-type="done"
+          bindconfirm="onSubmit"
+        />
+        <button class="btn btn-primary" bindtap="onSubmit">提交</button>
+      </block>
+
+      <block wx:elif="{{type === 'steps'}}">
+        <view class="fields">
+          <view class="field" wx:for="{{fields}}" wx:key="key">
+            <text class="field-label">{{item.label}}</text>
+            <input
+              class="fill-input small"
+              placeholder="?"
+              value="{{fieldValues[item.key]}}"
+              data-key="{{item.key}}"
+              bindinput="onFieldInput"
+            />
+          </view>
+        </view>
+        <button class="btn btn-primary" bindtap="onSubmit">提交</button>
+      </block>
+
+      <view class="choices" wx:elif="{{type === 'mc'}}">
+        <view
+          class="choice"
+          wx:for="{{choices}}"
+          wx:key="id"
+          data-id="{{item.id}}"
+          bindtap="onChoice"
+          hover-class="choice--pressed"
+        >{{item.label}}</view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 底部反馈条 -->
+  <view class="feedback-bar fb-correct" wx:if="{{mode === 'correct'}}">
+    <view class="fb-title">🎉 答对了！</view>
+    <view class="xp-pop">+{{gainedXp}} ⭐{{firstTry ? ' 翻倍' : ''}}</view>
+    <view class="fb-hint" wx:if="{{explanation}}">{{explanation}}</view>
+    <button class="btn btn-primary" bindtap="onNext">继续</button>
+  </view>
+
+  <view class="feedback-bar fb-wrong" wx:if="{{mode === 'reveal'}}">
+    <view class="fb-title">正确答案：{{correctAnswer}}</view>
+    <view class="fb-hint" wx:if="{{explanation}}">{{explanation}}</view>
+    <button class="btn btn-primary" bindtap="onNext">继续</button>
+  </view>
+</view>
+
+<view class="loading-hint" wx:else>载入中…</view>
+
+<!-- 完成 -->
+<view class="overlay" wx:if="{{mode === 'complete'}}">
+  <view class="overlay-card celebrate">
+    <view class="overlay-title">🎉 这组练习完成！</view>
+    <view class="big-fact">一次答对 <text class="big-answer">{{firstTryCorrect}}</text> / {{total}}</view>
+    <button class="btn btn-primary" style="margin-top:32rpx" bindtap="onExit">回知识地图</button>
+  </view>
+</view>

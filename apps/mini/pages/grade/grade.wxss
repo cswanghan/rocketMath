@@ -1,0 +1,62 @@
+/* 年级选择。两列网格 + 大号年级数字水印。 */
+
+.grade-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.grade-card {
+  width: 48%;
+  padding: 28rpx 24rpx;
+  min-height: 220rpx;
+}
+
+.pc-blue { background: linear-gradient(135deg, #ffffff 0%, var(--p-blue) 280%); }
+.pc-peach { background: linear-gradient(135deg, #ffffff 0%, var(--p-peach) 280%); }
+.pc-mint { background: linear-gradient(135deg, #ffffff 0%, var(--p-mint) 280%); }
+.pc-lavender { background: linear-gradient(135deg, #ffffff 0%, var(--p-lavender) 280%); }
+
+.grade-card.is-current {
+  border-color: var(--good);
+  box-shadow: 0 0 0 4rpx rgba(43, 178, 76, 0.18), var(--shadow-card);
+}
+
+/* 年级数字做水印, 不抢标签的视觉重心 */
+.grade-num {
+  position: absolute;
+  right: 16rpx;
+  bottom: -16rpx;
+  font-size: 140rpx;
+  font-weight: 800;
+  line-height: 1;
+  color: rgba(29, 27, 24, 0.06);
+}
+
+.grade-label {
+  display: block;
+  font-size: 38rpx;
+  font-weight: 800;
+  margin-top: 14rpx;
+}
+
+.grade-desc {
+  display: block;
+  position: relative;
+  color: var(--muted);
+  font-size: 22rpx;
+  line-height: 1.5;
+  margin-top: 6rpx;
+}
+
+.grade-current-tag {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
+  background: var(--good);
+  color: #fff;
+  font-size: 20rpx;
+  font-weight: 700;
+  padding: 2rpx 14rpx;
+  border-radius: 999rpx;
+}

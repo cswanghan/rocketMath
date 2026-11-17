@@ -1,0 +1,249 @@
+/* 考试日历。月历格子 + 场次列表 + 详情浮层, 配色沿用 Web 端 exam-cal。 */
+
+.exam-cal {
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+/* ---- 月历 ------------------------------------------------------------------ */
+
+.cal-card {
+  padding: 24rpx 20rpx 20rpx;
+}
+
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.nav-btn {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  border-radius: 999rpx;
+  background: var(--inset);
+  color: var(--text-soft);
+  font-size: 24rpx;
+}
+
+/* 点月份回今天 */
+.month-label {
+  font-size: 34rpx;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+}
+
+.cal-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.weekday,
+.cal-day {
+  width: 14.285%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.weekday {
+  font-size: 22rpx;
+  color: var(--muted);
+  padding-bottom: 10rpx;
+}
+
+.cal-day {
+  height: 84rpx;
+  padding-top: 8rpx;
+  border-radius: 14rpx;
+}
+
+.day-num {
+  display: block;
+  font-size: 26rpx;
+  line-height: 1.4;
+  color: var(--text-soft);
+}
+
+.is-past .day-num {
+  color: var(--muted);
+}
+
+.is-today {
+  background: var(--p-mint);
+}
+
+.is-today .day-num {
+  font-weight: 800;
+  color: var(--p-mint-ink);
+}
+
+.has-exam {
+  background: var(--inset);
+}
+
+.has-exam.is-today {
+  background: var(--p-mint);
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 4rpx;
+  margin-top: 4rpx;
+}
+
+.dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 999rpx;
+  background: var(--muted);
+}
+
+.dot-blue { background: var(--accent); }
+.dot-peach { background: var(--accent2); }
+.dot-mint { background: var(--good); }
+.dot-lavender { background: var(--p-lavender-ink); }
+.dot-teal { background: var(--p-teal-ink); }
+.dot-pink { background: var(--p-pink-ink); }
+
+/* 日期未定的场次 —— 空心点, 别和确定日期的混淆 */
+.dot-vague {
+  background: transparent;
+  border: 2rpx solid var(--muted);
+}
+
+/* ---- 场次列表 -------------------------------------------------------------- */
+
+.exam-item {
+  padding: 24rpx 28rpx;
+}
+
+.exam-item.is-past {
+  opacity: 0.55;
+}
+
+.datecol {
+  width: 110rpx;
+  flex: none;
+  font-size: 26rpx;
+  font-weight: 800;
+  color: var(--title-ink);
+  line-height: 1.4;
+}
+
+.exam-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.exam-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10rpx;
+}
+
+.exam-name {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.exam-meta {
+  display: block;
+  font-size: 22rpx;
+  color: var(--muted);
+  margin-top: 8rpx;
+  line-height: 1.5;
+}
+
+.subj-math { background: var(--p-blue-pill); color: var(--p-blue-ink); }
+.subj-english { background: var(--p-peach-pill); color: var(--p-peach-ink); }
+.subj-chinese { background: var(--p-pink); color: var(--p-pink-ink); }
+.subj-science_coding { background: var(--p-lavender-pill); color: var(--p-lavender-ink); }
+
+.pill-warn {
+  background: var(--p-peach);
+  color: var(--bad);
+}
+
+/* ---- 详情浮层 -------------------------------------------------------------- */
+
+.detail-card {
+  max-height: 82vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.detail-name {
+  font-size: 38rpx;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.detail-session {
+  font-size: 26rpx;
+  color: var(--muted);
+  margin-top: 4rpx;
+}
+
+.detail-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin: 16rpx 0;
+}
+
+.detail-desc {
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--text-soft);
+}
+
+.detail-rows {
+  background: var(--inset);
+  border-radius: var(--radius-sm);
+  padding: 20rpx 24rpx;
+  margin: 20rpx 0;
+}
+
+.detail-row {
+  display: flex;
+  font-size: 26rpx;
+  line-height: 1.6;
+  margin-bottom: 10rpx;
+}
+
+.detail-row:last-child {
+  margin-bottom: 0;
+}
+
+.detail-label {
+  width: 140rpx;
+  flex: none;
+  color: var(--muted);
+}
+
+.detail-value {
+  flex: 1;
+  color: var(--text-soft);
+}
+
+.prep-hint {
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--p-blue-ink);
+  background: var(--p-blue);
+  border-radius: var(--radius-sm);
+  padding: 18rpx 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.prep-todo {
+  text-align: center;
+  font-size: 26rpx;
+  color: var(--muted);
+  padding: 20rpx 0;
+}

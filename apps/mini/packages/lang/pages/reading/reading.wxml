@@ -1,0 +1,92 @@
+<view class="page reading">
+  <button class="btn back-btn" bindtap="onBack">{{view === 'reading' ? '‹ 换一篇' : '‹ 返回'}}</button>
+
+  <!-- ==== 录入 ============================================================ -->
+  <block wx:if="{{view === 'input'}}">
+    <view class="page-title">阅读识字</view>
+    <view class="page-subtitle">粘一段课文，自动标出这个年级该会的字</view>
+
+    <view class="pcard">
+      <text class="section-label">年级</text>
+      <view class="tab-row">
+        <view class="tab {{g.active ? 'tab-on' : ''}}" wx:for="{{grades}}" wx:key="g" wx:for-item="g"
+              data-g="{{g.g}}" bindtap="onPickGrade">{{g.label}}</view>
+      </view>
+
+      <text class="section-label">范围</text>
+      <view class="tab-row">
+        <view class="tab {{scope === 'current' ? 'tab-on' : ''}}" data-scope="current" bindtap="onPickScope">只看本年级</view>
+        <view class="tab {{scope === 'cumulative' ? 'tab-on' : ''}}" data-scope="cumulative" bindtap="onPickScope">一到本年级</view>
+      </view>
+
+      <text class="section-label">课文</text>
+      <textarea class="article-input" placeholder="把课文粘到这里…" value="{{text}}" maxlength="-1"
+                bindinput="onTextInput" auto-height="{{false}}" />
+      <view class="row input-foot">
+        <text class="count">{{charCount}} 字</text>
+        <view class="spacer"></view>
+        <text class="clear-btn" wx:if="{{charCount}}" bindtap="onClearText">清空</text>
+      </view>
+
+      <button class="btn btn-primary" disabled="{{!canStart}}" bindtap="onStart">开始识字</button>
+    </view>
+
+    <view class="empty-hint">
+      标亮的字点开可以看大字、听读音、标「已掌握」。掌握记录只存在这台手机上。
+    </view>
+  </block>
+
+  <!-- ==== 阅读 ============================================================ -->
+  <block wx:else>
+    <view class="pcard head-card">
+      <text class="stats">{{statsText}}</text>
+      <view class="tab-row tab-tight">
+        <view class="tab {{g.active ? 'tab-on' : ''}}" wx:for="{{grades}}" wx:key="g" wx:for-item="g"
+              data-g="{{g.g}}" bindtap="onPickGrade">{{g.label}}</view>
+      </view>
+      <view class="tab-row tab-tight">
+        <view class="tab {{scope === 'current' ? 'tab-on' : ''}}" data-scope="current" bindtap="onPickScope">只看本年级</view>
+        <view class="tab {{scope === 'cumulative' ? 'tab-on' : ''}}" data-scope="cumulative" bindtap="onPickScope">一到本年级</view>
+      </view>
+    </view>
+
+    <view class="pcard article">
+      <block wx:for="{{segments}}" wx:key="index" wx:for-item="s">
+        <text wx:if="{{s.hit}}" class="hit {{s.mastered ? 'hit-done' : ''}}"
+              data-c="{{s.c}}" bindtap="onOpenChar">{{s.s}}</text>
+        <text wx:else class="plain">{{s.s}}</text>
+      </block>
+    </view>
+
+    <view class="row list-head">
+      <text class="list-count">生字表 {{chips.length}} 个</text>
+    </view>
+    <view class="chip-grid">
+      <view class="chip {{c.mastered ? 'chip-done' : ''}}" wx:for="{{chips}}" wx:key="char" wx:for-item="c"
+            data-c="{{c.char}}" bindtap="onOpenChar">
+        <text class="chip-char">{{c.char}}</text>
+        <text class="chip-count">×{{c.count}}</text>
+      </view>
+    </view>
+  </block>
+
+  <!-- ==== 单字浮层 ======================================================== -->
+  <view class="overlay" wx:if="{{detail}}" bindtap="onCloseDetail">
+    <view class="overlay-card" catchtap="noop">
+      <!-- 没有笔顺动画, 给田字格大字当书写参照 -->
+      <view class="tianzige">
+        <view class="tzg-h"></view>
+        <view class="tzg-v"></view>
+        <text class="tzg-char">{{detail.char}}</text>
+      </view>
+      <view class="detail-count">本文出现 {{detail.count}} 次</view>
+      <button class="btn btn-plain btn-sm" bindtap="onSpeakDetail" wx:if="{{speechOn}}">🔊 读一读</button>
+      <view class="ctrl-row ctrl-gap">
+        <button class="btn btn-ghost ctrl-half" bindtap="onCloseDetail">关闭</button>
+        <button class="btn {{detail.mastered ? 'btn-plain' : 'btn-primary'}} ctrl-half" bindtap="onToggleMastered">
+          {{detail.mastered ? '✅ 已掌握' : '标记掌握'}}
+        </button>
+      </view>
+    </view>
+  </view>
+</view>
