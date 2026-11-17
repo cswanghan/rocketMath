@@ -59,7 +59,7 @@
     <view class="pcard article">
       <block wx:for="{{segments}}" wx:key="index" wx:for-item="s">
         <text wx:if="{{s.hit}}" class="hit {{s.mastered ? 'hit-done' : ''}}"
-              data-c="{{s.c}}" bindtap="onOpenChar">{{s.s}}</text>
+              data-c="{{s.c}}" data-index="{{s.index}}" bindtap="onOpenChar">{{s.s}}</text>
         <text wx:else class="plain">{{s.s}}</text>
       </block>
     </view>
@@ -95,6 +95,8 @@
         <view class="tzg-v"></view>
         <text class="tzg-char">{{detail.char}}</text>
       </view>
+      <view class="detail-count" wx:if="{{detail.pinyin}}">{{detail.pinyin}}</view>
+      <view class="reading-feedback" wx:if="{{detail.context}}">本文词语：{{detail.context}}</view>
       <view class="detail-count">本文出现 {{detail.count}} 次</view>
       <button class="btn btn-plain btn-sm" bindtap="onSpeakDetail" wx:if="{{speechOn}}">🔊 读一读</button>
       <view class="ctrl-row ctrl-gap">

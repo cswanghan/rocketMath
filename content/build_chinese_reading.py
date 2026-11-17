@@ -10,6 +10,62 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+# Reviewed only in the twelve original passages below. Each rule names a
+# phrase and the character's offset within it; this is NOT a global default
+# pronunciation for that character or a claim to have reviewed every glyph.
+REVIEWED_READINGS = {
+    '院子': {1: 'zi'}, '空了': {0: 'kōng'}, '喝了': {0: 'hē'}, '喝水': {0: 'hē'},
+    '给红碗': {0: 'gěi'}, '两只': {1: 'zhī'}, '一只': {1: 'zhī'},
+    '雨停了': {0: 'yǔ'}, '小雨': {1: 'yǔ'}, '叶子': {1: 'zi'},
+    '挂着': {1: 'zhe'}, '看着': {0: 'kàn', 1: 'zhe'}, '地上': {0: 'dì'},
+    '小宁': {1: 'níng'}, '绿色': {0: 'lǜ'}, '盖好': {0: 'gài'},
+    '借给': {1: 'gěi'}, '还给': {0: 'huán', 1: 'gěi'}, '还说': {0: 'hái'}, '夹进': {0: 'jiā'},
+    '乐乐': {0: 'lè', 1: 'lè'}, '教室': {0: 'jiào'}, '还是': {0: 'hái'},
+    '土干了': {1: 'gān'}, '倒了': {0: 'dào'}, '倒掉': {0: 'dào'}, '观察': {0: 'guān'},
+    '结束': {0: 'jié'}, '相册': {0: 'xiàng'}, '还少': {0: 'hái', 1: 'shǎo'},
+    '当天': {0: 'dāng'}, '不能少': {2: 'shǎo'}, '重新': {0: 'chóng'},
+    '相机': {0: 'xiàng'}, '中间': {0: 'zhōng', 1: 'jiān'}, '笑得': {1: 'de'},
+    '日子': {1: 'zi'}, '帽子': {1: 'zi'}, '阿哲': {0: 'ā'},
+    '种了': {0: 'zhòng'}, '量一量': {0: 'liáng', 2: 'liáng'},
+    '数字': {0: 'shù'}, '数据': {0: 'shù'}, '朝窗': {0: 'cháo'},
+    '长得快': {0: 'zhǎng', 1: 'de'}, '急着': {1: 'zhe'}, '结论': {0: 'jié', 1: 'lùn'},
+    '通道': {0: 'tōng'}, '管理员': {2: 'yuán'}, '队员': {1: 'yuán'},
+    '空地': {0: 'kòng', 1: 'dì'}, '商量': {1: 'liang'}, '行人': {0: 'xíng'},
+    '自行车': {1: 'xíng', 2: 'chē'}, '禁止': {0: 'jìn'}, '桥头': {1: 'tóu'},
+    '牌子': {1: 'zi'}, '还可以': {0: 'hái'}, '图书角': {2: 'jiǎo'},
+    '主人公': {0: 'zhǔ'}, '觉得': {0: 'jué', 1: 'de'}, '归还': {1: 'huán'},
+    '当成': {0: 'dàng'}, '阅读卡': {2: 'kǎ'}, '写着': {1: 'zhe'}, '隔着': {1: 'zhe'},
+    '调整': {0: 'tiáo'}, '饮水': {0: 'yǐn'}, '饮水处': {2: 'chù'},
+    '只需': {0: 'zhǐ'}, '绕行': {1: 'xíng'}, '长度': {0: 'cháng', 1: 'dù'},
+    '还应': {0: 'hái', 1: 'yīng'}, '评估': {1: 'gū'}, '不仅': {1: 'jǐn'},
+    '直接': {1: 'jiē'}, '试行': {1: 'xíng'}, '实地': {1: 'dì'},
+    '便把': {0: 'biàn'}, '句子': {1: 'zi'}, '重建': {0: 'chóng'}, '看似': {1: 'sì'},
+    '相同': {0: 'xiāng'}, '区分': {1: 'fēn'}, '证据': {1: 'jù'},
+    '与尚待': {0: 'yǔ', 2: 'dài'}, '重要': {0: 'zhòng'}, '核对': {0: 'hé'},
+    '讨论': {1: 'lùn'}, '球场': {1: 'chǎng'}, '问卷': {1: 'juàn'},
+    '多数': {1: 'shù'}, '空间': {0: 'kōng', 1: 'jiān'}, '担心': {0: 'dān'},
+    '长椅': {0: 'cháng', 1: 'yǐ'}, '测量': {1: 'liáng'}, '与长椅': {0: 'yǔ'},
+    '划出': {0: 'huà'}, '没有只': {2: 'zhǐ'}, '只有': {0: 'zhǐ'},
+    '漂亮': {0: 'piào'}, '椅脚': {1: 'jiǎo'}, '缺少': {1: 'shǎo'},
+    '分格': {0: 'fēn'}, '经过': {0: 'jīng'}, '处理': {0: 'chǔ'},
+    '还留下': {0: 'hái'}, '价值': {0: 'jià'}, '盒子': {1: 'zi'}, '不只': {1: 'zhǐ'},
+}
+
+
+def reviewed_readings(text):
+    result = {}
+    for phrase, letters in REVIEWED_READINGS.items():
+        start = text.find(phrase)
+        while start >= 0:
+            for offset, pinyin in letters.items():
+                index = start + offset
+                if index in result:
+                    assert result[index]['pinyin'] == pinyin, f'conflicting reading at {index}'
+                    continue
+                result[index] = {'index': index, 'char': text[index], 'pinyin': pinyin, 'word': phrase}
+            start = text.find(phrase, start + 1)
+    return [result[index] for index in sorted(result)]
+
 
 def question(pid, skill, prompt, answer, distractors, evidence, explanation, position):
     choices = list(distractors)
@@ -21,6 +77,7 @@ def question(pid, skill, prompt, answer, distractors, evidence, explanation, pos
 
 def passage(pid, grade, title, text, rows):
     return {"id": pid, "grade": grade, "title": title, "text": text,
+            "readings": reviewed_readings(text),
             "questions": [question(f"{pid}_q{i + 1}", *row, (grade * 2 + i + int(pid[-1])) % 4)
                           for i, row in enumerate(rows)]}
 
@@ -70,9 +127,9 @@ def build():
             ('theme', '哪项最符合小队解决问题的过程？', '先观察原因，再提供具体办法并记录效果', ['只更换牌子的颜色', '发现问题后立即责备所有人', '只看一天就认定永远有效'], '大家把每天的变化记下来', '他们观察标记缺失、补停车线和指引，又记录变化，形成了完整的改进过程。'),
         ]),
         passage('zh_g4_2', 4, '藏在书里的纸条',
-            '图书角收到一本旧故事书。翻到中间，小禾发现一张纸条：“看到这里，我猜小主人公会把秘密说出来。”再往后翻，另一张写着：“我猜错了，原来他想先帮助朋友。”小禾觉得这些纸条像一场隔着时间的谈话。她没有把猜测当成故事原文，而是边读边寻找证据。读完后，她在自己的阅读卡上写下新的问题。归还前，小禾请老师把旧纸条放进阅读交流盒，让下一位读者可以选择看，也可以先保留自己的想法。', [
+            '图书角收到一本旧故事书。翻到中间，小禾发现一张纸条：“看到这里，我猜小主人公会把秘密说出来。”再往后翻，另一张写着：“我猜错了，原来他想先帮助朋友。”小禾觉得这些纸条像一次隔着时间的谈话。她没有把猜测当成故事原文，而是边读边寻找证据。读完后，她在自己的阅读卡上写下新的问题。归还前，小禾请老师把旧纸条放进阅读交流盒，让下一位读者可以选择看，也可以先保留自己的想法。', [
             ('detail', '第二张纸条表明先前的猜测怎样了？', '被后面的情节修正了', ['一定完全正确', '变成了故事的标题', '已经无法阅读'], '我猜错了，原来他想先帮助朋友', '纸条作者承认猜错，并根据新情节调整了想法。'),
-            ('inference', '为什么说纸条像“隔着时间的谈话”？', '后来读者能与以前读者的想法交流', ['纸条会自己发出声音', '故事只能在过去阅读', '书里的时间停止了'], '这些纸条像一场隔着时间的谈话', '不同时间阅读的人通过留下的想法产生交流，这是比喻，不是纸条真的说话。'),
+            ('inference', '为什么说纸条像“隔着时间的谈话”？', '后来读者能与以前读者的想法交流', ['纸条会自己发出声音', '故事只能在过去阅读', '书里的时间停止了'], '这些纸条像一次隔着时间的谈话', '不同时间阅读的人通过留下的想法产生交流，这是比喻，不是纸条真的说话。'),
             ('cause', '把纸条放进交流盒有什么好处？', '让下一位读者自行决定何时参考', ['让所有人不再读原文', '保证猜测永远正确', '让书只能由老师保管'], '可以选择看，也可以先保留自己的想法', '这样既保存交流材料，也尊重读者先独立思考的选择。'),
         ]),
         passage('zh_g5_1', 5, '多走的一段路',
@@ -100,7 +157,7 @@ def build():
             ('theme', '老师的话与结尾共同说明什么？', '能持续服务他人并被改进的礼物更有长久意义', ['礼物越贵越有价值', '礼物只在赠送当天有用', '后来的使用者不应修改说明'], '新同学仍在使用这个盒子', '结尾展示礼物继续被使用并完善，呼应老师对持续价值的强调。'),
         ]),
     ]
-    return {'version': '1.0.0', 'source': '原创分级阅读练习；年级为建议难度，不对应指定教材或考试真题。', 'passages': passages}
+    return {'version': '1.0.1', 'source': '原创分级阅读练习；年级为建议难度，不对应指定教材或考试真题。', 'passages': passages}
 
 
 def validate(data):
@@ -109,6 +166,12 @@ def validate(data):
         assert p['id'] not in ids
         ids.add(p['id'])
         assert p['grade'] in range(1, 7) and p['text']
+        positions = set()
+        for reading in p['readings']:
+            assert reading['index'] not in positions
+            positions.add(reading['index'])
+            assert p['text'][reading['index']] == reading['char']
+            assert reading['word'] in p['text'] and reading['pinyin']
         for q in p['questions']:
             assert q['id'] not in ids
             ids.add(q['id'])

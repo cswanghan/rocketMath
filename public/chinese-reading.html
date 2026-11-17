@@ -441,8 +441,10 @@ let selectedPassage = null;
 let READING_LIBRARY = window.CHINESE_READING_LIBRARY || null;
 let readingLibraryLoading = false;
 let foundChars = [];   // [{char, pinyin, count}]
+let articleReadings = []; // per occurrence: the same character can have different readings
 let masteredSet = new Set();
 let currentDetailChar = null;
+let currentDetailIndex = null;
 let writerInstance = null;
 
 // ========== Init ==========
@@ -595,8 +597,8 @@ function getTargetChars() {
 function getPinyin(ch) {
   try {
     if (window.cnchar) {
-      // Single most-common reading (NOT 'poly' — poly returns all readings of
-      // 多音字 like "cháng|zhǎng", which renders as a wrong/cluttered pinyin).
+      // Automatic fallback only. Reviewed original passages override this
+      // result at the exact occurrence, never by changing a global character.
       let py = cnchar.spell(ch, 'tone');
       if (Array.isArray(py)) py = py[0];
       py = (py == null ? '' : String(py));
@@ -607,6 +609,47 @@ function getPinyin(ch) {
   return '';
 }
 
+function getArticleReadings(text, passage) {
+  const occurrences = Array.from(text, (char, index) => ({char, index, pinyin: getPinyin(char), word: '', reviewed: false}));
+  if (passage && passage.text === text) {
+    for (const reading of passage.readings || []) {
+      const item = occurrences[reading.index];
+      if (item && item.char === reading.char && typeof reading.pinyin === 'string') {
+        item.pinyin = reading.pinyin;
+        item.word = reading.word;
+        item.reviewed = true;
+      }
+    }
+  }
+  return occurrences;
+}
+
+function collectReadingCharacters(occurrences, targetSet) {
+  const chars = new Map();
+  for (const item of occurrences) {
+    if (!targetSet.has(item.char)) continue;
+    if (!chars.has(item.char)) chars.set(item.char, {char: item.char, count: 0, readings: []});
+    const entry = chars.get(item.char);
+    entry.count++;
+    if (item.pinyin && !entry.readings.some(r => r.pinyin === item.pinyin && r.word === item.word)) {
+      entry.readings.push({pinyin: item.pinyin, word: item.word, reviewed: item.reviewed});
+    }
+  }
+  return Array.from(chars.values(), entry => ({...entry, pinyin: [...new Set(entry.readings.map(r => r.pinyin))].join(' / ')}))
+    .sort((a, b) => b.count - a.count);
+}
+
+function readingDetail(ch, index) {
+  const info = foundChars.find(f => f.char === ch);
+  if (!info) return null;
+  const occurrence = Number.isInteger(index) && articleReadings[index]?.char === ch ? articleReadings[index] : null;
+  const readings = occurrence ? [occurrence] : info.readings;
+  return {
+    pinyin: occurrence ? occurrence.pinyin : info.pinyin,
+    context: readings.map(r => r.word ? r.word + '：' + r.pinyin : r.pinyin + '（自动参考）').join('；'),
+  };
+}
+
 function startReading() {
   const input = document.getElementById('articleInput');
   articleText = input.value.trim();
@@ -615,17 +658,8 @@ function startReading() {
   renderReadingQuestions();
 
   const targetSet = getTargetChars();
-  const charMap = new Map(); // char -> count
-
-  for (const ch of articleText) {
-    if (targetSet.has(ch)) {
-      charMap.set(ch, (charMap.get(ch) || 0) + 1);
-    }
-  }
-
-  foundChars = Array.from(charMap.entries())
-    .map(([char, count]) => ({ char, pinyin: getPinyin(char), count }))
-    .sort((a, b) => b.count - a.count);
+  articleReadings = getArticleReadings(articleText, selectedPassage);
+  foundChars = collectReadingCharacters(articleReadings, targetSet);
 
   window.rmTrack && rmTrack('reading_generate', { grade: currentGrade, textLen: articleText.length, found: foundChars.length });
   renderReadingView();
@@ -648,7 +682,8 @@ function renderReadingView() {
   // Render article body with highlighted chars
   const body = document.getElementById('articleBody');
   body.innerHTML = '';
-  for (const ch of articleText) {
+  for (const occurrence of articleReadings) {
+    const {char: ch, index} = occurrence;
     if (ch === '\n') {
       body.appendChild(document.createElement('br'));
       continue;
@@ -658,11 +693,11 @@ function renderReadingView() {
       ruby.className = 'hw' + (masteredSet.has(ch) ? ' mastered' : '');
       ruby.textContent = ch;
       ruby.dataset.char = ch;
+      ruby.dataset.index = String(index);
       const rt = document.createElement('rt');
-      const info = foundChars.find(f => f.char === ch);
-      rt.textContent = info ? info.pinyin : '';
+      rt.textContent = occurrence.pinyin;
       ruby.appendChild(rt);
-      ruby.onclick = () => showDetail(ch);
+      ruby.onclick = () => showDetail(ch, index);
       body.appendChild(ruby);
     } else {
       body.appendChild(document.createTextNode(ch));
@@ -697,12 +732,15 @@ function showDetailEmpty() {
   document.getElementById('detailEmpty').style.display = '';
   document.getElementById('detailContent').style.display = 'none';
   currentDetailChar = null;
+  currentDetailIndex = null;
 }
 
-function showDetail(ch) {
+function showDetail(ch, index = null) {
   currentDetailChar = ch;
+  currentDetailIndex = index;
   const info = foundChars.find(f => f.char === ch);
   if (!info) return;
+  const detail = readingDetail(ch, index);
   window.rmTrack && rmTrack('char_view', { char: ch, source: 'reading' });
 
   // highlight active
@@ -713,7 +751,8 @@ function showDetail(ch) {
   const isMastered = masteredSet.has(ch);
   const detailHTML = `
     <div class="detail-char">${ch}</div>
-    <div class="detail-pinyin pinyin-font">${info.pinyin || '—'}</div>
+    <div class="detail-pinyin pinyin-font">${detail.pinyin || '—'}</div>
+    <div class="detail-section-body">${detail.context || '暂无注音'}</div>
     <div class="writer-box" id="__WRITER_ID__"></div>
     <div class="detail-actions">
       <button class="detail-btn" onclick="playAnimation()">▶ 笔顺</button>
@@ -811,9 +850,11 @@ function toggleMastered(ch) {
     localStorage.setItem('reading-mastered', JSON.stringify([...masteredSet]));
   } catch(e) {}
   // re-render
+  const reopen = currentDetailChar === ch;
+  const index = currentDetailIndex;
   renderReadingView();
-  if (currentDetailChar === ch) {
-    showDetail(ch);
+  if (reopen) {
+    showDetail(ch, index);
   }
 }
 

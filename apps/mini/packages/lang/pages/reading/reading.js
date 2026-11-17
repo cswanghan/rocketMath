@@ -2,9 +2,7 @@
 // 粘一段课文进来, 按参考字表挑出练习字，也可选择原创分级短文, 点开逐字过。
 //
 // 相对 Web 端的取舍:
-//   · 没有拼音注音: Web 用 cnchar(CDN) 给任意字注音, 小程序加载不了远程脚本,
-//     内置字卡的拼音表覆盖不了整篇课文, 与其给一半不如不给。P1 可以打一份
-//     常用字拼音表进分包再补上。
+//   · 不对任意文章自动注音；原创短文的字卡使用按出现位置审校的词语读音。
 //   · 没有笔顺动画/临摹: hanzi-writer 同理, 换成田字格静态大字。
 //   · 「已掌握」只存本地: Web 端也是 localStorage, 没有后端表, 保持一致。
 
@@ -185,6 +183,12 @@ Page({
     const order = [];
     const segments = [];
     let buf = '';
+    const readings = this.selectedPassage && this.selectedPassage.text === text
+      ? (this.selectedPassage.readings || []) : [];
+    this.readingsByIndex = {};
+    readings.forEach((r) => {
+      if (text[r.index] === r.char) this.readingsByIndex[r.index] = r;
+    });
 
     for (let i = 0; i < text.length; i += 1) {
       const ch = text[i];
@@ -198,7 +202,7 @@ Page({
           order.push(ch);
         }
         counts[ch] += 1;
-        segments.push({ hit: true, s: ch, c: ch, mastered: !!this.mastered[ch] });
+        segments.push({ hit: true, s: ch, c: ch, index: i, mastered: !!this.mastered[ch] });
       } else {
         buf += ch;
       }
@@ -206,7 +210,7 @@ Page({
     if (buf) segments.push({ hit: false, s: buf, c: '', mastered: false });
 
     this.found = order
-      .map((c) => ({ char: c, count: counts[c] }))
+      .map((c) => ({ char: c, count: counts[c], readings: readings.filter((r) => r.char === c) }))
       .sort((a, b) => b.count - a.count);
 
     this.renderReading(segments);
@@ -232,7 +236,7 @@ Page({
   /** 只刷新掌握态, 不重扫正文。 */
   refreshMasteredFlags() {
     const segments = this.data.segments.map((s) =>
-      s.hit ? { hit: true, s: s.s, c: s.c, mastered: !!this.mastered[s.c] } : s,
+      s.hit ? Object.assign({}, s, { mastered: !!this.mastered[s.c] }) : s,
     );
     this.renderReading(segments);
   },
@@ -242,15 +246,20 @@ Page({
     if (!ch) return;
     const info = this.found.filter((f) => f.char === ch)[0];
     if (!info) return;
+    const occurrence = this.readingsByIndex[e.currentTarget.dataset.index];
+    const readings = occurrence && occurrence.char === ch ? [occurrence] : (info.readings || []);
+    const pinyin = [...new Set(readings.map((r) => r.pinyin))].join(' / ');
+    const context = [...new Set(readings.map((r) => r.word + '：' + r.pinyin))].join('；');
+    const speechText = readings.length ? [...new Set(readings.map((r) => r.word))].join('，') : ch;
     this.setData({
-      detail: { char: ch, count: info.count, mastered: !!this.mastered[ch] },
+      detail: { char: ch, count: info.count, mastered: !!this.mastered[ch], pinyin, context, speechText },
     });
-    speech.speak(ch);
+    speech.speak(speechText);
     track.track('char_view', { char: ch, source: 'reading' });
   },
 
   onSpeakDetail() {
-    if (this.data.detail) speech.speak(this.data.detail.char);
+    if (this.data.detail) speech.speak(this.data.detail.speechText);
   },
 
   onToggleMastered() {
