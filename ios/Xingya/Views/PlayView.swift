@@ -18,6 +18,7 @@ struct PlayView: View {
         _model = State(initialValue: model)
         self.pack = pack; self.storage = storage; self.studentId = studentId
     }
+    private var allowsNegativeAnswers: Bool { IntegerAnswerInput.supportsNegativeAnswers(in: model.track) }
     private var isPrompt: Bool { if case .prompt = model.viewState { return true }; return false }
     private var fact: Fact? {
         switch model.viewState {
@@ -102,13 +103,21 @@ struct PlayView: View {
             .background(isCorrect ? Theme.leafSoft : Theme.card, in: .rect(cornerRadius: 22))
             .overlay(RoundedRectangle(cornerRadius: 22).strokeBorder(isCorrect ? Theme.brand : Theme.sky1, lineWidth: 2))
             .accessibilityLabel(L10n.format(isPrompt ? "你的答案 %@" : "正确答案 %@", isPrompt ? input : String(fact?.answer ?? 0)))
+            .accessibilityIdentifier("fluency-answer")
     }
     @ViewBuilder private var controls: some View {
         switch model.viewState {
         case .prompt(_, let retest):
             if retest { Text("再试一次").font(.footnote).foregroundStyle(Theme.warn) }
-            NumpadView(onDigit: { if input.count < 5 { input += String($0) } }, onDelete: { _ = input.popLast() },
-                       onSubmit: { if let value = Int(input) { model.submit(value) } }, submitDisabled: input.isEmpty)
+            NumpadView(
+                onDigit: { input = IntegerAnswerInput.appending($0, to: input) },
+                onDelete: { _ = input.popLast() },
+                onSubmit: { if let value = IntegerAnswerInput.value(of: input) { model.submit(value) } },
+                submitDisabled: IntegerAnswerInput.value(of: input) == nil,
+                onToggleSign: allowsNegativeAnswers ? {
+                    input = IntegerAnswerInput.togglingSign(in: input, allowed: allowsNegativeAnswers)
+                } : nil
+            )
         case .correct(let fact):
             FeedbackBand(correct: true, title: "对了！", detail: "\(fact.prompt) = \(fact.answer)", identifier: "fluency-continue") { model.next() }
                 .transition(reduceMotion ? .opacity : .move(edge: .bottom).combined(with: .opacity))

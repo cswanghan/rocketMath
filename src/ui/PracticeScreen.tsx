@@ -34,9 +34,10 @@ interface Props {
   studentId: string;
   seed: number;
   onExit: () => void;
+  exitLabel?: string;
 }
 
-export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit }: Props) {
+export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit, exitLabel = '回知识地图' }: Props) {
   const game = usePractice(setId, practicePack, adapter, studentId, seed);
   const title = useMemo(() => getSetFromPack(practicePack, setId)?.title ?? '练习', [practicePack, setId]);
   const { view } = game;
@@ -124,7 +125,7 @@ export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, 
               一次答对 <b>{view.firstTryCorrect}</b> / {view.total}
             </div>
             <button className="primary" onClick={onExit}>
-              回知识地图
+              {exitLabel}
             </button>
           </div>
         </div>
@@ -162,10 +163,10 @@ function ProblemView({
         <>
           <input
             className="fill-input"
-            inputMode="numeric"
+            inputMode="text"
             autoFocus
             value={val}
-            onChange={(e) => setVal(e.target.value.replace(/[^\d]/g, '').slice(0, 6))}
+            onChange={(e) => setVal(e.target.value.slice(0, 24))}
             placeholder="?"
           />
           <button className="primary" onClick={onSubmit}>
@@ -268,6 +269,7 @@ function FeedbackBar({
               <StarBurst />
               <span className="xp-pop">+{xp} ⭐{firstTry ? ' 翻倍' : ''}</span>
             </div>
+            {p.explanation && <div className="fb-hint">{p.explanation}</div>}
           </div>
         ) : (
           <div className="fb-text">

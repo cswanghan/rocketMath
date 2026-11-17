@@ -42,6 +42,9 @@ struct KnowledgeMapView: View {
     @Environment(\.dynamicTypeSize) private var typeSize
     private var term: Term { Term(rawValue: termValue) ?? .upper }
     private var topics: [Topic] { content.map.units(term: term).flatMap { content.map.topics(in: $0) } }
+    private var additionalFluencyTopics: [Topic] {
+        FluencyNavigation.unmappedTopics(tracks: content.fluencyPack.tracks, mappedTopics: content.map.topics)
+    }
     private var recommended: Topic? { topics.first { isReady($0) && progress($0) < 1 } ?? topics.first(where: isReady) }
 
     var body: some View {
@@ -53,6 +56,12 @@ struct KnowledgeMapView: View {
                     Text("今天，也算得漂亮。").font(.body).foregroundStyle(Theme.sub)
                 }
                 if let topic = recommended { hero(topic) }
+                if !additionalFluencyTopics.isEmpty {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(L10n.text("更多口算")).font(.title2.bold()).padding(.bottom, 8)
+                        ForEach(additionalFluencyTopics) { topic in pathRow(topic) }
+                    }
+                }
                 HStack {
                     Text("学习路径").font(.title2.bold())
                     Spacer()

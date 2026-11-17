@@ -5,6 +5,14 @@
     <text class="gear" bindtap="onToggleSettings">⚙︎</text>
   </view>
 
+  <view class="practice-menu">
+    <text class="section-label">阅读与语法 · 原创练习</text>
+    <view class="practice-links">
+      <button class="btn btn-plain btn-sm" wx:for="{{practiceSets}}" wx:key="id"
+        data-id="{{item.id}}" bindtap="onPractice">{{item.title}} · {{item.count}} 题</button>
+    </view>
+  </view>
+
   <!-- 进度条 -->
   <view class="pcard head-card">
     <view class="row">

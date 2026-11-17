@@ -690,10 +690,10 @@ const CHARS = [
   {c:'村',p:'cūn',mean:'住人的村子',struct:'左右',rad:'wood',parts:[{g:'木',l:'木字旁',rad:'wood'},{g:'寸',l:'寸'}]},
   // 纟
   {c:'红',p:'hóng',mean:'红色',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'工',l:'工'}]},
-  {c:'绿',p:'lǜ',mean:'绿色',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'录',l:'录'}]},
+  {c:'绿',word:'绿色',p:'lǜ',mean:'绿色',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'录',l:'录'}]},
   {c:'纸',p:'zhǐ',mean:'写字的纸',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'氏',l:'氏'}]},
   {c:'线',p:'xiàn',mean:'细细的线',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'戋',l:'戋'}]},
-  {c:'给',p:'gěi',mean:'把东西给别人',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'合',l:'合'}]},
+  {c:'给',word:'送给',p:'gěi',mean:'把东西给别人',struct:'左右',rad:'silk',parts:[{g:'纟',l:'绞丝旁',rad:'silk'},{g:'合',l:'合'}]},
   // 口
   {c:'听',p:'tīng',mean:'用耳朵听',struct:'左右',rad:'mouth',parts:[{g:'口',l:'口字旁',rad:'mouth'},{g:'斤',l:'斤'}]},
   {c:'唱',p:'chàng',mean:'唱歌',struct:'左右',rad:'mouth',parts:[{g:'口',l:'口字旁',rad:'mouth'},{g:'昌',l:'昌'}]},
@@ -705,7 +705,7 @@ const CHARS = [
   {c:'姐',p:'jiě',mean:'姐姐',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'且',l:'且'}]},
   {c:'妹',p:'mèi',mean:'妹妹',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'未',l:'未'}]},
   {c:'奶',p:'nǎi',mean:'奶奶',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'乃',l:'乃'}]},
-  {c:'好',p:'hǎo',mean:'很好',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'子',l:'子'}]},
+  {c:'好',word:'好人',p:'hǎo',mean:'很好',struct:'左右',rad:'woman',parts:[{g:'女',l:'女字旁',rad:'woman'},{g:'子',l:'子'}]},
   // 足
   {c:'跑',p:'pǎo',mean:'快快地跑',struct:'左右',rad:'foot',parts:[{g:'⻊',l:'足字旁',rad:'foot'},{g:'包',l:'包'}]},
   {c:'跳',p:'tiào',mean:'用脚跳起来',struct:'左右',rad:'foot',parts:[{g:'⻊',l:'足字旁',rad:'foot'},{g:'兆',l:'兆'}]},
@@ -741,8 +741,94 @@ const CHARS = [
   {c:'远',p:'yuǎn',mean:'很远',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'元',l:'元'}]},
   {c:'近',p:'jìn',mean:'很近',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'斤',l:'斤'}]},
   {c:'送',p:'sòng',mean:'送东西',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'关',l:'关'}]},
-  {c:'过',p:'guò',mean:'走过、经过',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'寸',l:'寸'}]},
+  {c:'过',word:'经过',p:'guò',mean:'走过、经过',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'寸',l:'寸'}]},
   {c:'这',p:'zhè',mean:'这里、这个',struct:'半包围',rad:'walk',parts:[{g:'辶',l:'走之旁',rad:'walk'},{g:'文',l:'文'}]},
+  // 新增常用字：例词限定本卡读音，偏旁分类不等同教材生字表。
+  // 字形部件（非字源解释）核对：定=⿱宀𤴓；愿=⿸原心（大陆字形）；宫=⿱宀吕。
+  // 定：https://www.cns11643.gov.tw/wordView.jsp?ID=85113
+  // 愿：https://www.zdic.net/hans/愿 （半包围）
+  // 80 个新增字的部件与 CHISE IDS 交叉核对；辶/⻌、⻊/𧾷为显示形式差异。
+  // https://raw.githubusercontent.com/chise/ids/master/IDS-UCS-Basic.txt
+  {"c":"清","p":"qīng","word":"清水","mean":"干净透明的","struct":"左右","rad":"water","parts":[{"g":"氵","l":"三点水","rad":"water"},{"g":"青","l":"青"}]},
+  {"c":"波","p":"bō","word":"波纹","mean":"水面起伏的纹路","struct":"左右","rad":"water","parts":[{"g":"氵","l":"三点水","rad":"water"},{"g":"皮","l":"皮"}]},
+  {"c":"浪","p":"làng","word":"海浪","mean":"水面起伏的波涛","struct":"左右","rad":"water","parts":[{"g":"氵","l":"三点水","rad":"water"},{"g":"良","l":"良"}]},
+  {"c":"港","p":"gǎng","word":"港口","mean":"船只停靠的水域","struct":"左右","rad":"water","parts":[{"g":"氵","l":"三点水","rad":"water"},{"g":"巷","l":"巷"}]},
+  {"c":"洋","p":"yáng","word":"海洋","mean":"广大的海域","struct":"左右","rad":"water","parts":[{"g":"氵","l":"三点水","rad":"water"},{"g":"羊","l":"羊"}]},
+  {"c":"溪","p":"xī","word":"小溪","mean":"山间的小河流","struct":"左右","rad":"water","parts":[{"g":"氵","l":"三点水","rad":"water"},{"g":"奚","l":"奚"}]},
+  {"c":"板","p":"bǎn","word":"木板","mean":"片状的木料","struct":"左右","rad":"wood","parts":[{"g":"木","l":"木字旁","rad":"wood"},{"g":"反","l":"反"}]},
+  {"c":"枝","p":"zhī","word":"树枝","mean":"树干上分出的部分","struct":"左右","rad":"wood","parts":[{"g":"木","l":"木字旁","rad":"wood"},{"g":"支","l":"支"}]},
+  {"c":"根","p":"gēn","word":"树根","mean":"植物吸收水分的部分","struct":"左右","rad":"wood","parts":[{"g":"木","l":"木字旁","rad":"wood"},{"g":"艮","l":"艮"}]},
+  {"c":"柱","p":"zhù","word":"柱子","mean":"支撑建筑的直立构件","struct":"左右","rad":"wood","parts":[{"g":"木","l":"木字旁","rad":"wood"},{"g":"主","l":"主"}]},
+  {"c":"柳","p":"liǔ","word":"柳树","mean":"枝条细长的树","struct":"左右","rad":"wood","parts":[{"g":"木","l":"木字旁","rad":"wood"},{"g":"卯","l":"卯"}]},
+  {"c":"棉","p":"mián","word":"棉花","mean":"能制成纺织纤维的植物","struct":"左右","rad":"wood","parts":[{"g":"木","l":"木字旁","rad":"wood"},{"g":"帛","l":"帛"}]},
+  {"c":"细","p":"xì","word":"细线","mean":"横截面小的","struct":"左右","rad":"silk","parts":[{"g":"纟","l":"绞丝旁","rad":"silk"},{"g":"田","l":"田"}]},
+  {"c":"结","p":"jié","word":"结绳","mean":"把绳子打成结","struct":"左右","rad":"silk","parts":[{"g":"纟","l":"绞丝旁","rad":"silk"},{"g":"吉","l":"吉"}]},
+  {"c":"纪","p":"jì","word":"纪律","mean":"大家共同遵守的准则","struct":"左右","rad":"silk","parts":[{"g":"纟","l":"绞丝旁","rad":"silk"},{"g":"己","l":"己"}]},
+  {"c":"级","p":"jí","word":"年级","mean":"按学习阶段分出的等级","struct":"左右","rad":"silk","parts":[{"g":"纟","l":"绞丝旁","rad":"silk"},{"g":"及","l":"及"}]},
+  {"c":"织","p":"zhī","word":"织布","mean":"把线交错编成布","struct":"左右","rad":"silk","parts":[{"g":"纟","l":"绞丝旁","rad":"silk"},{"g":"只","l":"只"}]},
+  {"c":"喊","p":"hǎn","word":"喊声","mean":"大声叫出","struct":"左右","rad":"mouth","parts":[{"g":"口","l":"口字旁","rad":"mouth"},{"g":"咸","l":"咸"}]},
+  {"c":"喝","p":"hē","word":"喝水","mean":"把液体咽下去","struct":"左右","rad":"mouth","parts":[{"g":"口","l":"口字旁","rad":"mouth"},{"g":"曷","l":"曷"}]},
+  {"c":"响","p":"xiǎng","word":"响声","mean":"发出声音","struct":"左右","rad":"mouth","parts":[{"g":"口","l":"口字旁","rad":"mouth"},{"g":"向","l":"向"}]},
+  {"c":"咳","p":"ké","word":"咳嗽","mean":"喉部受刺激而发声","struct":"左右","rad":"mouth","parts":[{"g":"口","l":"口字旁","rad":"mouth"},{"g":"亥","l":"亥"}]},
+  {"c":"咬","p":"yǎo","word":"咬住","mean":"用牙齿夹住","struct":"左右","rad":"mouth","parts":[{"g":"口","l":"口字旁","rad":"mouth"},{"g":"交","l":"交"}]},
+  {"c":"吐","p":"tǔ","word":"吐出","mean":"使嘴里的东西出来","struct":"左右","rad":"mouth","parts":[{"g":"口","l":"口字旁","rad":"mouth"},{"g":"土","l":"土"}]},
+  {"c":"姑","p":"gū","word":"姑姑","mean":"父亲的姐妹","struct":"左右","rad":"woman","parts":[{"g":"女","l":"女字旁","rad":"woman"},{"g":"古","l":"古"}]},
+  {"c":"姓","p":"xìng","word":"姓名","mean":"表示家族的称号","struct":"左右","rad":"woman","parts":[{"g":"女","l":"女字旁","rad":"woman"},{"g":"生","l":"生"}]},
+  {"c":"姨","p":"yí","word":"姨妈","mean":"母亲的姐妹","struct":"左右","rad":"woman","parts":[{"g":"女","l":"女字旁","rad":"woman"},{"g":"夷","l":"夷"}]},
+  {"c":"娘","p":"niáng","word":"新娘","mean":"举行婚礼时的女子","struct":"左右","rad":"woman","parts":[{"g":"女","l":"女字旁","rad":"woman"},{"g":"良","l":"良"}]},
+  {"c":"娃","p":"wá","word":"娃娃","mean":"小孩子","struct":"左右","rad":"woman","parts":[{"g":"女","l":"女字旁","rad":"woman"},{"g":"圭","l":"圭"}]},
+  {"c":"婚","p":"hūn","word":"婚礼","mean":"两个人结婚的仪式","struct":"左右","rad":"woman","parts":[{"g":"女","l":"女字旁","rad":"woman"},{"g":"昏","l":"昏"}]},
+  {"c":"踏","p":"tà","word":"踏步","mean":"用脚踩下","struct":"左右","rad":"foot","parts":[{"g":"⻊","l":"足字旁","rad":"foot"},{"g":"沓","l":"沓"}]},
+  {"c":"跨","p":"kuà","word":"跨过","mean":"迈步越过","struct":"左右","rad":"foot","parts":[{"g":"⻊","l":"足字旁","rad":"foot"},{"g":"夸","l":"夸"}]},
+  {"c":"跟","p":"gēn","word":"脚跟","mean":"脚的后部","struct":"左右","rad":"foot","parts":[{"g":"⻊","l":"足字旁","rad":"foot"},{"g":"艮","l":"艮"}]},
+  {"c":"跃","p":"yuè","word":"跳跃","mean":"向上跳起","struct":"左右","rad":"foot","parts":[{"g":"⻊","l":"足字旁","rad":"foot"},{"g":"夭","l":"夭"}]},
+  {"c":"距","p":"jù","word":"距离","mean":"相隔的长度","struct":"左右","rad":"foot","parts":[{"g":"⻊","l":"足字旁","rad":"foot"},{"g":"巨","l":"巨"}]},
+  {"c":"踩","p":"cǎi","word":"踩踏","mean":"脚底用力接触物体","struct":"左右","rad":"foot","parts":[{"g":"⻊","l":"足字旁","rad":"foot"},{"g":"采","l":"采"}]},
+  {"c":"拉","p":"lā","word":"拉车","mean":"用力使物体朝自己移动","struct":"左右","rad":"hand","parts":[{"g":"扌","l":"提手旁","rad":"hand"},{"g":"立","l":"立"}]},
+  {"c":"推","p":"tuī","word":"推门","mean":"用力使物体向前移动","struct":"左右","rad":"hand","parts":[{"g":"扌","l":"提手旁","rad":"hand"},{"g":"隹","l":"隹"}]},
+  {"c":"指","p":"zhǐ","word":"手指","mean":"手前端分出的部分","struct":"左右","rad":"hand","parts":[{"g":"扌","l":"提手旁","rad":"hand"},{"g":"旨","l":"旨"}]},
+  {"c":"拾","p":"shí","word":"拾起","mean":"从地上拿起来","struct":"左右","rad":"hand","parts":[{"g":"扌","l":"提手旁","rad":"hand"},{"g":"合","l":"合"}]},
+  {"c":"护","p":"hù","word":"保护","mean":"使人或物免受损害","struct":"左右","rad":"hand","parts":[{"g":"扌","l":"提手旁","rad":"hand"},{"g":"户","l":"户"}]},
+  {"c":"抄","p":"chāo","word":"抄写","mean":"照着原文书写","struct":"左右","rad":"hand","parts":[{"g":"扌","l":"提手旁","rad":"hand"},{"g":"少","l":"少"}]},
+  {"c":"住","p":"zhù","word":"居住","mean":"在某处生活","struct":"左右","rad":"person","parts":[{"g":"亻","l":"单人旁","rad":"person"},{"g":"主","l":"主"}]},
+  {"c":"伴","p":"bàn","word":"伙伴","mean":"一起活动的人","struct":"左右","rad":"person","parts":[{"g":"亻","l":"单人旁","rad":"person"},{"g":"半","l":"半"}]},
+  {"c":"体","p":"tǐ","word":"身体","mean":"人或动物的躯体","struct":"左右","rad":"person","parts":[{"g":"亻","l":"单人旁","rad":"person"},{"g":"本","l":"本"}]},
+  {"c":"作","p":"zuò","word":"作文","mean":"进行写作","struct":"左右","rad":"person","parts":[{"g":"亻","l":"单人旁","rad":"person"},{"g":"乍","l":"乍"}]},
+  {"c":"信","p":"xìn","word":"书信","mean":"写给别人传达消息的文字","struct":"左右","rad":"person","parts":[{"g":"亻","l":"单人旁","rad":"person"},{"g":"言","l":"言"}]},
+  {"c":"芽","p":"yá","word":"发芽","mean":"植物初生的幼体","struct":"上下","rad":"grass","parts":[{"g":"艹","l":"草字头","rad":"grass"},{"g":"牙","l":"牙"}]},
+  {"c":"荷","p":"hé","word":"荷花","mean":"生长在水中的一种花","struct":"上下","rad":"grass","parts":[{"g":"艹","l":"草字头","rad":"grass"},{"g":"何","l":"何"}]},
+  {"c":"莲","p":"lián","word":"莲子","mean":"莲的种子","struct":"上下","rad":"grass","parts":[{"g":"艹","l":"草字头","rad":"grass"},{"g":"连","l":"连"}]},
+  {"c":"蓝","p":"lán","word":"蓝色","mean":"晴天天空的颜色","struct":"上下","rad":"grass","parts":[{"g":"艹","l":"草字头","rad":"grass"},{"g":"监","l":"监"}]},
+  {"c":"菊","p":"jú","word":"菊花","mean":"常在秋季开放的一种花","struct":"上下","rad":"grass","parts":[{"g":"艹","l":"草字头","rad":"grass"},{"g":"匊","l":"匊"}]},
+  {"c":"快","p":"kuài","word":"快乐","mean":"感到高兴","struct":"左右","rad":"heart","parts":[{"g":"忄","l":"竖心旁","rad":"heart"},{"g":"夬","l":"夬"}]},
+  {"c":"慢","p":"màn","word":"慢慢","mean":"速度低的","struct":"左右","rad":"heart","parts":[{"g":"忄","l":"竖心旁","rad":"heart"},{"g":"曼","l":"曼"}]},
+  {"c":"惊","p":"jīng","word":"惊讶","mean":"对意外的事感到吃惊","struct":"左右","rad":"heart","parts":[{"g":"忄","l":"竖心旁","rad":"heart"},{"g":"京","l":"京"}]},
+  {"c":"悄","p":"qiāo","word":"悄悄","mean":"没有声音地","struct":"左右","rad":"heart","parts":[{"g":"忄","l":"竖心旁","rad":"heart"},{"g":"肖","l":"肖"}]},
+  {"c":"室","p":"shì","word":"教室","mean":"房间","struct":"上下","rad":"roof","parts":[{"g":"宀","l":"宝盖头","rad":"roof"},{"g":"至","l":"至"}]},
+  {"c":"客","p":"kè","word":"客人","mean":"来访问或做客的人","struct":"上下","rad":"roof","parts":[{"g":"宀","l":"宝盖头","rad":"roof"},{"g":"各","l":"各"}]},
+  {"c":"宫","p":"gōng","word":"宫殿","mean":"帝王居住的建筑","struct":"上下","rad":"roof","parts":[{"g":"宀","l":"宝盖头","rad":"roof"},{"g":"吕","l":"吕"}]},
+  {"c":"宝","p":"bǎo","word":"宝贝","mean":"珍贵的东西","struct":"上下","rad":"roof","parts":[{"g":"宀","l":"宝盖头","rad":"roof"},{"g":"玉","l":"玉"}]},
+  {"c":"定","p":"dìng","word":"安定","mean":"平稳而不动荡","struct":"上下","rad":"roof","parts":[{"g":"宀","l":"宝盖头","rad":"roof"},{"g":"𤴓","l":"定的下部（𤴓）"}]},
+  {"c":"宁","p":"níng","word":"宁静","mean":"安静平和","struct":"上下","rad":"roof","parts":[{"g":"宀","l":"宝盖头","rad":"roof"},{"g":"丁","l":"丁"}]},
+  {"c":"进","p":"jìn","word":"前进","mean":"向前移动","struct":"半包围","rad":"walk","parts":[{"g":"辶","l":"走之旁","rad":"walk"},{"g":"井","l":"井"}]},
+  {"c":"连","p":"lián","word":"连接","mean":"把分开的部分接起来","struct":"半包围","rad":"walk","parts":[{"g":"辶","l":"走之旁","rad":"walk"},{"g":"车","l":"车"}]},
+  {"c":"迷","p":"mí","word":"迷路","mean":"分不清方向","struct":"半包围","rad":"walk","parts":[{"g":"辶","l":"走之旁","rad":"walk"},{"g":"米","l":"米"}]},
+  {"c":"选","p":"xuǎn","word":"选择","mean":"从中挑出合适的","struct":"半包围","rad":"walk","parts":[{"g":"辶","l":"走之旁","rad":"walk"},{"g":"先","l":"先"}]},
+  {"c":"通","p":"tōng","word":"通过","mean":"从一端到另一端","struct":"半包围","rad":"walk","parts":[{"g":"辶","l":"走之旁","rad":"walk"},{"g":"甬","l":"甬"}]},
+  {"c":"灯","p":"dēng","word":"电灯","mean":"用来照明的器具","struct":"左右","rad":"fire","parts":[{"g":"火","l":"火字旁","rad":"fire"},{"g":"丁","l":"丁"}]},
+  {"c":"烧","p":"shāo","word":"烧火","mean":"使东西燃烧","struct":"左右","rad":"fire","parts":[{"g":"火","l":"火字旁","rad":"fire"},{"g":"尧","l":"尧"}]},
+  {"c":"炒","p":"chǎo","word":"炒菜","mean":"把食物放在锅里翻动加热","struct":"左右","rad":"fire","parts":[{"g":"火","l":"火字旁","rad":"fire"},{"g":"少","l":"少"}]},
+  {"c":"烤","p":"kǎo","word":"烤熟","mean":"靠近热源使食物变熟","struct":"左右","rad":"fire","parts":[{"g":"火","l":"火字旁","rad":"fire"},{"g":"考","l":"考"}]},
+  {"c":"烟","p":"yān","word":"烟雾","mean":"燃烧时产生的气体和微粒","struct":"左右","rad":"fire","parts":[{"g":"火","l":"火字旁","rad":"fire"},{"g":"因","l":"因"}]},
+  {"c":"灿","p":"càn","word":"灿烂","mean":"光彩鲜明耀眼","struct":"左右","rad":"fire","parts":[{"g":"火","l":"火字旁","rad":"fire"},{"g":"山","l":"山"}]},
+  {"c":"晴","p":"qíng","word":"晴天","mean":"天空无云或云很少","struct":"左右","rad":"sun","parts":[{"g":"日","l":"日字旁","rad":"sun"},{"g":"青","l":"青"}]},
+  {"c":"时","p":"shí","word":"时间","mean":"表示事物先后长短的量","struct":"左右","rad":"sun","parts":[{"g":"日","l":"日字旁","rad":"sun"},{"g":"寸","l":"寸"}]},
+  {"c":"晚","p":"wǎn","word":"晚上","mean":"太阳落下后的时间","struct":"左右","rad":"sun","parts":[{"g":"日","l":"日字旁","rad":"sun"},{"g":"免","l":"免"}]},
+  {"c":"暖","p":"nuǎn","word":"温暖","mean":"不冷不热使人舒服","struct":"左右","rad":"sun","parts":[{"g":"日","l":"日字旁","rad":"sun"},{"g":"爰","l":"爰"}]},
+  {"c":"晒","p":"shài","word":"晒太阳","mean":"让阳光照在上面","struct":"左右","rad":"sun","parts":[{"g":"日","l":"日字旁","rad":"sun"},{"g":"西","l":"西"}]},
+  {"c":"愿","p":"yuàn","word":"愿望","mean":"希望实现的想法","struct":"半包围","rad":"heart","parts":[{"g":"原","l":"原"},{"g":"心","l":"心字底","rad":"heart"}]},
+  {"c":"忘","p":"wàng","word":"忘记","mean":"记不起来","struct":"上下","rad":"heart","parts":[{"g":"亡","l":"亡"},{"g":"心","l":"心字底","rad":"heart"}]},
+  {"c":"晨","p":"chén","word":"清晨","mean":"太阳刚升起的时候","struct":"上下","rad":"sun","parts":[{"g":"日","l":"日字头","rad":"sun"},{"g":"辰","l":"辰"}]},
 ];
 
 /* 偏旁分组顺序 */
@@ -753,6 +839,7 @@ const GROUPS = [
   {key:'mouth',rad:'mouth'},{key:'woman',rad:'woman'},{key:'foot',rad:'foot'},
   {key:'hand',rad:'hand'},{key:'person',rad:'person'},{key:'grass',rad:'grass'},
   {key:'heart',rad:'heart'},{key:'roof',rad:'roof'},{key:'walk',rad:'walk'},
+  {key:'fire',rad:'fire'},{key:'sun',rad:'sun'},
 ];
 
 /* ===================== 通用 ===================== */
@@ -877,7 +964,7 @@ function renderDetail(){
   const c = current;
   document.getElementById('d-pinyin').textContent = c.p || '';
   const meanEl=document.getElementById('d-mean');
-  meanEl.textContent = c.mean ? ('含义：'+c.mean) : '';
+  meanEl.textContent = c.mean ? ('含义：'+c.mean+(c.word?' · 例词：'+c.word:'')) : '';
   meanEl.style.display = c.mean ? '' : 'none';
   buildWriter(c.c);
 
@@ -1027,7 +1114,8 @@ function makeQ(type,c){
   if(type==='pinyin'){
     const opts = shuffle([c.p, ...pick(PINYINS,3,c.p)]);
     return {type, char:c.c, big:c.c, small:false,
-      prompt:'这个字读什么？', opts, correct:c.p, render:'p'};
+      prompt:c.word?'「'+c.word+'」中的「'+c.c+'」读什么？':'这个字读什么？', opts, correct:c.p, render:'p',
+      explanation:(c.word?'「'+c.word+'」中的':'')+'「'+c.c+'」读 '+c.p+'。'};
   }
   if(type==='family'){
     const fam = CHARS.filter(x=>x.rad===c.rad && x.c!==c.c);
@@ -1035,7 +1123,7 @@ function makeQ(type,c){
     const others = CHARS.filter(x=>x.rad!==c.rad).map(x=>x.c);
     const opts = shuffle([correct, ...pick(others,3,correct)]);
     return {type, char:c.c, big:c.c, small:false,
-      prompt:'「'+c.c+'」和下面哪个字是「一家人」（同一个偏旁）？', opts, correct, render:'c'};
+      prompt:'「'+c.c+'」和下面哪个字属于同一偏旁家族？', opts, correct, render:'c', explanation:'它们属于'+RAD[c.rad].name+'家族。'};
   }
   // theme
   const r = RAD[c.rad];
@@ -1043,7 +1131,7 @@ function makeQ(type,c){
   const allThemes = [...new Set(Object.values(RAD).map(x=>x.theme.split(' · ')[0]))];
   const opts = shuffle([themeWord, ...pick(allThemes,3,themeWord)]);
   return {type, char:c.c, big:r.g, small:true,
-    prompt:'「'+c.c+'」的偏旁是「'+r.g+'」，它常常和什么有关？', opts, correct:themeWord, render:'t'};
+    prompt:'「'+c.c+'」的偏旁是「'+r.g+'」，它常常和什么有关？', opts, correct:themeWord, render:'t', explanation:r.story};
 }
 
 function startQuiz(){ buildQuiz(); qIdx=0; qScore=0;
@@ -1088,7 +1176,8 @@ function answer(btn,val,q){
   const fb=document.getElementById('q-feedback');
   if(right){ qScore++; fb.style.color='#3d7a2a'; fb.textContent=['太棒了！🎉','答对啦！⭐','真厉害！👏','完全正确！✨'][Math.floor(Math.random()*4)]; }
   else { fb.style.color='var(--red)'; fb.textContent='没关系，正确答案已经标出来啦 💪'; }
-  if(q.char) speak(q.char);
+  if(q.explanation) fb.textContent+=' '+q.explanation;
+  if(q.char) speak(byChar[q.char]?.word || q.char);
   document.getElementById('q-score-top').textContent='⭐ '+qScore;
   document.getElementById('q-next').classList.remove('hidden');
   document.getElementById('q-next').textContent = qIdx<9 ? '下一关 →' : '看结果 🏁';

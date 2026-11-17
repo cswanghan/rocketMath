@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "grade": 8,
   "subject": "math_fluency",
   "engine_config": {
@@ -104,6 +104,78 @@
               "prompt": "y^2 · y^2 = y^?  (填指数)",
               "answer": 4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_9ab48e5a8704",
+              "prompt": "a^1 · a^2 = a^?  (填指数)",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_5a1a2d9e5d8c",
+              "prompt": "a^1 · a^6 = a^?  (填指数)",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_bdb91690123a",
+              "prompt": "a^1 · a^7 = a^?  (填指数)",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_244f08aec5f5",
+              "prompt": "a^1 · a^8 = a^?  (填指数)",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_2c7bc655c429",
+              "prompt": "a^2 · a^8 = a^?  (填指数)",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_7dd14a1eec96",
+              "prompt": "a^3 · a^8 = a^?  (填指数)",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_c2e5729f056a",
+              "prompt": "a^4 · a^8 = a^?  (填指数)",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_155daaa0f504",
+              "prompt": "a^5 · a^8 = a^?  (填指数)",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_b04e36b63338",
+              "prompt": "a^6 · a^8 = a^?  (填指数)",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_d3bbf4b59ede",
+              "prompt": "a^7 · a^8 = a^?  (填指数)",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_af638d3d8f78",
+              "prompt": "a^8 · a^8 = a^?  (填指数)",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_a_v2_c287cf12fee1",
+              "prompt": "a^1 · a^3 = a^?  (填指数)",
+              "answer": 4,
+              "learningType": "pattern"
             }
           ]
         },
@@ -131,6 +203,78 @@
             {
               "id": "pow_mul_n6p3",
               "prompt": "n^6 · n^3 = n^?  (填指数)",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_1adc29445e4d",
+              "prompt": "a^1 · a^4 = a^?  (填指数)",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_8abcca55df89",
+              "prompt": "a^1 · a^5 = a^?  (填指数)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_baa25cb7ce09",
+              "prompt": "a^2 · a^2 = a^?  (填指数)",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_92da4f3a7af1",
+              "prompt": "a^3 · a^7 = a^?  (填指数)",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_241213208377",
+              "prompt": "a^4 · a^7 = a^?  (填指数)",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_f790c3ae3db5",
+              "prompt": "a^5 · a^7 = a^?  (填指数)",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_a1634d96eac0",
+              "prompt": "a^6 · a^7 = a^?  (填指数)",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_1c6a01dae47b",
+              "prompt": "a^7 · a^7 = a^?  (填指数)",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_90e930c49836",
+              "prompt": "a^8 · a^7 = a^?  (填指数)",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_fd1150f43a65",
+              "prompt": "a^2 · a^4 = a^?  (填指数)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_1f6a6d232a4b",
+              "prompt": "a^2 · a^6 = a^?  (填指数)",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_b_v2_4408ed987ad5",
+              "prompt": "a^2 · a^7 = a^?  (填指数)",
               "answer": 9,
               "learningType": "pattern"
             }
@@ -162,6 +306,78 @@
               "prompt": "(y^2)^5 = y^?  (填指数)",
               "answer": 10,
               "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_87fe704dc3b8",
+              "prompt": "(a^1)^2 = a^?  (填指数)",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_885fa358eccd",
+              "prompt": "(a^1)^3 = a^?  (填指数)",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_c2f64dc55ed3",
+              "prompt": "(a^1)^4 = a^?  (填指数)",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_adbc316a1456",
+              "prompt": "(a^1)^5 = a^?  (填指数)",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_ea2a4070d7d6",
+              "prompt": "(a^1)^7 = a^?  (填指数)",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_33a27d14d3f6",
+              "prompt": "(a^2)^6 = a^?  (填指数)",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_f4d45ea48728",
+              "prompt": "(a^2)^7 = a^?  (填指数)",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_23ad28b7c92c",
+              "prompt": "(a^2)^8 = a^?  (填指数)",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_6edab9d93703",
+              "prompt": "(a^3)^3 = a^?  (填指数)",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_bc5ad2210304",
+              "prompt": "(a^3)^5 = a^?  (填指数)",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_80803f0a7841",
+              "prompt": "(a^3)^6 = a^?  (填指数)",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_c_v2_0fa27cddf0d4",
+              "prompt": "(a^3)^7 = a^?  (填指数)",
+              "answer": 21,
+              "learningType": "pattern"
             }
           ]
         },
@@ -190,6 +406,78 @@
               "id": "pow_val_5e2",
               "prompt": "5^2 = ?",
               "answer": 25,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_a27f97e9657d",
+              "prompt": "1^2 = ?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_7e513aa00321",
+              "prompt": "2^2 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_d44e1ac25de7",
+              "prompt": "2^5 = ?",
+              "answer": 32,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_d26f1a20e894",
+              "prompt": "2^6 = ?",
+              "answer": 64,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_35874c785e3d",
+              "prompt": "2^7 = ?",
+              "answer": 128,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_61ced897b47f",
+              "prompt": "2^8 = ?",
+              "answer": 256,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_6410838824ec",
+              "prompt": "3^3 = ?",
+              "answer": 27,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_c6f423d38c40",
+              "prompt": "3^4 = ?",
+              "answer": 81,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_19bf0e1223ce",
+              "prompt": "3^5 = ?",
+              "answer": 243,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_79ff3444eced",
+              "prompt": "5^3 = ?",
+              "answer": 125,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_76096e24c884",
+              "prompt": "6^2 = ?",
+              "answer": 36,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_power_rules_d_v2_2118ecaa4826",
+              "prompt": "6^3 = ?",
+              "answer": 216,
               "learningType": "fact_recall"
             }
           ]
@@ -220,6 +508,78 @@
               "prompt": "m^6 ÷ m^2 = m^?  (填指数)",
               "answer": 4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_47a8727203de",
+              "prompt": "a^3 ÷ a^2 = a^?  (填指数)",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_9ec4b5025fa3",
+              "prompt": "a^4 ÷ a^2 = a^?  (填指数)",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_958bf0272cad",
+              "prompt": "a^8 ÷ a^2 = a^?  (填指数)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_0b646d91b3ec",
+              "prompt": "a^4 ÷ a^3 = a^?  (填指数)",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_9ed8551d7451",
+              "prompt": "a^5 ÷ a^2 = a^?  (填指数)",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_3cd84175ef78",
+              "prompt": "a^5 ÷ a^3 = a^?  (填指数)",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_511b6d53652f",
+              "prompt": "a^7 ÷ a^2 = a^?  (填指数)",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_59e7599f4f0f",
+              "prompt": "a^5 ÷ a^4 = a^?  (填指数)",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_d09ea6dd9b64",
+              "prompt": "a^6 ÷ a^2 = a^?  (填指数)",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_acb89e698f12",
+              "prompt": "a^6 ÷ a^3 = a^?  (填指数)",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_7d77a999e465",
+              "prompt": "a^6 ÷ a^4 = a^?  (填指数)",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_e_v2_5dae7771b85a",
+              "prompt": "a^8 ÷ a^3 = a^?  (填指数)",
+              "answer": 5,
+              "learningType": "pattern"
             }
           ]
         },
@@ -248,6 +608,78 @@
               "id": "pow_pow_y4q3",
               "prompt": "(y^4)^3 = y^?  (填指数)",
               "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_a0a155bbf0ae",
+              "prompt": "(a^1)^6 = a^?  (填指数)",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_65e220812a9b",
+              "prompt": "(a^1)^8 = a^?  (填指数)",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_97f9d27e0e25",
+              "prompt": "(a^2)^2 = a^?  (填指数)",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_f68e4ea167e3",
+              "prompt": "(a^2)^5 = a^?  (填指数)",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_de32f8893c65",
+              "prompt": "(a^3)^8 = a^?  (填指数)",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_f7038455faa1",
+              "prompt": "(a^4)^4 = a^?  (填指数)",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_d8bc7044c586",
+              "prompt": "(a^4)^5 = a^?  (填指数)",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_dc7031d1fd5b",
+              "prompt": "(a^4)^7 = a^?  (填指数)",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_c46997f67c0e",
+              "prompt": "(a^4)^8 = a^?  (填指数)",
+              "answer": 32,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_4eced330aac5",
+              "prompt": "(a^5)^5 = a^?  (填指数)",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_d165a25210ad",
+              "prompt": "(a^5)^6 = a^?  (填指数)",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_power_rules_f_v2_3240aa2ae303",
+              "prompt": "(a^5)^7 = a^?  (填指数)",
+              "answer": 35,
               "learningType": "pattern"
             }
           ]
@@ -285,6 +717,78 @@
               "prompt": "直角三角形两直角边为 8 和 15,斜边 = ?",
               "answer": 17,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_cb4de9f260b4",
+              "prompt": "直角三角形两直角边为 16 和 30,斜边 = ?",
+              "answer": 34,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_a377a09f5c3d",
+              "prompt": "直角三角形两直角边为 15 和 36,斜边 = ?",
+              "answer": 39,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_b2389fe23f54",
+              "prompt": "直角三角形两直角边为 24 和 45,斜边 = ?",
+              "answer": 51,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_c7e41fa740a4",
+              "prompt": "直角三角形两直角边为 12 和 16,斜边 = ?",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_20a45dae2b1d",
+              "prompt": "直角三角形两直角边为 20 和 48,斜边 = ?",
+              "answer": 52,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_454d257760d9",
+              "prompt": "直角三角形两直角边为 32 和 60,斜边 = ?",
+              "answer": 68,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_6cb665cac9b0",
+              "prompt": "直角三角形两直角边为 15 和 20,斜边 = ?",
+              "answer": 25,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_5ebbd4bb086b",
+              "prompt": "直角三角形两直角边为 25 和 60,斜边 = ?",
+              "answer": 65,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_39f7f0e0cde4",
+              "prompt": "直角三角形两直角边为 40 和 75,斜边 = ?",
+              "answer": 85,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_ad94afeb4e7c",
+              "prompt": "直角三角形两直角边为 18 和 24,斜边 = ?",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_1b7277bfe6fe",
+              "prompt": "直角三角形两直角边为 30 和 72,斜边 = ?",
+              "answer": 78,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_a_v2_c3c2fba1002e",
+              "prompt": "直角三角形两直角边为 48 和 90,斜边 = ?",
+              "answer": 102,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -313,6 +817,78 @@
               "id": "pyth_8_10_a",
               "prompt": "直角三角形斜边为 10,一直角边为 8,另一直角边 = ?",
               "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_918c755c7b8a",
+              "prompt": "直角三角形斜边为 5,一直角边为 3,另一直角边 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_32b9ff361ebf",
+              "prompt": "直角三角形斜边为 13,一直角边为 5,另一直角边 = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_6f090754b448",
+              "prompt": "直角三角形斜边为 10,一直角边为 6,另一直角边 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_5440b83a279b",
+              "prompt": "直角三角形斜边为 26,一直角边为 10,另一直角边 = ?",
+              "answer": 24,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_dfec2fa47714",
+              "prompt": "直角三角形斜边为 34,一直角边为 16,另一直角边 = ?",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_2dcdcd9c2272",
+              "prompt": "直角三角形斜边为 34,一直角边为 30,另一直角边 = ?",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_aa51cc15a0e7",
+              "prompt": "直角三角形斜边为 15,一直角边为 12,另一直角边 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_47bfb70ede2c",
+              "prompt": "直角三角形斜边为 39,一直角边为 15,另一直角边 = ?",
+              "answer": 36,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_337fa250003b",
+              "prompt": "直角三角形斜边为 51,一直角边为 24,另一直角边 = ?",
+              "answer": 45,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_ad3badff68a6",
+              "prompt": "直角三角形斜边为 52,一直角边为 20,另一直角边 = ?",
+              "answer": 48,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_4e814bdc1258",
+              "prompt": "直角三角形斜边为 52,一直角边为 48,另一直角边 = ?",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_b_v2_d3be69ba0bc8",
+              "prompt": "直角三角形斜边为 68,一直角边为 32,另一直角边 = ?",
+              "answer": 60,
               "learningType": "fact_recall"
             }
           ]
@@ -343,6 +919,78 @@
               "prompt": "直角三角形两直角边为 10 和 24,斜边 = ?",
               "answer": 26,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_3ef623923162",
+              "prompt": "直角三角形两直角边为 12 和 35,斜边 = ?",
+              "answer": 37,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_21c15e91d63d",
+              "prompt": "直角三角形两直角边为 14 和 48,斜边 = ?",
+              "answer": 50,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_dd92a0790dc0",
+              "prompt": "直角三角形两直角边为 40 和 42,斜边 = ?",
+              "answer": 58,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_cebdd22068ca",
+              "prompt": "直角三角形两直角边为 18 和 80,斜边 = ?",
+              "answer": 82,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_6ec539b1ea77",
+              "prompt": "直角三角形两直角边为 24 和 70,斜边 = ?",
+              "answer": 74,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_38f72f8f18de",
+              "prompt": "直角三角形两直角边为 21 和 72,斜边 = ?",
+              "answer": 75,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_7a218bc36ee0",
+              "prompt": "直角三角形两直角边为 60 和 63,斜边 = ?",
+              "answer": 87,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_998581490973",
+              "prompt": "直角三角形两直角边为 27 和 120,斜边 = ?",
+              "answer": 123,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_e8c49dcc946b",
+              "prompt": "直角三角形两直角边为 36 和 105,斜边 = ?",
+              "answer": 111,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_de85e9995b1e",
+              "prompt": "直角三角形两直角边为 28 和 96,斜边 = ?",
+              "answer": 100,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_4aaf94948050",
+              "prompt": "直角三角形两直角边为 80 和 84,斜边 = ?",
+              "answer": 116,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_c_v2_0ff03843daee",
+              "prompt": "直角三角形两直角边为 36 和 160,斜边 = ?",
+              "answer": 164,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -371,6 +1019,78 @@
               "id": "pyth_24_26_a",
               "prompt": "直角三角形斜边为 26,一直角边为 24,另一直角边 = ?",
               "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_742be5064568",
+              "prompt": "直角三角形斜边为 25,一直角边为 7,另一直角边 = ?",
+              "answer": 24,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_b838cef86280",
+              "prompt": "直角三角形斜边为 29,一直角边为 20,另一直角边 = ?",
+              "answer": 21,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_14dc0ac91a87",
+              "prompt": "直角三角形斜边为 41,一直角边为 9,另一直角边 = ?",
+              "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_ae4a933c3dcb",
+              "prompt": "直角三角形斜边为 41,一直角边为 40,另一直角边 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_51d74144b93d",
+              "prompt": "直角三角形斜边为 37,一直角边为 12,另一直角边 = ?",
+              "answer": 35,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_2148528d811f",
+              "prompt": "直角三角形斜边为 37,一直角边为 35,另一直角边 = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_001912d55faa",
+              "prompt": "直角三角形斜边为 50,一直角边为 14,另一直角边 = ?",
+              "answer": 48,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_566d8b0cf478",
+              "prompt": "直角三角形斜边为 50,一直角边为 48,另一直角边 = ?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_857f5543e8ac",
+              "prompt": "直角三角形斜边为 58,一直角边为 40,另一直角边 = ?",
+              "answer": 42,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_bf2d262a2c36",
+              "prompt": "直角三角形斜边为 82,一直角边为 18,另一直角边 = ?",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_a879464c544d",
+              "prompt": "直角三角形斜边为 82,一直角边为 80,另一直角边 = ?",
+              "answer": 18,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_pythagorean_triple_d_v2_272362f83160",
+              "prompt": "直角三角形斜边为 74,一直角边为 24,另一直角边 = ?",
+              "answer": 70,
               "learningType": "fact_recall"
             }
           ]
@@ -408,6 +1128,78 @@
               "prompt": "y = 4x + 2,当 x = 2 时,y = ?",
               "answer": 10,
               "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_ca048135c0fd",
+              "prompt": "y = 2x + 1,当 x = 1 时,y = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_9bfaf5bd44e0",
+              "prompt": "y = 3x + 1,当 x = 1 时,y = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_eaafa41f2496",
+              "prompt": "y = 4x + 1,当 x = 1 时,y = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_87cf873106af",
+              "prompt": "y = 4x + 1,当 x = 2 时,y = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_fabb6e79d597",
+              "prompt": "y = 4x + 1,当 x = 3 时,y = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_ce017b40b3fc",
+              "prompt": "y = 4x + 1,当 x = 4 时,y = ?",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_f9ce4c74ceef",
+              "prompt": "y = 3x + 1,当 x = 5 时,y = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_fe6189a4179a",
+              "prompt": "y = 4x + 1,当 x = 5 时,y = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_fca866332d82",
+              "prompt": "y = 3x + 1,当 x = 6 时,y = ?",
+              "answer": 19,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_eb4cb7d05bb4",
+              "prompt": "y = 4x + 1,当 x = 6 时,y = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_bf5cbb7e4af4",
+              "prompt": "y = 2x + 1,当 x = 7 时,y = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_a_v2_e2bbc05e843f",
+              "prompt": "y = 3x + 1,当 x = 7 时,y = ?",
+              "answer": 22,
+              "learningType": "pattern"
             }
           ]
         },
@@ -436,6 +1228,78 @@
               "id": "lf_k5_bn3_x2",
               "prompt": "y = 5x - 3,当 x = 2 时,y = ?",
               "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_155de75dcc58",
+              "prompt": "y = -3x + 3,当 x = -4 时,y = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_c169466bc3a4",
+              "prompt": "y = -2x + 3,当 x = -4 时,y = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_cfa7ea466985",
+              "prompt": "y = 3x + 3,当 x = -4 时,y = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_98ff176341b9",
+              "prompt": "y = -3x + 3,当 x = -3 时,y = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_3bcf73e1caa5",
+              "prompt": "y = 2x + 3,当 x = -3 时,y = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_7e0b3bcf5023",
+              "prompt": "y = 3x + 3,当 x = -3 时,y = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_a75e74abe7a1",
+              "prompt": "y = 2x + 3,当 x = -2 时,y = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_8c3220f777e7",
+              "prompt": "y = -3x + 3,当 x = -1 时,y = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_0f6d8515fff2",
+              "prompt": "y = -2x + 3,当 x = -1 时,y = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_894d4c7de6a9",
+              "prompt": "y = 2x + 3,当 x = -1 时,y = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_b178d7b6dd9a",
+              "prompt": "y = 3x + 3,当 x = -1 时,y = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_b_v2_1b0e65028475",
+              "prompt": "y = -3x + 3,当 x = 0 时,y = ?",
+              "answer": 3,
               "learningType": "pattern"
             }
           ]
@@ -466,6 +1330,78 @@
               "prompt": "y = -3x + 15,当 x = 4 时,y = ?",
               "answer": 3,
               "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_8040dd5d1df4",
+              "prompt": "y = -3x + 5,当 x = -4 时,y = ?",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_fbbdfe52480f",
+              "prompt": "y = -2x + 5,当 x = -4 时,y = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_93ef7325675a",
+              "prompt": "y = 2x + 5,当 x = -4 时,y = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_06a3fb24e4b8",
+              "prompt": "y = 3x + 5,当 x = -4 时,y = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_b1ff403a7e76",
+              "prompt": "y = -3x + 5,当 x = -3 时,y = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_60893ad3b852",
+              "prompt": "y = -2x + 5,当 x = -3 时,y = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_c378b1d70ee1",
+              "prompt": "y = 2x + 5,当 x = -3 时,y = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_12416e0b7925",
+              "prompt": "y = 3x + 5,当 x = -3 时,y = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_a011b0612f04",
+              "prompt": "y = -2x + 5,当 x = -2 时,y = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_1949de59fa3c",
+              "prompt": "y = 2x + 5,当 x = -2 时,y = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_e50777d3c4fe",
+              "prompt": "y = -3x + 5,当 x = -1 时,y = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_c_v2_0580d0ce49c7",
+              "prompt": "y = 3x + 5,当 x = -1 时,y = ?",
+              "answer": 2,
+              "learningType": "pattern"
             }
           ]
         },
@@ -494,6 +1430,78 @@
               "id": "lf_k6_bn6_x2",
               "prompt": "y = 6x - 6,当 x = 2 时,y = ?",
               "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_eceb611df8f0",
+              "prompt": "y = -3x + 7,当 x = -4 时,y = ?",
+              "answer": 19,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_df1cf302b285",
+              "prompt": "y = -2x + 7,当 x = -4 时,y = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_1536101a0ede",
+              "prompt": "y = 2x + 7,当 x = -4 时,y = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_ef20bab4fbde",
+              "prompt": "y = -3x + 7,当 x = -3 时,y = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_ff491914cb0b",
+              "prompt": "y = -2x + 7,当 x = -3 时,y = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_8fc7d27c95a9",
+              "prompt": "y = 2x + 7,当 x = -3 时,y = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_878cedd71046",
+              "prompt": "y = 3x + 7,当 x = -3 时,y = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_c9c46333e5d8",
+              "prompt": "y = -2x + 7,当 x = -2 时,y = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_49f1ddc0f4ac",
+              "prompt": "y = 2x + 7,当 x = -2 时,y = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_017a44896fe5",
+              "prompt": "y = -3x + 7,当 x = -1 时,y = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_d713adb4a678",
+              "prompt": "y = -2x + 7,当 x = -1 时,y = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_linear_func_val_d_v2_846612e23bc2",
+              "prompt": "y = -3x + 7,当 x = 0 时,y = ?",
+              "answer": 7,
               "learningType": "pattern"
             }
           ]
@@ -531,6 +1539,78 @@
               "prompt": "三角形两内角分别为 40° 和 70°,第三个内角 = ?°",
               "answer": 70,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_c1a06434141d",
+              "prompt": "三角形两内角分别为 20° 和 25°,第三个内角 = ?°",
+              "answer": 135,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_cc89c5def619",
+              "prompt": "三角形两内角分别为 20° 和 30°,第三个内角 = ?°",
+              "answer": 130,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_31bc7ad0fa75",
+              "prompt": "三角形两内角分别为 20° 和 35°,第三个内角 = ?°",
+              "answer": 125,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_67f07b8ebc05",
+              "prompt": "三角形两内角分别为 20° 和 40°,第三个内角 = ?°",
+              "answer": 120,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_04230cc22f2a",
+              "prompt": "三角形两内角分别为 20° 和 45°,第三个内角 = ?°",
+              "answer": 115,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_66319d7b03b8",
+              "prompt": "三角形两内角分别为 20° 和 50°,第三个内角 = ?°",
+              "answer": 110,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_bed307f35629",
+              "prompt": "三角形两内角分别为 20° 和 55°,第三个内角 = ?°",
+              "answer": 105,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_19cc4455c55d",
+              "prompt": "三角形两内角分别为 20° 和 60°,第三个内角 = ?°",
+              "answer": 100,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_07db0c010def",
+              "prompt": "三角形两内角分别为 20° 和 65°,第三个内角 = ?°",
+              "answer": 95,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_6cb90022a779",
+              "prompt": "三角形两内角分别为 20° 和 75°,第三个内角 = ?°",
+              "answer": 85,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_dcc19e410902",
+              "prompt": "三角形两内角分别为 20° 和 80°,第三个内角 = ?°",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_a_v2_5ee121a73229",
+              "prompt": "三角形两内角分别为 20° 和 85°,第三个内角 = ?°",
+              "answer": 75,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -559,6 +1639,78 @@
               "id": "tri_int_90_55",
               "prompt": "三角形两内角分别为 90° 和 55°,第三个内角 = ?°",
               "answer": 35,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_31d8daea436f",
+              "prompt": "三角形两内角分别为 25° 和 25°,第三个内角 = ?°",
+              "answer": 130,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_7c19939eea25",
+              "prompt": "三角形两内角分别为 25° 和 30°,第三个内角 = ?°",
+              "answer": 125,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_188ca2c51ff3",
+              "prompt": "三角形两内角分别为 25° 和 35°,第三个内角 = ?°",
+              "answer": 120,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_aa39a01d93ad",
+              "prompt": "三角形两内角分别为 25° 和 40°,第三个内角 = ?°",
+              "answer": 115,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_f2b7a9d790d9",
+              "prompt": "三角形两内角分别为 25° 和 45°,第三个内角 = ?°",
+              "answer": 110,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_27c8f137496a",
+              "prompt": "三角形两内角分别为 25° 和 50°,第三个内角 = ?°",
+              "answer": 105,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_8dad1622785e",
+              "prompt": "三角形两内角分别为 25° 和 55°,第三个内角 = ?°",
+              "answer": 100,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_ff58f4602c8a",
+              "prompt": "三角形两内角分别为 25° 和 60°,第三个内角 = ?°",
+              "answer": 95,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_446dc633d386",
+              "prompt": "三角形两内角分别为 25° 和 65°,第三个内角 = ?°",
+              "answer": 90,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_aa711c692d72",
+              "prompt": "三角形两内角分别为 25° 和 70°,第三个内角 = ?°",
+              "answer": 85,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_3cd7194cfd0a",
+              "prompt": "三角形两内角分别为 25° 和 75°,第三个内角 = ?°",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_b_v2_7e766e8bd968",
+              "prompt": "三角形两内角分别为 25° 和 80°,第三个内角 = ?°",
+              "answer": 75,
               "learningType": "fact_recall"
             }
           ]
@@ -589,6 +1741,78 @@
               "prompt": "三角形某外角的两个不相邻内角为 45° 和 55°,该外角 = ?°",
               "answer": 100,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_15a32d397fdd",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 25°,该外角 = ?°",
+              "answer": 55,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_bd66b4c4f48a",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 30°,该外角 = ?°",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_855e99fa7905",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 35°,该外角 = ?°",
+              "answer": 65,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_a7b7b6a94be2",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 40°,该外角 = ?°",
+              "answer": 70,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_88f4aecff020",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 45°,该外角 = ?°",
+              "answer": 75,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_ce07187258b0",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 50°,该外角 = ?°",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_c0f377cf7a4f",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 60°,该外角 = ?°",
+              "answer": 90,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_3b59c5c64fbe",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 65°,该外角 = ?°",
+              "answer": 95,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_be2d5b6eaf0d",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 75°,该外角 = ?°",
+              "answer": 105,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_bf8b87df09e0",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 85°,该外角 = ?°",
+              "answer": 115,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_a76025ec4acd",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 90°,该外角 = ?°",
+              "answer": 120,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_c_v2_04b5421f4f9b",
+              "prompt": "三角形某外角的两个不相邻内角为 30° 和 95°,该外角 = ?°",
+              "answer": 125,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -617,6 +1841,78 @@
               "id": "tri_ext_30_55",
               "prompt": "三角形某外角的两个不相邻内角为 30° 和 55°,该外角 = ?°",
               "answer": 85,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_9f883e736b67",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 25°,该外角 = ?°",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_abbadc7882f0",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 30°,该外角 = ?°",
+              "answer": 65,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_e939c3a4f543",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 35°,该外角 = ?°",
+              "answer": 70,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_554e9fb52b46",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 40°,该外角 = ?°",
+              "answer": 75,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_7d32c74be68c",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 45°,该外角 = ?°",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_b1138d0f6c1a",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 60°,该外角 = ?°",
+              "answer": 95,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_19921951fd71",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 65°,该外角 = ?°",
+              "answer": 100,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_da3ea8db54dd",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 70°,该外角 = ?°",
+              "answer": 105,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_be7e2e16d3d7",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 90°,该外角 = ?°",
+              "answer": 125,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_5316f62fd266",
+              "prompt": "三角形某外角的两个不相邻内角为 35° 和 95°,该外角 = ?°",
+              "answer": 130,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_40d38b02ee4a",
+              "prompt": "三角形某外角的两个不相邻内角为 40° 和 70°,该外角 = ?°",
+              "answer": 110,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g8_triangle_angles_d_v2_d3972691964a",
+              "prompt": "三角形某外角的两个不相邻内角为 40° 和 95°,该外角 = ?°",
+              "answer": 135,
               "learningType": "fact_recall"
             }
           ]
@@ -654,6 +1950,78 @@
               "prompt": "数据 [3, 5, 7],中位数 = ?",
               "answer": 5,
               "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_0aa93dc4c7d4",
+              "prompt": "数据 [7, 2, 5, 1, 5],平均数 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_bee6e34d14e3",
+              "prompt": "数据 [9, 4, 7, 3, 7],平均数 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_ac86944a3ca4",
+              "prompt": "数据 [10, 5, 8, 4, 8],平均数 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_049bd7a0e6db",
+              "prompt": "数据 [11, 6, 9, 5, 9],平均数 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_f131c4ca695e",
+              "prompt": "数据 [12, 7, 10, 6, 10],平均数 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_f423e056a22e",
+              "prompt": "数据 [13, 8, 11, 7, 11],平均数 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_e917085327d0",
+              "prompt": "数据 [14, 9, 12, 8, 12],平均数 = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_8f42f291eb10",
+              "prompt": "数据 [15, 10, 13, 9, 13],平均数 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_3a734ccd588a",
+              "prompt": "数据 [16, 11, 14, 10, 14],平均数 = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_975fb07cf45a",
+              "prompt": "数据 [17, 12, 15, 11, 15],平均数 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_4374eff936da",
+              "prompt": "数据 [18, 13, 16, 12, 16],平均数 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_a_v2_901313b831af",
+              "prompt": "数据 [19, 14, 17, 13, 17],平均数 = ?",
+              "answer": 16,
+              "learningType": "pattern"
             }
           ]
         },
@@ -682,6 +2050,78 @@
               "id": "stat_med_l1_6_8_10_12_14",
               "prompt": "数据 [6, 8, 10, 12, 14],中位数 = ?",
               "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_4f45e84c5c03",
+              "prompt": "数据 [13, 7, 9, 11, 8],中位数 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_97283b2dc593",
+              "prompt": "数据 [15, 9, 11, 13, 10],中位数 = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_a9a530cb48a8",
+              "prompt": "数据 [16, 10, 12, 14, 11],中位数 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_a7d981c84b38",
+              "prompt": "数据 [17, 11, 13, 15, 12],中位数 = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_9f1aff0ea970",
+              "prompt": "数据 [18, 12, 14, 16, 13],中位数 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_619ea2dc3309",
+              "prompt": "数据 [19, 13, 15, 17, 14],中位数 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_94bdad37db07",
+              "prompt": "数据 [20, 14, 16, 18, 15],中位数 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_e938809adad4",
+              "prompt": "数据 [20, 15, 18, 14, 18],平均数 = ?",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_28c117adfa51",
+              "prompt": "数据 [21, 16, 19, 15, 19],平均数 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_bc5e840cb1ce",
+              "prompt": "数据 [22, 17, 20, 16, 20],平均数 = ?",
+              "answer": 19,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_82730c2ad218",
+              "prompt": "数据 [23, 18, 21, 17, 21],平均数 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_b_v2_7c8a41c26524",
+              "prompt": "数据 [24, 19, 22, 18, 22],平均数 = ?",
+              "answer": 21,
               "learningType": "pattern"
             }
           ]
@@ -712,6 +2152,78 @@
               "prompt": "数据 [2, 4, 6, 8, 10],中位数 = ?",
               "answer": 6,
               "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_efc553e88d58",
+              "prompt": "数据 [21, 15, 17, 19, 16],中位数 = ?",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_325d8518e96c",
+              "prompt": "数据 [22, 16, 18, 20, 17],中位数 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_5fee24d65d59",
+              "prompt": "数据 [23, 17, 19, 21, 18],中位数 = ?",
+              "answer": 19,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_31fb3b4358f3",
+              "prompt": "数据 [24, 18, 20, 22, 19],中位数 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_7f9f5fcca1ea",
+              "prompt": "数据 [25, 19, 21, 23, 20],中位数 = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_1db407958a4d",
+              "prompt": "数据 [25, 20, 23, 19, 23],平均数 = ?",
+              "answer": 22,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_5685406a3dc6",
+              "prompt": "数据 [26, 21, 24, 20, 24],平均数 = ?",
+              "answer": 23,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_2a65c9e831e8",
+              "prompt": "数据 [27, 22, 25, 21, 25],平均数 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_73279bd429ec",
+              "prompt": "数据 [29, 24, 27, 23, 27],平均数 = ?",
+              "answer": 26,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_6bc52943188f",
+              "prompt": "数据 [30, 25, 28, 24, 28],平均数 = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_065e12bd6e2d",
+              "prompt": "数据 [26, 20, 22, 24, 21],中位数 = ?",
+              "answer": 22,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_c_v2_dbd5cdef5ae0",
+              "prompt": "数据 [27, 21, 23, 25, 22],中位数 = ?",
+              "answer": 23,
+              "learningType": "pattern"
             }
           ]
         },
@@ -740,6 +2252,78 @@
               "id": "stat_med_l3_2_4_6_8_10_12",
               "prompt": "数据 [2, 4, 6, 8, 10, 12],中位数 = ?",
               "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_4c266dfe8c45",
+              "prompt": "数据 [28, 22, 24, 26, 23],中位数 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_80419b6417ea",
+              "prompt": "数据 [28, 23, 26, 22, 26],平均数 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_34991848684e",
+              "prompt": "数据 [30, 24, 26, 28, 25],中位数 = ?",
+              "answer": 26,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_23d29f71fee6",
+              "prompt": "数据 [31, 25, 27, 29, 26],中位数 = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_d059cdd696e3",
+              "prompt": "数据 [31, 26, 29, 25, 29],平均数 = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_fe694ceb797a",
+              "prompt": "数据 [32, 27, 30, 26, 30],平均数 = ?",
+              "answer": 29,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_7bfdcc986496",
+              "prompt": "数据 [33, 28, 31, 27, 31],平均数 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_6f330c263868",
+              "prompt": "数据 [34, 29, 32, 28, 32],平均数 = ?",
+              "answer": 31,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_856c1cc50e2b",
+              "prompt": "数据 [29, 23, 25, 27, 24],中位数 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_4ab02476fb2a",
+              "prompt": "数据 [32, 26, 28, 30, 27],中位数 = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_c1ea6c4080b3",
+              "prompt": "数据 [33, 27, 29, 31, 28],中位数 = ?",
+              "answer": 29,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g8_mean_median_d_v2_7e58dd489228",
+              "prompt": "数据 [34, 28, 30, 32, 29],中位数 = ?",
+              "answer": 30,
               "learningType": "pattern"
             }
           ]

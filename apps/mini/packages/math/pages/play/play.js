@@ -10,6 +10,7 @@ const speech = require('../../../../utils/speech.js');
 const { createDefaultAdapter } = require('../../../../utils/storage.js');
 const { createGame } = require('../../../../utils/game.js');
 const { getTrack } = require('../../../../vendor/engine');
+const integerInput = require('../../../../utils/integerInput.js');
 
 const PHASE_LABEL = {
   take_off: '起飞 Take-Off',
@@ -24,6 +25,7 @@ Page({
     ready: false,
     trackName: '',
     input: '',
+    signed: false,
     muted: false,
     digits: DIGITS,
     // 引擎视图
@@ -61,7 +63,7 @@ Page({
     this.levels = t.levels.map((l) => l.level);
     this.mastery = this.pack.engine_config.mastery;
     wx.setNavigationBarTitle({ title: t.name });
-    this.setData({ trackName: t.name, muted: speech.isMuted() });
+    this.setData({ trackName: t.name, muted: speech.isMuted(), signed: integerInput.allowsSign(t) });
 
     this.game = createGame({
       trackId: trackId,
@@ -180,7 +182,12 @@ Page({
   onDigit(e) {
     if (this.data.mode !== 'prompt') return;
     const d = e.currentTarget.dataset.d;
-    this.setData({ input: (this.data.input + d).slice(0, 4) });
+    this.setData({ input: integerInput.appendDigit(this.data.input, d) });
+  },
+
+  onToggleSign() {
+    if (this.data.mode !== 'prompt' || !this.data.signed) return;
+    this.setData({ input: integerInput.toggleSign(this.data.input) });
   },
 
   onBackspace() {
@@ -188,10 +195,12 @@ Page({
   },
 
   onEnter() {
-    if (this.data.mode !== 'prompt' || this.data.input === '') return;
+    if (this.data.mode !== 'prompt') return;
+    const value = integerInput.parse(this.data.input);
+    if (value === null) return;
     this.clearTimer();
     this.lastSpoken = ''; // 允许下一次纠错重新朗读
-    this.game.submit(Number(this.data.input));
+    this.game.submit(value);
   },
 
   onNext() {

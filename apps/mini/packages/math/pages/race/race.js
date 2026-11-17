@@ -4,6 +4,8 @@ const content = require('../../../../utils/content.js');
 const family = require('../../../../utils/family.js');
 const { createDefaultAdapter } = require('../../../../utils/storage.js');
 const { createGame } = require('../../../../utils/game.js');
+const { getTrack } = require('../../../../vendor/engine');
+const integerInput = require('../../../../utils/integerInput.js');
 
 const DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
@@ -20,6 +22,7 @@ Page({
     mode: 'loading',
     prompt: '',
     input: '',
+    signed: false,
     timeLabel: '',
     low: false,
     correctPerMin: 0,
@@ -42,7 +45,7 @@ Page({
     const speeds = (mr.speeds || [
       { id: 'standard', label: '标准', emoji: '🚀', seconds: mr.duration_seconds },
     ]).map((s) => Object.assign({}, s, { timeText: fmtSeconds(s.seconds) }));
-    this.setData({ speeds: speeds });
+    this.setData({ speeds: speeds, signed: integerInput.allowsSign(getTrack(this.pack, trackId)) });
 
     this.game = createGame({
       trackId: trackId,
@@ -134,7 +137,12 @@ Page({
 
   onDigit(e) {
     if (this.data.mode !== 'prompt') return;
-    this.setData({ input: (this.data.input + e.currentTarget.dataset.d).slice(0, 4) });
+    this.setData({ input: integerInput.appendDigit(this.data.input, e.currentTarget.dataset.d) });
+  },
+
+  onToggleSign() {
+    if (this.data.mode !== 'prompt' || !this.data.signed) return;
+    this.setData({ input: integerInput.toggleSign(this.data.input) });
   },
 
   onBackspace() {
@@ -142,8 +150,10 @@ Page({
   },
 
   onEnter() {
-    if (this.data.mode !== 'prompt' || this.data.input === '') return;
-    this.game.submit(Number(this.data.input));
+    if (this.data.mode !== 'prompt') return;
+    const value = integerInput.parse(this.data.input);
+    if (value === null) return;
+    this.game.submit(value);
     this.setData({ input: '' });
   },
 

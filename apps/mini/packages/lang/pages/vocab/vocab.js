@@ -11,6 +11,7 @@
 //   · 主题从 pill 行换成 picker —— 12 个主题在手机上横排太挤
 
 const LIB = require('../../content/vocab.js');
+const englishPractice = require('../../../../content/index.js').englishPack();
 const store = require('../../utils/vocabStore.js');
 const family = require('../../../../utils/family.js');
 const track = require('../../../../utils/track.js');
@@ -91,6 +92,7 @@ LIB.topics.forEach((t) => (TOPIC_LABEL[t.id] = t.label));
 Page({
   data: {
     ready: false,
+    practiceSets: englishPractice.sets.map((set) => ({ id: set.id, title: set.title, count: set.problems.length })),
     // 过滤器
     levelTabs: [],
     topicNames: [],
@@ -449,6 +451,16 @@ Page({
     this.buildQueue();
     this.render();
     track.track('vocab_filter_change', { filter: what, level: this.level, topic: this.topic, focus: this.focus });
+  },
+
+  onPractice(e) {
+    if (trial.trialExceeded('english')) {
+      this.setData({ trialBlocked: true });
+      return;
+    }
+    const id = e.currentTarget.dataset.id;
+    if (!englishPractice.sets.some((set) => set.id === id)) return;
+    wx.navigateTo({ url: `/packages/math/pages/practice/practice?pack=english&setId=${encodeURIComponent(id)}` });
   },
 
   onToggleSettings() {

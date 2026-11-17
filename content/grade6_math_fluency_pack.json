@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "grade": 6,
   "subject": "math_fluency",
   "engine_config": {
@@ -104,6 +104,78 @@
               "prompt": "1/5 × 15 = ?",
               "answer": 3,
               "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_f3062b135766",
+              "prompt": "1/2 × 2 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_baefab3d532d",
+              "prompt": "1/2 × 4 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_df551c7a299a",
+              "prompt": "1/2 × 10 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_7f9e24193c78",
+              "prompt": "1/2 × 12 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_12a61d8a73bc",
+              "prompt": "1/2 × 14 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_c08978d0cbe3",
+              "prompt": "1/2 × 16 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_751e33b91686",
+              "prompt": "1/2 × 18 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_35192463e30d",
+              "prompt": "1/2 × 20 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_347f21021785",
+              "prompt": "1/2 × 22 = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_5fac9f42a2e9",
+              "prompt": "1/2 × 24 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_a63884d30121",
+              "prompt": "1/3 × 3 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_a_v2_2b5f4e411f56",
+              "prompt": "1/3 × 6 = ?",
+              "answer": 2,
+              "learningType": "pattern"
             }
           ]
         },
@@ -132,6 +204,78 @@
               "id": "foi_4o5x15",
               "prompt": "4/5 × 15 = ?",
               "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_38146c5e3def",
+              "prompt": "2/3 × 3 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_55589588f436",
+              "prompt": "3/4 × 4 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_f432352929aa",
+              "prompt": "4/5 × 5 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_50e6ba79ed34",
+              "prompt": "3/4 × 8 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_d38ec578a6bc",
+              "prompt": "3/4 × 12 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_bc180537aa3b",
+              "prompt": "4/5 × 20 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_3c908a39859f",
+              "prompt": "2/3 × 15 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_e290370f7d80",
+              "prompt": "3/4 × 20 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_520d01ba28d6",
+              "prompt": "4/5 × 25 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_7fbc632583bc",
+              "prompt": "3/4 × 24 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_a86d7aaa4a12",
+              "prompt": "4/5 × 30 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_b_v2_741557b96d3b",
+              "prompt": "2/3 × 21 = ?",
+              "answer": 14,
               "learningType": "pattern"
             }
           ]
@@ -162,6 +306,78 @@
               "prompt": "1/9 × 27 = ?",
               "answer": 3,
               "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_1ba277e13b98",
+              "prompt": "1/6 × 6 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_50275090a953",
+              "prompt": "1/6 × 12 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_be2de66406e6",
+              "prompt": "1/6 × 30 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_75f2aa1bff7a",
+              "prompt": "1/6 × 36 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_66dd9e64a764",
+              "prompt": "1/6 × 42 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_a8c987d871f9",
+              "prompt": "1/6 × 48 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_1925b64a85c5",
+              "prompt": "1/6 × 54 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_08e4d093252d",
+              "prompt": "1/6 × 60 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_6ee4f255035a",
+              "prompt": "1/6 × 66 = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_30eddfb67f4f",
+              "prompt": "1/6 × 72 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_f54fad90b950",
+              "prompt": "1/7 × 7 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_c_v2_65485314692f",
+              "prompt": "1/7 × 14 = ?",
+              "answer": 2,
+              "learningType": "pattern"
             }
           ]
         },
@@ -190,6 +406,78 @@
               "id": "foi_4o7x21",
               "prompt": "4/7 × 21 = ?",
               "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_940132daf210",
+              "prompt": "3/7 × 7 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_9f35ad34f682",
+              "prompt": "5/6 × 6 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_04ce9ceaa189",
+              "prompt": "2/9 × 9 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_a31e1e53d98b",
+              "prompt": "4/7 × 7 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_3f05db04ba7f",
+              "prompt": "5/6 × 12 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_fdd8e95f004c",
+              "prompt": "4/7 × 14 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_e366e21d4d21",
+              "prompt": "3/7 × 21 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_d5dcffac8a65",
+              "prompt": "5/6 × 24 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_87b64b5ad540",
+              "prompt": "4/7 × 28 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_6b96519d0238",
+              "prompt": "5/6 × 30 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_d3f9cc976a90",
+              "prompt": "3/7 × 42 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_d_v2_1587ce739fab",
+              "prompt": "5/6 × 36 = ?",
+              "answer": 30,
               "learningType": "pattern"
             }
           ]
@@ -220,6 +508,78 @@
               "prompt": "5/12 × 24 = ?",
               "answer": 10,
               "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_b4c44d0cb319",
+              "prompt": "5/8 × 8 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_795de2d8cd9f",
+              "prompt": "3/10 × 10 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_3fde52e82fe9",
+              "prompt": "7/8 × 8 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_145d02c3e183",
+              "prompt": "3/10 × 20 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_6f3f3ba1064c",
+              "prompt": "7/8 × 24 = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_70ec21a4fcdf",
+              "prompt": "5/8 × 32 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_c25396f378c9",
+              "prompt": "3/10 × 40 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_ee8134cfcaf7",
+              "prompt": "7/8 × 32 = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_5c190a8760e5",
+              "prompt": "5/8 × 40 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_b603f7a073ed",
+              "prompt": "7/8 × 40 = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_26b058ffc4ce",
+              "prompt": "5/8 × 48 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_e_v2_f0a7fc9ad64d",
+              "prompt": "3/10 × 60 = ?",
+              "answer": 18,
+              "learningType": "pattern"
             }
           ]
         },
@@ -248,6 +608,78 @@
               "id": "foi_5o6x42",
               "prompt": "5/6 × 42 = ?",
               "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_46879faee241",
+              "prompt": "7/10 × 10 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_f30feaa4ccd8",
+              "prompt": "3/8 × 8 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_7f06109a9a25",
+              "prompt": "9/10 × 10 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_76627964412e",
+              "prompt": "7/10 × 20 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_2973d5a90768",
+              "prompt": "3/8 × 16 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_791bd8f8248d",
+              "prompt": "9/10 × 20 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_5b738ab549c3",
+              "prompt": "7/10 × 30 = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_5c097824931b",
+              "prompt": "7/10 × 40 = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_fa490e693081",
+              "prompt": "3/8 × 32 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_423b67147b7a",
+              "prompt": "9/10 × 40 = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_9e957cbe087c",
+              "prompt": "9/10 × 50 = ?",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_of_int_f_v2_5524a820edab",
+              "prompt": "7/10 × 60 = ?",
+              "answer": 42,
               "learningType": "pattern"
             }
           ]
@@ -285,6 +717,78 @@
               "prompt": "8 ÷ 4/5 = ?",
               "answer": 10,
               "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_900ee42ee5bc",
+              "prompt": "2 ÷ (2/3) = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_530bdc4308d0",
+              "prompt": "3 ÷ (3/4) = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_f6a11d2bdcd8",
+              "prompt": "4 ÷ (4/5) = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_81286f3aac15",
+              "prompt": "5 ÷ (5/6) = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_f6a20219bd19",
+              "prompt": "6 ÷ (3/4) = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_4e22ed414a20",
+              "prompt": "12 ÷ (4/5) = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_209bdab2f988",
+              "prompt": "15 ÷ (5/6) = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_51c530f06b73",
+              "prompt": "16 ÷ (4/5) = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_88934a932e5b",
+              "prompt": "20 ÷ (5/6) = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_7690e8984202",
+              "prompt": "20 ÷ (4/5) = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_6051f2954442",
+              "prompt": "25 ÷ (5/6) = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_a_v2_47a969b74bde",
+              "prompt": "30 ÷ (5/6) = ?",
+              "answer": 36,
+              "learningType": "pattern"
             }
           ]
         },
@@ -313,6 +817,78 @@
               "id": "fdiv_20d4o5",
               "prompt": "20 ÷ 4/5 = ?",
               "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_40a283cf8b6f",
+              "prompt": "3 ÷ (3/5) = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_19c925de3527",
+              "prompt": "7 ÷ (7/8) = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_08167d69595e",
+              "prompt": "6 ÷ (3/5) = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_30384c9aa32c",
+              "prompt": "9 ÷ (3/5) = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_cf514f939739",
+              "prompt": "21 ÷ (7/8) = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_81c2e215b6b7",
+              "prompt": "12 ÷ (3/5) = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_0f8e56203664",
+              "prompt": "28 ÷ (7/8) = ?",
+              "answer": 32,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_6ae8738aaf17",
+              "prompt": "35 ÷ (7/8) = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_ac7dbe86c54c",
+              "prompt": "18 ÷ (3/5) = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_4577de225189",
+              "prompt": "42 ÷ (7/8) = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_3134a8125d7d",
+              "prompt": "21 ÷ (3/5) = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_b_v2_1556ac79fdfc",
+              "prompt": "21 ÷ (3/4) = ?",
+              "answer": 28,
               "learningType": "pattern"
             }
           ]
@@ -343,6 +919,78 @@
               "prompt": "21 ÷ 7/9 = ?",
               "answer": 27,
               "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_ce29beed1e56",
+              "prompt": "6 ÷ (6/7) = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_b262d7702f69",
+              "prompt": "9 ÷ (9/10) = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_dddb7ed17124",
+              "prompt": "7 ÷ (7/9) = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_d4cd2b82fdc8",
+              "prompt": "12 ÷ (6/7) = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_0655f52b5b31",
+              "prompt": "10 ÷ (5/6) = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_b6d3abb23b31",
+              "prompt": "14 ÷ (7/9) = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_63163e5fe4c7",
+              "prompt": "18 ÷ (6/7) = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_25944ff87093",
+              "prompt": "27 ÷ (9/10) = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_bbbe19c66af5",
+              "prompt": "36 ÷ (9/10) = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_05b0d5f90075",
+              "prompt": "30 ÷ (6/7) = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_1c32b2ceb411",
+              "prompt": "45 ÷ (9/10) = ?",
+              "answer": 50,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_c_v2_e42c2d088f76",
+              "prompt": "35 ÷ (7/9) = ?",
+              "answer": 45,
+              "learningType": "pattern"
             }
           ]
         },
@@ -371,6 +1019,78 @@
               "id": "fdiv_27d3o8",
               "prompt": "27 ÷ 3/8 = ?",
               "answer": 72,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_0e62166c58e0",
+              "prompt": "2 ÷ (2/5) = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_c7e0ab9d5ca5",
+              "prompt": "3 ÷ (3/8) = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_60a42a886a81",
+              "prompt": "18 ÷ (9/10) = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_8ccf4fb46773",
+              "prompt": "14 ÷ (7/8) = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_7d1633039bc3",
+              "prompt": "4 ÷ (2/5) = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_2f941c636214",
+              "prompt": "6 ÷ (2/5) = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_2dfc9ee87f7b",
+              "prompt": "9 ÷ (3/8) = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_5532c3864dfc",
+              "prompt": "12 ÷ (3/8) = ?",
+              "answer": 32,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_9f549d68f4f3",
+              "prompt": "10 ÷ (2/5) = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_4328c3b2bcea",
+              "prompt": "54 ÷ (9/10) = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_5a75f23970a3",
+              "prompt": "12 ÷ (2/5) = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_fraction_div_int_d_v2_1d11e761ec03",
+              "prompt": "63 ÷ (9/10) = ?",
+              "answer": 70,
               "learningType": "pattern"
             }
           ]
@@ -408,6 +1128,78 @@
               "prompt": "20% × 50 = ?",
               "answer": 10,
               "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_1ee7754f0512",
+              "prompt": "50% × 10 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_896f2502169f",
+              "prompt": "50% × 30 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_1700b1a25491",
+              "prompt": "50% × 50 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_6ef85c388132",
+              "prompt": "50% × 60 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_466d45c4b8ba",
+              "prompt": "50% × 70 = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_6752da8d2b82",
+              "prompt": "50% × 80 = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_d4ebde0a9f97",
+              "prompt": "50% × 90 = ?",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_552f6de4514d",
+              "prompt": "50% × 100 = ?",
+              "answer": 50,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_31901758640b",
+              "prompt": "50% × 110 = ?",
+              "answer": 55,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_688a8a1eac43",
+              "prompt": "50% × 120 = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_065ccfea6127",
+              "prompt": "50% × 130 = ?",
+              "answer": 65,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_a_v2_32f94e16a622",
+              "prompt": "50% × 140 = ?",
+              "answer": 70,
+              "learningType": "pattern"
             }
           ]
         },
@@ -436,6 +1228,78 @@
               "id": "pct_60p30",
               "prompt": "60% × 30 = ?",
               "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_d5a8cc6a63e1",
+              "prompt": "75% × 20 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_fdc8f4a5ac6e",
+              "prompt": "75% × 60 = ?",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_d8be34992a01",
+              "prompt": "75% × 80 = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_d3580766b2cb",
+              "prompt": "75% × 100 = ?",
+              "answer": 75,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_f46f4929fb97",
+              "prompt": "75% × 120 = ?",
+              "answer": 90,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_98f7b9bcad52",
+              "prompt": "75% × 140 = ?",
+              "answer": 105,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_e3f1699a7cdb",
+              "prompt": "75% × 160 = ?",
+              "answer": 120,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_40791b752eff",
+              "prompt": "75% × 180 = ?",
+              "answer": 135,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_e4176405d888",
+              "prompt": "75% × 200 = ?",
+              "answer": 150,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_a11212993779",
+              "prompt": "30% × 10 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_60db06c6286c",
+              "prompt": "30% × 20 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_b_v2_68de1830484e",
+              "prompt": "30% × 30 = ?",
+              "answer": 9,
               "learningType": "pattern"
             }
           ]
@@ -466,6 +1330,78 @@
               "prompt": "5% × 200 = ?",
               "answer": 10,
               "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_143779e6435a",
+              "prompt": "15% × 20 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_9407adc40bce",
+              "prompt": "15% × 40 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_ce14422a6d5b",
+              "prompt": "15% × 60 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_6879e674a1c8",
+              "prompt": "15% × 100 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_28f48b046346",
+              "prompt": "15% × 120 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_ef64c8458520",
+              "prompt": "15% × 140 = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_6808caf61692",
+              "prompt": "15% × 160 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_f59832e75ac4",
+              "prompt": "15% × 200 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_3858cce91358",
+              "prompt": "35% × 20 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_f715a7b8960e",
+              "prompt": "35% × 80 = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_3de460d9bea1",
+              "prompt": "35% × 100 = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_c_v2_d627fa2f3c7d",
+              "prompt": "35% × 120 = ?",
+              "answer": 42,
+              "learningType": "pattern"
             }
           ]
         },
@@ -494,6 +1430,78 @@
               "id": "pct_150p20",
               "prompt": "150% × 20 = ?",
               "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_e969ca4433d7",
+              "prompt": "125% × 20 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_534cd12f3238",
+              "prompt": "125% × 60 = ?",
+              "answer": 75,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_285a7dfa7737",
+              "prompt": "125% × 80 = ?",
+              "answer": 100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_22d370f69546",
+              "prompt": "125% × 100 = ?",
+              "answer": 125,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_38e643ea472f",
+              "prompt": "125% × 120 = ?",
+              "answer": 150,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_0141a452c045",
+              "prompt": "125% × 140 = ?",
+              "answer": 175,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_351ccff9f4ab",
+              "prompt": "125% × 160 = ?",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_4673c3a7cb52",
+              "prompt": "125% × 180 = ?",
+              "answer": 225,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_530a2b14065d",
+              "prompt": "125% × 200 = ?",
+              "answer": 250,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_28a1445085dd",
+              "prompt": "80% × 10 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_582a0fc10e96",
+              "prompt": "80% × 15 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g6_percent_convert_d_v2_4363a99266aa",
+              "prompt": "80% × 20 = ?",
+              "answer": 16,
               "learningType": "pattern"
             }
           ]
@@ -531,6 +1539,78 @@
               "prompt": "20 : 4 的比值 = ?",
               "answer": 5,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_6dfb83803fec",
+              "prompt": "12 : 2 的比值 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_b8c4b57d3767",
+              "prompt": "14 : 2 的比值 = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_df768e891c7c",
+              "prompt": "16 : 2 的比值 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_09da372f55cb",
+              "prompt": "18 : 2 的比值 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_9764af27251e",
+              "prompt": "20 : 2 的比值 = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_70faf3c261a2",
+              "prompt": "22 : 2 的比值 = ?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_78839eb697df",
+              "prompt": "24 : 2 的比值 = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_7d3021e06f20",
+              "prompt": "26 : 2 的比值 = ?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_2782eaf6c347",
+              "prompt": "28 : 2 的比值 = ?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_432054d192f7",
+              "prompt": "30 : 2 的比值 = ?",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_a3f8059ab691",
+              "prompt": "4 : 2 的比值 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_a_v2_d7ce1ebc7031",
+              "prompt": "6 : 2 的比值 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -559,6 +1639,78 @@
               "id": "ratio_56c7",
               "prompt": "56 : 7 的比值 = ?",
               "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_8e1b11cc041c",
+              "prompt": "12 : 6 的比值 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_493dc2cfb7f2",
+              "prompt": "18 : 6 的比值 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_204a6ea20687",
+              "prompt": "30 : 6 的比值 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_47c9ff51a799",
+              "prompt": "42 : 6 的比值 = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_bd7b292e0405",
+              "prompt": "54 : 6 的比值 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_28d4e323d343",
+              "prompt": "60 : 6 的比值 = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_090b4e4a44af",
+              "prompt": "66 : 6 的比值 = ?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_1564d398c4eb",
+              "prompt": "72 : 6 的比值 = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_2f441673b76c",
+              "prompt": "78 : 6 的比值 = ?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_1b09f34ab417",
+              "prompt": "84 : 6 的比值 = ?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_c24d862baa55",
+              "prompt": "90 : 6 的比值 = ?",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_b_v2_9b51c91a1dc5",
+              "prompt": "14 : 7 的比值 = ?",
+              "answer": 2,
               "learningType": "fact_recall"
             }
           ]
@@ -589,6 +1741,78 @@
               "prompt": "45 : 9 的比值 = ?",
               "answer": 5,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_b7a93112c5e3",
+              "prompt": "2 : 1 的比值 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_5f0ac9883048",
+              "prompt": "4 : 1 的比值 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_443a4d331c99",
+              "prompt": "6 : 1 的比值 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_9da1da489d24",
+              "prompt": "7 : 1 的比值 = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_8911f8381415",
+              "prompt": "8 : 1 的比值 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_6c8676badc5f",
+              "prompt": "9 : 1 的比值 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_1cd79fa7af00",
+              "prompt": "10 : 1 的比值 = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_5df00dfa2e3f",
+              "prompt": "11 : 1 的比值 = ?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_5da6b3d71c11",
+              "prompt": "12 : 1 的比值 = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_c5b408d5142c",
+              "prompt": "13 : 1 的比值 = ?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_1b11de958b88",
+              "prompt": "14 : 1 的比值 = ?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_c_v2_f26241383a12",
+              "prompt": "15 : 1 的比值 = ?",
+              "answer": 15,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -617,6 +1841,78 @@
               "id": "ratio_96c16",
               "prompt": "96 : 16 的比值 = ?",
               "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_b70dec039b48",
+              "prompt": "24 : 12 的比值 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_f7c3c73ae710",
+              "prompt": "36 : 12 的比值 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_76276e6244e0",
+              "prompt": "60 : 12 的比值 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_06b2dba2dbfe",
+              "prompt": "84 : 12 的比值 = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_d736682a7629",
+              "prompt": "96 : 12 的比值 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_0ddc722bbb57",
+              "prompt": "108 : 12 的比值 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_0ca74ed31c4e",
+              "prompt": "120 : 12 的比值 = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_87c5a57a9984",
+              "prompt": "132 : 12 的比值 = ?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_36ca9dc3ec04",
+              "prompt": "144 : 12 的比值 = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_40b78dfc798a",
+              "prompt": "156 : 12 的比值 = ?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_3aa6a13df259",
+              "prompt": "168 : 12 的比值 = ?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g6_ratio_oral_d_v2_1f34803f5754",
+              "prompt": "180 : 12 的比值 = ?",
+              "answer": 15,
               "learningType": "fact_recall"
             }
           ]

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "grade": 7,
   "subject": "math_fluency",
   "engine_config": {
@@ -104,6 +104,78 @@
               "prompt": "(8) + (-3) = ?",
               "answer": 5,
               "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_e9ce68c1dc5d",
+              "prompt": "(-2) + 1 = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_b368889ac1b3",
+              "prompt": "(-2) + 3 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_934723a97967",
+              "prompt": "(-2) + 5 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_8df96ab64b82",
+              "prompt": "(-2) + 6 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_3e459871c097",
+              "prompt": "(-2) + 8 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_aed6be18ac0b",
+              "prompt": "(-2) + 9 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_049360326c71",
+              "prompt": "(-2) + 10 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_51b1c5333592",
+              "prompt": "(-4) + 1 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_29b520094f81",
+              "prompt": "(-5) + 1 = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_bed8fd4793ae",
+              "prompt": "(-6) + 1 = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_c285931fef4c",
+              "prompt": "(-7) + 1 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_a_v2_b5da38c71d79",
+              "prompt": "(-8) + 1 = ?",
+              "answer": -7,
+              "learningType": "pattern"
             }
           ]
         },
@@ -132,6 +204,78 @@
               "id": "rat_add_1_n12p5",
               "prompt": "(-12) + 5 = ?",
               "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_6c60e5b42a5d",
+              "prompt": "(-4) + (-1) = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_7a0e9bfcdbe0",
+              "prompt": "(-4) + (-2) = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_934fb9742ab5",
+              "prompt": "(-4) + (-4) = ?",
+              "answer": -8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_6c2e7fdd5eaa",
+              "prompt": "(-4) + (-5) = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_45fbad51101f",
+              "prompt": "(-4) + (-7) = ?",
+              "answer": -11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_7ead249bc160",
+              "prompt": "(-4) + (-8) = ?",
+              "answer": -12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_50450098ea88",
+              "prompt": "(-4) + (-9) = ?",
+              "answer": -13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_76c70a657610",
+              "prompt": "(-4) + (-10) = ?",
+              "answer": -14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_965a66db0157",
+              "prompt": "(-5) + (-10) = ?",
+              "answer": -15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_05f8ce034f91",
+              "prompt": "(-6) + (-10) = ?",
+              "answer": -16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_9ea09f2254eb",
+              "prompt": "(-7) + (-10) = ?",
+              "answer": -17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_b_v2_df7fae202bad",
+              "prompt": "(-8) + (-10) = ?",
+              "answer": -18,
               "learningType": "pattern"
             }
           ]
@@ -162,6 +306,78 @@
               "prompt": "(-5) - (-3) = ?",
               "answer": -2,
               "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_2077d58bc872",
+              "prompt": "(6) - (-1) = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_5b889147b5f3",
+              "prompt": "(6) - (-3) = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_5e03b3d2cf86",
+              "prompt": "(6) - (-4) = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_cab36c6b5248",
+              "prompt": "(6) - (-5) = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_dc6ee8a2559f",
+              "prompt": "(6) - (-6) = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_081abfc18c79",
+              "prompt": "(6) - (-7) = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_3b0a8097bbb3",
+              "prompt": "(6) - (-8) = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_0b1f5c60c7eb",
+              "prompt": "(6) - (-9) = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_e6357182b7e9",
+              "prompt": "(6) - (-10) = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_c03794c8969e",
+              "prompt": "(7) - (-10) = ?",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_08946ccf3b8b",
+              "prompt": "(8) - (-10) = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_c_v2_498a9d657ff7",
+              "prompt": "(9) - (-10) = ?",
+              "answer": 19,
+              "learningType": "pattern"
             }
           ]
         },
@@ -190,6 +406,78 @@
               "id": "rat_add3_3_n8_3_n1",
               "prompt": "(-8) + 3 + (-1) = ?",
               "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_ce92c173fb8c",
+              "prompt": "8 + (-4) + 1 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_1c29721a8e55",
+              "prompt": "8 + (-7) + 0 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_64268782dd9e",
+              "prompt": "8 + (-11) + 0 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_938778cb5b16",
+              "prompt": "9 + (-4) + 1 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_5366dbf38351",
+              "prompt": "9 + (-11) + 0 = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_7b3723e97bb2",
+              "prompt": "10 + (-4) + 1 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_c4cdd96c4e1b",
+              "prompt": "10 + (-7) + 0 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_05bc39850b0d",
+              "prompt": "10 + (-11) + 0 = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_085fd42eff95",
+              "prompt": "11 + (-4) + 1 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_45f6aff07bf8",
+              "prompt": "11 + (-7) + 0 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_1c2bf00af4fa",
+              "prompt": "12 + (-4) + 1 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_add_sub_d_v2_58601950a67f",
+              "prompt": "13 + (-4) + 1 = ?",
+              "answer": 10,
               "learningType": "pattern"
             }
           ]
@@ -227,6 +515,78 @@
               "prompt": "7 × (-3) = ?",
               "answer": -21,
               "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_95f86b1f4010",
+              "prompt": "(-2) × 2 = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_5cf4f5454c8f",
+              "prompt": "(-2) × 3 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_8fec136d4e5e",
+              "prompt": "(-2) × 4 = ?",
+              "answer": -8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_f67a623a106f",
+              "prompt": "(-2) × 7 = ?",
+              "answer": -14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_13eccdd61b20",
+              "prompt": "(-2) × 8 = ?",
+              "answer": -16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_4189ae617ed3",
+              "prompt": "(-2) × 9 = ?",
+              "answer": -18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_5de1467287d4",
+              "prompt": "(-3) × 3 = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_5713b739783d",
+              "prompt": "(-3) × 5 = ?",
+              "answer": -15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_9c5babfef20b",
+              "prompt": "(-3) × 8 = ?",
+              "answer": -24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_58aea89a0162",
+              "prompt": "(-3) × 9 = ?",
+              "answer": -27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_2eb68eb5616d",
+              "prompt": "(-4) × 5 = ?",
+              "answer": -20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_a_v2_9747d9b16649",
+              "prompt": "(-4) × 7 = ?",
+              "answer": -28,
+              "learningType": "pattern"
             }
           ]
         },
@@ -255,6 +615,78 @@
               "id": "rat_mul_1_n6x6",
               "prompt": "(-6) × 6 = ?",
               "answer": -36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_0e5442765309",
+              "prompt": "(-2) × (-2) = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_5d1d085cb94f",
+              "prompt": "(-2) × (-3) = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_96216cccd4ce",
+              "prompt": "(-2) × (-4) = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_eb81ef462388",
+              "prompt": "(-2) × (-5) = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_51196c1db88e",
+              "prompt": "(-2) × (-6) = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_9c4908659790",
+              "prompt": "(-2) × (-7) = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_90617ce62bc0",
+              "prompt": "(-2) × (-8) = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_90db47c5914c",
+              "prompt": "(-2) × (-9) = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_65710793f02e",
+              "prompt": "(-3) × (-3) = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_fab5f4530b2c",
+              "prompt": "(-3) × (-5) = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_a018ae64697d",
+              "prompt": "(-3) × (-7) = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_b_v2_f00fb180ff6f",
+              "prompt": "(-3) × (-8) = ?",
+              "answer": 24,
               "learningType": "pattern"
             }
           ]
@@ -285,6 +717,78 @@
               "prompt": "36 ÷ (-9) = ?",
               "answer": -4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_6c7753db1a78",
+              "prompt": "(-4) ÷ 2 = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_e25ed7511cc6",
+              "prompt": "(-10) ÷ 2 = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_a7d498331c57",
+              "prompt": "(-12) ÷ 2 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_7109a23e1271",
+              "prompt": "(-14) ÷ 2 = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_cd052074be89",
+              "prompt": "(-16) ÷ 2 = ?",
+              "answer": -8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_069fae9bbde0",
+              "prompt": "(-18) ÷ 2 = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_72f9bed67380",
+              "prompt": "(-6) ÷ 3 = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_efe2b4f22100",
+              "prompt": "(-6) ÷ 2 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_c3b7c43d8d65",
+              "prompt": "(-15) ÷ 3 = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_7ad4437aa3d1",
+              "prompt": "(-18) ÷ 3 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_9c26f6d446d7",
+              "prompt": "(-21) ÷ 3 = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_c_v2_ff51d9a95fae",
+              "prompt": "(-24) ÷ 3 = ?",
+              "answer": -8,
+              "learningType": "pattern"
             }
           ]
         },
@@ -312,6 +816,78 @@
             {
               "id": "rat_div_3_n56dn8",
               "prompt": "(-56) ÷ (-8) = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_0dcab5efd12a",
+              "prompt": "(-4) ÷ (-2) = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_53824c610c83",
+              "prompt": "(-6) ÷ (-2) = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_16f22f541381",
+              "prompt": "(-8) ÷ (-2) = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_2e3b14144df9",
+              "prompt": "(-12) ÷ (-2) = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_12ef929eb1ed",
+              "prompt": "(-16) ÷ (-2) = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_e08a2d7e717b",
+              "prompt": "(-18) ÷ (-2) = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_9c82dffbc75d",
+              "prompt": "(-6) ÷ (-3) = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_c34f129c2c3c",
+              "prompt": "(-9) ÷ (-3) = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_b93b6cd96889",
+              "prompt": "(-12) ÷ (-3) = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_a47bb29ba4a8",
+              "prompt": "(-10) ÷ (-2) = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_95a9793155cb",
+              "prompt": "(-18) ÷ (-3) = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_rational_mul_div_d_v2_489b3fc8a16c",
+              "prompt": "(-14) ÷ (-2) = ?",
               "answer": 7,
               "learningType": "pattern"
             }
@@ -350,6 +926,78 @@
               "prompt": "(-1)^5 = ?",
               "answer": -1,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_8bb984434ef5",
+              "prompt": "(-1)^2 = ?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_8c13e96eb97c",
+              "prompt": "(2)^3 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_278b0f6dda55",
+              "prompt": "(3)^3 = ?",
+              "answer": 27,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_a64e1415add4",
+              "prompt": "(4)^2 = ?",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_afd613d32e92",
+              "prompt": "(4)^3 = ?",
+              "answer": 64,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_1119848a2c5e",
+              "prompt": "(5)^2 = ?",
+              "answer": 25,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_31635e97a052",
+              "prompt": "(5)^3 = ?",
+              "answer": 125,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_893df2a045ec",
+              "prompt": "(-6)^2 = ?",
+              "answer": 36,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_2c1059a88a4f",
+              "prompt": "(1)^2 = ?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_7af46db0faa3",
+              "prompt": "(-1)^3 = ?",
+              "answer": -1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_ccd8ad9cf1b6",
+              "prompt": "(2)^2 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_a_v2_0de573b715d7",
+              "prompt": "(3)^2 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -378,6 +1026,78 @@
               "id": "rat_pow_1_n3e3",
               "prompt": "(-3)^3 = ?",
               "answer": -27,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_5563a91a888b",
+              "prompt": "(1)^3 = ?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_fa7bc58704a5",
+              "prompt": "(-3)^4 = ?",
+              "answer": 81,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_e4fcd9442422",
+              "prompt": "(-4)^4 = ?",
+              "answer": 256,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_37d4a0c06cc0",
+              "prompt": "(6)^2 = ?",
+              "answer": 36,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_a3c4bab4b812",
+              "prompt": "(-6)^3 = ?",
+              "answer": -216,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_d56459a327d5",
+              "prompt": "(6)^3 = ?",
+              "answer": 216,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_3e9eda25f13f",
+              "prompt": "(-7)^2 = ?",
+              "answer": 49,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_4b41aef8a6a1",
+              "prompt": "(-7)^3 = ?",
+              "answer": -343,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_ba1b1e8070f5",
+              "prompt": "(7)^3 = ?",
+              "answer": 343,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_1ea79e99d6ce",
+              "prompt": "(-8)^2 = ?",
+              "answer": 64,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_99f114d3e721",
+              "prompt": "(-8)^3 = ?",
+              "answer": -512,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_b_v2_034cbf761af2",
+              "prompt": "(8)^3 = ?",
+              "answer": 512,
               "learningType": "fact_recall"
             }
           ]
@@ -408,6 +1128,78 @@
               "prompt": "3^4 = ?",
               "answer": 81,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_f46554101fe7",
+              "prompt": "(2)^4 = ?",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_47eb4fecd054",
+              "prompt": "(2)^5 = ?",
+              "answer": 32,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_6c8038e279c6",
+              "prompt": "(-2)^6 = ?",
+              "answer": 64,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_74536d6dc85d",
+              "prompt": "(-3)^5 = ?",
+              "answer": -243,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_53123d54094f",
+              "prompt": "(3)^5 = ?",
+              "answer": 243,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_7deacb8860bf",
+              "prompt": "(-3)^6 = ?",
+              "answer": 729,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_e0dfa7f740d1",
+              "prompt": "(4)^4 = ?",
+              "answer": 256,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_1dd7d3399ef9",
+              "prompt": "(-4)^5 = ?",
+              "answer": -1024,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_058c45fb0567",
+              "prompt": "(4)^5 = ?",
+              "answer": 1024,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_12672daa3748",
+              "prompt": "(-5)^4 = ?",
+              "answer": 625,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_e4c69fa68bda",
+              "prompt": "(-1)^4 = ?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_c_v2_28adfb3919e7",
+              "prompt": "(2)^6 = ?",
+              "answer": 64,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -436,6 +1228,78 @@
               "id": "rat_pow_3_4e4",
               "prompt": "4^4 = ?",
               "answer": 256,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_8e0e342b37e4",
+              "prompt": "(1)^4 = ?",
+              "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_5f79c8dac515",
+              "prompt": "(3)^4 = ?",
+              "answer": 81,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_e1653202ed4e",
+              "prompt": "(3)^6 = ?",
+              "answer": 729,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_5ab8860385f9",
+              "prompt": "(-4)^6 = ?",
+              "answer": 4096,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_0f3fb2d016cf",
+              "prompt": "(5)^4 = ?",
+              "answer": 625,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_d56caaa1689a",
+              "prompt": "(-5)^5 = ?",
+              "answer": -3125,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_713e4c88e29d",
+              "prompt": "(5)^5 = ?",
+              "answer": 3125,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_0df804ef8230",
+              "prompt": "(-6)^4 = ?",
+              "answer": 1296,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_57951673197f",
+              "prompt": "(-7)^4 = ?",
+              "answer": 2401,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_21e5e2e8ba25",
+              "prompt": "(-9)^3 = ?",
+              "answer": -729,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_8615cda08d0a",
+              "prompt": "(-10)^3 = ?",
+              "answer": -1000,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g7_rational_power_d_v2_48b31271e456",
+              "prompt": "(10)^3 = ?",
+              "answer": 1000,
               "learningType": "fact_recall"
             }
           ]
@@ -473,6 +1337,78 @@
               "prompt": "当 x = 3 时，-4x = ?",
               "answer": -12,
               "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_50795757d9bf",
+              "prompt": "当 x = -4 时，2x = ?",
+              "answer": -8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_7afe7e4e48ac",
+              "prompt": "当 x = -4 时，4x = ?",
+              "answer": -16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_bdb8b956e9c6",
+              "prompt": "当 x = -4 时，5x = ?",
+              "answer": -20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_431bafd54d9b",
+              "prompt": "当 x = -3 时，3x = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_9c29da2b93cc",
+              "prompt": "当 x = -3 时，5x = ?",
+              "answer": -15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_5f9268b033f4",
+              "prompt": "当 x = -2 时，2x = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_50e2d943ae83",
+              "prompt": "当 x = -2 时，5x = ?",
+              "answer": -10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_43ec986fd60d",
+              "prompt": "当 x = -1 时，2x = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_66e5af26ddb4",
+              "prompt": "当 x = -1 时，3x = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_cbeccbbaace0",
+              "prompt": "当 x = -1 时，5x = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_af680bb6be7a",
+              "prompt": "当 x = 0 时，2x = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_a_v2_b600e4a2038e",
+              "prompt": "当 x = 1 时，2x = ?",
+              "answer": 2,
+              "learningType": "pattern"
             }
           ]
         },
@@ -501,6 +1437,78 @@
               "id": "mono_eval_1_2x²_xn3",
               "prompt": "当 x = -3 时，2x² = ?",
               "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_ecfb2e62251d",
+              "prompt": "当 x = -4 时，2x² = ?",
+              "answer": 32,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_45e95171edee",
+              "prompt": "当 x = -4 时，3x² = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_5e813467679a",
+              "prompt": "当 x = -4 时，4x² = ?",
+              "answer": 64,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_900a04b1c112",
+              "prompt": "当 x = -4 时，5x² = ?",
+              "answer": 80,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_092c1b6d7a1e",
+              "prompt": "当 x = -3 时，3x² = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_7cb7c819dd01",
+              "prompt": "当 x = -3 时，4x² = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_32002296b44f",
+              "prompt": "当 x = -3 时，5x² = ?",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_e569675b80de",
+              "prompt": "当 x = -2 时，2x² = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_12e14157563b",
+              "prompt": "当 x = -1 时，2x² = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_33aaafa855b0",
+              "prompt": "当 x = -1 时，3x² = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_079dc70d305b",
+              "prompt": "当 x = -1 时，4x² = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_b_v2_c91427ee4a3b",
+              "prompt": "当 x = -1 时，5x² = ?",
+              "answer": 5,
               "learningType": "pattern"
             }
           ]
@@ -531,6 +1539,78 @@
               "prompt": "当 x = -3 时，x³ = ?",
               "answer": -27,
               "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_b6e7b0a56bce",
+              "prompt": "当 x = -4 时，2x³ = ?",
+              "answer": -128,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_fe51bf813ade",
+              "prompt": "当 x = -4 时，3x³ = ?",
+              "answer": -192,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_7fb1bc8c09ef",
+              "prompt": "当 x = -4 时，4x³ = ?",
+              "answer": -256,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_9f3b12a02e9e",
+              "prompt": "当 x = -4 时，5x³ = ?",
+              "answer": -320,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_8d58a82331a5",
+              "prompt": "当 x = -3 时，2x³ = ?",
+              "answer": -54,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_b2be8c52f69d",
+              "prompt": "当 x = -3 时，3x³ = ?",
+              "answer": -81,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_8ce75eaf5f47",
+              "prompt": "当 x = -3 时，4x³ = ?",
+              "answer": -108,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_7e23f7595d93",
+              "prompt": "当 x = -3 时，5x³ = ?",
+              "answer": -135,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_77141092af75",
+              "prompt": "当 x = -2 时，3x³ = ?",
+              "answer": -24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_7308bceec8b9",
+              "prompt": "当 x = -2 时，4x³ = ?",
+              "answer": -32,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_df3732720c94",
+              "prompt": "当 x = -2 时，5x³ = ?",
+              "answer": -40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_c_v2_547ec1f9238b",
+              "prompt": "当 x = -1 时，2x³ = ?",
+              "answer": -2,
+              "learningType": "pattern"
             }
           ]
         },
@@ -559,6 +1639,78 @@
               "id": "mono_eval_3_x²n2x_xn1",
               "prompt": "当 x = -1 时，x²-2x = ?",
               "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_878d9d728d13",
+              "prompt": "当 x = -4 时，2x²+x = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_a7846f6bfb24",
+              "prompt": "当 x = -4 时，3x²+x = ?",
+              "answer": 44,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_9fc40eb0cfc6",
+              "prompt": "当 x = -4 时，4x²+x = ?",
+              "answer": 60,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_85286458295c",
+              "prompt": "当 x = -4 时，5x²+x = ?",
+              "answer": 76,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_af5db79f2b4e",
+              "prompt": "当 x = -3 时，2x²+x = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_c6eb7851065d",
+              "prompt": "当 x = -3 时，3x²+x = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_137649a680d9",
+              "prompt": "当 x = -3 时，4x²+x = ?",
+              "answer": 33,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_84865ddb8761",
+              "prompt": "当 x = -3 时，5x²+x = ?",
+              "answer": 42,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_840400b24b57",
+              "prompt": "当 x = -2 时，2x²+x = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_b993b8610f14",
+              "prompt": "当 x = -2 时，3x²+x = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_ed53c55a1dc4",
+              "prompt": "当 x = -2 时，4x²+x = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g7_monomial_eval_d_v2_5e1043257ab2",
+              "prompt": "当 x = -2 时，5x²+x = ?",
+              "answer": 18,
               "learningType": "pattern"
             }
           ]

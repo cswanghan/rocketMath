@@ -208,6 +208,10 @@ const chinese = {
   GROUPS: evalLiteral(charsHtml, 'GROUPS'),
   RAD_MAP: evalLiteral(charsHtml, 'RAD_MAP'),
   GRADE_CHARS: evalLiteral(readingHtml, 'GRADE_CHARS'),
+  READING_LIBRARY: evalBrowserGlobals(
+    join(ROOT, 'public', 'chinese-reading-data.js'),
+    'return window.CHINESE_READING_LIBRARY;',
+  ),
 };
 if (!chinese.CHARS.length || !Object.keys(chinese.RAD).length) {
   throw new Error('语文生字库抽取为空 —— 检查 public/chinese-*.html');

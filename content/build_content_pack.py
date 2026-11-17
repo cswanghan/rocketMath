@@ -15,6 +15,7 @@ Contract (see SPEC.md §4):
     loop, milestone races and the individualized-goal probe config.
 """
 import json
+from build_fluency_expansion import expand_tracks
 import os
 import string
 
@@ -221,11 +222,11 @@ def build_pack():
     ]
 
     return {
-        "version": "1.0.0",
+        "version": "1.1.0",
         "grade": 3,
         "subject": "math_fluency",
         "engine_config": engine_config,
-        "tracks": tracks,
+        "tracks": expand_tracks(3, tracks),
         "non_drill_topics": non_drill_topics,
     }
 

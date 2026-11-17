@@ -51,7 +51,7 @@ export function Portal({ onSelect, onExamCal, resumePrep, onResumePrep, streak, 
         <button className="pcard portal-card portal-english" onClick={() => onSelect('english')}>
           <span className="pill pill-lavender">学科</span>
           <span className="portal-label">英语</span>
-          <span className="portal-desc">KET·PET 背单词</span>
+          <span className="portal-desc">词汇 · 阅读 · 语法</span>
           <CardArt kind="english" />
         </button>
       </div>

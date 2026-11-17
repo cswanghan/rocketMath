@@ -170,7 +170,7 @@ struct RaceView: View {
     }
 }
 
-/// 竞速专用键盘：答完立刻提交并出下一题（无「确定」步骤，追求手速）。
+/// 竞速专用键盘：检查答案后直接出下一题，不显示单题反馈。
 private struct RaceNumpad: View {
     let model: GameModel
     @State private var input = ""
@@ -185,20 +185,20 @@ private struct RaceNumpad: View {
                 .background(Theme.card, in: .rect(cornerRadius: 12))
 
             NumpadView(
-                onDigit: { d in
-                    guard input.count < 4 else { return }
-                    input.append(String(d))
-                },
+                onDigit: { input = IntegerAnswerInput.appending($0, to: input) },
                 onDelete: { _ = input.popLast() },
                 onSubmit: submit,
-                submitDisabled: input.isEmpty
+                submitDisabled: IntegerAnswerInput.value(of: input) == nil,
+                onToggleSign: IntegerAnswerInput.supportsNegativeAnswers(in: model.track) ? {
+                    input = IntegerAnswerInput.togglingSign(in: input, allowed: true)
+                } : nil
             )
         }
         .onChange(of: model.promptSeq) { input = "" }
     }
 
     private func submit() {
-        guard let value = Int(input) else { return }
+        guard let value = IntegerAnswerInput.value(of: input) else { return }
         model.submit(value)
     }
 }

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "grade": 5,
   "subject": "math_fluency",
   "engine_config": {
@@ -104,6 +104,78 @@
               "prompt": "x + 6 = 31",
               "answer": 25,
               "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_3094083f44a6",
+              "prompt": "x + 2 = 4",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_c00a52fbb960",
+              "prompt": "x + 2 = 5",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_bcf665d24868",
+              "prompt": "x + 2 = 6",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_f11db149762e",
+              "prompt": "x + 2 = 7",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_a017ca2003f3",
+              "prompt": "x + 2 = 8",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_c2fe861fb1e8",
+              "prompt": "x + 2 = 11",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_5778d6bf2718",
+              "prompt": "x + 2 = 12",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_7dbc83a7a1e1",
+              "prompt": "x + 2 = 13",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_0e896a81a8ef",
+              "prompt": "x + 2 = 14",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_5011294ae16a",
+              "prompt": "x + 2 = 15",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_7f8eccb3dda5",
+              "prompt": "x + 2 = 16",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_a_v2_df72e7a28fb0",
+              "prompt": "x + 2 = 18",
+              "answer": 16,
+              "learningType": "pattern"
             }
           ]
         },
@@ -132,6 +204,78 @@
               "id": "eq_b3",
               "prompt": "x - 3 = 47",
               "answer": 50,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_bcab65cc2303",
+              "prompt": "x - 2 = 1",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_2a45f7bfdc29",
+              "prompt": "x - 2 = 2",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_c5dedc8c7db8",
+              "prompt": "x - 2 = 3",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_6b88fc859051",
+              "prompt": "x - 2 = 4",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_5382972de5e0",
+              "prompt": "x - 2 = 5",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_3401599fbb62",
+              "prompt": "x - 2 = 6",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_29d6bc0f6558",
+              "prompt": "x - 2 = 7",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_b27d39bc2a38",
+              "prompt": "x - 2 = 8",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_af8e00c85cf5",
+              "prompt": "x - 2 = 9",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_30de2bc28922",
+              "prompt": "x - 2 = 10",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_2b6be7aa1738",
+              "prompt": "x - 2 = 11",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_b_v2_12fa14d56f32",
+              "prompt": "x - 2 = 12",
+              "answer": 14,
               "learningType": "pattern"
             }
           ]
@@ -162,6 +306,78 @@
               "prompt": "6x = 42",
               "answer": 7,
               "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_855783135e12",
+              "prompt": "2x = 4",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_f15fac88784a",
+              "prompt": "2x = 6",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_e9bb1b088742",
+              "prompt": "2x = 10",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_de28c718419c",
+              "prompt": "2x = 12",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_42cd607c4d74",
+              "prompt": "2x = 16",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_01201c712dc4",
+              "prompt": "2x = 18",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_885c2414bb16",
+              "prompt": "2x = 20",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_cf80bf192b61",
+              "prompt": "2x = 22",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_b1d9bfa25944",
+              "prompt": "2x = 24",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_0dc46402e6df",
+              "prompt": "3x = 6",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_919a9dfa1e58",
+              "prompt": "3x = 9",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_c_v2_4ff1efb553e9",
+              "prompt": "2x = 8",
+              "answer": 4,
+              "learningType": "pattern"
             }
           ]
         },
@@ -190,6 +406,78 @@
               "id": "eq_d3",
               "prompt": "x ÷ 5 = 9",
               "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_611bb9f0215b",
+              "prompt": "x ÷ 2 = 2",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_e9d1fed7e835",
+              "prompt": "x ÷ 3 = 2",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_61ec061dc860",
+              "prompt": "x ÷ 4 = 2",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_1769b1529d26",
+              "prompt": "x ÷ 5 = 2",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_9cc68ebaacec",
+              "prompt": "x ÷ 6 = 2",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_34f592f7edbb",
+              "prompt": "x ÷ 7 = 2",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_359536bd0293",
+              "prompt": "x ÷ 8 = 2",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_a467c860f7f5",
+              "prompt": "x ÷ 9 = 2",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_d0165dbaadbe",
+              "prompt": "x ÷ 3 = 3",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_4c5bbcafb711",
+              "prompt": "x ÷ 5 = 3",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_456516902113",
+              "prompt": "x ÷ 7 = 3",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_d_v2_94e2203afab8",
+              "prompt": "x ÷ 9 = 3",
+              "answer": 27,
               "learningType": "pattern"
             }
           ]
@@ -220,6 +508,78 @@
               "prompt": "5x - 10 = 25",
               "answer": 7,
               "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_1b519d9db41e",
+              "prompt": "2x + 3 = 7",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_9659a9d8df60",
+              "prompt": "2x + 3 = 9",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_7103851c85c6",
+              "prompt": "2x + 3 = 13",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_5cf19c1c4eac",
+              "prompt": "2x + 3 = 21",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_1cd6119bd2ab",
+              "prompt": "2x + 3 = 23",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_e9562a23a446",
+              "prompt": "2x + 3 = 25",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_fd79ab523020",
+              "prompt": "2x + 3 = 27",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_34b336fafa71",
+              "prompt": "2x + 3 = 29",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_6170b685e15b",
+              "prompt": "2x + 3 = 31",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_a77fed8dcb66",
+              "prompt": "2x + 3 = 33",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_96312065c0e8",
+              "prompt": "2x + 3 = 35",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_e_v2_49ab178f6b75",
+              "prompt": "2x + 3 = 37",
+              "answer": 17,
+              "learningType": "pattern"
             }
           ]
         },
@@ -248,6 +608,78 @@
               "id": "eq_f3",
               "prompt": "60 ÷ x = 4",
               "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_0d098c2ba827",
+              "prompt": "16 - 2x = 12",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_cf6b163004eb",
+              "prompt": "18 - 2x = 12",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_2cdc515271bb",
+              "prompt": "20 - 2x = 12",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_74c78a9f6c22",
+              "prompt": "24 - 2x = 12",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_d8bcccca5897",
+              "prompt": "26 - 2x = 12",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_bb116ffd50fc",
+              "prompt": "28 - 2x = 12",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_a5b077edcb92",
+              "prompt": "30 - 2x = 12",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_86a0ec1a0b44",
+              "prompt": "34 - 2x = 12",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_bd5687b1796a",
+              "prompt": "36 - 2x = 12",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_47ab7571eb3e",
+              "prompt": "38 - 2x = 12",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_34b4128d0efc",
+              "prompt": "40 - 2x = 12",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_equation_oral_f_v2_ad6156d7f0ad",
+              "prompt": "44 - 2x = 12",
+              "answer": 16,
               "learningType": "pattern"
             }
           ]
@@ -285,6 +717,78 @@
               "prompt": "平行四边形,底 12,高 4,面积 = ?",
               "answer": 48,
               "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_7822c0bb3484",
+              "prompt": "平行四边形,底 3,高 2,面积 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_8f74dfcc1a81",
+              "prompt": "平行四边形,底 3,高 3,面积 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_d3237a31db8d",
+              "prompt": "平行四边形,底 3,高 4,面积 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_edf49b65199f",
+              "prompt": "平行四边形,底 3,高 5,面积 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_dc7e89a0810a",
+              "prompt": "平行四边形,底 3,高 6,面积 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_a5f03af3f3c7",
+              "prompt": "平行四边形,底 3,高 7,面积 = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_93da3d8d3751",
+              "prompt": "平行四边形,底 3,高 9,面积 = ?",
+              "answer": 27,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_6125f979a6fd",
+              "prompt": "平行四边形,底 4,高 2,面积 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_a28fc2964120",
+              "prompt": "平行四边形,底 4,高 4,面积 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_0ffb32cca7be",
+              "prompt": "平行四边形,底 4,高 5,面积 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_e2f87d9db011",
+              "prompt": "平行四边形,底 4,高 7,面积 = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_a_v2_67455362e206",
+              "prompt": "平行四边形,底 4,高 8,面积 = ?",
+              "answer": 32,
+              "learningType": "pattern"
             }
           ]
         },
@@ -313,6 +817,78 @@
               "id": "pa_b3",
               "prompt": "三角形,底 12,高 8,面积 = ?",
               "answer": 48,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_7877758d822c",
+              "prompt": "三角形,底 3,高 2,面积 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_02888e740db3",
+              "prompt": "三角形,底 3,高 4,面积 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_faf929bcc9db",
+              "prompt": "三角形,底 3,高 6,面积 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_822b1cf8f690",
+              "prompt": "三角形,底 4,高 2,面积 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_b86f37c3cb78",
+              "prompt": "三角形,底 4,高 4,面积 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_6c60fb6e674d",
+              "prompt": "三角形,底 4,高 5,面积 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_576f0ea50dca",
+              "prompt": "三角形,底 4,高 7,面积 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_56e1cd3d7412",
+              "prompt": "三角形,底 4,高 8,面积 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_b60c5823e273",
+              "prompt": "三角形,底 4,高 9,面积 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_67e1ba189ebc",
+              "prompt": "三角形,底 5,高 2,面积 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_d018c48c03d2",
+              "prompt": "三角形,底 5,高 6,面积 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_b_v2_4d6da832f154",
+              "prompt": "三角形,底 6,高 7,面积 = ?",
+              "answer": 21,
               "learningType": "pattern"
             }
           ]
@@ -343,6 +919,78 @@
               "prompt": "梯形,上底 5,下底 7,高 4,面积 = ?",
               "answer": 24,
               "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_08a09a0051e3",
+              "prompt": "梯形,上底 3,下底 5,高 2,面积 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_20e7373042db",
+              "prompt": "梯形,上底 3,下底 5,高 3,面积 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_07f50a7ecfc6",
+              "prompt": "梯形,上底 3,下底 5,高 5,面积 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_cde807ae9dd7",
+              "prompt": "梯形,上底 3,下底 5,高 7,面积 = ?",
+              "answer": 28,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_78854a8f3dfb",
+              "prompt": "梯形,上底 3,下底 5,高 8,面积 = ?",
+              "answer": 32,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_6b366f2ce71c",
+              "prompt": "梯形,上底 3,下底 5,高 9,面积 = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_0f9cae7addc2",
+              "prompt": "梯形,上底 4,下底 6,高 2,面积 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_ca78b0343bde",
+              "prompt": "梯形,上底 4,下底 6,高 6,面积 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_3473c547aa84",
+              "prompt": "梯形,上底 4,下底 6,高 7,面积 = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_9af469b7396c",
+              "prompt": "梯形,上底 4,下底 6,高 8,面积 = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_b468bb2c34e6",
+              "prompt": "梯形,上底 4,下底 6,高 9,面积 = ?",
+              "answer": 45,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_c_v2_756f905d8f24",
+              "prompt": "梯形,上底 5,下底 7,高 3,面积 = ?",
+              "answer": 18,
+              "learningType": "pattern"
             }
           ]
         },
@@ -371,6 +1019,78 @@
               "id": "pa_d3",
               "prompt": "平行四边形,底 20,高 5,面积 = ?",
               "answer": 100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_51bfb9c68156",
+              "prompt": "梯形,上底 3,下底 5,高 6,面积 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_6244c83c3fe1",
+              "prompt": "三角形,底 3,高 8,面积 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_4ec232275dda",
+              "prompt": "三角形,底 4,高 3,面积 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_7907fe357773",
+              "prompt": "梯形,上底 4,下底 6,高 3,面积 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_6ac9876150e4",
+              "prompt": "梯形,上底 4,下底 6,高 4,面积 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_c67ba4021025",
+              "prompt": "平行四边形,底 4,高 9,面积 = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_4bc791e50749",
+              "prompt": "平行四边形,底 5,高 2,面积 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_e5cac55d8756",
+              "prompt": "平行四边形,底 5,高 5,面积 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_ee201d5e1875",
+              "prompt": "平行四边形,底 5,高 7,面积 = ?",
+              "answer": 35,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_e5a45adf595c",
+              "prompt": "平行四边形,底 5,高 8,面积 = ?",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_8e154de020c9",
+              "prompt": "梯形,上底 5,下底 7,高 8,面积 = ?",
+              "answer": 48,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_polygon_area_oral_d_v2_ffd5ba5335a3",
+              "prompt": "平行四边形,底 5,高 9,面积 = ?",
+              "answer": 45,
               "learningType": "pattern"
             }
           ]
@@ -408,6 +1128,78 @@
               "prompt": "36 ÷ 9 = ?",
               "answer": 4,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_81d61c0655af",
+              "prompt": "4 ÷ 2 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_4132073f531e",
+              "prompt": "10 ÷ 2 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_3fd545bf0825",
+              "prompt": "12 ÷ 2 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_c640121807fd",
+              "prompt": "14 ÷ 2 = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_71e67abcc987",
+              "prompt": "16 ÷ 2 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_f876c8e25f4d",
+              "prompt": "18 ÷ 2 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_98630f1cc250",
+              "prompt": "6 ÷ 3 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_06c802d4d4b8",
+              "prompt": "6 ÷ 2 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_62771a2f0f83",
+              "prompt": "15 ÷ 3 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_e0fe07d4b8cf",
+              "prompt": "18 ÷ 3 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_7446147425f7",
+              "prompt": "21 ÷ 3 = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_a_v2_6c070b387be9",
+              "prompt": "24 ÷ 3 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -436,6 +1228,78 @@
               "id": "fm_b3",
               "prompt": "45 ÷ 9 = ?",
               "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_fd2da34a6f5a",
+              "prompt": "24 ÷ 4 = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_8e4eb5e1f99b",
+              "prompt": "28 ÷ 4 = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_727a3290071d",
+              "prompt": "32 ÷ 4 = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_b0c5975d0e39",
+              "prompt": "27 ÷ 3 = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_65b76d4c1579",
+              "prompt": "20 ÷ 2 = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_b1665ff55839",
+              "prompt": "22 ÷ 2 = ?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_52a29b5ec9fb",
+              "prompt": "24 ÷ 2 = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_1fbb7ee9ac7e",
+              "prompt": "8 ÷ 4 = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_5d53e433e6b9",
+              "prompt": "9 ÷ 3 = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_38e8b91d2843",
+              "prompt": "8 ÷ 2 = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_6d834a010089",
+              "prompt": "20 ÷ 4 = ?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g5_factor_multiple_oral_b_v2_c2ee3ec570c7",
+              "prompt": "30 ÷ 5 = ?",
+              "answer": 6,
               "learningType": "fact_recall"
             }
           ]
@@ -466,6 +1330,78 @@
               "prompt": "20 和 15 的最大公因数 = ?",
               "answer": 5,
               "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_1b439bccf281",
+              "prompt": "4 和 6 的最大公因数 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_56f50a8d582f",
+              "prompt": "6 和 9 的最大公因数 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_8998dfc3a757",
+              "prompt": "14 和 21 的最大公因数 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_f70da0c86cb2",
+              "prompt": "16 和 24 的最大公因数 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_38999722216b",
+              "prompt": "18 和 27 的最大公因数 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_bd3ea149ee3b",
+              "prompt": "20 和 30 的最大公因数 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_048893d2fb3d",
+              "prompt": "22 和 33 的最大公因数 = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_e14193600435",
+              "prompt": "24 和 36 的最大公因数 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_f00b93aff68e",
+              "prompt": "26 和 39 的最大公因数 = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_0805470ffff7",
+              "prompt": "28 和 42 的最大公因数 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_3671d5dbc03c",
+              "prompt": "30 和 45 的最大公因数 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_c_v2_5803a47d3de5",
+              "prompt": "32 和 48 的最大公因数 = ?",
+              "answer": 16,
+              "learningType": "pattern"
             }
           ]
         },
@@ -494,6 +1430,78 @@
               "id": "fm_d3",
               "prompt": "6 和 8 的最小公倍数 = ?",
               "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_d7bce30331ff",
+              "prompt": "2 和 2 的最小公倍数 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_f09bbb60d9b4",
+              "prompt": "2 和 3 的最小公倍数 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_c20160ff921b",
+              "prompt": "2 和 4 的最小公倍数 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_58d1fb75bb7f",
+              "prompt": "2 和 5 的最小公倍数 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_2af1e8f66285",
+              "prompt": "2 和 7 的最小公倍数 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_17673286a2dc",
+              "prompt": "2 和 8 的最小公倍数 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_c8f745b32299",
+              "prompt": "2 和 9 的最小公倍数 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_5cc75412f973",
+              "prompt": "2 和 11 的最小公倍数 = ?",
+              "answer": 22,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_5b9dbd2bd243",
+              "prompt": "3 和 3 的最小公倍数 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_c739dca8a59c",
+              "prompt": "3 和 7 的最小公倍数 = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_c70011df83ba",
+              "prompt": "3 和 9 的最小公倍数 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_factor_multiple_oral_d_v2_a2b553cea733",
+              "prompt": "3 和 10 的最小公倍数 = ?",
+              "answer": 30,
               "learningType": "pattern"
             }
           ]
@@ -531,6 +1539,78 @@
               "prompt": "正方体,棱长 5,体积 = ?",
               "answer": 125,
               "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_f1dd23be88a2",
+              "prompt": "正方体,棱长 1,体积 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_d2938e8eb1f0",
+              "prompt": "正方体,体积 8,棱长 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_7287679cb2b7",
+              "prompt": "正方体,体积 27,棱长 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_3d49d859b745",
+              "prompt": "正方体,体积 64,棱长 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_080aaaf0587d",
+              "prompt": "正方体,体积 125,棱长 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_7042447578ae",
+              "prompt": "正方体,棱长 6,体积 = ?",
+              "answer": 216,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_b42797a5f065",
+              "prompt": "正方体,体积 216,棱长 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_0897842dfe18",
+              "prompt": "正方体,棱长 7,体积 = ?",
+              "answer": 343,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_f550b444e506",
+              "prompt": "正方体,体积 343,棱长 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_dd094012adf2",
+              "prompt": "正方体,棱长 8,体积 = ?",
+              "answer": 512,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_5c081e06959e",
+              "prompt": "正方体,棱长 9,体积 = ?",
+              "answer": 729,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_a_v2_28c982967441",
+              "prompt": "正方体,体积 729,棱长 = ?",
+              "answer": 9,
+              "learningType": "pattern"
             }
           ]
         },
@@ -559,6 +1639,78 @@
               "id": "cb_b3",
               "prompt": "长方体,长 8 宽 3 高 2,体积 = ?",
               "answer": 48,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_d02f06026d1b",
+              "prompt": "长方体,长 1 宽 2 高 5,体积 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_f0a5de57aa65",
+              "prompt": "长方体,长 1 宽 3 高 2,体积 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_ac0b11dd6979",
+              "prompt": "长方体,长 1 宽 4 高 3,体积 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_def97e84397e",
+              "prompt": "长方体,长 1 宽 5 高 4,体积 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_501a8ff73cd3",
+              "prompt": "长方体,长 1 宽 6 高 5,体积 = ?",
+              "answer": 30,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_a23f78bea818",
+              "prompt": "长方体,长 2 宽 2 高 2,体积 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_4ec744feedc1",
+              "prompt": "长方体,长 2 宽 3 高 3,体积 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_dde8152b6ec1",
+              "prompt": "长方体,长 2 宽 4 高 4,体积 = ?",
+              "answer": 32,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_ed1ce2d9fb33",
+              "prompt": "长方体,长 2 宽 5 高 5,体积 = ?",
+              "answer": 50,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_618cf2b5a938",
+              "prompt": "长方体,长 3 宽 3 高 4,体积 = ?",
+              "answer": 36,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_59757cf3b79f",
+              "prompt": "长方体,长 3 宽 6 高 3,体积 = ?",
+              "answer": 54,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_b_v2_897797215c8e",
+              "prompt": "长方体,长 4 宽 6 高 4,体积 = ?",
+              "answer": 96,
               "learningType": "pattern"
             }
           ]
@@ -589,6 +1741,78 @@
               "prompt": "正方体,棱长 5,表面积 = ?",
               "answer": 150,
               "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_f3959901531c",
+              "prompt": "正方体,棱长 1,表面积 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_fd8627a45fae",
+              "prompt": "正方体,表面积 6,棱长 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_6d48f3a9ae2f",
+              "prompt": "正方体,表面积 24,棱长 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_f3bbb1e234a4",
+              "prompt": "正方体,表面积 54,棱长 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_bf0465a588e8",
+              "prompt": "正方体,表面积 96,棱长 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_726ff04ee814",
+              "prompt": "正方体,表面积 150,棱长 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_1dc02aed6819",
+              "prompt": "正方体,棱长 6,表面积 = ?",
+              "answer": 216,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_f9e625014c47",
+              "prompt": "正方体,棱长 7,表面积 = ?",
+              "answer": 294,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_7b50e97d95b5",
+              "prompt": "正方体,表面积 294,棱长 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_f625776af86d",
+              "prompt": "正方体,棱长 8,表面积 = ?",
+              "answer": 384,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_0c0dfd8c5113",
+              "prompt": "正方体,表面积 384,棱长 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_c_v2_994342ed3d15",
+              "prompt": "正方体,棱长 9,表面积 = ?",
+              "answer": 486,
+              "learningType": "pattern"
             }
           ]
         },
@@ -617,6 +1841,78 @@
               "id": "cb_d3",
               "prompt": "长方体,长 5 宽 5 高 2,表面积 = ?",
               "answer": 90,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_a022cc89e34b",
+              "prompt": "长方体,长 1 宽 2 高 5,表面积 = ?",
+              "answer": 34,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_bf33950672e9",
+              "prompt": "长方体,长 1 宽 3 高 2,表面积 = ?",
+              "answer": 22,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_64c2be27f735",
+              "prompt": "长方体,长 1 宽 4 高 3,表面积 = ?",
+              "answer": 38,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_3a27b4e8da47",
+              "prompt": "长方体,长 1 宽 5 高 4,表面积 = ?",
+              "answer": 58,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_93d607b41714",
+              "prompt": "长方体,长 1 宽 6 高 5,表面积 = ?",
+              "answer": 82,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_64cc0e80be59",
+              "prompt": "长方体,长 2 宽 2 高 2,表面积 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_7b8b76c3be87",
+              "prompt": "长方体,长 2 宽 3 高 3,表面积 = ?",
+              "answer": 42,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_4064f13d8fea",
+              "prompt": "长方体,长 2 宽 4 高 4,表面积 = ?",
+              "answer": 64,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_6a061f3ce224",
+              "prompt": "长方体,长 2 宽 6 高 2,表面积 = ?",
+              "answer": 56,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_88a90aa0d0da",
+              "prompt": "长方体,长 3 宽 3 高 4,表面积 = ?",
+              "answer": 66,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_c2d8f7c2cb8b",
+              "prompt": "长方体,长 3 宽 5 高 2,表面积 = ?",
+              "answer": 62,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g5_cuboid_calc_d_v2_904d7be486d8",
+              "prompt": "长方体,长 4 宽 6 高 4,表面积 = ?",
+              "answer": 128,
               "learningType": "pattern"
             }
           ]

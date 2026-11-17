@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "grade": 3,
   "subject": "math_fluency",
   "engine_config": {
@@ -814,6 +814,78 @@
               "prompt": "50 × 6",
               "answer": 300,
               "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_f4c3fb368b41",
+              "prompt": "20 × 2",
+              "answer": 40,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_cbf5ee55da5e",
+              "prompt": "20 × 5",
+              "answer": 100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_a367d0c13be8",
+              "prompt": "20 × 7",
+              "answer": 140,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_f90db936bd28",
+              "prompt": "20 × 8",
+              "answer": 160,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_dda2daded4c1",
+              "prompt": "20 × 9",
+              "answer": 180,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_134d7b481f67",
+              "prompt": "30 × 3",
+              "answer": 90,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_c83add27dfd8",
+              "prompt": "30 × 5",
+              "answer": 150,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_280996ffe3c0",
+              "prompt": "30 × 7",
+              "answer": 210,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_2b48c9429b4c",
+              "prompt": "30 × 8",
+              "answer": 240,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_c4c39b554838",
+              "prompt": "30 × 9",
+              "answer": 270,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_7828cebd0271",
+              "prompt": "40 × 5",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_a_v2_3d157179ef57",
+              "prompt": "40 × 7",
+              "answer": 280,
+              "learningType": "pattern"
             }
           ]
         },
@@ -842,6 +914,78 @@
               "id": "round_90x3",
               "prompt": "90 × 3",
               "answer": 270,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_9da4667e5454",
+              "prompt": "60 × 2",
+              "answer": 120,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_308a273a3e43",
+              "prompt": "60 × 3",
+              "answer": 180,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_aa4aa7b9e059",
+              "prompt": "60 × 4",
+              "answer": 240,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_9a50ea34b2ec",
+              "prompt": "60 × 5",
+              "answer": 300,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_449cf272defe",
+              "prompt": "60 × 6",
+              "answer": 360,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_0d5a4a4a60cc",
+              "prompt": "60 × 8",
+              "answer": 480,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_3513cad1e35d",
+              "prompt": "60 × 9",
+              "answer": 540,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_ddefd025e3b3",
+              "prompt": "70 × 2",
+              "answer": 140,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_2dcf96748da5",
+              "prompt": "70 × 3",
+              "answer": 210,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_13ee8fb07c22",
+              "prompt": "70 × 4",
+              "answer": 280,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_8143ce99ff84",
+              "prompt": "70 × 5",
+              "answer": 350,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_b_v2_d22ab8e4c5fb",
+              "prompt": "70 × 7",
+              "answer": 490,
               "learningType": "pattern"
             }
           ]
@@ -872,6 +1016,78 @@
               "prompt": "500 × 6",
               "answer": 3000,
               "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_6766de28d6ac",
+              "prompt": "100 × 2",
+              "answer": 200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_45fd30929959",
+              "prompt": "100 × 3",
+              "answer": 300,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_3e2a2c5a1cc0",
+              "prompt": "100 × 4",
+              "answer": 400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_ae0e57e40337",
+              "prompt": "100 × 5",
+              "answer": 500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_6a3e470a0ec8",
+              "prompt": "100 × 7",
+              "answer": 700,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_1e6230f40fd9",
+              "prompt": "100 × 9",
+              "answer": 900,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_dbf8e6466036",
+              "prompt": "200 × 5",
+              "answer": 1000,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_aff6ddfa28fe",
+              "prompt": "200 × 7",
+              "answer": 1400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_aff54fcbaf28",
+              "prompt": "200 × 8",
+              "answer": 1600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_cf8d8c868a94",
+              "prompt": "200 × 9",
+              "answer": 1800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_05ab0739e61d",
+              "prompt": "300 × 5",
+              "answer": 1500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_c_v2_b618fdd019c9",
+              "prompt": "300 × 7",
+              "answer": 2100,
+              "learningType": "pattern"
             }
           ]
         },
@@ -900,6 +1116,78 @@
               "id": "round_900x3",
               "prompt": "900 × 3",
               "answer": 2700,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_5fa14a85825c",
+              "prompt": "600 × 2",
+              "answer": 1200,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_43de18b21d43",
+              "prompt": "600 × 3",
+              "answer": 1800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_3d96c46126f1",
+              "prompt": "600 × 4",
+              "answer": 2400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_8137e1c73271",
+              "prompt": "600 × 5",
+              "answer": 3000,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_de58d84dd99d",
+              "prompt": "600 × 6",
+              "answer": 3600,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_a77963e26a29",
+              "prompt": "600 × 8",
+              "answer": 4800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_cfe92656257c",
+              "prompt": "600 × 9",
+              "answer": 5400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_ed0a731fdcd2",
+              "prompt": "700 × 2",
+              "answer": 1400,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_3d19ac2d924c",
+              "prompt": "700 × 3",
+              "answer": 2100,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_0fd12c51cd15",
+              "prompt": "700 × 4",
+              "answer": 2800,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_fe1b1d606d95",
+              "prompt": "700 × 5",
+              "answer": 3500,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g3_round_number_oral_d_v2_5e61b97821c2",
+              "prompt": "700 × 7",
+              "answer": 4900,
               "learningType": "pattern"
             }
           ]
@@ -937,6 +1225,78 @@
               "prompt": "70 + 20",
               "answer": 90,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_7e5d586e3013",
+              "prompt": "20 + 10",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_aae3e87de9e9",
+              "prompt": "20 + 20",
+              "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_ffa15268dccb",
+              "prompt": "20 + 40",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_10e84d793693",
+              "prompt": "20 + 50",
+              "answer": 70,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_6ec733968772",
+              "prompt": "20 + 60",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_fc6196cd7d9b",
+              "prompt": "20 + 80",
+              "answer": 100,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_00dc49021a28",
+              "prompt": "30 + 10",
+              "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_fee31f6ffffd",
+              "prompt": "30 + 20",
+              "answer": 50,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_504f0238b0a6",
+              "prompt": "30 + 30",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_a0cc00c132e9",
+              "prompt": "30 + 40",
+              "answer": 70,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_a77363d1be47",
+              "prompt": "30 + 50",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_a_v2_de8e26f141b7",
+              "prompt": "30 + 70",
+              "answer": 100,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -965,6 +1325,78 @@
               "id": "sub_60m20",
               "prompt": "60 - 20",
               "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_5634e745ecad",
+              "prompt": "20 - 10",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_1468509fcf05",
+              "prompt": "40 - 10",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_ecec6756ddd9",
+              "prompt": "70 - 10",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_222f58a50956",
+              "prompt": "80 - 10",
+              "answer": 70,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_95306672b333",
+              "prompt": "90 - 10",
+              "answer": 80,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_aa24785c00b5",
+              "prompt": "30 - 10",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_8dec812414e5",
+              "prompt": "30 - 20",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_a2252e82e7e7",
+              "prompt": "50 - 10",
+              "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_933f215a6e37",
+              "prompt": "50 - 20",
+              "answer": 30,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_213be3a681af",
+              "prompt": "80 - 20",
+              "answer": 60,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_79e3215551a8",
+              "prompt": "90 - 20",
+              "answer": 70,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_b_v2_9cea220b264c",
+              "prompt": "40 - 20",
+              "answer": 20,
               "learningType": "fact_recall"
             }
           ]
@@ -995,6 +1427,78 @@
               "prompt": "200 + 700",
               "answer": 900,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_db3dcb59c351",
+              "prompt": "200 + 100",
+              "answer": 300,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_73e6b99f8f1c",
+              "prompt": "200 + 200",
+              "answer": 400,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_ae5a7486b16e",
+              "prompt": "200 + 300",
+              "answer": 500,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_143e43f89afc",
+              "prompt": "200 + 400",
+              "answer": 600,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_e06d330c9fa0",
+              "prompt": "200 + 600",
+              "answer": 800,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_ba1272d8534f",
+              "prompt": "200 + 800",
+              "answer": 1000,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_cba130f5e0f4",
+              "prompt": "300 + 100",
+              "answer": 400,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_390e0b9c70e1",
+              "prompt": "300 + 200",
+              "answer": 500,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_b49695cf9302",
+              "prompt": "300 + 300",
+              "answer": 600,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_ee5d2634e3c1",
+              "prompt": "300 + 500",
+              "answer": 800,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_dd8f7c7a38d5",
+              "prompt": "300 + 700",
+              "answer": 1000,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_c_v2_c3066d359c53",
+              "prompt": "200 + 500",
+              "answer": 700,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -1023,6 +1527,78 @@
               "id": "sub_600m200",
               "prompt": "600 - 200",
               "answer": 400,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_65ee08cbac1f",
+              "prompt": "200 - 100",
+              "answer": 100,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_00d329cce243",
+              "prompt": "300 - 100",
+              "answer": 200,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_87517b92853d",
+              "prompt": "700 - 100",
+              "answer": 600,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_333be2080d39",
+              "prompt": "800 - 100",
+              "answer": 700,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_e9323ff5181d",
+              "prompt": "900 - 100",
+              "answer": 800,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_f3116ae96588",
+              "prompt": "300 - 200",
+              "answer": 100,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_bb17c25ff36b",
+              "prompt": "400 - 100",
+              "answer": 300,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_868baaec2452",
+              "prompt": "400 - 200",
+              "answer": 200,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_d7e520da7f31",
+              "prompt": "600 - 100",
+              "answer": 500,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_1df643a01aeb",
+              "prompt": "800 - 200",
+              "answer": 600,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_29a78b0d3a0a",
+              "prompt": "900 - 200",
+              "answer": 700,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_d_v2_96f4faf2207a",
+              "prompt": "400 - 300",
+              "answer": 100,
               "learningType": "fact_recall"
             }
           ]
@@ -1053,6 +1629,78 @@
               "prompt": "640 + 50",
               "answer": 690,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_9906e3fdfc1a",
+              "prompt": "220 + 10",
+              "answer": 230,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_cf06a1a90b88",
+              "prompt": "220 + 20",
+              "answer": 240,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_154ecb361e83",
+              "prompt": "220 + 30",
+              "answer": 250,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_efe0c7c117c9",
+              "prompt": "220 + 40",
+              "answer": 260,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_c3355cd8b3a0",
+              "prompt": "220 + 60",
+              "answer": 280,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_45c56b579217",
+              "prompt": "220 + 70",
+              "answer": 290,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_b387186e27e2",
+              "prompt": "220 + 80",
+              "answer": 300,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_f310fd73e203",
+              "prompt": "220 + 90",
+              "answer": 310,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_7edf207f83de",
+              "prompt": "320 + 10",
+              "answer": 330,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_d8bdf1243110",
+              "prompt": "320 + 20",
+              "answer": 340,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_4dd71119553f",
+              "prompt": "320 + 30",
+              "answer": 350,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_e_v2_306ab7508a7b",
+              "prompt": "320 + 40",
+              "answer": 360,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -1081,6 +1729,78 @@
               "id": "sub_630m20",
               "prompt": "630 - 20",
               "answer": 610,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_318fa6161791",
+              "prompt": "280 - 10",
+              "answer": 270,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_60046e60ac37",
+              "prompt": "280 - 20",
+              "answer": 260,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_0a61e0950600",
+              "prompt": "280 - 30",
+              "answer": 250,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_4c536bde47f4",
+              "prompt": "280 - 40",
+              "answer": 240,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_bb934e9d0ef0",
+              "prompt": "280 - 50",
+              "answer": 230,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_d0c93544443b",
+              "prompt": "280 - 60",
+              "answer": 220,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_6aec4eaac837",
+              "prompt": "280 - 70",
+              "answer": 210,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_8b03b3bb4764",
+              "prompt": "280 - 80",
+              "answer": 200,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_4ce77e4a8db1",
+              "prompt": "380 - 10",
+              "answer": 370,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_049ba4e14ed3",
+              "prompt": "380 - 20",
+              "answer": 360,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_a8f2afa2df95",
+              "prompt": "380 - 30",
+              "answer": 350,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_f_v2_b486da50ac1e",
+              "prompt": "380 - 40",
+              "answer": 340,
               "learningType": "fact_recall"
             }
           ]
@@ -1111,6 +1831,78 @@
               "prompt": "56 + 35",
               "answer": 91,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_f35a3671914c",
+              "prompt": "27 + 16",
+              "answer": 43,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_f6c4fa76883e",
+              "prompt": "27 + 26",
+              "answer": 53,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_a994abeeeb7d",
+              "prompt": "27 + 36",
+              "answer": 63,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_798481d284ac",
+              "prompt": "27 + 46",
+              "answer": 73,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_0b0652b50155",
+              "prompt": "27 + 56",
+              "answer": 83,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_cf7c2776352f",
+              "prompt": "27 + 66",
+              "answer": 93,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_8503784db147",
+              "prompt": "37 + 16",
+              "answer": 53,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_b2d5e3e38fb7",
+              "prompt": "37 + 26",
+              "answer": 63,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_25971ce4f3a9",
+              "prompt": "37 + 36",
+              "answer": 73,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_5b252f993a86",
+              "prompt": "37 + 46",
+              "answer": 83,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_8956eb250787",
+              "prompt": "37 + 56",
+              "answer": 93,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_g_v2_05578c899838",
+              "prompt": "47 + 16",
+              "answer": 63,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -1139,6 +1931,78 @@
               "id": "sub_91m38",
               "prompt": "91 - 38",
               "answer": 53,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_fd7afd261bbc",
+              "prompt": "22 - 17",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_aa19300cdd32",
+              "prompt": "32 - 17",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_03df55c493cf",
+              "prompt": "42 - 17",
+              "answer": 25,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_43ce7059dc41",
+              "prompt": "52 - 17",
+              "answer": 35,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_a55118289f57",
+              "prompt": "62 - 17",
+              "answer": 45,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_0c663eb97664",
+              "prompt": "72 - 17",
+              "answer": 55,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_1b98ee708099",
+              "prompt": "82 - 17",
+              "answer": 65,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_b7cb1153cd24",
+              "prompt": "92 - 17",
+              "answer": 75,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_1d8a752b69be",
+              "prompt": "32 - 27",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_b0caa072fe6b",
+              "prompt": "42 - 27",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_2792d8c8d8ea",
+              "prompt": "52 - 27",
+              "answer": 25,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g3_add_sub_oral_h_v2_9a7f4d448d5e",
+              "prompt": "62 - 27",
+              "answer": 35,
               "learningType": "fact_recall"
             }
           ]

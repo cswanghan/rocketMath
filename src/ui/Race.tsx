@@ -2,10 +2,11 @@
 // (App Store lesson §7), no correction loop. The player first picks a speed
 // (less time = faster pace = harder); the engine tallies until time runs out.
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import type { ContentPack } from '../engine';
+import { getTrack, type ContentPack } from '../engine';
 import type { StorageAdapter } from '../storage';
 import { Numpad } from './Numpad';
 import { useGame } from './useGame';
+import { appendIntegerDigit, parseIntegerInput, toggleIntegerSign } from './integerInput';
 
 function fmtSeconds(s: number): string {
   return s % 60 === 0 ? `${s / 60} 分钟` : `${s} 秒`;
@@ -33,6 +34,7 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
   const [remaining, setRemaining] = useState(0);
 
   const { view } = game;
+  const signed = getTrack(pack, trackId).levels.some(l => l.new_facts.some(f => f.answer < 0));
 
   // kick off the race once a speed is chosen and the engine is ready
   useEffect(() => {
@@ -62,21 +64,23 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
 
   const doSubmit = useCallback(() => {
     if (view.mode !== 'prompt') return;
-    if (inputRef.current === '') return;
-    game.submit(Number(inputRef.current));
+    const value = parseIntegerInput(inputRef.current);
+    if (value === null) return;
+    game.submit(value);
     setInput('');
   }, [game, view.mode]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (view.mode !== 'prompt') return;
-      if (/^[0-9]$/.test(e.key)) setInput((s) => (s + e.key).slice(0, 4));
+      if (/^[0-9]$/.test(e.key)) setInput((s) => appendIntegerDigit(s, e.key));
+      else if (e.key === '-' && signed) setInput(toggleIntegerSign);
       else if (e.key === 'Backspace') setInput((s) => s.slice(0, -1));
       else if (e.key === 'Enter') doSubmit();
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [view.mode, doSubmit]);
+  }, [view.mode, doSubmit, signed]);
 
   // ---- speed picker (before the race starts) ----
   if (chosenMs === null) {
@@ -130,7 +134,8 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
           <div className="prompt">{view.fact.prompt}</div>
           <div className="answer-box">{input || ' '}</div>
           <Numpad
-            onDigit={(d) => setInput((s) => (s + d).slice(0, 4))}
+            onDigit={(d) => setInput((s) => appendIntegerDigit(s, d))}
+            onToggleSign={signed ? () => setInput(toggleIntegerSign) : undefined}
             onClear={() => setInput((s) => s.slice(0, -1))}
             onEnter={doSubmit}
           />

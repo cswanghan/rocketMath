@@ -5,6 +5,7 @@ import { Numpad } from './Numpad';
 import { RocketChart } from './RocketChart';
 import { cancel, isMuted, sayFact, setMuted as persistMuted, speak } from './speech';
 import { useGame } from './useGame';
+import { appendIntegerDigit, parseIntegerInput, toggleIntegerSign } from './integerInput';
 
 const PHASE_LABEL: Record<string, string> = {
   take_off: '起飞 Take-Off',
@@ -34,6 +35,7 @@ export function Play({ trackId, pack, adapter, studentId, seed, onExit }: Props)
   const mastery = pack.engine_config.mastery;
   const { state, view } = game;
   const levels = getTrack(pack, trackId).levels.map((l) => l.level);
+  const signed = getTrack(pack, trackId).levels.some(l => l.new_facts.some(f => f.answer < 0));
 
   useEffect(() => {
     setInput('');
@@ -66,15 +68,17 @@ export function Play({ trackId, pack, adapter, studentId, seed, onExit }: Props)
 
   const doSubmit = useCallback(() => {
     if (view.mode !== 'prompt') return;
-    if (inputRef.current === '') return;
+    const value = parseIntegerInput(inputRef.current);
+    if (value === null) return;
     lastSpokeRef.current = ''; // allow re-speaking on the next correction
-    game.submit(Number(inputRef.current));
+    game.submit(value);
   }, [game, view.mode]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (view.mode === 'prompt') {
-        if (/^[0-9]$/.test(e.key)) setInput((s) => (s + e.key).slice(0, 4));
+        if (/^[0-9]$/.test(e.key)) setInput((s) => appendIntegerDigit(s, e.key));
+        else if (e.key === '-' && signed) setInput(toggleIntegerSign);
         else if (e.key === 'Backspace') setInput((s) => s.slice(0, -1));
         else if (e.key === 'Enter') doSubmit();
         else if (e.key === 'Escape') setInput('');
@@ -84,7 +88,7 @@ export function Play({ trackId, pack, adapter, studentId, seed, onExit }: Props)
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [view.mode, doSubmit, game]);
+  }, [view.mode, doSubmit, game, signed]);
 
   if (!game.ready || !state) {
     return <div className="play loading">载入中…</div>;
@@ -140,7 +144,8 @@ export function Play({ trackId, pack, adapter, studentId, seed, onExit }: Props)
           {view.isRetest && <div className="retest-hint">再试一次 💪</div>}
           <div className="answer-box">{input || ' '}</div>
           <Numpad
-            onDigit={(d) => setInput((s) => (s + d).slice(0, 4))}
+            onDigit={(d) => setInput((s) => appendIntegerDigit(s, d))}
+            onToggleSign={signed ? () => setInput(toggleIntegerSign) : undefined}
             onClear={() => setInput((s) => s.slice(0, -1))}
             onEnter={doSubmit}
           />

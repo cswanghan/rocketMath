@@ -1,13 +1,46 @@
-# 🚀 Rocket Math — 三年级计算流畅度训练器
+# 🚀 星芽 — 语文、英语与数学练习
 
-Local-first、单机单人的 Web 应用,用 Rocket Math 的 mastery-learning 模型训练三年级数学**计算流畅度**(automaticity)。完整需求见 [`SPEC.md`](./SPEC.md),进度与决策见 [`PROGRESS.md`](./PROGRESS.md)。
+Local-first 学习应用。数学覆盖三至九年级，Web 与小程序另有语文识字、分级阅读及英语词汇、阅读、语法。iOS 原生当前仍为数学；本轮题库更新不等于原生三科接入。早期需求见 [`SPEC.md`](./SPEC.md)，进度与决策见 [`PROGRESS.md`](./PROGRESS.md)。
+
+## 当前题库（2026-11-17 开发源码）
+
+| 内容 | 覆盖范围 | 题量 |
+|---|---|---|
+| 数学口算 | 三至九年级 | 2,056 题；各年级 288 / 256 / 288 / 288 / 256 / 352 / 328 |
+| 数学综合练习 | 三至九年级 | 3,855 题；本轮保留原题包 |
+| 语文字卡 | 常用字、14 类偏旁 | 143 张；拼音题使用例词限定多音字语境 |
+| 语文原创阅读 | 建议一至六年级 | 各 2 篇，共 12 篇、36 题，附原文依据与解析 |
+| 英语阅读与语法 | KET/A2、PET/B1 学习路径 | 4 组各 32 题，共 128 题，分基础、巩固、挑战 |
+| 英语词汇 | A2/B1、12 个主题 | 保留 516 个词条 |
+
+语文年级是建议难度，不对应指定教材；高年级短文仍属基础阅读补充。英语为原创练习，不是官方真题。题量与结构检查不代表所有原有综合题都经过本轮人工复核。
+
+数学新增题保留旧题 ID 与进度结构；106 个薄弱口算池扩为每池 16 题，至少 6 种答案，单一答案不超过 25%。口诀与特殊角记忆池保持原教学顺序。网页、小程序和 iOS 口算/竞速均可输入负数；负号按整条题型开启，不提示当前题的答案符号。
+
+网页和小程序的 17 个双模式知识点可分别进入综合练习、口算和竞速；三端补齐七年级有理数乘除入口。网页综合填空允许负数、分数与文字，答对后也显示解析。
+
+题库源与再生成：
+
+```sh
+python3 content/build_content_pack.py       # 三年级口算
+python3 content/build_grade5.py --fluency-only # 同样适用于六至九年级
+python3 content/build_english.py            # 英语题库；编辑 english_questions.py / build_english.py
+python3 content/build_chinese_reading.py    # 原创阅读；字卡源仍在 public/chinese-characters.html
+npm run content:english                    # 数学英文镜像；新增文字需先补已审校映射
+npm run mini:content                       # 同步小程序产物
+npm run test:content                       # 独立数学答案校验、生成物新鲜度
+npm run test:localization
+npm test                                   # 题库、进度、输入及跨端产物回归
+```
+
+数学题池改变后，用 `npm run golden` 更新原生回归快照，并核对引擎阶段与计分不变。已上传或正在审核的安装包不会因源码更新而改变；本轮未部署、上传或重新提审，后续发布需使用新的构建号。
 
 ## 快速开始
 
 ```bash
 npm install
 npm run dev        # http://localhost:5173
-npm test           # 67 个测试(引擎 + 存储 + 时间锁)
+npm test           # 引擎、存储、账号、题库及输入回归
 npm run build      # 生产打包
 npm run content    # 重新生成 content pack(改节奏/加 track 后)
 ```

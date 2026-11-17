@@ -12,6 +12,7 @@
     "deploy:cf:learning": "vite build && wrangler pages deploy dist --project-name=rocket-learning --branch=main --commit-dirty=true",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:content": "python3 -m unittest discover -s content -p \"test_*.py\" && python3 content/build_english.py --check && python3 content/build_chinese_reading.py --check",
     "coverage": "vitest run --coverage",
     "content": "python3 content/build_content_pack.py",
     "golden": "npx tsx tools/export-engine-golden.ts",
@@ -21,7 +22,7 @@
     "mini": "npm run mini:engine && npm run mini:content",
     "mini:engine": "node scripts/build-mini-engine.mjs",
     "mini:content": "node scripts/build-mini-content.mjs",
-    "mini:test": "node scripts/test-mini-pages.mjs",
+    "mini:test": "node scripts/test-mini-pages.mjs && node scripts/test-mini-map-routes.mjs",
     "mini:preview": "node scripts/preview-mini.mjs"
   },
   "dependencies": {

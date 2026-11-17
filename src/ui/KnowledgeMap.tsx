@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTrack, type ContentPack } from '../engine';
+import type { ContentPack, Track } from '../engine';
 import { levelFromXp } from '../practice';
 import { PEDAGOGY_LABEL, topicsOf, unitsByTerm } from '../map/map';
 import type { KnowledgeMap as KnowledgeMapData, Term, Topic } from '../map/types';
@@ -38,6 +38,11 @@ const TERMS: { key: Term; label: string }[] = [
   { key: 'lower', label: '下册' },
 ];
 
+export function extraFluencyTracks(pack: ContentPack, knowledgeMap: KnowledgeMapData): Track[] {
+  const mapped = new Set(knowledgeMap.topics.map(topic => topic.fluencyTrackId));
+  return pack.tracks.filter(track => track.enabled && !mapped.has(track.trackId));
+}
+
 export function KnowledgeMap({ pack, knowledgeMap, adapter, studentId, onPlay, onRace, onPractice, onBack }: Props) {
   const [progress, setProgress] = useState<Record<string, Prog>>({});
   const [pracProgress, setPracProgress] = useState<Record<string, PracProg>>({});
@@ -45,9 +50,7 @@ export function KnowledgeMap({ pack, knowledgeMap, adapter, studentId, onPlay, o
 
   useEffect(() => {
     let alive = true;
-    const readyTracks = knowledgeMap.topics
-      .filter((t) => t.status === 'ready' && t.fluencyTrackId)
-      .map((t) => t.fluencyTrackId!);
+    const readyTracks = pack.tracks.filter(track => track.enabled).map(track => track.trackId);
     const readySets = knowledgeMap.topics
       .filter((t) => t.status === 'ready' && t.problemSetId)
       .map((t) => t.problemSetId!);
@@ -74,10 +77,11 @@ export function KnowledgeMap({ pack, knowledgeMap, adapter, studentId, onPlay, o
     return () => {
       alive = false;
     };
-  }, [adapter, studentId]);
+  }, [adapter, studentId, pack, knowledgeMap]);
 
   const readyCount = knowledgeMap.topics.filter((t) => t.status === 'ready').length;
   const lvl = levelFromXp(xp);
+  const extraTracks = extraFluencyTracks(pack, knowledgeMap);
 
   return (
     <div className="map">
@@ -127,11 +131,18 @@ export function KnowledgeMap({ pack, knowledgeMap, adapter, studentId, onPlay, o
           ))}
         </section>
       ))}
+      {extraTracks.length > 0 && <section className="term" aria-label="更多口算">
+        <h2 className="term-title">更多口算</h2>
+        <div className="topic-grid">
+          {extraTracks.map(track => <FluencyTrackCard key={track.trackId}
+            track={track} prog={progress[track.trackId]} onPlay={onPlay} onRace={onRace} />)}
+        </div>
+      </section>}
     </div>
   );
 }
 
-function TopicCard({
+export function TopicCard({
   topic,
   pack,
   prog,
@@ -149,8 +160,10 @@ function TopicCard({
   onPractice: (setId: string) => void;
 }) {
   const ped = <span className={`ped ped-${topic.pedagogy}`}>{PEDAGOGY_LABEL[topic.pedagogy]}</span>;
+  const fluency = pack.tracks.find(track => track.enabled && track.trackId === topic.fluencyTrackId);
 
-  // ready non-fluency topic -> Practice
+  // Some topics have both sets and timed drills. Keep the comprehensive
+  // practice as the primary action and expose its oral practice separately.
   if (topic.status === 'ready' && topic.problemSetId) {
     const setId = topic.problemSetId;
     return (
@@ -162,14 +175,26 @@ function TopicCard({
             {prac?.completed && <span className="done-tag">✓ 完成</span>}
           </div>
           <span className="topic-meta">
-            {prac?.completed ? `最好 ${prac.bestFirstTry}/${prac.total} 一次答对` : '开始练习 →'}
+            {prac?.completed ? `最好 ${prac.bestFirstTry}/${prac.total} 一次答对` : fluency ? '综合练习 →' : '开始练习 →'}
           </span>
         </button>
+        {fluency && <>
+          <div style={{ padding: '0 16px 10px' }}>
+            <RocketChart levels={fluency.levels.map(level => level.level)} completed={prog?.completed ?? []} current={prog?.current} compact />
+            <span className="topic-meta">口算已过 {prog?.completed.length ?? 0}/{fluency.levels.length} 关</span>
+          </div>
+          <button className="race-btn small" onClick={() => onPlay(fluency.trackId)} aria-label={`${topic.title} · 口算练习`}>
+            口算练习
+          </button>
+          <button className="race-btn small" onClick={() => onRace(fluency.trackId)} aria-label={`${topic.title} · 竞速`}>
+            🚀 竞速
+          </button>
+        </>}
       </div>
     );
   }
 
-  if (topic.status !== 'ready' || !topic.fluencyTrackId) {
+  if (topic.status !== 'ready' || !fluency) {
     return (
       <div className="topic topic-soon" aria-disabled>
         <div className="topic-head">
@@ -181,8 +206,18 @@ function TopicCard({
     );
   }
 
-  const trackId = topic.fluencyTrackId;
-  const levels = getTrack(pack, trackId).levels.map((l) => l.level);
+  return <FluencyTrackCard track={fluency} title={topic.title} prog={prog} onPlay={onPlay} onRace={onRace} />;
+}
+
+export function FluencyTrackCard({ track, title, prog, onPlay, onRace }: {
+  track: Track;
+  title?: string;
+  prog?: Prog;
+  onPlay: (trackId: string) => void;
+  onRace: (trackId: string) => void;
+}) {
+  const trackId = track.trackId;
+  const levels = track.levels.map((l) => l.level);
   const completed = prog?.completed ?? [];
   const allDone = completed.length === levels.length;
 
@@ -190,8 +225,8 @@ function TopicCard({
     <div className="topic topic-ready">
       <button className="topic-main" onClick={() => onPlay(trackId)}>
         <div className="topic-head">
-          {ped}
-          <span className="topic-name">{topic.title}</span>
+            <span className="ped ped-fluency">口算</span>
+            <span className="topic-name">{title ?? track.name}</span>
           {allDone && <span className="done-tag">✓ 全通关</span>}
         </div>
         <RocketChart levels={levels} completed={completed} current={prog?.current} compact />

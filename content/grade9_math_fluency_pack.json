@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "grade": 9,
   "subject": "math_fluency",
   "engine_config": {
@@ -104,6 +104,78 @@
               "prompt": "x²-9x+20=0 两根之和 = ?",
               "answer": 9,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_052d2af13468",
+              "prompt": "x²-3x+2=0 两根之和 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_3f43b0be1bfe",
+              "prompt": "x²-4x+3=0 两根之和 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_8818487fbf98",
+              "prompt": "x²-8x+7=0 两根之和 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_4147dd2a475b",
+              "prompt": "x²-10x+9=0 两根之和 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_82eea71b5806",
+              "prompt": "x²-11x+10=0 两根之和 = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_fdda32ce3f5b",
+              "prompt": "x²-12x+11=0 两根之和 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_a630c46e3f36",
+              "prompt": "x²-13x+12=0 两根之和 = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_b3e26cacb701",
+              "prompt": "x²-14x+24=0 两根之和 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_a8ab20e40d1a",
+              "prompt": "x²-15x+36=0 两根之和 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_93e30e9f6778",
+              "prompt": "x²-16x+48=0 两根之和 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_70fa09d9b175",
+              "prompt": "x²-17x+60=0 两根之和 = ?",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_89494c61abb3",
+              "prompt": "x²-18x+72=0 两根之和 = ?",
+              "answer": 18,
+              "learningType": "pattern"
             }
           ]
         },
@@ -132,6 +204,78 @@
               "id": "qr_p_-9_18",
               "prompt": "x²-9x+18=0 两根之积 = ?",
               "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_61f884a2da47",
+              "prompt": "x²-3x+2=0 两根之积 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_9db228327be4",
+              "prompt": "x²-4x+3=0 两根之积 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_0a916796980a",
+              "prompt": "x²-5x+4=0 两根之积 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_459930685506",
+              "prompt": "x²-6x+5=0 两根之积 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_46833e0331d7",
+              "prompt": "x²-8x+7=0 两根之积 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_0605c9f29333",
+              "prompt": "x²-9x+8=0 两根之积 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_2250615147d4",
+              "prompt": "x²-10x+9=0 两根之积 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_3d39afc94969",
+              "prompt": "x²-11x+10=0 两根之积 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_4df1d19b9a28",
+              "prompt": "x²-12x+11=0 两根之积 = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_e02092e08192",
+              "prompt": "x²-9x+14=0 两根之积 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_cdb611a0f281",
+              "prompt": "x²-10x+16=0 两根之积 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_96183e854198",
+              "prompt": "x²-12x+20=0 两根之积 = ?",
+              "answer": 20,
               "learningType": "pattern"
             }
           ]
@@ -162,6 +306,78 @@
               "prompt": "x²-6x+9=0 较小根 = ?",
               "answer": 3,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_be634069b221",
+              "prompt": "x²-3x+2=0 较小根 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_1ab68320845a",
+              "prompt": "x²-9x+20=0 较小根 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_301841c20f30",
+              "prompt": "x²-11x+30=0 较小根 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_508bc0f5a3b6",
+              "prompt": "x²-13x+42=0 较小根 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_88552efffb23",
+              "prompt": "x²-15x+56=0 较小根 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_c2bd89ef6102",
+              "prompt": "x²-17x+72=0 较小根 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_cd4a8f6df911",
+              "prompt": "x²-19x+90=0 较小根 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_6fc99511b232",
+              "prompt": "x²-4x+3=0 较小根 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_224fe4599f06",
+              "prompt": "x²-6x+8=0 较小根 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_f5d71a9869f7",
+              "prompt": "x²-10x+24=0 较小根 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_ba9e4538d998",
+              "prompt": "x²-12x+35=0 较小根 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_aaa8ce751905",
+              "prompt": "x²-14x+48=0 较小根 = ?",
+              "answer": 6,
+              "learningType": "pattern"
             }
           ]
         },
@@ -190,6 +406,78 @@
               "id": "qr_s_4_-12",
               "prompt": "x²+4x-12=0 两根之和 = ?",
               "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_f88b4244ef08",
+              "prompt": "x²+5x-6=0 两根之和 = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_65c447772a00",
+              "prompt": "x²+6x-7=0 两根之和 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_cda068751405",
+              "prompt": "x²+7x-8=0 两根之和 = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_143c8470e2d3",
+              "prompt": "x²+8x-9=0 两根之和 = ?",
+              "answer": -8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_ce5d2cda39be",
+              "prompt": "x²+9x-10=0 两根之和 = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_8fe5b855c28f",
+              "prompt": "x²+10x-11=0 两根之和 = ?",
+              "answer": -10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_d7d456298f2a",
+              "prompt": "x²+11x-12=0 两根之和 = ?",
+              "answer": -11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_e852b8de4255",
+              "prompt": "x²+1x-2=0 两根之和 = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_7df1f605dbeb",
+              "prompt": "x²+2x-3=0 两根之和 = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_80b8ed3ef05d",
+              "prompt": "x²+3x-4=0 两根之和 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_6636e5b56702",
+              "prompt": "x²+4x-5=0 两根之和 = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_155085492d04",
+              "prompt": "x²+5x-14=0 两根之和 = ?",
+              "answer": -5,
               "learningType": "pattern"
             }
           ]
@@ -220,6 +508,78 @@
               "prompt": "x²+4x-12=0 两根之积 = ?",
               "answer": -12,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_51cd6a1ed1bc",
+              "prompt": "x²+1x-2=0 两根之积 = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_162d02bd1043",
+              "prompt": "x²+2x-3=0 两根之积 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_d4edcf90fa60",
+              "prompt": "x²+3x-4=0 两根之积 = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_eb884b4792f6",
+              "prompt": "x²+4x-5=0 两根之积 = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_5fe8e70e572d",
+              "prompt": "x²+6x-7=0 两根之积 = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_a8632899ca2a",
+              "prompt": "x²+8x-9=0 两根之积 = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_a05244c67a68",
+              "prompt": "x²+10x-11=0 两根之积 = ?",
+              "answer": -11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_07cf994540ca",
+              "prompt": "x²+5x-14=0 两根之积 = ?",
+              "answer": -14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_9480f0f3ee15",
+              "prompt": "x²+6x-16=0 两根之积 = ?",
+              "answer": -16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_0ae3e2c37a5a",
+              "prompt": "x²+7x-18=0 两根之积 = ?",
+              "answer": -18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_2b760226c517",
+              "prompt": "x²+8x-20=0 两根之积 = ?",
+              "answer": -20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_64055caa95dd",
+              "prompt": "x²+9x-22=0 两根之积 = ?",
+              "answer": -22,
+              "learningType": "pattern"
             }
           ]
         },
@@ -248,6 +608,78 @@
               "id": "qr_max_5_-14",
               "prompt": "x²+5x-14=0 较大根 = ?",
               "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_360e350ac1da",
+              "prompt": "x²+1x-2=0 较大根 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_acb038580268",
+              "prompt": "x²+1x-12=0 较大根 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_60d9e0acec59",
+              "prompt": "x²+1x-20=0 较大根 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_966a0744f754",
+              "prompt": "x²+1x-30=0 较大根 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_88d337a02dea",
+              "prompt": "x²+1x-42=0 较大根 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_70833417e698",
+              "prompt": "x²+1x-56=0 较大根 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_9310268810e1",
+              "prompt": "x²+1x-72=0 较大根 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_1510deae2cfe",
+              "prompt": "x²+1x-90=0 较大根 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_bf9f2bd142e0",
+              "prompt": "x²+2x-3=0 较大根 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_9eec6267965b",
+              "prompt": "x²+2x-15=0 较大根 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_42d1fbc53ed1",
+              "prompt": "x²+2x-24=0 较大根 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_512f4b03ee4d",
+              "prompt": "x²+2x-35=0 较大根 = ?",
+              "answer": 5,
               "learningType": "pattern"
             }
           ]
@@ -285,6 +717,78 @@
               "prompt": "y=(x+4)²  对称轴 x = ?",
               "answer": -4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_bd8776f7420d",
+              "prompt": "y=(x+6)²-6  对称轴 x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_aefdb166c23f",
+              "prompt": "y=(x+5)²-6  对称轴 x = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_0f62321d566b",
+              "prompt": "y=(x+3)²-6  对称轴 x = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_84c6bdb6b7b7",
+              "prompt": "y=(x+2)²-6  对称轴 x = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_55068a45b6c9",
+              "prompt": "y=(x+0)²-6  对称轴 x = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_92b6c12d4907",
+              "prompt": "y=(x-1)²-6  对称轴 x = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_c3fa917002af",
+              "prompt": "y=(x-4)²-6  对称轴 x = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_5f3897e46989",
+              "prompt": "y=(x-5)²-6  对称轴 x = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_3d351dc1f237",
+              "prompt": "y=(x-6)²-6  对称轴 x = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_249f52057f34",
+              "prompt": "y=(x+6)²-5  对称轴 x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_ced48d5c82d8",
+              "prompt": "y=(x+5)²-5  对称轴 x = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_5fa44c77edc3",
+              "prompt": "y=(x+4)²-6  对称轴 x = ?",
+              "answer": -4,
+              "learningType": "pattern"
             }
           ]
         },
@@ -313,6 +817,78 @@
               "id": "qfv_vy_1_7",
               "prompt": "y=(x+4)²+7  顶点纵坐标 = ?",
               "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_17b56963e567",
+              "prompt": "y=(x+6)²-6  顶点纵坐标 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_fcc02ed29222",
+              "prompt": "y=(x+6)²-4  顶点纵坐标 = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_839e0362734d",
+              "prompt": "y=(x+6)²-3  顶点纵坐标 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_95553707ff07",
+              "prompt": "y=(x+6)²-2  顶点纵坐标 = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_40d5ee5fe752",
+              "prompt": "y=(x+6)²-1  顶点纵坐标 = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_cca074a1cc78",
+              "prompt": "y=(x+6)²+0  顶点纵坐标 = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_5c8dff75defc",
+              "prompt": "y=(x+6)²+2  顶点纵坐标 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_b979699efd92",
+              "prompt": "y=(x+6)²+4  顶点纵坐标 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_4c0b060e21fc",
+              "prompt": "y=(x+6)²+5  顶点纵坐标 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_e0aa6a1628b7",
+              "prompt": "y=(x+6)²+6  顶点纵坐标 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_82ea0ba5621d",
+              "prompt": "y=(x+6)²-5  顶点纵坐标 = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_6b1d831c1499",
+              "prompt": "y=(x+6)²+1  顶点纵坐标 = ?",
+              "answer": 1,
               "learningType": "pattern"
             }
           ]
@@ -343,6 +919,78 @@
               "prompt": "y=2x²-8x+10  对称轴 x = ?",
               "answer": 2,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_eabbf99b8e5b",
+              "prompt": "y=x²+12x+30  对称轴 x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_68d8dc88e426",
+              "prompt": "y=x²+10x+19  对称轴 x = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_5b0650ce6068",
+              "prompt": "y=x²+8x+10  对称轴 x = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_721c3f328fc5",
+              "prompt": "y=x²+4x-2  对称轴 x = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_4784ec2d54e6",
+              "prompt": "y=x²+2x-5  对称轴 x = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_6ef9e53686b9",
+              "prompt": "y=x²+0x-6  对称轴 x = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_aafe018d1f45",
+              "prompt": "y=x²-6x+3  对称轴 x = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_111fd6e49254",
+              "prompt": "y=x²-8x+10  对称轴 x = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_7cdc269e8511",
+              "prompt": "y=x²-10x+19  对称轴 x = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_c2767967fa1a",
+              "prompt": "y=x²-12x+30  对称轴 x = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_3be064c6d6fd",
+              "prompt": "y=x²+12x+31  对称轴 x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_9f74f97c8daa",
+              "prompt": "y=x²+10x+20  对称轴 x = ?",
+              "answer": -5,
+              "learningType": "pattern"
             }
           ]
         },
@@ -370,6 +1018,78 @@
             {
               "id": "qfv_vy_std_3_-8",
               "prompt": "y=2x²-8x+10  顶点纵坐标 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_1aaa8729fc39",
+              "prompt": "y=x²+12x+30  顶点纵坐标 = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_b66adae532eb",
+              "prompt": "y=x²+12x+31  顶点纵坐标 = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_87c5ff5da016",
+              "prompt": "y=x²+12x+33  顶点纵坐标 = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_3cc98d170c3f",
+              "prompt": "y=x²+12x+34  顶点纵坐标 = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_8ff68036deb1",
+              "prompt": "y=x²+12x+36  顶点纵坐标 = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_604c655571e0",
+              "prompt": "y=x²+12x+37  顶点纵坐标 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_bd75d4ce8c89",
+              "prompt": "y=x²+12x+39  顶点纵坐标 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_f0f67a160e4b",
+              "prompt": "y=x²+12x+40  顶点纵坐标 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_74eb90514a68",
+              "prompt": "y=x²+12x+41  顶点纵坐标 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_4863b3b4b38c",
+              "prompt": "y=x²+12x+42  顶点纵坐标 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_2b80b40eb544",
+              "prompt": "y=x²+12x+35  顶点纵坐标 = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_e5111cdcc54b",
+              "prompt": "y=x²+12x+38  顶点纵坐标 = ?",
               "answer": 2,
               "learningType": "pattern"
             }
@@ -466,6 +1186,78 @@
               "prompt": "直角△斜边=20,∠A=60°,A的邻边=20×cos60°=?",
               "answer": 10,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_2601de798212",
+              "prompt": "直角△斜边=4,∠A=30°,A的对边=4×sin30°=?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_b9ed36c4f715",
+              "prompt": "直角△斜边=6,∠A=60°,A的邻边=6×cos60°=?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_e3bb00e3ea3a",
+              "prompt": "直角△斜边=8,∠A=60°,A的邻边=8×cos60°=?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_fb303d1a7071",
+              "prompt": "直角△斜边=12,∠A=30°,A的对边=12×sin30°=?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_1bfc2412bfa7",
+              "prompt": "直角△斜边=14,∠A=30°,A的对边=14×sin30°=?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_954d1300b4e6",
+              "prompt": "直角△斜边=16,∠A=30°,A的对边=16×sin30°=?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_d404b668dd48",
+              "prompt": "直角△斜边=18,∠A=30°,A的对边=18×sin30°=?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_4a8c2cfa5c62",
+              "prompt": "直角△斜边=22,∠A=30°,A的对边=22×sin30°=?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_c596364bdce6",
+              "prompt": "直角△斜边=24,∠A=30°,A的对边=24×sin30°=?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_d6ca4cae7c92",
+              "prompt": "直角△斜边=26,∠A=30°,A的对边=26×sin30°=?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_50e37fdedbea",
+              "prompt": "直角△斜边=28,∠A=30°,A的对边=28×sin30°=?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_362d0ef1a680",
+              "prompt": "直角△斜边=30,∠A=30°,A的对边=30×sin30°=?",
+              "answer": 15,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -494,6 +1286,78 @@
               "id": "sat_3_3",
               "prompt": "直角△斜边=8,∠A=30°,A的对边=8×sin30°=?",
               "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_1fecfc8954a0",
+              "prompt": "直角△邻边=2,∠A=45°,对边=2×tan45°=?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_93b558590e20",
+              "prompt": "直角△邻边=6,∠A=45°,对边=6×tan45°=?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_30197b76c71b",
+              "prompt": "直角△邻边=7,∠A=45°,对边=7×tan45°=?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_6e89b44badda",
+              "prompt": "直角△邻边=8,∠A=45°,对边=8×tan45°=?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_a648409b89bc",
+              "prompt": "直角△邻边=9,∠A=45°,对边=9×tan45°=?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_d081104da4bb",
+              "prompt": "直角△邻边=10,∠A=45°,对边=10×tan45°=?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_3b98e4f3295e",
+              "prompt": "直角△邻边=11,∠A=45°,对边=11×tan45°=?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_b4fed1ff90c4",
+              "prompt": "直角△邻边=12,∠A=45°,对边=12×tan45°=?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_e2a4dfca2a48",
+              "prompt": "直角△邻边=13,∠A=45°,对边=13×tan45°=?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_1dd5bd80159a",
+              "prompt": "直角△邻边=14,∠A=45°,对边=14×tan45°=?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_fb3f2f5e4f22",
+              "prompt": "直角△邻边=15,∠A=45°,对边=15×tan45°=?",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_cd85ef4c923b",
+              "prompt": "直角△邻边=16,∠A=45°,对边=16×tan45°=?",
+              "answer": 16,
               "learningType": "fact_recall"
             }
           ]
@@ -531,6 +1395,78 @@
               "prompt": "掷一枚骰子,出现奇数点的等可能结果有几个?",
               "answer": 3,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_6003da65d9a9",
+              "prompt": "从1~8中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_9c5391a9513b",
+              "prompt": "从1~11中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_5c5957ac1fb4",
+              "prompt": "从1~14中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_caf53b4e5b82",
+              "prompt": "从1~16中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_aeeea7e09783",
+              "prompt": "从1~18中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_218c182e64de",
+              "prompt": "从1~20中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_782db0739aa6",
+              "prompt": "从1~22中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_59d9a961ff99",
+              "prompt": "从1~24中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_2a45e22e2dd8",
+              "prompt": "从1~9中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_b039ac25b2dc",
+              "prompt": "从1~12中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_764dfcee8e67",
+              "prompt": "从1~15中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_85e634fb23a8",
+              "prompt": "从1~17中随机取一数\n取到偶数的有利结果有几个?",
+              "answer": 8,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -559,6 +1495,78 @@
               "id": "prob_1_3",
               "prompt": "从1,2,3,4,5中随机取一个数\n取到大于3的数有几种等可能结果?",
               "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_f4d01ef311ff",
+              "prompt": "一个装有10个红球5个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_7bf914f10d07",
+              "prompt": "一个装有11个红球5个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_f0b6c4ceee92",
+              "prompt": "一个装有12个红球6个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_4e78f943028f",
+              "prompt": "一个装有13个红球6个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_44a3d59ef507",
+              "prompt": "一个装有14个红球7个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_5da30baa5bf3",
+              "prompt": "一个装有15个红球7个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_d270c6026eb5",
+              "prompt": "一个装有16个红球8个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_b818d6156df4",
+              "prompt": "一个装有17个红球8个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 17,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_2e8c0fc016e7",
+              "prompt": "一个装有18个红球9个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 18,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_31d583fdb645",
+              "prompt": "一个装有19个红球9个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 19,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_75c43d18432e",
+              "prompt": "一个装有20个红球10个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_4446bea3c296",
+              "prompt": "一个装有21个红球10个白球的袋子,随机摸一个\n有利结果(摸到红球)有几种?",
+              "answer": 21,
               "learningType": "fact_recall"
             }
           ]
@@ -589,6 +1597,78 @@
               "prompt": "从1~10中随机取一数\n取到4的因数的有利结果有几个?",
               "answer": 3,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_b521f0f8946b",
+              "prompt": "从1~18中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_334816cbce9b",
+              "prompt": "从1~21中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_a708c1d83847",
+              "prompt": "从1~24中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_a47e780087a3",
+              "prompt": "从1~27中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_e0e0706979c4",
+              "prompt": "从1~14中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_e0402dc2f3f5",
+              "prompt": "从1~15中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_d6879e9fa8b9",
+              "prompt": "从1~19中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_7310ceda609d",
+              "prompt": "从1~22中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_eaa60f657f75",
+              "prompt": "从1~25中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_dfa3e04bfa0e",
+              "prompt": "从1~28中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_54c48e8560e7",
+              "prompt": "从1~30中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_54f62fc23e65",
+              "prompt": "从1~16中随机取一数\n取到3的倍数的有利结果有几个?",
+              "answer": 5,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -617,6 +1697,78 @@
               "id": "prob_3_3",
               "prompt": "掷两枚硬币,两面都是正面的有利结果有几个?",
               "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_751f47e45bad",
+              "prompt": "分别从编号1~18和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 36,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_29855bb790cd",
+              "prompt": "分别从编号1~19和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 38,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_67f1cb44f9dd",
+              "prompt": "分别从编号1~20和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_a1c710d738b5",
+              "prompt": "分别从编号1~21和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 42,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_2ee801701aa6",
+              "prompt": "分别从编号1~22和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 44,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_65be20f5c84a",
+              "prompt": "分别从编号1~23和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 46,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_df0c36c3177e",
+              "prompt": "分别从编号1~24和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 48,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_b8ab06a553fb",
+              "prompt": "分别从编号1~25和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 50,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_28e6942067e9",
+              "prompt": "分别从编号1~26和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 52,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_e1293339ba4b",
+              "prompt": "分别从编号1~27和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 54,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_968b6a17d05c",
+              "prompt": "分别从编号1~28和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 56,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_403019846ebd",
+              "prompt": "分别从编号1~29和编号1~2的两组卡片中各抽一张\n全部等可能的编号组合有几种?",
+              "answer": 58,
               "learningType": "fact_recall"
             }
           ]
@@ -654,6 +1806,78 @@
               "prompt": "两相似△相似比 3:1,较大对应边=12,\n较小对应边 = ?",
               "answer": 4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_000b23d1f780",
+              "prompt": "两相似△相似比 2:1,较大对应边=2,\n较小对应边 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_efb3b4557d88",
+              "prompt": "两相似△相似比 2:1,较大对应边=4,\n较小对应边 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_231db06a9754",
+              "prompt": "两相似△相似比 2:1,较大对应边=10,\n较小对应边 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_b476dbadaee0",
+              "prompt": "两相似△相似比 2:1,较大对应边=12,\n较小对应边 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_7d7ce287d50b",
+              "prompt": "两相似△相似比 2:1,较大对应边=14,\n较小对应边 = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_b5245004d795",
+              "prompt": "两相似△相似比 2:1,较大对应边=16,\n较小对应边 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_7d8baa08d44b",
+              "prompt": "两相似△相似比 2:1,较大对应边=18,\n较小对应边 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_06cb5eab1857",
+              "prompt": "两相似△相似比 2:1,较大对应边=20,\n较小对应边 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_dc0215aa8263",
+              "prompt": "两相似△相似比 2:1,较大对应边=22,\n较小对应边 = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_09c1c0938d3b",
+              "prompt": "两相似△相似比 2:1,较大对应边=24,\n较小对应边 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_98b139b76211",
+              "prompt": "两相似△相似比 3:1,较大对应边=3,\n较小对应边 = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_6d4b78e8141c",
+              "prompt": "两相似△相似比 3:1,较大对应边=6,\n较小对应边 = ?",
+              "answer": 2,
+              "learningType": "pattern"
             }
           ]
         },
@@ -682,6 +1906,78 @@
               "id": "simr_1_3",
               "prompt": "两相似△相似比 4:1,较小对应边=3,\n较大对应边 = ?",
               "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_02d11f0cf1dc",
+              "prompt": "两相似△相似比 2:1,较小对应边=1,\n较大对应边 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_49a313369410",
+              "prompt": "两相似△相似比 3:1,较小对应边=1,\n较大对应边 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_c4cc870146db",
+              "prompt": "两相似△相似比 4:1,较小对应边=1,\n较大对应边 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_4e45a57c855e",
+              "prompt": "两相似△相似比 3:1,较小对应边=2,\n较大对应边 = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_126a52ec91ca",
+              "prompt": "两相似△相似比 3:1,较小对应边=3,\n较大对应边 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_251fa42bc435",
+              "prompt": "两相似△相似比 4:1,较小对应边=4,\n较大对应边 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_fadd1fe11820",
+              "prompt": "两相似△相似比 2:1,较小对应边=5,\n较大对应边 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_b0ca9e330554",
+              "prompt": "两相似△相似比 4:1,较小对应边=5,\n较大对应边 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_dd0e30f38d0d",
+              "prompt": "两相似△相似比 3:1,较小对应边=6,\n较大对应边 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_abb3ab544b61",
+              "prompt": "两相似△相似比 4:1,较小对应边=6,\n较大对应边 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_61f406f6065b",
+              "prompt": "两相似△相似比 3:1,较小对应边=7,\n较大对应边 = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_57e04e3416e8",
+              "prompt": "两相似△相似比 4:1,较小对应边=7,\n较大对应边 = ?",
+              "answer": 28,
               "learningType": "pattern"
             }
           ]
@@ -712,6 +2008,78 @@
               "prompt": "两相似△相似比 5:2,较大对应边=10,\n较小对应边 = ?",
               "answer": 4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_3731f5fe9e8a",
+              "prompt": "两相似△相似比 3:2,较大对应边=3,\n较小对应边 = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_c6245963fcab",
+              "prompt": "两相似△相似比 4:3,较大对应边=4,\n较小对应边 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_45cb9aa0b644",
+              "prompt": "两相似△相似比 3:2,较大对应边=12,\n较小对应边 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_d8baef493157",
+              "prompt": "两相似△相似比 4:3,较大对应边=16,\n较小对应边 = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_15fe75708013",
+              "prompt": "两相似△相似比 3:2,较大对应边=15,\n较小对应边 = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_85db885fc54a",
+              "prompt": "两相似△相似比 4:3,较大对应边=20,\n较小对应边 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_4b72b202f460",
+              "prompt": "两相似△相似比 4:3,较大对应边=24,\n较小对应边 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_b01422973ca7",
+              "prompt": "两相似△相似比 3:2,较大对应边=21,\n较小对应边 = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_567e05238a99",
+              "prompt": "两相似△相似比 4:3,较大对应边=28,\n较小对应边 = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_d21c5faba3a2",
+              "prompt": "两相似△相似比 3:2,较大对应边=24,\n较小对应边 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_45968b2438d9",
+              "prompt": "两相似△相似比 4:3,较大对应边=32,\n较小对应边 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_6b5e8921653f",
+              "prompt": "两相似△相似比 4:3,较大对应边=36,\n较小对应边 = ?",
+              "answer": 27,
+              "learningType": "pattern"
             }
           ]
         },
@@ -740,6 +2108,78 @@
               "id": "simr_3_3",
               "prompt": "两相似△相似比 5:2,较小对应边=4,\n较大对应边 = ?",
               "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_4586dd38aebb",
+              "prompt": "两相似△相似比 3:2,较小对应边=2,\n较大对应边 = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_9c8a17e33ef3",
+              "prompt": "两相似△相似比 4:3,较小对应边=3,\n较大对应边 = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_ba47f264dce0",
+              "prompt": "两相似△相似比 5:2,较小对应边=2,\n较大对应边 = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_c32870fddfa5",
+              "prompt": "两相似△相似比 4:3,较小对应边=6,\n较大对应边 = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_1857b90286e5",
+              "prompt": "两相似△相似比 3:2,较小对应边=6,\n较大对应边 = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_deaed3d3c1c4",
+              "prompt": "两相似△相似比 5:2,较小对应边=6,\n较大对应边 = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_b42419bffc21",
+              "prompt": "两相似△相似比 4:3,较小对应边=12,\n较大对应边 = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_10169acd9e07",
+              "prompt": "两相似△相似比 5:2,较小对应边=8,\n较大对应边 = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_073338a76346",
+              "prompt": "两相似△相似比 5:2,较小对应边=10,\n较大对应边 = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_57e79dd8e83f",
+              "prompt": "两相似△相似比 3:2,较小对应边=12,\n较大对应边 = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_06c53178f698",
+              "prompt": "两相似△相似比 4:3,较小对应边=18,\n较大对应边 = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_1573a74ddb25",
+              "prompt": "两相似△相似比 5:2,较小对应边=12,\n较大对应边 = ?",
+              "answer": 30,
               "learningType": "pattern"
             }
           ]

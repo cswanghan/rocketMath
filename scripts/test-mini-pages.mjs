@@ -264,6 +264,30 @@ await check('换一篇退回录入态并保留原文', () => {
 });
 
 // ============================================================================
+console.log('\n— 有符号口算输入 —');
+for (const name of ['play', 'race']) {
+  await check(`${name}: 负数可输入、孤立负号不提交、正数题池不泄露符号`, () => {
+    const page = makePage(`./packages/math/pages/${name}/${name}.js`);
+    const submitted = [];
+    page.game = { submit: (value) => submitted.push(value) };
+    page.setData({ mode: 'prompt', signed: true, input: '' });
+    page.onToggleSign();
+    page.onEnter();
+    assert(submitted.length === 0, '孤立负号被当作答案提交');
+    for (const d of '4096') page.onDigit(tap({ d }));
+    page.onEnter();
+    assert(submitted[0] === -4096, '负数录入或转换错误');
+    page.setData({ input: '-', mode: 'prompt' });
+    for (const d of '123456') page.onDigit(tap({ d }));
+    assert(page.data.input === '-12345', '负号挤占了数字容量');
+    page.onToggleSign();
+    assert(page.data.input === '12345', '不能改回正数');
+    page.setData({ signed: false, input: '12' });
+    page.onToggleSign();
+    assert(page.data.input === '12', '正数题池被改成负数');
+  });
+}
+
 console.log('\n— 背单词 —');
 const vc = makePage('./packages/lang/pages/vocab/vocab.js');
 
@@ -273,6 +297,20 @@ await check('onLoad 建出队列与卡片', () => {
   assert(vc.data.card && vc.data.card.word, '卡片没建出来');
   assert(vc.data.total > 0, '队列为空');
   assert(vc.data.poolCount > 400, '词池太小: ' + vc.data.poolCount);
+});
+
+await check('英语入口可直达全部阅读与语法题集', () => {
+  const sets = req('./content/english_practice.js').sets;
+  assert(vc.data.practiceSets.length === sets.length, '英语入口缺少题集');
+  for (const set of sets) {
+    const entry = vc.data.practiceSets.find((item) => item.id === set.id);
+    assert(entry && entry.count === set.problems.length, '题数与内容不一致');
+    vc.onPractice(tap({ id: set.id }));
+    assert(lastNav === `/packages/math/pages/practice/practice?pack=english&setId=${set.id}`, '英语练习路由不正确');
+  }
+  lastNav = '';
+  vc.onPractice(tap({ id: 'missing_set' }));
+  assert(lastNav === '', '不存在的题集不应跳转');
 });
 
 await check('没有 TTS 时听写模式不出现', () => {

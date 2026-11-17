@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "grade": 9,
   "subject": "math_fluency",
   "engine_config": {
@@ -104,6 +104,78 @@
               "prompt": "x² - 9x + 20 = 0, sum of the two roots = ?",
               "answer": 9,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_052d2af13468",
+              "prompt": "x² - 3x + 2 = 0, sum of the two roots = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_3f43b0be1bfe",
+              "prompt": "x² - 4x + 3 = 0, sum of the two roots = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_8818487fbf98",
+              "prompt": "x² - 8x + 7 = 0, sum of the two roots = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_4147dd2a475b",
+              "prompt": "x² - 10x + 9 = 0, sum of the two roots = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_82eea71b5806",
+              "prompt": "x² - 11x + 10 = 0, sum of the two roots = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_fdda32ce3f5b",
+              "prompt": "x² - 12x + 11 = 0, sum of the two roots = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_a630c46e3f36",
+              "prompt": "x² - 13x + 12 = 0, sum of the two roots = ?",
+              "answer": 13,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_b3e26cacb701",
+              "prompt": "x² - 14x + 24 = 0, sum of the two roots = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_a8ab20e40d1a",
+              "prompt": "x² - 15x + 36 = 0, sum of the two roots = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_93e30e9f6778",
+              "prompt": "x² - 16x + 48 = 0, sum of the two roots = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_70fa09d9b175",
+              "prompt": "x² - 17x + 60 = 0, sum of the two roots = ?",
+              "answer": 17,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_a_v2_89494c61abb3",
+              "prompt": "x² - 18x + 72 = 0, sum of the two roots = ?",
+              "answer": 18,
+              "learningType": "pattern"
             }
           ]
         },
@@ -132,6 +204,78 @@
               "id": "qr_p_-9_18",
               "prompt": "x² - 9x + 18 = 0, product of the two roots = ?",
               "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_61f884a2da47",
+              "prompt": "x² - 3x + 2 = 0, product of the two roots = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_9db228327be4",
+              "prompt": "x² - 4x + 3 = 0, product of the two roots = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_0a916796980a",
+              "prompt": "x² - 5x + 4 = 0, product of the two roots = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_459930685506",
+              "prompt": "x² - 6x + 5 = 0, product of the two roots = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_46833e0331d7",
+              "prompt": "x² - 8x + 7 = 0, product of the two roots = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_0605c9f29333",
+              "prompt": "x² - 9x + 8 = 0, product of the two roots = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_2250615147d4",
+              "prompt": "x² - 10x + 9 = 0, product of the two roots = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_3d39afc94969",
+              "prompt": "x² - 11x + 10 = 0, product of the two roots = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_4df1d19b9a28",
+              "prompt": "x² - 12x + 11 = 0, product of the two roots = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_e02092e08192",
+              "prompt": "x² - 9x + 14 = 0, product of the two roots = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_cdb611a0f281",
+              "prompt": "x² - 10x + 16 = 0, product of the two roots = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_b_v2_96183e854198",
+              "prompt": "x² - 12x + 20 = 0, product of the two roots = ?",
+              "answer": 20,
               "learningType": "pattern"
             }
           ]
@@ -162,6 +306,78 @@
               "prompt": "x² - 6x + 9 = 0, smaller root = ?",
               "answer": 3,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_be634069b221",
+              "prompt": "x² - 3x + 2 = 0, smaller root = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_1ab68320845a",
+              "prompt": "x² - 9x + 20 = 0, smaller root = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_301841c20f30",
+              "prompt": "x² - 11x + 30 = 0, smaller root = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_508bc0f5a3b6",
+              "prompt": "x² - 13x + 42 = 0, smaller root = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_88552efffb23",
+              "prompt": "x² - 15x + 56 = 0, smaller root = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_c2bd89ef6102",
+              "prompt": "x² - 17x + 72 = 0, smaller root = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_cd4a8f6df911",
+              "prompt": "x² - 19x + 90 = 0, smaller root = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_6fc99511b232",
+              "prompt": "x² - 4x + 3 = 0, smaller root = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_224fe4599f06",
+              "prompt": "x² - 6x + 8 = 0, smaller root = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_f5d71a9869f7",
+              "prompt": "x² - 10x + 24 = 0, smaller root = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_ba9e4538d998",
+              "prompt": "x² - 12x + 35 = 0, smaller root = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_c_v2_aaa8ce751905",
+              "prompt": "x² - 14x + 48 = 0, smaller root = ?",
+              "answer": 6,
+              "learningType": "pattern"
             }
           ]
         },
@@ -190,6 +406,78 @@
               "id": "qr_s_4_-12",
               "prompt": "x² + 4x - 12 = 0, sum of the two roots = ?",
               "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_f88b4244ef08",
+              "prompt": "x² + 5x - 6 = 0, sum of the two roots = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_65c447772a00",
+              "prompt": "x² + 6x - 7 = 0, sum of the two roots = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_cda068751405",
+              "prompt": "x² + 7x - 8 = 0, sum of the two roots = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_143c8470e2d3",
+              "prompt": "x² + 8x - 9 = 0, sum of the two roots = ?",
+              "answer": -8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_ce5d2cda39be",
+              "prompt": "x² + 9x - 10 = 0, sum of the two roots = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_8fe5b855c28f",
+              "prompt": "x² + 10x - 11 = 0, sum of the two roots = ?",
+              "answer": -10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_d7d456298f2a",
+              "prompt": "x² + 11x - 12 = 0, sum of the two roots = ?",
+              "answer": -11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_e852b8de4255",
+              "prompt": "x² + 1x - 2 = 0, sum of the two roots = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_7df1f605dbeb",
+              "prompt": "x² + 2x - 3 = 0, sum of the two roots = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_80b8ed3ef05d",
+              "prompt": "x² + 3x - 4 = 0, sum of the two roots = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_6636e5b56702",
+              "prompt": "x² + 4x - 5 = 0, sum of the two roots = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_d_v2_155085492d04",
+              "prompt": "x² + 5x - 14 = 0, sum of the two roots = ?",
+              "answer": -5,
               "learningType": "pattern"
             }
           ]
@@ -220,6 +508,78 @@
               "prompt": "x² + 4x - 12 = 0, product of the two roots = ?",
               "answer": -12,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_51cd6a1ed1bc",
+              "prompt": "x² + 1x - 2 = 0, product of the two roots = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_162d02bd1043",
+              "prompt": "x² + 2x - 3 = 0, product of the two roots = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_d4edcf90fa60",
+              "prompt": "x² + 3x - 4 = 0, product of the two roots = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_eb884b4792f6",
+              "prompt": "x² + 4x - 5 = 0, product of the two roots = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_5fe8e70e572d",
+              "prompt": "x² + 6x - 7 = 0, product of the two roots = ?",
+              "answer": -7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_a8632899ca2a",
+              "prompt": "x² + 8x - 9 = 0, product of the two roots = ?",
+              "answer": -9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_a05244c67a68",
+              "prompt": "x² + 10x - 11 = 0, product of the two roots = ?",
+              "answer": -11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_07cf994540ca",
+              "prompt": "x² + 5x - 14 = 0, product of the two roots = ?",
+              "answer": -14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_9480f0f3ee15",
+              "prompt": "x² + 6x - 16 = 0, product of the two roots = ?",
+              "answer": -16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_0ae3e2c37a5a",
+              "prompt": "x² + 7x - 18 = 0, product of the two roots = ?",
+              "answer": -18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_2b760226c517",
+              "prompt": "x² + 8x - 20 = 0, product of the two roots = ?",
+              "answer": -20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_e_v2_64055caa95dd",
+              "prompt": "x² + 9x - 22 = 0, product of the two roots = ?",
+              "answer": -22,
+              "learningType": "pattern"
             }
           ]
         },
@@ -248,6 +608,78 @@
               "id": "qr_max_5_-14",
               "prompt": "x² + 5x - 14 = 0, larger root = ?",
               "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_360e350ac1da",
+              "prompt": "x² + 1x - 2 = 0, larger root = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_acb038580268",
+              "prompt": "x² + 1x - 12 = 0, larger root = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_60d9e0acec59",
+              "prompt": "x² + 1x - 20 = 0, larger root = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_966a0744f754",
+              "prompt": "x² + 1x - 30 = 0, larger root = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_88d337a02dea",
+              "prompt": "x² + 1x - 42 = 0, larger root = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_70833417e698",
+              "prompt": "x² + 1x - 56 = 0, larger root = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_9310268810e1",
+              "prompt": "x² + 1x - 72 = 0, larger root = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_1510deae2cfe",
+              "prompt": "x² + 1x - 90 = 0, larger root = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_bf9f2bd142e0",
+              "prompt": "x² + 2x - 3 = 0, larger root = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_9eec6267965b",
+              "prompt": "x² + 2x - 15 = 0, larger root = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_42d1fbc53ed1",
+              "prompt": "x² + 2x - 24 = 0, larger root = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_roots_f_v2_512f4b03ee4d",
+              "prompt": "x² + 2x - 35 = 0, larger root = ?",
+              "answer": 5,
               "learningType": "pattern"
             }
           ]
@@ -285,6 +717,78 @@
               "prompt": "y = (x + 4)², axis of symmetry x = ?",
               "answer": -4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_bd8776f7420d",
+              "prompt": "y=(x+6)²-6  axis of symmetry x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_aefdb166c23f",
+              "prompt": "y=(x+5)²-6  axis of symmetry x = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_0f62321d566b",
+              "prompt": "y=(x+3)²-6  axis of symmetry x = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_84c6bdb6b7b7",
+              "prompt": "y=(x+2)²-6  axis of symmetry x = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_55068a45b6c9",
+              "prompt": "y=(x+0)²-6  axis of symmetry x = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_92b6c12d4907",
+              "prompt": "y=(x-1)²-6  axis of symmetry x = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_c3fa917002af",
+              "prompt": "y=(x-4)²-6  axis of symmetry x = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_5f3897e46989",
+              "prompt": "y=(x-5)²-6  axis of symmetry x = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_3d351dc1f237",
+              "prompt": "y=(x-6)²-6  axis of symmetry x = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_249f52057f34",
+              "prompt": "y=(x+6)²-5  axis of symmetry x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_ced48d5c82d8",
+              "prompt": "y=(x+5)²-5  axis of symmetry x = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_a_v2_5fa44c77edc3",
+              "prompt": "y=(x+4)²-6  axis of symmetry x = ?",
+              "answer": -4,
+              "learningType": "pattern"
             }
           ]
         },
@@ -313,6 +817,78 @@
               "id": "qfv_vy_1_7",
               "prompt": "y = (x + 4)² + 7, y-coordinate of the vertex = ?",
               "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_17b56963e567",
+              "prompt": "y=(x+6)²-6  y-coordinate of the vertex = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_fcc02ed29222",
+              "prompt": "y=(x+6)²-4  y-coordinate of the vertex = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_839e0362734d",
+              "prompt": "y=(x+6)²-3  y-coordinate of the vertex = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_95553707ff07",
+              "prompt": "y=(x+6)²-2  y-coordinate of the vertex = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_40d5ee5fe752",
+              "prompt": "y=(x+6)²-1  y-coordinate of the vertex = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_cca074a1cc78",
+              "prompt": "y = (x + 6)² + 0, y-coordinate of the vertex = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_5c8dff75defc",
+              "prompt": "y = (x + 6)² + 2, y-coordinate of the vertex = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_b979699efd92",
+              "prompt": "y = (x + 6)² + 4, y-coordinate of the vertex = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_4c0b060e21fc",
+              "prompt": "y = (x + 6)² + 5, y-coordinate of the vertex = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_e0aa6a1628b7",
+              "prompt": "y = (x + 6)² + 6, y-coordinate of the vertex = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_82ea0ba5621d",
+              "prompt": "y=(x+6)²-5  y-coordinate of the vertex = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_b_v2_6b1d831c1499",
+              "prompt": "y = (x + 6)² + 1, y-coordinate of the vertex = ?",
+              "answer": 1,
               "learningType": "pattern"
             }
           ]
@@ -343,6 +919,78 @@
               "prompt": "y=2x²-8x+10  Axis of symmetry x = ?",
               "answer": 2,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_eabbf99b8e5b",
+              "prompt": "y=x²+12x+30  Axis of symmetry x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_68d8dc88e426",
+              "prompt": "y=x²+10x+19  Axis of symmetry x = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_5b0650ce6068",
+              "prompt": "y=x²+8x+10  Axis of symmetry x = ?",
+              "answer": -4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_721c3f328fc5",
+              "prompt": "y=x²+4x-2  axis of symmetry x = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_4784ec2d54e6",
+              "prompt": "y=x²+2x-5  axis of symmetry x = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_6ef9e53686b9",
+              "prompt": "y=x²+0x-6  axis of symmetry x = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_aafe018d1f45",
+              "prompt": "y=x²-6x+3  Axis of symmetry x = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_111fd6e49254",
+              "prompt": "y=x²-8x+10  Axis of symmetry x = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_7cdc269e8511",
+              "prompt": "y=x²-10x+19  Axis of symmetry x = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_c2767967fa1a",
+              "prompt": "y=x²-12x+30  Axis of symmetry x = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_3be064c6d6fd",
+              "prompt": "y=x²+12x+31  Axis of symmetry x = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_c_v2_9f74f97c8daa",
+              "prompt": "y=x²+10x+20  Axis of symmetry x = ?",
+              "answer": -5,
+              "learningType": "pattern"
             }
           ]
         },
@@ -370,6 +1018,78 @@
             {
               "id": "qfv_vy_std_3_-8",
               "prompt": "y=2x²-8x+10  y-coordinate of vertex = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_1aaa8729fc39",
+              "prompt": "y=x²+12x+30  y-coordinate of vertex = ?",
+              "answer": -6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_b66adae532eb",
+              "prompt": "y=x²+12x+31  y-coordinate of vertex = ?",
+              "answer": -5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_87c5ff5da016",
+              "prompt": "y=x²+12x+33  y-coordinate of vertex = ?",
+              "answer": -3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_3cc98d170c3f",
+              "prompt": "y=x²+12x+34  y-coordinate of vertex = ?",
+              "answer": -2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_8ff68036deb1",
+              "prompt": "y=x²+12x+36  y-coordinate of vertex = ?",
+              "answer": 0,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_604c655571e0",
+              "prompt": "y=x²+12x+37  y-coordinate of vertex = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_bd75d4ce8c89",
+              "prompt": "y=x²+12x+39  y-coordinate of vertex = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_f0f67a160e4b",
+              "prompt": "y=x²+12x+40  y-coordinate of vertex = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_74eb90514a68",
+              "prompt": "y=x²+12x+41  y-coordinate of vertex = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_4863b3b4b38c",
+              "prompt": "y=x²+12x+42  y-coordinate of vertex = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_2b80b40eb544",
+              "prompt": "y=x²+12x+35  y-coordinate of vertex = ?",
+              "answer": -1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_quadratic_fn_vertex_d_v2_e5111cdcc54b",
+              "prompt": "y=x²+12x+38  y-coordinate of vertex = ?",
               "answer": 2,
               "learningType": "pattern"
             }
@@ -466,6 +1186,78 @@
               "prompt": "Right triangle: hypotenuse=20, ∠A=60°. Side adjacent to A = 20×cos60° = ?",
               "answer": 10,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_2601de798212",
+              "prompt": "Right triangle: hypotenuse=4, ∠A=30°. Side opposite A = 4×sin30° = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_b9ed36c4f715",
+              "prompt": "Right triangle: hypotenuse=6, ∠A=60°. Side adjacent to A = 6×cos60° = ?",
+              "answer": 3,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_e3bb00e3ea3a",
+              "prompt": "Right triangle: hypotenuse=8, ∠A=60°. Side adjacent to A = 8×cos60° = ?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_fb303d1a7071",
+              "prompt": "Right triangle: hypotenuse=12, ∠A=30°. Side opposite A = 12×sin30° = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_1bfc2412bfa7",
+              "prompt": "Right triangle: hypotenuse=14, ∠A=30°. Side opposite A = 14×sin30° = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_954d1300b4e6",
+              "prompt": "Right triangle: hypotenuse=16, ∠A=30°. Side opposite A = 16×sin30° = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_d404b668dd48",
+              "prompt": "Right triangle: hypotenuse=18, ∠A=30°. Side opposite A = 18×sin30° = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_4a8c2cfa5c62",
+              "prompt": "Right triangle: hypotenuse=22, ∠A=30°. Side opposite A = 22×sin30° = ?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_c596364bdce6",
+              "prompt": "Right triangle: hypotenuse=24, ∠A=30°. Side opposite A = 24×sin30° = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_d6ca4cae7c92",
+              "prompt": "Right triangle: hypotenuse=26, ∠A=30°. Side opposite A = 26×sin30° = ?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_50e37fdedbea",
+              "prompt": "Right triangle: hypotenuse=28, ∠A=30°. Side opposite A = 28×sin30° = ?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_c_v2_362d0ef1a680",
+              "prompt": "Right triangle: hypotenuse=30, ∠A=30°. Side opposite A = 30×sin30° = ?",
+              "answer": 15,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -494,6 +1286,78 @@
               "id": "sat_3_3",
               "prompt": "Right triangle: hypotenuse=8, ∠A=30°. Side opposite A = 8×sin30° = ?",
               "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_1fecfc8954a0",
+              "prompt": "Right triangle: adjacent side=2, ∠A=45°. Opposite side = 2×tan45° = ?",
+              "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_93b558590e20",
+              "prompt": "Right triangle: adjacent side=6, ∠A=45°. Opposite side = 6×tan45° = ?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_30197b76c71b",
+              "prompt": "Right triangle: adjacent side=7, ∠A=45°. Opposite side = 7×tan45° = ?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_6e89b44badda",
+              "prompt": "Right triangle: adjacent side=8, ∠A=45°. Opposite side = 8×tan45° = ?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_a648409b89bc",
+              "prompt": "Right triangle: adjacent side=9, ∠A=45°. Opposite side = 9×tan45° = ?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_d081104da4bb",
+              "prompt": "Right triangle: adjacent side=10, ∠A=45°. Opposite side = 10×tan45° = ?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_3b98e4f3295e",
+              "prompt": "Right triangle: adjacent side=11, ∠A=45°. Opposite side = 11×tan45° = ?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_b4fed1ff90c4",
+              "prompt": "Right triangle: adjacent side=12, ∠A=45°. Opposite side = 12×tan45° = ?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_e2a4dfca2a48",
+              "prompt": "Right triangle: adjacent side=13, ∠A=45°. Opposite side = 13×tan45° = ?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_1dd5bd80159a",
+              "prompt": "Right triangle: adjacent side=14, ∠A=45°. Opposite side = 14×tan45° = ?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_fb3f2f5e4f22",
+              "prompt": "Right triangle: adjacent side=15, ∠A=45°. Opposite side = 15×tan45° = ?",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_special_angle_trig_d_v2_cd85ef4c923b",
+              "prompt": "Right triangle: adjacent side=16, ∠A=45°. Opposite side = 16×tan45° = ?",
+              "answer": 16,
               "learningType": "fact_recall"
             }
           ]
@@ -531,6 +1395,78 @@
               "prompt": "Rolling one die, how many equally likely outcomes show an odd number?",
               "answer": 3,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_6003da65d9a9",
+              "prompt": "Pick one number at random from 1 to 8.\nHow many favorable outcomes result in an even number?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_9c5391a9513b",
+              "prompt": "Pick one number at random from 1 to 11.\nHow many favorable outcomes result in an even number?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_5c5957ac1fb4",
+              "prompt": "Pick one number at random from 1 to 14.\nHow many favorable outcomes result in an even number?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_caf53b4e5b82",
+              "prompt": "Pick one number at random from 1 to 16.\nHow many favorable outcomes result in an even number?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_aeeea7e09783",
+              "prompt": "Pick one number at random from 1 to 18.\nHow many favorable outcomes result in an even number?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_218c182e64de",
+              "prompt": "Pick one number at random from 1 to 20.\nHow many favorable outcomes result in an even number?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_782db0739aa6",
+              "prompt": "Pick one number at random from 1 to 22.\nHow many favorable outcomes result in an even number?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_59d9a961ff99",
+              "prompt": "Pick one number at random from 1 to 24.\nHow many favorable outcomes result in an even number?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_2a45e22e2dd8",
+              "prompt": "Pick one number at random from 1 to 9.\nHow many favorable outcomes result in an even number?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_b039ac25b2dc",
+              "prompt": "Pick one number at random from 1 to 12.\nHow many favorable outcomes result in an even number?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_764dfcee8e67",
+              "prompt": "Pick one number at random from 1 to 15.\nHow many favorable outcomes result in an even number?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_a_v2_85e634fb23a8",
+              "prompt": "Pick one number at random from 1 to 17.\nHow many favorable outcomes result in an even number?",
+              "answer": 8,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -559,6 +1495,78 @@
               "id": "prob_1_3",
               "prompt": "Pick one number at random from 1, 2, 3, 4, 5.\nHow many equally likely outcomes result in a number greater than 3?",
               "answer": 2,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_f4d01ef311ff",
+              "prompt": "A bag contains 10 red balls and 5 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_7bf914f10d07",
+              "prompt": "A bag contains 11 red balls and 5 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 11,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_f0b6c4ceee92",
+              "prompt": "A bag contains 12 red balls and 6 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 12,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_4e78f943028f",
+              "prompt": "A bag contains 13 red balls and 6 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 13,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_44a3d59ef507",
+              "prompt": "A bag contains 14 red balls and 7 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 14,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_5da30baa5bf3",
+              "prompt": "A bag contains 15 red balls and 7 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 15,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_d270c6026eb5",
+              "prompt": "A bag contains 16 red balls and 8 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 16,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_b818d6156df4",
+              "prompt": "A bag contains 17 red balls and 8 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 17,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_2e8c0fc016e7",
+              "prompt": "A bag contains 18 red balls and 9 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 18,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_31d583fdb645",
+              "prompt": "A bag contains 19 red balls and 9 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 19,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_75c43d18432e",
+              "prompt": "A bag contains 20 red balls and 10 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 20,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_b_v2_4446bea3c296",
+              "prompt": "A bag contains 21 red balls and 10 white balls. Draw one at random.\nHow many favorable outcomes (drawing a red ball) are there?",
+              "answer": 21,
               "learningType": "fact_recall"
             }
           ]
@@ -589,6 +1597,78 @@
               "prompt": "Pick a number at random from 1 to 10.\nHow many favorable outcomes are there for picking a factor of 4?",
               "answer": 3,
               "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_b521f0f8946b",
+              "prompt": "Choose one integer at random from 1 to 18 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_334816cbce9b",
+              "prompt": "Choose one integer at random from 1 to 21 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_a708c1d83847",
+              "prompt": "Choose one integer at random from 1 to 24 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_a47e780087a3",
+              "prompt": "Choose one integer at random from 1 to 27 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_e0e0706979c4",
+              "prompt": "Choose one integer at random from 1 to 14 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 4,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_e0402dc2f3f5",
+              "prompt": "Choose one integer at random from 1 to 15 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 5,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_d6879e9fa8b9",
+              "prompt": "Choose one integer at random from 1 to 19 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 6,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_7310ceda609d",
+              "prompt": "Choose one integer at random from 1 to 22 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 7,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_eaa60f657f75",
+              "prompt": "Choose one integer at random from 1 to 25 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 8,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_dfa3e04bfa0e",
+              "prompt": "Choose one integer at random from 1 to 28 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 9,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_54c48e8560e7",
+              "prompt": "Choose one integer at random from 1 to 30 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 10,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_c_v2_54f62fc23e65",
+              "prompt": "Choose one integer at random from 1 to 16 (inclusive).\nHow many favorable outcomes are multiples of 3?",
+              "answer": 5,
+              "learningType": "fact_recall"
             }
           ]
         },
@@ -617,6 +1697,78 @@
               "id": "prob_3_3",
               "prompt": "Toss two coins. How many favorable outcomes are there for getting two heads?",
               "answer": 1,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_751f47e45bad",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 18 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 36,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_29855bb790cd",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 19 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 38,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_67f1cb44f9dd",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 20 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 40,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_a1c710d738b5",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 21 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 42,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_2ee801701aa6",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 22 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 44,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_65be20f5c84a",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 23 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 46,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_df0c36c3177e",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 24 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 48,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_b8ab06a553fb",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 25 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 50,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_28e6942067e9",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 26 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 52,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_e1293339ba4b",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 27 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 54,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_968b6a17d05c",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 28 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 56,
+              "learningType": "fact_recall"
+            },
+            {
+              "id": "g9_probability_count_d_v2_403019846ebd",
+              "prompt": "Draw one card from each of two groups, numbered 1 to 29 and 1 to 2 (inclusive).\nHow many equally likely pairs of numbers are possible?",
+              "answer": 58,
               "learningType": "fact_recall"
             }
           ]
@@ -654,6 +1806,78 @@
               "prompt": "Two similar triangles have a similarity ratio of 3:1. The larger corresponding side = 12.\nThe smaller corresponding side = ?",
               "answer": 4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_000b23d1f780",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 2.\nThe smaller corresponding side = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_efb3b4557d88",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 4.\nThe smaller corresponding side = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_231db06a9754",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 10.\nThe smaller corresponding side = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_b476dbadaee0",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 12.\nThe smaller corresponding side = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_7d7ce287d50b",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 14.\nThe smaller corresponding side = ?",
+              "answer": 7,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_b5245004d795",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 16.\nThe smaller corresponding side = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_7d8baa08d44b",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 18.\nThe smaller corresponding side = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_06cb5eab1857",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 20.\nThe smaller corresponding side = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_dc0215aa8263",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 22.\nThe smaller corresponding side = ?",
+              "answer": 11,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_09c1c0938d3b",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The larger corresponding side = 24.\nThe smaller corresponding side = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_98b139b76211",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The larger corresponding side = 3.\nThe smaller corresponding side = ?",
+              "answer": 1,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_a_v2_6d4b78e8141c",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The larger corresponding side = 6.\nThe smaller corresponding side = ?",
+              "answer": 2,
+              "learningType": "pattern"
             }
           ]
         },
@@ -682,6 +1906,78 @@
               "id": "simr_1_3",
               "prompt": "Two similar triangles have a similarity ratio of 4:1. The smaller corresponding side = 3.\nThe larger corresponding side = ?",
               "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_02d11f0cf1dc",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The smaller corresponding side = 1.\nThe larger corresponding side = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_49a313369410",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The smaller corresponding side = 1.\nThe larger corresponding side = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_c4cc870146db",
+              "prompt": "Two similar triangles have a similarity ratio of 4:1. The smaller corresponding side = 1.\nThe larger corresponding side = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_4e45a57c855e",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The smaller corresponding side = 2.\nThe larger corresponding side = ?",
+              "answer": 6,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_126a52ec91ca",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The smaller corresponding side = 3.\nThe larger corresponding side = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_251fa42bc435",
+              "prompt": "Two similar triangles have a similarity ratio of 4:1. The smaller corresponding side = 4.\nThe larger corresponding side = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_fadd1fe11820",
+              "prompt": "Two similar triangles have a similarity ratio of 2:1. The smaller corresponding side = 5.\nThe larger corresponding side = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_b0ca9e330554",
+              "prompt": "Two similar triangles have a similarity ratio of 4:1. The smaller corresponding side = 5.\nThe larger corresponding side = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_dd0e30f38d0d",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The smaller corresponding side = 6.\nThe larger corresponding side = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_abb3ab544b61",
+              "prompt": "Two similar triangles have a similarity ratio of 4:1. The smaller corresponding side = 6.\nThe larger corresponding side = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_61f406f6065b",
+              "prompt": "Two similar triangles have a similarity ratio of 3:1. The smaller corresponding side = 7.\nThe larger corresponding side = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_b_v2_57e04e3416e8",
+              "prompt": "Two similar triangles have a similarity ratio of 4:1. The smaller corresponding side = 7.\nThe larger corresponding side = ?",
+              "answer": 28,
               "learningType": "pattern"
             }
           ]
@@ -712,6 +2008,78 @@
               "prompt": "Two similar triangles have a similarity ratio of 5:2. The larger corresponding side = 10.\nThe smaller corresponding side = ?",
               "answer": 4,
               "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_3731f5fe9e8a",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The larger corresponding side = 3.\nThe smaller corresponding side = ?",
+              "answer": 2,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_c6245963fcab",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The larger corresponding side = 4.\nThe smaller corresponding side = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_45cb9aa0b644",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The larger corresponding side = 12.\nThe smaller corresponding side = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_d8baef493157",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The larger corresponding side = 16.\nThe smaller corresponding side = ?",
+              "answer": 12,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_15fe75708013",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The larger corresponding side = 15.\nThe smaller corresponding side = ?",
+              "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_85db885fc54a",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The larger corresponding side = 20.\nThe smaller corresponding side = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_4b72b202f460",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The larger corresponding side = 24.\nThe smaller corresponding side = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_b01422973ca7",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The larger corresponding side = 21.\nThe smaller corresponding side = ?",
+              "answer": 14,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_567e05238a99",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The larger corresponding side = 28.\nThe smaller corresponding side = ?",
+              "answer": 21,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_d21c5faba3a2",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The larger corresponding side = 24.\nThe smaller corresponding side = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_45968b2438d9",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The larger corresponding side = 32.\nThe smaller corresponding side = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_c_v2_6b5e8921653f",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The larger corresponding side = 36.\nThe smaller corresponding side = ?",
+              "answer": 27,
+              "learningType": "pattern"
             }
           ]
         },
@@ -740,6 +2108,78 @@
               "id": "simr_3_3",
               "prompt": "Two similar triangles have a similarity ratio of 5:2. The smaller corresponding side = 4.\nThe larger corresponding side = ?",
               "answer": 10,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_4586dd38aebb",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The smaller corresponding side = 2.\nThe larger corresponding side = ?",
+              "answer": 3,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_9c8a17e33ef3",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The smaller corresponding side = 3.\nThe larger corresponding side = ?",
+              "answer": 4,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_ba47f264dce0",
+              "prompt": "Two similar triangles have a similarity ratio of 5:2. The smaller corresponding side = 2.\nThe larger corresponding side = ?",
+              "answer": 5,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_c32870fddfa5",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The smaller corresponding side = 6.\nThe larger corresponding side = ?",
+              "answer": 8,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_1857b90286e5",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The smaller corresponding side = 6.\nThe larger corresponding side = ?",
+              "answer": 9,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_deaed3d3c1c4",
+              "prompt": "Two similar triangles have a similarity ratio of 5:2. The smaller corresponding side = 6.\nThe larger corresponding side = ?",
+              "answer": 15,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_b42419bffc21",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The smaller corresponding side = 12.\nThe larger corresponding side = ?",
+              "answer": 16,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_10169acd9e07",
+              "prompt": "Two similar triangles have a similarity ratio of 5:2. The smaller corresponding side = 8.\nThe larger corresponding side = ?",
+              "answer": 20,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_073338a76346",
+              "prompt": "Two similar triangles have a similarity ratio of 5:2. The smaller corresponding side = 10.\nThe larger corresponding side = ?",
+              "answer": 25,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_57e79dd8e83f",
+              "prompt": "Two similar triangles have a similarity ratio of 3:2. The smaller corresponding side = 12.\nThe larger corresponding side = ?",
+              "answer": 18,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_06c53178f698",
+              "prompt": "Two similar triangles have a similarity ratio of 4:3. The smaller corresponding side = 18.\nThe larger corresponding side = ?",
+              "answer": 24,
+              "learningType": "pattern"
+            },
+            {
+              "id": "g9_similar_ratio_d_v2_1573a74ddb25",
+              "prompt": "Two similar triangles have a similarity ratio of 5:2. The smaller corresponding side = 12.\nThe larger corresponding side = ?",
+              "answer": 30,
               "learningType": "pattern"
             }
           ]
