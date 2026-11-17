@@ -28,6 +28,7 @@ const SLOW_PRACTICE_MS = 20000;
 export type PView =
   | { mode: 'present'; problem: Problem; tries: number }
   | { mode: 'wrong'; problem: Problem; tries: number }
+  | { mode: 'retry'; problem: Problem; tries: number }
   | { mode: 'correct'; problem: Problem; firstTry: boolean }
   | { mode: 'reveal'; problem: Problem }
   | { mode: 'complete'; firstTryCorrect: number; total: number }
@@ -43,14 +44,15 @@ export interface PracticeApi {
   sessionXp: number; // XP earned this session
   answer: (response: Response) => void;
   next: () => void;
+  retry: () => void;
 }
 
-function viewOf(action: PracticeAction, tries: number): PView {
+function viewOf(action: PracticeAction, tries: number, choiceFeedbackOpen: boolean): PView {
   switch (action.kind) {
     case 'PRESENT':
       return { mode: 'present', problem: action.problem, tries };
     case 'WRONG':
-      return { mode: 'wrong', problem: action.problem, tries: action.tries };
+      return { mode: choiceFeedbackOpen ? 'retry' : 'wrong', problem: action.problem, tries: action.tries };
     case 'CORRECT':
       return { mode: 'correct', problem: action.problem, firstTry: action.firstTry };
     case 'REVEAL':
@@ -75,6 +77,7 @@ export function usePractice(
   const seqRef = useRef(0);
   const sessionXpRef = useRef(0);
   const missedRef = useRef<Set<string>>(new Set()); // problem ids already logged as mistakes
+  const choiceFeedbackRef = useRef(false); // MC retries require an explicit acknowledgement.
   const presentedAtRef = useRef(0); // when the current problem was shown
 
   useEffect(() => {
@@ -89,6 +92,7 @@ export function usePractice(
       if (cancelled) return;
       ctxRef.current = ctx;
       gameRef.current = res;
+      choiceFeedbackRef.current = false;
       seqRef.current = 1;
       presentedAtRef.current = ctx.now();
       setReady(true);
@@ -102,10 +106,18 @@ export function usePractice(
     (event: PracticeEvent) => {
       const ctx = ctxRef.current;
       const game = gameRef.current;
-      if (!ctx || !game) return;
+      if (!ctx || !game || game.state.status === 'complete') return;
+      // Read synchronous state rather than the last React render: rapid taps or
+      // Enter+click must not award XP twice, consume retries, or skip a question.
+      if (event.type === 'ANSWER') {
+        if (choiceFeedbackRef.current || (game.action.kind !== 'PRESENT' && game.action.kind !== 'WRONG')) return;
+        if (game.action.problem.type === 'mc' && (event.response.kind !== 'choice' ||
+          !game.action.problem.choices?.some(c => event.response.kind === 'choice' && c.id === event.response.choiceId))) return;
+      } else if (game.action.kind !== 'CORRECT' && game.action.kind !== 'REVEAL') return;
       const elapsedMs = ctx.now() - presentedAtRef.current; // valid for ANSWER events
       const res = practiceStep(game.state, event, ctx);
       gameRef.current = res;
+      choiceFeedbackRef.current = res.action.kind === 'WRONG' && res.action.problem.type === 'mc';
       if (event.type === 'ANSWER') {
         const ci = recordCheckIn(studentId);
         if (ci.firstToday) void adapter.addXp(studentId, CHECKIN_XP);
@@ -199,6 +211,12 @@ export function usePractice(
 
   const answer = useCallback((response: Response) => dispatch({ type: 'ANSWER', response }), [dispatch]);
   const next = useCallback(() => dispatch({ type: 'NEXT' }), [dispatch]);
+  const retry = useCallback(() => {
+    const game = gameRef.current;
+    if (!choiceFeedbackRef.current || game?.action.kind !== 'WRONG' || game.action.problem.type !== 'mc') return;
+    choiceFeedbackRef.current = false;
+    force();
+  }, []);
 
   const game = gameRef.current;
   const action = game?.action;
@@ -206,7 +224,7 @@ export function usePractice(
     action && 'problem' in action ? (action.problem.difficulty ?? 'consolidate') : null;
   return {
     ready,
-    view: game ? viewOf(game.action, game.state.tries) : { mode: 'loading' },
+    view: game ? viewOf(game.action, game.state.tries, choiceFeedbackRef.current) : { mode: 'loading' },
     total: ctxRef.current?.set.problems.length ?? 0,
     position: (game?.state.index ?? 0) + 1,
     seq: seqRef.current,
@@ -214,5 +232,6 @@ export function usePractice(
     sessionXp: sessionXpRef.current,
     answer,
     next,
+    retry,
   };
 }

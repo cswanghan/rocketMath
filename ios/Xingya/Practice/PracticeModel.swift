@@ -26,6 +26,8 @@ final class PracticeModel {
     private(set) var lastGainXP = 0
     /// 每呈现一题 +1，驱动输入清空
     private(set) var problemSeq = 0
+    /// A choice tap is one attempt; feedback must be acknowledged before retrying.
+    private(set) var choiceFeedbackPending = false
 
     let set: ProblemSet
     /// 当前题在三档中的位置，驱动关卡进度条
@@ -55,11 +57,32 @@ final class PracticeModel {
     // ----- 对外动作 ----------------------------------------------------------
 
     func answer(_ response: PracticeResponse) {
-        switch viewState { case .present, .wrong: break; default: return }
+        let problem: Problem
+        switch viewState {
+        case .present(let p), .wrong(let p, _): problem = p
+        default: return
+        }
+        if problem.type == .mc {
+            guard !choiceFeedbackPending, case .choice(let id) = response,
+                  problem.choices?.contains(where: { $0.id == id }) == true else { return }
+            choiceFeedbackPending = true
+        }
         apply(PracticeEngine.step(state, .answer(response), context), lastResponse: response)
     }
 
+    func answerChoice(_ choiceId: String, for problemId: String) {
+        guard case .present(let p) = viewState, p.type == .mc, p.id == problemId else { return }
+        answer(.choice(choiceId))
+    }
+
+    func retryChoice() {
+        guard choiceFeedbackPending, case .wrong(let p, _) = viewState, p.type == .mc else { return }
+        choiceFeedbackPending = false
+        viewState = .present(p) // Preserve the engine's tries and first-try score.
+    }
+
     func next() {
+        switch viewState { case .correct, .reveal: break; default: return }
         apply(PracticeEngine.step(state, .next, context), lastResponse: nil)
     }
 
@@ -71,6 +94,7 @@ final class PracticeModel {
 
         switch result.action {
         case .present(let p):
+            choiceFeedbackPending = false
             viewState = .present(p)
             problemSeq += 1
             lastGainXP = 0

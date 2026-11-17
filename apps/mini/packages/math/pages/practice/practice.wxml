@@ -77,6 +77,12 @@
     <button class="btn btn-primary" bindtap="onNext">继续</button>
   </view>
 
+  <view class="feedback-bar fb-wrong" wx:if="{{mode === 'retry'}}">
+    <view class="fb-title">这次选错了</view>
+    <view class="fb-hint" wx:if="{{explanation}}">{{explanation}}</view>
+    <button class="btn btn-primary" bindtap="onRetry">再试一次</button>
+  </view>
+
   <view class="feedback-bar fb-wrong" wx:if="{{mode === 'reveal'}}">
     <view class="fb-title">正确答案：{{correctAnswer}}</view>
     <view class="fb-hint" wx:if="{{explanation}}">{{explanation}}</view>

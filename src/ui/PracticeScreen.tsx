@@ -68,6 +68,7 @@ export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, 
       if (e.key !== 'Enter') return;
       if (view.mode === 'present' || view.mode === 'wrong') submit();
       else if (view.mode === 'correct' || view.mode === 'reveal') game.next();
+      else if (view.mode === 'retry') game.retry();
       else if (view.mode === 'complete') onExit();
     }
     window.addEventListener('keydown', onKey);
@@ -108,12 +109,12 @@ export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, 
         />
       )}
 
-      {(view.mode === 'correct' || view.mode === 'reveal') && (
+      {(view.mode === 'correct' || view.mode === 'reveal' || view.mode === 'retry') && (
         <>
           <div className="stage">
             <Prompt problem={view.problem} />
           </div>
-          <FeedbackBar view={view} onNext={game.next} />
+          <FeedbackBar view={view} onNext={view.mode === 'retry' ? game.retry : game.next} />
         </>
       )}
 
@@ -252,10 +253,11 @@ function FeedbackBar({
   view,
   onNext,
 }: {
-  view: Extract<PView, { mode: 'correct' } | { mode: 'reveal' }>;
+  view: Extract<PView, { mode: 'correct' } | { mode: 'reveal' } | { mode: 'retry' }>;
   onNext: () => void;
 }) {
   const correct = view.mode === 'correct';
+  const retry = view.mode === 'retry';
   const p = view.problem;
   const firstTry = view.mode === 'correct' && view.firstTry;
   const xp = correct ? xpForCorrect(p.difficulty, firstTry) : 0;
@@ -273,12 +275,12 @@ function FeedbackBar({
           </div>
         ) : (
           <div className="fb-text">
-            <div className="fb-title">正确答案:{correctText(p)}</div>
+            <div className="fb-title">{retry ? '这次选错了' : '正确答案：' + correctText(p)}</div>
             {p.explanation && <div className="fb-hint">{p.explanation}</div>}
           </div>
         )}
         <button className="primary fb-next" onClick={onNext}>
-          继续
+          {retry ? '再试一次' : '继续'}
         </button>
       </div>
     </div>
