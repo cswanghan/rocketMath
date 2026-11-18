@@ -9,6 +9,6 @@ const config: CapacitorConfig = {
   // website as the app or allow remote documents to access native plugins.
   server: { androidScheme: 'https', hostname: 'localhost' },
   plugins: { SystemBars: { insetsHandling: 'native', initialViewportFitValueHint: 'auto' } },
-  android: { allowMixedContent: false, backgroundColor: '#fff9eb' },
+  android: { allowMixedContent: false, backgroundColor: '#f8faf8' },
 };
 export default config;

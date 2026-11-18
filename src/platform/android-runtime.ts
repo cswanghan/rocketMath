@@ -2,6 +2,7 @@ import { App } from '@capacitor/app';
 import { Capacitor, CapacitorHttp, registerPlugin } from '@capacitor/core';
 import { apiTarget, BackStack } from './policy';
 import type { NativeBridge } from './native';
+import { adaptEmbeddedPage } from '../android/embedded';
 
 interface SpeechPlugin {
   speak(options: { text: string; language: string; rate: number }): Promise<void>;
@@ -42,6 +43,7 @@ if (parentRuntime || Capacitor.getPlatform() === 'android') {
     registerBack: (handler, priority) => stack.add(handler, priority),
   };
   host.XingyaNative = runtime;
+  document.addEventListener('DOMContentLoaded', adaptEmbeddedPage, { once: true });
   window.fetch = (input, init) => {
     const url = isRequest(input) ? input.url : String(input);
     return apiTarget(url, location.origin) ? runtime.request(input, init) : originalFetch(input, init);

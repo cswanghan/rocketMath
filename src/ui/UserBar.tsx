@@ -48,7 +48,10 @@ export function useAuth() {
     window.location.href = '/login.html?redirect=' + encodeURIComponent(location.pathname);
   };
 
-  return { user, logout, login };
+  const refreshUser = () => {
+    try { setUser(JSON.parse(localStorage.getItem('user') || 'null')); } catch { setUser(null); }
+  };
+  return { user, logout, login, refreshUser };
 }
 
 interface Props {

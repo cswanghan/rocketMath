@@ -35,10 +35,11 @@ interface Props {
   studentId: string;
   seed: number;
   onExit: () => void;
+  onBack?: () => void;
   exitLabel?: string;
 }
 
-export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit, exitLabel = '回知识地图' }: Props) {
+export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit, onBack, exitLabel = '回知识地图' }: Props) {
   const game = usePractice(setId, practicePack, adapter, studentId, seed);
   const title = useMemo(() => getSetFromPack(practicePack, setId)?.title ?? '练习', [practicePack, setId]);
   const { view } = game;
@@ -81,7 +82,7 @@ export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, 
   return (
     <div className="play practice">
       <header className="play-head">
-        <button className="ghost" onClick={onExit}>
+        <button className="ghost" onClick={onBack ?? onExit}>
           ← 返回
         </button>
         <div className="status">
