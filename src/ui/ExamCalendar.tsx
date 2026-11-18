@@ -1,3 +1,4 @@
+import { useNativeBack } from '../platform/native';
 import { useEffect, useMemo, useState } from 'react';
 import { track } from '../track';
 import { loadExamCalendar } from './examLoader';
@@ -90,6 +91,11 @@ export function ExamCalendar({ onBack, onStartPrep }: Props) {
   const [viewMonth, setViewMonth] = useState(today.getMonth());
   const [filterSubject, setFilterSubject] = useState<ExamSubject | 'all'>('all');
   const [selected, setSelected] = useState<SessionWithSeries | null>(null);
+
+  useNativeBack(() => {
+    if (!selected) return false;
+    setSelected(null); return true;
+  }, 10);
 
   useEffect(() => {
     track('exam_cal_open');

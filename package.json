@@ -23,17 +23,33 @@
     "mini:engine": "node scripts/build-mini-engine.mjs",
     "mini:content": "node scripts/build-mini-content.mjs",
     "mini:test": "node scripts/test-mini-pages.mjs && node scripts/test-mini-map-routes.mjs",
-    "mini:preview": "node scripts/preview-mini.mjs"
+    "mini:preview": "node scripts/preview-mini.mjs",
+    "android:bundle": "node scripts/build-android.mjs",
+    "android:sync": "npm run android:bundle && cap sync android",
+    "android:apk": "npm run android:sync && sh scripts/android-gradle.sh :app:assembleDebug",
+    "android:test": "sh scripts/android-gradle.sh :app:testDebugUnitTest :app:lintDebug",
+    "android:device-test": "sh scripts/android-gradle.sh :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.hanwang.xingya.OfflineLearningTest",
+    "android:network-test": "sh scripts/android-gradle.sh :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.hanwang.xingya.NetworkTransportTest"
   },
   "dependencies": {
+    "@capacitor/android": "8.6.2",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.6.2",
+    "cnchar": "3.2.6",
+    "cnchar-poly": "3.2.6",
+    "cnchar-radical": "3.2.6",
+    "hanzi-writer": "3.5.0",
+    "hanzi-writer-data": "2.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "8.6.2",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "^2.1.8",
+    "esbuild": "0.28.2",
     "typescript": "^5.7.2",
     "vite": "^6.0.7",
     "vitest": "^2.1.8"

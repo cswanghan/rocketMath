@@ -1,0 +1,27 @@
+/* Bundled only in the Android app; keep all three subjects visible on phones. */
+#root > .user-bar { position: static; align-self: stretch; justify-content: flex-end; flex-wrap: wrap; margin-bottom: 12px; }
+@media (max-width: 600px) {
+  .portal { min-height: 0; justify-content: flex-start; padding: 12px 0 24px; }
+  .portal .portal-title { font-size: 30px; margin-bottom: 8px; }
+  .portal .portal-subtitle { font-size: 15px; margin-bottom: 18px; }
+  .portal .streak-card { padding: 12px 16px; margin-bottom: 16px; gap: 8px; border-radius: 20px; }
+  .portal .streak-main { gap: 10px; }
+  .portal .streak-count { font-size: 15px; }
+  .portal .streak-sub { font-size: 12px; }
+  .portal .streak-dot { width: 16px; height: 16px; }
+  .portal .portal-grid { gap: 12px; grid-template-columns: 1fr; }
+  .portal .portal-card { min-height: 112px; padding: 16px 20px; gap: 4px; transform: none; border-radius: 22px; text-align: left; }
+  .portal .portal-card > .pill { display: none; }
+  .portal .portal-label { font-size: 23px; }
+  .portal .portal-desc { font-size: 14px; max-width: 70%; }
+  .portal .portal-card .card-art { position: absolute; right: 18px; bottom: 18px; width: 80px; padding: 0; opacity: .75; }
+  .portal .portal-banner { margin-top: 16px; padding: 14px 18px; border-radius: 20px; }
+  .portal .portal-banner .card-art { display: none; }
+  .portal .portal-banner-desc { font-size: 12px; }
+  .native-answer-input .numpad { width: min(100%, 340px); gap: 8px; margin: 12px auto; }
+  .native-answer-input .key { min-height: 44px; padding: 10px; font-size: 22px; }
+  .fields:has(.native-answer-input) { flex-direction: column; align-items: center; }
+}
+
+/* Dictation is not part of this build; the system keyboard remains available. */
+#nb-word-mic, #nb-note-mic, #nb-voice-tip { display: none; }

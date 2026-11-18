@@ -182,7 +182,7 @@
 <script>
     const _redirect = new URLSearchParams(location.search).get('redirect') || '/';
     function getRedirect() {
-        if (_redirect.startsWith('/')) return _redirect;
+        if (_redirect.startsWith('/') && new URL(_redirect, location.origin).origin === location.origin) return _redirect;
         return '/';
     }
 
@@ -197,7 +197,7 @@
                 .then(r => {
                     if (r.ok) {
                         window.location.href = getRedirect();
-                    } else {
+                    } else if (r.status === 401 || r.status === 403) {
                         localStorage.removeItem('token');
                         localStorage.removeItem('user');
                     }
@@ -347,7 +347,7 @@
         }
     }
 
-    initGoogleSignIn();
+    if (!window.XingyaNative) initGoogleSignIn();
 
     async function handleRegister(e) {
         e.preventDefault();

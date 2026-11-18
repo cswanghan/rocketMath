@@ -1,3 +1,4 @@
+import { AnswerInput } from './AnswerInput';
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { correctText, DIFFICULTY_ORDER, xpForCorrect, type Difficulty, type PracticePack, type Problem } from '../practice';
 import type { StorageAdapter } from '../storage';
@@ -162,14 +163,8 @@ function ProblemView({
 
       {problem.type === 'fill' && (
         <>
-          <input
-            className="fill-input"
-            inputMode="text"
-            autoFocus
-            value={val}
-            onChange={(e) => setVal(e.target.value.slice(0, 24))}
-            placeholder="?"
-          />
+          <AnswerInput value={val} onChange={setVal} autoFocus
+            numeric={typeof problem.answer === 'number' || /^-?\d+(?:\.\d+)?$/.test(String(problem.answer ?? ''))} />
           <button className="primary" onClick={onSubmit}>
             提交
           </button>
@@ -185,13 +180,9 @@ function ProblemView({
               return (
                 <label key={key} className="field">
                   <span className="field-label">{f.label}</span>
-                  <input
-                    className="fill-input small"
-                    inputMode="text"
-                    value={fields[key] ?? ''}
-                    onChange={(e) => setFields({ ...fields, [key]: e.target.value.slice(0, 24) })}
-                    placeholder="?"
-                  />
+                  <AnswerInput small value={fields[key] ?? ''} autoFocus={i === 0}
+                    numeric={typeof f.answer === 'number' || /^-?\d+(?:\.\d+)?$/.test(String(f.answer))}
+                    onChange={value => setFields({ ...fields, [key]: value })} />
                 </label>
               );
             })}
