@@ -1,3 +1,4 @@
+import { isAndroidApp } from '../platform/native';
 import { useCallback, useEffect, useState } from 'react';
 import { levelFromXp } from '../practice';
 import type { MistakeRecord, StorageAdapter } from '../storage';
@@ -38,6 +39,9 @@ export function ParentDashboard({ adapter, studentId, onExit }: Props) {
   const generate = useCallback(async () => {
     setLoading(true);
     setSummarySource('');
+    if (isAndroidApp()) {
+      setSummaryText(localSummaryText(summaryData)); setSummarySource('本地'); setLoading(false); return;
+    }
     const payload = llmPayload(summaryData);
     try {
       const resp = await fetch('/api/summarize', {

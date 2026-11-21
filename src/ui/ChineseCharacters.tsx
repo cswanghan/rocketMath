@@ -1,3 +1,4 @@
+import { useNativeBack } from '../platform/native';
 import { useState } from 'react';
 import { useParallax } from './useParallax';
 
@@ -9,6 +10,10 @@ interface Props {
 
 export function ChineseCharacters({ onBack }: Props) {
   const [mode, setMode] = useState<ChineseMode>(null);
+  useNativeBack(() => {
+    if (!mode) return false;
+    setMode(null); return true;
+  }, 20);
   const parallax = useParallax<HTMLDivElement>();
 
   if (mode === 'characters') {

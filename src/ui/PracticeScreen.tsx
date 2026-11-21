@@ -1,3 +1,4 @@
+import { AnswerInput } from './AnswerInput';
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { correctText, DIFFICULTY_ORDER, xpForCorrect, type Difficulty, type PracticePack, type Problem } from '../practice';
 import type { StorageAdapter } from '../storage';
@@ -34,10 +35,11 @@ interface Props {
   studentId: string;
   seed: number;
   onExit: () => void;
+  onBack?: () => void;
   exitLabel?: string;
 }
 
-export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit, exitLabel = '回知识地图' }: Props) {
+export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, onExit, onBack, exitLabel = '回知识地图' }: Props) {
   const game = usePractice(setId, practicePack, adapter, studentId, seed);
   const title = useMemo(() => getSetFromPack(practicePack, setId)?.title ?? '练习', [practicePack, setId]);
   const { view } = game;
@@ -80,7 +82,7 @@ export function PracticeScreen({ setId, practicePack, adapter, studentId, seed, 
   return (
     <div className="play practice">
       <header className="play-head">
-        <button className="ghost" onClick={onExit}>
+        <button className="ghost" onClick={onBack ?? onExit}>
           ← 返回
         </button>
         <div className="status">
@@ -162,14 +164,8 @@ function ProblemView({
 
       {problem.type === 'fill' && (
         <>
-          <input
-            className="fill-input"
-            inputMode="text"
-            autoFocus
-            value={val}
-            onChange={(e) => setVal(e.target.value.slice(0, 24))}
-            placeholder="?"
-          />
+          <AnswerInput value={val} onChange={setVal} autoFocus
+            numeric={typeof problem.answer === 'number' || /^-?\d+(?:\.\d+)?$/.test(String(problem.answer ?? ''))} />
           <button className="primary" onClick={onSubmit}>
             提交
           </button>
@@ -185,13 +181,9 @@ function ProblemView({
               return (
                 <label key={key} className="field">
                   <span className="field-label">{f.label}</span>
-                  <input
-                    className="fill-input small"
-                    inputMode="text"
-                    value={fields[key] ?? ''}
-                    onChange={(e) => setFields({ ...fields, [key]: e.target.value.slice(0, 24) })}
-                    placeholder="?"
-                  />
+                  <AnswerInput small value={fields[key] ?? ''} autoFocus={i === 0}
+                    numeric={typeof f.answer === 'number' || /^-?\d+(?:\.\d+)?$/.test(String(f.answer))}
+                    onChange={value => setFields({ ...fields, [key]: value })} />
                 </label>
               );
             })}

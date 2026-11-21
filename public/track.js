@@ -35,6 +35,7 @@
   var queue = [];
 
   function send(payload, beacon) {
+    if (window.XingyaNative) return;
     var body = JSON.stringify(payload);
     try {
       if (beacon && navigator.sendBeacon) {
@@ -85,6 +86,7 @@
   function loggedIn() { try { return !!localStorage.getItem('token'); } catch (e) { return false; } }
   function trialSubject() { try { return localStorage.getItem('rm.trialSubject') || ''; } catch (e) { return ''; } }
   function maybeTrial(event) {
+    if (window.XingyaNative) return;
     if (loggedIn() || !OP_EVENTS[event]) return;
     var subj = trialSubject();
     if (!subj) return;

@@ -23,9 +23,10 @@ interface Props {
   studentId: string;
   seed: number;
   onExit: () => void;
+  onBack?: () => void;
 }
 
-export function Play({ trackId, pack, adapter, studentId, seed, onExit }: Props) {
+export function Play({ trackId, pack, adapter, studentId, seed, onExit, onBack }: Props) {
   const game = useGame(trackId, pack, adapter, studentId, seed);
   const [muted, setMuted] = useState(isMuted());
   const lastSpokeRef = useRef('');
@@ -119,7 +120,7 @@ export function Play({ trackId, pack, adapter, studentId, seed, onExit }: Props)
   return (
     <div className="play">
       <header className="play-head">
-        <button className="ghost" onClick={() => { auto.cancel(); onExit(); }}>
+        <button className="ghost" onClick={() => { auto.cancel(); (onBack ?? onExit)(); }}>
           ← 返回
         </button>
         <div className="status">

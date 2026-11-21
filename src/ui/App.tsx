@@ -1,3 +1,4 @@
+import { isAndroidApp, useNativeBack } from '../platform/native';
 import { useEffect, useRef, useState } from 'react';
 import { createDefaultAdapter, type StorageAdapter } from '../storage';
 import { ChildSwitcher } from './ChildSwitcher';
@@ -110,7 +111,7 @@ export function App() {
       setChildrenList(cs);
       if (activeChild && !cs.some((c) => c.id === activeChild.id)) pickChild(null);
       if (cs.length > 0 && !getActiveChild()) setShowSwitcher(true);
-    });
+    }).catch(() => { /* Keep the selected child and local progress while offline. */ });
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
@@ -195,6 +196,20 @@ export function App() {
     if (m != null) setCelebrate(m);
   }, [onHome, studentId]);
 
+  useNativeBack(() => {
+    if (locked) return false;
+    if (showSwitcher) setShowSwitcher(false);
+    else if (authPromptFor) setAuthPromptFor(null);
+    else if (parent) setParent(false);
+    else if (session) setSession(null);
+    else if (prepSeriesId) setPrepSeriesId(null);
+    else if (examCal) setExamCal(false);
+    else if (subject === 'math' && grade !== null) { setGrade(null); setLoadError(null); }
+    else if (subject) setSubject(null);
+    else return false;
+    return true;
+  });
+
   const userBar = (
     <UserBar
       user={user}
@@ -202,7 +217,7 @@ export function App() {
       onLogin={login}
       activeChild={activeChild}
       onSwitchChild={() => setShowSwitcher(true)}
-      onParent={user ? () => setParent(true) : undefined}
+      onParent={user || isAndroidApp() ? () => setParent(true) : undefined}
     />
   );
   const switcherEl = showSwitcher ? (
