@@ -46,7 +46,7 @@ struct RootView: View {
                 }
             } else if showParent, let storage {
                 if parentUnlocked {
-                    ParentDashboardView(storage: storage, studentId: studentId) {
+                    ParentDashboardView(storage: storage, studentId: studentId, selectedGrade: grade) {
                         withAnimation {
                             showParent = false
                             parentUnlocked = false

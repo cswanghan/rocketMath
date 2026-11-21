@@ -160,4 +160,28 @@ final class PracticeKeyboardUITests: XCTestCase {
         check(app); assertCorrect(app)
         app.terminate()
     }
+
+    func testAngleIllustrationsKeepImmediateChoiceGrading() {
+        let app = open("angles")
+        var seen = Set<String>()
+        for _ in 0..<3 {
+            let question = app.staticTexts["practice-question"].label
+            let answer = question.contains("周角") ? "360°" : question.contains("直角") ? "90°" : "180°"
+            seen.insert(answer)
+            let diagram = app.descendants(matching: .any)["practice-illustration"].firstMatch
+            reveal(diagram, app: app)
+            XCTAssertTrue(diagram.exists)
+            capture(app, "angle-\(answer)-before-answer")
+            XCTAssertTrue(app.buttons["read-aloud"].exists)
+            XCTAssertFalse(app.buttons["practice-submit"].exists)
+            let choice = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH %@ AND label CONTAINS %@", "practice-choice-", answer)).firstMatch
+            reveal(choice, app: app); choice.tap()
+            XCTAssertTrue(app.buttons["practice-continue"].waitForExistence(timeout: 5))
+            XCTAssertFalse(app.buttons["practice-retry"].exists)
+            let next = app.buttons["practice-continue"]
+            reveal(next, app: app); next.tap()
+        }
+        XCTAssertEqual(seen, Set(["90°", "180°", "360°"]))
+        app.terminate()
+    }
 }

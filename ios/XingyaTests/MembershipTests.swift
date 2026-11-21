@@ -265,6 +265,30 @@ struct MembershipTests {
         #expect(SummarizeClient.sourceLabel(offline.source) == "本地免费分析")
         #expect(offline.text == localSummaryText(data))
     }
+
+    @Test("AI 上传当前年级及界面语言，不将跨年级历史统一标为三年级", arguments: [4, 9])
+    func summaryContext(grade: Int) async throws {
+        let f = try MembershipFixture(); defer { f.clean() }
+        let data = summarizeMistakes([MistakeRecord(id: nil, studentId: "local", source: "practice",
+            topicId: "test", topicTitle: "Place value", problemId: "one", prompt: "Write 20 million", difficulty: nil,
+            yourAnswer: "2000000", correctAnswer: "20000000", elapsedMs: 1000, slow: false, ts: 1, corrected: false)])
+        var uploaded = false
+        let result = await SummarizeClient.summarize(data, auth: f.auth, studentId: "local", selectedGrade: grade, language: "en-US") { request in
+            if request.url!.path == "/api/native/membership" {
+                return MembershipFixture.response(request, body: f.body())
+            }
+            let body = try #require(request.httpBody)
+            let json = try #require(JSONSerialization.jsonObject(with: body) as? [String: Any])
+            #expect(json["selectedGrade"] as? Int == grade)
+            #expect(json["language"] as? String == "en")
+            #expect(json["studentId"] == nil && json["username"] == nil && json["token"] == nil)
+            uploaded = true
+            return MembershipFixture.response(request, body: "{\"summary\":\"test analysis\"}")
+        }
+        #expect(uploaded && result.source == "AI")
+        let invalid = SummarizeClient.payload(from: data, selectedGrade: 99, language: "zh-Hans")
+        #expect(invalid.selectedGrade == nil && invalid.language == "zh-Hans")
+    }
 }
 
 // Start at the verified StoreKit success boundary; HTTP and finish are local stubs.

@@ -6,6 +6,7 @@ import SwiftUI
 struct ParentDashboardView: View {
     let storage: any StorageAdapter
     let studentId: String
+    var selectedGrade: Int? = nil
     let onExit: () -> Void
 
     @Environment(AuthSession.self) private var auth
@@ -60,19 +61,27 @@ struct ParentDashboardView: View {
 
                 Section("家长总结") {
                     Button {
-                        Task { await generateSummary() }
+                        Task { await generateSummary(remote: true) }
                     } label: {
                         if summaryLoading {
                             ProgressView().frame(maxWidth: .infinity)
                         } else {
                             Label(
-                                L10n.text(canSendSummary ? "远程 AI 家长总结" : "本地免费分析"),
+                                L10n.text("AI 错题与知识点分析"),
                                 systemImage: "sparkles"
                             )
                         }
                     }
-                    .disabled(active.isEmpty || summaryLoading)
+                    .disabled(active.isEmpty || summaryLoading || !canSendSummary)
                     .accessibilityIdentifier("parent-summary")
+
+                    Button {
+                        Task { await generateSummary(remote: false) }
+                    } label: {
+                        Label(L10n.text("本地免费分析"), systemImage: "chart.bar")
+                    }
+                    .disabled(active.isEmpty || summaryLoading)
+                    .accessibilityIdentifier("parent-local-summary")
 
                     if !canSendSummary {
                         Text("AI 家长总结为月度会员权益，请在「我的 → 账号 → 会员」开通或恢复购买。仅首次关联本机数据的账号可发送；本地分析免费。")
@@ -234,12 +243,12 @@ struct ParentDashboardView: View {
         return auth.syncOwnership.allows(userId: user.id, studentId: studentId) && store.canUseCloud(auth)
     }
 
-    private func generateSummary() async {
+    private func generateSummary(remote: Bool) async {
         summaryLoading = true
         defer { summaryLoading = false }
         let data = summarizeMistakes(mistakes)
-        if canSendSummary {
-            let result = await SummarizeClient.summarize(data, auth: auth, studentId: studentId)
+        if remote && canSendSummary {
+            let result = await SummarizeClient.summarize(data, auth: auth, studentId: studentId, selectedGrade: selectedGrade)
             summaryText = result.source == "AI" ? result.text : L10n.localSummary(data)
             summarySource = result.source
         } else {

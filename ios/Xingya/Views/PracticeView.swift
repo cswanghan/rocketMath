@@ -37,15 +37,16 @@ struct PracticeView: View {
                             .background(Theme.leafSoft, in: .rect(cornerRadius: 10))
                         Text(L10n.text(model.set.title)).font(.subheadline).foregroundStyle(Theme.sub)
                         Spacer(minLength: 0)
-                        Button { if let problem { speech.speak(L10n.text(problem.prompt)) } } label: {
-                            Image(systemName: "speaker.wave.2").frame(width: 44, height: 44)
-                        }.accessibilityLabel(L10n.text("听一听"))
+                        ReadAloudButton(prompt: problem.map { L10n.text($0.prompt) })
                     }
                     if let problem {
                         Spacer(minLength: 0)
                         Text(L10n.text(problem.prompt)).font(Theme.titleFont(34, weight: .bold))
                             .multilineTextAlignment(.center).frame(maxWidth: .infinity, minHeight: 130)
                             .accessibilityLabel(L10n.format("题目 %@", L10n.text(problem.prompt))).accessibilityIdentifier("practice-question")
+                        if let illustration = PracticeIllustration.forProblem(problem) {
+                            PracticeIllustrationView(illustration: illustration)
+                        }
                         if feedback {
                             Text(L10n.text(correctText(problem))).font(Theme.numberFont(44))
                                 .padding(22).background(correct ? Theme.leafSoft : Theme.sunlight, in: .rect(cornerRadius: 22))
@@ -97,6 +98,7 @@ struct PracticeView: View {
             }
         }.foregroundStyle(Theme.ink).background(Theme.pageBg.ignoresSafeArea()).toolbar(.hidden, for: .navigationBar)
             .onChange(of: model.problemSeq, initial: true) { _, _ in
+                speech.cancel()
                 focusedField = nil; choiceId = nil; fillText = ""; fieldValues = [:]
                 focusedField = firstFieldID
             }

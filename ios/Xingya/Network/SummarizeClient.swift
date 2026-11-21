@@ -5,6 +5,8 @@ import Foundation
 @MainActor
 enum SummarizeClient {
     struct Payload: Encodable {
+        var selectedGrade: Int?
+        var language: String
         var total: Int
         var wrongTotal: Int
         var slowTotal: Int
@@ -36,8 +38,10 @@ enum SummarizeClient {
         }
     }
 
-    static func payload(from s: MistakeSummaryData) -> Payload {
+    static func payload(from s: MistakeSummaryData, selectedGrade: Int? = nil, language: String = L10n.language) -> Payload {
         Payload(
+            selectedGrade: selectedGrade.flatMap { (3...9).contains($0) ? $0 : nil },
+            language: language.hasPrefix("en") ? "en" : "zh-Hans",
             total: s.total,
             wrongTotal: s.wrongTotal,
             slowTotal: s.slowTotal,
@@ -80,6 +84,8 @@ enum SummarizeClient {
         _ data: MistakeSummaryData,
         auth: AuthSession,
         studentId: String,
+        selectedGrade: Int? = nil,
+        language: String = L10n.language,
         transport: APIClient.Transport = APIClient.send
     ) async -> (text: String, source: String) {
         let local = localSummaryText(data)
@@ -93,7 +99,7 @@ enum SummarizeClient {
                 return (local, "本地（会员未验证）")
             }
             try auth.syncOwnership.requireOwner(userId: userID, studentId: studentId)
-            let body = payload(from: data)
+            let body = payload(from: data, selectedGrade: selectedGrade, language: language)
             let responseData = try await APIClient.request(
                 "/api/native/summarize",
                 method: "POST",
