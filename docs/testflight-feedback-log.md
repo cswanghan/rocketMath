@@ -230,3 +230,9 @@
 
 - 工作区干净。本机 Chrome 可连接，但打开星芽 TestFlight 截屏反馈页后跳转至 App Store Connect 登录页，页面显示 `authResult=FAILED`。登录页已留在 Chrome，可用原开发者账号重新登录。
 - 本轮无法检查最新截屏和崩溃反馈。最近一次成功检查是 11 月 23 日 19:37。仅记录巡检结果，未操作凭据、手机 Apple ID 或审核状态。
+
+## 2026-11-24 12:38 轮次 · 登录恢复
+
+- 工作区干净。本机 Chrome 已恢复 App Store Connect 登录，可读取正确团队下星芽 `6793418759` 的反馈。
+- 逐条核对截屏 ID `ANaU48R40lorozJESe3Ywl8`、`ANARZg3OsCE-DgCJD-SnLjY`、`ABkB7SPhjf93ZYMx7ZsFgP8`，仍为已记录的 3 条 Build 10 反馈。崩溃页加载完成后显示“无崩溃反馈”。
+- 本轮只记录巡检结果。Build 12 仍待真机验收及发布。
