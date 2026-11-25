@@ -267,3 +267,8 @@
 - 工作区干净。本机 Chrome 可读取正确团队下星芽 `6793418759` 的 TestFlight 反馈。
 - 截屏详情逐项核对为 Build 10 的 `ANaU48R40lorozJESe3Ywl8`、`ANARZg3OsCE-DgCJD-SnLjY` 和 `ABkB7SPhjf93ZYMx7ZsFgP8`，均已记录。崩溃列表显示无反馈。
 - 本轮仅记录巡检结果。Build 12 仍待真机验收及发布。
+
+## 2026-11-25 16:45 轮次 · 登录再次失效
+
+- 工作区干净。本机 Chrome 可连接，星芽截屏反馈页跳转至 App Store Connect 登录页，返回 `authResult=FAILED`。
+- 本轮无法核对最新截屏和崩溃反馈。最近一次成功检查为 11 月 25 日 12:42。本轮只记录巡检结果。
