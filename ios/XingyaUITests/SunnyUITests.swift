@@ -122,6 +122,36 @@ final class SunnyUITests: XCTestCase {
         XCTAssertTrue(app.buttons["home-start"].waitForExistence(timeout: 5))
         app.terminate()
     }
+    func testLocalAnalysisRemainsAvailableWithVisibleMemberAI() throws {
+        let app = launch("en")
+        func tapReady(_ element: XCUIElement) {
+            let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "hittable == true"), object: element)
+            XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 10), .completed)
+            element.tap()
+        }
+        tapReady(app.buttons["home-start"])
+        let answer = try answerForQuestion(app, id: "fluency-question")
+        digits(answer + 1, app)
+        XCTAssertTrue(app.buttons["fluency-retry"].waitForExistence(timeout: 5))
+        tapReady(app.buttons["session-close"])
+        tapReady(app.buttons["tab-2"])
+        tapReady(app.buttons["profile-parent"])
+        let pin = app.secureTextFields["输入4位数字"], confirm = app.secureTextFields["再输一次"]
+        tapReady(pin); pin.typeText("1234")
+        tapReady(confirm); confirm.typeText("1234")
+        tapReady(app.buttons["parent-gate-submit"])
+        let ai = app.buttons["parent-summary"], local = app.buttons["parent-local-summary"]
+        XCTAssertTrue(ai.waitForExistence(timeout: 5))
+        XCTAssertEqual(ai.label, "AI mistake and topic analysis")
+        XCTAssertFalse(ai.isEnabled, "Signed-out students cannot send learning data to AI")
+        XCTAssertTrue(local.isEnabled, "Free local analysis must not require membership")
+        tapReady(local)
+        let source = app.staticTexts["parent-summary-source"]
+        XCTAssertTrue(source.waitForExistence(timeout: 5))
+        XCTAssertEqual(source.label, "Free local analysis")
+        capture(app, "en-local-analysis-and-visible-member-AI")
+        app.terminate()
+    }
     func testAccessibilitySizeAndDarkAppearance() {
         let app = launch("en", extra: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL", "-appAppearance", "dark"])
         capture(app, "en-home-ax5-dark")
