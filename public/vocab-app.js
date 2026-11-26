@@ -1071,7 +1071,11 @@ async function verifyAuth() {
 
   try {
     const response = await apiFetch('/api/auth/me');
-    if (!response.ok) throw new Error('unauthorized');
+    if (response.status === 401 || response.status === 403) {
+      state.auth.token = ''; state.auth.user = null;
+      localStorage.removeItem('token'); localStorage.removeItem('user');
+    }
+    if (!response.ok) throw new Error('session unavailable');
     const data = await response.json();
     state.auth.user = data.user || state.auth.user;
     if (state.auth.user) {
@@ -1082,12 +1086,8 @@ async function verifyAuth() {
     trackEvent('vocab_sync_ready', { user: (state.auth.user && state.auth.user.username) || '' });
     return true;
   } catch {
-    state.auth.status = 'guest';
-    state.auth.message = I18n.t('syncExpired');
-    state.auth.token = '';
-    state.auth.user = null;
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    state.auth.status = state.auth.token ? 'ready' : 'guest';
+    state.auth.message = I18n.t(state.auth.token ? 'syncReadyOffline' : 'syncExpired');
     trackEvent('vocab_sync_guest');
     return false;
   }

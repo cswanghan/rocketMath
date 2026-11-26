@@ -1,3 +1,4 @@
+import { useNativeBack } from '../platform/native';
 import { useCallback, useEffect, useState } from 'react';
 import { track } from '../track';
 import type { StorageAdapter } from '../storage';
@@ -139,6 +140,11 @@ export function PrepScreen({ seriesId, adapter, studentId, onBack }: Props) {
   };
 
   const exitToList = () => { setView({ kind: 'list' }); refreshMastery(); };
+
+  useNativeBack(() => {
+    if (view.kind === 'list') return false;
+    exitToList(); return true;
+  }, 10);
 
   // —— 练习子视图 ——
   if (view.kind === 'probe' && view.item.kind === 'math') {

@@ -98,3 +98,15 @@ ios/tr.txt
 ios/.probe-test.txt
 ios/design-ref*
 .superdesign/resume.json
+
+# Android generated assets, machine paths, signing secrets
+dist-android/
+android/.gradle/
+android/local.properties
+android/**/build/
+android/app/src/main/assets/public/
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+*.jks
+*.keystore
+android-artifacts/

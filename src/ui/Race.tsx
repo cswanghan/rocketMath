@@ -20,9 +20,10 @@ interface Props {
   studentId: string;
   seed: number;
   onExit: () => void;
+  onBack?: () => void;
 }
 
-export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props) {
+export function Race({ trackId, pack, adapter, studentId, seed, onExit, onBack }: Props) {
   const game = useGame(trackId, pack, adapter, studentId, seed);
   const SPEEDS = useMemo(() => pack.engine_config.milestone_races.speeds ?? [
     { id: 'standard', label: '标准', emoji: '🚀', seconds: pack.engine_config.milestone_races.duration_seconds },
@@ -91,7 +92,7 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
     return (
       <div className="play">
         <header className="play-head">
-          <button className="ghost" onClick={() => { auto.cancel(); onExit(); }}>
+          <button className="ghost" onClick={() => { auto.cancel(); (onBack ?? onExit)(); }}>
             ← 返回
           </button>
           <span className="phase-badge">🚀 竞速</span>
@@ -124,7 +125,7 @@ export function Race({ trackId, pack, adapter, studentId, seed, onExit }: Props)
   return (
     <div className="play">
       <header className="play-head">
-        <button className="ghost" onClick={() => { auto.cancel(); onExit(); }}>
+        <button className="ghost" onClick={() => { auto.cancel(); (onBack ?? onExit)(); }}>
           ← 返回
         </button>
         <div className="status">

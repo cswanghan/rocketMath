@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { isAndroidApp } from '../platform/native';
+import { validateSession } from '../platform/session';
 
 interface UserInfo {
   id: number;
@@ -22,20 +24,18 @@ export function useAuth() {
       setUser(null);
       return;
     }
-    fetch('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
-      .then(r => {
-        if (!r.ok) throw new Error();
-        return r.json();
-      })
-      .then(data => {
-        setUser(data.user);
-        localStorage.setItem('user', JSON.stringify(data.user));
-      })
-      .catch(() => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
-        setUser(null);
-      });
+    let alive = true;
+    void validateSession(token).then(result => {
+      if (!alive || localStorage.getItem('token') !== token) return;
+      if (result.kind === 'valid') {
+        setUser(result.user);
+        localStorage.setItem('user', JSON.stringify(result.user));
+      } else if (result.kind === 'expired') {
+        localStorage.removeItem('token'); localStorage.removeItem('user'); setUser(null);
+      }
+      // A disconnected device keeps its local profile and progress.
+    });
+    return () => { alive = false; };
   }, []);
 
   const logout = () => {
@@ -48,7 +48,10 @@ export function useAuth() {
     window.location.href = '/login.html?redirect=' + encodeURIComponent(location.pathname);
   };
 
-  return { user, logout, login };
+  const refreshUser = () => {
+    try { setUser(JSON.parse(localStorage.getItem('user') || 'null')); } catch { setUser(null); }
+  };
+  return { user, logout, login, refreshUser };
 }
 
 interface Props {
@@ -63,7 +66,8 @@ interface Props {
 export function UserBar({ user, onLogout, onLogin, activeChild, onSwitchChild, onParent }: Props) {
   return (
     <div className="user-bar">
-      <a className="user-print-link" href="/support.html" title="口算天天练 · 打印版">🖨️ 打印版</a>
+      {isAndroidApp() ? <a className="user-print-link" href="/android-about.html">关于</a> : <a className="user-print-link" href="/support.html" title="口算天天练 · 打印版">🖨️ 打印版</a>}
+      {!user && onParent && <button className="user-parent-link" onClick={onParent}>家长</button>}
       {user ? (
         <>
           {onSwitchChild && (
@@ -76,7 +80,7 @@ export function UserBar({ user, onLogout, onLogin, activeChild, onSwitchChild, o
           {onParent && (
             <button className="user-parent-link" onClick={onParent}>家长</button>
           )}
-          {user.role === 'admin' && (
+          {!isAndroidApp() && user.role === 'admin' && (
             <a className="user-admin-link" href="/admin.html">管理后台</a>
           )}
           <span className="user-avatar">{user.username.charAt(0).toUpperCase()}</span>

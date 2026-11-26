@@ -1,3 +1,4 @@
+import { useNativeBack } from '../platform/native';
 import { useEffect, useState, type ReactNode } from 'react';
 import type { PracticePack } from '../practice';
 import type { StorageAdapter } from '../storage';
@@ -23,6 +24,10 @@ export function EnglishVocab({ onBack, level, topic, banner, practice }: Props) 
   const [loadError, setLoadError] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [session, setSession] = useState<{ setId: string; seed: number } | null>(null);
+  useNativeBack(() => {
+    if (!session) return false;
+    setSession(null); return true;
+  }, 20);
   const enablePractice = !!practice;
   useEffect(() => {
     if (!enablePractice) return;

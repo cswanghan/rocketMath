@@ -40,14 +40,11 @@ function headers(): Record<string, string> {
 }
 
 export async function listChildren(): Promise<Child[]> {
-  try {
-    const r = await fetch('/api/family/children', { headers: headers() });
-    if (!r.ok) return [];
-    const d = await r.json();
-    return (d.children || []) as Child[];
-  } catch {
-    return [];
-  }
+  const r = await fetch('/api/family/children', { headers: headers() });
+  if (!r.ok) throw new Error('孩子档案暂时不可用');
+  const d = await r.json();
+  if (!Array.isArray(d.children)) throw new Error('孩子档案响应无效');
+  return d.children as Child[];
 }
 
 export async function createChild(input: { name: string; avatar?: string; grade?: number | null }): Promise<Child> {
