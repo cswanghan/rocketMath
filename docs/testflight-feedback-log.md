@@ -297,3 +297,9 @@
 
 - 工作区干净。本机 Chrome 打开星芽截屏反馈页后再次跳转到 App Store Connect 登录页，返回 `authResult=FAILED`。
 - 未能核对截屏和崩溃反馈。最近一次成功检查为 11 月 25 日 12:42。
+
+## 2026-11-26 16:52 轮次 · 登录恢复
+
+- 工作区干净。本机 Chrome 已能读取正确团队下星芽 `6793418759` 的反馈。
+- 截屏列表只有三条。逐条核对反馈 ID `ANaU48R40lorozJESe3Ywl8`、`ANARZg3OsCE-DgCJD-SnLjY`、`ABkB7SPhjf93ZYMx7ZsFgP8`，均为已登记的 Build 10 反馈。崩溃列表显示无崩溃反馈。
+- 本轮仅更新巡检记录。
